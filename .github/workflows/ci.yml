@@ -56,10 +56,10 @@ jobs:
             - build
         steps:
             - name: Only Bump Version on Main Branch
-            if: github.ref == 'refs/heads/main'
-            steps:
-                - name: Checkout Repository
-                  uses: actions/checkout@v2
-                - name: Bump Version
-                  id: version-bump
-                  uses: "phips28/gh-action-bump-version@master"
+              if: github.ref != 'refs/heads/main'
+              run: exit 0
+            - name: Checkout Repository
+              uses: actions/checkout@v2
+            - name: Bump Version
+              id: version-bump
+              uses: "phips28/gh-action-bump-version@master"
