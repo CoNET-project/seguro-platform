@@ -95,3 +95,5 @@ jobs:
               run: tar -xf ./build.tar.gz
             - name: Publish Package
               run: yarn publish
+              env:
+                NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
