@@ -17,7 +17,7 @@ jobs:
               uses: actions/upload-artifact@v2
               with:
                 name: node_modules
-                path: './node_modules'
+                path: './node_modules.tar.gz'
     test:
         name: Test
         runs-on: ubuntu-latest
@@ -28,7 +28,7 @@ jobs:
               with:
                 name: node_modules
             - name: Decompress Node Modules
-              run: tar -xf ./node_modules
+              run: tar -xf ./node_modules.tar.gz
             - name: Run Tests
               run: yarn test
     build:
