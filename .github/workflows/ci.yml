@@ -50,6 +50,13 @@ jobs:
               run: tar -xf ./node_modules.tar.gz
             - name: Run Build
               run: yarn build
+            - name: Compress Build
+              run: tar -zcf ./build.tar.gz ./build
+            - name: Upload Build Artifact
+              uses: actions/upload-artifact@v2
+              with:
+                name: build
+                path: './build.tar.gz'
     bump-version:
         name: Bump Version (on main)
         runs-on: ubuntu-latest
@@ -80,5 +87,11 @@ jobs:
               with:
                 node-version: 14
                 registry-url: https://npm.pkg.github.com/
+            - name: Download Build Artifact
+              uses: actions/download-artifact@v2
+              with:
+                  name: build
+            - name: Decompress Build
+              run: tar -xf ./build.tar.gz
             - name: Publish Package
               run: yarn publish
