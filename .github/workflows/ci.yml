@@ -58,7 +58,7 @@ jobs:
                 name: build
                 path: './build.tar.gz'
     bump-version:
-        name: Bump Version (on main)
+        name: Version [main]
         runs-on: ubuntu-latest
         needs:
             - test
@@ -72,7 +72,7 @@ jobs:
             - name: Bump Version
               uses: "phips28/gh-action-bump-version@master"
     release:
-        name: Release (on main)
+        name: Release [main]
         runs-on: ubuntu-latest
         needs:
             - bump-version
