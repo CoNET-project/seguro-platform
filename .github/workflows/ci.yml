@@ -11,7 +11,7 @@ jobs:
             - uses: actions/cache@v2
               with:
                 key: install-cache
-                path: '*'
+                path: '.'
             - run: yarn install --frozen-lockfile
     test:
         name: Test
