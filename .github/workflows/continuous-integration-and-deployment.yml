@@ -1,6 +1,5 @@
-name: CI
+name: Continuous Integration and Deployment
 on:
-    - push
     - pull_request
 jobs:
     install:
@@ -75,7 +74,7 @@ jobs:
                 path: './build.tar.gz'
     bump-version:
         if: github.ref == 'refs/heads/main'
-        name: Version [main]
+        name: Version (main)
         runs-on: ubuntu-latest
         needs:
             - lint
@@ -88,7 +87,7 @@ jobs:
               uses: "phips28/gh-action-bump-version@master"
     release:
         if: github.ref == 'refs/heads/main'
-        name: Release [main]
+        name: Release (main)
         runs-on: ubuntu-latest
         needs:
             - bump-version
