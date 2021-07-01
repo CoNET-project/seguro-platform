@@ -1,6 +1,6 @@
 name: Continuous Integration and Deployment
 on:
-    - pull_request
+    - push
 jobs:
     install:
         name: Install
