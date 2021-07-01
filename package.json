@@ -25,6 +25,7 @@
     "scripts": {
         "start": "react-scripts start",
         "build": "react-scripts build",
+        "lint": "echo 'no linter available'",
         "test": "react-scripts test",
         "clean": "rm -rf ./node_modules ./build"
     },
