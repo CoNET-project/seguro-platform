@@ -1,6 +1,8 @@
 name: Integration
 on:
-    - push
+    push:
+        branches-ignore:
+            - main
 jobs:
     install:
         name: Install
