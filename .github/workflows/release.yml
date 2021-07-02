@@ -1,6 +1,9 @@
 name: Release
 on:
-    - workflow_dispatch
+    push:
+        branches-ignore:
+            - '**'
+            - '!main'
 jobs:
     install:
         name: Install
