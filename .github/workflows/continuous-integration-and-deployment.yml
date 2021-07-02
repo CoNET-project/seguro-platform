@@ -84,7 +84,7 @@ jobs:
             - name: Checkout Repository
               uses: actions/checkout@v2
             - name: Bump Version
-              uses: "phips28/gh-action-bump-version@master"
+              uses: phips28/gh-action-bump-version@master
     release:
         if: github.ref == 'refs/heads/main'
         name: Release (main)
