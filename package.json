@@ -1,6 +1,6 @@
 {
     "name": "@conet-project/seguro-platform",
-    "version": "0.3.0",
+    "version": "9.9.9",
     "license": "UNLICENSED",
     "files": [
         "build"
