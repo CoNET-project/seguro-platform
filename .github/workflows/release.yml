@@ -6,27 +6,9 @@ on:
             - '**'
             - '!main'
 jobs:
-    check-version:
-        name: Check Version
-        runs-on: ubuntu-latest
-        steps:
-            -   name: Checkout Main
-                uses: actions/checkout@v2
-                with:
-                    ref: main
-            -   name: Get Main Version
-                run: version_main=`echo 'console.log(require("./package.json").version)' | node`
-            -   name: Checkout Branch
-                uses: actions/checkout@v2
-            -   name: Get Branch Version
-                run: version_branch=`echo 'console.log(require("./package.json").version)' | node`
-            -   name: Check Versions Differ
-                run: if [ "$version_main" = "$version_branch" ]; then echo 'branch version must not be the same as main version'; exit 1; fi
     install:
         name: Install
         runs-on: ubuntu-latest
-        needs:
-            - check-version
         steps:
             -   name: Checkout Branch
                 uses: actions/checkout@v2
