@@ -12,7 +12,7 @@ const StyledContainer = styled.div`
 const App = () => {
     return (
         <StyledContainer>
-            Seguro Platform!!!!!!!!
+            Seguro Platform
         </StyledContainer>
     )
 }

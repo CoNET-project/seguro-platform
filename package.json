@@ -3,31 +3,32 @@
     "version": "0.5.0",
     "license": "UNLICENSED",
     "files": [
-        "build"
+        "./build"
     ],
-    "dependencies": {
-        "@testing-library/jest-dom": "^5.11.4",
-        "@testing-library/react": "^11.1.0",
-        "@testing-library/user-event": "^12.1.10",
-        "@types/jest": "^26.0.15",
-        "@types/node": "^12.0.0",
-        "@types/react": "^17.0.0",
-        "@types/react-dom": "^17.0.0",
-        "@types/styled-components": "^5.1.10",
-        "modern-normalize": "^1.1.0",
-        "react": "^17.0.2",
-        "react-dom": "^17.0.2",
-        "react-scripts": "4.0.3",
-        "styled-components": "^5.3.0",
-        "typescript": "^4.1.2",
-        "web-vitals": "^1.0.1"
-    },
     "scripts": {
         "start": "react-scripts start",
         "build": "react-scripts build",
         "lint": "echo 'no linter available'",
         "test": "react-scripts test",
         "clean": "rm -rf ./node_modules ./build"
+    },
+    "dependencies": {
+        "modern-normalize": "^1.1.0",
+        "react": "^17.0.2",
+        "react-dom": "^17.0.2",
+        "styled-components": "^5.3.0"
+    },
+    "devDependencies": {
+        "@testing-library/jest-dom": "^5.11.4",
+        "@testing-library/react": "^12.0.0",
+        "@testing-library/user-event": "^13.1.9",
+        "@types/jest": "^26.0.23",
+        "@types/node": "^16.0.0",
+        "@types/react": "^17.0.0",
+        "@types/react-dom": "^17.0.0",
+        "@types/styled-components": "^5.1.10",
+        "react-scripts": "^4.0.3",
+        "typescript": "^4.3.5"
     },
     "eslintConfig": {
         "extends": [
