@@ -1,5 +1,6 @@
 name: Integration
 on:
+    - workflow_dispatch
     push:
         branches-ignore:
             - main
@@ -67,10 +68,3 @@ jobs:
                 run: tar -xf ./node_modules.tar.gz
             -   name: Run Build
                 run: yarn build
-            -   name: Compress Build
-                run: tar -zcf ./build.tar.gz ./build
-            -   name: Upload Build Artifact
-                uses: actions/upload-artifact@v2
-                with:
-                    name: build
-                    path: './build.tar.gz'
