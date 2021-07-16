@@ -1,8 +1,8 @@
 const { app, BrowserWindow } = require('electron')
 
 const createWindow = async ({
-                                clientServerPort
-                            }) => {
+    clientServerPort
+}) => {
     await app.whenReady()
 
     const window = new BrowserWindow({
@@ -17,7 +17,7 @@ const createWindow = async ({
         console.log(`loading client index from ${clientServerUrl}`)
         await window.loadURL(clientServerUrl)
     } catch {
-        console.error('failed to load index')
+        console.error('failed to load client index')
         process.exit(1)
     }
 
