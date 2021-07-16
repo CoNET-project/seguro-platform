@@ -1,0 +1,13 @@
+{
+    "productName": "Seguro",
+    "extends": null,
+    "files": [
+        "./build",
+        "./src"
+    ],
+    "mac": {
+        "target": [
+            "dmg"
+        ]
+    }
+}

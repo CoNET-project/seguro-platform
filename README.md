@@ -10,25 +10,37 @@ yarn
 
 ## Build
 
-```bash
-yarn build
-```
-
-## Run
+### Web
 
 ```bash
-serve -s build
+yarn build:web
 ```
 
-View the production build at http://localhost:5000.
+### Desktop
+
+#### macOS
+
+```bash
+yarn build:desktop:mac
+```
+
+#### Windows
+
+```bash
+yarn build:desktop:win
+```
+
+#### Linux
+
+```bash
+yarn build:desktop:lin
+```
 
 ## Develop
 
 ```bash
 yarn start
 ```
-
-View the dev server at http://localhost:3000.
 
 ## Test
 

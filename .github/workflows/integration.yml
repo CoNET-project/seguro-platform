@@ -67,4 +67,4 @@ jobs:
             -   name: Decompress Node Modules
                 run: tar -xf ./node_modules.tar.gz
             -   name: Run Build
-                run: yarn build
+                run: yarn build:web
