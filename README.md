@@ -38,12 +38,34 @@ yarn build:desktop:lin
 
 ## Develop
 
+### App
+
 ```bash
 yarn start
+```
+
+### Storybook
+
+```bash
+yarn start:storybook
 ```
 
 ## Test
 
 ```bash
 yarn test
+```
+
+## Lint
+
+```bash
+yarn lint
+```
+
+## Dependencies
+
+### Upgrade
+
+```bash
+yarn upgrade-interactive --latest
 ```
