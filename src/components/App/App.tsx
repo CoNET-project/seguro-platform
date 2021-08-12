@@ -1,25 +1,38 @@
+import { useEffect } from 'react'
 import styled from 'styled-components'
-import useUI from '../../store/ui/useUI'
+import useAppState from '../../store/appState/useAppState'
+import UnlockScreen from './UnlockScreen/UnlockScreen'
+import LaunchScreen from './LaunchScreen/LaunchScreen'
 
 const StyledContainer = styled.div`
-    font-size: 24px;
     height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
     background-color: white;
     color: black;
 `
 
 const App = () => {
-    const ui = useUI()
+    const appState = useAppState()
+
+    useEffect(() => {
+        appState.initialize()
+    }, [])
+
+    let content = null
+
+    if (!appState.isInitialized) {
+        content = (
+            <LaunchScreen />
+        )
+    }
+    else if (appState.isInitialized) {
+        content = (
+            <UnlockScreen />
+        )
+    }
 
     return (
         <StyledContainer>
-            <div>
-                Seguro Platform
-            </div>
+            {content}
         </StyledContainer>
     )
 }

@@ -13,6 +13,9 @@ jobs:
                 uses: actions/checkout@v2
             -   name: Install Dependencies
                 run: yarn install --frozen-lockfile
+                env:
+                    NPM_CONFIG_USERCONFIG: .github/workflows/.npmrc
+                    NODE_AUTH_TOKEN: ${{ secrets.GPR_READ_TOKEN }}
             -   name: Compress Node Modules
                 run: tar -zcf ./node_modules.tar.gz ./node_modules
             -   name: Upload Node Modules Artifact

@@ -1,9 +1,9 @@
 import { useSelector, TypedUseSelectorHook } from 'react-redux'
-import uiReducer from './ui/uiReducer'
+import appStateReducer from './appState/appStateReducer'
 import { combineReducers, configureStore } from '@reduxjs/toolkit'
 
 const rootReducer = combineReducers({
-    ui: uiReducer
+    appState: appStateReducer
 })
 
 const store = configureStore({
