@@ -1,5 +1,6 @@
 import { getSeguroBridge, SeguroBridge } from '@conet-project/seguro-bridge-lib'
 import store from '../../store/store'
+import { setBridgeServiceIsInitialized } from '../../store/appState/appStateActions'
 
 let bridgeService: null | SeguroBridge = null
 
@@ -10,12 +11,7 @@ export const getBridgeService = () => {
 export const initializeBridgeService = async () => {
     const [status, bridge] = await getSeguroBridge({
         onReady () {
-            store.dispatch({
-                type: 'appState/set-bridge-service-is-initialized',
-                payload: {
-                    bridgeServiceIsInitialized: true
-                }
-            })
+            store.dispatch(setBridgeServiceIsInitialized(true))
         },
         onError () {},
         onMessage () {}

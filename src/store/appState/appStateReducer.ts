@@ -3,12 +3,14 @@ import { setBridgeServiceIsInitialized, setTheme } from './appStateActions'
 
 type AppStateReducerState = {
     bridgeServiceIsInitialized: boolean,
-    theme: 'Auto' | 'Light' | 'Dark'
+    theme: 'Auto' | 'Light' | 'Dark',
+    isUnlocked: boolean
 }
 
 const initialState: AppStateReducerState = {
     bridgeServiceIsInitialized: false,
-    theme: 'Auto'
+    theme: 'Auto',
+    isUnlocked: true
 }
 
 const appStateReducer = createReducer(initialState, builder => {

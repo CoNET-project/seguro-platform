@@ -1,7 +1,7 @@
 import { createAction } from '@reduxjs/toolkit'
 
 export const setBridgeServiceIsInitialized = createAction(
-    'appState/set-bridge-service-is-initialized',
+    'appState/setBridgeServiceIsInitialized',
     (bridgeServiceIsInitialized: boolean) => {
         return {
             payload: {
@@ -12,7 +12,7 @@ export const setBridgeServiceIsInitialized = createAction(
 )
 
 export const setTheme = createAction(
-    'appState/set-theme',
+    'appState/setTheme',
     (theme: 'Auto' | 'Light' | 'Dark') => {
         return {
             payload: {
