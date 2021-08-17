@@ -1,5 +1,22 @@
 # `seguro-platform` CHANGELOG
 
+## `0.4.0`
+
+### Additions
+
+- Setup theming system with dark / light theme and automatic preferred theme detection.
+- Add debug commands in development mode.
+
+### Changes
+
+- Dispatch non-component actions using action creator functions instead of manually constructing action objects.
+
+### Fixes
+
+- None.
+
+---
+
 ## `0.3.0`
 
 ### Additions

@@ -1,8 +1,9 @@
 import { useEffect } from 'react'
 import styled from 'styled-components'
 import useAppState from '../../store/appState/useAppState'
-import UnlockScreen from './UnlockScreen/UnlockScreen'
 import LaunchScreen from './LaunchScreen/LaunchScreen'
+import MainScreen from './MainScreen/MainScreen'
+import UnlockScreen from './UnlockScreen/UnlockScreen'
 
 const StyledContainer = styled.div`
     height: 100vh;
@@ -19,14 +20,22 @@ const App = () => {
 
     let content = null
 
-    if (!appState.isInitialized) {
+    // launch screen
+    if (appState.isInitializing) {
         content = (
             <LaunchScreen />
         )
     }
-    else if (appState.isInitialized) {
+    // unlock screen
+    else if (appState.isInitialized && appState.isLocked) {
         content = (
             <UnlockScreen />
+        )
+    }
+    // main screen
+    else if (appState.isInitialized && appState.isUnlocked) {
+        content = (
+            <MainScreen />
         )
     }
 
