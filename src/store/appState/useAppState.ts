@@ -1,7 +1,9 @@
 import { useTypedSelector } from '../store'
 import { useDispatch } from 'react-redux'
-import { setTheme as setThemeActionCreator } from './appStateActions'
+import { setTheme as setThemeActionCreator, setLocale as setLocaleActionCreator } from './appStateActions'
 import { initializeBridgeService } from '../../services/bridgeService/bridgeService'
+import { Theme } from '../../theme/types'
+import { Locale } from '../../localization/types'
 
 const useAppState = () => {
     const dispatch = useDispatch()
@@ -19,10 +21,13 @@ const useAppState = () => {
     const isLocked = !isUnlocked
 
     const theme = useTypedSelector(state => state.appState.theme)
-    const setTheme = (
-        theme: 'Auto' | 'Light' | 'Dark'
-    ) => {
+    const setTheme = (theme: Theme) => {
         dispatch(setThemeActionCreator(theme))
+    }
+
+    const locale = useTypedSelector(state => state.appState.locale)
+    const setLocale = (locale: Locale) => {
+        dispatch(setLocaleActionCreator(locale))
     }
 
     return {
@@ -32,7 +37,9 @@ const useAppState = () => {
         isUnlocked,
         isLocked,
         theme,
-        setTheme
+        setTheme,
+        locale,
+        setLocale
     }
 }
 

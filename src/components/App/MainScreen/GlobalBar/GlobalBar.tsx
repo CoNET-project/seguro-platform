@@ -8,9 +8,7 @@ const StyledContainer = styled.div`
 
 const GlobalBar = () => {
     return (
-        <StyledContainer>
-            GlobalBar
-        </StyledContainer>
+        <StyledContainer />
     )
 }
 

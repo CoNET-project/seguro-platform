@@ -1,6 +1,7 @@
 import ProviderProps from './ProviderProps'
 import StoreProvider from './StoreProvider/StoreProvider'
 import ThemeProvider from './ThemeProvider/ThemeProvider'
+import LocalizationProvider from './LocalizationProvider/LocalizationProvider'
 
 const RootProvider = ({
     children
@@ -8,7 +9,9 @@ const RootProvider = ({
     return (
         <StoreProvider>
             <ThemeProvider>
-                {children}
+                <LocalizationProvider>
+                    {children}
+                </LocalizationProvider>
             </ThemeProvider>
         </StoreProvider>
     )

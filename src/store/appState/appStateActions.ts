@@ -1,4 +1,6 @@
 import { createAction } from '@reduxjs/toolkit'
+import { Theme } from '../../theme/types'
+import { Locale } from '../../localization/types'
 
 export const setBridgeServiceIsInitialized = createAction(
     'appState/setBridgeServiceIsInitialized',
@@ -13,10 +15,21 @@ export const setBridgeServiceIsInitialized = createAction(
 
 export const setTheme = createAction(
     'appState/setTheme',
-    (theme: 'Auto' | 'Light' | 'Dark') => {
+    (theme: Theme) => {
         return {
             payload: {
                 theme
+            }
+        }
+    }
+)
+
+export const setLocale = createAction(
+    'appState/setLocale',
+    (locale: Locale) => {
+        return {
+            payload: {
+                locale
             }
         }
     }
