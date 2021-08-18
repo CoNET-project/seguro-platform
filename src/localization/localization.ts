@@ -10,6 +10,8 @@ export const messagesByLocale: MessagesByLocale = {
 export const getLocaleGuess = (
     string: String
 ) => {
+    string = string.toLowerCase()
+
     if (string.startsWith('en')) {
         return 'en-US'
     }
