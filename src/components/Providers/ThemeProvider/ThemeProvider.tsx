@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import ProviderProps from '../ProviderProps'
-import { ThemeProvider as StyledComponentsThemeProvider } from 'styled-components'
+import { DefaultTheme, ThemeProvider as StyledComponentsThemeProvider } from 'styled-components'
 import useAppState from '../../../store/appState/useAppState'
 import usePreferredTheme from './usePreferredTheme'
 import lightTheme from '../../../theme/light'
@@ -8,7 +8,7 @@ import darkTheme from '../../../theme/dark'
 
 type ActiveTheme = 'Light' | 'Dark'
 
-const themeToConfig: any[ActiveTheme] = {
+const themeToConfig: Record<ActiveTheme, DefaultTheme> = {
     'Light': lightTheme,
     'Dark': darkTheme
 }
@@ -18,7 +18,7 @@ const ThemeProvider = ({
 }: ProviderProps) => {
     const [activeTheme, setActiveTheme] = useState<ActiveTheme>('Light')
 
-    const appState = useAppState();
+    const appState = useAppState()
     const preferredTheme = usePreferredTheme()
 
     if (appState.theme === 'Auto' && preferredTheme !== activeTheme) {

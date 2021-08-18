@@ -1,5 +1,7 @@
 import store from '../store/store'
-import { setTheme } from '../store/appState/appStateActions'
+import { setLocale, setTheme } from '../store/appState/appStateActions'
+import { Locale } from '../localization/types'
+import { Theme } from '../theme/types'
 
 export const enableDebugCommands = () => {
 
@@ -12,8 +14,12 @@ export const enableDebugCommands = () => {
                 return store.getState()
             },
 
-            setTheme (theme: 'Auto' | 'Light' | 'Dark') {
+            setTheme (theme: Theme) {
                 store.dispatch(setTheme(theme))
+            },
+
+            setLocale (locale: Locale) {
+                store.dispatch(setLocale(locale))
             }
         }
     }
