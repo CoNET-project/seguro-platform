@@ -1,5 +1,24 @@
 # `seguro-platform` CHANGELOG
 
+## `0.5.0`
+
+### Additions
+
+- Setup localization system with automatic preferred locale detection for supported languages / fallback to en-US locale.
+- Add support for zh-CN locale.
+- Add support for en-US locale.
+- Add locale switch debug command.
+
+### Changes
+
+- Improve store reducer property types.
+
+### Fixes
+
+- None.
+
+---
+
 ## `0.4.0`
 
 ### Additions
