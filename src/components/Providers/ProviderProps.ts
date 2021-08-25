@@ -1,7 +1,7 @@
-import { ReactElement } from 'react'
+import { ReactNode } from 'react'
 
 type ProviderProps = {
-    children: ReactElement
+    children: ReactNode
 }
 
 export default ProviderProps
