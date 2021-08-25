@@ -1,5 +1,25 @@
 # `seguro-platform` CHANGELOG
 
+## `0.6.0`
+
+### Additions
+
+- Add IconButton component.
+- Add Storybook RootDecorator component that wraps the story in the app context providers.
+- Add Storybook CanvasDecorator component with theme switcher.
+- Add Testing Library module that re-exports a version of `render` wrapped in the app context providers.
+- Add Jest mocks for `matchMedia` browser API.
+
+### Changes
+
+- Upgrade dependencies.
+
+### Fixes
+
+- None.
+
+---
+
 ## `0.5.0`
 
 ### Additions
