@@ -1,4 +1,5 @@
 import 'modern-normalize'
+import { RootDecorator } from './decorators/RootDecorator/RootDecorator'
 
 export const parameters = {
     layout: 'centered',
@@ -12,3 +13,13 @@ export const parameters = {
         }
     }
 }
+
+export const decorators = [
+    (Story) => {
+        return (
+            <RootDecorator>
+                <Story />
+            </RootDecorator>
+        )
+    }
+]
