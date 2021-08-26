@@ -1,5 +1,28 @@
 # `seguro-platform` CHANGELOG
 
+## `0.7.0`
+
+### Additions
+
+- Add detection of touch devices.
+- Add `detectWindowInnerSize` function in `utilities.ts` and tests in `utilities.test.ts`
+- Add `detectTouchDevice` function in `utilities.ts` and tests in `utilities.test.ts`
+- Add `windowInnerSize` state into `appStateReducer`.
+- Add `isTouchDevice` state into `appStateReducer`.
+- Add `windowInnerSize` and `isTouchDevice` action creators into `appStateActions.ts`.
+- Add dispatch functions for `windowInnerSize` and `isTouchDevice` into `useAppState.ts`.
+- Temporary display of `windowInnerSize` and `isTouchDevice` in `LaunchScreen.tsx`.
+
+### Changes
+
+- None.
+
+### Fixes
+
+- None.
+
+---
+
 ## `0.6.0`
 
 ### Additions
