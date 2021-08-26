@@ -8,6 +8,7 @@ export const detectTouchDevice = (): boolean => {
     if (typeof window !== undefined) {
         if ('ontouchstart' in window ||
             navigator.maxTouchPoints > 0 ||
+            // @ts-ignore
             navigator.msMaxTouchPoints ||
             window.matchMedia("(pointer: coarse)").matches
         ) {
