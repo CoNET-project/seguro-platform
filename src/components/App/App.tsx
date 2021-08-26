@@ -4,6 +4,7 @@ import useAppState from '../../store/appState/useAppState'
 import LaunchScreen from './LaunchScreen/LaunchScreen'
 import MainScreen from './MainScreen/MainScreen'
 import UnlockScreen from './UnlockScreen/UnlockScreen'
+import {detectTouchDevice, detectWindowInnerSize} from "../../utilities/utilities";
 
 const StyledContainer = styled.div`
     height: 100vh;
@@ -14,30 +15,43 @@ const StyledContainer = styled.div`
 const App = () => {
     const appState = useAppState()
 
+    const windowResizeHandler = () => {
+        appState.setWindowInnerSize(detectWindowInnerSize())
+    }
+
     useEffect(() => {
-        appState.initialize()
+        appState.setIsTouchDevice(detectTouchDevice())
+        window.addEventListener('resize', windowResizeHandler)
+        return () => {
+            window.removeEventListener('resize', windowResizeHandler)
+        }
+        // appState.initialize().then()
     }, [])
 
-    let content = null
+    let content = (
+        <LaunchScreen/>
+    )
 
-    // launch screen
-    if (appState.isInitializing) {
-        content = (
-            <LaunchScreen />
-        )
-    }
-    // unlock screen
-    else if (appState.isInitialized && appState.isLocked) {
-        content = (
-            <UnlockScreen />
-        )
-    }
-    // main screen
-    else if (appState.isInitialized && appState.isUnlocked) {
-        content = (
-            <MainScreen />
-        )
-    }
+    // let content = null
+    //
+    // // launch screen
+    // if (appState.isInitializing) {
+    //     content = (
+    //         <LaunchScreen />
+    //     )
+    // }
+    // // unlock screen
+    // else if (appState.isInitialized && appState.isLocked) {
+    //     content = (
+    //         <UnlockScreen />
+    //     )
+    // }
+    // // main screen
+    // else if (appState.isInitialized && appState.isUnlocked) {
+    //     content = (
+    //         <MainScreen />
+    //     )
+    // }
 
     return (
         <StyledContainer>

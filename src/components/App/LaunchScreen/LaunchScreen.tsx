@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import useAppState from "../../../store/appState/useAppState";
 
 const StyledContainer = styled.div`
     height: 100%;
@@ -13,10 +14,15 @@ const StyledMessage = styled.div`
 `
 
 const LaunchScreen = () => {
+    const appState = useAppState()
     return (
         <StyledContainer>
             <StyledMessage>
-                Seguro Platform is launching...
+                Is touch device: {appState.isTouchDevice.toString()}
+            </StyledMessage>
+            <StyledMessage>
+                Window innerWidth: {appState.windowInnerSize?.width}<br/>
+                Window innerHeight: {appState.windowInnerSize?.height}
             </StyledMessage>
         </StyledContainer>
     )

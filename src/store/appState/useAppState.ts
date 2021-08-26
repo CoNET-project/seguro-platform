@@ -1,9 +1,19 @@
-import { useTypedSelector } from '../store'
-import { useDispatch } from 'react-redux'
-import { setTheme as setThemeActionCreator, setLocale as setLocaleActionCreator } from './appStateActions'
-import { initializeBridgeService } from '../../services/bridgeService/bridgeService'
-import { Theme } from '../../theme/types'
-import { Locale } from '../../localization/types'
+import {useTypedSelector} from '../store'
+import {useDispatch} from 'react-redux'
+import {
+    setIsTouchDevice as setIsTouchDeviceActionCreator,
+    setLocale as setLocaleActionCreator,
+    setTheme as setThemeActionCreator,
+    setWindowInnerSize as setWindowInnerSizeActionCreator
+} from './appStateActions'
+import {initializeBridgeService} from '../../services/bridgeService/bridgeService'
+import {Theme} from '../../theme/types'
+import {Locale} from '../../localization/types'
+
+export type WindowInnerSize = {
+    width: number,
+    height: number
+}
 
 const useAppState = () => {
     const dispatch = useDispatch()
@@ -12,9 +22,7 @@ const useAppState = () => {
         await initializeBridgeService()
     }
 
-    const bridgeServiceIsInitialized = useTypedSelector(state => state.appState.bridgeServiceIsInitialized)
-
-    const isInitialized = bridgeServiceIsInitialized
+    const isInitialized = useTypedSelector(state => state.appState.bridgeServiceIsInitialized)
     const isInitializing = !isInitialized
 
     const isUnlocked = useTypedSelector(state => state.appState.isUnlocked)
@@ -30,6 +38,16 @@ const useAppState = () => {
         dispatch(setLocaleActionCreator(locale))
     }
 
+    const isTouchDevice = useTypedSelector(state => state.appState.isTouchDevice)
+    const setIsTouchDevice = (isTouchDevice: boolean) => {
+        dispatch(setIsTouchDeviceActionCreator(isTouchDevice))
+    }
+
+    const windowInnerSize = useTypedSelector(state => state.appState.windowInnerSize)
+    const setWindowInnerSize = (windowInnerSize: WindowInnerSize | null) => {
+        dispatch(setWindowInnerSizeActionCreator(windowInnerSize))
+    }
+
     return {
         initialize,
         isInitialized,
@@ -39,7 +57,11 @@ const useAppState = () => {
         theme,
         setTheme,
         locale,
-        setLocale
+        setLocale,
+        isTouchDevice,
+        setIsTouchDevice,
+        windowInnerSize,
+        setWindowInnerSize
     }
 }
 
