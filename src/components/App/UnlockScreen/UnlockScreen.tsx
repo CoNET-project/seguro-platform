@@ -33,20 +33,35 @@ const StyledTitle = styled.p`
 const UnlockScreen = () => {
 
     const [passcode, setPasscode] = useState("")
+    const [isIncorrect, setIsIncorrect] = useState(false)
+    const [isInvalid, setIsInvalid] = useState(false)
+    const tempPasscode = '123456'
+
+    const clearError = () => {
+        setIsIncorrect(false)
+        setIsInvalid(false)
+    }
 
     const keypadClickHandlers = {
         numberKeyOnClick: (num: number) => {
+            clearError()
             setPasscode(passcode + num.toString() )
         },
         deleteKeyOnClick: () => {
-            console.log(passcode)
+            clearError()
             setPasscode(passcode.slice(0, passcode.length - 1))
         },
         cancelKeyOnClick: () => {
+            clearError()
             setPasscode('')
         },
         unlockKeyOnClick: () => {
-            // Unlock
+            if (passcode.length < 6) {
+                return setIsInvalid(true)
+            }
+            if (passcode !== tempPasscode) {
+                return setIsIncorrect(true)
+            }
         }
     }
 
@@ -55,7 +70,7 @@ const UnlockScreen = () => {
             <StyledContent>
                 <Icon component={<IoMdLock size={46}/>}/>
                 <StyledTitle><FormattedMessage id="unlock.title" /></StyledTitle>
-                <PasscodeInput value={passcode}/>
+                <PasscodeInput value={passcode} error={isIncorrect} invalid={isInvalid}/>
                 <Keypad clickActionHandlers={keypadClickHandlers}/>
             </StyledContent>
         </StyledContainer>

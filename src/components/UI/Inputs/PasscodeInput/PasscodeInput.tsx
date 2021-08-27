@@ -1,9 +1,11 @@
 import styled from 'styled-components';
 import {RiErrorWarningFill} from "react-icons/all";
+import {FormattedMessage} from "react-intl";
 
 type PasscodeInputProps = {
     value: string,
-    error?: boolean
+    error?: boolean,
+    invalid?: boolean
 }
 
 const StyledPasscode = styled.div`
@@ -11,7 +13,7 @@ const StyledPasscode = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin-bottom: 50px;
+  margin-bottom: 20px;
 `
 
 const StyledInput = styled.input`
@@ -33,22 +35,27 @@ const StyledInput = styled.input`
   }
 `
 
-const StyledErrorMessage = styled.p`
+type StyledErrorMessageProps = {
+    show?: boolean
+}
+
+const StyledErrorMessage = styled.p<StyledErrorMessageProps>`
   color: ${props => props.theme.ui.passcodeInput.color};
   font-size: 14px;
   display: flex;
   align-items: center;
+  transition: opacity 100ms ease-in-out;
+  opacity: ${props => props.show ? 1 : 0};
 `
 
 const PasscodeInput = (props: PasscodeInputProps) => {
     return (
         <StyledPasscode>
             <StyledInput type="password" value={props.value} disabled={true}/>
-            {
-                props.error ?
-                    <StyledErrorMessage><RiErrorWarningFill style={{marginRight: '5px'}} size={20}/>Incorrect passcode, please try again!</StyledErrorMessage> :
-                    null
-            }
+            <StyledErrorMessage show={props.error || props.invalid}><RiErrorWarningFill style={{marginRight: '5px'}} size={16}/>
+                {props.invalid ? <FormattedMessage id="unlock.invalid"/> : null}
+                {props.error ? <FormattedMessage id="unlock.error"/> : null}
+            </StyledErrorMessage>
         </StyledPasscode>
     )
 }
