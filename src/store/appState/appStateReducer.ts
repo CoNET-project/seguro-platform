@@ -26,7 +26,7 @@ const initialState: AppStateReducerState = {
     isUnlocked: true,
     windowInnerSize: detectWindowInnerSize(),
     bridgeServiceIsInitialized: false,
-    theme: 'Auto',
+    theme: 'Dark',
     locale: getPreferredLocale()
 }
 

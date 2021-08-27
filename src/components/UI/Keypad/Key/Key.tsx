@@ -2,8 +2,10 @@ import styled from 'styled-components';
 import {ReactNode} from "react";
 
 const StyledKey = styled.button`
-  width: 5rem;
+  min-height: 5rem;
+  min-width: 5rem;
   height: 5rem;
+  width: 5rem;
   content: '';
   background-color: transparent;
   border-radius: 50%;
@@ -13,6 +15,10 @@ const StyledKey = styled.button`
   justify-content: center;
   align-items: center;
   user-select: none;
+  transition: background-color 50ms ease-in-out;
+  &:active {
+    background-color: rgba(0,0,0,0.05);
+  }
 `
 
 const StyledKeyNumber = styled.p`
@@ -20,24 +26,26 @@ const StyledKeyNumber = styled.p`
   padding: 0;
   font-weight: 600;
   font-size: 24px;
+  color: ${props => props.theme.ui.keypadKey.numberColor};
+  pointer-events: none;
 `
 
 const StyledKeyAlphabet = styled(StyledKeyNumber)`
   font-size: 12px;
   font-weight: normal;
-  color: rgba(0,0,0,0.5);
   min-height: 12px;
+  color: ${props => props.theme.ui.keypadKey.alphabetColor};
 `
 
 const StyledKeyText = styled(StyledKeyNumber)`
-  font-size: 16px
+  font-size: 15px;
+  color: ${props => props.theme.ui.keypadKey.basicColor}
 `
 
 export type KeyProps = {
     number?: string | number,
     alphabet?: string,
     component?: ReactNode,
-    text?: string,
     isDisabled?: boolean,
     onClick: () => void
 }
@@ -45,9 +53,7 @@ export type KeyProps = {
 const Key = (props: KeyProps) => {
     let keyContent = null
     if (props.component) {
-        keyContent = props.component
-    } else if (props.text) {
-        keyContent = <StyledKeyText>{props.text}</StyledKeyText>
+        keyContent = <StyledKeyText>{props.component}</StyledKeyText>
     } else {
         keyContent = (
             <>

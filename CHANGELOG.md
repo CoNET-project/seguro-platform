@@ -1,5 +1,26 @@
 # `seguro-platform` CHANGELOG
 
+## `0.8.0`
+
+### Additions
+
+- Create `PasscodeInput` component for unlock and onboarding screens.
+- Add keypad component, passcode input component into `unlockScreen.ts`.
+- Add more UI localization text for `zh-CN` and `en-US`.
+- Add localization languages for keypad component.
+- Add more theme properties for individual UI components.
+- Create `OnboardingScreen.tsx` for onboarding flow.
+
+### Changes
+
+- None.
+
+### Fixes
+
+- None.
+
+---
+
 ## `0.7.0`
 
 ### Additions

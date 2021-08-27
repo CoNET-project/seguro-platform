@@ -10,10 +10,17 @@ const Template: Story = (
     args
 ) => {
     return (
-        <Keypad/>
+        <Keypad clickActionHandlers={args.keypadClickHandlers}/>
     )
 }
 
 export const Primary = Template.bind({})
 
-Primary.args = {}
+Primary.args = {
+    keypadClickHandlers: {
+    numberKeyOnClick: () => {},
+    deleteKeyOnClick: () => {},
+    cancelKeyOnClick: () => {},
+    unlockKeyOnClick: () => {}
+    }
+}
