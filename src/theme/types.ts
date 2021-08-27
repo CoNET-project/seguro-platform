@@ -10,6 +10,8 @@ declare module 'styled-components' {
             color: string
         },
         ui: {
+            backgroundColor: string,
+            textColor: string,
             outline: {
                 color: string
             },
@@ -25,6 +27,15 @@ declare module 'styled-components' {
             iconButton: {
                 color: string,
                 invertedColor: string
+            },
+            keypadKey: {
+                numberColor: string,
+                alphabetColor: string,
+                basicColor: string
+            },
+            passcodeInput: {
+                color: string,
+                border: string
             }
         }
     }

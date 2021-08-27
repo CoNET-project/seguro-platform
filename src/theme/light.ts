@@ -6,6 +6,8 @@ const light: DefaultTheme = {
         color: '#000'
     },
     ui: {
+        backgroundColor: '#fff',
+        textColor: '#333332',
         outline: {
             color: '#4D90FE'
         },
@@ -19,8 +21,17 @@ const light: DefaultTheme = {
             }
         },
         iconButton: {
-            color: '#000',
+            color: '#333332',
             invertedColor: '#fff'
+        },
+        keypadKey: {
+            numberColor: '#333332',
+            alphabetColor: 'rgba(0,0,0,0.5)',
+            basicColor: '#333332'
+        },
+        passcodeInput: {
+            color: '#333332',
+            border: '#333332'
         }
     }
 }

@@ -10,7 +10,7 @@ const Template: Story<ButtonProps> = (
     args
 ) => {
     return (
-        <Button {...args} />
+        <Button {...args} children={args.children}/>
     )
 }
 

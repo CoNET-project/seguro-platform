@@ -8,7 +8,11 @@ import {detectTouchDevice, detectWindowInnerSize} from "../../utilities/utilitie
 
 const StyledContainer = styled.div`
     height: 100vh;
+    width: 100vw;
     background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     color: black;
 `
 
@@ -25,11 +29,10 @@ const App = () => {
         return () => {
             window.removeEventListener('resize', windowResizeHandler)
         }
-        // appState.initialize().then()
     }, [])
 
     let content = (
-        <LaunchScreen/>
+        <UnlockScreen/>
     )
 
     // let content = null
