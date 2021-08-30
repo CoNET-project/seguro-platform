@@ -1,9 +1,10 @@
 import styled from 'styled-components'
+import SeguroSplash from '../../../assets/seguro-logo.svg'
 import useAppState from "../../../store/appState/useAppState";
-import Keypad from "../../UI/Keypad/Keypad/Keypad";
 
 const StyledContainer = styled.div`
     height: 100%;
+    width: 100%;
     display: flex;
     background-color: ${props => props.theme.ui.backgroundColor};
     flex-direction: column;
@@ -11,28 +12,15 @@ const StyledContainer = styled.div`
     justify-content: center;
 `
 
-const StyledMessage = styled.div`
-    font-size: 20px;
+const StyledImage = styled.img`
+  width: 40%;
+  height: 40%;
 `
 
 const LaunchScreen = () => {
-    const appState = useAppState()
-    const keypadClickHandlers = {
-        numberKeyOnClick: () => {},
-        deleteKeyOnClick: () => {},
-        cancelKeyOnClick: () => {},
-        unlockKeyOnClick: () => {}
-    }
     return (
         <StyledContainer>
-            <Keypad clickActionHandlers={keypadClickHandlers}/>
-            {/*<StyledMessage>*/}
-            {/*    Is touch device: {appState.isTouchDevice.toString()}*/}
-            {/*</StyledMessage>*/}
-            {/*<StyledMessage>*/}
-            {/*    Window innerWidth: {appState.windowInnerSize?.width}<br/>*/}
-            {/*    Window innerHeight: {appState.windowInnerSize?.height}*/}
-            {/*</StyledMessage>*/}
+            <StyledImage src={SeguroSplash}/>
         </StyledContainer>
     )
 }

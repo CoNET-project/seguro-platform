@@ -5,6 +5,8 @@ import LaunchScreen from './LaunchScreen/LaunchScreen'
 import MainScreen from './MainScreen/MainScreen'
 import UnlockScreen from './UnlockScreen/UnlockScreen'
 import {detectTouchDevice, detectWindowInnerSize} from "../../utilities/utilities";
+import OnboardingScreen from "./OnboardingScreen/OnboardingScreen";
+import GlobalStyle from '../UI/Global/Styles'
 
 const StyledContainer = styled.div`
     height: 100vh;
@@ -32,7 +34,7 @@ const App = () => {
     }, [])
 
     let content = (
-        <UnlockScreen/>
+        <OnboardingScreen/>
     )
 
     // let content = null
@@ -57,9 +59,12 @@ const App = () => {
     // }
 
     return (
-        <StyledContainer>
-            {content}
-        </StyledContainer>
+        <>
+            <GlobalStyle/>
+            <StyledContainer>
+                {content}
+            </StyledContainer>
+        </>
     )
 }
 
