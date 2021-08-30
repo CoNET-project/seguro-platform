@@ -1,5 +1,23 @@
 # `seguro-platform` CHANGELOG
 
+## `0.9.0`
+
+### Additions
+
+- Add `LanguageSelect` component for onboarding screen.
+- Add global styles from `styled-components`.
+- Add `Lato` font for light, normal and bold.
+
+### Changes
+
+- None.
+
+### Fixes
+
+- None.
+
+---
+
 ## `0.8.0`
 
 ### Additions
