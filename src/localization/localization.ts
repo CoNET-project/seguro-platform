@@ -1,10 +1,12 @@
 import { MessagesByLocale } from './types'
 import en_US from './messages/en-US'
 import zh_CN from './messages/zh-CN'
+import zh_TW from './messages/zh-TW'
 
 export const messagesByLocale: MessagesByLocale = {
     'en-US': en_US,
-    'zh-CN': zh_CN
+    'zh-CN': zh_CN,
+    'zh-TW': zh_TW
 }
 
 export const getLocaleGuess = (
@@ -16,6 +18,9 @@ export const getLocaleGuess = (
         return 'en-US'
     }
     if (string.startsWith('zh')) {
+        if (string === 'zh-TW') {
+            return 'zh-TW'
+        }
         return 'zh-CN'
     }
 }

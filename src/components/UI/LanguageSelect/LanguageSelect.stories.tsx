@@ -10,7 +10,7 @@ const Template: Story = (
     args
 ) => {
     return (
-        <LanguageSelect languages={args.languages} selectLocale={() => {}}/>
+        <LanguageSelect languages={args.languages} selectLocale={() => {}} selectedLocale={'zh-CN'}/>
     )
 }
 

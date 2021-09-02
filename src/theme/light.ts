@@ -8,6 +8,7 @@ const light: DefaultTheme = {
     ui: {
         backgroundColor: '#fff',
         textColor: '#333332',
+        selected: '#50A2E9',
         outline: {
             color: '#4D90FE'
         },
