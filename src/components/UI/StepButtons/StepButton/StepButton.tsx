@@ -1,4 +1,4 @@
-import { ReactNode } from 'react';
+import {ReactNode} from 'react';
 import styled from 'styled-components'
 
 const StyledButton = styled.button`
@@ -16,14 +16,31 @@ const StyledText = styled.span`
   margin: 0 5px;
 `
 
-const StepButton = ({text, onClick, iconLeft, iconRight}: {text: string | ReactNode, onClick?: () => void, iconLeft?: ReactNode, iconRight?: ReactNode}) => {
+const StyledIcon = styled.p`
+  color: ${props => props.theme.ui.textColor} !important;
+`
+
+const StepButton = ({
+                        text,
+                        onClick,
+                        iconLeft,
+                        iconRight
+                    }: { text: string | ReactNode, onClick?: () => void, iconLeft?: ReactNode, iconRight?: ReactNode }) => {
     return (
         <StyledButton onClick={onClick}>
-            {iconLeft || null}
+            {iconLeft ? (
+                <StyledIcon>
+                    {iconLeft}
+                </StyledIcon>
+            ) : null}
             <StyledText>
                 {text}
             </StyledText>
-            {iconRight || null}
+            {iconRight ? (
+                <StyledIcon>
+                    {iconRight}
+                </StyledIcon>
+            ) : null}
         </StyledButton>
     )
 }

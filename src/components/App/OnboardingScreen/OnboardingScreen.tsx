@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { motion, AnimatePresence } from "framer-motion"
+import {motion, AnimatePresence} from "framer-motion"
 import LanguageSelect from "../../UI/LanguageSelect/LanguageSelect";
 import Page from '../../UI/Layout/Pages/Locked-Register/Page';
 import {ReactNode, useEffect, useState} from "react";
@@ -7,7 +7,7 @@ import {FormattedMessage} from "react-intl";
 import useAppState from "../../../store/appState/useAppState";
 import {Locale} from "../../../localization/types";
 // import Button from '../../UI/Inputs/Button/Button';
-import PasscodeInput from "../../UI/Inputs/PasscodeInput/PasscodeInput";
+import PasscodeInput, {PasscodeInputProps} from "../../UI/Inputs/PasscodeInput/PasscodeInput";
 import Keypad from "../../UI/Keypad/Keypad/Keypad";
 import Button from '../../UI/Inputs/Button/Button';
 import SelectLanguagePage from "./SelectLanguagePage/SelectLanguagePage";
@@ -22,14 +22,14 @@ type Languages = {
 type CurrentPage = [number, -1 | 1]
 
 const StyledContainer = styled.div`
-    height: 100%;
-    width: 100%;
-    display: flex;
-    background-color: ${props => props.theme.ui.backgroundColor};
-    color: ${props => props.theme.ui.textColor};
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  background-color: ${props => props.theme.ui.backgroundColor};
+  color: ${props => props.theme.ui.textColor};
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 `
 
 const AnimatedContent = styled(motion.div)`
@@ -56,14 +56,18 @@ const OnboardingScreen = () => {
     const appState = useAppState()
     const [currentPage, setCurrentPage] = useState<CurrentPage>([1, 1])
 
-    const [passcode, setPasscode] = useState('')
-    const [confirmPasscode, setConfirmPasscode] = useState('')
+    const [passcodeInput, setPasscodeInput] = useState<PasscodeInputProps>({
+        value: ''
+    })
+    const [confirmPasscodeInput, setConfirmPasscodeInput] = useState<PasscodeInputProps>({
+        value: ''
+    })
 
     const fadeAnimation = {
-        transition: { duration: 0.5 },
-        initial: { opacity: 0 },
-        animate: { opacity: 1 },
-        exit: { opacity: 0 }
+        transition: {duration: 0.5},
+        initial: {opacity: 0},
+        animate: {opacity: 1},
+        exit: {opacity: 0}
     }
 
     const languages: Array<Languages> = [
@@ -92,27 +96,110 @@ const OnboardingScreen = () => {
         numberKeyOnClick: (number: number) => {
             const [page] = currentPage
             if (page === 2) {
-                return setPasscode(passcode + `${number}`)
+                return setPasscodeInput({
+                    ...passcodeInput,
+                    value: passcodeInput.value + `${number}`
+                })
             }
-            return setConfirmPasscode(confirmPasscode + `${number}`)
+            return setConfirmPasscodeInput({
+                ...confirmPasscodeInput,
+                value: confirmPasscodeInput.value + `${number}`
+            })
         },
         deleteKeyOnClick: () => {
             const [page] = currentPage
             if (page === 2) {
-                return setPasscode(passcode.slice(0, passcode.length - 1))
+                return setPasscodeInput({
+                    ...passcodeInput,
+                    value: passcodeInput.value.slice(0, passcodeInput.value.length - 1)
+                })
             }
-            return setConfirmPasscode(confirmPasscode.slice(0, confirmPasscode.length - 1))
+            return setConfirmPasscodeInput({
+                ...confirmPasscodeInput,
+                value: confirmPasscodeInput.value.slice(0, confirmPasscodeInput.value.length - 1)
+            })
         }
+    }
+
+    const isSamePasscode = (passcode: string, confirmPasscode: string) => {
+        return passcode == confirmPasscode
+    }
+
+    const isMinimumLength = (passcode: string) => {
+        return passcode.length >= 6;
+    }
+
+    const clearConfirm = (clearValue?: boolean, clearError?: boolean) => {
+        setConfirmPasscodeInput({
+            value: clearValue ? '' : confirmPasscodeInput.value,
+            error: clearError ? false : confirmPasscodeInput.error,
+            confirmError: clearError ? false : confirmPasscodeInput.confirmError,
+            lengthError: clearError ? false : confirmPasscodeInput.lengthError
+        })
+    }
+
+    const clearPasscode = (clearValue?: boolean, clearError?: boolean) => {
+        setPasscodeInput({
+            value: clearValue ? '' : passcodeInput.value,
+            error: clearError ? false : passcodeInput.error,
+            confirmError: clearError ? false : passcodeInput.confirmError,
+            lengthError: clearError ? false : passcodeInput.lengthError
+        })
     }
 
     const nextStepHandler = () => {
         const [page] = currentPage
+        switch (true) {
+            case page === 2:
+                if (!isMinimumLength(passcodeInput.value)) {
+                    setPasscodeInput({
+                        ...passcodeInput,
+                        lengthError: true
+                    })
+                    return;
+                }
+                break;
+            case page === 3:
+                if (!isMinimumLength(confirmPasscodeInput.value)) {
+                    setConfirmPasscodeInput({
+                        ...confirmPasscodeInput,
+                        confirmError: false,
+                        error: false,
+                        lengthError: true
+                    })
+                    return;
+                }
+                if (!isSamePasscode(passcodeInput.value, confirmPasscodeInput.value)) {
+                    setConfirmPasscodeInput({
+                        ...confirmPasscodeInput,
+                        lengthError: false,
+                        error: false,
+                        confirmError: true
+                    })
+                    return;
+                }
+        }
+        clearPasscode(false, true)
+        clearConfirm(false, true)
         setCurrentPage([page + 1, 1])
     }
 
     const previousStepHandler = () => {
+
         const [page] = currentPage
-        page > 1 ? setCurrentPage([page - 1, -1]) : null
+        const previousPage = page - 1
+
+        switch (true) {
+            case previousPage === 1:
+                clearPasscode(true, true)
+                clearConfirm(true, true)
+                break;
+            case previousPage === 2:
+                clearConfirm(true, true)
+                break;
+        }
+
+        page > 1 ? setCurrentPage([previousPage, -1]) : null
     }
 
     return (
@@ -133,7 +220,7 @@ const OnboardingScreen = () => {
                 <PasscodePage
                     title={<FormattedMessage id='onboarding.setPasscode'/>}
                     keypadClickHandlers={keypadClickHandlers}
-                    passcode={passcode}
+                    passcode={passcodeInput}
                     nextButtonAction={nextStepHandler}
                     previousButtonAction={previousStepHandler}
                     pageTransition={{
@@ -145,7 +232,7 @@ const OnboardingScreen = () => {
                 <PasscodePage
                     title={<FormattedMessage id='onboarding.confirmPasscode'/>}
                     keypadClickHandlers={keypadClickHandlers}
-                    passcode={confirmPasscode}
+                    passcode={confirmPasscodeInput}
                     nextButtonAction={nextStepHandler}
                     previousButtonAction={previousStepHandler}
                     pageTransition={{

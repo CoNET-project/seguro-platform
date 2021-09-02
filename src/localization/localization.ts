@@ -1,4 +1,4 @@
-import { MessagesByLocale } from './types'
+import {MessagesByLocale} from './types'
 import en_US from './messages/en-US'
 import zh_CN from './messages/zh-CN'
 import zh_TW from './messages/zh-TW'

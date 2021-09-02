@@ -1,4 +1,4 @@
-import { Story } from '@storybook/react'
+import {Story} from '@storybook/react'
 import LanguageSelect from "./LanguageSelect";
 
 export default {
@@ -10,7 +10,8 @@ const Template: Story = (
     args
 ) => {
     return (
-        <LanguageSelect languages={args.languages} selectLocale={() => {}} selectedLocale={'zh-CN'}/>
+        <LanguageSelect languages={args.languages} selectLocale={() => {
+        }} selectedLocale={'zh-CN'}/>
     )
 }
 
@@ -19,9 +20,9 @@ export const Primary = Template.bind({})
 Primary.args = {
     languages: [
         {
-          name: '简体中文',
-          englishName: 'Simplified Chinese',
-          locale: ''
+            name: '简体中文',
+            englishName: 'Simplified Chinese',
+            locale: ''
         },
         {
             name: 'Español',
@@ -31,11 +32,6 @@ Primary.args = {
         {
             name: 'Français',
             englishName: 'French',
-            locale: ''
-        },
-        {
-            name: 'English',
-            englishName: 'English',
             locale: ''
         },
         {

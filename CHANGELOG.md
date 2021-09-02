@@ -1,5 +1,23 @@
 # `seguro-platform` CHANGELOG
 
+## `0.11.0`
+
+### Additions
+
+- Change `LanguageSelect` UI to match mockups.
+- Passcode checking for onboarding screens.
+- Display error messages when the passcode is invalid, incorrect or wrong.
+
+### Changes
+
+- None.
+
+### Fixes
+
+- None.
+
+---
+
 ## `0.10.0`
 
 ### Additions
@@ -103,7 +121,8 @@
 
 ### Additions
 
-- Setup localization system with automatic preferred locale detection for supported languages / fallback to en-US locale.
+- Setup localization system with automatic preferred locale detection for supported languages / fallback to en-US
+  locale.
 - Add support for zh-CN locale.
 - Add support for en-US locale.
 - Add locale switch debug command.

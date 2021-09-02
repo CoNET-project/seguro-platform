@@ -11,6 +11,7 @@ declare module 'styled-components' {
         },
         ui: {
             backgroundColor: string,
+            backgroundAccent: string,
             textColor: string,
             selected: string,
             outline: {

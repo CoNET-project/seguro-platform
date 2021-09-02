@@ -1,4 +1,4 @@
-import { createGlobalStyle } from 'styled-components';
+import {createGlobalStyle} from 'styled-components';
 import LatoLightWoff from '../../../assets/fonts/lato-300.woff'
 import LatoLightWoff2 from '../../../assets/fonts/lato-300.woff2'
 import LatoRegularWoff from '../../../assets/fonts/lato-regular.woff'
@@ -27,35 +27,41 @@ export default createGlobalStyle`
     url(${LatoBoldWoff}) format('woff'),
     url(${LatoBoldWoff2}) format('woff2');
   }
-  
+
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
   h1, h2, h3, h4, h5, h6 {
     font-family: 'Lato Bold', sans-serif;
   }
-  
+
   h1 {
     font-size: 2rem;
   }
-  
+
   h2 {
     font-size: 1.8rem;
   }
-  
+
   h3 {
     font-size: 1.6rem;
   }
-  
+
   h4 {
     font-size: 1.4rem;
   }
-  
+
   h5 {
     font-size: 1.2rem;
   }
-  
+
   h6 {
     font-size: 1rem;
   }
-  
+
   p {
     font-family: 'Lato Regular', sans-serif;
     font-size: 16px
