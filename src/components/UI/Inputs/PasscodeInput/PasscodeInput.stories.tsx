@@ -3,7 +3,7 @@ import PasscodeInput from './PasscodeInput'
 
 export default {
     component: PasscodeInput,
-    title: 'Passcode/Input'
+    title: 'PasscodePage/Input'
 }
 
 const Template: Story = (

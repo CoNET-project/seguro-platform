@@ -13,7 +13,6 @@ const StyledPasscode = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin-bottom: 20px;
 `
 
 const StyledInput = styled.input`

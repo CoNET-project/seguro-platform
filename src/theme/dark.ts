@@ -8,6 +8,7 @@ const dark: DefaultTheme = {
     ui: {
         backgroundColor: '#404040',
         textColor: '#fff',
+        selected: '#50A2E9',
         outline: {
             color: '#4D90FE'
         },

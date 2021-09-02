@@ -10,13 +10,13 @@ const Template: Story<ButtonProps> = (
     args
 ) => {
     return (
-        <Button {...args} children={args.children}/>
+        <Button {...args}/>
     )
 }
 
 export const Primary = Template.bind({})
 
 Primary.args = {
-    children: 'Click Me',
+    text: 'Click Me',
     onClick: () => console.log('onClick()')
 }

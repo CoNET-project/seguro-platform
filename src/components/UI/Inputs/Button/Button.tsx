@@ -1,27 +1,47 @@
 import { ReactNode } from 'react'
 import styled from 'styled-components'
 
-const StyledButton = styled.button`
-    font-size: 48px;
-    border-radius: 20px;
-    border: 2px #aaa solid;
-    padding: 5px 15px;
+const StyledButton = styled.button<{isHidden: boolean}>`
+    font-size: 18px;
+    border-radius: 5px;
+    border: 1px #aaa solid;
+    background-color: white;
+    padding: 10px 0;
+    width: 100%;
+    cursor: pointer;
+    transition: transform 100ms ease-in-out;
+    visibility: ${props => props.isHidden ? 'hidden' : 'visible'};
+    &:hover {
+      transform: scale(1.01);
+    }
+    &:disabled {
+      background-color: rgba(255, 255, 255, 0.5);
+    }
+    &:last-of-type {
+      margin-top: 10px;
+    }
 `
 
 export type ButtonProps = {
-    children: ReactNode,
-    onClick: () => void
+    text: string | ReactNode,
+    disabled: boolean,
+    onClick: () => void,
+    isHidden?: boolean
 }
 
 const Button = ({
-    children,
+    text,
+    isHidden,
+    disabled,
     onClick
 }: ButtonProps) => {
     return (
         <StyledButton
+            disabled={disabled}
+            isHidden={isHidden || false}
             onClick={onClick}
         >
-            {children}
+            {text}
         </StyledButton>
     )
 }

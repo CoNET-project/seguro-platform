@@ -12,8 +12,6 @@ export default createGlobalStyle`
     src: local('Lato Light'), local('Lato Light'),
     url(${LatoLightWoff}) format('woff'),
     url(${LatoLightWoff2}) format('woff2');
-    font-weight: 300;
-    font-style: normal;
   }
 
   @font-face {
@@ -21,8 +19,6 @@ export default createGlobalStyle`
     src: local('Lato Regular'), local('Lato Regular'),
     url(${LatoRegularWoff}) format('woff'),
     url(${LatoRegularWoff2}) format('woff2');
-    font-weight: 300;
-    font-style: normal;
   }
 
   @font-face {
@@ -30,7 +26,38 @@ export default createGlobalStyle`
     src: local('Lato Bold'), local('Lato Bold'),
     url(${LatoBoldWoff}) format('woff'),
     url(${LatoBoldWoff2}) format('woff2');
-    font-weight: 300;
-    font-style: normal;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Lato Bold', sans-serif;
+  }
+  
+  h1 {
+    font-size: 2rem;
+  }
+  
+  h2 {
+    font-size: 1.8rem;
+  }
+  
+  h3 {
+    font-size: 1.6rem;
+  }
+  
+  h4 {
+    font-size: 1.4rem;
+  }
+  
+  h5 {
+    font-size: 1.2rem;
+  }
+  
+  h6 {
+    font-size: 1rem;
+  }
+  
+  p {
+    font-family: 'Lato Regular', sans-serif;
+    font-size: 16px
   }
 `

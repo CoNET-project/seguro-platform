@@ -2,10 +2,10 @@ import styled from 'styled-components';
 import {ReactNode} from "react";
 
 const StyledKey = styled.button`
-  min-height: 5rem;
-  min-width: 5rem;
-  height: 5rem;
-  width: 5rem;
+  min-height: 4rem;
+  min-width: 4rem;
+  height: 4rem;
+  width: 4rem;
   content: '';
   background-color: transparent;
   border-radius: 50%;

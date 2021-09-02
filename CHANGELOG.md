@@ -1,5 +1,22 @@
 # `seguro-platform` CHANGELOG
 
+## `0.10.0`
+
+### Additions
+
+- Add `SelectLanguage`, `Passcode` pages to `OnboardingScreen.tsx`.
+- Add `framer-motion` package for animating screens.
+
+### Changes
+
+- None.
+
+### Fixes
+
+- None.
+
+---
+
 ## `0.9.0`
 
 ### Additions
