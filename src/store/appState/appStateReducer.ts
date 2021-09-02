@@ -1,4 +1,4 @@
-import { createReducer } from '@reduxjs/toolkit'
+import {createReducer} from '@reduxjs/toolkit'
 import {
     setBridgeServiceIsInitialized,
     setTheme,
@@ -6,11 +6,11 @@ import {
     setIsTouchDevice,
     setWindowInnerSize
 } from './appStateActions'
-import { Theme } from '../../theme/types'
-import { Locale } from '../../localization/types'
-import { getPreferredLocale } from '../../localization/localization'
-import { detectWindowInnerSize } from "../../utilities/utilities";
-import { WindowInnerSize } from './useAppState'
+import {Theme} from '../../theme/types'
+import {Locale} from '../../localization/types'
+import {getPreferredLocale} from '../../localization/localization'
+import {detectWindowInnerSize} from "../../utilities/utilities";
+import {WindowInnerSize} from './useAppState'
 
 type AppStateReducerState = {
     isTouchDevice: boolean,

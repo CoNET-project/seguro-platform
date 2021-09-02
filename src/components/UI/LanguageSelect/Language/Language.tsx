@@ -9,25 +9,29 @@ type LanguageProps = {
     selectedLocale: Locale
 }
 
-const StyledItem = styled.div<{selected: boolean}>`
-  color: #404040;
+const StyledItem = styled.div<{ selected: boolean }>`
   font-size: 16px;
   width: 100%;
-  padding: 0 50px 0 20px;
-  border-bottom: 1px solid rgba(0,0,0,0.05);
+  padding: 20px 50px 20px 20px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
   display: flex;
   align-items: center;
   cursor: pointer;
-  background-color: ${props => props.selected ? props.theme.ui.selected : 'white'};
-  color: ${props => props.selected ? 'white' : '#404040'};
+  background-color: ${props => props.selected ?
+          props.theme.ui.selected :
+          props.theme.ui.backgroundAccent};
+  color: ${props => props.selected ? 'white' : props.theme.ui.textColor};
+
   &:first-of-type {
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
   }
+
   &:last-of-type {
     border-bottom-left-radius: 5px;
     border-bottom-right-radius: 5px;
   }
+
   -webkit-touch-callout: none; /* iOS Safari */
   -webkit-user-select: none; /* Safari */
   -moz-user-select: none; /* Old versions of Firefox */

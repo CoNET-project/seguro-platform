@@ -23,7 +23,7 @@ type SelectLanguageProps = {
     nextButtonAction?: () => void,
 } & PageTransitionProps
 
-const SelectLanguagePage = ({ selectLocale, locale, nextButtonAction, pageTransition }: SelectLanguageProps) => {
+const SelectLanguagePage = ({selectLocale, locale, nextButtonAction, pageTransition}: SelectLanguageProps) => {
 
     const languages: Array<Languages> = [
         {
@@ -45,7 +45,9 @@ const SelectLanguagePage = ({ selectLocale, locale, nextButtonAction, pageTransi
 
     return (
         <Page title={<FormattedMessage id="onboarding.selectLanguage"/>}
-              contentComponents={<LanguageSelect languages={languages} selectLocale={selectLocale} selectedLocale={locale}/>}
+              contentComponents={<LanguageSelect languages={languages}
+                                                 selectLocale={selectLocale}
+                                                 selectedLocale={locale}/>}
               buttonComponents={<StepButtons nextButton={{action: nextButtonAction}}/>}
               pageTransition={pageTransition}
         />

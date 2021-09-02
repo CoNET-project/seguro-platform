@@ -2,10 +2,8 @@ import styled from 'styled-components';
 import {ReactNode} from "react";
 
 const StyledKey = styled.button`
-  min-height: 4rem;
-  min-width: 4rem;
-  height: 4rem;
-  width: 4rem;
+  min-height: 100%;
+  min-width: 100%;
   content: '';
   background-color: transparent;
   border-radius: 50%;
@@ -16,8 +14,9 @@ const StyledKey = styled.button`
   align-items: center;
   user-select: none;
   transition: background-color 50ms ease-in-out;
+
   &:active {
-    background-color: rgba(0,0,0,0.05);
+    background-color: rgba(0, 0, 0, 0.05);
   }
 `
 

@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 import StepButton from './StepButton/StepButton'
-import { FaChevronLeft, FaChevronRight } from "react-icons/all";
+import {FaChevronLeft, FaChevronRight} from "react-icons/all";
 import {FormattedMessage} from "react-intl";
 
 type StepButtonsClickActions = {
@@ -19,6 +19,7 @@ const StyledContainer = styled.div`
   justify-content: space-between;
   align-items: center;
   width: 100%;
+  overflow: hidden;
 `
 
 const StyledBox = styled.div`
@@ -33,14 +34,16 @@ const StepButtons = ({previousButton, nextButton}: StepButtonsClickActions) => {
             <StyledBox>
                 {
                     previousButton ? <StepButton
-                        text={previousButton.text || <FormattedMessage id='button.back'/>} iconLeft={<FaChevronLeft color="white" size={20}/>}
+                        text={previousButton.text || <FormattedMessage id='button.back'/>}
+                        iconLeft={<FaChevronLeft size={20}/>}
                         onClick={previousButton.action}/> : null
                 }
             </StyledBox>
             <StyledBox>
                 {
                     nextButton ? <StepButton
-                        text={nextButton.text || <FormattedMessage id='button.next'/>} iconRight={<FaChevronRight color="white" size={20} />}
+                        text={nextButton.text || <FormattedMessage id='button.next'/>}
+                        iconRight={<FaChevronRight size={20}/>}
                         onClick={nextButton.action}/> : null
                 }
             </StyledBox>

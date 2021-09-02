@@ -3,24 +3,24 @@ import Language from "./Language/Language";
 import {Locale} from "../../../localization/types";
 
 type LanguageSelectProps = {
-    languages: Array<{name: string, englishName: string, locale: Locale}>,
+    languages: Array<{ name: string, englishName: string, locale: Locale }>,
     selectLocale: (locale: Locale) => void,
     selectedLocale: Locale
 }
 
 const StyledContainer = styled.div`
   min-width: 100%;
+  max-width: 30rem;
   min-height: 100%;
   height: 100%;
   border-radius: 5px;
-  overflow-y: auto;
-    () => {
-      -webkit-touch-callout: none; /* iOS Safari */
-      -webkit-user-select: none; /* Safari */
-      -moz-user-select: none; /* Old versions of Firefox */
-      -ms-user-select: none; /* Internet Explorer/Edge */
-      user-select: none; /* Non-prefixed version, currently supported by Chrome, Edge, Opera and Firefox */
-    }
+  overflow-y: auto;()= > {
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none; /* Safari */
+  -moz-user-select: none; /* Old versions of Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
+  user-select: none; /* Non-prefixed version, currently supported by Chrome, Edge, Opera and Firefox */
+}
 `
 
 const LanguageSelect = (props: LanguageSelectProps) => {

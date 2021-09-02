@@ -1,4 +1,4 @@
-import { DefaultTheme } from 'styled-components'
+import {DefaultTheme} from 'styled-components'
 
 const dark: DefaultTheme = {
     globalBar: {
@@ -7,6 +7,7 @@ const dark: DefaultTheme = {
     },
     ui: {
         backgroundColor: '#404040',
+        backgroundAccent: '#393939',
         textColor: '#fff',
         selected: '#50A2E9',
         outline: {

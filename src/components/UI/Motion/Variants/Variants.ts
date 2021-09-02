@@ -2,7 +2,7 @@ export const pageTransitionVariants = {
     enter: (direction: number) => {
         return {
             x: direction === 1 ? 500 : -500,
-            opacity: 1
+            opacity: 0.5
         };
     },
     center: {
@@ -14,7 +14,7 @@ export const pageTransitionVariants = {
         return {
             zIndex: 0,
             x: direction === -1 ? 500 : -500,
-            opacity: 1
+            opacity: 0.5,
         };
     }
 }
