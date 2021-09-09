@@ -33,7 +33,8 @@ const dark: DefaultTheme = {
         },
         passcodeInput: {
             color: '#fff',
-            border: '#fff'
+            border: '#fff',
+            placeholderColor: '#838383'
         }
     }
 }

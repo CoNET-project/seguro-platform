@@ -9,14 +9,13 @@ const StyledButton = styled.button`
   font-weight: 700;
   padding: 20px 15px;
   display: flex;
-  align-items: center;
 `
 
 const StyledText = styled.span`
   margin: 0 5px;
 `
 
-const StyledIcon = styled.p`
+const StyledIcon = styled.div`
   color: ${props => props.theme.ui.textColor} !important;
 `
 

@@ -17,9 +17,10 @@ type KeypadProps = {
 
 const StyledKeypad = styled.div`
   display: grid;
-  grid-template-columns: repeat(3, minmax(5rem, 7rem));
-  grid-template-rows: repeat(4, minmax(5rem, 7rem));
-  grid-gap: 10px
+  grid-template-columns: repeat(3, minmax(4rem, 5rem));
+  grid-template-rows: repeat(4, minmax(4rem, 5rem));
+  grid-gap: 20px;
+  grid-column-gap: 50px;
 `
 
 const alphanumericKeys = ({
@@ -28,28 +29,27 @@ const alphanumericKeys = ({
                               numberKeyOnClick,
                               unlockKeyOnClick
                           }: KeypadClickHandlers): Array<ReactNode> => {
-    console.log(cancelKeyOnClick, deleteKeyOnClick, numberKeyOnClick, unlockKeyOnClick)
     const alphanumericKeys: Array<ReactNode> = [];
     const alphabets = ['ABC', 'DEF', 'GHI', 'JKL', 'MNO', 'PQRS', 'TUV', 'WXYZ']
 
-    for (let i = 0; i <= 14; i++) {
+    for (let i = 1; i <= 15; i++) {
 
         let key = null
 
         switch (true) {
-            case i === 0:
+            case i === 1:
                 key = <Key onClick={() => numberKeyOnClick(i)} number={i}/>
                 break;
-            case i === 9:
+            case i === 10:
                 key = ''
                 break;
-            case i === 10:
+            case i === 11:
                 key = <Key onClick={() => numberKeyOnClick(0)} number={0} alphabet="+"/>
                 break;
-            case i === 11:
+            case i === 12:
                 key = <Key onClick={() => deleteKeyOnClick()} component={<FiDelete size={24}/>}/>
                 break;
-            case i === 12:
+            case i === 13:
                 if (cancelKeyOnClick) {
                     key = <Key onClick={() => cancelKeyOnClick()} component={<FormattedMessage id="keypad.cancel"/>}/>
                 }
@@ -57,12 +57,12 @@ const alphanumericKeys = ({
                     key = ''
                 }
                 break;
-            case i === 13:
+            case i === 14:
                 if (cancelKeyOnClick || unlockKeyOnClick) {
                     key = ''
                 }
                 break;
-            case i === 14:
+            case i === 15:
                 if (unlockKeyOnClick) {
                     key = <Key onClick={() => unlockKeyOnClick()} component={<FormattedMessage id="keypad.unlock"/>}/>
                 }
@@ -83,7 +83,6 @@ const alphanumericKeys = ({
 
 
 const Keypad = (props: KeypadProps) => {
-    console.log(alphanumericKeys(props.clickActionHandlers))
     return (
         <StyledKeypad>
             {alphanumericKeys(props.clickActionHandlers).map((key, idx) => key === '' ?

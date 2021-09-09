@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import {useEffect} from 'react'
 import styled from 'styled-components'
 import useAppState from '../../store/appState/useAppState'
 import LaunchScreen from './LaunchScreen/LaunchScreen'
@@ -7,15 +7,16 @@ import UnlockScreen from './UnlockScreen/UnlockScreen'
 import {detectTouchDevice, detectWindowInnerSize} from "../../utilities/utilities";
 import OnboardingScreen from "./OnboardingScreen/OnboardingScreen";
 import GlobalStyle from '../UI/Global/Styles'
+import {OnboardingPageProvider} from "../Providers/OnboardingPageProvider";
 
 const StyledContainer = styled.div`
-    height: 100vh;
-    width: 100vw;
-    background-color: white;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: black;
+  height: 100vh;
+  width: 100vw;
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: black;
 `
 
 const App = () => {
@@ -34,7 +35,9 @@ const App = () => {
     }, [])
 
     let content = (
-        <OnboardingScreen/>
+        <OnboardingPageProvider existingPages={['language', 'setPasscode', 'confirmPasscode', 'verification']}>
+            <OnboardingScreen/>
+        </OnboardingPageProvider>
     )
 
     // let content = null

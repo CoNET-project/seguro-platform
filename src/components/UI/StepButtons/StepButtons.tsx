@@ -1,9 +1,9 @@
 import styled from 'styled-components'
 import StepButton from './StepButton/StepButton'
-import {FaChevronLeft, FaChevronRight} from "react-icons/all";
 import {FormattedMessage} from "react-intl";
+import {ChevronLeft, ChevronRight} from "../Icons/Icons";
 
-type StepButtonsClickActions = {
+export type StepButtonsClickActions = {
     previousButton?: {
         text?: string,
         action?: () => void
@@ -20,6 +20,7 @@ const StyledContainer = styled.div`
   align-items: center;
   width: 100%;
   overflow: hidden;
+  color: ${props => props.theme.ui.textColor}
 `
 
 const StyledBox = styled.div`
@@ -27,15 +28,13 @@ const StyledBox = styled.div`
 
 
 const StepButtons = ({previousButton, nextButton}: StepButtonsClickActions) => {
-    // @ts-ignore
-    console.log(previousButton, nextButton.action)
     return (
         <StyledContainer>
             <StyledBox>
                 {
                     previousButton ? <StepButton
                         text={previousButton.text || <FormattedMessage id='button.back'/>}
-                        iconLeft={<FaChevronLeft size={20}/>}
+                        iconLeft={<ChevronLeft size={18}/>}
                         onClick={previousButton.action}/> : null
                 }
             </StyledBox>
@@ -43,7 +42,7 @@ const StepButtons = ({previousButton, nextButton}: StepButtonsClickActions) => {
                 {
                     nextButton ? <StepButton
                         text={nextButton.text || <FormattedMessage id='button.next'/>}
-                        iconRight={<FaChevronRight size={20}/>}
+                        iconRight={<ChevronRight size={18}/>}
                         onClick={nextButton.action}/> : null
                 }
             </StyledBox>

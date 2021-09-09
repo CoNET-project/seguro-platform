@@ -14,13 +14,13 @@ const StyledContainer = styled.div`
   min-height: 100%;
   height: 100%;
   border-radius: 5px;
-  overflow-y: auto;()= > {
+  overflow-y: auto;
+  background-color: ${props => props.theme.ui.backgroundAccent};
   -webkit-touch-callout: none; /* iOS Safari */
   -webkit-user-select: none; /* Safari */
   -moz-user-select: none; /* Old versions of Firefox */
   -ms-user-select: none; /* Internet Explorer/Edge */
   user-select: none; /* Non-prefixed version, currently supported by Chrome, Edge, Opera and Firefox */
-}
 `
 
 const LanguageSelect = (props: LanguageSelectProps) => {

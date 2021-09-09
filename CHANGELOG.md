@@ -1,5 +1,24 @@
 # `seguro-platform` CHANGELOG
 
+## `0.12.0`
+
+### Additions
+
+- Add desktop layouts.
+- Add input for no touch devices.
+- Add onboarding context for pages within the onboarding flow.
+
+### Changes
+
+- Changes to multiple layouts to fit Figma design.
+
+### Fixes
+
+- Fix font flicker issue by moving font loading to `font.css` file instead of `createGlobalStyle` from
+  styled-components.
+
+---
+
 ## `0.11.0`
 
 ### Additions

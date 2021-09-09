@@ -1,17 +1,13 @@
 import styled from 'styled-components';
 import {motion, AnimatePresence} from "framer-motion"
-import LanguageSelect from "../../UI/LanguageSelect/LanguageSelect";
-import Page from '../../UI/Layout/Pages/Locked-Register/Page';
 import {ReactNode, useEffect, useState} from "react";
-import {FormattedMessage} from "react-intl";
 import useAppState from "../../../store/appState/useAppState";
 import {Locale} from "../../../localization/types";
-// import Button from '../../UI/Inputs/Button/Button';
-import PasscodeInput, {PasscodeInputProps} from "../../UI/Inputs/PasscodeInput/PasscodeInput";
-import Keypad from "../../UI/Keypad/Keypad/Keypad";
-import Button from '../../UI/Inputs/Button/Button';
 import SelectLanguagePage from "./SelectLanguagePage/SelectLanguagePage";
-import PasscodePage from "./PasscodePage/PasscodePage";
+import {useOnboardingPageNavigator} from "../../../contexts/onboarding/OnboardingContext";
+import PasscodePage from './PasscodePage/PasscodePage';
+import {FormattedMessage} from 'react-intl';
+import onboardingActions from "../../../contexts/onboarding/onboardingActions";
 
 type Languages = {
     name: string,
@@ -20,6 +16,10 @@ type Languages = {
 }
 
 type CurrentPage = [number, -1 | 1]
+
+type SavedPasscodes = {
+    [id: string]: string
+}
 
 const StyledContainer = styled.div`
   height: 100%;
@@ -54,193 +54,49 @@ const AnimatedTitle = styled(motion.h1)`
 
 const OnboardingScreen = () => {
     const appState = useAppState()
-    const [currentPage, setCurrentPage] = useState<CurrentPage>([1, 1])
-
-    const [passcodeInput, setPasscodeInput] = useState<PasscodeInputProps>({
-        value: ''
-    })
-    const [confirmPasscodeInput, setConfirmPasscodeInput] = useState<PasscodeInputProps>({
-        value: ''
-    })
-
-    const fadeAnimation = {
-        transition: {duration: 0.5},
-        initial: {opacity: 0},
-        animate: {opacity: 1},
-        exit: {opacity: 0}
-    }
-
-    const languages: Array<Languages> = [
-        {
-            name: 'English',
-            englishName: 'English',
-            locale: 'en-US'
-        },
-        {
-            name: '简体中文',
-            englishName: 'Simplified Chinese',
-            locale: 'zh-CN'
-        },
-        {
-            name: '繁體中文',
-            englishName: 'Traditional Chinese',
-            locale: 'zh-TW'
-        }
-    ]
+    const {state, dispatch} = useOnboardingPageNavigator()
+    const {currentPage, onboardingPageData} = state
+    const [savedPasscodes, setSavedPasscodes] = useState<SavedPasscodes>({})
 
     const setLocale = (locale: Locale) => {
         return appState.setLocale(locale)
     }
 
-    const keypadClickHandlers = {
-        numberKeyOnClick: (number: number) => {
-            const [page] = currentPage
-            if (page === 2) {
-                return setPasscodeInput({
-                    ...passcodeInput,
-                    value: passcodeInput.value + `${number}`
-                })
-            }
-            return setConfirmPasscodeInput({
-                ...confirmPasscodeInput,
-                value: confirmPasscodeInput.value + `${number}`
-            })
-        },
-        deleteKeyOnClick: () => {
-            const [page] = currentPage
-            if (page === 2) {
-                return setPasscodeInput({
-                    ...passcodeInput,
-                    value: passcodeInput.value.slice(0, passcodeInput.value.length - 1)
-                })
-            }
-            return setConfirmPasscodeInput({
-                ...confirmPasscodeInput,
-                value: confirmPasscodeInput.value.slice(0, confirmPasscodeInput.value.length - 1)
-            })
-        }
-    }
-
-    const isSamePasscode = (passcode: string, confirmPasscode: string) => {
-        return passcode == confirmPasscode
-    }
-
-    const isMinimumLength = (passcode: string) => {
-        return passcode.length >= 6;
-    }
-
-    const clearConfirm = (clearValue?: boolean, clearError?: boolean) => {
-        setConfirmPasscodeInput({
-            value: clearValue ? '' : confirmPasscodeInput.value,
-            error: clearError ? false : confirmPasscodeInput.error,
-            confirmError: clearError ? false : confirmPasscodeInput.confirmError,
-            lengthError: clearError ? false : confirmPasscodeInput.lengthError
-        })
-    }
-
-    const clearPasscode = (clearValue?: boolean, clearError?: boolean) => {
-        setPasscodeInput({
-            value: clearValue ? '' : passcodeInput.value,
-            error: clearError ? false : passcodeInput.error,
-            confirmError: clearError ? false : passcodeInput.confirmError,
-            lengthError: clearError ? false : passcodeInput.lengthError
-        })
-    }
-
-    const nextStepHandler = () => {
-        const [page] = currentPage
-        switch (true) {
-            case page === 2:
-                if (!isMinimumLength(passcodeInput.value)) {
-                    setPasscodeInput({
-                        ...passcodeInput,
-                        lengthError: true
-                    })
-                    return;
-                }
-                break;
-            case page === 3:
-                if (!isMinimumLength(confirmPasscodeInput.value)) {
-                    setConfirmPasscodeInput({
-                        ...confirmPasscodeInput,
-                        confirmError: false,
-                        error: false,
-                        lengthError: true
-                    })
-                    return;
-                }
-                if (!isSamePasscode(passcodeInput.value, confirmPasscodeInput.value)) {
-                    setConfirmPasscodeInput({
-                        ...confirmPasscodeInput,
-                        lengthError: false,
-                        error: false,
-                        confirmError: true
-                    })
-                    return;
-                }
-        }
-        clearPasscode(false, true)
-        clearConfirm(false, true)
-        setCurrentPage([page + 1, 1])
-    }
-
-    const previousStepHandler = () => {
-
-        const [page] = currentPage
-        const previousPage = page - 1
-
-        switch (true) {
-            case previousPage === 1:
-                clearPasscode(true, true)
-                clearConfirm(true, true)
-                break;
-            case previousPage === 2:
-                clearConfirm(true, true)
-                break;
-        }
-
-        page > 1 ? setCurrentPage([previousPage, -1]) : null
+    const confirmationHandler = () => {
+        return state.onboardingPageData?.passcode == state.onboardingPageData?.confirmPasscode
     }
 
     return (
         <StyledContainer>
             <AnimatePresence custom={currentPage[1]}>
-                {currentPage[0] === 1 &&
+                {currentPage[0] === 'language' &&
                 <SelectLanguagePage
+                    key={currentPage[0]}
                     locale={appState.locale}
                     selectLocale={setLocale}
-                    nextButtonAction={nextStepHandler}
-                    pageTransition={{
-                        key: currentPage[0],
-                        direction: currentPage[1]
-                    }}
                 />}
 
-                {currentPage[0] === 2 &&
+                {currentPage[0] === 'setPasscode' &&
                 <PasscodePage
+                    key={currentPage[0]}
                     title={<FormattedMessage id='onboarding.setPasscode'/>}
-                    keypadClickHandlers={keypadClickHandlers}
-                    passcode={passcodeInput}
-                    nextButtonAction={nextStepHandler}
-                    previousButtonAction={previousStepHandler}
-                    pageTransition={{
-                        key: currentPage[0],
-                        direction: currentPage[1]
+                    passcode={onboardingPageData?.passcode || ''}
+                    setPasscode={(passcode) => {
+                        dispatch(onboardingActions.setPasscode(passcode))
                     }}
                 />}
-                {currentPage[0] === 3 &&
+                {currentPage[0] === 'confirmPasscode' &&
                 <PasscodePage
+                    key={currentPage[0]}
                     title={<FormattedMessage id='onboarding.confirmPasscode'/>}
-                    keypadClickHandlers={keypadClickHandlers}
-                    passcode={confirmPasscodeInput}
-                    nextButtonAction={nextStepHandler}
-                    previousButtonAction={previousStepHandler}
-                    pageTransition={{
-                        key: currentPage[0],
-                        direction: currentPage[1]
+                    passcode={onboardingPageData?.confirmPasscode || ''}
+                    setPasscode={(passcode) => {
+                        dispatch(onboardingActions.setConfirmPasscode(passcode))
                     }}
+                    confirmationAction={confirmationHandler}
                 />}
             </AnimatePresence>
+
             {/*<AnimatePresence>*/}
             {/*    <StyledContent>*/}
             {/*        {number === 1 && (*/}

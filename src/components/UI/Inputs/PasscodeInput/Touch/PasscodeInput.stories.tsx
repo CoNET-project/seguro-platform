@@ -1,16 +1,16 @@
-import { Story } from '@storybook/react'
+import {Story} from '@storybook/react'
 import PasscodeInput from './PasscodeInput'
 
 export default {
     component: PasscodeInput,
-    title: 'PasscodePage/Input'
+    title: 'PasscodePage/Touch/Input'
 }
 
 const Template: Story = (
     args
 ) => {
     return (
-        <PasscodeInput value='hello' error={true}/>
+        <PasscodeInput value='hello' error={undefined}/>
     )
 }
 

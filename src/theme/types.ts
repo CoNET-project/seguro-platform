@@ -37,7 +37,8 @@ declare module 'styled-components' {
             },
             passcodeInput: {
                 color: string,
-                border: string
+                border: string,
+                placeholderColor: string
             }
         }
     }

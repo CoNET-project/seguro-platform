@@ -1,4 +1,4 @@
-import { fireEvent, render } from '../../../../utilities/testing/testing'
+import {fireEvent, render} from '../../../../../utilities/testing/testing'
 
 describe('PasscodeInput', () => {
 
