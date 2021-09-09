@@ -1,4 +1,4 @@
-import { Story } from '@storybook/react'
+import {Story} from '@storybook/react'
 import PasscodeInput from './PasscodeInput'
 
 export default {
@@ -10,7 +10,7 @@ const Template: Story = (
     args
 ) => {
     return (
-        <PasscodeInput value='hello' error={true}/>
+        <PasscodeInput value='hello' error={undefined}/>
     )
 }
 
