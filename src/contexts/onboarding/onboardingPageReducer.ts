@@ -35,12 +35,15 @@ export const onboardingPageReducer = (state: State, action: NavigatePageAction |
             return getPage('previous')
         case 'navigateToPage':
             const [currentPageId] = state.currentPage
-            const newPage = action.payload.pageId
-            const direction = state.existingPages.indexOf(currentPageId) < state.existingPages.indexOf(newPage) ? 1 : -1
-            return {
-                ...state,
-                currentPage: [newPage, direction]
+            const newPage = action.payload?.pageId
+            if (newPage) {
+                const direction = state.existingPages.indexOf(currentPageId) < state.existingPages.indexOf(newPage) ? 1 : -1
+                return {
+                    ...state,
+                    currentPage: [newPage, direction]
+                }
             }
+            return state
         case 'setPasscode':
             return {
                 ...state,

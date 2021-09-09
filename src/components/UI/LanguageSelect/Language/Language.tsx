@@ -22,15 +22,15 @@ const StyledItem = styled.div<{ selected: boolean }>`
           props.theme.ui.backgroundAccent};
   color: ${props => props.selected ? 'white' : props.theme.ui.textColor};
 
-  &:first-of-type {
-    border-top-left-radius: 5px;
-    border-top-right-radius: 5px;
-  }
-
-  &:last-of-type {
-    border-bottom-left-radius: 5px;
-    border-bottom-right-radius: 5px;
-  }
+  //&:first-of-type {
+  //  border-top-left-radius: 5px;
+  //  border-top-right-radius: 5px;
+  //}
+  //
+  //&:last-of-type {
+  //  border-bottom-left-radius: 5px;
+  //  border-bottom-right-radius: 5px;
+  //}
 
   -webkit-touch-callout: none; /* iOS Safari */
   -webkit-user-select: none; /* Safari */

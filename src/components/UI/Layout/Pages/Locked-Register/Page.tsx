@@ -9,7 +9,7 @@ type StyledSectionProps = {
 
 export type PageTransitionProps = {
     pageTransition: {
-        key: number,
+        key: number | string,
         direction: -1 | 1
     }
 }
@@ -30,7 +30,7 @@ const StyledAnimatedContainer = styled(motion.div)`
   background-color: ${props => props.theme.ui.backgroundColor};
 `
 
-const StyledAnimatedSection = styled(motion.div)<StyledSectionProps>`
+const StyledAnimatedSection = styled.div<StyledSectionProps>`
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -38,7 +38,6 @@ const StyledAnimatedSection = styled(motion.div)<StyledSectionProps>`
   width: 100%;
   max-width: 60rem;
   flex: ${props => props.flex || 1};
-  overflow-y: scroll;
 `
 
 const StyledTitle = styled.h1`
@@ -62,7 +61,7 @@ const Page = ({title, contentComponents, buttonComponents, pageTransition}: Page
             variants={pageTransitionVariants}
             transition={{
                 x: {type: 'just'},
-                opacity: {duration: 0.2}
+                opacity: {duration: 0.25}
             }}
         >
             {title && (

@@ -6,8 +6,8 @@ const light: DefaultTheme = {
         color: '#000'
     },
     ui: {
-        backgroundColor: '#fff',
-        backgroundAccent: '#fff',
+        backgroundColor: '#EFEFEF',
+        backgroundAccent: '#FEFEFE',
         textColor: '#4d4d4c',
         selected: '#50A2E9',
         outline: {
@@ -15,7 +15,7 @@ const light: DefaultTheme = {
         },
         storybook: {
             canvasDecorator: {
-                backgroundColor: '#fff',
+                backgroundColor: '#EFEFEF',
                 color: '#000',
                 controls: {
                     backgroundColor: '#E6E6E6'
@@ -33,7 +33,8 @@ const light: DefaultTheme = {
         },
         passcodeInput: {
             color: '#333332',
-            border: '#333332'
+            border: '#333332',
+            placeholderColor: '#dcdcdc'
         }
     }
 }

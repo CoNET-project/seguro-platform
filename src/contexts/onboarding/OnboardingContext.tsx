@@ -2,7 +2,7 @@ import React from "react";
 
 export type NavigatePageAction = {
     type: 'navigateToPage' | 'nextPage' | 'previousPage',
-    payload: {
+    payload?: {
         pageId: PageIds
     }
 }
