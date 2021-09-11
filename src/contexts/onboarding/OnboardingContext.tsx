@@ -12,9 +12,16 @@ export type SetOnboardingDataAction = {
     payload: string
 }
 
-export type Dispatch = (action: NavigatePageAction | SetOnboardingDataAction) => void
+export type SetVerificationCode = {
+    type: 'setVerificationCode',
+    payload: string
+}
 
-export type PageIds = 'language' | 'setPasscode' | 'confirmPasscode' | 'verification'
+export type OnboardingActions = NavigatePageAction | SetOnboardingDataAction | SetVerificationCode
+
+export type Dispatch = (action: OnboardingActions) => void
+
+export type PageIds = 'language' | 'setPasscode' | 'confirmPasscode' | 'verification' | 'verificationProcess'
 
 type AnimateDirection = -1 | 1
 

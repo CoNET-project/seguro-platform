@@ -1,21 +1,13 @@
 import styled from 'styled-components';
-// import Page, {PageTransitionProps} from "../../../UI/Layout/Pages/Locked-Register/Page";
 import {FormattedMessage} from "react-intl";
-import StepButtons from '../../../UI/StepButtons/StepButtons';
 import PasscodeTouchInput from "../../../UI/Inputs/PasscodeInput/Touch/PasscodeInput";
-import PasscodeNoTouchInput from '../../../UI/Inputs/PasscodeInput/NoTouch/PasscodeInput'
-import Keypad, {KeypadClickHandlers} from "../../../UI/Keypad/Keypad/Keypad";
-import {ReactNode, useEffect, useState} from 'react';
+import Keypad from "../../../UI/Keypad/Keypad/Keypad";
+import {ReactNode, useState} from 'react';
 import {useOnboardingPageNavigator} from "../../../../contexts/onboarding/OnboardingContext";
 import onboardingActions from "../../../../contexts/onboarding/onboardingActions";
 import Page from '../../../UI/Layout/Page/Page';
-import {Passcode} from '../../../UI/Icons/Icons';
 import useAppState from '../../../../store/appState/useAppState';
-
-const StyledContainer = styled.div`
-  height: 100%;
-  width: 100%;
-`
+import Input from "../../../UI/Inputs/Input/Input";
 
 type PasscodeProps = {
     title: string | ReactNode,
@@ -76,13 +68,17 @@ const PasscodePage = ({
                                 </>
                             ) :
                             <>
-                                <PasscodeNoTouchInput value={passcode}
-                                                      nextStepHandler={nextButtonHandler}
-                                                      previousStepHandler={previousButtonHandler}
-                                                      error={error}
-                                                      setValue={(val) => {
-                                                          setPasscode(val)
-                                                      }}/>
+                                <Input value={passcode}
+                                       inputOptions={{
+                                           inputType: 'password'
+                                       }
+                                       }
+                                       nextStepHandler={nextButtonHandler}
+                                       previousStepHandler={previousButtonHandler}
+                                       error={error}
+                                       setValue={(val) => {
+                                           setPasscode(val)
+                                       }}/>
                             </>
                     }
                 </>

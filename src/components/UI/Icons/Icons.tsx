@@ -1,5 +1,5 @@
 import {
-    BiWorld,
+    BiWorld, FaCheckCircle,
     FaChevronLeft,
     FaChevronRight,
     GoPrimitiveDot,
@@ -41,6 +41,7 @@ const getSize = (size: Sizes) => {
 }
 
 const StyledIcon = styled.div`
+  transition: color 150ms ease-in-out;
   color: ${props => props.theme.ui.textColor};
   display: flex;
   align-items: center;
@@ -50,10 +51,16 @@ const StyledIcon = styled.div`
 type StyledThemeIconProps = { isPlaceholder?: boolean }
 
 const StyledThemeIcon = styled.div<StyledThemeIconProps>`
-  color: ${props => props.isPlaceholder ? props.theme.ui.passcodeInput.placeholderColor : props.theme.ui.passcodeInput.color};
+  color: ${props => props.isPlaceholder ? props.theme.ui.input.placeholderColor : props.theme.ui.input.color};
   display: flex;
   align-items: center;
   justify-content: center;
+`
+
+type StyledValidityIconProps = { valid: boolean }
+
+const StyledValidityIcon = styled(StyledIcon)<StyledValidityIconProps>`
+  color: ${props => props.valid ? props.theme.ui.icon.valid : props.theme.ui.icon.invalid}
 `
 
 export const ChevronLeft = ({size, color}: IconProps) => {
@@ -101,6 +108,14 @@ export const Warning = ({size, color}: IconProps) => {
         <StyledIcon>
             <IoIosWarning size={getSize(size)} color={color || undefined}/>
         </StyledIcon>
+    )
+}
+
+export const CircleCheck = ({size, color, valid}: IconProps & { valid: boolean }) => {
+    return (
+        <StyledValidityIcon valid={valid}>
+            <FaCheckCircle size={getSize(size)} color={color || undefined}/>
+        </StyledValidityIcon>
     )
 }
 

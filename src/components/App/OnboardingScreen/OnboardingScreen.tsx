@@ -8,6 +8,8 @@ import {useOnboardingPageNavigator} from "../../../contexts/onboarding/Onboardin
 import PasscodePage from './PasscodePage/PasscodePage';
 import {FormattedMessage} from 'react-intl';
 import onboardingActions from "../../../contexts/onboarding/onboardingActions";
+import VerificationPage from "./VerificationPage/VerificationPage";
+import ProcessingPage from "./ProcessingPage/ProcessingPage";
 
 type Languages = {
     name: string,
@@ -79,7 +81,7 @@ const OnboardingScreen = () => {
                 {currentPage[0] === 'setPasscode' &&
                 <PasscodePage
                     key={currentPage[0]}
-                    title={<FormattedMessage id='onboarding.setPasscode'/>}
+                    title={<FormattedMessage id='onboarding.setPasscodeTitle'/>}
                     passcode={onboardingPageData?.passcode || ''}
                     setPasscode={(passcode) => {
                         dispatch(onboardingActions.setPasscode(passcode))
@@ -88,12 +90,22 @@ const OnboardingScreen = () => {
                 {currentPage[0] === 'confirmPasscode' &&
                 <PasscodePage
                     key={currentPage[0]}
-                    title={<FormattedMessage id='onboarding.confirmPasscode'/>}
+                    title={<FormattedMessage id='onboarding.confirmPasscodeTitle'/>}
                     passcode={onboardingPageData?.confirmPasscode || ''}
                     setPasscode={(passcode) => {
                         dispatch(onboardingActions.setConfirmPasscode(passcode))
                     }}
                     confirmationAction={confirmationHandler}
+                />}
+                {currentPage[0] === 'verification' &&
+                <VerificationPage
+                    key={currentPage[0]}
+                    title={<FormattedMessage id='onboarding.verificationTitle'/>}
+                />}
+                {currentPage[0] === 'verificationProcess' &&
+                <ProcessingPage
+                    key={currentPage[0]}
+                    hasTouch={appState.isTouchDevice}
                 />}
             </AnimatePresence>
 

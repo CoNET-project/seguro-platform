@@ -23,7 +23,7 @@ const StyledPasscodeInputDot = styled.div`
 `
 
 const StyledPasscodePlaceholderDots = styled(StyledPasscodeInputDot)`
-  color: ${props => props.theme.ui.passcodeInput.placeholderColor} !important;
+  color: ${props => props.theme.ui.input.placeholderColor} !important;
 `
 
 const StyledPasscodeText = styled.p`

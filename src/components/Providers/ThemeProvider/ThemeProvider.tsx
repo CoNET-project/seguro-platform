@@ -1,6 +1,7 @@
-import { useState } from 'react'
+import {useState} from 'react'
 import ProviderProps from '../ProviderProps'
-import { DefaultTheme, ThemeProvider as StyledComponentsThemeProvider } from 'styled-components'
+import GlobalStyle from '../../UI/Global/Styles'
+import {DefaultTheme, ThemeProvider as StyledComponentsThemeProvider} from 'styled-components'
 import useAppState from '../../../store/appState/useAppState'
 import usePreferredTheme from './usePreferredTheme'
 import lightTheme from '../../../theme/light'
@@ -14,8 +15,8 @@ const themeToConfig: Record<ActiveTheme, DefaultTheme> = {
 }
 
 const ThemeProvider = ({
-    children
-}: ProviderProps) => {
+                           children
+                       }: ProviderProps) => {
     const [activeTheme, setActiveTheme] = useState<ActiveTheme>('Light')
 
     const appState = useAppState()
@@ -23,13 +24,13 @@ const ThemeProvider = ({
 
     if (appState.theme === 'Auto' && preferredTheme !== activeTheme) {
         setActiveTheme(preferredTheme)
-    }
-    else if (appState.theme !== 'Auto' && appState.theme !== activeTheme) {
+    } else if (appState.theme !== 'Auto' && appState.theme !== activeTheme) {
         setActiveTheme(appState.theme)
     }
 
     return (
         <StyledComponentsThemeProvider theme={themeToConfig[activeTheme]}>
+            <GlobalStyle/>
             {children}
         </StyledComponentsThemeProvider>
     )

@@ -19,3 +19,21 @@ export const pageTransitionVariants = {
         };
     }
 }
+
+export const progressStepTransitionVariants = {
+    enter: {
+        zIndex: 0,
+        y: -10,
+        opacity: 0
+    },
+    center: {
+        zIndex: 1,
+        y: 0,
+        opacity: 1
+    },
+    exit: {
+        zIndex: 0,
+        y: 100,
+        opacity: 0
+    }
+}

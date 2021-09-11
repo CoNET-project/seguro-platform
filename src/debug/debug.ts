@@ -1,7 +1,7 @@
 import store from '../store/store'
-import { setLocale, setTheme } from '../store/appState/appStateActions'
-import { Locale } from '../localization/types'
-import { Theme } from '../theme/types'
+import {setIsTouchDevice, setLocale, setTheme} from '../store/appState/appStateActions'
+import {Locale} from '../localization/types'
+import {Theme} from '../theme/types'
 
 export const enableDebugCommands = () => {
 
@@ -10,16 +10,20 @@ export const enableDebugCommands = () => {
 
         debug: {
 
-            getStoreState () {
+            getStoreState() {
                 return store.getState()
             },
 
-            setTheme (theme: Theme) {
+            setTheme(theme: Theme) {
                 store.dispatch(setTheme(theme))
             },
 
-            setLocale (locale: Locale) {
+            setLocale(locale: Locale) {
                 store.dispatch(setLocale(locale))
+            },
+
+            setTouch(isTouch: boolean) {
+                store.dispatch(setIsTouchDevice(isTouch))
             }
         }
     }

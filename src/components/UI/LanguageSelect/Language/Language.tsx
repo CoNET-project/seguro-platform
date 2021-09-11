@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import {Locale} from "../../../../localization/types";
 
 type LanguageProps = {
+    index: number,
     languageName: string,
     englishName: string,
     locale: Locale,
@@ -9,7 +10,7 @@ type LanguageProps = {
     selectedLocale: Locale
 }
 
-const StyledItem = styled.div<{ selected: boolean }>`
+const StyledItem = styled.li<{ selected: boolean }>`
   font-size: 16px;
   width: 100%;
   padding: 20px 50px 20px 20px;
@@ -48,7 +49,8 @@ const StyledParenthesisText = styled.p`
 
 const Language = (props: LanguageProps) => {
     return (
-        <StyledItem onClick={() => props.selectLocale(props.locale)} selected={props.locale === props.selectedLocale}>
+        <StyledItem onClick={() => props.selectLocale(props.locale)} selected={props.locale === props.selectedLocale}
+                    tabIndex={props.index}>
             <StyledText>{props.languageName}</StyledText>
             <StyledParenthesisText>({props.englishName})</StyledParenthesisText>
         </StyledItem>

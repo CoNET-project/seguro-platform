@@ -1,6 +1,9 @@
-import {NavigatePageAction, SetOnboardingDataAction, State} from "./OnboardingContext";
+import {
+    OnboardingActions,
+    State
+} from "./OnboardingContext";
 
-export const onboardingPageReducer = (state: State, action: NavigatePageAction | SetOnboardingDataAction): State => {
+export const onboardingPageReducer = (state: State, action: OnboardingActions): State => {
 
     const getPage = (direction: 'next' | 'previous'): State => {
         const [currentPageId] = state.currentPage
@@ -58,6 +61,14 @@ export const onboardingPageReducer = (state: State, action: NavigatePageAction |
                 onboardingPageData: {
                     ...state.onboardingPageData,
                     confirmPasscode: action.payload
+                }
+            }
+        case 'setVerificationCode':
+            return {
+                ...state,
+                onboardingPageData: {
+                    ...state.onboardingPageData,
+                    verificationCode: action.payload
                 }
             }
         default:

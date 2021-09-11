@@ -48,7 +48,7 @@ const SelectLanguagePage = ({selectLocale, locale}: SelectLanguageProps) => {
 
     return (
         <Page titleComponent={<FormattedMessage
-            id='onboarding.selectLanguage'/>}
+            id='onboarding.selectLanguageTitle'/>}
               icon={<LanguageIcon size='lg'/>}
               contentComponents={
                   <LanguageSelect languages={languages}
