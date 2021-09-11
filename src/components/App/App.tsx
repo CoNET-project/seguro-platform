@@ -35,7 +35,8 @@ const App = () => {
     }, [])
 
     let content = (
-        <OnboardingPageProvider existingPages={['language', 'setPasscode', 'confirmPasscode', 'verification']}>
+        <OnboardingPageProvider
+            existingPages={['language', 'setPasscode', 'confirmPasscode', 'verification', 'verificationProcess']}>
             <OnboardingScreen/>
         </OnboardingPageProvider>
     )

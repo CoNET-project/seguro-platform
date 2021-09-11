@@ -1,17 +1,17 @@
 import {Story} from '@storybook/react'
-import PasscodeInput from './PasscodeInput'
+import Input from './Input'
 import {FormattedMessage} from "react-intl";
 
 export default {
-    component: PasscodeInput,
-    title: 'PasscodePage/NoTouch/Input'
+    component: Input,
+    title: 'Inputs/Input'
 }
 
 const Template: Story = (
     args
 ) => {
     return (
-        <PasscodeInput value='hello' error={<FormattedMessage id='passcodeInput.invalidLength'/>} setValue={e => {
+        <Input value='hello' error={<FormattedMessage id='passcodeInput.invalidLength'/>} setValue={e => {
         }}/>
     )
 }

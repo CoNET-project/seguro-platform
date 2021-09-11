@@ -1,5 +1,26 @@
 # `seguro-platform` CHANGELOG
 
+## `0.13.0`
+
+### Additions
+
+- Add `lottie` for animations on onboarding tutorial pages.
+- Add `carousel` component.
+- Add `progressBar` component.
+- Add `progressDots` component.
+- Add montserrat font.
+- Add additional localization text to support tutorial pages.
+
+### Changes
+
+- None.
+
+### Fixes
+
+- None.
+
+---
+
 ## `0.12.0`
 
 ### Additions

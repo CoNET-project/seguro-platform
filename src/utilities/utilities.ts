@@ -1,3 +1,6 @@
+import {version as uuidVersion} from 'uuid';
+import {validate as uuidValidate} from 'uuid';
+
 interface WindowInnerSize {
     width: number,
     height: number
@@ -26,4 +29,15 @@ export const detectWindowInnerSize = (): WindowInnerSize | null => {
         }
     }
     return null
+}
+
+export const windowKeyListener = (event: KeyboardEvent, key: string): boolean => {
+    return event.key === key
+}
+
+export const isUUIDv4 = (str: string | undefined): boolean => {
+    if (!str) {
+        return false
+    }
+    return uuidValidate(str) && uuidVersion(str) === 4;
 }

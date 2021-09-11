@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 import Language from "./Language/Language";
 import {Locale} from "../../../localization/types";
+import React, {useEffect} from "react";
+import {windowKeyListener} from "../../../utilities/utilities";
 
 type LanguageSelectProps = {
     languages: Array<{ name: string, englishName: string, locale: Locale }>,
@@ -8,7 +10,7 @@ type LanguageSelectProps = {
     selectedLocale: Locale
 }
 
-const StyledContainer = styled.div`
+const StyledContainer = styled.ul`
   min-width: 100%;
   max-width: 30rem;
   min-height: 100%;
@@ -24,6 +26,8 @@ const StyledContainer = styled.div`
 `
 
 const LanguageSelect = (props: LanguageSelectProps) => {
+
+
     return (
         <StyledContainer>
             {props.languages.map((language, idx) =>
@@ -33,7 +37,9 @@ const LanguageSelect = (props: LanguageSelectProps) => {
                     locale={language.locale}
                     selectLocale={props.selectLocale}
                     selectedLocale={props.selectedLocale}
-                    key={idx}/>
+                    key={idx}
+                    index={idx + 1}
+                />
             )}
         </StyledContainer>
     )

@@ -31,10 +31,25 @@ const dark: DefaultTheme = {
             alphabetColor: '#fff',
             basicColor: '#fff'
         },
-        passcodeInput: {
+        input: {
             color: '#fff',
             border: '#fff',
             placeholderColor: '#838383'
+        },
+        icon: {
+            invalid: '#838383',
+            valid: '#00D100'
+        },
+        progress: {
+            bar: {
+                incomplete: 'rgba(0, 0, 0, 0.2)',
+                complete: 'rgba(40, 98, 188, 1)',
+                separator: 'rgba(255, 255, 255, 0.1)'
+            },
+            dot: {
+                incomplete: 'rgba(0, 0, 0, 0.2)',
+                complete: '#fff',
+            }
         }
     }
 }

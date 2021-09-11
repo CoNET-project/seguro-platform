@@ -21,3 +21,11 @@
     url('lato-700.woff2') format('woff2');
     font-display: block;
 }
+
+@font-face {
+    font-family: 'Montserrat Bold';
+    src: local('Montserrat Bold'), local('Montserrat Bold'),
+    url('montserrat-800.woff') format('woff'),
+    url('montserrat-800.woff2') format('woff2');
+    font-display: block;
+}

@@ -35,10 +35,25 @@ declare module 'styled-components' {
                 alphabetColor: string,
                 basicColor: string
             },
-            passcodeInput: {
+            input: {
                 color: string,
                 border: string,
                 placeholderColor: string
+            },
+            icon: {
+                invalid: string,
+                valid: string
+            },
+            progress: {
+                bar: {
+                    incomplete: string,
+                    complete: string,
+                    separator: string
+                },
+                dot: {
+                    incomplete: string,
+                    complete: string
+                }
             }
         }
     }

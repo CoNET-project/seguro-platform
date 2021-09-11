@@ -1,4 +1,4 @@
-import {NavigatePageAction, SetOnboardingDataAction} from "./OnboardingContext";
+import {NavigatePageAction, SetOnboardingDataAction, SetVerificationCode} from "./OnboardingContext";
 
 const onboardingActions = {
     nextPage: (): NavigatePageAction => {
@@ -21,6 +21,12 @@ const onboardingActions = {
         return {
             type: 'setConfirmPasscode',
             payload: passcode
+        }
+    },
+    setVerificationCode: (code: string): SetVerificationCode => {
+        return {
+            type: 'setVerificationCode',
+            payload: code
         }
     }
 }
