@@ -21,6 +21,8 @@ type TutorialPageProps = {
 
 
 const StyledTutorialPage = styled(motion.div)`
+  max-width: 1920px;
+  max-height: 1080px;
   width: 100%;
   height: 100%;
   content: '';
@@ -30,24 +32,28 @@ const StyledTutorialPage = styled(motion.div)`
   align-items: center;
   padding: 30px;
   background-color: ${props => props.theme.ui.backgroundColor};
-  position: absolute;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+  @media (${screenWidth.narrowWidth}) {
+    padding: 40px 0;
+  }
 `
 
 const StyledTitle = styled.h1`
   width: 100%;
   text-align: center;
-  color: ${props => props.theme.ui.textColor};
-  font-size: clamp(16px, 12vw, 36px);
+  color: ${props => props.theme.ui.text.textPrimary};
   font-family: 'Montserrat Bold', sans-serif;
 `
 
 const StyledContents = styled.div`
-  min-width: 100%;
+  max-width: 1080px;
+  max-height: 1080px;
   width: 100%;
   flex: 1;
   height: 100%;
   content: '';
-  color: ${props => props.theme.ui.textColor};
+  color: ${props => props.theme.ui.text.textPrimary};
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -56,6 +62,7 @@ const StyledContents = styled.div`
 `
 
 const StyledContent = styled.div`
+  max-width: 50rem;
   width: 100%;
   height: 100%;
   display: flex;
@@ -72,8 +79,6 @@ const StyledLowerContentContainer = styled.div`
 `
 
 const TutorialPage = ({
-                          icon,
-                          header,
                           contentComponents,
                           lowerContentComponents,
                           pageTransition

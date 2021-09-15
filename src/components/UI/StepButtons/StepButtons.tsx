@@ -1,52 +1,66 @@
-import styled from 'styled-components'
-import StepButton from './StepButton/StepButton'
-import {FormattedMessage} from "react-intl";
+import styled from 'styled-components';
+import StepButton from "./StepButton/StepButton";
 import {ChevronLeft, ChevronRight} from "../Icons/Icons";
+import {
+    CgArrowLongLeft,
+    CgArrowLongRight,
+    FaArrowLeft,
+    FaArrowRight,
+    HiArrowNarrowLeft,
+    HiArrowNarrowRight
+} from "react-icons/all";
+import {FormattedMessage} from "react-intl";
+import {screenWidth} from '../screenSizes';
 
 export type StepButtonsClickActions = {
     previousButton?: {
         text?: string,
-        action?: () => void
+        action: () => void
     },
     nextButton?: {
         text?: string,
-        action?: () => void
+        action: () => void
     }
 }
 
-const StyledContainer = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+
+export type StepButtonsProps = {
+    actionHandler: StepButtonsClickActions
+}
+
+const StyledStepButtons = styled.div`
   width: 100%;
-  overflow: hidden;
-  color: ${props => props.theme.ui.textColor}
+  min-width: 15rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 `
 
-const StyledBox = styled.div`
-`
-
-
-const StepButtons = ({previousButton, nextButton}: StepButtonsClickActions) => {
+const StepButtons = ({actionHandler}: StepButtonsProps) => {
     return (
-        <StyledContainer>
-            <StyledBox>
-                {
-                    previousButton ? <StepButton
-                        text={previousButton.text || <FormattedMessage id='button.back'/>}
-                        iconLeft={<ChevronLeft size={18}/>}
-                        onClick={previousButton.action}/> : null
-                }
-            </StyledBox>
-            <StyledBox>
-                {
-                    nextButton ? <StepButton
-                        text={nextButton.text || <FormattedMessage id='button.next'/>}
-                        iconRight={<ChevronRight size={18}/>}
-                        onClick={nextButton.action}/> : null
-                }
-            </StyledBox>
-        </StyledContainer>
+        <StyledStepButtons>
+            {
+                !actionHandler.previousButton && (
+                    <div/>
+                )
+            }
+            {
+                actionHandler.previousButton && (
+                    <StepButton
+                        text={actionHandler.previousButton.text || <FormattedMessage id='button.back'/>}
+                        onClick={actionHandler.previousButton.action}
+                        iconLeft={<CgArrowLongLeft/>}/>
+                )
+            }
+            {
+                actionHandler.nextButton && (
+                    <StepButton
+                        text={actionHandler.nextButton.text || <FormattedMessage id='button.next'/>}
+                        onClick={actionHandler.nextButton.action}
+                        iconRight={<CgArrowLongRight/>}/>
+                )
+            }
+        </StyledStepButtons>
     )
 }
 

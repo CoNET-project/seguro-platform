@@ -1,47 +1,77 @@
-import {ReactNode} from 'react';
 import styled from 'styled-components'
+import {ReactNode} from "react";
+
+export type StepButtonProps = {
+    text: ReactNode | string,
+    onClick: () => void,
+    iconRight?: ReactNode,
+    iconLeft?: ReactNode
+}
+
+type StyledButtonTextProps = {
+    shiftLeft?: boolean,
+    shiftRight?: boolean
+}
 
 const StyledButton = styled.button`
+  min-height: 5rem;
+  min-width: 8rem;
+  border-radius: 10px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   border: none;
   background-color: transparent;
-  color: ${props => props.theme.ui.textColor};
-  font-size: 18px;
-  font-weight: 700;
-  padding: 20px 15px;
-  display: flex;
+  padding: 0 15px 0 20px;
 `
 
-const StyledText = styled.span`
-  margin: 0 5px;
+const StyledButtonText = styled.p<StyledButtonTextProps>`
+  height: 100%;
+  font-size: 16px;
+  font-weight: 700;
+  color: ${props => props.theme.ui.text.textPrimary};
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 3rem;
 `
 
 const StyledIcon = styled.div`
-  color: ${props => props.theme.ui.textColor} !important;
+  height: 100%;
+  font-size: 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex: 1;
+  color: ${props => props.theme.ui.text.textPrimary}
 `
 
-const StepButton = ({
-                        text,
-                        onClick,
-                        iconLeft,
-                        iconRight
-                    }: { text: string | ReactNode, onClick?: () => void, iconLeft?: ReactNode, iconRight?: ReactNode }) => {
+const StepButton = ({text, onClick, iconLeft, iconRight}: StepButtonProps) => {
+    if (iconLeft && iconRight) {
+        throw new Error('You may not have both icon on left and right!')
+    }
     return (
         <StyledButton onClick={onClick}>
-            {iconLeft ? (
-                <StyledIcon>
-                    {iconLeft}
-                </StyledIcon>
-            ) : null}
-            <StyledText>
+            {
+                iconLeft && (
+                    <StyledIcon>
+                        {iconLeft}
+                    </StyledIcon>
+                )
+            }
+            <StyledButtonText shiftLeft={!!iconLeft} shiftRight={!!iconRight}>
                 {text}
-            </StyledText>
-            {iconRight ? (
-                <StyledIcon>
-                    {iconRight}
-                </StyledIcon>
-            ) : null}
+            </StyledButtonText>
+            {
+                iconRight && (
+                    <StyledIcon>
+                        {iconRight}
+                    </StyledIcon>
+                )
+            }
         </StyledButton>
     )
 }
 
-export default StepButton;
+export default StepButton

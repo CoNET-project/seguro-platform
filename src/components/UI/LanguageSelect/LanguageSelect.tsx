@@ -11,10 +11,9 @@ type LanguageSelectProps = {
 }
 
 const StyledContainer = styled.ul`
-  min-width: 100%;
-  max-width: 30rem;
-  min-height: 100%;
+  width: 100%;
   height: 100%;
+  max-height: 540px;
   border-radius: 5px;
   overflow-y: auto;
   background-color: ${props => props.theme.ui.backgroundAccent};
@@ -26,8 +25,6 @@ const StyledContainer = styled.ul`
 `
 
 const LanguageSelect = (props: LanguageSelectProps) => {
-
-
     return (
         <StyledContainer>
             {props.languages.map((language, idx) =>

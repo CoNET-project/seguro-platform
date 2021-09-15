@@ -7,7 +7,9 @@ export type Locale = (
 export type Messages = {
     'main.greeting': string,
     'onboarding.selectLanguageTitle': string,
+    'onboarding.selectLanguageSubtitle': string,
     'onboarding.setPasscodeTitle': string,
+    'onboarding.setPasscodeSubtitle': string,
     'onboarding.confirmPasscodeTitle': string,
     'onboarding.verificationTitle': string,
     'onboarding.verificationInputLabel': string,

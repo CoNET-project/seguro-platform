@@ -1,69 +1,120 @@
-import styled from 'styled-components';
-import {ReactNode} from "react";
+import styled, {css, keyframes} from 'styled-components';
+import {ReactNode, useState} from "react";
 
-const StyledKey = styled.button`
-  min-height: 100%;
-  min-width: 100%;
-  content: '';
-  background-color: transparent;
-  border-radius: 50%;
-  border: none;
+export type KeyProps = {
+    number?: number,
+    alphabet?: string,
+    text?: ReactNode,
+    onClick: () => void
+}
+
+const StyledBackgroundKeyframes = keyframes`
+  0% {
+    box-shadow: 0 0 0 0 #1867a5;
+  }
+  100% {
+    box-shadow: 0 0 5px 25px transparent;
+  }
+`
+
+const StyledKey = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+`
+
+const StyledKeyButton = styled.button`
+  width: 5rem;
+  height: 5rem;
+  padding: 20px;
+  border-radius: 50px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  user-select: none;
-  transition: background-color 50ms ease-in-out;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  background-color: ${props => props.theme.ui.backgroundColor};
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
+  position: relative;
+  z-index: 2;
+  transition: all 25ms ease-in-out;
 
   &:active {
-    background-color: rgba(0, 0, 0, 0.05);
+    box-shadow: 0 2px 2px rgba(0, 0, 0, 0.15);
   }
 `
 
-const StyledKeyNumber = styled.p`
-  margin: 0;
-  padding: 0;
-  font-weight: 600;
-  font-size: 24px;
-  color: ${props => props.theme.ui.keypadKey.numberColor};
-  pointer-events: none;
+const StyledKeyBackground = styled.div<{ showAnimation: boolean }>`
+  width: 4rem;
+  height: 4rem;
+  display: flex;
+  content: '';
+  position: absolute;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  z-index: 1;
+  animation: ${props => props.showAnimation ? css`${StyledBackgroundKeyframes} 300ms ease-in-out 0s 1 normal forwards` : 'none'};
 `
 
-const StyledKeyAlphabet = styled(StyledKeyNumber)`
-  font-size: 12px;
-  font-weight: normal;
-  min-height: 12px;
-  color: ${props => props.theme.ui.keypadKey.alphabetColor};
+const StyledText = styled.p`
+  font-size: 14px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: ${props => props.theme.ui.text.textPrimary}
 `
 
-const StyledKeyText = styled(StyledKeyNumber)`
-  font-size: 15px;
-  color: ${props => props.theme.ui.keypadKey.basicColor}
+
+const StyledNumberText = styled(StyledText)`
+  font-size: 17px;
+  font-weight: bold;
 `
 
-export type KeyProps = {
-    number?: string | number,
-    alphabet?: string,
-    component?: ReactNode,
-    isDisabled?: boolean,
-    onClick: () => void
-}
 
-const Key = (props: KeyProps) => {
-    let keyContent = null
-    if (props.component) {
-        keyContent = <StyledKeyText>{props.component}</StyledKeyText>
-    } else {
-        keyContent = (
-            <>
-                <StyledKeyNumber>{props.number}</StyledKeyNumber>
-                <StyledKeyAlphabet>{props.alphabet}</StyledKeyAlphabet>
-            </>
-        )
+const StyledAlphabetText = styled(StyledText)`
+  font-size: 11px;
+  opacity: 0.6;
+`
+
+
+const Key = ({number, alphabet, text, onClick}: KeyProps) => {
+    if ((number || alphabet) && text) {
+        throw new Error('Key cannot contain text and number with alphabets!')
     }
+    const [showAnimation, setShowAnimation] = useState(false)
+
+    const keyClickHandler = () => {
+        onClick();
+    }
+
     return (
-        <StyledKey onClick={props.onClick} disabled={props.isDisabled || false}>
-            {keyContent}
+        <StyledKey>
+            <StyledKeyButton onClick={keyClickHandler}
+                             onTouchStart={() => setShowAnimation(true)}
+                             onMouseDown={() => setShowAnimation(true)}>
+                {
+                    text && (
+                        <StyledText>
+                            {text}
+                        </StyledText>
+                    )
+                }
+                {
+                    (number || alphabet) && (
+                        <>
+                            <StyledNumberText>
+                                {number}
+                            </StyledNumberText>
+                            <StyledAlphabetText>
+                                {alphabet}
+                            </StyledAlphabetText>
+                        </>
+                    )
+                }
+            </StyledKeyButton>
+            <StyledKeyBackground onAnimationEnd={() => setShowAnimation(false)} showAnimation={showAnimation}/>
         </StyledKey>
     )
 }

@@ -16,31 +16,19 @@ export default createGlobalStyle`
   }
 
   h1 {
-    font-size: 2.25rem;
+    font-size: clamp(1.2rem, 3vw + 1rem, 2rem);
   }
 
   h2 {
-    font-size: 1.8rem;
+    font-size: clamp(1.4rem, 3vw + 1rem, 1.6rem);
   }
 
   h3 {
-    font-size: 1.6rem;
-  }
-
-  h4 {
-    font-size: 1.4rem;
-  }
-
-  h5 {
-    font-size: 1.2rem;
-  }
-
-  h6 {
-    font-size: 1rem;
+    font-size: clamp(1.2rem, 3vw + 1rem, 1.6rem);
   }
 
   p {
     font-family: 'Lato Regular', sans-serif;
-    font-size: 16px
+    font-size: clamp(14px, 3vw + 1rem, 16px);
   }
 `

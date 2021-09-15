@@ -9,7 +9,7 @@ export type CardProps = {
 
 const StyledCard = styled.div`
   max-width: 70rem;
-  height: 100%;
+  min-height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -34,19 +34,17 @@ const StyledContents = styled.div`
   justify-content: center;
 `
 
-const StyledContentTitle = styled.h1`
-  color: ${props => props.theme.ui.textColor};
+const StyledContentTitle = styled.div`
   display: flex;
   align-items: center;
   margin-top: 20px;
-  font-size: clamp(24px, 4vw, 28px);
 `
 
 const StyledContentComponent = styled.div`
   text-align: center;
   display: flex;
   flex-direction: column;
-  color: ${props => props.theme.ui.textColor};
+  color: ${props => props.theme.ui.text.textPrimary};
   margin: 20px 0;
   font-size: 16px;
   width: 100%;

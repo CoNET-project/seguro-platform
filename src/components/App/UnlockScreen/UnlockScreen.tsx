@@ -1,7 +1,7 @@
 import {useEffect, useState} from 'react'
 import styled from 'styled-components'
-import {getBridgeService} from '../../../services/bridgeService/bridgeService'
-import Keypad from "../../UI/Keypad/Keypad/Keypad";
+import {getWorkerService} from '../../../services/workerService/workerService'
+import Keypad from '../../UI/Keypad/Keypad'
 import PasscodeInput from "../../UI/Inputs/PasscodeInput/Touch/PasscodeInput";
 import {IoMdLock} from "react-icons/all";
 import Icon from "../../UI/Inputs/Icon/Icon";
@@ -27,7 +27,7 @@ const StyledContent = styled.div`
 const StyledTitle = styled.p`
   margin: 40px 0 20px 0;
   font-size: 16px;
-  color: ${props => props.theme.ui.textColor}
+  color: ${props => props.theme.ui.text.textPrimary}
 `
 
 const UnlockScreen = () => {
@@ -71,7 +71,7 @@ const UnlockScreen = () => {
                 <Icon component={<IoMdLock size={46}/>}/>
                 <StyledTitle><FormattedMessage id="unlock.title"/></StyledTitle>
                 <PasscodeInput value={passcode} error={isIncorrect}/>
-                <Keypad clickActionHandlers={keypadClickHandlers}/>
+                <Keypad {...keypadClickHandlers}/>
             </StyledContent>
         </StyledContainer>
     )

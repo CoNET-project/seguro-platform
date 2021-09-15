@@ -21,6 +21,7 @@ const StyledContainer = styled.div`
 
 const App = () => {
     const appState = useAppState()
+    // appState.initialize().then()
 
     const windowResizeHandler = () => {
         appState.setWindowInnerSize(detectWindowInnerSize())

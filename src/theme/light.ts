@@ -6,9 +6,10 @@ const light: DefaultTheme = {
         color: '#000'
     },
     ui: {
-        backgroundColor: '#EFEFEF',
+        backgroundColor: '#F2F2F2',
         backgroundAccent: '#FEFEFE',
-        textColor: '#4d4d4c',
+        primaryColor: '#193258',
+        accentColor: '#477EAD',
         selected: '#50A2E9',
         outline: {
             color: '#4D90FE'
@@ -31,19 +32,26 @@ const light: DefaultTheme = {
             alphabetColor: 'rgba(0,0,0,0.5)',
             basicColor: '#333332'
         },
+        text: {
+            textPrimary: '#343434',
+            textSecondary: '#636569',
+            textError: '#FF5B5D',
+            textDisabled: '#C2C2C2',
+            invertedColor: '#fff'
+        },
         input: {
             color: '#333332',
             border: '#333332',
             placeholderColor: '#dcdcdc'
         },
         icon: {
-            invalid: '#dcdcdc',
-            valid: '#00D100'
+            inactive: '#C2C2C2',
+            active: '#343434'
         },
         progress: {
             bar: {
                 incomplete: 'rgba(0, 0, 0, 0.15)',
-                complete: 'rgba(40, 98, 188, 0.75)',
+                complete: '#00e500',
                 separator: 'rgba(0, 0, 0, 0.1)'
             },
             dot: {

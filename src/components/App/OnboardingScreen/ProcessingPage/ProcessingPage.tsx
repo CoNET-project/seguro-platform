@@ -11,6 +11,7 @@ import lottie_decentralized from '../../../../assets/lottie/decentralized.json'
 import lottie_privacy from '../../../../assets/lottie/privacy.json'
 import Lottie, {LottieComponentProps} from 'lottie-react'
 import Card from "../../../UI/Layout/Card/Card";
+import {StyledFormattedH1, StyledFormattedParagraph} from "../../../UI/Text/Text";
 
 type CarouselState = [number, -1 | 1]
 
@@ -69,31 +70,47 @@ const ProcessingPage = ({hasTouch}: ProgressingPageProps) => {
         <Card
             visual={createLottie(lottie_platform)}
             contentTitle={
-                <FormattedMessage id='onboarding.carousel.title.seguro-platform'/>
+                <FormattedMessage id='onboarding.carousel.title.seguro-platform'>
+                    {text => <StyledFormattedH1>{text}</StyledFormattedH1>}
+                </FormattedMessage>
             }
             contentComponent={
-                <FormattedMessage id='onboarding.carousel.content.seguro-platform'/>
+                <FormattedMessage id='onboarding.carousel.content.seguro-platform'>
+                    {text => <StyledFormattedParagraph fontSize={20}>{text}</StyledFormattedParagraph>}
+                </FormattedMessage>
             }/>,
         <Card visual={createLottie(lottie_tracking)}
               contentTitle={
-                  <FormattedMessage id='onboarding.carousel.title.no-ip-tracking'/>
+                  <FormattedMessage id='onboarding.carousel.title.no-ip-tracking'>
+                      {text => <StyledFormattedH1>{text}</StyledFormattedH1>}
+                  </FormattedMessage>
               }
               contentComponent={
-                  <FormattedMessage id='onboarding.carousel.content.no-ip-tracking'/>
+                  <FormattedMessage id='onboarding.carousel.content.no-ip-tracking'>
+                      {text => <StyledFormattedParagraph fontSize={20}>{text}</StyledFormattedParagraph>}
+                  </FormattedMessage>
               }/>,
         <Card visual={createLottie(lottie_decentralized)}
               contentTitle={
-                  <FormattedMessage id='onboarding.carousel.title.decentralized'/>
+                  <FormattedMessage id='onboarding.carousel.title.decentralized'>
+                      {text => <StyledFormattedH1>{text}</StyledFormattedH1>}
+                  </FormattedMessage>
               }
               contentComponent={
-                  <FormattedMessage id='onboarding.carousel.content.decentralized'/>
+                  <FormattedMessage id='onboarding.carousel.content.decentralized'>
+                      {text => <StyledFormattedParagraph fontSize={20}>{text}</StyledFormattedParagraph>}
+                  </FormattedMessage>
               }/>,
         <Card visual={createLottie(lottie_privacy)}
               contentTitle={
-                  <FormattedMessage id='onboarding.carousel.title.anonymity'/>
+                  <FormattedMessage id='onboarding.carousel.title.anonymity'>
+                      {text => <StyledFormattedH1>{text}</StyledFormattedH1>}
+                  </FormattedMessage>
               }
               contentComponent={
-                  <FormattedMessage id='onboarding.carousel.content.anonymity'/>
+                  <FormattedMessage id='onboarding.carousel.content.anonymity'>
+                      {text => <StyledFormattedParagraph fontSize={20}>{text}</StyledFormattedParagraph>}
+                  </FormattedMessage>
               }/>,
     ]
 
@@ -108,7 +125,8 @@ const ProcessingPage = ({hasTouch}: ProgressingPageProps) => {
 
     const previousItem = () => {
         const [current] = carouselState
-        if (current == 0) {
+        console.log(current)
+        if (current == 1) {
             setCarouselState([4, -1])
         } else {
             setCarouselState([current - 1, -1])

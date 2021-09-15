@@ -1,5 +1,25 @@
 # `seguro-platform` CHANGELOG
 
+## `0.14.0`
+
+### Additions
+
+- Integration with `seguro-worker-lib`.
+- Add new keypad design.
+- Add design color palettes for dark and light mode.
+- Add Seguro logo on language select and lottie animation on verification page.
+
+### Changes
+
+- Multiple CSS styles and responsiveness across devices.
+- Page layouts for onboarding.
+
+### Fixes
+
+- None.
+
+---
+
 ## `0.13.0`
 
 ### Additions

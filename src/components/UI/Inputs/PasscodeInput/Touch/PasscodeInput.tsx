@@ -2,7 +2,7 @@ import {ReactNode} from 'react';
 import styled from 'styled-components';
 import {PasscodeDot, Warning} from '../../../Icons/Icons';
 
-type PasscodeInputProps = {
+export type PasscodeInputProps = {
     value: string,
     error?: ReactNode | string
 }
@@ -12,8 +12,8 @@ const StyledPasscodeInput = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 16px;
-  margin: 75px 0;
+  width: 100%;
+  min-width: 100%;
 `
 
 const StyledPasscodeInputDot = styled.div`
@@ -30,14 +30,13 @@ const StyledPasscodeText = styled.p`
   height: 100%;
   font-size: 14px;
   letter-spacing: 2px;
-  transform: translateY(-3%);
   display: flex;
   align-items: center;
 `
 
 const StyledPasscodeError = styled.div<{ show: boolean }>`
-  height: 16px;
-  min-height: 16px;
+  height: 100%;
+  min-width: 100%;
   width: 100%;
   content: '';
   margin-top: 10px;
@@ -49,7 +48,7 @@ const StyledPasscodeError = styled.div<{ show: boolean }>`
 `
 
 const StyledPasscodeErrorText = styled.p`
-  font-size: 14px;
+  font-size: 13px;
   margin-left: 5px;
 `
 

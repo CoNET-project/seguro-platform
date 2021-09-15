@@ -6,7 +6,7 @@ import {
     setTheme as setThemeActionCreator,
     setWindowInnerSize as setWindowInnerSizeActionCreator
 } from './appStateActions'
-import {initializeBridgeService} from '../../services/bridgeService/bridgeService'
+import {initializeWorkerService} from '../../services/workerService/workerService'
 import {Theme} from '../../theme/types'
 import {Locale} from '../../localization/types'
 
@@ -19,10 +19,10 @@ const useAppState = () => {
     const dispatch = useDispatch()
 
     const initialize = async () => {
-        await initializeBridgeService()
+        await initializeWorkerService()
     }
 
-    const isInitialized = useTypedSelector(state => state.appState.bridgeServiceIsInitialized)
+    const isInitialized = useTypedSelector(state => state.appState.workerServiceIsInitialized)
     const isInitializing = !isInitialized
 
     const isUnlocked = useTypedSelector(state => state.appState.isUnlocked)
