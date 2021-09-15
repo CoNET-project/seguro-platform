@@ -1,92 +1,94 @@
 {
-    "name": "@conet-project/seguro-platform",
-    "version": "0.13.0",
-    "author": "Kloak Information Technologies",
-    "description": "The Seguro Platform application.",
-    "license": "UNLICENSED",
-    "files": [
-        "./build"
+  "name": "@conet-project/seguro-platform",
+  "version": "0.14.0",
+  "author": "Kloak Information Technologies",
+  "description": "The Seguro Platform application.",
+  "license": "UNLICENSED",
+  "files": [
+    "./build"
+  ],
+  "main": "./src/electron/electron.js",
+  "scripts": {
+    "start": "concurrently --kill-others --success=first 'yarn _start:web' 'wait-on tcp:3000 && NODE_ENV=development yarn _start:desktop' 'seguro-gateway --port 3001'",
+    "start:storybook": "start-storybook -p 6006 -s public",
+    "start:gateway": "yarn seguro-gateway --port 3001",
+    "start:web": "concurrently --kill-others --success=first 'yarn _start:web' 'seguro-gateway --port 3001'",
+    "_start:web": "BROWSER=none react-scripts start",
+    "_start:desktop": "electron ./src/electron/electron.js",
+    "build:web": "react-scripts build",
+    "build:desktop:mac": "yarn build:web && electron-builder --macos",
+    "build:desktop:win": "yarn build:web && electron-builder --windows",
+    "build:desktop:lin": "yarn build:web && electron-builder --linux",
+    "lint": "echo 'no linter available'",
+    "test": "react-scripts test",
+    "clean": "rm -rf ./node_modules ./build ./dist",
+    "build-storybook": "build-storybook -s public"
+  },
+  "dependencies": {
+    "@conet-project/seguro-worker-lib": "0.6.1",
+    "express": "^4.17.1",
+    "framer-motion": "^4.1.17",
+    "get-port": "^5.1.1",
+    "lottie-react": "^2.1.0",
+    "react-router-dom": "^5.2.1",
+    "uuid": "^8.3.2"
+  },
+  "devDependencies": {
+    "@conet-project/seguro-gateway": "0.11.1",
+    "@reduxjs/toolkit": "^1.6.1",
+    "@storybook/addon-actions": "^6.3.7",
+    "@storybook/addon-essentials": "^6.3.7",
+    "@storybook/addon-links": "^6.3.7",
+    "@storybook/node-logger": "^6.3.7",
+    "@storybook/preset-create-react-app": "^3.2.0",
+    "@storybook/react": "^6.3.7",
+    "@testing-library/jest-dom": "^5.14.1",
+    "@testing-library/react": "^12.0.0",
+    "@testing-library/user-event": "^13.2.1",
+    "@types/jest": "^27.0.1",
+    "@types/node": "^16.7.1",
+    "@types/react": "^17.0.19",
+    "@types/react-dom": "^17.0.9",
+    "@types/react-router-dom": "^5.1.8",
+    "@types/styled-components": "^5.1.12",
+    "@types/uuid": "^8.3.1",
+    "babel-loader": "8.1.0",
+    "concurrently": "^6.2.1",
+    "electron": "^13.2.2",
+    "electron-builder": "^22.11.7",
+    "modern-normalize": "^1.1.0",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-icons": "^4.2.0",
+    "react-intl": "^5.20.10",
+    "react-redux": "^7.2.4",
+    "react-scripts": "^4.0.3",
+    "styled-components": "^5.3.1",
+    "typescript": "^4.3.5",
+    "wait-on": "^6.0.0"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
     ],
-    "main": "./src/electron/electron.js",
-    "scripts": {
-        "start": "concurrently --kill-others --success=first 'yarn _start:web' 'wait-on tcp:3000 && NODE_ENV=development yarn _start:desktop' 'seguro-gateway --port 3001'",
-        "start:storybook": "start-storybook -p 6006 -s public",
-        "_start:web": "BROWSER=none react-scripts start",
-        "_start:desktop": "electron ./src/electron/electron.js",
-        "build:web": "react-scripts build",
-        "build:desktop:mac": "yarn build:web && electron-builder --macos",
-        "build:desktop:win": "yarn build:web && electron-builder --windows",
-        "build:desktop:lin": "yarn build:web && electron-builder --linux",
-        "lint": "echo 'no linter available'",
-        "test": "react-scripts test",
-        "clean": "rm -rf ./node_modules ./build ./dist",
-        "build-storybook": "build-storybook -s public"
-    },
-    "dependencies": {
-        "express": "^4.17.1",
-        "framer-motion": "^4.1.17",
-        "get-port": "^5.1.1",
-        "lottie-react": "^2.1.0",
-        "react-router-dom": "^5.2.1",
-        "uuid": "^8.3.2"
-    },
-    "devDependencies": {
-        "@conet-project/seguro-bridge-lib": "^0.11.1",
-        "@conet-project/seguro-gateway": "^0.10.1",
-        "@reduxjs/toolkit": "^1.6.1",
-        "@storybook/addon-actions": "^6.3.7",
-        "@storybook/addon-essentials": "^6.3.7",
-        "@storybook/addon-links": "^6.3.7",
-        "@storybook/node-logger": "^6.3.7",
-        "@storybook/preset-create-react-app": "^3.2.0",
-        "@storybook/react": "^6.3.7",
-        "@testing-library/jest-dom": "^5.14.1",
-        "@testing-library/react": "^12.0.0",
-        "@testing-library/user-event": "^13.2.1",
-        "@types/jest": "^27.0.1",
-        "@types/node": "^16.7.1",
-        "@types/react": "^17.0.19",
-        "@types/react-dom": "^17.0.9",
-        "@types/react-router-dom": "^5.1.8",
-        "@types/styled-components": "^5.1.12",
-        "@types/uuid": "^8.3.1",
-        "babel-loader": "8.1.0",
-        "concurrently": "^6.2.1",
-        "electron": "^13.2.2",
-        "electron-builder": "^22.11.7",
-        "modern-normalize": "^1.1.0",
-        "react": "^17.0.2",
-        "react-dom": "^17.0.2",
-        "react-icons": "^4.2.0",
-        "react-intl": "^5.20.10",
-        "react-redux": "^7.2.4",
-        "react-scripts": "^4.0.3",
-        "styled-components": "^5.3.1",
-        "typescript": "^4.3.5",
-        "wait-on": "^6.0.0"
-    },
-    "browserslist": {
-        "production": [
-            ">0.2%",
-            "not dead",
-            "not op_mini all"
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "eslintConfig": {
+    "overrides": [
+      {
+        "files": [
+          "**/*.stories.*"
         ],
-        "development": [
-            "last 1 chrome version",
-            "last 1 firefox version",
-            "last 1 safari version"
-        ]
-    },
-    "eslintConfig": {
-        "overrides": [
-            {
-                "files": [
-                    "**/*.stories.*"
-                ],
-                "rules": {
-                    "import/no-anonymous-default-export": "off"
-                }
-            }
-        ]
-    }
+        "rules": {
+          "import/no-anonymous-default-export": "off"
+        }
+      }
+    ]
+  }
 }
