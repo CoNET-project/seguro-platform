@@ -1,19 +1,22 @@
 import {Story} from '@storybook/react'
-import PasscodeInput from './PasscodeInput'
+import PasscodeInput, {PasscodeInputProps} from './PasscodeInput'
 
 export default {
     component: PasscodeInput,
     title: 'PasscodePage/Touch/Input'
 }
 
-const Template: Story = (
+const Template: Story<PasscodeInputProps> = (
     args
 ) => {
     return (
-        <PasscodeInput value='hello' error={undefined}/>
+        <PasscodeInput {...args}/>
     )
 }
 
 export const Primary = Template.bind({})
 
-Primary.args = {}
+Primary.args = {
+    value: '',
+    error: 'Hello'
+}

@@ -1,14 +1,12 @@
 import styled from 'styled-components';
 import LanguageSelect from "../../../UI/LanguageSelect/LanguageSelect";
 import {Locale} from "../../../../localization/types";
-import {PageTransitionProps} from "../../../UI/Layout/Pages/Locked-Register/Page";
 import {FormattedMessage} from "react-intl";
-import StepButtons from '../../../UI/StepButtons/StepButtons';
-import useAppState from "../../../../store/appState/useAppState";
 import Page from '../../../UI/Layout/Page/Page';
 import {useOnboardingPageNavigator} from "../../../../contexts/onboarding/OnboardingContext";
 import onboardingActions from "../../../../contexts/onboarding/onboardingActions";
-import {LanguageIcon} from '../../../UI/Icons/Icons';
+import Title from "../../../UI/Common/Title/Title";
+import {LogoImage} from '../../../UI/Logo/Logo';
 
 const StyledContainer = styled.div`
   height: 100%;
@@ -47,25 +45,35 @@ const SelectLanguagePage = ({selectLocale, locale}: SelectLanguageProps) => {
     ]
 
     return (
-        <Page titleComponent={<FormattedMessage
-            id='onboarding.selectLanguageTitle'/>}
-              icon={<LanguageIcon size='lg'/>}
-              contentComponents={
-                  <LanguageSelect languages={languages}
-                                  selectLocale={selectLocale}
-                                  selectedLocale={locale}/>
-              }
-              stepButtonsClickActions={{
-                  nextButton: {
-                      action: () => {
-                          dispatch(onboardingActions.nextPage())
-                      }
-                  }
-              }}
-              pageTransition={{
-                  key: state.currentPage[0],
-                  direction: state.currentPage[1]
-              }}
+        <Page
+            contentComponents={
+                {
+                    contentLeft: (
+                        <>
+                            <LogoImage/>
+                            <Title>
+                                <FormattedMessage id='onboarding.selectLanguageTitle'/>
+                            </Title>
+                        </>
+                    ),
+                    contentRight: (
+                        <LanguageSelect languages={languages}
+                                        selectLocale={selectLocale}
+                                        selectedLocale={locale}/>
+                    )
+                }
+            }
+            stepButtonsClickActions={{
+                nextButton: {
+                    action: () => {
+                        dispatch(onboardingActions.nextPage())
+                    }
+                }
+            }}
+            pageTransition={{
+                key: state.currentPage[0],
+                direction: state.currentPage[1]
+            }}
         />
 
     )

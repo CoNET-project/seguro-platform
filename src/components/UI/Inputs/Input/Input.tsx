@@ -24,8 +24,7 @@ type StyledInputContainerProps = {
     shiftContainer: boolean
 }
 
-const StyledInputContainer = styled.div<StyledInputContainerProps>`
-  transform: translateY(${props => props.shiftContainer ? '16px' : 0});
+const StyledInputContainer = styled.div`
   min-width: 100%;
 `
 
@@ -48,8 +47,8 @@ const StyledInput = styled.input<StyledInputProps>`
   border: 1px solid rgba(0, 0, 0, 0.1);
   padding: 10px 50px;
   border-radius: 5px;
-  color: ${props => props.theme.ui.textColor};
-  background-color: ${props => props.theme.ui.backgroundAccent};
+  color: ${props => props.theme.ui.text.textPrimary};
+  background-color: rgba(200, 200, 200, 0.1);
   margin: 20px 0;
 
   &:focus {
@@ -117,7 +116,7 @@ const Input = ({value, setValue, nextStepHandler, previousStepHandler, error, in
     }
 
     return (
-        <StyledInputContainer shiftContainer={!inputOptions?.inputLabel}>
+        <StyledInputContainer>
             {
                 inputOptions?.inputLabel && (
                     <StyledInputLabel>{inputOptions?.inputLabel}</StyledInputLabel>

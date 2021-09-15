@@ -1337,43 +1337,27 @@
     exec-sh "^0.3.2"
     minimist "^1.2.0"
 
-"@conet-project/seguro-bridge-lib@^0.11.1":
+"@conet-project/seguro-gateway@0.11.1":
   version "0.11.1"
-  resolved "https://npm.pkg.github.com/download/@conet-project/seguro-bridge-lib/0.11.1/4e7d5f80b7b469ced17cead553613e0eb6617474a576e7063b0c7816b117f963#f945c8335db0228afac23c005f5a1965f70f9f6a"
-  integrity sha512-lZ+IT2BeB62SXPxbmDlLlPh93zYkUcOotG7/Vo8Fx6vVWrVskhZ2fwtiUA1a4PN1V2scnK1ZKELoXm69cCESsg==
+  resolved "https://npm.pkg.github.com/download/@conet-project/seguro-gateway/0.11.1/3d6911496db5ab1cacdb44b5e16bd155f298e3d5514350686ee1fc27c3bfabbe#21f0bfc0bb819083d90d7cb6ff120fb6a296c2a5"
+  integrity sha512-d1ejBxQKh2lV9l+yXD1USe1rCZeIs361ZN7+8LsefkzQt0dAP91Qyz5iC0YjNCOIxgnhBADc763KfuMhGkf9Wg==
   dependencies:
-    "@conet-project/seguro-worker-lib" "^0.4.2"
-    scrypt-js "^3.0.1"
-
-"@conet-project/seguro-gateway@^0.10.1":
-  version "0.10.1"
-  resolved "https://npm.pkg.github.com/download/@conet-project/seguro-gateway/0.10.1/8ee81ba5575453f55b1a01217c8ad47a6dd9ced03dedf985186cbd674981c00d#83f089d146049a7f6dfea0b740167dc326bc9a4f"
-  integrity sha512-WyxXH/h93xuXs/akoZ9SoujgRiqvR9NE5Cy1J/Iozo3N5DxigWiTQ1gosXkRV2Fr0UAHfW1dYdX50CZLbHAPXw==
-  dependencies:
-    "@conet-project/seguro-platform" "0.3.0"
     async "^3.2.1"
     cors "^2.8.5"
     express "^4.17.1"
     fs-extra "^10.0.0"
-    multer "^1.4.2"
-    openpgp "^5.0.0-5"
+    multer "^1.4.3"
+    openpgp "^5.0.0-6"
     uuid "^8.3.2"
-    ws "^8.0.0"
-    yargs "^17.1.0"
+    ws "^8.2.1"
+    yargs "^17.1.1"
 
-"@conet-project/seguro-platform@0.3.0":
-  version "0.3.0"
-  resolved "https://npm.pkg.github.com/download/@conet-project/seguro-platform/0.3.0/9884d2fe26f5bdec77fe809f6c485f34fcb6287dd027a5caca65b4ff0075fd5f#b821a01f0408237ba8ef13450b5e1226c14ec3d3"
-  integrity sha512-VPzGgrG0EcTrbxPTfe+iX+Bqrk1j2GgD0uYXIX6asb+sc0fRIVB6nntf819F0LbexFLMHH9QAgoiAlBQcXtDbg==
+"@conet-project/seguro-worker-lib@0.6.1":
+  version "0.6.1"
+  resolved "https://npm.pkg.github.com/download/@conet-project/seguro-worker-lib/0.6.1/7d93fb37af1a7e639fe8d08f2007d230cdefe49b48780003031325c7ae44caac#894e1258805ede290df6e03588c08bed79eee4b7"
+  integrity sha512-P8tx8qeL9lc9lX7qX6EgvQXmNksUwNf3Gx/3st2AtCfPua6M2tVA67tbt0K4T4e6YFTkPQ6QpGAAGcFaemblOg==
   dependencies:
-    express "^4.17.1"
-    get-port "^5.1.1"
-
-"@conet-project/seguro-worker-lib@^0.4.2":
-  version "0.4.2"
-  resolved "https://npm.pkg.github.com/download/@conet-project/seguro-worker-lib/0.4.2/3ce273ceb0e69b6c63f02b597c27370e45cd980d294d1a973ec9de98facc3654#d9158b2742717dfe2cde963776a045a39c39f47d"
-  integrity sha512-UdWtNJQnj3cZGi/YuWXBGOEeWFhwJuAjPCun99hv0YdTnP75gEdphrxwifphxthh4R4ON89M8F3fDLLEIgUj0g==
-  dependencies:
+    async "^3.2.1"
     uuid "^8.3.2"
 
 "@csstools/convert-colors@^1.4.0":
@@ -10759,7 +10743,7 @@ ms@^2.1.1:
   resolved "https://registry.yarnpkg.com/ms/-/ms-2.1.3.tgz#574c8138ce1d2b5861f0b44579dbadd60c6615b2"
   integrity sha512-6FlzubTLZG3J2a/NVCAleEhjzq5oxgHyaCU9yYXvcLsvoVaHJq/s5xXI6/XXP6tz7R9xAOtHnSO/tXtF3WRTlA==
 
-multer@^1.4.2:
+multer@^1.4.3:
   version "1.4.3"
   resolved "https://registry.yarnpkg.com/multer/-/multer-1.4.3.tgz#4db352d6992e028ac0eacf7be45c6efd0264297b"
   integrity sha512-np0YLKncuZoTzufbkM6wEKp68EhWJXcU6fq6QqrSwkckd2LlMgd1UqhUJLj6NS/5sZ8dE8LYDWslsltJznnXlg==
@@ -11181,10 +11165,10 @@ open@^7.0.2, open@^7.0.3:
     is-docker "^2.0.0"
     is-wsl "^2.1.1"
 
-openpgp@^5.0.0-5:
-  version "5.0.0-6"
-  resolved "https://registry.yarnpkg.com/openpgp/-/openpgp-5.0.0-6.tgz#149baddc1130f31589ec7bbc1dd14298661a96a6"
-  integrity sha512-SPqOALL1w80qzo400kR2ScaiHbbzHok6jGJLsk1aMpYQK+dlO4PoFRAzx2d1KoUY8qs4mVljzaulSSN32SF1aA==
+openpgp@^5.0.0-6:
+  version "5.0.0"
+  resolved "https://registry.yarnpkg.com/openpgp/-/openpgp-5.0.0.tgz#2da0ee406c8834223ae928a9a214f4811f83f923"
+  integrity sha512-H4Jsj9Bp1KFQ/w520M1d2x45iz9V39Lf+IwIXmUaBmJAMagAt0zanqmWeFzIMJUYmrHTcm6fO/rpc6aftFUHbA==
   dependencies:
     asn1.js "^5.0.0"
 
@@ -13749,11 +13733,6 @@ schema-utils@^3.0.0:
     ajv "^6.12.5"
     ajv-keywords "^3.5.2"
 
-scrypt-js@^3.0.1:
-  version "3.0.1"
-  resolved "https://registry.yarnpkg.com/scrypt-js/-/scrypt-js-3.0.1.tgz#d314a57c2aef69d1ad98a138a21fe9eafa9ee312"
-  integrity sha512-cdwTTnqPu0Hyvf5in5asVdZocVDTNRmR7XEcJuIzMjJeSHybHl7vpB66AzwTaIg6CLSbtjcxc8fqcySfnTkccA==
-
 select-hose@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/select-hose/-/select-hose-2.0.0.tgz#625d8658f865af43ec962bfc376a37359a4994ca"
@@ -16093,10 +16072,10 @@ ws@^7.4.6:
   resolved "https://registry.yarnpkg.com/ws/-/ws-7.5.3.tgz#160835b63c7d97bfab418fc1b8a9fced2ac01a74"
   integrity sha512-kQ/dHIzuLrS6Je9+uv81ueZomEwH0qVYstcAQ4/Z93K8zeko9gtAbttJWzoC5ukqXY1PpoouV3+VSOqEAFt5wg==
 
-ws@^8.0.0:
-  version "8.2.0"
-  resolved "https://registry.yarnpkg.com/ws/-/ws-8.2.0.tgz#0b738cd484bfc9303421914b11bb4011e07615bb"
-  integrity sha512-uYhVJ/m9oXwEI04iIVmgLmugh2qrZihkywG9y5FfZV2ATeLIzHf93qs+tUNqlttbQK957/VX3mtwAS+UfIwA4g==
+ws@^8.2.1:
+  version "8.2.2"
+  resolved "https://registry.yarnpkg.com/ws/-/ws-8.2.2.tgz#ca684330c6dd6076a737250ed81ac1606cb0a63e"
+  integrity sha512-Q6B6H2oc8QY3llc3cB8kVmQ6pnJWVQbP7Q5algTcIxx7YEpc0oU4NBVHlztA7Ekzfhw2r0rPducMUiCGWKQRzw==
 
 xdg-basedir@^4.0.0:
   version "4.0.0"
@@ -16225,7 +16204,7 @@ yargs@^16.2.0:
     y18n "^5.0.5"
     yargs-parser "^20.2.2"
 
-yargs@^17.0.1, yargs@^17.1.0:
+yargs@^17.0.1, yargs@^17.1.1:
   version "17.1.1"
   resolved "https://registry.yarnpkg.com/yargs/-/yargs-17.1.1.tgz#c2a8091564bdb196f7c0a67c1d12e5b85b8067ba"
   integrity sha512-c2k48R0PwKIqKhPMWjeiF6y2xY/gPMUlro0sgxqXpbOIohWiLNXWslsootttv7E1e73QPAMQSg5FeySbVcpsPQ==

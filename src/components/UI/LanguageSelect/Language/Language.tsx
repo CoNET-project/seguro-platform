@@ -11,9 +11,8 @@ type LanguageProps = {
 }
 
 const StyledItem = styled.li<{ selected: boolean }>`
-  font-size: 16px;
   width: 100%;
-  padding: 20px 50px 20px 20px;
+  padding: 15px 0 15px 15px;
   border-bottom: 1px solid rgba(0, 0, 0, 0.05);
   display: flex;
   align-items: center;
@@ -21,7 +20,7 @@ const StyledItem = styled.li<{ selected: boolean }>`
   background-color: ${props => props.selected ?
           props.theme.ui.selected :
           props.theme.ui.backgroundAccent};
-  color: ${props => props.selected ? 'white' : props.theme.ui.textColor};
+  color: ${props => props.selected ? 'white' : props.theme.ui.text.textPrimary};
 
   //&:first-of-type {
   //  border-top-left-radius: 5px;

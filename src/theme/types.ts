@@ -12,7 +12,8 @@ declare module 'styled-components' {
         ui: {
             backgroundColor: string,
             backgroundAccent: string,
-            textColor: string,
+            primaryColor: string,
+            accentColor: string,
             selected: string,
             outline: {
                 color: string
@@ -30,6 +31,13 @@ declare module 'styled-components' {
                 color: string,
                 invertedColor: string
             },
+            text: {
+                textPrimary: string,
+                textSecondary: string,
+                textError: string,
+                textDisabled: string,
+                invertedColor: string
+            },
             keypadKey: {
                 numberColor: string,
                 alphabetColor: string,
@@ -41,8 +49,8 @@ declare module 'styled-components' {
                 placeholderColor: string
             },
             icon: {
-                invalid: string,
-                valid: string
+                inactive: string,
+                active: string
             },
             progress: {
                 bar: {

@@ -6,7 +6,6 @@ interface WindowInnerSize {
     height: number
 }
 
-
 export const detectTouchDevice = (): boolean => {
     if (typeof window !== undefined) {
         if ('ontouchstart' in window ||

@@ -10,6 +10,7 @@ import {FormattedMessage} from 'react-intl';
 import onboardingActions from "../../../contexts/onboarding/onboardingActions";
 import VerificationPage from "./VerificationPage/VerificationPage";
 import ProcessingPage from "./ProcessingPage/ProcessingPage";
+import {getWorkerService} from "../../../services/workerService/workerService";
 
 type Languages = {
     name: string,
@@ -28,7 +29,7 @@ const StyledContainer = styled.div`
   width: 100%;
   display: flex;
   background-color: ${props => props.theme.ui.backgroundColor};
-  color: ${props => props.theme.ui.textColor};
+  color: ${props => props.theme.ui.text.textPrimary};
   flex-direction: column;
   align-items: center;
   justify-content: center;
@@ -44,28 +45,28 @@ const AnimatedContent = styled(motion.div)`
   justify-content: center;
 `
 
-
-const AnimatedTitle = styled(motion.h1)`
-  font-size: 30px;
-  color: ${props => props.theme.ui.textColor};
-  font-family: 'Lato Bold', sans-serif;
-  display: flex;
-  justify-content: center;
-  margin-bottom: 50px;
-`
-
 const OnboardingScreen = () => {
     const appState = useAppState()
     const {state, dispatch} = useOnboardingPageNavigator()
     const {currentPage, onboardingPageData} = state
-    const [savedPasscodes, setSavedPasscodes] = useState<SavedPasscodes>({})
 
     const setLocale = (locale: Locale) => {
         return appState.setLocale(locale)
     }
 
-    const confirmationHandler = () => {
-        return state.onboardingPageData?.passcode == state.onboardingPageData?.confirmPasscode
+    // @ts-ignore
+    const confirmationHandler = (): boolean => {
+        if (state.onboardingPageData?.passcode == state.onboardingPageData?.confirmPasscode) {
+            if (onboardingPageData?.passcode) {
+                // getWorkerService().passcord.createPasscode(onboardingPageData.passcode, (progress) => {
+                //     console.log('PROGRESS FOR PASSCODE', progress)
+                // })
+            }
+            return true;
+        }
+        if (state.onboardingPageData?.passcode !== state.onboardingPageData?.confirmPasscode) {
+            return false
+        }
     }
 
     return (
@@ -100,7 +101,6 @@ const OnboardingScreen = () => {
                 {currentPage[0] === 'verification' &&
                 <VerificationPage
                     key={currentPage[0]}
-                    title={<FormattedMessage id='onboarding.verificationTitle'/>}
                 />}
                 {currentPage[0] === 'verificationProcess' &&
                 <ProcessingPage

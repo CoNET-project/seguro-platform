@@ -1,14 +1,14 @@
-import { createAction } from '@reduxjs/toolkit'
-import { Theme } from '../../theme/types'
-import { Locale } from '../../localization/types'
-import { WindowInnerSize } from './useAppState'
+import {createAction} from '@reduxjs/toolkit'
+import {Theme} from '../../theme/types'
+import {Locale} from '../../localization/types'
+import {WindowInnerSize} from './useAppState'
 
-export const setBridgeServiceIsInitialized = createAction(
-    'appState/setBridgeServiceIsInitialized',
-    (bridgeServiceIsInitialized: boolean) => {
+export const setWorkerServiceIsInitialized = createAction(
+    'appState/workerServiceIsInitialized',
+    (workerServiceIsInitialized: boolean) => {
         return {
             payload: {
-                bridgeServiceIsInitialized
+                workerServiceIsInitialized
             }
         }
     }

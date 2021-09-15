@@ -2,8 +2,10 @@ import {Messages} from '../types'
 
 const zh_CN: Messages = {
     'main.greeting': '你好世界!',
-    'onboarding.selectLanguageTitle': '选择语言',
+    'onboarding.selectLanguageTitle': '选择您的语言',
+    'onboarding.selectLanguageSubtitle': '选择您的语言...',
     'onboarding.setPasscodeTitle': '设置密码',
+    'onboarding.setPasscodeSubtitle': '输入最少 6 个字符的密码',
     'onboarding.confirmPasscodeTitle': '确认密码',
     'onboarding.verificationTitle': '验证邀请码',
     'onboarding.verificationInputLabel': '输入您的邀请码',

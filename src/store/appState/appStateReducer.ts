@@ -1,6 +1,6 @@
 import {createReducer} from '@reduxjs/toolkit'
 import {
-    setBridgeServiceIsInitialized,
+    setWorkerServiceIsInitialized,
     setTheme,
     setLocale,
     setIsTouchDevice,
@@ -16,7 +16,7 @@ type AppStateReducerState = {
     isTouchDevice: boolean,
     isUnlocked: boolean,
     windowInnerSize: WindowInnerSize | null,
-    bridgeServiceIsInitialized: boolean,
+    workerServiceIsInitialized: boolean,
     theme: Theme,
     locale: Locale
 }
@@ -25,15 +25,15 @@ const initialState: AppStateReducerState = {
     isTouchDevice: false,
     isUnlocked: true,
     windowInnerSize: detectWindowInnerSize(),
-    bridgeServiceIsInitialized: false,
-    theme: 'Light',
+    workerServiceIsInitialized: false,
+    theme: 'Auto',
     locale: getPreferredLocale()
 }
 
 const appStateReducer = createReducer(initialState, builder => {
     return builder
-        .addCase(setBridgeServiceIsInitialized, (state, action) => {
-            state.bridgeServiceIsInitialized = action.payload.bridgeServiceIsInitialized
+        .addCase(setWorkerServiceIsInitialized, (state, action) => {
+            state.workerServiceIsInitialized = action.payload.workerServiceIsInitialized
         })
 
         .addCase(setTheme, (state, action) => {
