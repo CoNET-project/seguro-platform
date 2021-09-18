@@ -1,7 +1,6 @@
 import {motion} from 'framer-motion'
 import styled from 'styled-components'
 import {ReactNode} from "react";
-import StepButtons, {StepButtonsClickActions} from "../../StepButtons/StepButtons";
 import {pageTransitionVariants} from "../../Motion/Variants/Variants";
 import {screenWidth} from "../../screenSizes";
 
@@ -25,25 +24,18 @@ const StyledTutorialPage = styled(motion.div)`
   max-height: 1080px;
   width: 100%;
   height: 100%;
-  content: '';
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
-  padding: 30px;
+  position: absolute;
+  padding: 30px 20px;
   background-color: ${props => props.theme.ui.backgroundColor};
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
   @media (${screenWidth.narrowWidth}) {
-    padding: 40px 0;
+    padding: 20px 0;
   }
-`
-
-const StyledTitle = styled.h1`
-  width: 100%;
-  text-align: center;
-  color: ${props => props.theme.ui.text.textPrimary};
-  font-family: 'Montserrat Bold', sans-serif;
 `
 
 const StyledContents = styled.div`
@@ -74,8 +66,24 @@ const StyledTitleContainer = styled(StyledContent)`
   height: unset;
 `
 
-const StyledLowerContentContainer = styled.div`
+const StyledTitle = styled.h1`
   width: 100%;
+  display: none;
+  text-align: center;
+  color: ${props => props.theme.ui.text.textPrimary};
+  font-family: 'Montserrat Bold', sans-serif;
+  @media (${screenWidth.narrowWidth}) {
+    display: inline-block;
+  }
+`
+
+const StyledLowerContentContainer = styled.div`
+  max-width: 50rem;
+  width: 100%;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  min-height: 50px;
 `
 
 const TutorialPage = ({

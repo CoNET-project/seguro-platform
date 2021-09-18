@@ -14,6 +14,17 @@ export const setWorkerServiceIsInitialized = createAction(
     }
 )
 
+export const setHasContainer = createAction(
+    'appState/hasContainer',
+    (hasContainer: boolean) => {
+        return {
+            payload: {
+                hasContainer
+            }
+        }
+    }
+)
+
 export const setTheme = createAction(
     'appState/setTheme',
     (theme: Theme) => {
@@ -53,6 +64,17 @@ export const setWindowInnerSize = createAction(
         return {
             payload: {
                 windowInnerSize
+            }
+        }
+    }
+)
+
+export const setShowOverlay = createAction(
+    'appState/toggleOverlay',
+    (toggleOverlay: boolean) => {
+        return {
+            payload: {
+                toggleOverlay
             }
         }
     }

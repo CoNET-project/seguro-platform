@@ -17,7 +17,16 @@ export type SetVerificationCode = {
     payload: string
 }
 
-export type OnboardingActions = NavigatePageAction | SetOnboardingDataAction | SetVerificationCode
+export type SetVerificationStatus = {
+    type: 'setVerificationStatus',
+    payload: VerificationStates
+}
+
+export type OnboardingActions =
+    NavigatePageAction
+    | SetOnboardingDataAction
+    | SetVerificationCode
+    | SetVerificationStatus
 
 export type Dispatch = (action: OnboardingActions) => void
 
@@ -27,13 +36,26 @@ type AnimateDirection = -1 | 1
 
 type CurrentPage = [PageIds, AnimateDirection]
 
-export type State = {
+export type VerificationStates =
+    'SUCCESS'
+    | 'INCORRECT_CODE'
+    | 'NOT_INTERNET'
+    | 'NOT_STRIPE' // Cannot connect to STRIPE gateway
+    | 'ALL_EMAIL_SERVER_CAN_NOT_CONNECTING'
+    | 'LOCALSERVER_ERROR'
+    | 'WAITING_SEGURO_RESPONSE_TIMEOUT'
+    | 'EMAIL_ACCOUNT_AUTH_ERROR' // Needs to update Seguro Platform software
+    | ''
+
+export
+type State = {
     currentPage: CurrentPage,
     existingPages: Array<PageIds>,
     onboardingPageData?: {
         passcode?: string,
         confirmPasscode?: string,
-        verificationCode?: string
+        verificationCode?: string,
+        verificationStatus?: VerificationStates
     }
 }
 

@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import {HTMLAttributes, ReactNode} from 'react'
-import {screenWidth} from "../screenSizes";
+import {screenWidth} from "../../screenSizes";
 
 type TextProps = {
     fontSize?: number,
@@ -55,7 +55,6 @@ export const StyledFormattedH3 = (props: TextProps) => {
 }
 
 export const StyledFormattedParagraph = (props: TextProps) => {
-    console.log(props.fontSize)
     return (
         <StyledText {...props}>
             {props.children}

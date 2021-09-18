@@ -34,6 +34,7 @@ const StyledPage = styled(motion.div)`
   justify-content: center;
   align-items: center;
   position: absolute;
+  padding: 10px 0;
   background-color: ${props => props.theme.ui.backgroundColor};
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);

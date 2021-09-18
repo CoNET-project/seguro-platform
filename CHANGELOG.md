@@ -1,5 +1,26 @@
 # `seguro-platform` CHANGELOG
 
+## `0.15.0`
+
+### Additions
+
+- Hooked up `LaunchScreen.tsx`, `OnboardingScreen.tsx` and `UnlockScreen.tsx`.
+- Add more localization text for modals.
+- Add verification error handling (TO BE TESTED).
+- Add app-wide Overlay and states to toggle overlay.
+- Add modal component.
+
+### Changes
+
+- Bump `seguro-worker-lib` and `seguro-gateway`.
+- Cleaned up some files.
+
+### Fixes
+
+- Fixed multiple style issues.
+
+---
+
 ## `0.14.0`
 
 ### Additions

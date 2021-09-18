@@ -10,7 +10,10 @@ import {FormattedMessage} from 'react-intl';
 import onboardingActions from "../../../contexts/onboarding/onboardingActions";
 import VerificationPage from "./VerificationPage/VerificationPage";
 import ProcessingPage from "./ProcessingPage/ProcessingPage";
-import {getWorkerService} from "../../../services/workerService/workerService";
+import {createPasscode, getWorkerService} from "../../../services/workerService/workerService";
+import Modal from "../../UI/Common/Modal/Modal";
+import {Warning} from "../../UI/Icons/Icons";
+import {pageFadeTransitionVariants} from "../../UI/Motion/Variants/Variants";
 
 type Languages = {
     name: string,
@@ -56,17 +59,17 @@ const OnboardingScreen = () => {
 
     // @ts-ignore
     const confirmationHandler = (): boolean => {
+        if (!state.onboardingPageData?.passcode || !state.onboardingPageData?.confirmPasscode)
+            return false
+
         if (state.onboardingPageData?.passcode == state.onboardingPageData?.confirmPasscode) {
-            if (onboardingPageData?.passcode) {
-                // getWorkerService().passcord.createPasscode(onboardingPageData.passcode, (progress) => {
-                //     console.log('PROGRESS FOR PASSCODE', progress)
-                // })
-            }
+            createPasscode(state.onboardingPageData?.confirmPasscode, (progress) => {
+                console.log(progress)
+            })
             return true;
         }
-        if (state.onboardingPageData?.passcode !== state.onboardingPageData?.confirmPasscode) {
-            return false
-        }
+
+        return false
     }
 
     return (

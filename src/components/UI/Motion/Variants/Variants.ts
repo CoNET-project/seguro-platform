@@ -1,3 +1,18 @@
+export const pageFadeTransitionVariants = {
+    enter: {
+        zIndex: 1,
+        opacity: 1
+    },
+    center: {
+        zIndex: 1,
+        opacity: 1
+    },
+    exit: {
+        zIndex: 0,
+        opacity: 0
+    }
+}
+
 export const pageTransitionVariants = {
     enter: (direction: number) => {
         return {
