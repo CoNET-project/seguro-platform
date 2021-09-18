@@ -2,8 +2,10 @@ import {
     OnboardingActions,
     State
 } from "./OnboardingContext";
+import logger from "../../utilities/logger/logger";
 
 export const onboardingPageReducer = (state: State, action: OnboardingActions): State => {
+    logger.log('onboardingPageReducer.ts', 'onboardingPageState:', state)
 
     const getPage = (direction: 'next' | 'previous'): State => {
         const [currentPageId] = state.currentPage
@@ -38,16 +40,16 @@ export const onboardingPageReducer = (state: State, action: OnboardingActions): 
             return getPage('previous')
         case 'navigateToPage':
             const [currentPageId] = state.currentPage
-            const newPage = action.payload?.pageId
-            if (newPage) {
-                const direction = state.existingPages.indexOf(currentPageId) < state.existingPages.indexOf(newPage) ? 1 : -1
-                return {
-                    ...state,
-                    currentPage: [newPage, direction]
-                }
+            const newPage = action.payload?.pageId || currentPageId
+            logger.log('onboardingPageReducer.ts', 'onboardingPageReducer navigateToPage:', newPage)
+            const direction = state.existingPages.indexOf(currentPageId) < state.existingPages.indexOf(newPage) ? 1 : -1
+            return {
+                ...state,
+                currentPage: [newPage, direction]
             }
-            return state
-        case 'setPasscode':
+        case
+        'setPasscode'
+        :
             return {
                 ...state,
                 onboardingPageData: {
@@ -55,7 +57,9 @@ export const onboardingPageReducer = (state: State, action: OnboardingActions): 
                     passcode: action.payload
                 }
             }
-        case 'setConfirmPasscode':
+        case
+        'setConfirmPasscode'
+        :
             return {
                 ...state,
                 onboardingPageData: {
@@ -63,12 +67,24 @@ export const onboardingPageReducer = (state: State, action: OnboardingActions): 
                     confirmPasscode: action.payload
                 }
             }
-        case 'setVerificationCode':
+        case
+        'setVerificationCode'
+        :
             return {
                 ...state,
                 onboardingPageData: {
                     ...state.onboardingPageData,
                     verificationCode: action.payload
+                }
+            }
+        case
+        'setVerificationStatus'
+        :
+            return {
+                ...state,
+                onboardingPageData: {
+                    ...state.onboardingPageData,
+                    verificationStatus: action.payload
                 }
             }
         default:

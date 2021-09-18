@@ -8,6 +8,7 @@ import {detectTouchDevice, detectWindowInnerSize} from "../../utilities/utilitie
 import OnboardingScreen from "./OnboardingScreen/OnboardingScreen";
 import GlobalStyle from '../UI/Global/Styles'
 import {OnboardingPageProvider} from "../Providers/OnboardingPageProvider";
+import Overlay from "../UI/Common/Overlay/Overlay";
 
 const StyledContainer = styled.div`
   height: 100vh;
@@ -21,13 +22,17 @@ const StyledContainer = styled.div`
 
 const App = () => {
     const appState = useAppState()
-    // appState.initialize().then()
 
     const windowResizeHandler = () => {
         appState.setWindowInnerSize(detectWindowInnerSize())
     }
 
     useEffect(() => {
+
+        setTimeout(() => {
+            appState.initialize().then()
+        }, 2000)
+        
         appState.setIsTouchDevice(detectTouchDevice())
         window.addEventListener('resize', windowResizeHandler)
         return () => {
@@ -35,21 +40,37 @@ const App = () => {
         }
     }, [])
 
-    let content = (
-        <OnboardingPageProvider
-            existingPages={['language', 'setPasscode', 'confirmPasscode', 'verification', 'verificationProcess']}>
-            <OnboardingScreen/>
-        </OnboardingPageProvider>
-    )
+    // let content = (
+    //     // <LaunchScreen/>
+    //     // <OnboardingPageProvider
+    //     //     existingPages={['language', 'setPasscode', 'confirmPasscode', 'verification', 'verificationProcess']}>
+    //     //     <OnboardingScreen/>
+    //     // </OnboardingPageProvider>
+    // )
 
-    // let content = null
-    //
-    // // launch screen
-    // if (appState.isInitializing) {
-    //     content = (
-    //         <LaunchScreen />
-    //     )
-    // }
+    const getContent = () => {
+        let content = null
+
+        // launch screen
+        if (appState.isInitializing) {
+            content = (
+                <LaunchScreen/>
+            )
+        } else if (appState.isInitialized && appState.noContainer) {
+            content = (
+                <OnboardingPageProvider
+                    existingPages={['language', 'setPasscode', 'confirmPasscode', 'verification', 'verificationProcess']}>
+                    <OnboardingScreen/>
+                </OnboardingPageProvider>
+            )
+        } else if (appState.isInitialized && appState.hasContainer && appState.isLocked) {
+            content = (
+                <UnlockScreen/>
+            )
+        }
+        return content
+    }
+
     // // unlock screen
     // else if (appState.isInitialized && appState.isLocked) {
     //     content = (
@@ -66,8 +87,9 @@ const App = () => {
     return (
         <>
             <GlobalStyle/>
+            <Overlay show={appState.showOverlay}/>
             <StyledContainer>
-                {content}
+                {getContent()}
             </StyledContainer>
         </>
     )

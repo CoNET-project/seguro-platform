@@ -2,9 +2,10 @@ import {useTypedSelector} from '../store'
 import {useDispatch} from 'react-redux'
 import {
     setIsTouchDevice as setIsTouchDeviceActionCreator,
-    setLocale as setLocaleActionCreator,
+    setLocale as setLocaleActionCreator, setShowOverlay,
     setTheme as setThemeActionCreator,
-    setWindowInnerSize as setWindowInnerSizeActionCreator
+    setWindowInnerSize as setWindowInnerSizeActionCreator,
+    setWorkerServiceIsInitialized
 } from './appStateActions'
 import {initializeWorkerService} from '../../services/workerService/workerService'
 import {Theme} from '../../theme/types'
@@ -28,7 +29,16 @@ const useAppState = () => {
     const isUnlocked = useTypedSelector(state => state.appState.isUnlocked)
     const isLocked = !isUnlocked
 
+    const hasContainer = useTypedSelector(state => state.appState.hasContainer)
+    const noContainer = !hasContainer
+
     const theme = useTypedSelector(state => state.appState.theme)
+
+    // TESTING PURPOSES ONLY
+    const setInitialized = (initialized: boolean) => {
+        dispatch(setWorkerServiceIsInitialized(initialized))
+    }
+
     const setTheme = (theme: Theme) => {
         dispatch(setThemeActionCreator(theme))
     }
@@ -48,10 +58,18 @@ const useAppState = () => {
         dispatch(setWindowInnerSizeActionCreator(windowInnerSize))
     }
 
+    const showOverlay = useTypedSelector(state => state.appState.showOverlay)
+    const toggleOverlay = (showOverlay: boolean) => {
+        dispatch(setShowOverlay(showOverlay))
+    }
+
     return {
         initialize,
         isInitialized,
         isInitializing,
+        hasContainer,
+        noContainer,
+        setInitialized,
         isUnlocked,
         isLocked,
         theme,
@@ -61,7 +79,9 @@ const useAppState = () => {
         isTouchDevice,
         setIsTouchDevice,
         windowInnerSize,
-        setWindowInnerSize
+        setWindowInnerSize,
+        showOverlay,
+        toggleOverlay
     }
 }
 

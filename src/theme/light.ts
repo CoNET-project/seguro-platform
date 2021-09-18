@@ -8,8 +8,8 @@ const light: DefaultTheme = {
     ui: {
         backgroundColor: '#F2F2F2',
         backgroundAccent: '#FEFEFE',
-        primaryColor: '#193258',
-        accentColor: '#477EAD',
+        primaryColor: '#477EAD',
+        accentColor: '#396FC0',
         selected: '#50A2E9',
         outline: {
             color: '#4D90FE'

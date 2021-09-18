@@ -11,6 +11,7 @@ export type Messages = {
     'onboarding.setPasscodeTitle': string,
     'onboarding.setPasscodeSubtitle': string,
     'onboarding.confirmPasscodeTitle': string,
+
     'onboarding.verificationTitle': string,
     'onboarding.verificationInputLabel': string,
     'onboarding.verificationText': string,
@@ -18,6 +19,19 @@ export type Messages = {
     'onboarding.verification.sending': string,
     'onboarding.verification.waiting': string,
     'onboarding.verification.finished': string,
+
+    'onboarding.verification.error.incorrect': string,
+    'onboarding.verification.error.internet': string,
+    'onboarding.verification.error.stripe': string,
+    'onboarding.verification.error.email': string,
+    'onboarding.verification.error.localserver': string,
+    'onboarding.verification.error.timeout': string,
+    'onboarding.verification.error.authError': string,
+
+    'onboarding.verification.modal.button.retry': string,
+    'onboarding.verification.modal.button.update': string,
+    'onboarding.verification.modal.button.newCode': string
+
     'onboarding.carousel.title.seguro-platform': string,
     'onboarding.carousel.title.no-ip-tracking': string,
     'onboarding.carousel.title.decentralized': string,
@@ -26,12 +40,16 @@ export type Messages = {
     'onboarding.carousel.content.no-ip-tracking': string,
     'onboarding.carousel.content.decentralized': string,
     'onboarding.carousel.content.anonymity': string,
+
     'passcodeInput.incorrect.error': string,
     'passcodeInput.confirm.error': string,
     'passcodeInput.invalidLength': string,
+
     'button.next': string,
     'button.back': string,
+
     'unlock.title': string,
+
     'keypad.cancel': string,
     'keypad.unlock': string
 }

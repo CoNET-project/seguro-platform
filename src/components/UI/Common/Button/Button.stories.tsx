@@ -1,5 +1,5 @@
-import { Story } from '@storybook/react'
-import Button, { ButtonProps } from './Button'
+import {Story} from '@storybook/react'
+import Button, {ButtonProps} from './Button'
 
 export default {
     component: Button,
@@ -10,13 +10,14 @@ const Template: Story<ButtonProps> = (
     args
 ) => {
     return (
-        <Button {...args}/>
+        <Button {...args}>
+            hello
+        </Button>
     )
 }
 
 export const Primary = Template.bind({})
 
 Primary.args = {
-    text: 'Click Me',
     onClick: () => console.log('onClick()')
 }

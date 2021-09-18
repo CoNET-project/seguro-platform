@@ -1,13 +1,20 @@
 import styled from 'styled-components';
-import SeguroLogo from '../../../assets/seguro-logo.svg'
+
+type LogoImageProps = {
+    logoColor?: string
+}
+
+type StyledLogoSVGProps = {
+    logoColor?: string
+}
 
 
 const StyledLogoContainer = styled.div``
 
-const StyledLogoSVG = styled.svg`
+const StyledLogoSVG = styled.svg<StyledLogoSVGProps>`
   width: 10rem;
   height: 10rem;
-  fill: ${props => props.theme.ui.text.textPrimary}
+  fill: ${props => props.logoColor || props.theme.ui.text.textPrimary}
 `
 
 const StyledLogoText = styled.h1`
@@ -22,10 +29,11 @@ export const LogoText = () => {
     )
 }
 
-export const LogoImage = () => {
+export const LogoImage = ({logoColor}: LogoImageProps) => {
     return (
         <StyledLogoContainer>
-            <StyledLogoSVG width="316" height="327" viewBox="0 0 316 327" xmlns="http://www.w3.org/2000/svg">
+            <StyledLogoSVG width="316" height="327" viewBox="0 0 316 327" xmlns="http://www.w3.org/2000/svg"
+                           logoColor={logoColor}>
                 <path
                     d="M200.587 64.9811C197.426 49.3474 185.143 38.2413 166.631 36.2851C161.714 35.7645 156.814 35.4805 151.976 35.4805H150.79H149.605C144.767 35.4805 139.882 35.7645 134.95 36.2851C116.469 38.2413 104.171 49.3316 101.009 64.9811C99.0957 74.4781 99.1436 84.0701 99.0014 93.6616C98.9534 96.706 100.171 97.7632 103.886 97.5423H135.392C137.242 97.5423 138.729 96.0913 138.696 94.3085L139.282 82.3502L139.471 78.6589C139.471 64.9811 162.963 64.9811 162.963 78.6589L162.932 87.3196L162.899 94.3085C162.868 96.0913 164.354 97.5423 166.204 97.5423H197.71C201.41 97.7632 202.643 96.706 202.595 93.6616C202.453 84.0701 202.517 74.4624 200.587 64.9811Z"/>
                 <path

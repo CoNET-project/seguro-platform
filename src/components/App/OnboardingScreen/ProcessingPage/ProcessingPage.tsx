@@ -11,7 +11,12 @@ import lottie_decentralized from '../../../../assets/lottie/decentralized.json'
 import lottie_privacy from '../../../../assets/lottie/privacy.json'
 import Lottie, {LottieComponentProps} from 'lottie-react'
 import Card from "../../../UI/Layout/Card/Card";
-import {StyledFormattedH1, StyledFormattedParagraph} from "../../../UI/Text/Text";
+import {StyledFormattedH1, StyledFormattedParagraph} from "../../../UI/Common/Text/Text";
+import {Warning} from "../../../UI/Icons/Icons";
+import Modal, {ModalActions} from "../../../UI/Common/Modal/Modal";
+import onboardingActions from "../../../../contexts/onboarding/onboardingActions";
+import useAppState from "../../../../store/appState/useAppState";
+import Button from '../../../UI/Common/Button/Button';
 
 type CarouselState = [number, -1 | 1]
 
@@ -31,9 +36,15 @@ const StyledProcessingContent = styled.div`
 
 const ProcessingPage = ({hasTouch}: ProgressingPageProps) => {
     const MAX_STEPS = 4;
-    const {state} = useOnboardingPageNavigator()
+    const {state, dispatch} = useOnboardingPageNavigator()
     const [currentStep, setCurrentStep] = useState(1)
     const [carouselState, setCarouselState] = useState<CarouselState>([1, 1])
+
+    useEffect(() => {
+        setTimeout(() => {
+            dispatch(onboardingActions.setVerificationStatus('SUCCESS'))
+        }, 16000)
+    }, [])
 
     useEffect(() => {
         const interval: any = setInterval(() => {
@@ -125,7 +136,6 @@ const ProcessingPage = ({hasTouch}: ProgressingPageProps) => {
 
     const previousItem = () => {
         const [current] = carouselState
-        console.log(current)
         if (current == 1) {
             setCarouselState([4, -1])
         } else {
@@ -133,35 +143,97 @@ const ProcessingPage = ({hasTouch}: ProgressingPageProps) => {
         }
     }
 
-    return <TutorialPage
-        contentComponents={
-            <StyledProcessingContent>
-                <Carousel
-                    current={carouselState[0]}
-                    direction={carouselState[1]}
-                    hasTouch={hasTouch}
-                    carouselItems={carouselItems}
-                    actionHandlers={
-                        {
-                            next: nextItem,
-                            previous: previousItem
+    const verificationErrorModal = () => {
+        const verificationStatus = state.onboardingPageData?.verificationStatus
+
+        let modalMessage: ReactNode | string = <FormattedMessage id='onboarding.verification.modal.button.retry'/>
+        const modalActions: ModalActions = {
+            confirm: {
+                action: () => {
+                }
+            }
+        }
+
+        switch (verificationStatus) {
+            case 'WAITING_SEGURO_RESPONSE_TIMEOUT':
+                modalMessage = <FormattedMessage id='onboarding.verification.error.timeout'/>
+                break;
+            case 'NOT_INTERNET':
+                modalMessage = <FormattedMessage id='onboarding.verification.error.internet'/>
+                break;
+            case 'NOT_STRIPE':
+                modalMessage = <FormattedMessage id='onboarding.verification.error.stripe'/>
+                break;
+            case 'ALL_EMAIL_SERVER_CAN_NOT_CONNECTING':
+                modalMessage = <FormattedMessage id='onboarding.verification.error.email'/>
+                break;
+            case 'LOCALSERVER_ERROR':
+                modalMessage = <FormattedMessage id='onboarding.verification.error.localserver'/>
+                break;
+            case 'INCORRECT_CODE':
+                modalMessage = <FormattedMessage id='onboarding.verification.error.incorrect'/>
+                modalActions.confirm.text = <FormattedMessage id='onboarding.verification.modal.button.newCode'/>
+                modalActions.confirm.action = () => {
+                    dispatch(onboardingActions.setVerificationCode(''))
+                    dispatch(onboardingActions.setVerificationStatus(''))
+                    dispatch(onboardingActions.navigateToPage('verification'))
+                }
+                break;
+            case 'EMAIL_ACCOUNT_AUTH_ERROR':
+                modalMessage = <FormattedMessage id='onboarding.verification.error.authError'/>
+                modalActions.confirm.text = <FormattedMessage id='onboarding.verification.modal.button.update'/>
+                break;
+            default:
+                return
+        }
+
+        return (
+            <Modal message={modalMessage} icon={<Warning/>} modalActions={modalActions}/>
+        )
+    }
+
+    return (
+        <>
+            {
+                state.onboardingPageData?.verificationStatus && verificationErrorModal()
+            }
+            <TutorialPage
+                contentComponents={
+                    <StyledProcessingContent>
+                        <Carousel
+                            current={carouselState[0]}
+                            direction={carouselState[1]}
+                            hasTouch={hasTouch}
+                            carouselItems={carouselItems}
+                            actionHandlers={
+                                {
+                                    next: nextItem,
+                                    previous: previousItem
+                                }
+                            }
+                        />
+                    </StyledProcessingContent>
+                }
+                lowerContentComponents={
+                    <>
+                        {state.onboardingPageData?.verificationStatus === 'SUCCESS'
+                            ? <Button onClick={() => {
+                            }}>Enter Seguro</Button>
+                            : <ProgressSteps
+                                currentStage={currentStep}
+                                numberOfSteps={MAX_STEPS}
+                                stepTexts={stepTexts}
+                            />
                         }
-                    }
-                />
-            </StyledProcessingContent>
-        }
-        lowerContentComponents={
-            <ProgressSteps
-                currentStage={currentStep}
-                numberOfSteps={MAX_STEPS}
-                stepTexts={stepTexts}
+                    </>
+                }
+                pageTransition={{
+                    key: state.currentPage[0],
+                    direction: state.currentPage[1]
+                }}
             />
-        }
-        pageTransition={{
-            key: state.currentPage[0],
-            direction: state.currentPage[1]
-        }}
-    />
+        </>
+    )
 }
 
 export default ProcessingPage

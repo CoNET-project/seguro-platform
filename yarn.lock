@@ -1337,10 +1337,10 @@
     exec-sh "^0.3.2"
     minimist "^1.2.0"
 
-"@conet-project/seguro-gateway@0.11.1":
-  version "0.11.1"
-  resolved "https://npm.pkg.github.com/download/@conet-project/seguro-gateway/0.11.1/3d6911496db5ab1cacdb44b5e16bd155f298e3d5514350686ee1fc27c3bfabbe#21f0bfc0bb819083d90d7cb6ff120fb6a296c2a5"
-  integrity sha512-d1ejBxQKh2lV9l+yXD1USe1rCZeIs361ZN7+8LsefkzQt0dAP91Qyz5iC0YjNCOIxgnhBADc763KfuMhGkf9Wg==
+"@conet-project/seguro-gateway@0.12.0":
+  version "0.12.0"
+  resolved "https://npm.pkg.github.com/download/@conet-project/seguro-gateway/0.12.0/c8e3558140c7f7639db0289de037c657e20d5a49c6ecc4ed0556d96fd2d5416f#09e913eb7aa48a8ae6839ad6b015daf57889496d"
+  integrity sha512-2+R2MT1Ne+dr1Mu7xuXODXTOZZClYSLWXNNDoJFWjMuPN2UouxZeXceO0jLiZUXQbpJtizvERKfS6PDgNPsWdw==
   dependencies:
     async "^3.2.1"
     cors "^2.8.5"
@@ -1352,10 +1352,10 @@
     ws "^8.2.1"
     yargs "^17.1.1"
 
-"@conet-project/seguro-worker-lib@0.6.1":
-  version "0.6.1"
-  resolved "https://npm.pkg.github.com/download/@conet-project/seguro-worker-lib/0.6.1/7d93fb37af1a7e639fe8d08f2007d230cdefe49b48780003031325c7ae44caac#894e1258805ede290df6e03588c08bed79eee4b7"
-  integrity sha512-P8tx8qeL9lc9lX7qX6EgvQXmNksUwNf3Gx/3st2AtCfPua6M2tVA67tbt0K4T4e6YFTkPQ6QpGAAGcFaemblOg==
+"@conet-project/seguro-worker-lib@0.7.0":
+  version "0.7.0"
+  resolved "https://npm.pkg.github.com/download/@conet-project/seguro-worker-lib/0.7.0/30c03226494403dc7831e04ac722479e02e249e31b01c15e69c15b174db595bb#bd4ede62a9e1b5cb96de803e5e19e1a707d11fb1"
+  integrity sha512-Q7hKVGd+diGMH1A0651x4eCTmr7qTy49yrcpWwUYgR3jW6UGldLZBwiHKzOwHw/3ZBSChaEogoSs7/0hKxnHDw==
   dependencies:
     async "^3.2.1"
     uuid "^8.3.2"
@@ -6143,6 +6143,11 @@ date-fns@^2.16.1:
   version "2.23.0"
   resolved "https://registry.yarnpkg.com/date-fns/-/date-fns-2.23.0.tgz#4e886c941659af0cf7b30fafdd1eaa37e88788a9"
   integrity sha512-5ycpauovVyAk0kXNZz6ZoB9AYMZB4DObse7P3BPWmyEjXNORTI8EJ6X0uaSAq4sCHzM1uajzrkr6HnsLQpxGXA==
+
+dayjs@^1.10.7:
+  version "1.10.7"
+  resolved "https://registry.yarnpkg.com/dayjs/-/dayjs-1.10.7.tgz#2cf5f91add28116748440866a0a1d26f3a6ce468"
+  integrity sha512-P6twpd70BcPK34K26uJ1KT3wlhpuOAPoMwJzpsIWUxHZ7wpmbdZL/hQqBDfz7hGurYSa5PhzdhDHtt319hL3ig==
 
 debug@2.6.9, debug@^2.2.0, debug@^2.3.3, debug@^2.6.0, debug@^2.6.9:
   version "2.6.9"

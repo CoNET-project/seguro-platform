@@ -13,8 +13,8 @@ export type KeypadProps = {
 
 const StyledKeypad = styled.div`
   display: grid;
-  grid-template-columns: repeat(3, minmax(4rem, 5rem));
-  grid-template-rows: repeat(4, minmax(4rem, 5rem));
+  grid-template-columns: repeat(3, 4.5rem);
+  grid-template-rows: repeat(4, 4.5rem);
   grid-row-gap: 10px;
   grid-column-gap: 30px;
 `
