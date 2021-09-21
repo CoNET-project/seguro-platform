@@ -1,16 +1,16 @@
 import {
-    BiWorld, FaCheckCircle,
+    BiWorld, BsGrid3X3, BsGrid3X3Gap, FaCheckCircle,
     FaChevronLeft,
-    FaChevronRight,
+    FaChevronRight, FaPlug,
     GoPrimitiveDot,
-    GrLanguage, IoIosWarning,
-    IoLanguage,
+    GrLanguage, IoClose, IoIosWarning,
+    IoLanguage, IoSettingsOutline, MdContentCopy,
     RiShieldKeyholeLine
 } from "react-icons/all";
 import styled from 'styled-components';
 import {ReactNode} from "react";
 
-type Sizes = 'sm' | 'md' | 'lg' | 'xl' | 'xxl' | number | undefined
+export type Sizes = 'sm' | 'md' | 'lg' | 'xl' | 'xxl' | number | undefined
 
 type IconProps = {
     size?: Sizes,
@@ -28,20 +28,21 @@ const getSize = (size: Sizes) => {
 
     switch (size) {
         case 'sm':
-            return 14
+            return 20
         case 'md':
-            return 28
+            return 24
         case 'lg':
-            return 46
+            return 28
         case 'xl':
-            return 92
+            return 32
         case 'xxl':
-            return 184
+            return 36
     }
 }
 
 const StyledIcon = styled.div`
   transition: color 150ms ease-in-out;
+  color: ${props => props.theme.ui.text.textPrimary};
   display: flex;
   align-items: center;
   justify-content: center;
@@ -118,3 +119,42 @@ export const CircleCheck = ({size, color, valid}: IconProps & { valid: boolean }
     )
 }
 
+export const Grid3X3 = ({size, color}: IconProps) => {
+    return (
+        <StyledIcon>
+            <BsGrid3X3Gap size={getSize(size)} color={color || undefined}/>
+        </StyledIcon>
+    )
+}
+
+export const SettingGear = ({size, color}: IconProps) => {
+    return (
+        <StyledIcon>
+            <IoSettingsOutline size={getSize(size)} color={color || undefined}/>
+        </StyledIcon>
+    )
+}
+
+export const Plug = ({size, color}: IconProps) => {
+    return (
+        <StyledIcon>
+            <FaPlug size={getSize(size)} color={color || undefined}/>
+        </StyledIcon>
+    )
+}
+
+export const Close = ({size, color}: IconProps) => {
+    return (
+        <StyledIcon>
+            <IoClose size={getSize(size)} color={color || undefined}/>
+        </StyledIcon>
+    )
+}
+
+export const Copy = ({size, color}: IconProps) => {
+    return (
+        <StyledIcon>
+            <MdContentCopy size={getSize(size)} color={color || undefined}/>
+        </StyledIcon>
+    )
+}

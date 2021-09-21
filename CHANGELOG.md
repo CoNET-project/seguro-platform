@@ -1,5 +1,23 @@
 # `seguro-platform` CHANGELOG
 
+## `0.16.0`
+
+### Additions
+
+- Add `GlobalBar` component.
+- Add `Dropdown` component.
+- Add `ProfileCard` component.
+
+### Changes
+
+- Modified Seguro logo file for logo with text and logo without text.
+
+### Fixes
+
+- Fixed multiple style issues.
+
+---
+
 ## `0.15.0`
 
 ### Additions

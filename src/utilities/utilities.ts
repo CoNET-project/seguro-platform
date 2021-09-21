@@ -1,5 +1,6 @@
 import {version as uuidVersion} from 'uuid';
 import {validate as uuidValidate} from 'uuid';
+import {Sizes} from "../components/UI/Icons/Icons";
 
 interface WindowInnerSize {
     width: number,
@@ -39,4 +40,36 @@ export const isUUIDv4 = (str: string | undefined): boolean => {
         return false
     }
     return uuidValidate(str) && uuidVersion(str) === 4;
+}
+
+export const getPixelSize = (size: Sizes): string => {
+    if (!size) {
+        return '14px'
+    }
+    if (typeof size === 'number') {
+        return `${size}px`
+    }
+
+    switch (size) {
+        case 'sm':
+            return '24px'
+        case 'md':
+            return '32px'
+        case 'lg':
+            return '40px'
+        case 'xl':
+            return '48px'
+        case 'xxl':
+            return '56px'
+    }
+}
+
+export const randomColor = () => {
+    return `#${Math.floor(Math.random() * 16777215).toString(16)}`
+}
+
+export const CopyToClipboard = (data: string) => {
+    if (navigator) {
+        navigator.clipboard.writeText(data).then();
+    }
 }

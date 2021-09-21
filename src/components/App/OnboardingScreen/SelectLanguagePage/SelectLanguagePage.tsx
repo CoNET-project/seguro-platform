@@ -50,7 +50,7 @@ const SelectLanguagePage = ({selectLocale, locale}: SelectLanguageProps) => {
                 {
                     contentLeft: (
                         <>
-                            <LogoImage/>
+                            <LogoImage size={200}/>
                             <Title>
                                 <FormattedMessage id='onboarding.selectLanguageTitle'/>
                             </Title>
