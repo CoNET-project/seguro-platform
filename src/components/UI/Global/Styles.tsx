@@ -31,4 +31,8 @@ export default createGlobalStyle`
     font-family: 'Lato Regular', sans-serif;
     font-size: clamp(14px, 3vw + 1rem, 16px);
   }
+
+  button {
+    cursor: pointer;
+  }
 `

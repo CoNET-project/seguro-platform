@@ -16,7 +16,6 @@ const StyledContainer = styled.div`
   background-color: white;
   display: flex;
   justify-content: center;
-  align-items: center;
   color: black;
 `
 
@@ -32,7 +31,7 @@ const App = () => {
         setTimeout(() => {
             appState.initialize().then()
         }, 2000)
-        
+
         appState.setIsTouchDevice(detectTouchDevice())
         window.addEventListener('resize', windowResizeHandler)
         return () => {
@@ -49,25 +48,25 @@ const App = () => {
     // )
 
     const getContent = () => {
-        let content = null
+        let content = <MainScreen/>
 
-        // launch screen
-        if (appState.isInitializing) {
-            content = (
-                <LaunchScreen/>
-            )
-        } else if (appState.isInitialized && appState.noContainer) {
-            content = (
-                <OnboardingPageProvider
-                    existingPages={['language', 'setPasscode', 'confirmPasscode', 'verification', 'verificationProcess']}>
-                    <OnboardingScreen/>
-                </OnboardingPageProvider>
-            )
-        } else if (appState.isInitialized && appState.hasContainer && appState.isLocked) {
-            content = (
-                <UnlockScreen/>
-            )
-        }
+        // // launch screen
+        // if (appState.isInitializing) {
+        //     content = (
+        //         <LaunchScreen/>
+        //     )
+        // } else if (appState.isInitialized && appState.noContainer) {
+        //     content = (
+        //         <OnboardingPageProvider
+        //             existingPages={['language', 'setPasscode', 'confirmPasscode', 'verification', 'verificationProcess']}>
+        //             <OnboardingScreen/>
+        //         </OnboardingPageProvider>
+        //     )
+        // } else if (appState.isInitialized && appState.hasContainer && appState.isLocked) {
+        //     content = (
+        //         <UnlockScreen/>
+        //     )
+        // }
         return content
     }
 
