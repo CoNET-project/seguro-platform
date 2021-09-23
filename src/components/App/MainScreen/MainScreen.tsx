@@ -23,64 +23,33 @@ const StyledContents = styled(motion.div)`
 `
 
 const MainScreen = () => {
-    const {windowInnerSize, toggleOverlay} = useAppState()
-    const drawerWidth = windowInnerSize.width * 0.75
-    const dragControls = useDragControls()
-    const drawerControls = useAnimation()
-    const opacity = useMotionValue(0)
+    const {windowInnerSize: {width}} = useAppState()
 
-    const drawerRef = useRef<HTMLDivElement>(null)
+    const drawerWidth = width * 0.75
+
+    const drawerDragControls = useDragControls()
+    const animationControls = useAnimation()
+
+    const currentDrawerX = useMotionValue(0)
+    const drawerXMovements = [-drawerWidth, 1]
+    const overlayOpacity = [0, 1]
+    const opacity = useTransform(currentDrawerX, drawerXMovements, overlayOpacity)
 
     const startDrag = (event: any) => {
-        console.log(event)
-        dragControls.start(event);
+        drawerDragControls.start(event);
     }
-
-    const swipeConfidenceThreshold = 1;
-    const swipePower = (offset: number, velocity: number) => {
-        console.log(offset, velocity)
-        return Math.abs(offset) * velocity;
-    };
-
-    useEffect(() => {
-        drawerControls.start('setup').then()
-    }, [])
 
     return (
         <>
             <Drawer
                 drag='x'
-                dragControls={dragControls}
-                dragElastic={false}
-                dragMomentum={false}
-                dragConstraints={{
-                    right: 0,
-                    left: -(windowInnerSize.width * 0.75)
-                }}
-                transition={{
-                    x: {type: "just"}
-                }}
-                onDragEnd={(e: any, {offset, velocity}: any) => {
-                    const swipe = swipePower(offset.x, velocity.x);
-
-                    if (swipe <= swipeConfidenceThreshold) {
-                        drawerControls.start('exit').then(r => {
-                        })
-                    } else if (swipe > swipeConfidenceThreshold) {
-                        drawerControls.start('enter').then(r => {
-                        })
-                    }
-                }}
-                animate={drawerControls}
-                custom={drawerWidth}
-                variants={
-                    drawerTransitionVariants
-                }
-                ref={drawerRef}
+                style={{x: currentDrawerX}}
+                dragControls={drawerDragControls}
+                animationControls={animationControls}
             />
-            {/*<DragOverlay*/}
-            {/*    style={{opacity}}*/}
-            {/*/>*/}
+            <DragOverlay
+                style={{opacity}}
+            />
             <StyledMainScreen onTouchStart={startDrag} onPointerDown={startDrag}>
                 <GlobalBar/>
                 <StyledContents>

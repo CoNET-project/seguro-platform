@@ -11,7 +11,6 @@ const StyledItem = styled.div`
   height: 48px;
   display: flex;
   align-items: center;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.15);
   padding: 20px;
 
   &:last-of-type {
@@ -20,7 +19,7 @@ const StyledItem = styled.div`
 `
 
 const StyledIcon = styled.div`
-  margin-right: 10px;
+  margin-right: 20px;
   font-size: 20px;
   display: flex;
   align-items: center;

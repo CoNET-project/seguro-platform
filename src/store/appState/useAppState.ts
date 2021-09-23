@@ -1,9 +1,10 @@
 import {useTypedSelector} from '../store'
 import {useDispatch} from 'react-redux'
 import {
-    setIsDrawerOpen,
+    setIsDrawerOpen as setIsDrawerOpenActionCreator,
     setIsTouchDevice as setIsTouchDeviceActionCreator,
-    setLocale as setLocaleActionCreator, setShowOverlay,
+    setLocale as setLocaleActionCreator,
+    setShowOverlay as setShowOverlayActionCreator,
     setTheme as setThemeActionCreator,
     setWindowInnerSize as setWindowInnerSizeActionCreator,
     setWorkerServiceIsInitialized
@@ -62,13 +63,13 @@ const useAppState = () => {
     }
 
     const showOverlay = useTypedSelector(state => state.appState.showOverlay)
-    const toggleOverlay = (showOverlay: boolean) => {
-        dispatch(setShowOverlay(showOverlay))
+    const setIsShowOverlay = (showOverlay: boolean) => {
+        dispatch(setShowOverlayActionCreator(showOverlay))
     }
 
     const isDrawerOpen = useTypedSelector(state => state.appState.isDrawerOpen)
-    const toggleDrawer = () => {
-        dispatch(setIsDrawerOpen(isDrawerOpen))
+    const setIsDrawerOpen = (openDrawer: boolean) => {
+        dispatch(setIsDrawerOpenActionCreator(openDrawer))
     }
 
     return {
@@ -89,9 +90,9 @@ const useAppState = () => {
         windowInnerSize,
         setWindowInnerSize,
         showOverlay,
-        toggleOverlay,
+        setIsShowOverlay,
         isDrawerOpen,
-        toggleDrawer
+        setIsDrawerOpen
     }
 }
 

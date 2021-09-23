@@ -63,11 +63,13 @@ export const drawerTransitionVariants = {
         };
     },
     enter: {
-        x: 0
+        x: 0,
+        opacity: 1
     },
     exit: (width: number) => {
         return {
-            x: -width
+            x: -width,
+            opacity: 1
         };
     }
 }

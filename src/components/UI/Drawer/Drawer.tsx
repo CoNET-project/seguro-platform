@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import {HTMLMotionProps, motion, useAnimation} from "framer-motion";
+import {AnimationControls, HTMLMotionProps, motion, useAnimation} from "framer-motion";
 import Item from "./Item/Item";
 import {
     AiOutlineMessage,
@@ -9,9 +9,15 @@ import {
     MdSystemUpdateAlt
 } from "react-icons/all";
 import {SettingGear} from "../Icons/Icons";
-import React, {ForwardedRef} from 'react';
+import React, {useEffect, useRef} from 'react';
+import {drawerTransitionVariants} from "../Motion/Variants/Variants";
+import useAppState from "../../../store/appState/useAppState";
 
-type DrawerProps = {} & HTMLMotionProps<any>
+type DrawerAnimations = 'enter' | 'exit'
+
+type DrawerProps = {
+    animationControls?: AnimationControls
+} & HTMLMotionProps<any>
 
 const StyledDrawer = styled(motion.div)`
   height: 100vh;
@@ -25,39 +31,102 @@ const StyledDrawer = styled(motion.div)`
   position: absolute;
   left: 0;
   top: 0;
-  transform: translateX(-375px);
-  border-right: 1px solid rgba(0, 0, 0, 0.15);
   opacity: 0;
+  z-index: 2000;
+  transform: translateX(-375px);
+  border-right: 1px solid rgba(0, 0, 0, 0.05);
   padding-top: calc(env(safe-area-inset-top));
 `
 
 const StyledSection = styled.div`
   &:first-of-type {
-    border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
   }
 
   &:last-of-type {
-    border-top: 1px solid rgba(0, 0, 0, 0.15);
+    border-top: 1px solid rgba(0, 0, 0, 0.05);
   }
 `
 
-const Drawer = React.forwardRef((props: DrawerProps, ref: ForwardedRef<HTMLDivElement>) => {
-    {
-        return (
-            <StyledDrawer {...props} ref={ref}>
-                <StyledSection>
-                    <Item text='Messenger' icon={<AiOutlineMessage/>}/>
-                    <Item text='File Storage' icon={<IoFileTrayStackedOutline/>}/>
-                    <Item text='Apple Pay' icon={<FaCcApplePay/>}/>
-                </StyledSection>
-                <StyledSection>
-                    <Item text='Settings' icon={<SettingGear/>}/>
-                    <Item text='Updates' icon={<MdSystemUpdateAlt/>}/>
-                    <Item text='Support' icon={<AiOutlineQuestionCircle/>}/>
-                </StyledSection>
-            </StyledDrawer>
-        )
+const Drawer = (props: DrawerProps) => {
+    const {animationControls, dragControls} = props
+
+    const {windowInnerSize: {width}, setIsDrawerOpen, isDrawerOpen} = useAppState()
+
+    const drawerRef = useRef<HTMLDivElement>(null)
+
+    const drawerWidth = width * 0.75
+
+    const playAnimation = (animationName: DrawerAnimations) => {
+        animationControls?.start(animationName).then()
     }
-})
+
+    useEffect(() => {
+        animationControls?.start('setup').then(() => {
+        })
+    }, [])
+
+    useEffect(() => {
+        console.log('DRAWER IS OPEN:', isDrawerOpen)
+        if (isDrawerOpen) {
+            playAnimation('enter')
+        } else {
+            playAnimation('exit')
+        }
+    }, [isDrawerOpen])
+
+    const drawerAnimation = (offset: number | undefined) => {
+        const currentDrawerState = isDrawerOpen
+        let nextDrawerState: boolean = false
+        if (offset === undefined) {
+            return
+        }
+
+        nextDrawerState = Math.abs(offset) <= (drawerWidth / 2);
+
+        if (nextDrawerState !== currentDrawerState) {
+            setIsDrawerOpen(nextDrawerState)
+        } else {
+            playAnimation(currentDrawerState ? 'enter' : 'exit')
+        }
+
+    }
+
+    return (
+        <StyledDrawer
+            {...props}
+            dragControls={dragControls}
+            dragElastic={false}
+            dragMomentum={false}
+            dragConstraints={{
+                right: 0,
+                left: -(width * 0.75)
+            }}
+            transition={{
+                x: {type: "just", duration: 0.2}
+            }}
+            onDragEnd={() => {
+                drawerAnimation(drawerRef.current?.getBoundingClientRect().x)
+            }}
+            animate={animationControls}
+            custom={drawerWidth}
+            variants={
+                drawerTransitionVariants
+            }
+            ref={drawerRef}
+        >
+            <StyledSection>
+                <Item text='Messenger' icon={<AiOutlineMessage/>}/>
+                <Item text='File Storage' icon={<IoFileTrayStackedOutline/>}/>
+                <Item text='Apple Pay' icon={<FaCcApplePay/>}/>
+            </StyledSection>
+            <StyledSection>
+                <Item text='Settings' icon={<SettingGear/>}/>
+                <Item text='Updates' icon={<MdSystemUpdateAlt/>}/>
+                <Item text='Support' icon={<AiOutlineQuestionCircle/>}/>
+            </StyledSection>
+        </StyledDrawer>
+    )
+}
 
 export default Drawer
