@@ -52,3 +52,33 @@ export const progressStepTransitionVariants = {
         opacity: 0
     }
 }
+
+export const drawerTransitionVariants = {
+    setup: (width: number) => {
+        return {
+            x: -width,
+            transitionEnd: {
+                opacity: 1
+            }
+        };
+    },
+    enter: {
+        x: 0
+    },
+    exit: (width: number) => {
+        return {
+            x: -width
+        };
+    }
+}
+
+export const drawerOverlayTransitionVariants = {
+    enter: {
+        opacity: 1
+    },
+    exit: ({width, windowWidth}: { width: number, windowWidth: number }) => {
+        return {
+            x: -width
+        };
+    }
+}

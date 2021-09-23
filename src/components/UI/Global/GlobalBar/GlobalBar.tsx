@@ -10,13 +10,13 @@ import ProfileDropdown, {ProfileData} from "../../Dropdowns/ProfileDropdown/Prof
 import {useState} from "react";
 
 const StyledGlobalBar = styled.div`
-  height: 48px;
+  height: calc(60px + env(safe-area-inset-top));
   width: 100vw;
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
   display: flex;
   align-items: center;
   background-color: ${props => props.theme.ui.backgroundColor};
-  padding: 0 15px;
+  padding: calc(env(safe-area-inset-top)) 15px 0 15px;
 `
 
 const StyledBarSection = styled.div`
@@ -83,19 +83,19 @@ const GlobalBar = () => {
             <StyledBarSectionFullWidth/>
             <StyledBarSection>
                 <StyledGlobalButton>
-                    <Plug size='sm'/>
+                    <Plug size={18}/>
                 </StyledGlobalButton>
 
                 <StyledBarSectionOptional>
                     <StyledGlobalButtonWrapper>
                         <StyledGlobalButton>
-                            <SettingGear size='sm'/>
+                            <SettingGear size={18}/>
                         </StyledGlobalButton>
                     </StyledGlobalButtonWrapper>
 
                     <StyledGlobalButtonWrapper>
                         <StyledGlobalButton onClick={() => dropdownAppear('apps')}>
-                            <Grid3X3 size='sm'/>
+                            <Grid3X3 size={18}/>
                         </StyledGlobalButton>
 
                         {

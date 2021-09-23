@@ -8,7 +8,7 @@ import {detectTouchDevice, detectWindowInnerSize} from "../../utilities/utilitie
 import OnboardingScreen from "./OnboardingScreen/OnboardingScreen";
 import GlobalStyle from '../UI/Global/Styles'
 import {OnboardingPageProvider} from "../Providers/OnboardingPageProvider";
-import Overlay from "../UI/Common/Overlay/Overlay";
+import {Overlay} from "../UI/Common/Overlay/Overlay";
 
 const StyledContainer = styled.div`
   height: 100vh;

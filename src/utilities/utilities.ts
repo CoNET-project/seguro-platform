@@ -21,14 +21,11 @@ export const detectTouchDevice = (): boolean => {
     return false
 }
 
-export const detectWindowInnerSize = (): WindowInnerSize | null => {
-    if (typeof window !== undefined) {
-        return {
-            width: window.innerWidth,
-            height: window.innerHeight
-        }
+export const detectWindowInnerSize = (): WindowInnerSize => {
+    return {
+        width: window.innerWidth || 0,
+        height: window.innerHeight || 0
     }
-    return null
 }
 
 export const windowKeyListener = (event: KeyboardEvent, key: string): boolean => {

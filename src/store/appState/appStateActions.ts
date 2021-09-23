@@ -60,7 +60,7 @@ export const setIsTouchDevice = createAction(
 
 export const setWindowInnerSize = createAction(
     'appState/setWindowInnerSize',
-    (windowInnerSize: WindowInnerSize | null) => {
+    (windowInnerSize: WindowInnerSize) => {
         return {
             payload: {
                 windowInnerSize
@@ -75,6 +75,17 @@ export const setShowOverlay = createAction(
         return {
             payload: {
                 toggleOverlay
+            }
+        }
+    }
+)
+
+export const setIsDrawerOpen = createAction(
+    'appState/toggleDrawer',
+    (isDrawerOpen: boolean) => {
+        return {
+            payload: {
+                isDrawerOpen
             }
         }
     }

@@ -1,4 +1,7 @@
+import {HTMLMotionProps, motion} from 'framer-motion';
 import styled from 'styled-components';
+
+type DragOverlayProps = {} & HTMLMotionProps<any>
 
 type OverlayProps = {
     show: boolean
@@ -22,8 +25,22 @@ const StyledOverlay = styled.div<StyledOverlayProps>`
   height: 100%
 `
 
-const Overlay = ({show}: OverlayProps) => {
+const StyledDragOverlay = styled(motion.div)`
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.65);
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+`
+
+export const Overlay = ({show}: OverlayProps) => {
     return <StyledOverlay show={show}/>
 }
 
-export default Overlay
+export const DragOverlay = (props: DragOverlayProps) => {
+    return <StyledDragOverlay {...props}/>
+}
