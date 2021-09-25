@@ -1,5 +1,24 @@
 # `seguro-platform` CHANGELOG
 
+## `0.17.0`
+
+### Additions
+
+- Add `LeftPanel`, `RightPanel` and `MainPanel`.
+- Add drawer navigation and opacity.
+- Add global navigation component.
+- Add global navigation icon dropdown.
+
+### Changes
+
+- Multiple style CSS changes.
+
+### Fixes
+
+- None.
+
+---
+
 ## `0.16.0`
 
 ### Additions
