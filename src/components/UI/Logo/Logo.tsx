@@ -7,6 +7,7 @@ type LogoTextProps = {
 }
 
 type LogoImageProps = {
+    size?: Sizes,
     logoColor?: string
 } & LogoTextProps
 
@@ -15,6 +16,7 @@ type StyledLogoTextProps = {
 }
 
 type StyledLogoSVGProps = {
+    size?: string,
     logoColor?: string
 } & StyledLogoTextProps
 

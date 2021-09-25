@@ -73,7 +73,6 @@ const MainScreen = () => {
 
     return (
         <>
-
             <Drawer
                 {...dragOptions()}
                 style={{x: currentDrawerX}}

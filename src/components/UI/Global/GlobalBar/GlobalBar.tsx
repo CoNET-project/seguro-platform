@@ -57,9 +57,7 @@ const StyledGlobalButton = styled.button`
 `
 
 const GlobalBar = () => {
-
     const {hasUpdateAvailable, setIsDrawerOpen, isDrawerOpen} = useAppState()
-
     const [currentDropdown, setDropdown] = useState<'apps' | 'profile' | ''>('')
 
     const exampleProfile: ProfileData = {
@@ -119,7 +117,6 @@ const GlobalBar = () => {
                         )
                     }
                 </StyledGlobalButtonWrapper>
-
                 {
                     hasUpdateAvailable && (
                         <StyledGlobalButtonWrapper>
