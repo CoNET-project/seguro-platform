@@ -3,7 +3,7 @@ import {
     FaChevronLeft,
     FaChevronRight, FaPlug,
     GoPrimitiveDot,
-    GrLanguage, IoClose, IoIosWarning,
+    GrLanguage, ImDownload, IoClose, IoIosWarning,
     IoLanguage, IoSettingsOutline, MdContentCopy,
     RiShieldKeyholeLine
 } from "react-icons/all";
@@ -46,6 +46,7 @@ const StyledIcon = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  position: relative;
 `
 
 type StyledThemeIconProps = { isPlaceholder?: boolean }
@@ -55,6 +56,17 @@ const StyledThemeIcon = styled.div<StyledThemeIconProps>`
   display: flex;
   align-items: center;
   justify-content: center;
+`
+
+const StyledIconNotifDot = styled.div`
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 6px;
+  height: 6px;
+  content: '';
+  background-color: red;
+  border-radius: 50%;
 `
 
 type StyledValidityIconProps = { valid: boolean }
@@ -155,6 +167,15 @@ export const Copy = ({size, color}: IconProps) => {
     return (
         <StyledIcon>
             <MdContentCopy size={getSize(size)} color={color || undefined}/>
+        </StyledIcon>
+    )
+}
+
+export const Update = ({size, color}: IconProps) => {
+    return (
+        <StyledIcon>
+            <ImDownload size={getSize(size)} color={color || undefined}/>
+            <StyledIconNotifDot/>
         </StyledIcon>
     )
 }

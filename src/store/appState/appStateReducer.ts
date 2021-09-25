@@ -4,7 +4,7 @@ import {
     setTheme,
     setLocale,
     setIsTouchDevice,
-    setWindowInnerSize, setShowOverlay, setHasContainer, setIsDrawerOpen
+    setWindowInnerSize, setShowOverlay, setHasContainer, setIsDrawerOpen, setHasUpdateAvailable
 } from './appStateActions'
 import {Theme} from '../../theme/types'
 import {Locale} from '../../localization/types'
@@ -21,7 +21,9 @@ type AppStateReducerState = {
     theme: Theme,
     locale: Locale,
     showOverlay: boolean,
-    isDrawerOpen: boolean
+    isDrawerOpen: boolean,
+    hasUpdateAvailable: boolean,
+    
 }
 
 const initialState: AppStateReducerState = {
@@ -33,7 +35,8 @@ const initialState: AppStateReducerState = {
     theme: 'Auto',
     locale: getPreferredLocale(),
     showOverlay: false,
-    isDrawerOpen: false
+    isDrawerOpen: false,
+    hasUpdateAvailable: false
 }
 
 const appStateReducer = createReducer(initialState, builder => {
@@ -68,6 +71,10 @@ const appStateReducer = createReducer(initialState, builder => {
 
         .addCase(setIsDrawerOpen, (state, action) => {
             state.isDrawerOpen = action.payload.isDrawerOpen
+        })
+
+        .addCase(setHasUpdateAvailable, (state, action) => {
+            state.hasUpdateAvailable = action.payload.hasUpdateAvailable
         })
 })
 

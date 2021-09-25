@@ -74,13 +74,18 @@ export const drawerTransitionVariants = {
     }
 }
 
-export const drawerOverlayTransitionVariants = {
-    enter: {
-        opacity: 1
-    },
-    exit: ({width, windowWidth}: { width: number, windowWidth: number }) => {
+export const panelTransitionVariants = {
+    enter: (direction: number) => {
         return {
-            x: -width
+            x: direction === 1 ? 500 : -500
+        };
+    },
+    center: {
+        x: 0
+    },
+    exit: (direction: number) => {
+        return {
+            x: direction === -1 ? 500 : -500
         };
     }
 }

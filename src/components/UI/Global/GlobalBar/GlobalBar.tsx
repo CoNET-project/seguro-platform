@@ -1,13 +1,14 @@
 import styled from 'styled-components';
 import ExampleProfile from '../../../../assets/examples/profile-example.jpeg'
 import ProfileImage from '../../Common/Profile/Image/Image'
-import {Grid3X3, Plug, SettingGear} from "../../Icons/Icons";
+import {Grid3X3, Plug, SettingGear, Update} from "../../Icons/Icons";
 import {randomColor} from "../../../../utilities/utilities";
 import {screenWidth} from "../../screenSizes";
 import {LogoIcon, LogoImage, LogoText} from "../../Logo/Logo";
 import AppsDropdown from "../../Dropdowns/AppsDropdown/AppsDropdown";
 import ProfileDropdown, {ProfileData} from "../../Dropdowns/ProfileDropdown/ProfileDropdown";
 import {useState} from "react";
+import useAppState from "../../../../store/appState/useAppState";
 
 const StyledGlobalBar = styled.div`
   height: calc(60px + env(safe-area-inset-top));
@@ -52,9 +53,12 @@ const StyledGlobalButton = styled.button`
   background-color: transparent;
   cursor: pointer;
   padding: 10px;
+  position: relative;
 `
 
 const GlobalBar = () => {
+
+    const {hasUpdateAvailable, setIsDrawerOpen, isDrawerOpen} = useAppState()
 
     const [currentDropdown, setDropdown] = useState<'apps' | 'profile' | ''>('')
 
@@ -76,7 +80,7 @@ const GlobalBar = () => {
     return (
         <StyledGlobalBar>
             <StyledBarSectionFullWidth>
-                <StyledGlobalButton>
+                <StyledGlobalButton onClick={() => setIsDrawerOpen(!isDrawerOpen)}>
                     <LogoIcon size={24}/>
                 </StyledGlobalButton>
             </StyledBarSectionFullWidth>
@@ -97,7 +101,6 @@ const GlobalBar = () => {
                         <StyledGlobalButton onClick={() => dropdownAppear('apps')}>
                             <Grid3X3 size={18}/>
                         </StyledGlobalButton>
-
                         {
                             currentDropdown === 'apps' && (
                                 <AppsDropdown/>
@@ -116,6 +119,17 @@ const GlobalBar = () => {
                         )
                     }
                 </StyledGlobalButtonWrapper>
+
+                {
+                    hasUpdateAvailable && (
+                        <StyledGlobalButtonWrapper>
+                            <StyledGlobalButton onClick={() => {
+                            }}>
+                                <Update size='sm'/>
+                            </StyledGlobalButton>
+                        </StyledGlobalButtonWrapper>
+                    )
+                }
             </StyledBarSection>
         </StyledGlobalBar>
     )

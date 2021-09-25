@@ -1,6 +1,7 @@
 import {useTypedSelector} from '../store'
 import {useDispatch} from 'react-redux'
 import {
+    setHasUpdateAvailable as setHasUpdateAvailableActionCreator,
     setIsDrawerOpen as setIsDrawerOpenActionCreator,
     setIsTouchDevice as setIsTouchDeviceActionCreator,
     setLocale as setLocaleActionCreator,
@@ -72,6 +73,11 @@ const useAppState = () => {
         dispatch(setIsDrawerOpenActionCreator(openDrawer))
     }
 
+    const hasUpdateAvailable = useTypedSelector(state => state.appState.hasUpdateAvailable)
+    const setHasUpdateAvailable = (hasUpdateAvailable: boolean) => {
+        dispatch(setHasUpdateAvailableActionCreator(hasUpdateAvailable))
+    }
+
     return {
         initialize,
         isInitialized,
@@ -92,7 +98,9 @@ const useAppState = () => {
         showOverlay,
         setIsShowOverlay,
         isDrawerOpen,
-        setIsDrawerOpen
+        setIsDrawerOpen,
+        hasUpdateAvailable,
+        setHasUpdateAvailable
     }
 }
 

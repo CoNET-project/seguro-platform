@@ -90,3 +90,14 @@ export const setIsDrawerOpen = createAction(
         }
     }
 )
+
+export const setHasUpdateAvailable = createAction(
+    'appState/setHasUpdateAvailable',
+    (hasUpdateAvailable: boolean) => {
+        return {
+            payload: {
+                hasUpdateAvailable
+            }
+        }
+    }
+)

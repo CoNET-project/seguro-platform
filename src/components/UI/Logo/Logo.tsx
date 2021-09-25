@@ -2,18 +2,28 @@ import styled from 'styled-components';
 import {getPixelSize} from "../../../utilities/utilities";
 import {Sizes} from '../Icons/Icons';
 
+type LogoTextProps = {
+    size?: Sizes
+}
+
 type LogoImageProps = {
-    size?: Sizes,
     logoColor?: string
+} & LogoTextProps
+
+type StyledLogoTextProps = {
+    size?: string
 }
 
 type StyledLogoSVGProps = {
-    size?: string,
     logoColor?: string
-}
+} & StyledLogoTextProps
 
 
-const StyledLogoContainer = styled.div``
+const StyledLogoContainer = styled.div`
+  &:not(:first-child) {
+    margin-left: 5px;
+  }
+`
 
 const StyledLogoSVG = styled.svg<StyledLogoSVGProps>`
   width: ${props => props.size};
@@ -21,14 +31,15 @@ const StyledLogoSVG = styled.svg<StyledLogoSVGProps>`
   fill: ${props => props.logoColor || props.theme.ui.text.textPrimary}
 `
 
-const StyledLogoText = styled.h1`
+const StyledLogoText = styled.h1<StyledLogoTextProps>`
   font-family: 'Montserrat Bold', sans-serif;
+  font-size: ${props => props.size || 'initial'};
 `
 
-export const LogoText = () => {
+export const LogoText = ({size}: LogoTextProps) => {
     return (
         <StyledLogoContainer>
-            <StyledLogoText>SEGURO</StyledLogoText>
+            <StyledLogoText size={getPixelSize(size)}>SEGURO</StyledLogoText>
         </StyledLogoContainer>
     )
 }

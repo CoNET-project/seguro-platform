@@ -1,7 +1,9 @@
 import {HTMLMotionProps, motion} from 'framer-motion';
 import styled from 'styled-components';
 
-type DragOverlayProps = {} & HTMLMotionProps<any>
+type DragOverlayProps = {
+    acceptPointerEvents: boolean
+} & HTMLMotionProps<any>
 
 type OverlayProps = {
     show: boolean
@@ -9,6 +11,10 @@ type OverlayProps = {
 
 type StyledOverlayProps = {
     show: boolean
+}
+
+type StyledDragOverlayProps = {
+    acceptPointerEvents: boolean
 }
 
 const StyledOverlay = styled.div<StyledOverlayProps>`
@@ -25,7 +31,7 @@ const StyledOverlay = styled.div<StyledOverlayProps>`
   height: 100%
 `
 
-const StyledDragOverlay = styled(motion.div)`
+const StyledDragOverlay = styled(motion.div)<StyledDragOverlayProps>`
   position: absolute;
   z-index: 1000;
   left: 0;
@@ -35,7 +41,7 @@ const StyledDragOverlay = styled(motion.div)`
   background-color: rgba(0, 0, 0, 0.65);
   width: 100%;
   height: 100vh;
-  pointer-events: none;
+  pointer-events: ${props => props.acceptPointerEvents ? 'initial' : 'none'};
   opacity: 0;
 `
 
@@ -44,5 +50,7 @@ export const Overlay = ({show}: OverlayProps) => {
 }
 
 export const DragOverlay = (props: DragOverlayProps) => {
-    return <StyledDragOverlay {...props}/>
+    return <StyledDragOverlay
+        {...props}
+    />
 }
