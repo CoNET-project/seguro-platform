@@ -1,3 +1,4 @@
+import {useEffect, useRef} from 'react';
 import {version as uuidVersion} from 'uuid';
 import {validate as uuidValidate} from 'uuid';
 import {Sizes} from "../components/UI/Icons/Icons";
@@ -6,6 +7,18 @@ interface WindowInnerSize {
     width: number,
     height: number
 }
+
+export const useDidMountEffect = (func: () => void, deps: any) => {
+    const didMount = useRef(false);
+
+    useEffect(() => {
+        if (didMount.current) {
+            func();
+        } else {
+            didMount.current = true;
+        }
+    }, deps);
+};
 
 export const detectTouchDevice = (): boolean => {
     if (typeof window !== undefined) {
@@ -21,14 +34,11 @@ export const detectTouchDevice = (): boolean => {
     return false
 }
 
-export const detectWindowInnerSize = (): WindowInnerSize | null => {
-    if (typeof window !== undefined) {
-        return {
-            width: window.innerWidth,
-            height: window.innerHeight
-        }
+export const detectWindowInnerSize = (): WindowInnerSize => {
+    return {
+        width: window.innerWidth || 0,
+        height: window.innerHeight || 0
     }
-    return null
 }
 
 export const windowKeyListener = (event: KeyboardEvent, key: string): boolean => {

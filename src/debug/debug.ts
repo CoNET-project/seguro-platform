@@ -1,5 +1,11 @@
 import store from '../store/store'
-import {setIsTouchDevice, setLocale, setTheme} from '../store/appState/appStateActions'
+import {
+    setIsTouchDevice,
+    setLocale,
+    setTheme,
+    setIsDrawerOpen,
+    setHasUpdateAvailable
+} from '../store/appState/appStateActions'
 import {Locale} from '../localization/types'
 import {Theme} from '../theme/types'
 
@@ -24,6 +30,14 @@ export const enableDebugCommands = () => {
 
             setTouch(isTouch: boolean) {
                 store.dispatch(setIsTouchDevice(isTouch))
+            },
+
+            toggleDrawer(isOpen: boolean) {
+                store.dispatch(setIsDrawerOpen(isOpen))
+            },
+
+            setUpdateAvailable(available: boolean) {
+                store.dispatch(setHasUpdateAvailable(available))
             }
         }
     }

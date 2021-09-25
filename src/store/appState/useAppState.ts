@@ -1,8 +1,11 @@
 import {useTypedSelector} from '../store'
 import {useDispatch} from 'react-redux'
 import {
+    setHasUpdateAvailable as setHasUpdateAvailableActionCreator,
+    setIsDrawerOpen as setIsDrawerOpenActionCreator,
     setIsTouchDevice as setIsTouchDeviceActionCreator,
-    setLocale as setLocaleActionCreator, setShowOverlay,
+    setLocale as setLocaleActionCreator,
+    setShowOverlay as setShowOverlayActionCreator,
     setTheme as setThemeActionCreator,
     setWindowInnerSize as setWindowInnerSizeActionCreator,
     setWorkerServiceIsInitialized
@@ -39,6 +42,8 @@ const useAppState = () => {
         dispatch(setWorkerServiceIsInitialized(initialized))
     }
 
+    // TESTING PURPOSES ONLY
+
     const setTheme = (theme: Theme) => {
         dispatch(setThemeActionCreator(theme))
     }
@@ -54,13 +59,23 @@ const useAppState = () => {
     }
 
     const windowInnerSize = useTypedSelector(state => state.appState.windowInnerSize)
-    const setWindowInnerSize = (windowInnerSize: WindowInnerSize | null) => {
+    const setWindowInnerSize = (windowInnerSize: WindowInnerSize) => {
         dispatch(setWindowInnerSizeActionCreator(windowInnerSize))
     }
 
     const showOverlay = useTypedSelector(state => state.appState.showOverlay)
-    const toggleOverlay = (showOverlay: boolean) => {
-        dispatch(setShowOverlay(showOverlay))
+    const setIsShowOverlay = (showOverlay: boolean) => {
+        dispatch(setShowOverlayActionCreator(showOverlay))
+    }
+
+    const isDrawerOpen = useTypedSelector(state => state.appState.isDrawerOpen)
+    const setIsDrawerOpen = (openDrawer: boolean) => {
+        dispatch(setIsDrawerOpenActionCreator(openDrawer))
+    }
+
+    const hasUpdateAvailable = useTypedSelector(state => state.appState.hasUpdateAvailable)
+    const setHasUpdateAvailable = (hasUpdateAvailable: boolean) => {
+        dispatch(setHasUpdateAvailableActionCreator(hasUpdateAvailable))
     }
 
     return {
@@ -81,7 +96,11 @@ const useAppState = () => {
         windowInnerSize,
         setWindowInnerSize,
         showOverlay,
-        toggleOverlay
+        setIsShowOverlay,
+        isDrawerOpen,
+        setIsDrawerOpen,
+        hasUpdateAvailable,
+        setHasUpdateAvailable
     }
 }
 

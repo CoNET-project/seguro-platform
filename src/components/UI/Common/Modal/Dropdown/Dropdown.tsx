@@ -18,14 +18,15 @@ const appearKeyframe = keyframes({
 const StyledDropdown = styled.div`
   position: absolute;
   right: 30%;
-  padding: 10px 20px;
+  padding: 10px;
   border: 1px solid rgba(0, 0, 0, 0.15);
   background-color: ${props => props.theme.ui.backgroundColor};
   margin-top: -7.5px;
   border-radius: 5px;
   box-shadow: 0 5px 5px rgba(0, 0, 0, 0.5);
   animation: ${appearKeyframe} 150ms ease-in-out;
-  color: ${props => props.theme.ui.text.textPrimary}
+  color: ${props => props.theme.ui.text.textPrimary};
+  min-width: 10rem;
 `
 
 const StyledDropdownHeader = styled.div`

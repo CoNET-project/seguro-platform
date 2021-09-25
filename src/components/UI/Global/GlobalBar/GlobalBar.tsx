@@ -1,22 +1,23 @@
 import styled from 'styled-components';
 import ExampleProfile from '../../../../assets/examples/profile-example.jpeg'
 import ProfileImage from '../../Common/Profile/Image/Image'
-import {Grid3X3, Plug, SettingGear} from "../../Icons/Icons";
+import {Grid3X3, Plug, SettingGear, Update} from "../../Icons/Icons";
 import {randomColor} from "../../../../utilities/utilities";
 import {screenWidth} from "../../screenSizes";
 import {LogoIcon, LogoImage, LogoText} from "../../Logo/Logo";
 import AppsDropdown from "../../Dropdowns/AppsDropdown/AppsDropdown";
 import ProfileDropdown, {ProfileData} from "../../Dropdowns/ProfileDropdown/ProfileDropdown";
 import {useState} from "react";
+import useAppState from "../../../../store/appState/useAppState";
 
 const StyledGlobalBar = styled.div`
-  height: 48px;
+  height: calc(60px + env(safe-area-inset-top));
   width: 100vw;
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
   display: flex;
   align-items: center;
   background-color: ${props => props.theme.ui.backgroundColor};
-  padding: 0 15px;
+  padding: calc(env(safe-area-inset-top)) 15px 0 15px;
 `
 
 const StyledBarSection = styled.div`
@@ -52,10 +53,11 @@ const StyledGlobalButton = styled.button`
   background-color: transparent;
   cursor: pointer;
   padding: 10px;
+  position: relative;
 `
 
 const GlobalBar = () => {
-
+    const {hasUpdateAvailable, setIsDrawerOpen, isDrawerOpen} = useAppState()
     const [currentDropdown, setDropdown] = useState<'apps' | 'profile' | ''>('')
 
     const exampleProfile: ProfileData = {
@@ -76,28 +78,27 @@ const GlobalBar = () => {
     return (
         <StyledGlobalBar>
             <StyledBarSectionFullWidth>
-                <StyledGlobalButton>
+                <StyledGlobalButton onClick={() => setIsDrawerOpen(!isDrawerOpen)}>
                     <LogoIcon size={24}/>
                 </StyledGlobalButton>
             </StyledBarSectionFullWidth>
             <StyledBarSectionFullWidth/>
             <StyledBarSection>
                 <StyledGlobalButton>
-                    <Plug size='sm'/>
+                    <Plug size={18}/>
                 </StyledGlobalButton>
 
                 <StyledBarSectionOptional>
                     <StyledGlobalButtonWrapper>
                         <StyledGlobalButton>
-                            <SettingGear size='sm'/>
+                            <SettingGear size={18}/>
                         </StyledGlobalButton>
                     </StyledGlobalButtonWrapper>
 
                     <StyledGlobalButtonWrapper>
                         <StyledGlobalButton onClick={() => dropdownAppear('apps')}>
-                            <Grid3X3 size='sm'/>
+                            <Grid3X3 size={18}/>
                         </StyledGlobalButton>
-
                         {
                             currentDropdown === 'apps' && (
                                 <AppsDropdown/>
@@ -116,6 +117,16 @@ const GlobalBar = () => {
                         )
                     }
                 </StyledGlobalButtonWrapper>
+                {
+                    hasUpdateAvailable && (
+                        <StyledGlobalButtonWrapper>
+                            <StyledGlobalButton onClick={() => {
+                            }}>
+                                <Update size='sm'/>
+                            </StyledGlobalButton>
+                        </StyledGlobalButtonWrapper>
+                    )
+                }
             </StyledBarSection>
         </StyledGlobalBar>
     )

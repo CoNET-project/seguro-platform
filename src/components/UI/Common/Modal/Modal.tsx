@@ -81,9 +81,9 @@ const Modal = ({icon, message, modalActions}: ModalProps) => {
     const appState = useAppState()
 
     useEffect(() => {
-        appState.toggleOverlay(true)
+        appState.setIsShowOverlay(true)
         return () => {
-            appState.toggleOverlay(false)
+            appState.setIsShowOverlay(false)
         }
     }, [])
     return (

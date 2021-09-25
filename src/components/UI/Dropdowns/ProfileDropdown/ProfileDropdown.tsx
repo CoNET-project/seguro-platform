@@ -22,6 +22,7 @@ type ProfileContent = {
 }
 
 const StyledProfileDropdown = styled.div`
+  min-width: 20rem;
   width: 100%;
   height: 100%;
   padding: 0 20px;

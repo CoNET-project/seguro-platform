@@ -52,3 +52,40 @@ export const progressStepTransitionVariants = {
         opacity: 0
     }
 }
+
+export const drawerTransitionVariants = {
+    setup: (width: number) => {
+        return {
+            x: -width,
+            transitionEnd: {
+                opacity: 1
+            }
+        };
+    },
+    enter: {
+        x: 0,
+        opacity: 1
+    },
+    exit: (width: number) => {
+        return {
+            x: -width,
+            opacity: 1
+        };
+    }
+}
+
+export const panelTransitionVariants = {
+    enter: (direction: number) => {
+        return {
+            x: direction === 1 ? 500 : -500
+        };
+    },
+    center: {
+        x: 0
+    },
+    exit: (direction: number) => {
+        return {
+            x: direction === -1 ? 500 : -500
+        };
+    }
+}
