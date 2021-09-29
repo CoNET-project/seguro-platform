@@ -1,5 +1,26 @@
 # `seguro-platform` CHANGELOG
 
+## `0.18.0`
+
+### Additions
+
+- Add `Messenger` application.
+- Add 3 panel design layout.
+- Add 3 panel focus states.
+- Add `TabNavigator` for first panel on mobile.
+- Add `pageNavigator` context for `TabNavigator` page changes.
+
+### Changes
+
+- Multiple style CSS changes.
+- Update `Drawer.tsx` header height.
+
+### Fixes
+
+- None.
+
+---
+
 ## `0.17.0`
 
 ### Additions

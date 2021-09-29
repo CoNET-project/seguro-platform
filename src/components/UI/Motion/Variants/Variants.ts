@@ -57,6 +57,7 @@ export const drawerTransitionVariants = {
     setup: (width: number) => {
         return {
             x: -width,
+            opacity: 0,
             transitionEnd: {
                 opacity: 1
             }
@@ -68,11 +69,12 @@ export const drawerTransitionVariants = {
     },
     exit: (width: number) => {
         return {
-            x: -width,
-            opacity: 1
+            x: -width
         };
     }
 }
+
+export const dragOverlayVariants = {}
 
 export const panelTransitionVariants = {
     enter: (direction: number) => {

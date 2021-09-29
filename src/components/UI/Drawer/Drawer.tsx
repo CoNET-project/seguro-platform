@@ -38,7 +38,7 @@ const StyledDrawer = styled(motion.div)`
 `
 
 const StyledHeader = styled.div`
-  height: calc(60px + env(safe-area-inset-top));
+  height: 60px;
   width: 100%;
   content: '';
   border-bottom: 1px solid rgba(0, 0, 0, 0.05);
@@ -79,9 +79,10 @@ const Drawer = (props: DrawerProps) => {
     }
 
     useEffect(() => {
+        setIsDrawerOpen(false)
         animationControls?.start('setup').then(() => {
         })
-    }, [])
+    }, [width])
 
     useDidMountEffect(() => {
         logger.log('Drawer.tsx', 'Drawer is open: ', isDrawerOpen)
@@ -120,7 +121,8 @@ const Drawer = (props: DrawerProps) => {
                 left: -(width * 0.80)
             }}
             transition={{
-                x: {type: "just", duration: 0.3}
+                x: {type: "just", duration: 0.3},
+                opacity: {type: false}
             }}
             onDragEnd={() => {
                 drawerAnimation(drawerRef.current?.getBoundingClientRect().x)

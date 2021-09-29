@@ -1,38 +1,36 @@
 import styled from 'styled-components';
-import Panel from "../../../Common/Panel/Panel";
 import {screenWidth} from "../../../screenSizes";
 import {HTMLMotionProps} from "framer-motion";
-import {panelTransitionVariants} from "../../../Motion/Variants/Variants";
 import StyledPanel from "../../../Common/Panel/Panel";
+import {ReactNode} from "react";
 
-type RightPanelProps = {} & HTMLMotionProps<'div'>
+type RightPanelProps = {
+    children: ReactNode,
+    focus: boolean
+} & HTMLMotionProps<'div'>
 
-const StyledRightPanel = styled(StyledPanel)`
-  flex: 0.4;
-  background-color: blue;
+type StyledRightPanelProps = {
+    visible: boolean
+}
+
+const StyledRightPanel = styled(StyledPanel)<StyledRightPanelProps>`
   position: absolute;
   right: 0;
-  z-index: 100;
+  width: ${props => props.visible ? '100%' : 0};
+  border-left: 1px solid rgba(0, 0, 0, 0.05);
+  @media (${screenWidth.narrowWidth}) {
+    max-width: 350px;
+  }
   @media (${screenWidth.wideWidth}) {
     position: relative;
+    max-width: 350px;
   }
 `
 
-const RightPanel = ({}: RightPanelProps) => {
+const RightPanel = ({focus, children}: RightPanelProps) => {
     return (
-        <StyledRightPanel
-            initial="exit"
-            animate="center"
-            exit="exit"
-            transition={{
-                x: {damping: 10}
-            }}
-            custom={-1}
-            variants={panelTransitionVariants}
-            layout
-            key='right-panel'
-        >
-            right panel
+        <StyledRightPanel visible={focus}>
+            {children}
         </StyledRightPanel>
     )
 }

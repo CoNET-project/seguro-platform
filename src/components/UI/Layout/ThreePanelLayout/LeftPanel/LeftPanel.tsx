@@ -3,34 +3,35 @@ import Panel from "../../../Common/Panel/Panel";
 import {screenWidth} from '../../../screenSizes';
 import StyledPanel from "../../../Common/Panel/Panel";
 import {panelTransitionVariants} from "../../../Motion/Variants/Variants";
+import {ReactNode} from 'react';
 
-type LeftPanelProps = {}
+type LeftPanelProps = {
+    children: ReactNode,
+    focus: boolean
+}
 
-const StyledLeftPanel = styled(StyledPanel)`
-  background-color: red;
-  flex: 0.4;
-  max-width: unset;
-  position: absolute;
+type StyledLeftPanelProps = {
+    visible: boolean
+}
+
+const StyledLeftPanel = styled(StyledPanel)<StyledLeftPanelProps>`
+  width: ${props => props.visible ? '100%' : 0};
+  border-right: 1px solid rgba(0, 0, 0, 0.05);
+  opacity: ${props => props.visible ? 1 : 0};
   @media (${screenWidth.narrowWidth}) {
-    position: relative;
+    max-width: 300px;
+    opacity: 1;
+  }
+  @media (${screenWidth.mediumWidth}) {
+    max-width: 350px;
+    width: 100%;
   }
 `
 
-const LeftPanel = ({}: LeftPanelProps) => {
+const LeftPanel = ({focus, children}: LeftPanelProps) => {
     return (
-        <StyledLeftPanel
-            initial="exit"
-            animate="center"
-            exit="exit"
-            transition={{
-                x: {damping: 10}
-            }}
-            custom={1}
-            variants={panelTransitionVariants}
-            layout
-            key='left-panel'
-        >
-            left panel
+        <StyledLeftPanel visible={focus}>
+            {children}
         </StyledLeftPanel>
     )
 }

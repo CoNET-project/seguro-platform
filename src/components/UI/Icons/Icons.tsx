@@ -1,10 +1,10 @@
 import {
-    BiWorld, BsGrid3X3, BsGrid3X3Gap, FaCheckCircle,
+    BiWorld, BsChatSquareDots, BsGrid3X3, BsGrid3X3Gap, FaCheckCircle,
     FaChevronLeft,
     FaChevronRight, FaPlug,
     GoPrimitiveDot,
     GrLanguage, ImDownload, IoClose, IoIosWarning,
-    IoLanguage, IoSettingsOutline, MdContentCopy,
+    IoLanguage, IoMdContacts, IoSettingsOutline, MdContentCopy,
     RiShieldKeyholeLine
 } from "react-icons/all";
 import styled from 'styled-components';
@@ -67,6 +67,11 @@ const StyledIconNotifDot = styled.div`
   content: '';
   background-color: red;
   border-radius: 50%;
+`
+
+const StyledNoColorIcon = styled(StyledIcon)`
+  color: unset;
+  transition: unset;
 `
 
 type StyledValidityIconProps = { valid: boolean }
@@ -177,5 +182,29 @@ export const Update = ({size, color}: IconProps) => {
             <ImDownload size={getSize(size)} color={color || undefined}/>
             <StyledIconNotifDot/>
         </StyledIcon>
+    )
+}
+
+export const Gear = ({size, color}: IconProps) => {
+    return (
+        <StyledNoColorIcon>
+            <IoSettingsOutline size={getSize(size)} color={color || undefined}/>
+        </StyledNoColorIcon>
+    )
+}
+
+export const ChatBubble = ({size, color}: IconProps) => {
+    return (
+        <StyledNoColorIcon>
+            <BsChatSquareDots size={getSize(size)} color={color || undefined}/>
+        </StyledNoColorIcon>
+    )
+}
+
+export const Contacts = ({size, color}: IconProps) => {
+    return (
+        <StyledNoColorIcon>
+            <IoMdContacts size={getSize(size)} color={color || undefined}/>
+        </StyledNoColorIcon>
     )
 }

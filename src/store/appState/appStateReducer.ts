@@ -4,7 +4,7 @@ import {
     setTheme,
     setLocale,
     setIsTouchDevice,
-    setWindowInnerSize, setShowOverlay, setHasContainer, setIsDrawerOpen, setHasUpdateAvailable
+    setWindowInnerSize, setShowOverlay, setHasContainer, setIsDrawerOpen, setHasUpdateAvailable, setCurrentFocusPanel
 } from './appStateActions'
 import {Theme} from '../../theme/types'
 import {Locale} from '../../localization/types'
@@ -12,30 +12,34 @@ import {getPreferredLocale} from '../../localization/localization'
 import {detectWindowInnerSize} from "../../utilities/utilities";
 import {WindowInnerSize} from './useAppState'
 
+export type CurrentFocusPanel = 'left' | 'main' | 'right'
+
 type AppStateReducerState = {
     isTouchDevice: boolean,
     isUnlocked: boolean,
+    isDrawerOpen: boolean,
     hasContainer: boolean,
+    showOverlay: boolean,
+    currentFocusPanel: CurrentFocusPanel,
     windowInnerSize: WindowInnerSize,
     workerServiceIsInitialized: boolean,
     theme: Theme,
     locale: Locale,
-    showOverlay: boolean,
-    isDrawerOpen: boolean,
     hasUpdateAvailable: boolean,
-    
+
 }
 
 const initialState: AppStateReducerState = {
     isTouchDevice: false,
     isUnlocked: false,
     hasContainer: false,
+    isDrawerOpen: false,
+    showOverlay: false,
+    currentFocusPanel: 'left',
     windowInnerSize: detectWindowInnerSize(),
     workerServiceIsInitialized: false,
     theme: 'Auto',
     locale: getPreferredLocale(),
-    showOverlay: false,
-    isDrawerOpen: false,
     hasUpdateAvailable: false
 }
 
@@ -75,6 +79,10 @@ const appStateReducer = createReducer(initialState, builder => {
 
         .addCase(setHasUpdateAvailable, (state, action) => {
             state.hasUpdateAvailable = action.payload.hasUpdateAvailable
+        })
+
+        .addCase(setCurrentFocusPanel, (state, action) => {
+            state.currentFocusPanel = action.payload.panel
         })
 })
 

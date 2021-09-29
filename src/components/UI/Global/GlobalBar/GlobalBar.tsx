@@ -3,7 +3,7 @@ import ExampleProfile from '../../../../assets/examples/profile-example.jpeg'
 import ProfileImage from '../../Common/Profile/Image/Image'
 import {Grid3X3, Plug, SettingGear, Update} from "../../Icons/Icons";
 import {randomColor} from "../../../../utilities/utilities";
-import {screenWidth} from "../../screenSizes";
+import {screenWidth, sizes} from "../../screenSizes";
 import {LogoIcon, LogoImage, LogoText} from "../../Logo/Logo";
 import AppsDropdown from "../../Dropdowns/AppsDropdown/AppsDropdown";
 import ProfileDropdown, {ProfileData} from "../../Dropdowns/ProfileDropdown/ProfileDropdown";
@@ -17,7 +17,7 @@ const StyledGlobalBar = styled.div`
   display: flex;
   align-items: center;
   background-color: ${props => props.theme.ui.backgroundColor};
-  padding: calc(env(safe-area-inset-top)) 15px 0 15px;
+  padding: calc(env(safe-area-inset-top)) 20px 0 20px;
 `
 
 const StyledBarSection = styled.div`
@@ -57,7 +57,7 @@ const StyledGlobalButton = styled.button`
 `
 
 const GlobalBar = () => {
-    const {hasUpdateAvailable, setIsDrawerOpen, isDrawerOpen} = useAppState()
+    const {hasUpdateAvailable, setIsDrawerOpen, isDrawerOpen, windowInnerSize: {width}} = useAppState()
     const [currentDropdown, setDropdown] = useState<'apps' | 'profile' | ''>('')
 
     const exampleProfile: ProfileData = {
@@ -78,7 +78,7 @@ const GlobalBar = () => {
     return (
         <StyledGlobalBar>
             <StyledBarSectionFullWidth>
-                <StyledGlobalButton onClick={() => setIsDrawerOpen(!isDrawerOpen)}>
+                <StyledGlobalButton onClick={() => setIsDrawerOpen(!isDrawerOpen)} disabled={width >= sizes.medium}>
                     <LogoIcon size={24}/>
                 </StyledGlobalButton>
             </StyledBarSectionFullWidth>

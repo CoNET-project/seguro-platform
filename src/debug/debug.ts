@@ -4,10 +4,12 @@ import {
     setLocale,
     setTheme,
     setIsDrawerOpen,
-    setHasUpdateAvailable
+    setHasUpdateAvailable,
+    setCurrentFocusPanel
 } from '../store/appState/appStateActions'
 import {Locale} from '../localization/types'
 import {Theme} from '../theme/types'
+import {CurrentFocusPanel} from "../store/appState/appStateReducer";
 
 export const enableDebugCommands = () => {
 
@@ -38,6 +40,10 @@ export const enableDebugCommands = () => {
 
             setUpdateAvailable(available: boolean) {
                 store.dispatch(setHasUpdateAvailable(available))
+            },
+
+            setCurrentPanel(panel: CurrentFocusPanel) {
+                store.dispatch(setCurrentFocusPanel(panel))
             }
         }
     }
