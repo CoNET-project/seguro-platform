@@ -43,6 +43,7 @@ const StyledDragOverlay = styled(motion.div)<StyledDragOverlayProps>`
   height: 100vh;
   pointer-events: ${props => props.acceptPointerEvents ? 'initial' : 'none'};
   opacity: 0;
+  visibility: visible;
 `
 
 export const Overlay = ({show}: OverlayProps) => {

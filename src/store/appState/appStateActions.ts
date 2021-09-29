@@ -2,6 +2,7 @@ import {createAction} from '@reduxjs/toolkit'
 import {Theme} from '../../theme/types'
 import {Locale} from '../../localization/types'
 import {WindowInnerSize} from './useAppState'
+import {CurrentFocusPanel} from "./appStateReducer";
 
 export const setWorkerServiceIsInitialized = createAction(
     'appState/workerServiceIsInitialized',
@@ -86,6 +87,17 @@ export const setIsDrawerOpen = createAction(
         return {
             payload: {
                 isDrawerOpen
+            }
+        }
+    }
+)
+
+export const setCurrentFocusPanel = createAction(
+    'appState/setCurrentFocusPanel',
+    (panel: CurrentFocusPanel) => {
+        return {
+            payload: {
+                panel
             }
         }
     }

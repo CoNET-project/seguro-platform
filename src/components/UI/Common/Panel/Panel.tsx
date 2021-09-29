@@ -1,26 +1,19 @@
 import styled from 'styled-components'
 import {ReactNode} from "react";
-import {screenWidth} from "../../screenSizes";
-import {HTMLMotionProps, motion} from 'framer-motion';
-import {panelTransitionVariants} from "../../Motion/Variants/Variants";
 
 export type PanelProps = {
     children: ReactNode,
     className?: string
-} & HTMLMotionProps<'div'>
+}
 
-const StyledPanel = styled(motion.div)`
+const StyledPanel = styled.div`
   height: 100%;
   width: 100%;
   content: '';
+  background-color: ${props => props.theme.ui.backgroundColor};
   color: ${props => props.theme.ui.text.textPrimary};
-  min-width: 20rem;
-  @media (${screenWidth.narrowWidth}) {
-    max-width: 25rem;
-  }
-  @media (${screenWidth.wideWidth}) {
-    max-width: 25rem;
-  }
+  transition: width 250ms ease-in-out, opacity 300ms ease-in-out;
+  overflow: hidden;
 `
 
 export default StyledPanel;

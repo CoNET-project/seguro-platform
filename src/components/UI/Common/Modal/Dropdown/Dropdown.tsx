@@ -27,6 +27,7 @@ const StyledDropdown = styled.div`
   animation: ${appearKeyframe} 150ms ease-in-out;
   color: ${props => props.theme.ui.text.textPrimary};
   min-width: 10rem;
+  z-index: 1000;
 `
 
 const StyledDropdownHeader = styled.div`

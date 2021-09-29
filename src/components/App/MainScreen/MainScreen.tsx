@@ -11,13 +11,9 @@ import styled from 'styled-components';
 import GlobalBar from "../../UI/Global/GlobalBar/GlobalBar";
 import useAppState from "../../../store/appState/useAppState";
 import Drawer from "../../UI/Drawer/Drawer";
-import {useEffect, useRef, useState} from "react";
-import {drawerTransitionVariants} from "../../UI/Motion/Variants/Variants";
 import {DragOverlay} from "../../UI/Common/Overlay/Overlay";
-import LeftPanel from "../../UI/Layout/LeftPanel/LeftPanel";
-import MainPanel from "../../UI/Layout/MainPanel/MainPanel";
-import RightPanel from "../../UI/Layout/RightPanel/RightPanel";
-import {DragControlOptions} from "framer-motion/types/gestures/drag/VisualElementDragControls";
+import ThreePanels from "../../UI/Layout/ThreePanelLayout/ThreePanels";
+import Messenger from "../Apps/Messenger/Messenger";
 
 const StyledMainScreen = styled(motion.div)`
 
@@ -47,28 +43,19 @@ const MainScreen = () => {
     const drawerXMovements = [-drawerWidth, 1]
     const overlayOpacity = [0, 1]
     const opacity = useTransform(currentDrawerX, drawerXMovements, overlayOpacity)
-    console.log(opacity)
 
     const startDrag = (event: any) => {
         drawerDragControls.start(event);
     }
 
     const dragOptions = (): any => {
-        if (isTouchDevice) {
-            return {
-                drag: 'x',
-                dragControls: drawerDragControls
-            }
+        // if (isTouchDevice) {
+        return {
+            drag: 'x',
+            dragControls: drawerDragControls
         }
-        return {}
-    }
-
-    // Testing panel animations
-
-    const [showLeft, setShowLeft] = useState(false)
-
-    const showLeftHandler = () => {
-        return setShowLeft(!showLeft)
+        // }
+        // return {}
     }
 
     return (
@@ -83,14 +70,11 @@ const MainScreen = () => {
                 onClick={() => setIsDrawerOpen(!isDrawerOpen)}
                 style={{opacity}}
             />
-            <StyledMainScreen onTouchStart={startDrag}>
+            <StyledMainScreen onTouchStart={startDrag} onPointerDown={startDrag}>
                 <GlobalBar/>
                 <AnimateSharedLayout>
                     <StyledContents>
-                        {showLeft && <LeftPanel/>}
-                        <MainPanel showLeftHandler={showLeftHandler}>
-                            <RightPanel/>
-                        </MainPanel>
+                        <Messenger/>
                     </StyledContents>
                 </AnimateSharedLayout>
             </StyledMainScreen>

@@ -1,6 +1,7 @@
 import {useTypedSelector} from '../store'
 import {useDispatch} from 'react-redux'
 import {
+    setCurrentFocusPanel as setCurrentFocusPanelActionCreator,
     setHasUpdateAvailable as setHasUpdateAvailableActionCreator,
     setIsDrawerOpen as setIsDrawerOpenActionCreator,
     setIsTouchDevice as setIsTouchDeviceActionCreator,
@@ -13,6 +14,7 @@ import {
 import {initializeWorkerService} from '../../services/workerService/workerService'
 import {Theme} from '../../theme/types'
 import {Locale} from '../../localization/types'
+import {CurrentFocusPanel} from "./appStateReducer";
 
 export type WindowInnerSize = {
     width: number,
@@ -73,6 +75,11 @@ const useAppState = () => {
         dispatch(setIsDrawerOpenActionCreator(openDrawer))
     }
 
+    const currentFocusPanel = useTypedSelector(state => state.appState.currentFocusPanel)
+    const setCurrentFocusPanel = (panel: CurrentFocusPanel) => {
+        dispatch(setCurrentFocusPanelActionCreator(panel))
+    }
+
     const hasUpdateAvailable = useTypedSelector(state => state.appState.hasUpdateAvailable)
     const setHasUpdateAvailable = (hasUpdateAvailable: boolean) => {
         dispatch(setHasUpdateAvailableActionCreator(hasUpdateAvailable))
@@ -100,7 +107,9 @@ const useAppState = () => {
         isDrawerOpen,
         setIsDrawerOpen,
         hasUpdateAvailable,
-        setHasUpdateAvailable
+        setHasUpdateAvailable,
+        currentFocusPanel,
+        setCurrentFocusPanel
     }
 }
 
