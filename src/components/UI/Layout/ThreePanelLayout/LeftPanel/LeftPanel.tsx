@@ -1,8 +1,8 @@
 import styled from 'styled-components';
-import Panel from "../../Common/Panel/Panel";
-import {screenWidth} from '../../screenSizes';
-import StyledPanel from "../../Common/Panel/Panel";
-import {panelTransitionVariants} from "../../Motion/Variants/Variants";
+import Panel from "../../../Common/Panel/Panel";
+import {screenWidth} from '../../../screenSizes';
+import StyledPanel from "../../../Common/Panel/Panel";
+import {panelTransitionVariants} from "../../../Motion/Variants/Variants";
 
 type LeftPanelProps = {}
 

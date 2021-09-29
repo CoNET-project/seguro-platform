@@ -1,9 +1,9 @@
 import styled from 'styled-components';
-import Panel from "../../Common/Panel/Panel";
-import {screenWidth} from "../../screenSizes";
+import Panel from "../../../Common/Panel/Panel";
+import {screenWidth} from "../../../screenSizes";
 import {HTMLMotionProps} from "framer-motion";
-import {panelTransitionVariants} from "../../Motion/Variants/Variants";
-import StyledPanel from "../../Common/Panel/Panel";
+import {panelTransitionVariants} from "../../../Motion/Variants/Variants";
+import StyledPanel from "../../../Common/Panel/Panel";
 
 type RightPanelProps = {} & HTMLMotionProps<'div'>
 

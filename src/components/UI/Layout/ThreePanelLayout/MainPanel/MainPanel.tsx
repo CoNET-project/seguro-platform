@@ -1,9 +1,9 @@
 import styled from 'styled-components';
-import Panel from "../../Common/Panel/Panel";
+import Panel from "../../../Common/Panel/Panel";
 import {ReactNode, useState} from "react";
 import {AnimatePresence, motion} from 'framer-motion';
-import StyledPanel from "../../Common/Panel/Panel";
-import {screenWidth} from '../../screenSizes';
+import StyledPanel from "../../../Common/Panel/Panel";
+import {screenWidth} from '../../../screenSizes';
 
 type MainPanelProps = {
     children: ReactNode,
