@@ -86,8 +86,8 @@ const App = () => {
     return (
         <>
             <GlobalStyle/>
-            <Overlay show={appState.showOverlay}/>
             <StyledContainer>
+                <Overlay show={appState.showOverlay}/>
                 {getContent()}
             </StyledContainer>
         </>

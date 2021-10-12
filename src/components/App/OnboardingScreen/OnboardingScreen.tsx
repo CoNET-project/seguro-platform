@@ -11,7 +11,7 @@ import onboardingActions from "../../../contexts/onboarding/onboardingActions";
 import VerificationPage from "./VerificationPage/VerificationPage";
 import ProcessingPage from "./ProcessingPage/ProcessingPage";
 import {createPasscode, getWorkerService} from "../../../services/workerService/workerService";
-import Modal from "../../UI/Common/Modal/Modal";
+import AlertDialog from "../../UI/Common/AlertDialog/AlertDialog";
 import {Warning} from "../../UI/Icons/Icons";
 import {pageFadeTransitionVariants} from "../../UI/Motion/Variants/Variants";
 

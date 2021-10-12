@@ -113,3 +113,14 @@ export const setHasUpdateAvailable = createAction(
         }
     }
 )
+
+export const setIsModalOpen = createAction(
+    'appState/setIsModalOpen',
+    (open?: boolean) => {
+        return {
+            payload: {
+                isOpen: open || null
+            }
+        }
+    }
+)

@@ -14,6 +14,7 @@ import Drawer from "../../UI/Drawer/Drawer";
 import {DragOverlay} from "../../UI/Common/Overlay/Overlay";
 import ThreePanels from "../../UI/Layout/ThreePanelLayout/ThreePanels";
 import Messenger from "../Apps/Messenger/Messenger";
+import PlatformModal from "../PlatformModal/PlatformModal";
 
 const StyledMainScreen = styled(motion.div)`
 
@@ -32,7 +33,7 @@ const StyledContents = styled(motion.div)`
 `
 
 const MainScreen = () => {
-    const {windowInnerSize: {width}, setIsDrawerOpen, isDrawerOpen, isTouchDevice} = useAppState()
+    const {windowInnerSize: {width}, setIsDrawerOpen, isDrawerOpen, isTouchDevice, isModalOpen} = useAppState()
 
     const drawerWidth = width * 0.80
 
@@ -60,6 +61,11 @@ const MainScreen = () => {
 
     return (
         <>
+            {
+                isModalOpen && (
+                    <PlatformModal/>
+                )
+            }
             <Drawer
                 {...dragOptions()}
                 style={{x: currentDrawerX}}

@@ -5,6 +5,7 @@ import {
     setHasUpdateAvailable as setHasUpdateAvailableActionCreator,
     setIsDrawerOpen as setIsDrawerOpenActionCreator,
     setIsTouchDevice as setIsTouchDeviceActionCreator,
+    setIsModalOpen as setIsModalOpenActionCreator,
     setLocale as setLocaleActionCreator,
     setShowOverlay as setShowOverlayActionCreator,
     setTheme as setThemeActionCreator,
@@ -60,6 +61,12 @@ const useAppState = () => {
         dispatch(setIsTouchDeviceActionCreator(isTouchDevice))
     }
 
+    const isModalOpen = useTypedSelector(state => state.appState.isModalOpen)
+    const setIsModalOpen = (open?: boolean) => {
+        setIsShowOverlay(open || !isModalOpen)
+        dispatch(setIsModalOpenActionCreator(open))
+    }
+
     const windowInnerSize = useTypedSelector(state => state.appState.windowInnerSize)
     const setWindowInnerSize = (windowInnerSize: WindowInnerSize) => {
         dispatch(setWindowInnerSizeActionCreator(windowInnerSize))
@@ -109,7 +116,9 @@ const useAppState = () => {
         hasUpdateAvailable,
         setHasUpdateAvailable,
         currentFocusPanel,
-        setCurrentFocusPanel
+        setCurrentFocusPanel,
+        isModalOpen,
+        setIsModalOpen
     }
 }
 

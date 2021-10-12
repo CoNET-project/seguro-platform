@@ -13,7 +13,7 @@ import Lottie, {LottieComponentProps} from 'lottie-react'
 import Card from "../../../UI/Layout/Card/Card";
 import {StyledFormattedH1, StyledFormattedParagraph} from "../../../UI/Common/Text/Text";
 import {Warning} from "../../../UI/Icons/Icons";
-import Modal, {ModalActions} from "../../../UI/Common/Modal/Modal";
+import AlertDialog, {AlertDialogActions} from "../../../UI/Common/AlertDialog/AlertDialog";
 import onboardingActions from "../../../../contexts/onboarding/onboardingActions";
 import useAppState from "../../../../store/appState/useAppState";
 import Button from '../../../UI/Common/Button/Button';
@@ -146,8 +146,8 @@ const ProcessingPage = ({hasTouch}: ProgressingPageProps) => {
     const verificationErrorModal = () => {
         const verificationStatus = state.onboardingPageData?.verificationStatus
 
-        let modalMessage: ReactNode | string = <FormattedMessage id='onboarding.verification.modal.button.retry'/>
-        const modalActions: ModalActions = {
+        let dialogMessage: ReactNode | string = <FormattedMessage id='onboarding.verification.modal.button.retry'/>
+        const dialogActions: AlertDialogActions = {
             confirm: {
                 action: () => {
                 }
@@ -156,39 +156,39 @@ const ProcessingPage = ({hasTouch}: ProgressingPageProps) => {
 
         switch (verificationStatus) {
             case 'WAITING_SEGURO_RESPONSE_TIMEOUT':
-                modalMessage = <FormattedMessage id='onboarding.verification.error.timeout'/>
+                dialogMessage = <FormattedMessage id='onboarding.verification.error.timeout'/>
                 break;
             case 'NOT_INTERNET':
-                modalMessage = <FormattedMessage id='onboarding.verification.error.internet'/>
+                dialogMessage = <FormattedMessage id='onboarding.verification.error.internet'/>
                 break;
             case 'NOT_STRIPE':
-                modalMessage = <FormattedMessage id='onboarding.verification.error.stripe'/>
+                dialogMessage = <FormattedMessage id='onboarding.verification.error.stripe'/>
                 break;
             case 'ALL_EMAIL_SERVER_CAN_NOT_CONNECTING':
-                modalMessage = <FormattedMessage id='onboarding.verification.error.email'/>
+                dialogMessage = <FormattedMessage id='onboarding.verification.error.email'/>
                 break;
             case 'LOCALSERVER_ERROR':
-                modalMessage = <FormattedMessage id='onboarding.verification.error.localserver'/>
+                dialogMessage = <FormattedMessage id='onboarding.verification.error.localserver'/>
                 break;
             case 'INCORRECT_CODE':
-                modalMessage = <FormattedMessage id='onboarding.verification.error.incorrect'/>
-                modalActions.confirm.text = <FormattedMessage id='onboarding.verification.modal.button.newCode'/>
-                modalActions.confirm.action = () => {
+                dialogMessage = <FormattedMessage id='onboarding.verification.error.incorrect'/>
+                dialogActions.confirm.text = <FormattedMessage id='onboarding.verification.modal.button.newCode'/>
+                dialogActions.confirm.action = () => {
                     dispatch(onboardingActions.setVerificationCode(''))
                     dispatch(onboardingActions.setVerificationStatus(''))
                     dispatch(onboardingActions.navigateToPage('verification'))
                 }
                 break;
             case 'EMAIL_ACCOUNT_AUTH_ERROR':
-                modalMessage = <FormattedMessage id='onboarding.verification.error.authError'/>
-                modalActions.confirm.text = <FormattedMessage id='onboarding.verification.modal.button.update'/>
+                dialogMessage = <FormattedMessage id='onboarding.verification.error.authError'/>
+                dialogActions.confirm.text = <FormattedMessage id='onboarding.verification.modal.button.update'/>
                 break;
             default:
                 return
         }
 
         return (
-            <Modal message={modalMessage} icon={<Warning/>} modalActions={modalActions}/>
+            <AlertDialog message={dialogMessage} icon={<Warning/>} dialogActions={dialogActions}/>
         )
     }
 

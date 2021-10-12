@@ -57,7 +57,7 @@ const StyledGlobalButton = styled.button`
 `
 
 const GlobalBar = () => {
-    const {hasUpdateAvailable, setIsDrawerOpen, isDrawerOpen, windowInnerSize: {width}} = useAppState()
+    const {hasUpdateAvailable, setIsDrawerOpen, isDrawerOpen, windowInnerSize: {width}, setIsModalOpen} = useAppState()
     const [currentDropdown, setDropdown] = useState<'apps' | 'profile' | ''>('')
 
     const exampleProfile: ProfileData = {
@@ -90,7 +90,7 @@ const GlobalBar = () => {
 
                 <StyledBarSectionOptional>
                     <StyledGlobalButtonWrapper>
-                        <StyledGlobalButton>
+                        <StyledGlobalButton onClick={() => setIsModalOpen(true)}>
                             <SettingGear size={18}/>
                         </StyledGlobalButton>
                     </StyledGlobalButtonWrapper>

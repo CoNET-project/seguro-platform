@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import Dropdown from "../../Common/Modal/Dropdown/Dropdown";
+import Dropdown from "../../Common/Dropdown/Dropdown";
 import ProfileImage from '../../Common/Profile/Image/Image'
 import {HTMLAttributes} from "react";
 import Card from "../../Common/Profile/Card/Card";

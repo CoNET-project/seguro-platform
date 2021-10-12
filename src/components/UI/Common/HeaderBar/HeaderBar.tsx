@@ -6,12 +6,13 @@ import {screenWidth} from "../../screenSizes";
 export type HeaderBarProps = {
     closeAction?: {
         action: () => void,
+        alignRight?: boolean,
         alwaysVisible?: boolean,
         icon?: ReactNode
     },
     headerContent: {
-        title: string,
-        subtitle?: string
+        title: ReactNode | string,
+        subtitle?: ReactNode | string
     },
     headerComponents?: {
         headerLeft?: ReactNode,
@@ -27,6 +28,7 @@ const StyledHeaderBar = styled.div`
   width: 100%;
   height: 60px;
   background-color: ${props => props.theme.ui.backgroundColor};
+  color: ${props => props.theme.ui.text.textPrimary};
   display: flex;
   align-items: center;
   padding: 5px;
@@ -80,7 +82,7 @@ const HeaderBar = ({closeAction, headerContent, headerComponents}: HeaderBarProp
         <StyledHeaderBar>
             <StyledHeaderSection>
                 {
-                    closeAction && (
+                    closeAction && !closeAction.alignRight && (
                         <StyledHeaderCloseButton onClick={closeAction.action} alwaysVisible={closeAction.alwaysVisible}>
                             {
                                 closeAction.icon || <Close size={24}/>
@@ -116,6 +118,15 @@ const HeaderBar = ({closeAction, headerContent, headerComponents}: HeaderBarProp
                                 {comp}
                             </Fragment>
                         ))
+                    )
+                }
+                {
+                    closeAction && closeAction.alignRight && (
+                        <StyledHeaderCloseButton onClick={closeAction.action} alwaysVisible={closeAction.alwaysVisible}>
+                            {
+                                closeAction.icon || <Close size={24}/>
+                            }
+                        </StyledHeaderCloseButton>
                     )
                 }
             </StyledHeaderSection>
