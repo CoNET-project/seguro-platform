@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import {ReactNode} from "react";
+import {usePageNavigator} from "../../../../contexts/pageNavigator/PageNavigatorContext";
 
 type ListItemProps = {
     onClick?: () => void,
@@ -57,6 +58,8 @@ const StyledItemHeaderTitle = styled.p`
 
 
 const ListItem = ({isSectionSeparator, itemHeader, itemLeft, itemRight, onClick}: ListItemProps) => {
+    const {state} = usePageNavigator()
+    console.log(state)
     return (
         <StyledListItem isSeparator={isSectionSeparator} onClick={onClick}>
             {
