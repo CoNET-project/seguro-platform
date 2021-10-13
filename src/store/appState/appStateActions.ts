@@ -113,3 +113,14 @@ export const setHasUpdateAvailable = createAction(
         }
     }
 )
+
+export const setIsSettingsOpen = createAction(
+    'appState/setIsSettingsOpen',
+    (open?: boolean) => {
+        return {
+            payload: {
+                isOpen: open || null
+            }
+        }
+    }
+)

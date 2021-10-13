@@ -1,6 +1,6 @@
 import styled, {keyframes} from 'styled-components';
 import {ReactNode} from "react";
-import {Close} from "../../../Icons/Icons";
+import {Close} from "../../Icons/Icons";
 
 export type DropdownProps = {
     content: ReactNode,

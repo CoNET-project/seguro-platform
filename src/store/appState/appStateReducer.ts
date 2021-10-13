@@ -4,7 +4,13 @@ import {
     setTheme,
     setLocale,
     setIsTouchDevice,
-    setWindowInnerSize, setShowOverlay, setHasContainer, setIsDrawerOpen, setHasUpdateAvailable, setCurrentFocusPanel
+    setWindowInnerSize,
+    setShowOverlay,
+    setHasContainer,
+    setIsDrawerOpen,
+    setHasUpdateAvailable,
+    setCurrentFocusPanel,
+    setIsSettingsOpen
 } from './appStateActions'
 import {Theme} from '../../theme/types'
 import {Locale} from '../../localization/types'
@@ -18,6 +24,7 @@ type AppStateReducerState = {
     isTouchDevice: boolean,
     isUnlocked: boolean,
     isDrawerOpen: boolean,
+    isSettingsOpen: boolean,
     hasContainer: boolean,
     showOverlay: boolean,
     currentFocusPanel: CurrentFocusPanel,
@@ -32,8 +39,9 @@ type AppStateReducerState = {
 const initialState: AppStateReducerState = {
     isTouchDevice: false,
     isUnlocked: false,
-    hasContainer: false,
     isDrawerOpen: false,
+    isSettingsOpen: false,
+    hasContainer: false,
     showOverlay: false,
     currentFocusPanel: 'left',
     windowInnerSize: detectWindowInnerSize(),
@@ -83,6 +91,10 @@ const appStateReducer = createReducer(initialState, builder => {
 
         .addCase(setCurrentFocusPanel, (state, action) => {
             state.currentFocusPanel = action.payload.panel
+        })
+
+        .addCase(setIsSettingsOpen, (state, action) => {
+            state.isSettingsOpen = action.payload.isOpen || !state.isSettingsOpen
         })
 })
 

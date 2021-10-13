@@ -15,6 +15,7 @@ import useAppState from "../../../store/appState/useAppState";
 import logger from "../../../utilities/logger/logger";
 import {useDidMountEffect} from "../../../utilities/utilities";
 import {LogoIcon, LogoText} from "../Logo/Logo";
+import {FormattedMessage} from "react-intl";
 
 type DrawerAnimations = 'enter' | 'exit'
 
@@ -68,7 +69,7 @@ const StyledSection = styled.div`
 const Drawer = (props: DrawerProps) => {
     const {animationControls, dragControls} = props
 
-    const {windowInnerSize: {width}, setIsDrawerOpen, isDrawerOpen} = useAppState()
+    const {windowInnerSize: {width}, setIsDrawerOpen, isDrawerOpen, setIsSettingsOpen} = useAppState()
 
     const drawerRef = useRef<HTMLDivElement>(null)
 
@@ -107,7 +108,6 @@ const Drawer = (props: DrawerProps) => {
         } else {
             playAnimation(currentDrawerState ? 'enter' : 'exit')
         }
-
     }
 
     return (
@@ -144,9 +144,10 @@ const Drawer = (props: DrawerProps) => {
                     <Item text='File Storage' icon={<IoFileTrayStackedOutline/>}/>
                 </StyledSection>
                 <StyledSection>
-                    <Item text='Settings' icon={<SettingGear/>}/>
-                    <Item text='Updates' icon={<MdSystemUpdateAlt/>}/>
-                    <Item text='Support' icon={<AiOutlineQuestionCircle/>}/>
+                    <Item text={<FormattedMessage id='drawer.settings'/>} icon={<SettingGear/>}
+                          onClick={() => setIsSettingsOpen(true)}/>
+                    <Item text={<FormattedMessage id='drawer.updates'/>} icon={<MdSystemUpdateAlt/>}/>
+                    <Item text={<FormattedMessage id='drawer.support'/>} icon={<AiOutlineQuestionCircle/>}/>
                 </StyledSection>
             </StyledDrawerContents>
         </StyledDrawer>

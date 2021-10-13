@@ -23,8 +23,8 @@ const StyledOverlay = styled.div<StyledOverlayProps>`
   right: 0;
   top: 0;
   bottom: 0;
-  z-index: ${props => props.show ? 100 : -100};
-  background-color: rgba(0, 0, 0, 0.65);
+  z-index: ${props => props.show ? 200 : -100};
+  background-color: rgba(0, 0, 0, 0.7);
   transition: opacity 50ms ease-in-out;
   opacity: ${props => props.show ? 1 : 0};
   width: 100%;

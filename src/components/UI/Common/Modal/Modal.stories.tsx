@@ -1,6 +1,5 @@
 import {Story} from '@storybook/react'
-import Modal, {ModalProps} from './Modal'
-import {Warning} from "../../Icons/Icons";
+import Modal, {ModalProps} from "./Modal";
 
 export default {
     component: Modal,
@@ -11,19 +10,21 @@ const Template: Story<ModalProps> = (
     args
 ) => {
     return (
-        <Modal {...args}/>
+        <Modal {...args}>
+            hey
+        </Modal>
     )
 }
 
 export const Primary = Template.bind({})
 
 Primary.args = {
-    icon: <Warning/>,
-    message: 'Your verification code did not go through!',
-    modalActions: {
-        confirm: {
-            action: () => {
-            }
+    title: 'Platform Settings',
+    closeAction: () => {
+    },
+    subModal: {
+        title: 'hey',
+        closeAction: () => {
         }
     }
 }

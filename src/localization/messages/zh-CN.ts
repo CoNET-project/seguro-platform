@@ -47,7 +47,26 @@ const zh_CN: Messages = {
     'unlock.title': '输入您的 Seguro 密码',
 
     'keypad.cancel': '取消',
-    'keypad.unlock': '解锁'
+    'keypad.unlock': '解锁',
+
+    'tabnavigator.tab.chats': '聊天',
+    'tabnavigator.tab.contacts': '联系',
+    'tabnavigator.tab.settings': '设置',
+
+    'drawer.settings': '设置',
+    'drawer.updates': '更新',
+    'drawer.support': '支持',
+
+    'platform.settings.settings': '平台设置',
+    'platform.settings.language': '语言',
+    'platform.settings.theme': '主题',
+    'platform.settings.theme.light': '浅色',
+    'platform.settings.theme.dark': '深色',
+    'platform.settings.theme.auto': '自动',
+    'platform.settings.passcode': '密码',
+    'platform.settings.general': '一般',
+    'platform.settings.myAccount': '我的账户',
+    'platform.settings.profile': '资料'
 }
 
 export default zh_CN

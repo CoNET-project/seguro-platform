@@ -13,7 +13,7 @@ const StyledContainer = styled.div`
   width: 100%;
 `
 
-type Languages = {
+export type Languages = {
     name: string,
     englishName: string,
     locale: Locale
