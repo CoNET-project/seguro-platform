@@ -52,6 +52,26 @@ export type Messages = {
 
     'keypad.cancel': string,
     'keypad.unlock': string
+
+    'tabnavigator.tab.chats': string,
+    'tabnavigator.tab.contacts': string,
+    'tabnavigator.tab.settings': string,
+
+    'drawer.settings': string,
+    'drawer.updates': string,
+    'drawer.support': string,
+
+    'platform.settings.settings': string,
+    'platform.settings.language': string,
+    'platform.settings.theme': string,
+    'platform.settings.theme.light': string,
+    'platform.settings.theme.dark': string,
+    'platform.settings.theme.auto': string,
+    'platform.settings.passcode': string,
+    'platform.settings.general': string,
+    'platform.settings.myAccount': string,
+    'platform.settings.profile': string
+
 }
 
 export type MessagesByLocale = Record<Locale, Messages>

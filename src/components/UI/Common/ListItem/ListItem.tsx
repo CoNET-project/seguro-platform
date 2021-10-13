@@ -14,7 +14,8 @@ type ListItemProps = {
 }
 
 type StyledListItemProps = {
-    isSeparator: boolean | undefined
+    isSeparator: boolean | undefined,
+    hasClick: boolean
 }
 
 const StyledListItem = styled.div<StyledListItemProps>`
@@ -22,12 +23,13 @@ const StyledListItem = styled.div<StyledListItemProps>`
   min-height: 60px;
   background-color: ${props => props.isSeparator ? props.theme.ui.backgroundAccent : props.theme.ui.backgroundColor};
   color: ${props => props.theme.ui.text.textPrimary};
-  padding: 0 20px;
+  padding: 10px 20px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   border-bottom: 1px solid rgba(0, 0, 0, 0.05);
   font-weight: ${props => props.isSeparator ? 700 : 'unset'};
+  cursor: ${props => props.hasClick ? 'pointer' : 'unset'}
 `
 
 const StyledListItemContent = styled.div`
@@ -39,12 +41,12 @@ const StyledListItemContent = styled.div`
 const StyledItemSection = styled.div`
   display: flex;
   align-items: center;
-  padding: 20px 0;
+  width: 100%;
 `
 
 const StyledItemHeader = styled.div`
   width: 100%;
-  min-height: 60px;
+  min-height: 30px;
   height: 100%;
   display: flex;
   align-items: center;
@@ -52,7 +54,6 @@ const StyledItemHeader = styled.div`
 `
 
 const StyledItemHeaderTitle = styled.p`
-  font-size: 14px;
   color: ${props => props.theme.ui.text.textPrimary}
 `
 
@@ -61,7 +62,7 @@ const ListItem = ({isSectionSeparator, itemHeader, itemLeft, itemRight, onClick}
     const {state} = usePageNavigator()
     console.log(state)
     return (
-        <StyledListItem isSeparator={isSectionSeparator} onClick={onClick}>
+        <StyledListItem isSeparator={isSectionSeparator} onClick={onClick} hasClick={!!onClick}>
             {
                 itemHeader && (
                     <StyledItemHeader>
@@ -84,7 +85,7 @@ const ListItem = ({isSectionSeparator, itemHeader, itemLeft, itemRight, onClick}
                 }
                 {
                     itemRight && (
-                        <StyledItemSection>
+                        <StyledItemSection style={{justifyContent: 'flex-end'}}>
                             {itemRight}
                         </StyledItemSection>
                     )

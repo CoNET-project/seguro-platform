@@ -113,9 +113,9 @@ const HeaderBar = ({closeAction, headerContent, headerComponents}: HeaderBarProp
             <StyledHeaderSection>
                 {
                     headerComponents?.headerRight && (
-                        headerComponents.headerRight.map((comp, idx) => (
-                            <Fragment key={`headerRight-${idx}`}>
-                                {comp}
+                        headerComponents.headerRight.map((component, idx) => (
+                            <Fragment key={Math.random() * Math.random()}>
+                                {component}
                             </Fragment>
                         ))
                     )

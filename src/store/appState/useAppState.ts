@@ -5,12 +5,12 @@ import {
     setHasUpdateAvailable as setHasUpdateAvailableActionCreator,
     setIsDrawerOpen as setIsDrawerOpenActionCreator,
     setIsTouchDevice as setIsTouchDeviceActionCreator,
-    setIsModalOpen as setIsModalOpenActionCreator,
+    setIsSettingsOpen as setIsSettingsOpenActionCreator,
     setLocale as setLocaleActionCreator,
     setShowOverlay as setShowOverlayActionCreator,
     setTheme as setThemeActionCreator,
     setWindowInnerSize as setWindowInnerSizeActionCreator,
-    setWorkerServiceIsInitialized
+    setWorkerServiceIsInitialized, setIsSettingsOpen
 } from './appStateActions'
 import {initializeWorkerService} from '../../services/workerService/workerService'
 import {Theme} from '../../theme/types'
@@ -61,10 +61,11 @@ const useAppState = () => {
         dispatch(setIsTouchDeviceActionCreator(isTouchDevice))
     }
 
-    const isModalOpen = useTypedSelector(state => state.appState.isModalOpen)
-    const setIsModalOpen = (open?: boolean) => {
-        setIsShowOverlay(open || !isModalOpen)
-        dispatch(setIsModalOpenActionCreator(open))
+    const isSettingsOpen = useTypedSelector(state => state.appState.isSettingsOpen)
+    const setIsSettingsOpen = (open?: boolean) => {
+        setIsShowOverlay(open || !isSettingsOpen)
+        setIsDrawerOpen(false)
+        dispatch(setIsSettingsOpenActionCreator(open))
     }
 
     const windowInnerSize = useTypedSelector(state => state.appState.windowInnerSize)
@@ -117,8 +118,8 @@ const useAppState = () => {
         setHasUpdateAvailable,
         currentFocusPanel,
         setCurrentFocusPanel,
-        isModalOpen,
-        setIsModalOpen
+        isSettingsOpen,
+        setIsSettingsOpen
     }
 }
 

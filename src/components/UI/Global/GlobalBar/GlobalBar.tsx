@@ -9,6 +9,7 @@ import AppsDropdown from "../../Dropdowns/AppsDropdown/AppsDropdown";
 import ProfileDropdown, {ProfileData} from "../../Dropdowns/ProfileDropdown/ProfileDropdown";
 import {useState} from "react";
 import useAppState from "../../../../store/appState/useAppState";
+import {setIsSettingsOpen} from "../../../../store/appState/appStateActions";
 
 const StyledGlobalBar = styled.div`
   height: calc(60px + env(safe-area-inset-top));
@@ -57,7 +58,13 @@ const StyledGlobalButton = styled.button`
 `
 
 const GlobalBar = () => {
-    const {hasUpdateAvailable, setIsDrawerOpen, isDrawerOpen, windowInnerSize: {width}, setIsModalOpen} = useAppState()
+    const {
+        hasUpdateAvailable,
+        setIsDrawerOpen,
+        isDrawerOpen,
+        windowInnerSize: {width},
+        setIsSettingsOpen
+    } = useAppState()
     const [currentDropdown, setDropdown] = useState<'apps' | 'profile' | ''>('')
 
     const exampleProfile: ProfileData = {
@@ -90,7 +97,7 @@ const GlobalBar = () => {
 
                 <StyledBarSectionOptional>
                     <StyledGlobalButtonWrapper>
-                        <StyledGlobalButton onClick={() => setIsModalOpen(true)}>
+                        <StyledGlobalButton onClick={() => setIsSettingsOpen(true)}>
                             <SettingGear size={18}/>
                         </StyledGlobalButton>
                     </StyledGlobalButtonWrapper>

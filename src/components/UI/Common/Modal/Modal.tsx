@@ -41,6 +41,7 @@ const StyledModal = styled.div`
   animation: ${ModalKeyFrames} 500ms forwards;
   border: 1px solid rgba(200, 200, 200, 0.2);
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15);
+  overflow: hidden;
 
   @media (${screenWidth.narrowWidth}) {
     //border: 1px solid rgba(0, 0, 0, 0.15);
@@ -51,18 +52,6 @@ const StyledModal = styled.div`
 const Modal = ({title, children, closeAction, subModal}: ModalProps) => {
     return (
         <StyledModal>
-            <HeaderBar headerContent={{title: (subModal && subModal.title) || title || ''}}
-                       closeAction={{
-                           action: () => {
-                               if (subModal) {
-                                   return subModal.closeAction()
-                               }
-                               return closeAction()
-                           },
-                           alignRight: !subModal,
-                           icon: subModal ? <ChevronLeft/> : undefined,
-                           alwaysVisible: true
-                       }}/>
             {children}
         </StyledModal>
     )

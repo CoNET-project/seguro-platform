@@ -114,8 +114,8 @@ export const setHasUpdateAvailable = createAction(
     }
 )
 
-export const setIsModalOpen = createAction(
-    'appState/setIsModalOpen',
+export const setIsSettingsOpen = createAction(
+    'appState/setIsSettingsOpen',
     (open?: boolean) => {
         return {
             payload: {

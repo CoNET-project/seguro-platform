@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import useAppState from "../../../../store/appState/useAppState";
 import {Theme} from "../../../../theme/types";
+import {FormattedMessage} from "react-intl";
 
 const StyledThemeSelector = styled.form`
   display: flex;
@@ -29,17 +30,17 @@ const ThemeSelector = () => {
             <StyledThemeItem>
                 <input type="radio" name='theme' onChange={() => changeTheme('Light')}
                        checked={appState.theme === 'Light'}/>
-                <StyledThemeLabel>Light</StyledThemeLabel>
+                <StyledThemeLabel><FormattedMessage id='platform.settings.theme.light'/></StyledThemeLabel>
             </StyledThemeItem>
             <StyledThemeItem>
                 <input type="radio" name='theme' onChange={() => changeTheme('Dark')}
                        checked={appState.theme === 'Dark'}/>
-                <StyledThemeLabel>Dark</StyledThemeLabel>
+                <StyledThemeLabel><FormattedMessage id='platform.settings.theme.dark'/></StyledThemeLabel>
             </StyledThemeItem>
             <StyledThemeItem>
                 <input type="radio" name='theme' onChange={() => changeTheme('Auto')}
                        checked={appState.theme === 'Auto'}/>
-                <StyledThemeLabel>Auto</StyledThemeLabel>
+                <StyledThemeLabel><FormattedMessage id='platform.settings.theme.auto'/></StyledThemeLabel>
             </StyledThemeItem>
         </StyledThemeSelector>
     )

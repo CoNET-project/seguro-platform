@@ -33,9 +33,8 @@ const MainPanel = () => {
                     subtitle: '4E1F799AA4FF2279'
                 }}
                 headerComponents={{
-                    headerLeft: [
-                        <ProfileImage src={ExampleProfile} size={36} onClick={() => setCurrentFocusPanel('right')}/>
-                    ]
+                    headerLeft: <ProfileImage src={ExampleProfile} size={36}
+                                              onClick={() => setCurrentFocusPanel('right')}/>
                 }}
             />
         </StyledMainPanel>

@@ -49,7 +49,26 @@ const en_US: Messages = {
     'unlock.title': 'Enter your Seguro passcode',
 
     'keypad.cancel': 'Cancel',
-    'keypad.unlock': 'Unlock'
+    'keypad.unlock': 'Unlock',
+
+    'tabnavigator.tab.chats': 'Chats',
+    'tabnavigator.tab.contacts': 'Contacts',
+    'tabnavigator.tab.settings': 'Settings',
+
+    'drawer.settings': 'Settings',
+    'drawer.updates': 'Updates',
+    'drawer.support': 'Support',
+
+    'platform.settings.settings': 'Platform Settings',
+    'platform.settings.language': 'Language',
+    'platform.settings.theme': 'Theme',
+    'platform.settings.theme.light': 'Light',
+    'platform.settings.theme.dark': 'Dark',
+    'platform.settings.theme.auto': 'Auto',
+    'platform.settings.passcode': 'Passcode',
+    'platform.settings.general': 'General',
+    'platform.settings.myAccount': 'My Account',
+    'platform.settings.profile': 'Profiles'
 }
 
 export default en_US
