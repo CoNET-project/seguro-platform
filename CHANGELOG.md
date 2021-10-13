@@ -1,5 +1,26 @@
 # `seguro-platform` CHANGELOG
 
+## `0.19.0`
+
+### Additions
+
+- Add Platform Settings Modal.
+- Create modal component.
+- Add more localization and fix existing localization UI.
+- Add Platform Settings navigation with transitions.
+- Add Language selection into Platform Settings.
+- Add Theme selector into Platform Settings.
+
+### Changes
+
+- Multiple style CSS changes.
+
+### Fixes
+
+- None.
+
+---
+
 ## `0.18.0`
 
 ### Additions
