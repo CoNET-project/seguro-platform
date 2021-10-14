@@ -73,7 +73,7 @@ const StyledHeaderTitle = styled.p`
 `
 
 const StyledHeaderSubtitle = styled.p`
-  font-size: 12px;
+  font-size: 13px;
   color: ${props => props.theme.ui.text.textSecondary}
 `
 

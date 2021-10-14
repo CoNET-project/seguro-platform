@@ -11,7 +11,6 @@ const StyledSeguroDriveTitle = styled.p`
 `
 
 const StyledSeguroDriveUsage = styled.p`
-  font-size: 13px;
   margin-top: 5px;
   color: ${props => props.theme.ui.text.textSecondary}
 `

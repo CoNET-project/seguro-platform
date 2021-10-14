@@ -17,7 +17,9 @@ import ProgressBar from "../../../UI/Progress/ProgressBar/ProgressBar";
 import SeguroDrive from "./SettingSections/SeguroDrive";
 import ProfileList from "./SettingSections/ProfileList";
 
-const StyledSettingsContent = styled.div``
+const StyledSettingsContent = styled.div`
+    height: 100%
+`
 
 const SettingsContent = () => {
     const {setIsSettingsOpen} = useAppState()
@@ -91,6 +93,14 @@ const SettingsContent = () => {
 
                             <ListItem itemHeader={{
                                 title: 'Devices'
+                            }}/>
+
+                            <ListItem itemHeader={{
+                                title: 'Subscription Plans'
+                            }}/>
+
+                            <ListItem itemHeader={{
+                                title: 'Subscription Plans'
                             }}/>
 
                             <ListItem itemHeader={{

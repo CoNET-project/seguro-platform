@@ -19,12 +19,6 @@ const Template: Story<ModalProps> = (
 export const Primary = Template.bind({})
 
 Primary.args = {
-    title: 'Platform Settings',
     closeAction: () => {
-    },
-    subModal: {
-        title: 'hey',
-        closeAction: () => {
-        }
     }
 }

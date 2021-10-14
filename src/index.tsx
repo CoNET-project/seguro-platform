@@ -5,12 +5,13 @@ import App from './components/App/App'
 import RootProvider from './components/Providers/RootProvider'
 import GlobalStyle from './components/UI/Global/Styles'
 import {enableDebugCommands} from './debug/debug'
+import './index.css'
 import '../src/font/font.css'
 
 ReactDOM.render(
     <React.StrictMode>
-        <GlobalStyle/>
         <RootProvider>
+            <GlobalStyle/>
             <App/>
         </RootProvider>
     </React.StrictMode>,

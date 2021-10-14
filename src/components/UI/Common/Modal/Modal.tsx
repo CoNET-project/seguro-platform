@@ -11,10 +11,8 @@ export type SubModal = {
 }
 
 export type ModalProps = {
-    title: ReactNode,
     children: ReactNode,
-    closeAction: () => void,
-    subModal?: SubModal
+    closeAction: () => void
 }
 
 const ModalKeyFrames = keyframes`
@@ -49,7 +47,7 @@ const StyledModal = styled.div`
   }
 `
 
-const Modal = ({title, children, closeAction, subModal}: ModalProps) => {
+const Modal = ({children, closeAction}: ModalProps) => {
     return (
         <StyledModal>
             {children}

@@ -68,7 +68,6 @@ const StyledInputRightComponent = styled.span`
 `
 
 const StyledInputLabel = styled.label`
-  font-size: 18px;
   display: inline-block;
 `
 
@@ -86,7 +85,6 @@ const StyledInputError = styled.div<{ show: boolean }>`
 `
 
 const StyledInputErrorText = styled.p`
-  font-size: 14px;
   margin-left: 5px;
 `
 

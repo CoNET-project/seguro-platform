@@ -1,6 +1,6 @@
 const express = require('express')
 const path = require('path')
-const getPort = require('get-port')
+// const getPort = require('get-port')
 
 const staticFilePath = path.join(__dirname, '../../build')
 
@@ -9,7 +9,7 @@ const createClientServer = () => {
         const app = express()
         app.use(express.static(staticFilePath))
 
-        const port = await getPort()
+        const port = 3000
         console.log(`attempting to listen on port ${port}`)
 
         const server = app.listen(

@@ -4,6 +4,7 @@ import ExampleProfile1 from '../../../../../assets/examples/profile-example.jpeg
 import ExampleProfile2 from '../../../../../assets/examples/profile-example1.png'
 
 import Image from "../../../../UI/Common/Profile/Image/Image";
+import {screenWidth} from "../../../../UI/screenSizes";
 
 type ProfileItemProps = {
     profileImageSrc?: string,
@@ -40,23 +41,22 @@ const StyledProfileItemSection = styled.div`
 
 const StyledProfileItemNickname = styled.p`
   font-weight: 700;
+
 `
 
 const StyledProfileItemKeyId = styled.p`
-  font-size: 13px;
   color: ${props => props.theme.ui.text.textSecondary};
   margin-top: 5px;
+  
 `
 
 const StyledProfileItemPrimary = styled.p`
-  font-size: 13px;
   font-weight: 700;
   color: ${props => props.theme.ui.text.textSecondary}
 `
 
 const StyledProfileItemSetPrimary = styled.a`
   color: ${props => props.theme.ui.primaryColor};
-  font-size: 13px;
   cursor: pointer;
   text-decoration: underline;
 `

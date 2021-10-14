@@ -28,7 +28,6 @@ const StyledIcon = styled.div`
 `
 
 const StyledText = styled.p`
-  font-size: 14px;
 `
 
 const Item = ({icon, text, onClick}: ItemProps) => {

@@ -17,7 +17,7 @@ import Messenger from "../Apps/Messenger/Messenger";
 import PlatformModal from "../PlatformModal/PlatformModal";
 
 const StyledMainScreen = styled(motion.div)`
-
+  width: 100%;
 `
 
 const StyledContents = styled(motion.div)`

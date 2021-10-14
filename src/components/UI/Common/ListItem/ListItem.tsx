@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import {ReactNode} from "react";
 import {usePageNavigator} from "../../../../contexts/pageNavigator/PageNavigatorContext";
+import {screenWidth} from "../../screenSizes";
 
 type ListItemProps = {
     onClick?: () => void,
@@ -18,6 +19,10 @@ type StyledListItemProps = {
     hasClick: boolean
 }
 
+type StyledItemSectionProps = {
+    fullWidth?: boolean
+}
+
 const StyledListItem = styled.div<StyledListItemProps>`
   width: 100%;
   min-height: 50px;
@@ -28,7 +33,7 @@ const StyledListItem = styled.div<StyledListItemProps>`
   flex-direction: column;
   justify-content: center;
   border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-  font-weight: ${props => props.isSeparator ? 700 : 'unset'};
+  font-weight: ${props => props.isSeparator ? 'bold' : 'unset'};
   cursor: ${props => props.hasClick ? 'pointer' : 'unset'}
 `
 
@@ -38,15 +43,16 @@ const StyledListItemContent = styled.div`
   justify-content: space-between;
 `
 
-const StyledItemSection = styled.div`
+const StyledItemSection = styled.div<StyledItemSectionProps>`
   display: flex;
   align-items: center;
-  width: 100%;
+  width: ${props => props.fullWidth ? '100%' : 'unset'};
+  
 `
 
 const StyledItemHeader = styled.div`
   width: 100%;
-  min-height: 40px;
+  min-height: 30px;
   height: 100%;
   display: flex;
   align-items: center;
@@ -54,7 +60,6 @@ const StyledItemHeader = styled.div`
 `
 
 const StyledItemHeaderTitle = styled.p`
-  font-size: 15px;
   color: ${props => props.theme.ui.text.textPrimary}
 `
 
@@ -79,7 +84,7 @@ const ListItem = ({isSectionSeparator, itemHeader, itemLeft, itemRight, onClick}
             <StyledListItemContent>
                 {
                     itemLeft && (
-                        <StyledItemSection>
+                        <StyledItemSection fullWidth={!!itemLeft && !itemRight}>
                             {itemLeft}
                         </StyledItemSection>
                     )

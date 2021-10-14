@@ -17,7 +17,6 @@ const StyledVerificationContent = styled.div`
 
 const StyledVerificationText = styled.p`
   width: 100%;
-  font-size: 16px;
   line-height: 24px;
   color: ${props => props.theme.ui.text.textPrimary}
 `

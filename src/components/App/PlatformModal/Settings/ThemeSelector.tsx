@@ -10,7 +10,7 @@ const StyledThemeSelector = styled.form`
 
 const StyledThemeItem = styled.div`
   &:not(:last-child) {
-    margin-right: 25px;
+    margin-right: 15px;
   }
 `
 

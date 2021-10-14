@@ -28,7 +28,6 @@ const StyledButton = styled.button`
 
 const StyledButtonText = styled.p<StyledButtonTextProps>`
   height: 100%;
-  font-size: 16px;
   font-weight: 700;
   color: ${props => props.theme.ui.text.textPrimary};
   display: flex;
@@ -38,7 +37,6 @@ const StyledButtonText = styled.p<StyledButtonTextProps>`
 
 const StyledIcon = styled.div`
   height: 100%;
-  font-size: 24px;
   display: flex;
   justify-content: center;
   align-items: center;

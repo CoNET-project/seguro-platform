@@ -9,7 +9,7 @@
   ],
   "main": "./src/electron/electron.js",
   "scripts": {
-    "start": "concurrently --kill-others --success=first 'yarn _start:web' 'wait-on tcp:3000 && NODE_ENV=development yarn _start:desktop' 'seguro-gateway --port 3001'",
+    "start": "concurrently --kill-others --success=first 'yarn _start:web' 'wait-on tcp:3000 && NODE_ENV=development yarn _start:desktop'",
     "start:storybook": "start-storybook -p 6006 -s public",
     "start:gateway": "yarn seguro-gateway --port 3001",
     "start:web": "concurrently --kill-others --success=first 'yarn _start:web' 'seguro-gateway --port 3001'",
