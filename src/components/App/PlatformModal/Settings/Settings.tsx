@@ -14,20 +14,10 @@ import HeaderBar from "../../../UI/Common/HeaderBar/HeaderBar";
 import useAppState from "../../../../store/appState/useAppState";
 import {FormattedMessage} from "react-intl";
 import ProgressBar from "../../../UI/Progress/ProgressBar/ProgressBar";
+import SeguroDrive from "./SettingSections/SeguroDrive";
+import ProfileList from "./SettingSections/ProfileList";
 
 const StyledSettingsContent = styled.div``
-
-const StyledSeguroDrive = styled.div`
-  width: 100%;
-  padding-top: 5px;
-`
-
-const StyledSeguroDriveUsage = styled.p`
-  font-size: 14px;
-  margin-top: 7.5px;
-  color: ${props => props.theme.ui.text.textSecondary}
-`
-
 
 const SettingsContent = () => {
     const {setIsSettingsOpen} = useAppState()
@@ -82,25 +72,30 @@ const SettingsContent = () => {
                             <ListItem itemLeft={<FormattedMessage id='platform.settings.passcode'/>}/>
 
                             <ListItem
-                                itemHeader={{
-                                    title: 'Seguro Drive'
-                                }}
                                 itemLeft={
-                                    <StyledSeguroDrive>
-                                        <ProgressBar progress={30}/>
-                                        <StyledSeguroDriveUsage>5 GB of 30 GB used</StyledSeguroDriveUsage>
-                                    </StyledSeguroDrive>
+                                    <SeguroDrive/>
                                 }/>
 
                             <ListItem isSectionSeparator={true}
                                       itemLeft={<FormattedMessage id='platform.settings.myAccount'/>}
                             />
 
-                            <ListItem itemHeader={{
-                                title: <FormattedMessage id='platform.settings.profile'/>,
-                                headerRight: <BiPlus/>
-                            }}
+                            <ListItem
+                                itemHeader={{
+                                    title: <FormattedMessage id='platform.settings.profile'/>,
+                                    headerRight: <BiPlus/>
+                                }}
+                                itemLeft={<ProfileList/>}
+
                             />
+
+                            <ListItem itemHeader={{
+                                title: 'Devices'
+                            }}/>
+
+                            <ListItem itemHeader={{
+                                title: 'Subscription Plans'
+                            }}/>
 
                         </MotionWrapper>
                     )}

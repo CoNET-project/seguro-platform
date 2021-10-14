@@ -29,8 +29,9 @@ const StyledProgressComplete = styled.div<StyledProgressCompleteProps>`
   top: 0;
   background-color: ${props => props.theme.ui.primaryColor};
   border-radius: 25px;
-  border-right: 1px solid rgba(0, 0, 0, 0.15);
+  border-right: 1px solid rgba(0, 0, 0, 0.3);
   z-index: 100;
+  box-shadow: 1px 0 1px rgba(0, 0, 0, 0.5);
 `
 const ProgressBar = ({progress}: ProgressBarProps) => {
     if (progress < 0 || progress > 100) {

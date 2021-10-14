@@ -20,10 +20,10 @@ type StyledListItemProps = {
 
 const StyledListItem = styled.div<StyledListItemProps>`
   width: 100%;
-  min-height: 60px;
+  min-height: 50px;
   background-color: ${props => props.isSeparator ? props.theme.ui.backgroundAccent : props.theme.ui.backgroundColor};
   color: ${props => props.theme.ui.text.textPrimary};
-  padding: 10px 20px;
+  padding: 17.5px 20px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -46,7 +46,7 @@ const StyledItemSection = styled.div`
 
 const StyledItemHeader = styled.div`
   width: 100%;
-  min-height: 30px;
+  min-height: 40px;
   height: 100%;
   display: flex;
   align-items: center;
@@ -54,6 +54,7 @@ const StyledItemHeader = styled.div`
 `
 
 const StyledItemHeaderTitle = styled.p`
+  font-size: 15px;
   color: ${props => props.theme.ui.text.textPrimary}
 `
 
