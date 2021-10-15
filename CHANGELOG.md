@@ -1,5 +1,27 @@
 # `seguro-platform` CHANGELOG
 
+## `0.20.0`
+
+### Additions
+
+- Add Platform Settings Modal.
+- Add more localization and fix existing localization UI.
+- Add more sections into Platform Settings.
+    - Devices
+    - Device Codes
+    - Subscription Plan
+- Add toast for notifications
+
+### Changes
+
+- Multiple style CSS changes.
+
+### Fixes
+
+- None.
+
+---
+
 ## `0.19.0`
 
 ### Additions
