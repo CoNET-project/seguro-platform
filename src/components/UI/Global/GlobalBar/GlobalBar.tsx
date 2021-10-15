@@ -12,14 +12,14 @@ import useAppState from "../../../../store/appState/useAppState";
 import {setIsSettingsOpen} from "../../../../store/appState/appStateActions";
 
 const StyledGlobalBar = styled.div`
-  height: calc(60px + env(safe-area-inset-top));
+  height: calc(50px + env(safe-area-inset-top));
   width: 100%;
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
   display: flex;
   align-items: center;
   background-color: ${props => props.theme.ui.backgroundColor};
   padding: calc(env(safe-area-inset-top)) 10px 0 10px;
-  
+
   @media (${screenWidth.mediumWidth}) {
     padding: calc(env(safe-area-inset-top)) 20px 0 20px;
   }

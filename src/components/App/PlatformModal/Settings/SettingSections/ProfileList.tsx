@@ -47,18 +47,28 @@ const StyledProfileItemNickname = styled.p`
 const StyledProfileItemKeyId = styled.p`
   color: ${props => props.theme.ui.text.textSecondary};
   margin-top: 5px;
-  
+  font-size: 12px;
+
+  @media (${screenWidth.mediumWidth}) {
+    font-size: 13px;
+  }
 `
 
 const StyledProfileItemPrimary = styled.p`
   font-weight: 700;
-  color: ${props => props.theme.ui.text.textSecondary}
+  color: ${props => props.theme.ui.text.textSecondary};
+  @media (${screenWidth.mediumWidth}) {
+    font-size: 13px;
+  }
 `
 
 const StyledProfileItemSetPrimary = styled.a`
   color: ${props => props.theme.ui.primaryColor};
   cursor: pointer;
   text-decoration: underline;
+  @media (${screenWidth.mediumWidth}) {
+    font-size: 13px;
+  }
 `
 
 const ProfileItem = ({profileImageSrc, nickname, keyId, isPrimary, setPrimary}: ProfileItemProps) => {

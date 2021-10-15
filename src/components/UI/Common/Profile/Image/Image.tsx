@@ -23,7 +23,7 @@ const StyledImageWrapper = styled.div<StyledImageWrapperProps>`
   content: '';
   border-radius: ${props => props.square ? '3px' : '50%'};
   overflow: hidden;
-  
+
   @media (${screenWidth.mediumWidth}) {
     width: ${props => props.size};
     height: ${props => props.size};

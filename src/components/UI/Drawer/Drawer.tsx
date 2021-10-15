@@ -8,7 +8,7 @@ import {
     IoFileTrayStackedOutline,
     MdSystemUpdateAlt
 } from "react-icons/all";
-import {SettingGear} from "../Icons/Icons";
+import {Gear, SettingGear} from "../Icons/Icons";
 import React, {useEffect, useRef} from 'react';
 import {drawerTransitionVariants} from "../Motion/Variants/Variants";
 import useAppState from "../../../store/appState/useAppState";
@@ -144,10 +144,10 @@ const Drawer = (props: DrawerProps) => {
                     <Item text='File Storage' icon={<IoFileTrayStackedOutline/>}/>
                 </StyledSection>
                 <StyledSection>
-                    <Item text={<FormattedMessage id='drawer.settings'/>} icon={<SettingGear/>}
+                    <Item text={<FormattedMessage id='drawer.settings'/>} icon={<Gear size={16}/>}
                           onClick={() => setIsSettingsOpen(true)}/>
-                    <Item text={<FormattedMessage id='drawer.updates'/>} icon={<MdSystemUpdateAlt/>}/>
-                    <Item text={<FormattedMessage id='drawer.support'/>} icon={<AiOutlineQuestionCircle/>}/>
+                    <Item text={<FormattedMessage id='drawer.updates'/>} icon={<MdSystemUpdateAlt size={16}/>}/>
+                    <Item text={<FormattedMessage id='drawer.support'/>} icon={<AiOutlineQuestionCircle size={16}/>}/>
                 </StyledSection>
             </StyledDrawerContents>
         </StyledDrawer>

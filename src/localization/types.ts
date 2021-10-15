@@ -72,6 +72,13 @@ export type Messages = {
     'platform.settings.myAccount': string,
     'platform.settings.profile': string
 
+    'platform.settings.devices': string,
+    'platform.settings.deviceCodes': string,
+    'platform.settings.activeCodes': string,
+    'platform.settings.subscriptionPlan': string,
+
+    'toaster.action.copyDeviceCode': string
+
 }
 
 export type MessagesByLocale = Record<Locale, Messages>

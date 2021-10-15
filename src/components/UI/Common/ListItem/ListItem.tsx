@@ -20,7 +20,8 @@ type StyledListItemProps = {
 }
 
 type StyledItemSectionProps = {
-    fullWidth?: boolean
+    fullWidth?: boolean,
+    isSeparator?: boolean
 }
 
 const StyledListItem = styled.div<StyledListItemProps>`
@@ -32,8 +33,7 @@ const StyledListItem = styled.div<StyledListItemProps>`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-  font-weight: ${props => props.isSeparator ? 'bold' : 'unset'};
+  border-bottom: 1px solid rgba(200, 200, 200, 0.15);
   cursor: ${props => props.hasClick ? 'pointer' : 'unset'}
 `
 
@@ -47,7 +47,8 @@ const StyledItemSection = styled.div<StyledItemSectionProps>`
   display: flex;
   align-items: center;
   width: ${props => props.fullWidth ? '100%' : 'unset'};
-  
+  font-family: ${props => props.isSeparator ? "'Lato Bold', san-serif" : 'unset'};
+  font-size: ${props => props.isSeparator && '14px'};
 `
 
 const StyledItemHeader = styled.div`
@@ -60,7 +61,12 @@ const StyledItemHeader = styled.div`
 `
 
 const StyledItemHeaderTitle = styled.p`
-  color: ${props => props.theme.ui.text.textPrimary}
+  font-family: 'Lato Bold', sans-serif;
+  font-size: 14px;
+  color: ${props => props.theme.ui.text.textPrimary};
+  @media (${screenWidth.mediumWidth}) {
+    font-size: 16px;
+  }
 `
 
 
@@ -84,7 +90,7 @@ const ListItem = ({isSectionSeparator, itemHeader, itemLeft, itemRight, onClick}
             <StyledListItemContent>
                 {
                     itemLeft && (
-                        <StyledItemSection fullWidth={!!itemLeft && !itemRight}>
+                        <StyledItemSection fullWidth={!!itemLeft && !itemRight} isSeparator={isSectionSeparator}>
                             {itemLeft}
                         </StyledItemSection>
                     )

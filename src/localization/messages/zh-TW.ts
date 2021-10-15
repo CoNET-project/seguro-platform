@@ -66,7 +66,14 @@ const zh_CN: Messages = {
     'platform.settings.passcode': '密碼',
     'platform.settings.general': '一般',
     'platform.settings.myAccount': '我的賬戶',
-    'platform.settings.profile': '資料'
+    'platform.settings.profile': '資料',
+
+    'platform.settings.devices': '設備',
+    'platform.settings.deviceCodes': '設備代碼',
+    'platform.settings.activeCodes': '活動代碼',
+    'platform.settings.subscriptionPlan': '訂閱計劃',
+
+    'toaster.action.copyDeviceCode': '複製的設備代碼!'
 }
 
 export default zh_CN

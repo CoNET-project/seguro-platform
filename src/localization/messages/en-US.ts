@@ -68,7 +68,14 @@ const en_US: Messages = {
     'platform.settings.passcode': 'Passcode',
     'platform.settings.general': 'General',
     'platform.settings.myAccount': 'My Account',
-    'platform.settings.profile': 'Profiles'
+    'platform.settings.profile': 'Profiles',
+
+    'platform.settings.devices': 'Devices',
+    'platform.settings.deviceCodes': 'Device Codes',
+    'platform.settings.activeCodes': 'Active Codes',
+    'platform.settings.subscriptionPlan': 'Subscription Plan',
+
+    'toaster.action.copyDeviceCode': 'Copied device code!'
 }
 
 export default en_US

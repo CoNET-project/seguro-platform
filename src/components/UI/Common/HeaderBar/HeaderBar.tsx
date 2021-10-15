@@ -4,6 +4,7 @@ import {Close} from "../../Icons/Icons";
 import {screenWidth} from "../../screenSizes";
 
 export type HeaderBarProps = {
+    className?: string,
     closeAction?: {
         action: () => void,
         alignRight?: boolean,
@@ -26,13 +27,19 @@ type StyledHeaderCloseButtonProps = {
 
 const StyledHeaderBar = styled.div`
   width: 100%;
-  height: 60px;
+  height: 50px;
   background-color: ${props => props.theme.ui.backgroundColor};
   color: ${props => props.theme.ui.text.textPrimary};
   display: flex;
   align-items: center;
   padding: 5px;
   border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  position: relative;
+  z-index: 10;
+
+  @media (${screenWidth.mediumWidth}) {
+    height: 60px;
+  }
 `
 
 const StyledHeaderSection = styled.div`
@@ -77,9 +84,9 @@ const StyledHeaderSubtitle = styled.p`
   color: ${props => props.theme.ui.text.textSecondary}
 `
 
-const HeaderBar = ({closeAction, headerContent, headerComponents}: HeaderBarProps) => {
+const HeaderBar = ({className, closeAction, headerContent, headerComponents}: HeaderBarProps) => {
     return (
-        <StyledHeaderBar>
+        <StyledHeaderBar className={className}>
             <StyledHeaderSection>
                 {
                     closeAction && !closeAction.alignRight && (

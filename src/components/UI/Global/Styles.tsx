@@ -18,10 +18,10 @@ export default createGlobalStyle`
     font-size: 16px
   }
 
-  p, a, div {
+  p, a, div, span {
     font-family: 'Lato Regular', sans-serif;
     font-size: 13px;
-    
+
     @media (${screenWidth.mediumWidth}) {
       font-size: 16px;
     }

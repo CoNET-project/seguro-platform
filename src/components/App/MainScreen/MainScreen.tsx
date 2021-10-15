@@ -15,6 +15,7 @@ import {DragOverlay} from "../../UI/Common/Overlay/Overlay";
 import ThreePanels from "../../UI/Layout/ThreePanelLayout/ThreePanels";
 import Messenger from "../Apps/Messenger/Messenger";
 import PlatformModal from "../PlatformModal/PlatformModal";
+import {Toaster} from '../../UI/Toaster/Toaster'
 
 const StyledMainScreen = styled(motion.div)`
   width: 100%;
@@ -23,7 +24,7 @@ const StyledMainScreen = styled(motion.div)`
 const StyledContents = styled(motion.div)`
   background-color: ${props => props.theme.ui.backgroundColor};
   content: '';
-  height: calc(100% - calc(60px + env(safe-area-inset-top)));
+  height: calc(100% - calc(50px + env(safe-area-inset-top)));
   width: 100%;
   display: flex;
   align-items: center;
@@ -77,6 +78,7 @@ const MainScreen = () => {
                 style={{opacity}}
             />
             <StyledMainScreen onTouchStart={startDrag} onPointerDown={startDrag}>
+                <Toaster/>
                 <GlobalBar/>
                 <AnimateSharedLayout>
                     <StyledContents>
