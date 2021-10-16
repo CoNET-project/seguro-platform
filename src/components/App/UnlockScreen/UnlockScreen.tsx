@@ -26,7 +26,6 @@ const StyledContent = styled.div`
 
 const StyledTitle = styled.p`
   margin: 40px 0 20px 0;
-  font-size: 16px;
   color: ${props => props.theme.ui.text.textPrimary}
 `
 

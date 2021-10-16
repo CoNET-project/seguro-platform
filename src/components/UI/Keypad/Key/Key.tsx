@@ -59,7 +59,6 @@ const StyledKeyBackground = styled.div<{ showAnimation: boolean }>`
 `
 
 const StyledText = styled.p`
-  font-size: 14px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -68,13 +67,11 @@ const StyledText = styled.p`
 
 
 const StyledNumberText = styled(StyledText)`
-  font-size: 17px;
   font-weight: bold;
 `
 
 
 const StyledAlphabetText = styled(StyledText)`
-  font-size: 11px;
   opacity: 0.6;
 `
 

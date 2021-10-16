@@ -1,11 +1,11 @@
 import {
     BiWorld, BsChatSquareDots, BsGrid3X3, BsGrid3X3Gap, FaCheckCircle,
     FaChevronLeft,
-    FaChevronRight, FaPlug,
+    FaChevronRight, FaDesktop, FaMobileAlt, FaPlug, FaRegTrashAlt, FaTabletAlt,
     GoPrimitiveDot,
-    GrLanguage, ImDownload, IoClose, IoIosWarning,
+    GrLanguage, ImDownload, IoClose, IoIosCheckmarkCircle, IoIosWarning,
     IoLanguage, IoMdContacts, IoSettingsOutline, MdContentCopy,
-    RiShieldKeyholeLine
+    RiShieldKeyholeLine, TiDelete
 } from "react-icons/all";
 import styled from 'styled-components';
 import {ReactNode} from "react";
@@ -206,5 +206,46 @@ export const Contacts = ({size, color}: IconProps) => {
         <StyledNoColorIcon>
             <IoMdContacts size={getSize(size)} color={color || undefined}/>
         </StyledNoColorIcon>
+    )
+}
+
+export const Delete = ({size, color}: IconProps) => {
+    return (
+        <StyledIcon>
+            <TiDelete size={getSize(size)} color={color || undefined}/>
+        </StyledIcon>
+    )
+}
+
+export const Mobile = ({size, color}: IconProps) => {
+    return (
+        <StyledIcon>
+            <FaMobileAlt size={getSize(size)} color={color || undefined}/>
+        </StyledIcon>
+    )
+}
+
+export const Tablet = ({size, color}: IconProps) => {
+    return (
+        <StyledIcon>
+            <FaTabletAlt size={getSize(size)} color={color || undefined}/>
+        </StyledIcon>
+    )
+}
+
+
+export const Desktop = ({size, color}: IconProps) => {
+    return (
+        <StyledIcon>
+            <FaDesktop size={getSize(size)} color={color || undefined}/>
+        </StyledIcon>
+    )
+}
+
+export const Checkmark = ({size, color}: IconProps) => {
+    return (
+        <StyledIcon>
+            <IoIosCheckmarkCircle size={getSize(size)} color={color || undefined}/>
+        </StyledIcon>
     )
 }

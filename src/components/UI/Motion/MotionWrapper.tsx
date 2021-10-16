@@ -12,11 +12,14 @@ type MotionWrapperProps = {
 
 const StyledMotionWrapper = styled(motion.div)`
   width: 100%;
+  height: calc(100% - 60px);
+  overflow-y: scroll;
 `
 
 const MotionWrapper = ({children, runInitialAnimation, variants, custom, name}: MotionWrapperProps) => {
     return (
         <StyledMotionWrapper
+            className="hideScrollbar"
             key={name}
             custom={custom}
             variants={variants}

@@ -24,7 +24,6 @@ const StyledAppIcon = styled.div`
 `
 
 const StyledAppName = styled.p`
-  font-size: 12px;
   margin-top: 5px;
   text-align: center;
 `

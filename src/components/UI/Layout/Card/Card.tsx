@@ -46,7 +46,6 @@ const StyledContentComponent = styled.div`
   flex-direction: column;
   color: ${props => props.theme.ui.text.textPrimary};
   margin: 20px 0;
-  font-size: 16px;
   width: 100%;
   line-height: 28px
 `

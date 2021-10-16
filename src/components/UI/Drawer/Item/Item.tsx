@@ -9,7 +9,7 @@ type ItemProps = {
 
 const StyledItem = styled.div`
   width: 100%;
-  height: 48px;
+  height: 40px;
   display: flex;
   align-items: center;
   padding: 20px;
@@ -28,7 +28,6 @@ const StyledIcon = styled.div`
 `
 
 const StyledText = styled.p`
-  font-size: 14px;
 `
 
 const Item = ({icon, text, onClick}: ItemProps) => {

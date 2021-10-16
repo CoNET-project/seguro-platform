@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import {usePageNavigator} from "../../../../contexts/pageNavigator/PageNavigatorContext";
 import {pageNavigator} from "../../../../contexts/pageNavigator/pageNavigatorActions";
 import {HTMLMotionProps, motion} from 'framer-motion';
+import {screenWidth} from "../../screenSizes";
 
 export type TabActiveStyles = {
     borderColor?: string,
@@ -42,14 +43,15 @@ const StyledIcon = styled.div`
   content: '';
   min-height: 20px;
   min-width: 20px;
-  font-size: 20px;
   width: 100%;
   height: 100%;
 `
 
 const StyledText = styled.p`
-  font-size: 12px;
   word-break: break-all;
+  @media (${screenWidth.mediumWidth}) {
+    font-size: 13px;
+  }
 `
 
 const StyledTabHighlight = styled(motion.div)`

@@ -2,7 +2,6 @@ import {ReactNode} from 'react'
 import styled from 'styled-components'
 
 const StyledButton = styled.button<{ isHidden: boolean }>`
-  font-size: 18px;
   border-radius: 5px;
   border: none;
   padding: 15px 0;

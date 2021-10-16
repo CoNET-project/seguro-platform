@@ -1,6 +1,6 @@
 {
   "name": "@conet-project/seguro-platform",
-  "version": "0.19.0",
+  "version": "0.20.0",
   "author": "Kloak Information Technologies",
   "description": "The Seguro Platform application.",
   "license": "UNLICENSED",
@@ -9,7 +9,7 @@
   ],
   "main": "./src/electron/electron.js",
   "scripts": {
-    "start": "concurrently --kill-others --success=first 'yarn _start:web' 'wait-on tcp:3000 && NODE_ENV=development yarn _start:desktop' 'seguro-gateway --port 3001'",
+    "start": "concurrently --kill-others --success=first 'yarn _start:web' 'wait-on tcp:3000 && NODE_ENV=development yarn _start:desktop'",
     "start:storybook": "start-storybook -p 6006 -s public",
     "start:gateway": "yarn seguro-gateway --port 3001",
     "start:web": "concurrently --kill-others --success=first 'yarn _start:web' 'seguro-gateway --port 3001'",
@@ -31,6 +31,7 @@
     "framer-motion": "^4.1.17",
     "get-port": "^6.0.0",
     "lottie-react": "^2.1.0",
+    "react-hot-toast": "^2.1.1",
     "react-router-dom": "^5.2.1",
     "uuid": "^8.3.2"
   },

@@ -7,7 +7,6 @@ const PlatformModal = () => {
 
     return (
         <Modal
-            title="Platform Settings"
             closeAction={() => {
                 appState.setIsSettingsOpen(false)
             }}

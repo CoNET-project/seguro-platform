@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import {Sizes} from '../../../Icons/Icons';
 import {getPixelSize} from "../../../../../utilities/utilities";
 import {ReactNode} from 'react';
+import {screenWidth} from "../../../screenSizes";
 
 export type ImageProps = {
     src: string,
@@ -17,11 +18,16 @@ type StyledImageWrapperProps = {
 }
 
 const StyledImageWrapper = styled.div<StyledImageWrapperProps>`
-  width: ${props => props.size};
-  height: ${props => props.size};
+  width: 30px;
+  height: 30px;
   content: '';
   border-radius: ${props => props.square ? '3px' : '50%'};
   overflow: hidden;
+
+  @media (${screenWidth.mediumWidth}) {
+    width: ${props => props.size};
+    height: ${props => props.size};
+  }
 `
 
 const StyledImage = styled.img`

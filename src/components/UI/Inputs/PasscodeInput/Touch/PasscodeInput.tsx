@@ -28,7 +28,6 @@ const StyledPasscodePlaceholderDots = styled(StyledPasscodeInputDot)`
 
 const StyledPasscodeText = styled.p`
   height: 100%;
-  font-size: 14px;
   letter-spacing: 2px;
   display: flex;
   align-items: center;
@@ -48,7 +47,6 @@ const StyledPasscodeError = styled.div<{ show: boolean }>`
 `
 
 const StyledPasscodeErrorText = styled.p`
-  font-size: 13px;
   margin-left: 5px;
 `
 

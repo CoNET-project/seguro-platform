@@ -17,7 +17,6 @@ const StyledProfileName = styled.p`
 
 const StyledProfileKeyId = styled.p`
   margin-top: 5px;
-  font-size: 14px;
   color: ${props => props.theme.ui.text.textSecondary}
 `
 
