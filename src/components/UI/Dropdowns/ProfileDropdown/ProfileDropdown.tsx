@@ -11,8 +11,7 @@ export type ProfileData = {
 }
 
 type ProfileDropdownProps = {
-    profileData: ProfileData,
-    closeAction: () => void
+    profileData: ProfileData
 } & HTMLAttributes<HTMLDivElement>
 
 type ProfileContent = {
@@ -28,17 +27,11 @@ const StyledProfileDropdown = styled.div`
   padding: 0 20px;
 `
 
-const DropdownContent = (profileData: ProfileData) => {
+const ProfileDropdown = ({profileData}: ProfileDropdownProps) => {
     return (
         <StyledProfileDropdown>
             <Card {...profileData}/>
         </StyledProfileDropdown>
-    )
-}
-
-const ProfileDropdown = ({closeAction, profileData}: ProfileDropdownProps) => {
-    return (
-        <Dropdown content={DropdownContent(profileData)} closeAction={closeAction}/>
     )
 }
 

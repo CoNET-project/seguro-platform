@@ -17,3 +17,16 @@ body {
 .hideScrollbar::-webkit-scrollbar {
     display: none;
 }
+
+::-webkit-scrollbar {
+    width: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgba(150, 150, 150, 1);
+    border-radius: 25px;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+}

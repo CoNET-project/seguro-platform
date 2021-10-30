@@ -22,7 +22,15 @@ import DeviceCodes from "./SettingSections/DeviceCodes";
 import {screenWidth} from "../../../UI/screenSizes";
 
 const StyledSettingsContent = styled.div`
-  height: 100%
+  height: 100%;
+`
+
+const StyledSettingsContentSection = styled.div`
+  margin: 0 2.5px;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  @media (${screenWidth.mediumWidth}) {
+    margin: 0 30px;
+  }
 `
 
 const CustomizedHeaderBar = styled(HeaderBar)`
@@ -109,63 +117,66 @@ const SettingsContent = () => {
                             <ListItem isSectionSeparator={true}
                                       itemLeft={<FormattedMessage id='platform.settings.general'/>}/>
 
-                            <ListItem itemLeft={<FormattedMessage id='platform.settings.language'/>}
-                                      itemRight={<ChevronRight/>}
-                                      onClick={() => dispatch(pageNavigator.navigateToPage('Language'))}
-                            />
+                            <StyledSettingsContentSection>
+                                <ListItem itemLeft={<FormattedMessage id='platform.settings.language'/>}
+                                          itemRight={<ChevronRight/>}
+                                          onClick={() => dispatch(pageNavigator.navigateToPage('Language'))}
+                                />
 
-                            <ListItem itemLeft={<FormattedMessage id='platform.settings.theme'/>}
-                                      itemRight={<ThemeSelector/>}
-                            />
+                                <ListItem itemLeft={<FormattedMessage id='platform.settings.theme'/>}
+                                          itemRight={<ThemeSelector/>}
+                                />
 
-                            <ListItem itemLeft={<FormattedMessage id='platform.settings.passcode'/>}/>
+                                <ListItem itemLeft={<FormattedMessage id='platform.settings.passcode'/>}/>
 
-                            <ListItem
-                                itemLeft={
-                                    <SeguroDrive/>
-                                }/>
-
+                                <ListItem
+                                    itemLeft={
+                                        <SeguroDrive/>
+                                    }/>
+                            </StyledSettingsContentSection>
                             <ListItem isSectionSeparator={true}
                                       itemLeft={<FormattedMessage id='platform.settings.myAccount'/>}
                             />
 
-                            <ListItem
-                                itemHeader={{
-                                    title: <FormattedMessage id='platform.settings.profile'/>,
-                                    headerRight: <BiPlus/>
-                                }}
-                                itemLeft={<ProfileList/>}
+                            <StyledSettingsContentSection>
+                                <ListItem
+                                    itemHeader={{
+                                        title: <FormattedMessage id='platform.settings.profile'/>,
+                                        headerRight: <BiPlus/>
+                                    }}
+                                    itemLeft={<ProfileList/>}
 
-                            />
+                                />
 
-                            <ListItem
-                                itemHeader={{
-                                    title: <FormattedMessage id='platform.settings.devices'/>
-                                }}
-                                itemLeft={<DeviceList devices={exampleDevices()}/>}
-                            />
+                                <ListItem
+                                    itemHeader={{
+                                        title: <FormattedMessage id='platform.settings.devices'/>
+                                    }}
+                                    itemLeft={<DeviceList devices={exampleDevices()}/>}
+                                />
 
-                            <ListItem
-                                itemHeader={{
-                                    title: <FormattedMessage id='platform.settings.deviceCodes'/>,
-                                    headerRight: (
-                                        <>
-                                            <StyledActivateDevice>
-                                                <StyledNumberBox>2</StyledNumberBox>{' '}
-                                                <FormattedMessage id='platform.settings.activeCodes'/>
-                                            </StyledActivateDevice>
-                                        </>
-                                    )
-                                }}
-                                itemLeft={<DeviceCodes deviceCodes={exampleDeviceCodes}/>}
-                            />
+                                <ListItem
+                                    itemHeader={{
+                                        title: <FormattedMessage id='platform.settings.deviceCodes'/>,
+                                        headerRight: (
+                                            <>
+                                                <StyledActivateDevice>
+                                                    <StyledNumberBox>2</StyledNumberBox>{' '}
+                                                    <FormattedMessage id='platform.settings.activeCodes'/>
+                                                </StyledActivateDevice>
+                                            </>
+                                        )
+                                    }}
+                                    itemLeft={<DeviceCodes deviceCodes={exampleDeviceCodes}/>}
+                                />
 
-                            <ListItem
-                                itemHeader={{
-                                    title: <FormattedMessage id='platform.settings.subscriptionPlan'/>
-                                }}
-                                itemLeft={<SubscriptionPlan/>}
-                            />
+                                <ListItem
+                                    itemHeader={{
+                                        title: <FormattedMessage id='platform.settings.subscriptionPlan'/>
+                                    }}
+                                    itemLeft={<SubscriptionPlan/>}
+                                />
+                            </StyledSettingsContentSection>
 
                         </MotionWrapper>
                     )}

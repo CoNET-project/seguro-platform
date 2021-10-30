@@ -8,6 +8,7 @@ const dark: DefaultTheme = {
     ui: {
         backgroundColor: '#3c3c3c',
         backgroundAccent: '#393939',
+        borderColor: 'rgba(255, 255, 255, 0.1)',
         primaryColor: '#396FC0',
         accentColor: '#477EAD',
         selected: '#50A2E9',

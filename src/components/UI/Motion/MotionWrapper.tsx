@@ -14,6 +14,7 @@ const StyledMotionWrapper = styled(motion.div)`
   width: 100%;
   height: calc(100% - 60px);
   overflow-y: scroll;
+  background-color: ${props => props.theme.ui.backgroundAccent}
 `
 
 const MotionWrapper = ({children, runInitialAnimation, variants, custom, name}: MotionWrapperProps) => {

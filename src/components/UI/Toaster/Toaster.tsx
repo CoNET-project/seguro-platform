@@ -15,7 +15,7 @@ export const Toaster = () => {
                     color: `${theme.ui.text.textPrimary}`,
                     marginTop: '5px',
                     boxShadow: '0 5px 5px rgba(0,0,0,0.2)',
-                    maxWidth: '200px'
+                    minWidth: '200px'
                 }
             }}
         />

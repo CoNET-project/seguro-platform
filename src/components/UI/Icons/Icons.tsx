@@ -8,14 +8,15 @@ import {
     RiShieldKeyholeLine, TiDelete
 } from "react-icons/all";
 import styled from 'styled-components';
-import {ReactNode} from "react";
+import {ComponentPropsWithRef, ForwardedRef, HTMLAttributes, ReactNode, RefObject} from "react";
+import React from "react";
 
 export type Sizes = 'sm' | 'md' | 'lg' | 'xl' | 'xxl' | number | undefined
 
 type IconProps = {
     size?: Sizes,
     color?: string
-}
+} & ComponentPropsWithRef<'p'>
 
 
 const getSize = (size: Sizes) => {
@@ -40,7 +41,7 @@ const getSize = (size: Sizes) => {
     }
 }
 
-const StyledIcon = styled.div`
+const StyledIcon = styled.p`
   transition: color 150ms ease-in-out;
   color: ${props => props.theme.ui.text.textPrimary};
   display: flex;
@@ -136,13 +137,13 @@ export const CircleCheck = ({size, color, valid}: IconProps & { valid: boolean }
     )
 }
 
-export const Grid3X3 = ({size, color}: IconProps) => {
+export const Grid3X3 = React.forwardRef(({size, color}: IconProps, ref: ForwardedRef<HTMLParagraphElement>) => {
     return (
-        <StyledIcon>
+        <StyledIcon ref={ref}>
             <BsGrid3X3Gap size={getSize(size)} color={color || undefined}/>
         </StyledIcon>
     )
-}
+})
 
 export const SettingGear = ({size, color}: IconProps) => {
     return (

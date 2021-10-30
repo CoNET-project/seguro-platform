@@ -9,6 +9,7 @@ const StyledAppsDropdown = styled.div`
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-gap: 15px;
+  max-width: 40rem;
 `
 
 const StyledAppItem = styled.div`
@@ -16,24 +17,24 @@ const StyledAppItem = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 75px;
-  height: 75px;
+  width: 60px;
+  height: 60px;
 `
 
 const StyledAppIcon = styled.div`
 `
 
 const StyledAppName = styled.p`
-  margin-top: 5px;
   text-align: center;
+  font-size: 13px;
 `
 
-const DropdownContent = () => {
+const AppsDropdown = () => {
     return (
         <StyledAppsDropdown>
             <StyledAppItem>
                 <StyledAppIcon>
-                    <FaWhatsapp size={36}/>
+                    <FaWhatsapp size={24}/>
                 </StyledAppIcon>
                 <StyledAppName>
                     WhatsApp
@@ -42,7 +43,7 @@ const DropdownContent = () => {
 
             <StyledAppItem>
                 <StyledAppIcon>
-                    <FaCcApplePay size={36}/>
+                    <FaCcApplePay size={24}/>
                 </StyledAppIcon>
                 <StyledAppName>
                     Apple Pay
@@ -51,20 +52,13 @@ const DropdownContent = () => {
 
             <StyledAppItem>
                 <StyledAppIcon>
-                    <FaAppStoreIos size={36}/>
+                    <FaAppStoreIos size={24}/>
                 </StyledAppIcon>
                 <StyledAppName>
                     App Store
                 </StyledAppName>
             </StyledAppItem>
         </StyledAppsDropdown>
-    )
-}
-
-
-const AppsDropdown = ({}: AppsDropdownProps) => {
-    return (
-        <Dropdown content={DropdownContent()}/>
     )
 }
 

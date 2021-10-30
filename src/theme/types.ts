@@ -12,6 +12,7 @@ declare module 'styled-components' {
         ui: {
             backgroundColor: string,
             backgroundAccent: string,
+            borderColor: string,
             primaryColor: string,
             accentColor: string,
             selected: string,

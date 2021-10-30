@@ -33,7 +33,6 @@ const StyledListItem = styled.div<StyledListItemProps>`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  border-bottom: 1px solid rgba(200, 200, 200, 0.15);
   cursor: ${props => props.hasClick ? 'pointer' : 'unset'}
 `
 

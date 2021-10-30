@@ -26,7 +26,7 @@ const StyledTab = styled(motion.button)`
   width: 100%;
   min-width: 50px;
   flex: 1;
-  min-height: 60px;
+  min-height: 50px;
   height: 100%;
   border: none;
   padding: 10px 0 calc(10px + env(safe-area-inset-bottom)) 0;
@@ -34,9 +34,12 @@ const StyledTab = styled(motion.button)`
   background-color: ${props => props.theme.ui.backgroundColor};
   color: ${props => props.theme.ui.text.textSecondary};
   position: relative;
+  @media (${screenWidth.mediumWidth}) {
+    min-height: 60px;
+  }
 `
 
-const StyledIcon = styled.div`
+const StyledIcon = styled.p`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -45,12 +48,24 @@ const StyledIcon = styled.div`
   min-width: 20px;
   width: 100%;
   height: 100%;
+
+  & > p {
+    font-size: 20px;
+  }
+
+  @media (${screenWidth.mediumWidth}) {
+    & > p {
+      font-size: 16px;
+    }
+  }
 `
 
 const StyledText = styled.p`
   word-break: break-all;
+  display: none;
   @media (${screenWidth.mediumWidth}) {
     font-size: 13px;
+    display: flex
   }
 `
 

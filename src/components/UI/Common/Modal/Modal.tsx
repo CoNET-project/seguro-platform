@@ -44,6 +44,7 @@ const StyledModal = styled.div`
   @media (${screenWidth.narrowWidth}) {
     //border: 1px solid rgba(0, 0, 0, 0.15);
     max-height: 60rem;
+    max-width: 55rem;
   }
 `
 

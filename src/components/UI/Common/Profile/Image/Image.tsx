@@ -1,8 +1,9 @@
 import styled from 'styled-components';
 import {Sizes} from '../../../Icons/Icons';
 import {getPixelSize} from "../../../../../utilities/utilities";
-import {ReactNode} from 'react';
+import {ForwardedRef, ReactNode} from 'react';
 import {screenWidth} from "../../../screenSizes";
+import React from 'react';
 
 export type ImageProps = {
     src: string,
@@ -36,15 +37,20 @@ const StyledImage = styled.img`
   object-fit: cover;
 `
 
-const Image = ({src, square, size, onClick, children}: ImageProps) => {
-    console.log(onClick)
+const Image = React.forwardRef(({
+                                    src,
+                                    square,
+                                    size,
+                                    onClick,
+                                    children
+                                }: ImageProps, ref: ForwardedRef<HTMLDivElement>) => {
     return (
-        <StyledImageWrapper square={square} size={getPixelSize(size)} onClick={onClick || (() => {
+        <StyledImageWrapper square={square} size={getPixelSize(size)} ref={ref} onClick={onClick || (() => {
         })}>
             <StyledImage src={src} alt='ProfileDropdown picture'/>
             {children}
         </StyledImageWrapper>
     )
-}
+})
 
 export default Image;
