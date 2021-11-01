@@ -3,6 +3,7 @@ import 'tippy.js/dist/tippy.css';
 import 'tippy.js/animations/scale.css';
 import {JSXElementConstructor, ReactElement, ReactNode} from "react";
 import styled from 'styled-components';
+import useAppState from "../../../store/appState/useAppState";
 
 type TippyProps = {
     children: ReactElement<any, string | JSXElementConstructor<any>> | undefined,
@@ -12,11 +13,11 @@ type TippyProps = {
 } & ReactTippyProps
 
 const TippyContent = styled.div`
-  width: fit-content;
   padding: 5px 10px;
 `
 
 const TippyDropdown = (props: TippyProps) => {
+    const {isModalOpen} = useAppState()
     return (
         <ReactTippy
             {...props}
@@ -25,11 +26,13 @@ const TippyDropdown = (props: TippyProps) => {
                     {props.content}
                 </TippyContent>
             }
+            visible={isModalOpen !== null ? false : undefined}
             animation="scale"
             theme="custom"
             arrow={false}
             placement="bottom"
             trigger="click"
+            zIndex={200}
             offset={[props.horizontalOffset || 0, props.verticalOffset || 0]}
         >
             {props.children}

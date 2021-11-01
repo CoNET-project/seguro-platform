@@ -11,11 +11,12 @@ export const Toaster = () => {
                 className: '',
                 style: {
                     border: '1px solid rgba(150, 150, 150, 0.3)',
-                    backgroundColor: `${theme.ui.backgroundAccent}`,
+                    backgroundColor: `${theme.ui.backgroundAccentWithOpacity}`,
                     color: `${theme.ui.text.textPrimary}`,
                     marginTop: '5px',
                     boxShadow: '0 5px 5px rgba(0,0,0,0.2)',
-                    minWidth: '200px'
+                    minWidth: '200px',
+                    zIndex: 201
                 }
             }}
         />

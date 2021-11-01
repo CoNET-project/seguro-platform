@@ -5,17 +5,17 @@ import {
     setHasUpdateAvailable as setHasUpdateAvailableActionCreator,
     setIsDrawerOpen as setIsDrawerOpenActionCreator,
     setIsTouchDevice as setIsTouchDeviceActionCreator,
-    setIsSettingsOpen as setIsSettingsOpenActionCreator,
+    setIsModalOpen as setIsModalOpenActionCreator,
     setLocale as setLocaleActionCreator,
     setShowOverlay as setShowOverlayActionCreator,
     setTheme as setThemeActionCreator,
     setWindowInnerSize as setWindowInnerSizeActionCreator,
-    setWorkerServiceIsInitialized, setIsSettingsOpen
+    setWorkerServiceIsInitialized
 } from './appStateActions'
 import {initializeWorkerService} from '../../services/workerService/workerService'
 import {Theme} from '../../theme/types'
 import {Locale} from '../../localization/types'
-import {CurrentFocusPanel} from "./appStateReducer";
+import {CurrentFocusPanel, ModalNames} from "./appStateReducer";
 
 export type WindowInnerSize = {
     width: number,
@@ -61,11 +61,11 @@ const useAppState = () => {
         dispatch(setIsTouchDeviceActionCreator(isTouchDevice))
     }
 
-    const isSettingsOpen = useTypedSelector(state => state.appState.isSettingsOpen)
-    const setIsSettingsOpen = (open?: boolean) => {
-        setIsShowOverlay(open || !isSettingsOpen)
+    const isModalOpen = useTypedSelector(state => state.appState.isModalOpen)
+    const setIsModalOpen = (modal: ModalNames) => {
+        setIsShowOverlay(!!modal || false)
         setIsDrawerOpen(false)
-        dispatch(setIsSettingsOpenActionCreator(open))
+        dispatch(setIsModalOpenActionCreator(modal))
     }
 
     const windowInnerSize = useTypedSelector(state => state.appState.windowInnerSize)
@@ -118,8 +118,8 @@ const useAppState = () => {
         setHasUpdateAvailable,
         currentFocusPanel,
         setCurrentFocusPanel,
-        isSettingsOpen,
-        setIsSettingsOpen
+        isModalOpen,
+        setIsModalOpen
     }
 }
 

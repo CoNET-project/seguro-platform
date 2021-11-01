@@ -34,7 +34,7 @@ const StyledContents = styled(motion.div)`
 `
 
 const MainScreen = () => {
-    const {windowInnerSize: {width}, setIsDrawerOpen, isDrawerOpen, isTouchDevice, isSettingsOpen} = useAppState()
+    const {windowInnerSize: {width}, setIsDrawerOpen, isDrawerOpen, isTouchDevice, isModalOpen} = useAppState()
 
     const drawerWidth = width * 0.80
 
@@ -63,7 +63,7 @@ const MainScreen = () => {
     return (
         <>
             {
-                isSettingsOpen && (
+                isModalOpen && (
                     <PlatformModal/>
                 )
             }

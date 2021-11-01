@@ -33,7 +33,7 @@ const StyledHeaderBar = styled.div`
   display: flex;
   align-items: center;
   padding: 5px;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  border-bottom: 1px solid ${props => props.theme.ui.border.color};
   position: relative;
   z-index: 10;
 
@@ -77,11 +77,15 @@ const StyledHeaderDetails = styled.div`
 `
 
 const StyledHeaderTitle = styled.p`
+  font-size: ${props => props.theme.ui.fontSizes.narrow.sm};
+  @media (${screenWidth.mediumWidth}) {
+    font-size: ${props => props.theme.ui.fontSizes.medium.sm}
+  }
 `
 
 const StyledHeaderSubtitle = styled.p`
-  font-size: 13px;
-  color: ${props => props.theme.ui.text.textSecondary}
+  font-size: ${props => props.theme.ui.fontSizes.narrow.xsm};
+  color: ${props => props.theme.ui.text.textSecondary};
 `
 
 const HeaderBar = ({className, closeAction, headerContent, headerComponents}: HeaderBarProps) => {

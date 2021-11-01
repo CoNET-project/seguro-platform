@@ -13,7 +13,6 @@ import {ChevronLeft, ChevronRight} from "../../../UI/Icons/Icons";
 import HeaderBar from "../../../UI/Common/HeaderBar/HeaderBar";
 import useAppState from "../../../../store/appState/useAppState";
 import {FormattedMessage} from "react-intl";
-import ProgressBar from "../../../UI/Progress/ProgressBar/ProgressBar";
 import SeguroDrive from "./SettingSections/SeguroDrive";
 import ProfileList from "./SettingSections/ProfileList";
 import DeviceList, {Device} from "./SettingSections/DeviceList";
@@ -23,11 +22,19 @@ import {screenWidth} from "../../../UI/screenSizes";
 
 const StyledSettingsContent = styled.div`
   height: 100%;
+  min-width: 100%;
+  @media (${screenWidth.narrowWidth}) {
+    min-width: 35rem;
+  }
+
+  @media (${screenWidth.wideWidth}) {
+    min-width: 50rem;
+  }
 `
 
 const StyledSettingsContentSection = styled.div`
   margin: 0 2.5px;
-  border: 1px solid rgba(0, 0, 0, 0.05);
+  border: 1px solid ${props => props.theme.ui.border.color};
   @media (${screenWidth.mediumWidth}) {
     margin: 0 30px;
   }
@@ -42,7 +49,7 @@ const StyledNumberBox = styled.span`
   padding: 2px 6px;
   border-radius: 5px;
   content: '';
-  border: 1px solid rgba(200, 200, 200, 0.3);
+  border: 1px solid ${props => props.theme.ui.border.color};
   margin-right: 2.5px;
 
   @media (${screenWidth.mediumWidth}) {
@@ -51,13 +58,11 @@ const StyledNumberBox = styled.span`
 `
 
 const StyledActivateDevice = styled.p`
-  @media (${screenWidth.mediumWidth}) {
-    font-size: 13px;
-  }
+  font-size: ${props => props.theme.ui.fontSizes.narrow.sm}
 `
 
 const SettingsContent = () => {
-    const {setIsSettingsOpen} = useAppState()
+    const {setIsModalOpen} = useAppState()
     const {state, dispatch} = usePageNavigator()
     const [currentPage, direction] = state.current
     console.log(currentPage)
@@ -100,7 +105,7 @@ const SettingsContent = () => {
                                          if (currentPage !== 'Platform Settings') {
                                              return dispatch(pageNavigator.navigateToPage('Platform Settings'))
                                          }
-                                         return setIsSettingsOpen(false)
+                                         return setIsModalOpen(null)
                                      },
                                      alignRight: currentPage === 'Platform Settings',
                                      icon: currentPage !== 'Platform Settings' ? <ChevronLeft/> : undefined,

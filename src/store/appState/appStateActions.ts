@@ -2,7 +2,7 @@ import {createAction} from '@reduxjs/toolkit'
 import {Theme} from '../../theme/types'
 import {Locale} from '../../localization/types'
 import {WindowInnerSize} from './useAppState'
-import {CurrentFocusPanel} from "./appStateReducer";
+import {CurrentFocusPanel, ModalNames} from "./appStateReducer";
 
 export const setWorkerServiceIsInitialized = createAction(
     'appState/workerServiceIsInitialized',
@@ -114,12 +114,12 @@ export const setHasUpdateAvailable = createAction(
     }
 )
 
-export const setIsSettingsOpen = createAction(
-    'appState/setIsSettingsOpen',
-    (open?: boolean) => {
+export const setIsModalOpen = createAction(
+    'appState/setIsModalOpen',
+    (modal: ModalNames) => {
         return {
             payload: {
-                isOpen: open || null
+                isOpen: modal
             }
         }
     }

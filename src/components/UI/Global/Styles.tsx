@@ -6,25 +6,25 @@ export default createGlobalStyle`
     font-family: 'Lato Bold', sans-serif;
   }
 
-  h1 {
-    font-size: 24px;
-  }
-
-  h2 {
-    font-size: 20px
-  }
-
-  h3 {
-    font-size: 16px
-  }
+  //h1 {
+  //  font-size: 24px;
+  //}
+  //
+  //h2 {
+  //  font-size: 20px
+  //}
+  //
+  //h3 {
+  //  font-size: 16px
+  //}
 
   p, a, div, span {
     font-family: 'Lato Regular', sans-serif;
-    font-size: 13px;
+    //font-size: 13px;
 
-    @media (${screenWidth.mediumWidth}) {
-      font-size: 16px;
-    }
+      // @media (${screenWidth.mediumWidth}) {
+    //   font-size: 16px;
+    // }
   }
 
   button {
@@ -36,6 +36,7 @@ export default createGlobalStyle`
     color: ${props => props.theme.ui.text.textPrimary};
     border: 1px solid ${props => props.theme.ui.borderColor};
     box-shadow: 0 2.5px 5px rgba(0, 0, 0, 0.1);
+    padding: 0;
   }
 
   // .tippy-box[data-placement^='bottom'] > .tippy-arrow::before {

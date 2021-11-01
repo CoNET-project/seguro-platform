@@ -25,12 +25,11 @@ const StyledDeviceCode = styled.p`
   white-space: nowrap;
   overflow: hidden;
   width: 75%;
-  font-size: 14px;
 `
 
 const StyledCopyButton = styled.button`
-  background-color: ${props => props.theme.ui.backgroundAccent};
-  border: 1px solid rgba(0, 0, 0, 0.15);
+  background-color: transparent;
+  border: none;
   padding: 4px;
   border-radius: 5px;
 `

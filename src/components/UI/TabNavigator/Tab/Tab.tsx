@@ -2,7 +2,7 @@ import {ReactNode} from 'react';
 import styled from 'styled-components';
 import {usePageNavigator} from "../../../../contexts/pageNavigator/PageNavigatorContext";
 import {pageNavigator} from "../../../../contexts/pageNavigator/pageNavigatorActions";
-import {HTMLMotionProps, motion} from 'framer-motion';
+import {motion} from 'framer-motion';
 import {screenWidth} from "../../screenSizes";
 
 export type TabActiveStyles = {
@@ -50,12 +50,12 @@ const StyledIcon = styled.p`
   height: 100%;
 
   & > p {
-    font-size: 20px;
+    font-size: ${props => props.theme.ui.fontSizes.narrow.lg}
   }
 
   @media (${screenWidth.mediumWidth}) {
     & > p {
-      font-size: 16px;
+      font-size: ${props => props.theme.ui.fontSizes.narrow.md}
     }
   }
 `
@@ -64,7 +64,7 @@ const StyledText = styled.p`
   word-break: break-all;
   display: none;
   @media (${screenWidth.mediumWidth}) {
-    font-size: 13px;
+    font-size: ${props => props.theme.ui.fontSizes.medium.sm};
     display: flex
   }
 `

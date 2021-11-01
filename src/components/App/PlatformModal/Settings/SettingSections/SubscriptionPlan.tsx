@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import Separator from "../../../../UI/Common/Separator/Separator";
+import {screenWidth} from "../../../../UI/screenSizes";
 
 const StyledSubscriptionPlan = styled.div`
   width: 100%;
@@ -24,17 +25,19 @@ const StyledInnerRow = styled.div`
 `
 
 const StyledPlanName = styled.p`
-  font-size: 15px;
   font-weight: 900;
   color: ${props => props.theme.ui.text.textPrimary}
 `
 
-const StyledPlanPrice = styled(StyledPlanName)``
+const StyledPlanPrice = styled(StyledPlanName)`
+`
 
 const StyledPlanDescription = styled.p`
   margin-top: 5px;
-  font-size: 13px;
-  color: ${props => props.theme.ui.text.textSecondary}
+  color: ${props => props.theme.ui.text.textSecondary};
+  @media (${screenWidth.mediumWidth}) {
+    font-size: ${props => props.theme.ui.fontSizes.medium.sm}
+  }
 `
 
 

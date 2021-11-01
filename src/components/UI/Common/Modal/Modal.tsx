@@ -25,7 +25,7 @@ const ModalKeyFrames = keyframes`
 `
 
 const StyledModal = styled.div`
-  width: 100%;
+  height: 100%;
   position: absolute;
   top: 0;
   bottom: 0;
@@ -40,8 +40,11 @@ const StyledModal = styled.div`
   border: 1px solid rgba(200, 200, 200, 0.2);
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15);
   overflow: hidden;
+  border-radius: 3px;
 
-  @media (${screenWidth.narrowWidth}) {
+  @media (${screenWidth.mediumWidth}) {
+    width: fit-content;
+    height: fit-content;
     //border: 1px solid rgba(0, 0, 0, 0.15);
     max-height: 60rem;
     max-width: 55rem;

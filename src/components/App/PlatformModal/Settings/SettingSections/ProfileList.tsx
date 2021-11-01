@@ -41,24 +41,21 @@ const StyledProfileItemSection = styled.div`
 
 const StyledProfileItemNickname = styled.p`
   font-weight: 700;
-
+  font-size: ${props => props.theme.ui.fontSizes.narrow.sm}
 `
 
 const StyledProfileItemKeyId = styled.p`
   color: ${props => props.theme.ui.text.textSecondary};
   margin-top: 5px;
-  font-size: 12px;
-
-  @media (${screenWidth.mediumWidth}) {
-    font-size: 13px;
-  }
+  font-size: ${props => props.theme.ui.fontSizes.narrow.sm}
 `
 
 const StyledProfileItemPrimary = styled.p`
   font-weight: 700;
   color: ${props => props.theme.ui.text.textSecondary};
+  font-size: ${props => props.theme.ui.fontSizes.narrow.sm};
   @media (${screenWidth.mediumWidth}) {
-    font-size: 13px;
+    font-size: ${props => props.theme.ui.fontSizes.medium.sm};
   }
 `
 
@@ -66,8 +63,9 @@ const StyledProfileItemSetPrimary = styled.a`
   color: ${props => props.theme.ui.primaryColor};
   cursor: pointer;
   text-decoration: underline;
+  font-size: ${props => props.theme.ui.fontSizes.narrow.sm};
   @media (${screenWidth.mediumWidth}) {
-    font-size: 13px;
+    font-size: ${props => props.theme.ui.fontSizes.medium.sm};
   }
 `
 

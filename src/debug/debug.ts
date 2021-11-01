@@ -5,7 +5,7 @@ import {
     setTheme,
     setIsDrawerOpen,
     setHasUpdateAvailable,
-    setCurrentFocusPanel, setShowOverlay, setIsSettingsOpen
+    setCurrentFocusPanel
 } from '../store/appState/appStateActions'
 import {Locale} from '../localization/types'
 import {Theme} from '../theme/types'
@@ -32,11 +32,6 @@ export const enableDebugCommands = () => {
 
             setTouch(isTouch: boolean) {
                 store.dispatch(setIsTouchDevice(isTouch))
-            },
-
-            setSettingsOpen() {
-                store.dispatch(setIsSettingsOpen())
-                store.dispatch(setShowOverlay(true))
             },
 
             toggleDrawer(isOpen: boolean) {

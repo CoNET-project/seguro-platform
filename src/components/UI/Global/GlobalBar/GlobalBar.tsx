@@ -4,7 +4,7 @@ import ProfileImage from '../../Common/Profile/Image/Image'
 import {Grid3X3, Plug, SettingGear, Update} from "../../Icons/Icons";
 import {screenWidth, sizes} from "../../screenSizes";
 import {LogoIcon} from "../../Logo/Logo";
-import ProfileDropdown, {ProfileData} from "../../Dropdowns/ProfileDropdown/ProfileDropdown";
+import ProfileDropdown, {Profiles} from "../../Dropdowns/ProfileDropdown/ProfileDropdown";
 import useAppState from "../../../../store/appState/useAppState";
 import {TippyDropdown} from "../../Tippy/Tippy";
 import AppsDropdown from "../../Dropdowns/AppsDropdown/AppsDropdown";
@@ -12,7 +12,7 @@ import AppsDropdown from "../../Dropdowns/AppsDropdown/AppsDropdown";
 const StyledGlobalBar = styled.div`
   height: calc(50px + env(safe-area-inset-top));
   width: 100%;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  border-bottom: 1px solid ${props => props.theme.ui.border.color};
   display: flex;
   align-items: center;
   background-color: ${props => props.theme.ui.backgroundColor};
@@ -74,14 +74,26 @@ const GlobalBar = () => {
         setIsDrawerOpen,
         isDrawerOpen,
         windowInnerSize: {width},
-        setIsSettingsOpen
+        setIsModalOpen
     } = useAppState()
 
-    const exampleProfile: ProfileData = {
-        imageSrc: ExampleProfile,
-        keyid: '75DDC3C4A499F1A1',
-        name: 'Jessica K'
-    }
+    const exampleProfiles: Profiles = [
+        {
+            imageSrc: ExampleProfile,
+            keyid: '75DDC3C4A499F1A1',
+            name: 'Jessica K'
+        },
+        {
+            imageSrc: 'https://source.unsplash.com/random/200x200/?city',
+            keyid: '85CCD3D535DA1DS',
+            name: 'Private Account'
+        },
+        {
+            imageSrc: 'https://source.unsplash.com/random/200x200/?cute',
+            keyid: '96BDA5D6S2C1SDB',
+            name: 'Design Studio'
+        }
+    ]
 
 
     return (
@@ -98,7 +110,7 @@ const GlobalBar = () => {
                 </StyledGlobalButton>
 
                 <StyledBarSectionOptional>
-                    <StyledGlobalButton onClick={() => setIsSettingsOpen(true)}>
+                    <StyledGlobalButton onClick={() => setIsModalOpen('settings')}>
                         <SettingGear size={18}/>
                     </StyledGlobalButton>
 
@@ -118,7 +130,7 @@ const GlobalBar = () => {
 
 
                 <TippyDropdown
-                    content={<ProfileDropdown profileData={exampleProfile}/>}
+                    content={<ProfileDropdown profiles={exampleProfiles}/>}
                     interactive={true}
                     verticalOffset={-5}
                     horizontalOffset={-110}

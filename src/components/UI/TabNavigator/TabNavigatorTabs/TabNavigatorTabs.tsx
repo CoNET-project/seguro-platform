@@ -11,7 +11,7 @@ export type TabNavigatorTabsProps = {
 const StyledTabNavigatorTabs = styled.div`
   display: flex;
   align-items: center;
-  border-top: 1px solid rgba(0, 0, 0, 0.05);
+  border-top: 1px solid ${props => props.theme.ui.border.color};
 `
 
 const TabNavigatorTabs = ({screens, activeStyles}: TabNavigatorTabsProps) => {
