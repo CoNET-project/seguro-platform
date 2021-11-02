@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import {Locale} from "../../../../localization/types";
+import {screenWidth} from "../../screenSizes";
 
 type LanguageProps = {
     index: number,
@@ -21,7 +22,7 @@ const StyledItem = styled.li<{ selected: boolean }>`
           props.theme.ui.selected :
           props.theme.ui.backgroundAccent};
   color: ${props => props.selected ? 'white' : props.theme.ui.text.textPrimary};
-
+  font-size: ${props => props.theme.ui.fontSizes.narrow.sm};
   //&:first-of-type {
   //  border-top-left-radius: 5px;
   //  border-top-right-radius: 5px;
@@ -37,6 +38,9 @@ const StyledItem = styled.li<{ selected: boolean }>`
   -moz-user-select: none; /* Old versions of Firefox */
   -ms-user-select: none; /* Internet Explorer/Edge */
   user-select: none; /* Non-prefixed version, currently supported by Chrome, Edge, Opera and Firefox */
+  @media (${screenWidth.mediumWidth}) {
+    font-size: ${props => props.theme.ui.fontSizes.medium.md}
+  }
 `
 
 const StyledText = styled.p``

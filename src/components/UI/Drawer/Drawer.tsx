@@ -42,7 +42,7 @@ const StyledHeader = styled.div`
   height: 60px;
   width: 100%;
   content: '';
-  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  border-bottom: 1px solid ${props => props.theme.ui.border.color};
   padding: 0 25px;
   display: flex;
   align-items: center;
@@ -58,18 +58,18 @@ const StyledDrawerContents = styled.div`
 
 const StyledSection = styled.div`
   &:first-of-type {
-    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    border-bottom: 1px solid ${props => props.theme.ui.border.color};
   }
 
   &:last-of-type {
-    border-top: 1px solid rgba(0, 0, 0, 0.05);
+    border-top: 1px solid ${props => props.theme.ui.border.color};
   }
 `
 
 const Drawer = (props: DrawerProps) => {
     const {animationControls, dragControls} = props
 
-    const {windowInnerSize: {width}, setIsDrawerOpen, isDrawerOpen, setIsSettingsOpen} = useAppState()
+    const {windowInnerSize: {width}, setIsDrawerOpen, isDrawerOpen, setIsModalOpen} = useAppState()
 
     const drawerRef = useRef<HTMLDivElement>(null)
 
@@ -145,7 +145,7 @@ const Drawer = (props: DrawerProps) => {
                 </StyledSection>
                 <StyledSection>
                     <Item text={<FormattedMessage id='drawer.settings'/>} icon={<Gear size={16}/>}
-                          onClick={() => setIsSettingsOpen(true)}/>
+                          onClick={() => setIsModalOpen('settings')}/>
                     <Item text={<FormattedMessage id='drawer.updates'/>} icon={<MdSystemUpdateAlt size={16}/>}/>
                     <Item text={<FormattedMessage id='drawer.support'/>} icon={<AiOutlineQuestionCircle size={16}/>}/>
                 </StyledSection>

@@ -8,6 +8,8 @@ const light: DefaultTheme = {
     ui: {
         backgroundColor: '#FEFEFE',
         backgroundAccent: '#F2F2F2',
+        backgroundAccentWithOpacity: 'rgba(242, 242, 242, 0.95)',
+        borderColor: 'rgba(0,0,0,0.1)',
         primaryColor: '#477EAD',
         accentColor: '#396FC0',
         selected: '#50A2E9',
@@ -38,6 +40,31 @@ const light: DefaultTheme = {
             textError: '#FF5B5D',
             textDisabled: '#C2C2C2',
             invertedColor: '#fff'
+        },
+        border: {
+            color: 'rgba(150, 150, 150, 0.2)',
+            inverted: 'rgba(200, 200, 200, 0.2)',
+        },
+        fontSizes: {
+            narrow: {
+                xsm: '11px',
+                sm: '13px',
+                md: '16px',
+                lg: '19px',
+                xl: '22px'
+            },
+            medium: {
+                sm: '14px',
+                md: '17px',
+                lg: '20px',
+                xl: '23px'
+            },
+            wide: {
+                sm: '14px',
+                md: '17px',
+                lg: '20px',
+                xl: '23px'
+            },
         },
         input: {
             color: '#333332',

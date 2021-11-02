@@ -12,6 +12,8 @@ declare module 'styled-components' {
         ui: {
             backgroundColor: string,
             backgroundAccent: string,
+            backgroundAccentWithOpacity: string,
+            borderColor: string,
             primaryColor: string,
             accentColor: string,
             selected: string,
@@ -37,6 +39,31 @@ declare module 'styled-components' {
                 textError: string,
                 textDisabled: string,
                 invertedColor: string
+            },
+            border: {
+                color: string,
+                inverted: string,
+            },
+            fontSizes: {
+                narrow: {
+                    xsm: string,
+                    sm: string,
+                    md: string,
+                    lg: string,
+                    xl: string
+                },
+                medium: {
+                    sm: string,
+                    md: string,
+                    lg: string,
+                    xl: string
+                },
+                wide: {
+                    sm: string,
+                    md: string,
+                    lg: string,
+                    xl: string
+                }
             },
             keypadKey: {
                 numberColor: string,

@@ -8,6 +8,8 @@ const dark: DefaultTheme = {
     ui: {
         backgroundColor: '#3c3c3c',
         backgroundAccent: '#393939',
+        backgroundAccentWithOpacity: 'rgba(57, 57, 57, 0.95)',
+        borderColor: 'rgba(255, 255, 255, 0.1)',
         primaryColor: '#396FC0',
         accentColor: '#477EAD',
         selected: '#50A2E9',
@@ -33,6 +35,31 @@ const dark: DefaultTheme = {
             textError: '#fff',
             textDisabled: '#C2C2C2',
             invertedColor: '#343434'
+        },
+        border: {
+            color: 'rgba(200, 200, 200, 0.2)',
+            inverted: 'rgba(150, 150, 150, 0.2)',
+        },
+        fontSizes: {
+            narrow: {
+                xsm: '11px',
+                sm: '13px',
+                md: '16px',
+                lg: '19px',
+                xl: '22px'
+            },
+            medium: {
+                sm: '14px',
+                md: '17px',
+                lg: '20px',
+                xl: '23px'
+            },
+            wide: {
+                sm: '14px',
+                md: '17px',
+                lg: '20px',
+                xl: '23px'
+            },
         },
         keypadKey: {
             numberColor: '#fff',

@@ -10,7 +10,7 @@ import {
     setIsDrawerOpen,
     setHasUpdateAvailable,
     setCurrentFocusPanel,
-    setIsSettingsOpen
+    setIsModalOpen
 } from './appStateActions'
 import {Theme} from '../../theme/types'
 import {Locale} from '../../localization/types'
@@ -20,11 +20,13 @@ import {WindowInnerSize} from './useAppState'
 
 export type CurrentFocusPanel = 'left' | 'main' | 'right'
 
+export type ModalNames = 'settings' | 'manageProfile' | null
+
 type AppStateReducerState = {
     isTouchDevice: boolean,
     isUnlocked: boolean,
     isDrawerOpen: boolean,
-    isSettingsOpen: boolean,
+    isModalOpen: ModalNames,
     hasContainer: boolean,
     showOverlay: boolean,
     currentFocusPanel: CurrentFocusPanel,
@@ -40,7 +42,7 @@ const initialState: AppStateReducerState = {
     isTouchDevice: false,
     isUnlocked: false,
     isDrawerOpen: false,
-    isSettingsOpen: false,
+    isModalOpen: null,
     hasContainer: false,
     showOverlay: false,
     currentFocusPanel: 'left',
@@ -93,8 +95,8 @@ const appStateReducer = createReducer(initialState, builder => {
             state.currentFocusPanel = action.payload.panel
         })
 
-        .addCase(setIsSettingsOpen, (state, action) => {
-            state.isSettingsOpen = action.payload.isOpen || !state.isSettingsOpen
+        .addCase(setIsModalOpen, (state, action) => {
+            state.isModalOpen = action.payload.isOpen
         })
 })
 

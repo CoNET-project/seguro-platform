@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import {Delete, Desktop, Mobile, Tablet} from "../../../../UI/Icons/Icons";
+import {screenWidth} from "../../../../UI/screenSizes";
 
 export type Device = {
     type: 'mobile' | 'tablet' | 'desktop',
@@ -36,7 +37,10 @@ const StyledDeviceItemIcon = styled.div``
 const StyledDeviceItemName = styled.p`
   margin-left: 15px;
   font-weight: bold;
-  font-size: 14px;
+  font-size: ${props => props.theme.ui.fontSizes.narrow.sm};
+  @media (${screenWidth.mediumWidth}) {
+    font-size: ${props => props.theme.ui.fontSizes.medium.sm}
+  }
 `
 
 const StyledDeviceItemButton = styled.button`

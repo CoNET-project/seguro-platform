@@ -2,43 +2,27 @@ import styled from 'styled-components';
 import Dropdown from "../../Common/Dropdown/Dropdown";
 import ProfileImage from '../../Common/Profile/Image/Image'
 import {HTMLAttributes} from "react";
-import Card from "../../Common/Profile/Card/Card";
+import ListItem, {ProfileData} from "./ListItem/ListItem";
 
-export type ProfileData = {
-    imageSrc: string,
-    keyid: string,
-    name?: string
-}
+export type Profiles = Array<ProfileData>
 
 type ProfileDropdownProps = {
-    profileData: ProfileData,
-    closeAction: () => void
+    profiles: Profiles
 } & HTMLAttributes<HTMLDivElement>
 
-type ProfileContent = {
-    imageSrc: string,
-    keyid: string,
-    name?: string,
-}
-
 const StyledProfileDropdown = styled.div`
-  min-width: 20rem;
   width: 100%;
   height: 100%;
-  padding: 0 20px;
+  //padding: 0 20px;
 `
 
-const DropdownContent = (profileData: ProfileData) => {
+const ProfileDropdown = ({profiles}: ProfileDropdownProps) => {
     return (
         <StyledProfileDropdown>
-            <Card {...profileData}/>
+            {
+                profiles.map((profile, idx) => <ListItem key={idx} {...profile} current={idx === 0}/>)
+            }
         </StyledProfileDropdown>
-    )
-}
-
-const ProfileDropdown = ({closeAction, profileData}: ProfileDropdownProps) => {
-    return (
-        <Dropdown content={DropdownContent(profileData)} closeAction={closeAction}/>
     )
 }
 

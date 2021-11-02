@@ -33,7 +33,6 @@ const StyledListItem = styled.div<StyledListItemProps>`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  border-bottom: 1px solid rgba(200, 200, 200, 0.15);
   cursor: ${props => props.hasClick ? 'pointer' : 'unset'}
 `
 
@@ -48,7 +47,10 @@ const StyledItemSection = styled.div<StyledItemSectionProps>`
   align-items: center;
   width: ${props => props.fullWidth ? '100%' : 'unset'};
   font-family: ${props => props.isSeparator ? "'Lato Bold', san-serif" : 'unset'};
-  font-size: ${props => props.isSeparator && '14px'};
+  font-size: ${props => props.isSeparator ? props.theme.ui.fontSizes.narrow.md : props.theme.ui.fontSizes.narrow.sm};
+  @media (${screenWidth.mediumWidth}) {
+    font-size: ${props => props.isSeparator ? props.theme.ui.fontSizes.narrow.md : props.theme.ui.fontSizes.narrow.md};
+  }
 `
 
 const StyledItemHeader = styled.div`
@@ -62,17 +64,16 @@ const StyledItemHeader = styled.div`
 
 const StyledItemHeaderTitle = styled.p`
   font-family: 'Lato Bold', sans-serif;
-  font-size: 14px;
+  font-size: ${props => props.theme.ui.fontSizes.narrow.md};
   color: ${props => props.theme.ui.text.textPrimary};
-  @media (${screenWidth.mediumWidth}) {
-    font-size: 16px;
-  }
+    // @media (${screenWidth.mediumWidth}) {
+  //   font-size: 16px;
+  // }
 `
 
 
 const ListItem = ({isSectionSeparator, itemHeader, itemLeft, itemRight, onClick}: ListItemProps) => {
     const {state} = usePageNavigator()
-    console.log(state)
     return (
         <StyledListItem isSeparator={isSectionSeparator} onClick={onClick} hasClick={!!onClick}>
             {

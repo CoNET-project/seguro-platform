@@ -13,7 +13,7 @@ type LanguageSelectProps = {
 const StyledContainer = styled.ul`
   width: 100%;
   height: 100%;
-  max-height: 540px;
+  //max-height: 540px;
   border-radius: 5px;
   overflow-y: auto;
   background-color: ${props => props.theme.ui.backgroundAccent};

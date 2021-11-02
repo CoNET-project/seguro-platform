@@ -4,6 +4,26 @@
 
 ### Additions
 
+- Standardize font sizes using styled component themes.
+- Change border colors.
+- Update existing font sizes to use theme font sizes.
+- Update profile dropdown.
+- Add manage profile modal. (Work to be done.)
+
+### Changes
+
+- Multiple style CSS changes.
+
+### Fixes
+
+- None.
+
+---
+
+## `0.20.0`
+
+### Additions
+
 - Add Platform Settings Modal.
 - Add more localization and fix existing localization UI.
 - Add more sections into Platform Settings.
