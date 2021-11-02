@@ -39,7 +39,7 @@ const StyledTab = styled(motion.button)`
   }
 `
 
-const StyledIcon = styled.p`
+const StyledIcon = styled.span`
   display: flex;
   justify-content: center;
   align-items: center;

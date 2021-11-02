@@ -20,7 +20,7 @@ import SubscriptionPlan from "./SettingSections/SubscriptionPlan";
 import DeviceCodes from "./SettingSections/DeviceCodes";
 import {screenWidth} from "../../../UI/screenSizes";
 
-const StyledSettingsContent = styled.div`
+const StyledSettingsContainer = styled.div`
   height: 100%;
   min-width: 100%;
   @media (${screenWidth.narrowWidth}) {
@@ -98,7 +98,7 @@ const SettingsContent = () => {
     const exampleDeviceCodes = ['9d7edca7-52cf-44c2-a904-c2baa7b280']
 
     return (
-        <StyledSettingsContent>
+        <StyledSettingsContainer>
             <CustomizedHeaderBar headerContent={{title: getHeaderBarTitle()}}
                                  closeAction={{
                                      action: () => {
@@ -144,14 +144,14 @@ const SettingsContent = () => {
                             />
 
                             <StyledSettingsContentSection>
-                                <ListItem
-                                    itemHeader={{
-                                        title: <FormattedMessage id='platform.settings.profile'/>,
-                                        headerRight: <BiPlus/>
-                                    }}
-                                    itemLeft={<ProfileList/>}
+                                {/*<ListItem*/}
+                                {/*    itemHeader={{*/}
+                                {/*        title: <FormattedMessage id='platform.settings.profile'/>,*/}
+                                {/*        headerRight: <BiPlus/>*/}
+                                {/*    }}*/}
+                                {/*    itemLeft={<ProfileList/>}*/}
 
-                                />
+                                {/*/>*/}
 
                                 <ListItem
                                     itemHeader={{
@@ -191,7 +191,7 @@ const SettingsContent = () => {
                     )
                 }
             </AnimatePresence>
-        </StyledSettingsContent>
+        </StyledSettingsContainer>
     )
 }
 

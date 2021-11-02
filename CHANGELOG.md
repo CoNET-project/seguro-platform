@@ -1,6 +1,27 @@
 # `seguro-platform` CHANGELOG
 
-## `0.20.0`
+## `0.22.0`
+
+### Additions
+
+- Add manage profile modal. (Work to be done.)
+- Add manage profile and add profile button in profile dropdown.
+- Moved profile data into profile dropdown.
+- Added modal for managing profiles.
+
+### Changes
+
+- Multiple style CSS changes.
+- Multiple TippyJS style changes.
+- Removed profile section in platform settings.
+
+### Fixes
+
+- Multiple dropdown issues fixed.
+
+---
+
+## `0.21.0`
 
 ### Additions
 

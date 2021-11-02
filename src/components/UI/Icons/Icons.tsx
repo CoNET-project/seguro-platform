@@ -1,10 +1,10 @@
 import {
-    BiWorld, BsChatSquareDots, BsGrid3X3, BsGrid3X3Gap, FaCheckCircle,
+    AiOutlineUserAdd,
+    BsChatSquareDots, BsGrid3X3Gap, BsThreeDotsVertical, FaCheckCircle,
     FaChevronLeft,
-    FaChevronRight, FaDesktop, FaMobileAlt, FaPlug, FaRegTrashAlt, FaTabletAlt,
-    GoPrimitiveDot,
-    GrLanguage, ImDownload, IoClose, IoIosCheckmarkCircle, IoIosWarning,
-    IoLanguage, IoMdContacts, IoSettingsOutline, MdContentCopy,
+    FaChevronRight, FaDesktop, FaMobileAlt, FaPlug, FaTabletAlt,
+    GoPrimitiveDot, ImDownload, IoClose, IoIosCheckmarkCircle, IoIosWarning,
+    IoLanguage, IoMdContacts, IoSettingsOutline, MdContentCopy, MdManageAccounts,
     RiShieldKeyholeLine, TiDelete
 } from "react-icons/all";
 import styled from 'styled-components';
@@ -247,6 +247,30 @@ export const Checkmark = ({size, color}: IconProps) => {
     return (
         <StyledIcon>
             <IoIosCheckmarkCircle size={getSize(size)} color={color || undefined}/>
+        </StyledIcon>
+    )
+}
+
+export const VerticalOptions = ({size, color}: IconProps) => {
+    return (
+        <StyledIcon>
+            <BsThreeDotsVertical size={getSize(size)} color={color || undefined}/>
+        </StyledIcon>
+    )
+}
+
+export const AddProfile = ({size, color}: IconProps) => {
+    return (
+        <StyledIcon>
+            <AiOutlineUserAdd size={getSize(size)} color={color || undefined}/>
+        </StyledIcon>
+    )
+}
+
+export const ManageAccount = ({size, color}: IconProps) => {
+    return (
+        <StyledIcon>
+            <MdManageAccounts size={getSize(size)} color={color || undefined}/>
         </StyledIcon>
     )
 }

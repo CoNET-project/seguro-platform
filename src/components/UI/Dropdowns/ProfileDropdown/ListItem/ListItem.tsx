@@ -10,7 +10,7 @@ import useAppState from "../../../../../store/appState/useAppState";
 const StyledProfileItem = styled.div`
   display: flex;
   align-items: center;
-  padding: 6px 15px;
+  padding: 12.5px 30px;
 `
 
 const StyledProfileDetails = styled.div`
@@ -57,8 +57,6 @@ export type ProfileData = {
 
 const ListItem = ({imageSrc, keyid, name, current}: ProfileData & { current?: boolean }) => {
 
-    const {setIsModalOpen} = useAppState()
-
     const copyDeviceCode = (code: string) => {
         toast({
             toastIcon: <Checkmark size={18}/>,
@@ -70,7 +68,7 @@ const ListItem = ({imageSrc, keyid, name, current}: ProfileData & { current?: bo
 
     return (
         <StyledProfileItem>
-            <ProfileImage src={imageSrc} size={60}/>
+            <ProfileImage src={imageSrc} size={45}/>
             <StyledProfileDetails>
                 <StyledProfileName>{name || 'Anonymous User'}</StyledProfileName>
                 <RowWrapper>
@@ -79,16 +77,6 @@ const ListItem = ({imageSrc, keyid, name, current}: ProfileData & { current?: bo
                         <Copy/>
                     </StyledProfileKeyIdCopy>
                 </RowWrapper>
-                {
-                    current && (
-                        <StyledManageButton
-                            onClick={() => {
-                                setIsModalOpen('manageProfile')
-                            }}>
-                            Manage Profile
-                        </StyledManageButton>
-                    )
-                }
             </StyledProfileDetails>
         </StyledProfileItem>
     )

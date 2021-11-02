@@ -28,7 +28,7 @@ const StyledOverlay = styled.div<StyledOverlayProps>`
   transition: opacity 50ms ease-in-out;
   opacity: ${props => props.show ? 1 : 0};
   width: 100%;
-  height: 100%
+  height: 100%;
 `
 
 const StyledDragOverlay = styled(motion.div)<StyledDragOverlayProps>`
