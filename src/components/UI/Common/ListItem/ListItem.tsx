@@ -73,7 +73,6 @@ const StyledItemHeaderTitle = styled.p`
 
 
 const ListItem = ({isSectionSeparator, itemHeader, itemLeft, itemRight, onClick}: ListItemProps) => {
-    const {state} = usePageNavigator()
     return (
         <StyledListItem isSeparator={isSectionSeparator} onClick={onClick} hasClick={!!onClick}>
             {

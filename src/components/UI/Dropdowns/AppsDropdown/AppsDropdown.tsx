@@ -3,13 +3,16 @@ import Dropdown from "../../Common/Dropdown/Dropdown";
 import {HTMLAttributes} from "react";
 import {FaAppStoreIos, FaCcApplePay, FaWhatsapp} from "react-icons/all";
 
-type AppsDropdownProps = {} & HTMLAttributes<HTMLDivElement>
+type AppsDropdownProps = {
+    closeDropdown: () => void
+}
 
 const StyledAppsDropdown = styled.div`
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-gap: 15px;
   max-width: 40rem;
+  padding: 10px 15px;
 `
 
 const StyledAppItem = styled.div`
@@ -29,7 +32,7 @@ const StyledAppName = styled.p`
   font-size: 13px;
 `
 
-const AppsDropdown = () => {
+const AppsDropdown = ({closeDropdown}: AppsDropdownProps) => {
     return (
         <StyledAppsDropdown>
             <StyledAppItem>

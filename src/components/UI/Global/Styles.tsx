@@ -35,8 +35,13 @@ export default createGlobalStyle`
     background: ${props => props.theme.ui.backgroundColor};
     color: ${props => props.theme.ui.text.textPrimary};
     border: 1px solid ${props => props.theme.ui.borderColor};
-    box-shadow: 0 2.5px 5px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2.5px 5px rgba(0, 0, 0, 0.2);
     padding: 0;
+  }
+
+  .tippy-content {
+    padding: 0;
+
   }
 
   // .tippy-box[data-placement^='bottom'] > .tippy-arrow::before {

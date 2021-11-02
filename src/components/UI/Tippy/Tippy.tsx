@@ -1,41 +1,41 @@
 import ReactTippy, {TippyProps as ReactTippyProps} from '@tippyjs/react'
 import 'tippy.js/dist/tippy.css';
 import 'tippy.js/animations/scale.css';
-import {JSXElementConstructor, ReactElement, ReactNode} from "react";
+import {JSXElementConstructor, ReactElement, ReactNode, useEffect, useState} from "react";
 import styled from 'styled-components';
 import useAppState from "../../../store/appState/useAppState";
 
 type TippyProps = {
     children: ReactElement<any, string | JSXElementConstructor<any>> | undefined,
     content: ReactNode,
+    visible?: boolean,
     verticalOffset?: number,
     horizontalOffset?: number
 } & ReactTippyProps
 
-const TippyContent = styled.div`
-  padding: 5px 10px;
-`
+const TippyContent = styled.div``
 
-const TippyDropdown = (props: TippyProps) => {
+const TippyDropdown = ({children, content, visible, verticalOffset, horizontalOffset}: TippyProps) => {
+
     const {isModalOpen} = useAppState()
+
     return (
         <ReactTippy
-            {...props}
             content={
                 <TippyContent>
-                    {props.content}
+                    {content}
                 </TippyContent>
             }
-            visible={isModalOpen !== null ? false : undefined}
+            visible={visible}
+            interactive={true}
             animation="scale"
             theme="custom"
             arrow={false}
-            placement="bottom"
-            trigger="click"
+            placement="bottom-end"
             zIndex={200}
-            offset={[props.horizontalOffset || 0, props.verticalOffset || 0]}
+            offset={[horizontalOffset || 0, verticalOffset || 0]}
         >
-            {props.children}
+            {children}
         </ReactTippy>
     )
 }

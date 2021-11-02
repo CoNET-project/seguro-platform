@@ -8,6 +8,7 @@ import ProfileDropdown, {Profiles} from "../../Dropdowns/ProfileDropdown/Profile
 import useAppState from "../../../../store/appState/useAppState";
 import {TippyDropdown} from "../../Tippy/Tippy";
 import AppsDropdown from "../../Dropdowns/AppsDropdown/AppsDropdown";
+import {useState} from "react";
 
 const StyledGlobalBar = styled.div`
   height: calc(50px + env(safe-area-inset-top));
@@ -55,7 +56,7 @@ const StyledGlobalButton = styled.button`
   position: relative;
 `
 
-const StyledGlobalItem = styled.div`
+const StyledGlobalItem = styled.button`
   height: 48px;
   width: 48px;
   display: flex;
@@ -68,14 +69,28 @@ const StyledGlobalItem = styled.div`
   position: relative;
 `
 
+type Dropdowns = 'applications' | 'profiles' | null
+
 const GlobalBar = () => {
     const {
         hasUpdateAvailable,
         setIsDrawerOpen,
         isDrawerOpen,
         windowInnerSize: {width},
-        setIsModalOpen
+        isModalOpen,
+        setIsModalOpen,
+        setIsShowOverlay
     } = useAppState()
+
+    const [currentDropdown, setCurrentDropdown] = useState<Dropdowns>(null)
+
+    const dropdownToggle = (dropdown: Dropdowns) => {
+        if (currentDropdown === dropdown) {
+            return setCurrentDropdown(null)
+        }
+        console.log(dropdown)
+        return setCurrentDropdown(dropdown)
+    }
 
     const exampleProfiles: Profiles = [
         {
@@ -116,12 +131,11 @@ const GlobalBar = () => {
 
 
                     <TippyDropdown
-                        content={<AppsDropdown/>}
-                        interactive={true}
-                        verticalOffset={-5}
-                        horizontalOffset={-110}
+                        content={<AppsDropdown closeDropdown={() => dropdownToggle(null)}/>}
+                        verticalOffset={-3}
+                        visible={currentDropdown === 'applications'}
                     >
-                        <StyledGlobalItem>
+                        <StyledGlobalItem onClick={() => dropdownToggle('applications')}>
                             <Grid3X3 size={18}/>
                         </StyledGlobalItem>
                     </TippyDropdown>
@@ -130,12 +144,11 @@ const GlobalBar = () => {
 
 
                 <TippyDropdown
-                    content={<ProfileDropdown profiles={exampleProfiles}/>}
-                    interactive={true}
-                    verticalOffset={-5}
-                    horizontalOffset={-110}
+                    content={<ProfileDropdown profiles={exampleProfiles} closeDropdown={() => dropdownToggle(null)}/>}
+                    verticalOffset={-3}
+                    visible={currentDropdown === 'profiles'}
                 >
-                    <StyledGlobalItem>
+                    <StyledGlobalItem onClick={() => dropdownToggle('profiles')}>
                         <ProfileImage src={ExampleProfile} size='sm'/>
                     </StyledGlobalItem>
                 </TippyDropdown>
