@@ -10,12 +10,12 @@ type TippyProps = {
     content: ReactNode,
     visible?: boolean,
     verticalOffset?: number,
-    horizontalOffset?: number
+    horizontalOffset?: number,
 } & ReactTippyProps
 
 const TippyContent = styled.div``
 
-const TippyDropdown = ({children, content, visible, verticalOffset, horizontalOffset}: TippyProps) => {
+const TippyDropdown = ({children, content, onClickOutside, visible, verticalOffset, horizontalOffset}: TippyProps) => {
 
     const {isModalOpen} = useAppState()
 
@@ -27,6 +27,7 @@ const TippyDropdown = ({children, content, visible, verticalOffset, horizontalOf
                 </TippyContent>
             }
             visible={visible}
+            onClickOutside={onClickOutside || undefined}
             interactive={true}
             animation="scale"
             theme="custom"

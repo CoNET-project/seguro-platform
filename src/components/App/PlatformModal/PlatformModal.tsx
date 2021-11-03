@@ -1,7 +1,7 @@
 import Modal, {SubModal} from "../../UI/Common/Modal/Modal";
 import useAppState from "../../../store/appState/useAppState";
 import Settings from "./Settings/Settings";
-import ManageProfile from "./ManageProfile/ManageProfile";
+import ManageProfiles from "./ManageProfiles/ManageProfiles";
 
 const PlatformModal = () => {
     const {isModalOpen, setIsModalOpen} = useAppState()
@@ -16,7 +16,7 @@ const PlatformModal = () => {
                 isModalOpen === 'settings' && <Settings/>
             }
             {
-                isModalOpen === 'manageProfile' && <ManageProfile/>
+                isModalOpen === 'manageProfile' && <ManageProfiles/>
             }
         </Modal>
     )

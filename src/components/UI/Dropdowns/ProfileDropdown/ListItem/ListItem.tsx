@@ -4,8 +4,7 @@ import {Checkmark, Copy} from "../../../Icons/Icons";
 import {toast} from "../../../Toaster/Toaster";
 import {FormattedMessage} from "react-intl";
 import {CopyToClipboard} from "../../../../../utilities/utilities";
-import {current} from "@reduxjs/toolkit";
-import useAppState from "../../../../../store/appState/useAppState";
+import AnonymousProfile from '../../../../../assets/Avatar-anonymous.png'
 
 const StyledProfileItem = styled.div`
   display: flex;
@@ -49,7 +48,7 @@ const StyledManageButton = styled.button`
 `
 
 export type ProfileData = {
-    imageSrc: string,
+    imageSrc?: string,
     keyid: string,
     name?: string
 }
@@ -68,7 +67,7 @@ const ListItem = ({imageSrc, keyid, name, current}: ProfileData & { current?: bo
 
     return (
         <StyledProfileItem>
-            <ProfileImage src={imageSrc} size={45}/>
+            <ProfileImage src={imageSrc || AnonymousProfile} size={45}/>
             <StyledProfileDetails>
                 <StyledProfileName>{name || 'Anonymous User'}</StyledProfileName>
                 <RowWrapper>

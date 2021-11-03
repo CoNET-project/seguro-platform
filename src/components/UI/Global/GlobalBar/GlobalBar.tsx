@@ -125,7 +125,10 @@ const GlobalBar = () => {
                 </StyledGlobalButton>
 
                 <StyledBarSectionOptional>
-                    <StyledGlobalButton onClick={() => setIsModalOpen('settings')}>
+                    <StyledGlobalButton onClick={() => {
+                        setCurrentDropdown(null)
+                        setIsModalOpen('settings')
+                    }}>
                         <SettingGear size={18}/>
                     </StyledGlobalButton>
 

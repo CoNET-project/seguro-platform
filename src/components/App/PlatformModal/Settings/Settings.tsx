@@ -65,7 +65,6 @@ const SettingsContent = () => {
     const {setIsModalOpen} = useAppState()
     const {state, dispatch} = usePageNavigator()
     const [currentPage, direction] = state.current
-    console.log(currentPage)
 
     const getHeaderBarTitle = () => {
         switch (true) {
