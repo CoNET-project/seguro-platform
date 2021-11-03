@@ -1,5 +1,5 @@
 import {
-    AiOutlineUserAdd,
+    AiOutlineUserAdd, BsCamera,
     BsChatSquareDots, BsGrid3X3Gap, BsThreeDotsVertical, FaCheckCircle,
     FaChevronLeft,
     FaChevronRight, FaDesktop, FaMobileAlt, FaPlug, FaTabletAlt,
@@ -271,6 +271,14 @@ export const ManageAccount = ({size, color}: IconProps) => {
     return (
         <StyledIcon>
             <MdManageAccounts size={getSize(size)} color={color || undefined}/>
+        </StyledIcon>
+    )
+}
+
+export const Camera = ({size, color}: IconProps) => {
+    return (
+        <StyledIcon>
+            <BsCamera size={getSize(size)} color={color || undefined}/>
         </StyledIcon>
     )
 }

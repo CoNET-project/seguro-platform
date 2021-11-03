@@ -83,3 +83,14 @@ export const CopyToClipboard = (data: string) => {
         navigator.clipboard.writeText(data).then();
     }
 }
+
+export const getBase64FromFile = (file: File, base64: (error: ProgressEvent<FileReader> | null, b64: string | ArrayBuffer | null) => void) => {
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = function () {
+        base64(null, reader.result)
+    };
+    reader.onerror = function (error) {
+        base64(error, null)
+    };
+}
