@@ -1,5 +1,24 @@
 # `seguro-platform` CHANGELOG
 
+## `0.23.0`
+
+### Additions
+
+- Add functionality to modal for managing profiles.
+- Add modal page navigator.
+- Add manage single profile page.
+- Add profile image change functionality. (Prototype currently)
+
+### Changes
+
+- Minor style CSS changes.
+
+### Fixes
+
+- None
+
+---
+
 ## `0.22.0`
 
 ### Additions
