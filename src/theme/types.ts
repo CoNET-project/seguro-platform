@@ -15,6 +15,7 @@ declare module 'styled-components' {
             backgroundAccentWithOpacity: string,
             borderColor: string,
             primaryColor: string,
+            primaryColorWithOpacity: string,
             accentColor: string,
             selected: string,
             outline: {

@@ -5,15 +5,29 @@ import {toast} from "../../../Toaster/Toaster";
 import {FormattedMessage} from "react-intl";
 import {CopyToClipboard} from "../../../../../utilities/utilities";
 import AnonymousProfile from '../../../../../assets/Avatar-anonymous.png'
+import {ProfileData} from '../../../../../store/appState/appStateReducer';
+import React from "react";
 
-const StyledProfileItem = styled.div`
+type StyledProfileItemProps = {
+    isActive?: boolean
+}
+
+const StyledProfileItem = styled.div<StyledProfileItemProps>`
   display: flex;
   align-items: center;
-  padding: 12.5px 30px;
+  padding: 12.5px 24px;
+  cursor: pointer;
+  background-color: ${props => props.isActive && props.theme.ui.borderColor};
+
+  &:hover {
+    background-color: ${props => props.theme.ui.primaryColorWithOpacity};
+    color: ${props => props.theme.ui.text.invertedColor}
+  }
 `
 
 const StyledProfileDetails = styled.div`
-  margin-left: 20px;
+  margin: 0 15px;
+  flex: 1;
 `
 
 const StyledProfileName = styled.p`
@@ -23,40 +37,43 @@ const StyledProfileName = styled.p`
 
 const StyledProfileKeyId = styled.p`
   color: ${props => props.theme.ui.text.textPrimary};
-  margin-right: 15px;
   font-size: ${props => props.theme.ui.fontSizes.narrow.xsm};
+
+  ${StyledProfileItem}:hover & {
+    color: ${props => props.theme.ui.text.invertedColor}
+  }
 `
 
 const StyledProfileKeyIdCopy = styled.button`
   background-color: transparent;
   border: none;
+  margin-left: 15px;
+
+  & > * {
+    transition: color 0ms ease-in-out;
+  }
+
+  ${StyledProfileItem}:hover & > * {
+    color: ${props => props.theme.ui.text.invertedColor}
+  }
 `
 
 const RowWrapper = styled.div`
   display: flex;
+  justify-content: space-between;
   align-items: center;
 `
 
-const StyledManageButton = styled.button`
-  padding: 5px 10px;
-  background-color: transparent;
-  border: 1px solid ${props => props.theme.ui.text.textPrimary};
-  border-radius: 5px;
-  margin-top: 5px;
-  font-size: ${props => props.theme.ui.fontSizes.narrow.xsm};
-  color: ${props => props.theme.ui.text.textPrimary}
-`
-
-export type ProfileData = {
-    imageSrc?: string,
-    keyid: string,
-    name?: string
-}
+type ListItemProps = {
+    active?: boolean,
+    onSwitchProfile: (keyId: string) => void
+} & ProfileData
 
 
-const ListItem = ({imageSrc, keyid, name, current}: ProfileData & { current?: boolean }) => {
+const ListItem = ({imageSrc, keyid, nickname, active, onSwitchProfile}: ListItemProps) => {
 
-    const copyDeviceCode = (code: string) => {
+    const copyDeviceCode = (event: React.MouseEvent<HTMLButtonElement>, code: string) => {
+        event.stopPropagation()
         toast({
             toastIcon: <Checkmark size={18}/>,
             event: <FormattedMessage id='toaster.action.copyDeviceCode'/>,
@@ -66,13 +83,13 @@ const ListItem = ({imageSrc, keyid, name, current}: ProfileData & { current?: bo
     }
 
     return (
-        <StyledProfileItem>
+        <StyledProfileItem onClick={() => onSwitchProfile(keyid)} isActive={active}>
             <ProfileImage src={imageSrc || AnonymousProfile} size={45}/>
             <StyledProfileDetails>
-                <StyledProfileName>{name || 'Anonymous User'}</StyledProfileName>
+                <StyledProfileName>{nickname || 'Anonymous User'}</StyledProfileName>
                 <RowWrapper>
                     <StyledProfileKeyId>{keyid}</StyledProfileKeyId>
-                    <StyledProfileKeyIdCopy onClick={() => copyDeviceCode(keyid)}>
+                    <StyledProfileKeyIdCopy onClick={(event) => copyDeviceCode(event, keyid)}>
                         <Copy/>
                     </StyledProfileKeyIdCopy>
                 </RowWrapper>

@@ -77,9 +77,8 @@ const GlobalBar = () => {
         setIsDrawerOpen,
         isDrawerOpen,
         windowInnerSize: {width},
-        isModalOpen,
+        activeProfile,
         setIsModalOpen,
-        setIsShowOverlay
     } = useAppState()
 
     const [currentDropdown, setCurrentDropdown] = useState<Dropdowns>(null)
@@ -91,24 +90,6 @@ const GlobalBar = () => {
         console.log(dropdown)
         return setCurrentDropdown(dropdown)
     }
-
-    const exampleProfiles: Profiles = [
-        {
-            imageSrc: ExampleProfile,
-            keyid: '75DDC3C4A499F1A1',
-            name: 'Jessica K'
-        },
-        {
-            imageSrc: 'https://source.unsplash.com/random/200x200/?city',
-            keyid: '85CCD3D535DA1DS',
-            name: 'Private Account'
-        },
-        {
-            imageSrc: 'https://source.unsplash.com/random/200x200/?cute',
-            keyid: '96BDA5D6S2C1SDB',
-            name: 'Design Studio'
-        }
-    ]
 
 
     return (
@@ -147,12 +128,12 @@ const GlobalBar = () => {
 
 
                 <TippyDropdown
-                    content={<ProfileDropdown profiles={exampleProfiles} closeDropdown={() => dropdownToggle(null)}/>}
+                    content={<ProfileDropdown closeDropdown={() => dropdownToggle(null)}/>}
                     verticalOffset={-3}
                     visible={currentDropdown === 'profiles'}
                 >
                     <StyledGlobalItem onClick={() => dropdownToggle('profiles')}>
-                        <ProfileImage src={ExampleProfile} size='sm'/>
+                        <ProfileImage src={activeProfile?.imageSrc} size='sm'/>
                     </StyledGlobalItem>
                 </TippyDropdown>
 

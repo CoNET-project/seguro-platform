@@ -9,6 +9,8 @@ import OnboardingScreen from "./OnboardingScreen/OnboardingScreen";
 import GlobalStyle from '../UI/Global/Styles'
 import {OnboardingPageProvider} from "../Providers/OnboardingPageProvider";
 import {Overlay} from "../UI/Common/Overlay/Overlay";
+import {Profiles} from "../UI/Dropdowns/ProfileDropdown/ProfileDropdown";
+import ExampleProfile from "../../assets/examples/profile-example.jpeg";
 
 const StyledContainer = styled.div`
   height: 100vh;
@@ -28,6 +30,27 @@ const App = () => {
 
     useEffect(() => {
 
+        appState.setClientProfiles([
+            {
+                imageSrc: ExampleProfile,
+                keyid: '75DDC3C4A499F1A1',
+                nickname: 'Jessica K',
+                primary: true
+            },
+            {
+                keyid: '85CCD3D535DA1DS',
+                nickname: 'Private Account',
+                primary: false
+            },
+            {
+                imageSrc: 'https://source.unsplash.com/random/200x200/?dog',
+                keyid: '96BDA5D6S2C1SDB',
+                nickname: 'Design Studio',
+                primary: false
+            }
+        ])
+
+
         setTimeout(() => {
             appState.initialize().then()
         }, 2000)
@@ -38,6 +61,7 @@ const App = () => {
             window.removeEventListener('resize', windowResizeHandler)
         }
     }, [])
+
 
     // let content = (
     //     // <LaunchScreen/>

@@ -2,7 +2,7 @@ import {createAction} from '@reduxjs/toolkit'
 import {Theme} from '../../theme/types'
 import {Locale} from '../../localization/types'
 import {WindowInnerSize} from './useAppState'
-import {CurrentFocusPanel, ModalNames} from "./appStateReducer";
+import {CurrentFocusPanel, ModalNames, ProfileData} from "./appStateReducer";
 
 export const setWorkerServiceIsInitialized = createAction(
     'appState/workerServiceIsInitialized',
@@ -120,6 +120,40 @@ export const setIsModalOpen = createAction(
         return {
             payload: {
                 isOpen: modal
+            }
+        }
+    }
+)
+
+export const setClientProfiles = createAction(
+    'appState/setClientProfiles',
+    (profiles: Array<ProfileData>) => {
+        return {
+            payload: {
+                profiles: profiles
+            }
+        }
+    }
+)
+
+export const setActiveProfile = createAction(
+    'appState/setActiveProfile',
+    (profile: ProfileData) => {
+        return {
+            payload: {
+                profile: profile
+            }
+        }
+    }
+)
+
+export const updateClientProfile = createAction(
+    'appState/updateClientProfile',
+    (index: number, profile: ProfileData) => {
+        return {
+            payload: {
+                index: index,
+                profile: profile
             }
         }
     }

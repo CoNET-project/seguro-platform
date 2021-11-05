@@ -1,16 +1,13 @@
 import styled from 'styled-components';
-import Dropdown from "../../Common/Dropdown/Dropdown";
-import ProfileImage from '../../Common/Profile/Image/Image'
 import {HTMLAttributes} from "react";
-import ListItem, {ProfileData} from "./ListItem/ListItem";
+import ListItem from "./ListItem/ListItem";
 import useAppState from "../../../../store/appState/useAppState";
-import {BiPlus} from "react-icons/all";
 import {AddProfile, ManageAccount} from "../../Icons/Icons";
+import {ProfileData} from '../../../../store/appState/appStateReducer';
 
 export type Profiles = Array<ProfileData>
 
 type ProfileDropdownProps = {
-    profiles: Profiles,
     closeDropdown: () => void
 } & HTMLAttributes<HTMLDivElement>
 
@@ -42,19 +39,31 @@ const StyledProfileDropdownOptionsText = styled.p`
   margin-left: 10px;
 `
 
-const ProfileDropdown = ({profiles, closeDropdown}: ProfileDropdownProps) => {
-    const {setIsModalOpen} = useAppState()
+const ProfileDropdown = ({closeDropdown}: ProfileDropdownProps) => {
+    const {setIsModalOpen, clientProfiles, setActiveProfile, activeProfile} = useAppState()
 
     const manageProfileHandler = () => {
         closeDropdown()
         setIsModalOpen('manageProfile')
     }
 
+    const onSwitchProfile = (keyId: string) => {
+        const profile = clientProfiles.filter(profile => profile.keyid === keyId)
+        if (profile.length) {
+            setActiveProfile(profile[0])
+        }
+    }
+
 
     return (
         <StyledProfileDropdown>
             {
-                profiles.map((profile, idx) => <ListItem key={idx} {...profile} current={idx === 0}/>)
+                clientProfiles.map((profile, idx) => <
+                    ListItem
+                    key={idx} {...profile}
+                    active={activeProfile?.keyid === profile.keyid}
+                    onSwitchProfile={onSwitchProfile}
+                />)
             }
             <StyledProfileDropdownOptions>
                 <StyledProfileDropdownOption onClick={() => {

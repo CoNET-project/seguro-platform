@@ -11,6 +11,7 @@ const dark: DefaultTheme = {
         backgroundAccentWithOpacity: 'rgba(57, 57, 57, 0.95)',
         borderColor: 'rgba(255, 255, 255, 0.1)',
         primaryColor: '#396FC0',
+        primaryColorWithOpacity: 'rgba(57, 111, 192, 0.75)',
         accentColor: '#477EAD',
         selected: '#50A2E9',
         outline: {

@@ -1,5 +1,24 @@
 # `seguro-platform` CHANGELOG
 
+## `0.24.0`
+
+### Additions
+
+- Add functionality to modal for managing profiles.
+- Add switching of profiles from dropdown.
+- Add changing names, profile picture and saving into state.
+- Add states for available profiles, active profiles.
+
+### Changes
+
+- Minor style CSS changes.
+
+### Fixes
+
+- Fix multiple CSS issues.
+
+---
+
 ## `0.23.0`
 
 ### Additions
