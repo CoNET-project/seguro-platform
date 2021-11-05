@@ -3,10 +3,11 @@ import {Sizes} from '../../../Icons/Icons';
 import {getPixelSize} from "../../../../../utilities/utilities";
 import {ForwardedRef, ReactNode} from 'react';
 import {screenWidth} from "../../../screenSizes";
+import AnonymousProfile from '../../../../../assets/Avatar-anonymous.png'
 import React from 'react';
 
 export type ImageProps = {
-    src: string,
+    src?: string,
     size: Sizes,
     onClick?: () => void,
     children?: ReactNode,
@@ -19,15 +20,15 @@ type StyledImageWrapperProps = {
 }
 
 const StyledImageWrapper = styled.div<StyledImageWrapperProps>`
-  width: 30px;
-  height: 30px;
+  width: ${props => props.size || '30px'};
+  height: ${props => props.size || '30px'};
   content: '';
   border-radius: ${props => props.square ? '3px' : '50%'};
   overflow: hidden;
 
   @media (${screenWidth.mediumWidth}) {
-    width: ${props => props.size};
-    height: ${props => props.size};
+    width: ${props => props.size || '75px'};
+    height: ${props => props.size || '75px'};
   }
 `
 
@@ -47,7 +48,7 @@ const Image = React.forwardRef(({
     return (
         <StyledImageWrapper square={square} size={getPixelSize(size)} ref={ref} onClick={onClick || (() => {
         })}>
-            <StyledImage src={src} alt='ProfileDropdown picture'/>
+            <StyledImage src={src || AnonymousProfile} alt='ProfileDropdown picture'/>
             {children}
         </StyledImageWrapper>
     )

@@ -10,12 +10,15 @@ import {
     setShowOverlay as setShowOverlayActionCreator,
     setTheme as setThemeActionCreator,
     setWindowInnerSize as setWindowInnerSizeActionCreator,
+    setClientProfiles as setClientProfilesActionCreator,
+    updateClientProfile as updateClientProfileActionCreator,
+    setActiveProfile as setActiveProfileActionCreator,
     setWorkerServiceIsInitialized
 } from './appStateActions'
 import {initializeWorkerService} from '../../services/workerService/workerService'
 import {Theme} from '../../theme/types'
 import {Locale} from '../../localization/types'
-import {CurrentFocusPanel, ModalNames} from "./appStateReducer";
+import {CurrentFocusPanel, ModalNames, ProfileData} from "./appStateReducer";
 
 export type WindowInnerSize = {
     width: number,
@@ -49,6 +52,24 @@ const useAppState = () => {
 
     const setTheme = (theme: Theme) => {
         dispatch(setThemeActionCreator(theme))
+    }
+
+    const updateClientProfiles = (index: number, profile: ProfileData) => {
+        dispatch(updateClientProfileActionCreator(index, profile))
+    }
+
+    const activeProfile = useTypedSelector(state => state.appState.activeProfile)
+    const setActiveProfile = (profile: ProfileData) => {
+        dispatch(setActiveProfileActionCreator(profile))
+    }
+
+    const clientProfiles = useTypedSelector(state => state.appState.clientProfiles)
+    const setClientProfiles = (profiles: Array<ProfileData>) => {
+        const primaryProfile = profiles.filter(profile => profile.primary)
+        if (primaryProfile.length) {
+            setActiveProfile(primaryProfile[0])
+        }
+        dispatch(setClientProfilesActionCreator(profiles))
     }
 
     const locale = useTypedSelector(state => state.appState.locale)
@@ -119,7 +140,12 @@ const useAppState = () => {
         currentFocusPanel,
         setCurrentFocusPanel,
         isModalOpen,
-        setIsModalOpen
+        setIsModalOpen,
+        clientProfiles,
+        setClientProfiles,
+        activeProfile,
+        setActiveProfile,
+        updateClientProfiles
     }
 }
 

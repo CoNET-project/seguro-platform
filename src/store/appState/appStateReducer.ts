@@ -10,7 +10,7 @@ import {
     setIsDrawerOpen,
     setHasUpdateAvailable,
     setCurrentFocusPanel,
-    setIsModalOpen
+    setIsModalOpen, setClientProfiles, updateClientProfile, setActiveProfile
 } from './appStateActions'
 import {Theme} from '../../theme/types'
 import {Locale} from '../../localization/types'
@@ -21,6 +21,13 @@ import {WindowInnerSize} from './useAppState'
 export type CurrentFocusPanel = 'left' | 'main' | 'right'
 
 export type ModalNames = 'settings' | 'manageProfile' | null
+
+export type ProfileData = {
+    imageSrc?: string,
+    keyid: string,
+    nickname?: string,
+    primary: boolean
+}
 
 type AppStateReducerState = {
     isTouchDevice: boolean,
@@ -35,6 +42,8 @@ type AppStateReducerState = {
     theme: Theme,
     locale: Locale,
     hasUpdateAvailable: boolean,
+    clientProfiles: Array<ProfileData>,
+    activeProfile: ProfileData | null
 
 }
 
@@ -50,7 +59,9 @@ const initialState: AppStateReducerState = {
     workerServiceIsInitialized: false,
     theme: 'Auto',
     locale: getPreferredLocale(),
-    hasUpdateAvailable: false
+    hasUpdateAvailable: false,
+    clientProfiles: [],
+    activeProfile: null
 }
 
 const appStateReducer = createReducer(initialState, builder => {
@@ -97,6 +108,20 @@ const appStateReducer = createReducer(initialState, builder => {
 
         .addCase(setIsModalOpen, (state, action) => {
             state.isModalOpen = action.payload.isOpen
+        })
+
+        .addCase(setClientProfiles, (state, action) => {
+            state.clientProfiles = action.payload.profiles
+        })
+
+        .addCase(updateClientProfile, (state, action) => {
+            const updatedProfiles = state.clientProfiles
+            updatedProfiles[action.payload.index] = action.payload.profile
+            state.clientProfiles = updatedProfiles
+        })
+
+        .addCase(setActiveProfile, (state, action) => {
+            state.activeProfile = action.payload.profile
         })
 })
 

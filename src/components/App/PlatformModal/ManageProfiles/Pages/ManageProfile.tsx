@@ -1,12 +1,13 @@
 import MotionWrapper from "../../../../UI/Motion/MotionWrapper";
 import {pageTransitionVariants} from "../../../../UI/Motion/Variants/Variants";
 import styled from "styled-components";
-import {ProfileData} from "../../../../UI/Dropdowns/ProfileDropdown/ListItem/ListItem";
 import Image from "../../../../UI/Common/Profile/Image/Image";
 import AnonymousProfile from '../../../../../assets/Avatar-anonymous.png'
 import {Camera} from "../../../../UI/Icons/Icons";
 import {ChangeEvent, useEffect, useRef, useState} from "react";
 import {getBase64FromFile} from "../../../../../utilities/utilities";
+import {screenWidth} from "../../../../UI/screenSizes";
+import {ProfileData} from "../../../../../store/appState/appStateReducer";
 
 type ManageProfileProps = {
     custom: number,
@@ -15,12 +16,24 @@ type ManageProfileProps = {
 }
 
 const StyledManageProfile = styled.div`
-  padding: 20px 0;
+  padding: 40px 0;
   background-color: ${props => props.theme.ui.backgroundColor};
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   color: ${props => props.theme.ui.text.textPrimary};
+  @media (${screenWidth.mediumWidth}) {
+    margin: 20px;
+  }
+`
+
+const StyledManageProfileRow = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  justify-content: center;
 `
 
 const StyledManageProfileImage = styled.div`
@@ -58,32 +71,69 @@ const StyledHiddenInput = styled.input`
 `
 
 const StyledProfileDetails = styled.div`
-  margin-left: 20px;
+  width: 75%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  & > * {
+    margin-top: 10px;
+  }
 `
 
 const StyledNameInput = styled.input`
   border: none;
   border-bottom: 2px solid ${props => props.theme.ui.borderColor};
   padding: 5px;
+  min-width: 15rem;
+  width: 100%;
+  text-align: center;
+
 
   &:focus {
     outline: none;
   }
 `
 
-const StyledPrimaryCheckbox = styled.input``
+const StyledPrimarySelectionRow = styled.div`
+  width: 100%;
+  display: flex;
+  align-items: center;
+`
+
+const StyledPrimaryCheckbox = styled.input`
+  margin-right: 10px;
+`
 
 const StyledPrimaryText = styled.p`
   font-size: ${props => props.theme.ui.fontSizes.narrow.sm};
 `
 
-const StyledRow = styled.div`
-  display: flex;
-  align-items: center;
-  margin: 10px 0;
+const StyledKeyIdTextRow = styled(StyledPrimarySelectionRow)``
 
-  & > *:not(:first-child) {
-    margin-left: 5px;
+const StyledTextLabel = styled.p`
+  font-size: ${props => props.theme.ui.fontSizes.narrow.xsm};
+  color: ${props => props.theme.ui.text.textSecondary}
+`
+
+const StyledText = styled(StyledTextLabel)`
+  margin-left: 10px;
+`
+
+const StyledManageProfileSaveButton = styled.button`
+  min-width: 15rem;
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: ${props => props.theme.ui.accentColor};
+  color: ${props => props.theme.ui.text.invertedColor};
+  border-radius: 5px;
+  border: 1px solid ${props => props.theme.ui.borderColor};
+  font-size: ${props => props.theme.ui.fontSizes.narrow.sm};
+  font-weight: bold;
+  text-transform: capitalize;
+
+  &:disabled {
+    opacity: 0.6;
   }
 `
 
@@ -101,11 +151,14 @@ const ManageProfile = ({custom, profile, onUpdate}: ManageProfileProps) => {
     const filePickerRef = useRef<HTMLInputElement>(null)
 
     const onNameChange = (value: string) => {
-        setCurrentProfile({
-            imageSrc: currentProfile?.imageSrc,
-            keyid: currentProfile?.keyid || "",
-            name: currentProfile?.name
-        })
+        if (currentProfile) {
+            setCurrentProfile({
+                imageSrc: currentProfile?.imageSrc,
+                keyid: currentProfile?.keyid || "",
+                nickname: value,
+                primary: currentProfile.primary
+            })
+        }
     }
 
     const onProfileChange = (event: ChangeEvent<HTMLInputElement>) => {
@@ -115,11 +168,12 @@ const ManageProfile = ({custom, profile, onUpdate}: ManageProfileProps) => {
                     return
                 }
 
-                if (typeof base64 === 'string') {
+                if (typeof base64 === 'string' && currentProfile !== null) {
                     setCurrentProfile({
                         imageSrc: base64,
-                        keyid: currentProfile?.keyid || "",
-                        name: currentProfile?.name
+                        keyid: currentProfile.keyid || "",
+                        nickname: currentProfile.nickname,
+                        primary: currentProfile.primary
                     })
                     if (filePickerRef && filePickerRef.current) {
                         filePickerRef.current.files = null
@@ -130,31 +184,64 @@ const ManageProfile = ({custom, profile, onUpdate}: ManageProfileProps) => {
         }
     }
 
+    const onSave = () => {
+        if (currentProfile) {
+            onUpdate(currentProfile)
+        }
+    }
+
     return (
         <MotionWrapper runInitialAnimation={true} custom={custom} name="Manage Profile"
                        variants={pageTransitionVariants}>
             <StyledHiddenInput type='file' accept='.jpeg,.jpg,.png,.svg' ref={filePickerRef}
                                onChange={onProfileChange}/>
             <StyledManageProfile>
-                <StyledManageProfileImage>
-                    <Image src={currentProfile && currentProfile.imageSrc || AnonymousProfile} size={100}/>
-                    <StyledManageProfileImageEdit onClick={() => filePickerRef.current?.click()}>
-                        <Camera size={20} color="white"/>
-                        <p>Change Picture</p>
-                    </StyledManageProfileImageEdit>
-                </StyledManageProfileImage>
-                <StyledProfileDetails>
-                    <StyledNameInput
-                        type='text'
-                        defaultValue={currentProfile?.name || ""}
-                        onChange={event => onNameChange(event.target.value)}/>
-                    <StyledRow>
-                        <StyledPrimaryCheckbox type='checkbox'/>
-                        <StyledPrimaryText>
-                            Set as Primary
-                        </StyledPrimaryText>
-                    </StyledRow>
-                </StyledProfileDetails>
+                <StyledManageProfileRow>
+                    <StyledManageProfileImage>
+                        <Image src={currentProfile && currentProfile.imageSrc || AnonymousProfile} size={150}/>
+                        <StyledManageProfileImageEdit onClick={() => filePickerRef.current?.click()}>
+                            <Camera size={20} color="white"/>
+                            <p>Change Picture</p>
+                        </StyledManageProfileImageEdit>
+                    </StyledManageProfileImage>
+                    <StyledProfileDetails>
+                        <StyledNameInput
+                            type='text'
+                            defaultValue={currentProfile?.nickname || ""}
+                            onChange={event => onNameChange(event.target.value)}/>
+                        <StyledKeyIdTextRow>
+                            <StyledTextLabel>Key ID:</StyledTextLabel>
+                            <StyledText>{currentProfile?.keyid || ""}</StyledText>
+                        </StyledKeyIdTextRow>
+                        <StyledPrimarySelectionRow>
+                            {
+                                currentProfile && !currentProfile.primary && (
+                                    <>
+                                        <StyledPrimaryCheckbox type='checkbox'/>
+                                        <StyledPrimaryText>
+                                            Set as Primary
+                                        </StyledPrimaryText>
+                                    </>
+                                )
+                            }
+                            {/*{*/}
+                            {/*    currentProfile && currentProfile.primary && (*/}
+                            {/*        <StyledPrimaryText>*/}
+                            {/*            Your primary profile*/}
+                            {/*        </StyledPrimaryText>*/}
+                            {/*    )*/}
+                            {/*}*/}
+                        </StyledPrimarySelectionRow>
+                    </StyledProfileDetails>
+                    <StyledManageProfileRow>
+                        <StyledManageProfileSaveButton
+                            disabled={(profile?.nickname === currentProfile?.nickname) && (profile?.imageSrc === currentProfile?.imageSrc)}
+                            onClick={onSave}
+                        >
+                            Save
+                        </StyledManageProfileSaveButton>
+                    </StyledManageProfileRow>
+                </StyledManageProfileRow>
             </StyledManageProfile>
         </MotionWrapper>
     )

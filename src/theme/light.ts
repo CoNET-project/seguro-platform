@@ -11,6 +11,7 @@ const light: DefaultTheme = {
         backgroundAccentWithOpacity: 'rgba(242, 242, 242, 0.95)',
         borderColor: 'rgba(0,0,0,0.1)',
         primaryColor: '#477EAD',
+        primaryColorWithOpacity: 'rgba(71, 126, 173, 0.75)',
         accentColor: '#396FC0',
         selected: '#50A2E9',
         outline: {

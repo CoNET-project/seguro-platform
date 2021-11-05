@@ -7,7 +7,6 @@ import Image from "../../../UI/Common/Profile/Image/Image";
 import AnonymousAvatar from '../../../../assets/Avatar-anonymous.png'
 import ExampleProfile from '../../../../assets/examples/profile-example.jpeg'
 import {Profiles} from "../../../UI/Dropdowns/ProfileDropdown/ProfileDropdown";
-import {ProfileData} from "../../../UI/Dropdowns/ProfileDropdown/ListItem/ListItem";
 import {TippyDropdown} from "../../../UI/Tippy/Tippy";
 import {ReactNode, useState} from "react";
 import {ChevronLeft, VerticalOptions} from "../../../UI/Icons/Icons";
@@ -20,6 +19,7 @@ import ManageProfile from "./Pages/ManageProfile";
 import DeleteProfile from "./Pages/DeleteProfile";
 import {pageNavigator} from "../../../../contexts/pageNavigator/pageNavigatorActions";
 import {FormattedMessage} from "react-intl";
+import {ProfileData} from "../../../../store/appState/appStateReducer";
 
 const StyledManagesProfileContainer = styled.div`
   width: 100%;
@@ -110,16 +110,16 @@ const ProfileDropdown = ({buttons}: ProfileDropdownProps) => {
 
 const ProfileItem = ({
                          imageSrc,
-                         name,
+                         nickname,
                          keyid,
                          current,
                          primary
                      }: ProfileData & { current?: boolean, primary?: boolean }) => {
     return (
         <StyledProfileItem>
-            <Image src={imageSrc || AnonymousAvatar} size={60}/>
+            <Image src={imageSrc || AnonymousAvatar} size={50}/>
             <StyledProfileItemDetail>
-                <StyledProfileItemName>{name}</StyledProfileItemName>
+                <StyledProfileItemName>{nickname || 'Anonymous User'}</StyledProfileItemName>
                 <StyledProfileItemKeyId>{keyid}</StyledProfileItemKeyId>
             </StyledProfileItemDetail>
         </StyledProfileItem>
@@ -128,7 +128,7 @@ const ProfileItem = ({
 
 const ManageProfilesContent = () => {
 
-    const {setIsModalOpen} = useAppState()
+    const {setIsModalOpen, clientProfiles, updateClientProfiles} = useAppState()
 
     const {state, dispatch} = usePageNavigator()
 
@@ -137,37 +137,6 @@ const ManageProfilesContent = () => {
     const [currentDropdownIndex, setCurrentDropdownIndex] = useState<number | null>(null)
 
     const [currentSelectedProfileIndex, setCurrentSelectedProfileIndex] = useState<number | null>(null)
-
-    const onUpdateProfile = (profileData: ProfileData) => {
-        console.log(profileData)
-    }
-
-    const dropdownHandler = (index: number) => {
-        if (currentDropdownIndex === index) {
-            return setCurrentDropdownIndex(null)
-        }
-        setCurrentDropdownIndex(index)
-    }
-
-
-    const [exampleProfiles, setExampleProfiles] = useState<Profiles>(
-        [
-            {
-                imageSrc: ExampleProfile,
-                keyid: '75DDC3C4A499F1A1',
-                name: 'Jessica K'
-            },
-            {
-                keyid: '85CCD3D535DA1DS',
-                name: 'Private Account'
-            },
-            {
-                imageSrc: 'https://source.unsplash.com/random/200x200/?cute',
-                keyid: '96BDA5D6S2C1SDB',
-                name: 'Design Studio'
-            }
-        ]
-    )
 
     const profileDropdownButtons: Array<ProfileDropdownActions> = [
         {
@@ -184,6 +153,26 @@ const ManageProfilesContent = () => {
             }
         }
     ]
+
+    const onUpdateProfile = (profileData: ProfileData) => {
+        setCurrentDropdownIndex(null)
+
+        const currentIndex = currentSelectedProfileIndex
+
+        if (currentIndex !== null) {
+            updateClientProfiles(currentIndex, profileData)
+            setCurrentSelectedProfileIndex(null)
+        }
+
+        dispatch(pageNavigator.navigateToPage('Manage Profiles'))
+    }
+
+    const dropdownHandler = (index: number) => {
+        if (currentDropdownIndex === index) {
+            return setCurrentDropdownIndex(null)
+        }
+        setCurrentDropdownIndex(index)
+    }
 
     const getHeaderBarTitle = () => {
         switch (true) {
@@ -221,7 +210,7 @@ const ManageProfilesContent = () => {
                                        name={currentPage}
                                        variants={pageTransitionVariants}>
                             <StyledManageProfilesContent>
-                                {exampleProfiles.map((profile, idx) => (
+                                {clientProfiles.map((profile, idx) => (
                                     <ListItem
                                         key={profile.keyid + idx}
                                         itemLeft={<ProfileItem {...profile} current={true} primary={true}/>}
@@ -249,7 +238,7 @@ const ManageProfilesContent = () => {
                         <ManageProfile
                             custom={direction}
                             onUpdate={onUpdateProfile}
-                            profile={(currentSelectedProfileIndex !== null && exampleProfiles[currentSelectedProfileIndex]) || undefined}/>
+                            profile={(currentSelectedProfileIndex !== null && clientProfiles[currentSelectedProfileIndex]) || undefined}/>
                     )
                 }
 
