@@ -128,7 +128,7 @@ const ProfileItem = ({
 
 const ManageProfilesContent = () => {
 
-    const {setIsModalOpen, clientProfiles, updateClientProfiles} = useAppState()
+    const {setIsModalOpen, clientProfiles, updateClientProfiles, deleteClientProfile} = useAppState()
 
     const {state, dispatch} = usePageNavigator()
 
@@ -164,6 +164,17 @@ const ManageProfilesContent = () => {
             setCurrentSelectedProfileIndex(null)
         }
 
+        dispatch(pageNavigator.navigateToPage('Manage Profiles'))
+    }
+
+    const onDeleteProfile = (keyId: string) => {
+        setCurrentDropdownIndex(null)
+        dispatch(pageNavigator.navigateToPage('Manage Profiles'))
+        deleteClientProfile(keyId)
+    }
+
+    const onBack = () => {
+        setCurrentDropdownIndex(null)
         dispatch(pageNavigator.navigateToPage('Manage Profiles'))
     }
 
@@ -238,13 +249,14 @@ const ManageProfilesContent = () => {
                         <ManageProfile
                             custom={direction}
                             onUpdate={onUpdateProfile}
-                            profile={(currentSelectedProfileIndex !== null && clientProfiles[currentSelectedProfileIndex]) || undefined}/>
+                            profile={clientProfiles[currentDropdownIndex || 0]}/>
                     )
                 }
 
                 {
                     currentPage === 'Delete Profile' && (
-                        <DeleteProfile custom={direction}/>
+                        <DeleteProfile custom={direction} profile={clientProfiles[currentDropdownIndex || 0]}
+                                       onDelete={onDeleteProfile} onBack={onBack}/>
                     )
                 }
 

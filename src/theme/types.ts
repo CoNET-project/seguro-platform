@@ -17,6 +17,7 @@ declare module 'styled-components' {
             primaryColor: string,
             primaryColorWithOpacity: string,
             accentColor: string,
+            dangerousColor: string,
             selected: string,
             outline: {
                 color: string

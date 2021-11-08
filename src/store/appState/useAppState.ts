@@ -12,6 +12,7 @@ import {
     setWindowInnerSize as setWindowInnerSizeActionCreator,
     setClientProfiles as setClientProfilesActionCreator,
     updateClientProfile as updateClientProfileActionCreator,
+    deleteClientProfile as deleteClientProfileActionCreator,
     setActiveProfile as setActiveProfileActionCreator,
     setWorkerServiceIsInitialized
 } from './appStateActions'
@@ -56,6 +57,10 @@ const useAppState = () => {
 
     const updateClientProfiles = (index: number, profile: ProfileData) => {
         dispatch(updateClientProfileActionCreator(index, profile))
+    }
+
+    const deleteClientProfile = (keyId: string) => {
+        dispatch(deleteClientProfileActionCreator(keyId))
     }
 
     const activeProfile = useTypedSelector(state => state.appState.activeProfile)
@@ -145,7 +150,8 @@ const useAppState = () => {
         setClientProfiles,
         activeProfile,
         setActiveProfile,
-        updateClientProfiles
+        updateClientProfiles,
+        deleteClientProfile
     }
 }
 
