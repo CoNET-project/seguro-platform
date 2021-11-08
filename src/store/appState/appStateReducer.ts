@@ -1,16 +1,20 @@
 import {createReducer} from '@reduxjs/toolkit'
 import {
-    setWorkerServiceIsInitialized,
-    setTheme,
-    setLocale,
-    setIsTouchDevice,
-    setWindowInnerSize,
-    setShowOverlay,
-    setHasContainer,
-    setIsDrawerOpen,
-    setHasUpdateAvailable,
+    deleteClientProfile,
+    setActiveProfile,
+    setClientProfiles,
     setCurrentFocusPanel,
-    setIsModalOpen, setClientProfiles, updateClientProfile, setActiveProfile
+    setHasContainer,
+    setHasUpdateAvailable,
+    setIsDrawerOpen,
+    setIsModalOpen,
+    setIsTouchDevice,
+    setLocale,
+    setShowOverlay,
+    setTheme,
+    setWindowInnerSize,
+    setWorkerServiceIsInitialized,
+    updateClientProfile
 } from './appStateActions'
 import {Theme} from '../../theme/types'
 import {Locale} from '../../localization/types'
@@ -115,13 +119,23 @@ const appStateReducer = createReducer(initialState, builder => {
         })
 
         .addCase(updateClientProfile, (state, action) => {
-            const updatedProfiles = state.clientProfiles
+            const updatedProfiles = state.clientProfiles.map(profile => {
+                profile.primary = false
+                return profile
+            })
             updatedProfiles[action.payload.index] = action.payload.profile
             state.clientProfiles = updatedProfiles
         })
 
         .addCase(setActiveProfile, (state, action) => {
             state.activeProfile = action.payload.profile
+        })
+
+        .addCase(deleteClientProfile, (state, action) => {
+            state.clientProfiles = state.clientProfiles.filter(profile => profile.keyid !== action.payload.keyId)
+            if (state.activeProfile?.keyid === action.payload.keyId) {
+                state.activeProfile = state.clientProfiles.filter(profile => profile.primary)[0]
+            }
         })
 })
 

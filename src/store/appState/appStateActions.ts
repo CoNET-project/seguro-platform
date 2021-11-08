@@ -158,3 +158,14 @@ export const updateClientProfile = createAction(
         }
     }
 )
+
+export const deleteClientProfile = createAction(
+    'appState/deleteClientProfile',
+    (keyId: string) => {
+        return {
+            payload: {
+                keyId
+            }
+        }
+    }
+)

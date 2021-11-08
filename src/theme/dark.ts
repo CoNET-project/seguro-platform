@@ -13,6 +13,7 @@ const dark: DefaultTheme = {
         primaryColor: '#396FC0',
         primaryColorWithOpacity: 'rgba(57, 111, 192, 0.75)',
         accentColor: '#477EAD',
+        dangerousColor: '#df4759',
         selected: '#50A2E9',
         outline: {
             color: '#4D90FE'
