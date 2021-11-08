@@ -1,5 +1,21 @@
 # `seguro-platform` CHANGELOG
 
+## `0.26.0`
+
+### Additions
+
+- None
+
+### Changes
+
+- Bump package dependency versions.
+
+### Fixes
+
+- None
+
+---
+
 ## `0.25.0`
 
 ### Additions
