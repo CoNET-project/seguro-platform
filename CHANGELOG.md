@@ -1,5 +1,24 @@
 # `seguro-platform` CHANGELOG
 
+## `0.25.0`
+
+### Additions
+
+- Add delete profile.
+- Add delete profile state and actions.
+
+### Changes
+
+- Minor style CSS changes.
+- Update profile view into separate file.
+
+### Fixes
+
+- Fix multiple CSS issues.
+- Fix minor state issues.
+
+---
+
 ## `0.24.0`
 
 ### Additions
