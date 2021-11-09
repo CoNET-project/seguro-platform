@@ -10,6 +10,7 @@ import {screenWidth} from "../../../../UI/screenSizes";
 import {ProfileData} from "../../../../../store/appState/appStateReducer";
 import {isDisabled} from "@testing-library/user-event/dist/utils";
 import Profile from "../Profile/Profile";
+import {FormattedMessage} from "react-intl";
 
 type ManageProfileProps = {
     custom: number,
@@ -98,7 +99,7 @@ const ManageProfile = ({custom, profile, onUpdate}: ManageProfileProps) => {
                         disabled={saveIsDisabled()}
                         onClick={onSave}
                     >
-                        Save
+                        <FormattedMessage id='platform.manageProfile.saveButton'/>
                     </StyledManageProfileSaveButton>
                 </StyledManageProfileRow>
             </StyledManageProfile>

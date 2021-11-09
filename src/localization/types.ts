@@ -77,8 +77,32 @@ export type Messages = {
     'platform.settings.activeCodes': string,
     'platform.settings.subscriptionPlan': string,
 
-    'toaster.action.copyDeviceCode': string
+    'toaster.action.copyDeviceCode': string,
 
+    'platform.contextMenu.manage': string,
+    'platform.contextMenu.delete': string,
+    'platform.contextMenu.edit': string,
+
+    'globalBar.profile.dropdown.manageProfiles': string,
+    'globalBar.profile.dropdown.addProfile': string,
+
+    'platform.manageProfile': string,
+    'platform.manageProfile.setAsPrimary': string,
+    'platform.manageProfile.saveButton': string,
+
+    'platform.manageProfiles': string,
+    'platform.manageProfiles.deleteProfile': string,
+    'platform.manageProfiles.deleteProfile.confirmationTitle': string,
+    'platform.manageProfiles.deleteProfile.confirmationSubtext': string,
+    'platform.manageProfiles.deleteProfile.cancelButton': string,
+    'platform.manageProfiles.deleteProfile.confirmButton': string,
+
+    'platform.manageProfiles.deleteProfile.isPrimaryText': string,
+    'platform.manageProfiles.deleteProfile.isPrimarySubtext': string,
+    'platform.manageProfiles.deleteProfile.returnButton': string,
+
+    'platform.addProfile.setAsPrimary': string,
+    'platform.addProfile.createButton': string,
 }
 
 export type MessagesByLocale = Record<Locale, Messages>

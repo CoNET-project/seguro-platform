@@ -6,6 +6,7 @@ import {screenWidth} from "../../../../UI/screenSizes";
 import {ChangeEvent, useEffect, useRef, useState} from "react";
 import {ProfileData} from "../../../../../store/appState/appStateReducer";
 import {getBase64FromFile} from "../../../../../utilities/utilities";
+import {FormattedMessage} from "react-intl";
 
 const StyledManageProfile = styled.div`
   padding: 40px 0 20px 0;
@@ -210,7 +211,7 @@ const Profile = ({profile, onChange, disableUpdate, newProfile}: ProfileProps) =
                                                            disabled={!newProfile && profile?.primary}
                                     />
                                     <StyledPrimaryText>
-                                        Set as Primary
+                                        <FormattedMessage id='platform.manageProfile.setAsPrimary'/>
                                     </StyledPrimaryText>
                                 </StyledPrimarySelectionRow>
                             )

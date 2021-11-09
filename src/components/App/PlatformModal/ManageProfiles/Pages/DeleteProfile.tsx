@@ -5,6 +5,7 @@ import Profile from "../Profile/Profile";
 import {ProfileData} from "../../../../../store/appState/appStateReducer";
 import {pageNavigator} from "../../../../../contexts/pageNavigator/pageNavigatorActions";
 import {usePageNavigator} from "../../../../../contexts/pageNavigator/PageNavigatorContext";
+import {FormattedMessage} from "react-intl";
 
 type DeleteProfileProps = {
     custom: number,
@@ -68,23 +69,42 @@ const DeleteProfile = ({profile, custom, onDelete, onBack}: DeleteProfileProps) 
             <StyledDeleteProfile>
                 <Profile profile={profile} onChange={(profile) => {
                 }} disableUpdate={true}/>
-                <StyledDeleteProfileMessage>{profile.primary ? 'Primary profile' : 'Are you sure?'}</StyledDeleteProfileMessage>
-                <StyledDeleteProfileSubmessage>{profile.primary ? 'Please set another profile as primary before attempting to delete.' : 'Deleting a profile is a permanent action!'}</StyledDeleteProfileSubmessage>
+                <StyledDeleteProfileMessage>
+                    {profile.primary ? (
+                        <FormattedMessage id='platform.manageProfiles.deleteProfile.isPrimaryText'/>
+                    ) : (
+                        <FormattedMessage id='platform.manageProfiles.deleteProfile.confirmationTitle'/>
+                    )}
+                </StyledDeleteProfileMessage>
+                <StyledDeleteProfileSubmessage>{profile.primary ? (
+                    <FormattedMessage id='platform.manageProfiles.deleteProfile.isPrimarySubtext'/>
+                ) : (
+                    <FormattedMessage id='platform.manageProfiles.deleteProfile.confirmationSubtext'/>
+                )}</StyledDeleteProfileSubmessage>
                 <StyledDeleteProfileRow>
                     {
                         !profile.primary && (
                             <>
                                 <StyledDeleteProfileButton
-                                    onClick={onBack}>Cancel</StyledDeleteProfileButton>
-                                <StyledDeleteProfileButton danger={true}
-                                                           onClick={() => onDelete(profile.keyid)}>Confirm</StyledDeleteProfileButton>
+                                    onClick={onBack}>
+                                    <FormattedMessage id='platform.manageProfiles.deleteProfile.cancelButton'/>
+                                </StyledDeleteProfileButton>
+                                <StyledDeleteProfileButton
+                                    danger={true}
+                                    onClick={() =>
+                                        onDelete(profile.keyid)}>
+                                    <FormattedMessage id='platform.manageProfiles.deleteProfile.confirmButton'/>
+                                </StyledDeleteProfileButton>
                             </>
                         )
                     }
                     {
                         profile.primary && (
                             <StyledDeleteProfileButton
-                                onClick={onBack}>Back to profiles</StyledDeleteProfileButton>
+                                onClick={onBack}>
+                                <FormattedMessage
+                                    id='platform.manageProfiles.deleteProfile.returnButton'/>
+                            </StyledDeleteProfileButton>
                         )
                     }
                 </StyledDeleteProfileRow>

@@ -109,7 +109,7 @@ const HeaderBar = ({className, closeAction, headerContent, headerComponents}: He
                     )
                 }
                 <StyledHeaderDetails>
-                    <StyledHeaderTitle>
+                    <StyledHeaderTitle id='headerTitle'>
                         {headerContent.title}
                     </StyledHeaderTitle>
                     {

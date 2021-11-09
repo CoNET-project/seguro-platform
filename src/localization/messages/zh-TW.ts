@@ -73,7 +73,49 @@ const zh_CN: Messages = {
     'platform.settings.activeCodes': '活動代碼',
     'platform.settings.subscriptionPlan': '訂閱計劃',
 
-    'toaster.action.copyDeviceCode': '複製的設備代碼!'
+    'toaster.action.copyDeviceCode': '複製的設備代碼!',
+
+
+    'platform.contextMenu.manage': '管理',
+    'platform.contextMenu.delete': '刪除',
+    'platform.contextMenu.edit': '編輯',
+
+    // 'globalBar.profile.dropdown.manageProfiles': 'Manage Profiles',
+    // 'globalBar.profile.dropdown.addProfile': 'Add Profile',
+    //
+    // 'platform.manageProfile': 'Manage Profile',
+    // 'platform.manageProfile.setAsPrimary': 'Set as primary',
+    // 'platform.manageProfile.saveButton': 'Save',
+    //
+    // 'platform.manageProfiles': 'Manage Profiles',
+    // 'platform.manageProfiles.deleteProfile': 'Delete Profile',
+    // 'platform.manageProfiles.isPrimaryText': 'Primary profile',
+    // 'platform.manageProfiles.isPrimarySubtext': 'Please unset profile as primary before deleting!',
+    // 'platform.manageProfiles.deleteProfile.returnButton': 'Return to profiles',
+    //
+    // 'platform.addProfile.setAsPrimary': 'Set as primary',
+    // 'platform.addProfile.createButton': 'Create',
+
+    'globalBar.profile.dropdown.manageProfiles': '管理個人資料',
+    'globalBar.profile.dropdown.addProfile': '添加配置文件',
+
+    'platform.manageProfile': '管理個人資料',
+    'platform.manageProfile.setAsPrimary': '設置為主',
+    'platform.manageProfile.saveButton': '保存',
+
+    'platform.manageProfiles': '管理個人資料',
+    'platform.manageProfiles.deleteProfile': '刪除個人資料',
+    'platform.manageProfiles.deleteProfile.confirmationTitle': '你確定嗎？',
+    'platform.manageProfiles.deleteProfile.confirmationSubtext': '刪除個人資料是永久性的！',
+    'platform.manageProfiles.deleteProfile.cancelButton': '取消',
+    'platform.manageProfiles.deleteProfile.confirmButton': '確認',
+
+    'platform.manageProfiles.deleteProfile.isPrimaryText': '主要配置文件',
+    'platform.manageProfiles.deleteProfile.isPrimarySubtext': '刪除前請取消將配置文件設為主要配置文件！ ',
+    'platform.manageProfiles.deleteProfile.returnButton': '返回個人資料',
+
+    'platform.addProfile.setAsPrimary': '設置為主',
+    'platform.addProfile.createButton': '創建',
 }
 
 export default zh_CN

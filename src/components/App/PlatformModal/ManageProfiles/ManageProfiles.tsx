@@ -20,6 +20,7 @@ import DeleteProfile from "./Pages/DeleteProfile";
 import {pageNavigator} from "../../../../contexts/pageNavigator/pageNavigatorActions";
 import {FormattedMessage} from "react-intl";
 import {ProfileData} from "../../../../store/appState/appStateReducer";
+import ContextMenu, {ContextMenuActions} from "../../../UI/Common/ContextMenu/ContextMenu";
 
 const StyledManagesProfileContainer = styled.div`
   width: 100%;
@@ -35,6 +36,11 @@ const StyledManageProfilesContent = styled.div`
 
 const CustomizedHeaderBar = styled(HeaderBar)`
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+
+  & > * #headerTitle {
+    font-size: ${props => props.theme.ui.fontSizes.narrow.md};
+    font-weight: 700;
+  }
 `
 
 const StyledProfileItem = styled.div`
@@ -60,53 +66,6 @@ const StyledProfileItemOptions = styled.button`
   border: none;
   background-color: transparent;
 `
-
-const StyledDropdown = styled.div`
-  min-width: 100px;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-`
-
-const StyledDropdownItem = styled.button`
-  background-color: transparent;
-  border: none;
-  width: 100%;
-  text-align: left;
-  padding: 10px 15px;
-
-  &:not(:last-of-type) {
-    border-bottom: 1px solid ${props => props.theme.ui.borderColor};
-  }
-`
-
-const StyledDropdownText = styled.p`
-  font-size: ${props => props.theme.ui.fontSizes.narrow.sm};
-  color: ${props => props.theme.ui.text.textPrimary}
-`
-
-export type ProfileDropdownActions = {
-    text: ReactNode | string,
-    action: () => void
-}
-
-type ProfileDropdownProps = {
-    buttons: Array<ProfileDropdownActions>
-}
-
-const ProfileDropdown = ({buttons}: ProfileDropdownProps) => {
-    return (
-        <StyledDropdown>
-            {buttons.map((button, idx) => (
-                <StyledDropdownItem onClick={button.action} key={idx}>
-                    <StyledDropdownText>
-                        {button.text}
-                    </StyledDropdownText>
-                </StyledDropdownItem>
-            ))}
-        </StyledDropdown>
-    )
-}
 
 const ProfileItem = ({
                          imageSrc,
@@ -138,16 +97,16 @@ const ManageProfilesContent = () => {
 
     const [currentSelectedProfileIndex, setCurrentSelectedProfileIndex] = useState<number | null>(null)
 
-    const profileDropdownButtons: Array<ProfileDropdownActions> = [
+    const profileContextMenuButtons: Array<ContextMenuActions> = [
         {
-            text: 'Manage',
+            text: <FormattedMessage id='platform.contextMenu.manage'/>,
             action: () => {
                 setCurrentSelectedProfileIndex(currentDropdownIndex)
                 dispatch(pageNavigator.navigateToPage('Manage Profile'))
             }
         },
         {
-            text: 'Delete',
+            text: <FormattedMessage id='platform.contextMenu.delete'/>,
             action: () => {
                 dispatch(pageNavigator.navigateToPage('Delete Profile'))
             }
@@ -188,11 +147,11 @@ const ManageProfilesContent = () => {
     const getHeaderBarTitle = () => {
         switch (true) {
             case currentPage === 'Manage Profiles':
-                return currentPage
+                return <FormattedMessage id='platform.manageProfiles'/>
             case currentPage === 'Manage Profile':
-                return currentPage
+                return <FormattedMessage id='platform.manageProfile'/>
             case currentPage === 'Delete Profile':
-                return currentPage
+                return <FormattedMessage id='platform.manageProfiles.deleteProfile'/>
             default:
                 break;
         }
@@ -226,7 +185,7 @@ const ManageProfilesContent = () => {
                                         key={profile.keyid + idx}
                                         itemLeft={<ProfileItem {...profile} current={true} primary={true}/>}
                                         itemRight={
-                                            <TippyDropdown content={<ProfileDropdown buttons={profileDropdownButtons}/>}
+                                            <TippyDropdown content={<ContextMenu buttons={profileContextMenuButtons}/>}
                                                            visible={currentDropdownIndex === idx}
                                                            onClickOutside={(instance => {
                                                                instance.hide();
