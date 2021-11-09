@@ -1,5 +1,22 @@
 # `seguro-platform` CHANGELOG
 
+## `0.28.0`
+
+### Additions
+
+- Add states for devices.
+- Add new localization text for managing, deleting, adding profile(s).
+
+### Changes
+
+- Localization for managing, deleting, adding profile(s).
+
+### Fixes
+
+- Fix CSS issues.
+
+---
+
 ## `0.27.0`
 
 ### Additions
