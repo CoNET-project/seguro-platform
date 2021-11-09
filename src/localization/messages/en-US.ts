@@ -75,7 +75,34 @@ const en_US: Messages = {
     'platform.settings.activeCodes': 'Active Codes',
     'platform.settings.subscriptionPlan': 'Subscription Plan',
 
-    'toaster.action.copyDeviceCode': 'Copied device code!'
+    'toaster.action.copyDeviceCode': 'Copied device code!',
+
+    'platform.contextMenu.manage': 'Manage',
+    'platform.contextMenu.delete': 'Delete',
+    'platform.contextMenu.edit': 'Edit',
+
+    'globalBar.profile.dropdown.manageProfiles': 'Manage Profiles',
+    'globalBar.profile.dropdown.addProfile': 'Add Profile',
+
+    'platform.manageProfile': 'Manage Profile',
+    'platform.manageProfile.setAsPrimary': 'Set as primary',
+    'platform.manageProfile.saveButton': 'Save',
+
+    'platform.manageProfiles': 'Manage Profiles',
+    'platform.manageProfiles.deleteProfile': 'Delete Profile',
+    'platform.manageProfiles.deleteProfile.confirmationTitle': 'Are you sure?',
+    'platform.manageProfiles.deleteProfile.confirmationSubtext': 'Deleting a profile is a permanent action!',
+    'platform.manageProfiles.deleteProfile.cancelButton': 'Cancel',
+    'platform.manageProfiles.deleteProfile.confirmButton': 'Confirm',
+
+
+    'platform.manageProfiles.deleteProfile.isPrimaryText': 'Primary profile',
+    'platform.manageProfiles.deleteProfile.isPrimarySubtext': 'Please unset profile as primary before deleting!',
+    'platform.manageProfiles.deleteProfile.returnButton': 'Return to profiles',
+
+    'platform.addProfile.setAsPrimary': 'Set as primary',
+    'platform.addProfile.createButton': 'Create',
+
 }
 
 export default en_US

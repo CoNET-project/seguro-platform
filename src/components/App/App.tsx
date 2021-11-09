@@ -11,6 +11,7 @@ import {OnboardingPageProvider} from "../Providers/OnboardingPageProvider";
 import {Overlay} from "../UI/Common/Overlay/Overlay";
 import {Profiles} from "../UI/Dropdowns/ProfileDropdown/ProfileDropdown";
 import ExampleProfile from "../../assets/examples/profile-example.jpeg";
+import {Device} from "./PlatformModal/Settings/SettingSections/DeviceList";
 
 const StyledContainer = styled.div`
   height: 100vh;
@@ -49,6 +50,26 @@ const App = () => {
                 primary: false
             }
         ])
+
+        const randomDeviceIds = Array.from({length: 3}, (_, i) => (Date.now() + Math.round(Math.random() * 100)).toString())
+
+        appState.setClientDevices({
+            [randomDeviceIds[0]]: {
+                id: randomDeviceIds[0],
+                type: 'mobile',
+                name: 'iPhone-S4GD0S'
+            },
+            [randomDeviceIds[1]]: {
+                id: randomDeviceIds[1],
+                type: 'desktop',
+                name: 'Mac Mini-C0S3M8VN'
+            },
+            [randomDeviceIds[2]]: {
+                id: randomDeviceIds[2],
+                type: 'tablet',
+                name: 'Samsung TAB-LX30SMA'
+            },
+        })
 
 
         setTimeout(() => {

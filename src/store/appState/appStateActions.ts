@@ -2,7 +2,7 @@ import {createAction} from '@reduxjs/toolkit'
 import {Theme} from '../../theme/types'
 import {Locale} from '../../localization/types'
 import {WindowInnerSize} from './useAppState'
-import {CurrentFocusPanel, ModalNames, ProfileData} from "./appStateReducer";
+import {CurrentFocusPanel, DeviceData, ModalNames, ProfileData} from "./appStateReducer";
 
 export const setWorkerServiceIsInitialized = createAction(
     'appState/workerServiceIsInitialized',
@@ -176,6 +176,36 @@ export const deleteClientProfile = createAction(
         return {
             payload: {
                 keyId
+            }
+        }
+    }
+)
+
+export const setClientDevices = createAction(
+    'appState/setClientDevices',
+    (clientDevices: { [deviceId: string]: DeviceData }) => {
+        return {
+            payload: clientDevices
+        }
+    }
+)
+
+export const deleteClientDevice = createAction(
+    'appState/deleteClientDevice',
+    (deviceId: string) => {
+        return {
+            payload: deviceId
+        }
+    }
+)
+
+export const updateClientDevice = createAction(
+    'appState/updateClientDevice',
+    (deviceId: string, deviceData: DeviceData) => {
+        return {
+            payload: {
+                deviceId,
+                deviceData
             }
         }
     }

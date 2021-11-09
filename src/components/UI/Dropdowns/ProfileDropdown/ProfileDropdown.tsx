@@ -4,6 +4,7 @@ import ListItem from "./ListItem/ListItem";
 import useAppState from "../../../../store/appState/useAppState";
 import {AddProfile, ManageAccount} from "../../Icons/Icons";
 import {ProfileData} from '../../../../store/appState/appStateReducer';
+import {FormattedMessage} from "react-intl";
 
 export type Profiles = Array<ProfileData>
 
@@ -74,13 +75,13 @@ const ProfileDropdown = ({closeDropdown}: ProfileDropdownProps) => {
                 <StyledProfileDropdownOption onClick={addProfileHandler}>
                     <AddProfile size={20}/>
                     <StyledProfileDropdownOptionsText>
-                        Add Profile
+                        <FormattedMessage id='globalBar.profile.dropdown.addProfile'/>
                     </StyledProfileDropdownOptionsText>
                 </StyledProfileDropdownOption>
                 <StyledProfileDropdownOption onClick={manageProfileHandler}>
                     <ManageAccount size={20}/>
                     <StyledProfileDropdownOptionsText>
-                        Manage Profiles
+                        <FormattedMessage id='globalBar.profile.dropdown.manageProfiles'/>
                     </StyledProfileDropdownOptionsText>
                 </StyledProfileDropdownOption>
             </StyledProfileDropdownOptions>

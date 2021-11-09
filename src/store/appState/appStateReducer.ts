@@ -1,8 +1,8 @@
 import {createReducer} from '@reduxjs/toolkit'
 import {
-    createClientProfile,
+    createClientProfile, deleteClientDevice,
     deleteClientProfile,
-    setActiveProfile,
+    setActiveProfile, setClientDevices,
     setClientProfiles,
     setCurrentFocusPanel,
     setHasContainer,
@@ -14,7 +14,7 @@ import {
     setShowOverlay,
     setTheme,
     setWindowInnerSize,
-    setWorkerServiceIsInitialized,
+    setWorkerServiceIsInitialized, updateClientDevice,
     updateClientProfile
 } from './appStateActions'
 import {Theme} from '../../theme/types'
@@ -34,6 +34,16 @@ export type ProfileData = {
     primary: boolean
 }
 
+export type Devices = {
+    [deviceId: string]: DeviceData
+}
+
+export type DeviceData = {
+    id: string,
+    type: 'desktop' | 'laptop' | 'tablet' | 'mobile' | 'unknown',
+    name: string,
+}
+
 type AppStateReducerState = {
     isTouchDevice: boolean,
     isUnlocked: boolean,
@@ -48,7 +58,8 @@ type AppStateReducerState = {
     locale: Locale,
     hasUpdateAvailable: boolean,
     clientProfiles: Array<ProfileData>,
-    activeProfile: ProfileData | null
+    activeProfile: ProfileData | null,
+    clientDevices: Devices
 
 }
 
@@ -66,7 +77,8 @@ const initialState: AppStateReducerState = {
     locale: getPreferredLocale(),
     hasUpdateAvailable: false,
     clientProfiles: [],
-    activeProfile: null
+    activeProfile: null,
+    clientDevices: {}
 }
 
 const appStateReducer = createReducer(initialState, builder => {
@@ -150,6 +162,21 @@ const appStateReducer = createReducer(initialState, builder => {
             if (state.activeProfile?.keyid === action.payload.keyId) {
                 state.activeProfile = state.clientProfiles.filter(profile => profile.primary)[0]
             }
+        })
+
+        .addCase(setClientDevices, (state, action) => {
+            state.clientDevices = action.payload
+        })
+
+        .addCase(deleteClientDevice, (state, action) => {
+            const updatedDevices = state.clientDevices
+            delete updatedDevices[action.payload]
+
+            state.clientDevices = updatedDevices
+        })
+
+        .addCase(updateClientDevice, (state, action) => {
+            state.clientDevices[action.payload.deviceId] = action.payload.deviceData
         })
 })
 

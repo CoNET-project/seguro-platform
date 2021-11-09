@@ -36,12 +36,17 @@ const StyledSettingsContentSection = styled.div`
   margin: 0 2.5px;
   border: 1px solid ${props => props.theme.ui.border.color};
   @media (${screenWidth.mediumWidth}) {
-    margin: 0 30px;
+    margin: 0 30px 30px 30px;
   }
 `
 
 const CustomizedHeaderBar = styled(HeaderBar)`
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+
+  & > * #headerTitle {
+    font-size: ${props => props.theme.ui.fontSizes.narrow.md};
+    font-weight: 700;
+  }
 `
 
 const StyledNumberBox = styled.span`
@@ -62,7 +67,7 @@ const StyledActivateDevice = styled.p`
 `
 
 const SettingsContent = () => {
-    const {setIsModalOpen} = useAppState()
+    const {setIsModalOpen, clientDevices} = useAppState()
     const {state, dispatch} = usePageNavigator()
     const [currentPage, direction] = state.current
 
@@ -75,23 +80,6 @@ const SettingsContent = () => {
             default:
                 break;
         }
-    }
-
-    const exampleDevices = (): Array<Device> => {
-        return [
-            {
-                type: 'mobile',
-                deviceId: 'iPhone-MG182736',
-                onDelete: () => {
-                }
-            },
-            {
-                type: 'tablet',
-                deviceId: 'Android-M817276',
-                onDelete: () => {
-                }
-            }
-        ]
     }
 
     const exampleDeviceCodes = ['9d7edca7-52cf-44c2-a904-c2baa7b280']
@@ -156,7 +144,7 @@ const SettingsContent = () => {
                                     itemHeader={{
                                         title: <FormattedMessage id='platform.settings.devices'/>
                                     }}
-                                    itemLeft={<DeviceList devices={exampleDevices()}/>}
+                                    itemLeft={<DeviceList devices={clientDevices}/>}
                                 />
 
                                 <ListItem

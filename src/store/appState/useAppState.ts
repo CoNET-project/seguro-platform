@@ -15,12 +15,15 @@ import {
     deleteClientProfile as deleteClientProfileActionCreator,
     setActiveProfile as setActiveProfileActionCreator,
     createClientProfile as createClientProfileActionCreator,
+    setClientDevices as setClientDevicesActionCreator,
+    updateClientDevice as updateClientDeviceActionCreator,
+    deleteClientDevice as deleteClientDeviceActionCreator,
     setWorkerServiceIsInitialized
 } from './appStateActions'
 import {initializeWorkerService} from '../../services/workerService/workerService'
 import {Theme} from '../../theme/types'
 import {Locale} from '../../localization/types'
-import {CurrentFocusPanel, ModalNames, ProfileData} from "./appStateReducer";
+import {CurrentFocusPanel, DeviceData, ModalNames, ProfileData} from "./appStateReducer";
 
 export type WindowInnerSize = {
     width: number,
@@ -81,6 +84,20 @@ const useAppState = () => {
         }
         dispatch(setClientProfilesActionCreator(profiles))
     }
+
+    const clientDevices = useTypedSelector(state => state.appState.clientDevices)
+    const setClientDevices = (clientDevices: { [deviceId: string]: DeviceData }) => {
+        dispatch(setClientDevicesActionCreator(clientDevices))
+    }
+
+    const updateClientDevice = (deviceId: string, deviceData: DeviceData) => {
+        dispatch(updateClientDeviceActionCreator(deviceId, deviceData))
+    }
+
+    const deleteClientDevice = (deviceId: string) => {
+        dispatch(deleteClientDeviceActionCreator(deviceId))
+    }
+
 
     const locale = useTypedSelector(state => state.appState.locale)
     const setLocale = (locale: Locale) => {
@@ -157,7 +174,11 @@ const useAppState = () => {
         setActiveProfile,
         updateClientProfiles,
         deleteClientProfile,
-        createClientProfile
+        createClientProfile,
+        clientDevices,
+        setClientDevices,
+        updateClientDevice,
+        deleteClientDevice
     }
 }
 

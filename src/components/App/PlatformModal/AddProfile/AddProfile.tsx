@@ -42,6 +42,11 @@ const StyledAddProfileContent = styled.div`
 
 const CustomizedHeaderBar = styled(HeaderBar)`
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+
+  & > * #headerTitle {
+    font-size: ${props => props.theme.ui.fontSizes.narrow.md};
+    font-weight: 700;
+  }
 `
 
 const StyledAddProfileButton = styled.button`
@@ -75,9 +80,11 @@ const AddProfile = ({}: AddProfileProps) => {
         nickname: '',
         primary: false
     })
+
+
     return (
         <StyledAddProfileContainer>
-            <CustomizedHeaderBar headerContent={{title: 'Add Profile'}}
+            <CustomizedHeaderBar headerContent={{title: <FormattedMessage id='globalBar.profile.dropdown.addProfile'/>}}
                                  closeAction={{
                                      action: () => {
                                          return setIsModalOpen(null)
@@ -89,7 +96,9 @@ const AddProfile = ({}: AddProfileProps) => {
             <StyledAddProfileContent>
                 <Profile profile={newProfile} onChange={setNewProfile} newProfile={true}/>
                 <StyledAddProfileRow>
-                    <StyledAddProfileButton onClick={() => onCreateProfile(newProfile)}>Create</StyledAddProfileButton>
+                    <StyledAddProfileButton onClick={() => onCreateProfile(newProfile)}>
+                        <FormattedMessage id='platform.addProfile.createButton'/>
+                    </StyledAddProfileButton>
                 </StyledAddProfileRow>
             </StyledAddProfileContent>
         </StyledAddProfileContainer>

@@ -73,7 +73,33 @@ const zh_CN: Messages = {
     'platform.settings.activeCodes': '活动代码',
     'platform.settings.subscriptionPlan': '订阅计划',
 
-    'toaster.action.copyDeviceCode': '复制的设备代码!'
+    'toaster.action.copyDeviceCode': '复制的设备代码!',
+
+    'platform.contextMenu.manage': '管理',
+    'platform.contextMenu.delete': '删除',
+    'platform.contextMenu.edit': '编辑',
+
+    'globalBar.profile.dropdown.manageProfiles': '管理个人资料',
+    'globalBar.profile.dropdown.addProfile': '添加配置文件',
+
+    'platform.manageProfile': '管理个人资料',
+    'platform.manageProfile.setAsPrimary': '设置为主',
+    'platform.manageProfile.saveButton': '保存',
+
+    'platform.manageProfiles': '管理个人资料',
+    'platform.manageProfiles.deleteProfile': '删除个人资料',
+    'platform.manageProfiles.deleteProfile.confirmationTitle': '你确定吗？',
+    'platform.manageProfiles.deleteProfile.confirmationSubtext': '删除个人资料是永久性的！',
+    'platform.manageProfiles.deleteProfile.cancelButton': '取消',
+    'platform.manageProfiles.deleteProfile.confirmButton': '确认',
+
+
+    'platform.manageProfiles.deleteProfile.isPrimaryText': '主要配置文件',
+    'platform.manageProfiles.deleteProfile.isPrimarySubtext': '删除前请取消将配置文件设为主要配置文件！ ',
+    'platform.manageProfiles.deleteProfile.returnButton': '返回个人资料',
+
+    'platform.addProfile.setAsPrimary': '设置为主',
+    'platform.addProfile.createButton': '创建',
 }
 
 export default zh_CN

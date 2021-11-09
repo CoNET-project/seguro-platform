@@ -1,6 +1,11 @@
 import styled from "styled-components";
-import {Delete, Desktop, Mobile, Tablet} from "../../../../UI/Icons/Icons";
+import {Delete, Desktop, Mobile, Tablet, VerticalOptions} from "../../../../UI/Icons/Icons";
 import {screenWidth} from "../../../../UI/screenSizes";
+import {TippyDropdown} from "../../../../UI/Tippy/Tippy";
+import {ReactNode, useState} from "react";
+import ContextMenu, {ContextMenuActions} from "../../../../UI/Common/ContextMenu/ContextMenu";
+import {pageNavigator} from "../../../../../contexts/pageNavigator/pageNavigatorActions";
+import {DeviceData, Devices} from "../../../../../store/appState/appStateReducer";
 
 export type Device = {
     type: 'mobile' | 'tablet' | 'desktop',
@@ -9,11 +14,17 @@ export type Device = {
 }
 
 type DeviceItemProps = {
-    device: Device
+    device: DeviceData,
+    index: number,
+    isEditting: boolean,
+    setAsEditting: (id: string) => void,
+    onClick: (index: number) => void,
+    showDropdown: boolean,
+    hideDropdown: () => void
 }
 
 type DeviceListProps = {
-    devices: Array<Device>
+    devices: Devices
 }
 
 const StyledDeviceItem = styled.div`
@@ -43,13 +54,39 @@ const StyledDeviceItemName = styled.p`
   }
 `
 
+const StyledDeviceItemNameInput = styled.input`
+  margin-left: 15px;
+  font-weight: bold;
+  font-size: ${props => props.theme.ui.fontSizes.narrow.sm};
+  border: none;
+  border-bottom: 1px solid ${props => props.theme.ui.borderColor};
+  padding: 5px 0;
+  @media (${screenWidth.mediumWidth}) {
+    font-size: ${props => props.theme.ui.fontSizes.medium.sm}
+  }
+
+  &:focus {
+    outline: none;
+  }
+`
+
 const StyledDeviceItemButton = styled.button`
   border: none;
   background-color: transparent;
   padding: 5px;
+  color: ${props => props.theme.ui.text.textPrimary};
+  opacity: 0.5;
 `
 
-const DeviceItem = ({device}: DeviceItemProps) => {
+const DeviceItem = ({
+                        index,
+                        device,
+                        isEditting,
+                        setAsEditting,
+                        onClick,
+                        showDropdown,
+                        hideDropdown
+                    }: DeviceItemProps) => {
 
     const getDeviceIcon = () => {
         switch (device.type) {
@@ -64,6 +101,19 @@ const DeviceItem = ({device}: DeviceItemProps) => {
         }
     }
 
+    const deviceContextMenuButtons: Array<ContextMenuActions> = [
+        {
+            text: 'Edit Name',
+            action: () => {
+                setAsEditting(device.id)
+            }
+        },
+        {
+            text: 'Delete',
+            action: () => {
+            }
+        }
+    ]
 
     return (
         <StyledDeviceItem>
@@ -71,12 +121,22 @@ const DeviceItem = ({device}: DeviceItemProps) => {
                 <StyledDeviceItemIcon>
                     {getDeviceIcon()}
                 </StyledDeviceItemIcon>
-                <StyledDeviceItemName>{device.deviceId}</StyledDeviceItemName>
+                {
+                    isEditting ? <StyledDeviceItemNameInput defaultValue={device.name}/> :
+                        <StyledDeviceItemName>{device.name}</StyledDeviceItemName>
+                }
             </StyledDeviceItemSection>
             <StyledDeviceItemSection>
-                <StyledDeviceItemButton>
-                    <Delete size={24}/>
-                </StyledDeviceItemButton>
+                <TippyDropdown content={<ContextMenu buttons={deviceContextMenuButtons}/>}
+                               visible={showDropdown}
+                               onClickOutside={(instance => {
+                                   instance.hide();
+                                   hideDropdown()
+                               })}>
+                    <StyledDeviceItemButton onClick={() => onClick(index)}>
+                        <VerticalOptions/>
+                    </StyledDeviceItemButton>
+                </TippyDropdown>
             </StyledDeviceItemSection>
         </StyledDeviceItem>
     )
@@ -89,9 +149,35 @@ const StyledDeviceList = styled.div`
 
 
 const DeviceList = ({devices}: DeviceListProps) => {
+    const [currentContextIndex, setCurrentContextIndex] = useState<number | null>(null)
+    const [currentEditId, setCurrentEditId] = useState<string | null>(null)
+
+
+    const clearContextMenu = () => {
+        return setCurrentContextIndex(null)
+    }
+
+    const showContextMenu = (index: number) => {
+        if (currentContextIndex === index) {
+            return clearContextMenu()
+        }
+        setCurrentContextIndex(index)
+    }
+
+
     return (
         <StyledDeviceList>
-            {devices.map((device, idx) => <DeviceItem device={device} key={idx}/>)}
+            {Object.values(devices).map((device, idx) => (
+                <DeviceItem
+                    index={idx}
+                    isEditting={currentEditId === device.id}
+                    setAsEditting={setCurrentEditId}
+                    onClick={showContextMenu}
+                    device={device}
+                    key={idx}
+                    showDropdown={currentContextIndex === idx}
+                    hideDropdown={clearContextMenu}/>
+            ))}
         </StyledDeviceList>
 
     )

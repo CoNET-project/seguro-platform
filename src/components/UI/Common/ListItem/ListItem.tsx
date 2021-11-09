@@ -29,11 +29,15 @@ const StyledListItem = styled.div<StyledListItemProps>`
   min-height: 50px;
   background-color: ${props => props.isSeparator ? props.theme.ui.backgroundAccent : props.theme.ui.backgroundColor};
   color: ${props => props.theme.ui.text.textPrimary};
-  padding: 17.5px 20px;
+  padding: 15px 15px;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  cursor: ${props => props.hasClick ? 'pointer' : 'unset'}
+  cursor: ${props => props.hasClick ? 'pointer' : 'unset'};
+
+  @media (${screenWidth.mediumWidth}) {
+    padding: 15px 20px;
+  }
 `
 
 const StyledListItemContent = styled.div`
@@ -47,7 +51,7 @@ const StyledItemSection = styled.div<StyledItemSectionProps>`
   align-items: center;
   width: ${props => props.fullWidth ? '100%' : 'unset'};
   font-family: ${props => props.isSeparator ? "'Lato Bold', san-serif" : 'unset'};
-  font-size: ${props => props.isSeparator ? props.theme.ui.fontSizes.narrow.md : props.theme.ui.fontSizes.narrow.sm};
+  font-size: ${props => props.isSeparator ? `calc(${props.theme.ui.fontSizes.narrow.sm} + 1px)` : props.theme.ui.fontSizes.narrow.sm};
   @media (${screenWidth.mediumWidth}) {
     font-size: ${props => props.isSeparator ? props.theme.ui.fontSizes.narrow.md : props.theme.ui.fontSizes.narrow.md};
   }
@@ -64,7 +68,7 @@ const StyledItemHeader = styled.div`
 
 const StyledItemHeaderTitle = styled.p`
   font-family: 'Lato Bold', sans-serif;
-  font-size: ${props => props.theme.ui.fontSizes.narrow.md};
+  font-size: ${props => props.theme.ui.fontSizes.narrow.sm};
   color: ${props => props.theme.ui.text.textPrimary};
     // @media (${screenWidth.mediumWidth}) {
   //   font-size: 16px;
