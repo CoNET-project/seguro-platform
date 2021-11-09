@@ -1,5 +1,23 @@
 # `seguro-platform` CHANGELOG
 
+## `0.27.0`
+
+### Additions
+
+- Add states for creating a new profile.
+- Add modal for creating a new profile.
+- Add pop up toast for when new profile is created.
+
+### Changes
+
+- None.
+
+### Fixes
+
+- Fix CSS issues.
+
+---
+
 ## `0.26.0`
 
 ### Additions
