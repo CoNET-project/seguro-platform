@@ -1,6 +1,6 @@
 import {
     AiOutlineUserAdd, BsCamera,
-    BsChatSquareDots, BsGrid3X3Gap, BsThreeDotsVertical, FaCheckCircle,
+    BsChatSquareDots, BsGrid3X3Gap, BsThreeDotsVertical, CgProfile, FaCheckCircle,
     FaChevronLeft,
     FaChevronRight, FaDesktop, FaMobileAlt, FaPlug, FaTabletAlt,
     GoPrimitiveDot, ImDownload, IoClose, IoIosCheckmarkCircle, IoIosWarning,
@@ -263,6 +263,14 @@ export const AddProfile = ({size, color}: IconProps) => {
     return (
         <StyledIcon>
             <AiOutlineUserAdd size={getSize(size)} color={color || undefined}/>
+        </StyledIcon>
+    )
+}
+
+export const ProfileIcon = ({size, color}: IconProps) => {
+    return (
+        <StyledIcon>
+            <CgProfile size={getSize(size)} color={color || undefined}/>
         </StyledIcon>
     )
 }
