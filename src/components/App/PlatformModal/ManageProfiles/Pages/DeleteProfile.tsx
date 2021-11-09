@@ -31,11 +31,13 @@ const StyledDeleteProfileRow = styled.div`
 
 const StyledDeleteProfileMessage = styled.p`
   font-size: ${props => props.theme.ui.fontSizes.narrow.md};
+  color: ${props => props.theme.ui.text.textPrimary};
   font-weight: 700;
 `
 
 const StyledDeleteProfileSubmessage = styled.p`
   font-size: ${props => props.theme.ui.fontSizes.narrow.md};
+  color: ${props => props.theme.ui.text.textPrimary};
   margin-top: 5px;
   max-width: 75%;
   text-align: center;
@@ -52,7 +54,7 @@ const StyledDeleteProfileButton = styled.button<ButtonProps>`
   border: 1px solid ${props => props.theme.ui.borderColor};
   border-radius: 5px;
   background-color: ${props => props.danger ? props.theme.ui.dangerousColor : 'initial'};
-  color: ${props => props.danger ? props.theme.ui.text.invertedColor : props.theme.ui.text.textPrimary};
+  color: ${props => props.danger ? 'white' : props.theme.ui.text.textPrimary};
 
   &:last-of-type {
     margin-left: 20px;

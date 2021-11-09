@@ -147,6 +147,17 @@ export const setActiveProfile = createAction(
     }
 )
 
+export const createClientProfile = createAction(
+    'appState/createClientProfile',
+    (profile: ProfileData) => {
+        return {
+            payload: {
+                profile
+            }
+        }
+    }
+)
+
 export const updateClientProfile = createAction(
     'appState/updateClientProfile',
     (index: number, profile: ProfileData) => {

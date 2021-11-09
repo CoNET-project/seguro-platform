@@ -1,5 +1,6 @@
 import {createReducer} from '@reduxjs/toolkit'
 import {
+    createClientProfile,
     deleteClientProfile,
     setActiveProfile,
     setClientProfiles,
@@ -24,7 +25,7 @@ import {WindowInnerSize} from './useAppState'
 
 export type CurrentFocusPanel = 'left' | 'main' | 'right'
 
-export type ModalNames = 'settings' | 'manageProfile' | null
+export type ModalNames = 'settings' | 'manageProfile' | 'addProfile' | null
 
 export type ProfileData = {
     imageSrc?: string,
@@ -116,6 +117,19 @@ const appStateReducer = createReducer(initialState, builder => {
 
         .addCase(setClientProfiles, (state, action) => {
             state.clientProfiles = action.payload.profiles
+        })
+
+        .addCase(createClientProfile, (state, action) => {
+            let updatedProfiles = state.clientProfiles
+            if (action.payload.profile.primary) {
+                updatedProfiles = updatedProfiles.map(profile => {
+                    return {
+                        ...profile,
+                        primary: false
+                    }
+                })
+            }
+            state.clientProfiles = [...updatedProfiles, action.payload.profile]
         })
 
         .addCase(updateClientProfile, (state, action) => {

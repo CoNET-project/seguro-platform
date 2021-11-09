@@ -14,6 +14,7 @@ import {
     updateClientProfile as updateClientProfileActionCreator,
     deleteClientProfile as deleteClientProfileActionCreator,
     setActiveProfile as setActiveProfileActionCreator,
+    createClientProfile as createClientProfileActionCreator,
     setWorkerServiceIsInitialized
 } from './appStateActions'
 import {initializeWorkerService} from '../../services/workerService/workerService'
@@ -53,6 +54,10 @@ const useAppState = () => {
 
     const setTheme = (theme: Theme) => {
         dispatch(setThemeActionCreator(theme))
+    }
+
+    const createClientProfile = (profile: ProfileData) => {
+        dispatch(createClientProfileActionCreator(profile))
     }
 
     const updateClientProfiles = (index: number, profile: ProfileData) => {
@@ -151,7 +156,8 @@ const useAppState = () => {
         activeProfile,
         setActiveProfile,
         updateClientProfiles,
-        deleteClientProfile
+        deleteClientProfile,
+        createClientProfile
     }
 }
 

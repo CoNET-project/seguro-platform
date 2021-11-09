@@ -42,7 +42,7 @@ const StyledManageProfileSaveButton = styled.button`
   margin-top: 20px;
   padding: 10px 20px;
   background-color: ${props => props.theme.ui.accentColor};
-  color: ${props => props.theme.ui.text.invertedColor};
+  color: white;
   border-radius: 5px;
   border: 1px solid ${props => props.theme.ui.borderColor};
   font-size: ${props => props.theme.ui.fontSizes.narrow.sm};

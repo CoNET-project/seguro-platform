@@ -79,7 +79,8 @@ const StyledNameInput = styled.input`
   min-width: 15rem;
   width: 100%;
   text-align: center;
-
+  background-color: ${props => props.theme.ui.backgroundColor};
+  color: ${props => props.theme.ui.text.textPrimary};
 
   &:focus {
     outline: none;
@@ -114,10 +115,11 @@ const StyledText = styled(StyledTextLabel)`
 type ProfileProps = {
     profile: ProfileData,
     onChange: (profile: ProfileData) => void,
-    disableUpdate?: boolean
+    disableUpdate?: boolean,
+    newProfile?: boolean
 }
 
-const Profile = ({profile, onChange, disableUpdate}: ProfileProps) => {
+const Profile = ({profile, onChange, disableUpdate, newProfile}: ProfileProps) => {
 
     console.log(profile)
 
@@ -192,7 +194,9 @@ const Profile = ({profile, onChange, disableUpdate}: ProfileProps) => {
                             type='text'
                             defaultValue={profile?.nickname || ""}
                             disabled={disableUpdate}
-                            onChange={event => onNameChange(event.target.value)}/>
+                            onChange={event => onNameChange(event.target.value)}
+                            placeholder="Anonymous User"
+                        />
                         <StyledKeyIdTextRow>
                             <StyledTextLabel>Key ID:</StyledTextLabel>
                             <StyledText>{profile.keyid}</StyledText>
@@ -203,7 +207,7 @@ const Profile = ({profile, onChange, disableUpdate}: ProfileProps) => {
                                     <StyledPrimaryCheckbox type='checkbox'
                                                            onChange={e => onChangePrimary(e.target.checked)}
                                                            defaultChecked={profile?.primary}
-                                                           disabled={profile?.primary}
+                                                           disabled={!newProfile && profile?.primary}
                                     />
                                     <StyledPrimaryText>
                                         Set as Primary

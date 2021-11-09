@@ -47,6 +47,11 @@ const ProfileDropdown = ({closeDropdown}: ProfileDropdownProps) => {
         setIsModalOpen('manageProfile')
     }
 
+    const addProfileHandler = () => {
+        closeDropdown()
+        setIsModalOpen('addProfile')
+    }
+
     const onSwitchProfile = (keyId: string) => {
         const profile = clientProfiles.filter(profile => profile.keyid === keyId)
         if (profile.length) {
@@ -66,8 +71,7 @@ const ProfileDropdown = ({closeDropdown}: ProfileDropdownProps) => {
                 />)
             }
             <StyledProfileDropdownOptions>
-                <StyledProfileDropdownOption onClick={() => {
-                }}>
+                <StyledProfileDropdownOption onClick={addProfileHandler}>
                     <AddProfile size={20}/>
                     <StyledProfileDropdownOptionsText>
                         Add Profile
