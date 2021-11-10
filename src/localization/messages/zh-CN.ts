@@ -64,6 +64,7 @@ const zh_CN: Messages = {
     'platform.settings.theme.dark': '深色',
     'platform.settings.theme.auto': '自动',
     'platform.settings.passcode': '密码',
+    'platform.settings.passcode.edit': '更改密码',
     'platform.settings.general': '一般',
     'platform.settings.myAccount': '我的账户',
     'platform.settings.profile': '资料',

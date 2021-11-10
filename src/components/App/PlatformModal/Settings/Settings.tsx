@@ -67,6 +67,19 @@ const StyledActivateDevice = styled.p`
   font-size: ${props => props.theme.ui.fontSizes.narrow.sm}
 `
 
+const StyledButton = styled.button`
+  background-color: ${props => props.theme.ui.backgroundColor};
+  border: none;
+  color: ${props => props.theme.ui.text.textPrimary};
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  
+  & > *:last-child {
+    margin-left: 10px;
+  }
+`
+
 const SettingsContent = () => {
     const {setIsModalOpen, clientDevices} = useAppState()
     const {state, dispatch} = usePageNavigator()
@@ -122,7 +135,13 @@ const SettingsContent = () => {
                                           itemRight={<ThemeSelector/>}
                                 />
 
-                                <ListItem itemLeft={<FormattedMessage id='platform.settings.passcode'/>} onClick={() => dispatch(pageNavigator.navigateToPage('Passcode'))}/>
+                                <ListItem itemLeft={<FormattedMessage id='platform.settings.passcode'/>}
+                                          itemRight={
+                                              <StyledButton onClick={() => dispatch(pageNavigator.navigateToPage('Passcode'))}>
+                                                  <FormattedMessage id='platform.settings.passcode.edit'/>
+                                                  <ChevronRight/>
+                                              </StyledButton>
+                                          }/>
 
                                 <ListItem
                                     itemLeft={

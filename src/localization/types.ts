@@ -68,6 +68,7 @@ export type Messages = {
     'platform.settings.theme.dark': string,
     'platform.settings.theme.auto': string,
     'platform.settings.passcode': string,
+    'platform.settings.passcode.edit': string,
     'platform.settings.general': string,
     'platform.settings.myAccount': string,
     'platform.settings.profile': string
