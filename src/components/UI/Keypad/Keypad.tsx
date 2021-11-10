@@ -33,7 +33,7 @@ const Keypad = ({numberKeyOnClick, deleteKeyOnClick, cancelKeyOnClick, unlockKey
             } else if (i == 11) {
                 key = <Key number={0} alphabet='+' onClick={() => numberKeyOnClick(0)}/>
             } else if (i == 12) {
-                key = <Key text={<FiDelete size={24}/>} onClick={deleteKeyOnClick}/>
+                key = <Key text={<FiDelete size={20}/>} onClick={deleteKeyOnClick}/>
             }
             keys.push(key)
             key = null

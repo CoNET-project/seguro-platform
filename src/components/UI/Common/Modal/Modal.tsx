@@ -41,6 +41,7 @@ const StyledModal = styled.div`
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15);
   overflow: hidden;
   border-radius: 3px;
+  transition: width 500ms ease-in-out, height 500ms ease-in-out;
 
   @media (${screenWidth.mediumWidth}) {
     width: fit-content;

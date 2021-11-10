@@ -19,6 +19,7 @@ import DeviceList, {Device} from "./SettingSections/DeviceList";
 import SubscriptionPlan from "./SettingSections/SubscriptionPlan";
 import DeviceCodes from "./SettingSections/DeviceCodes";
 import {screenWidth} from "../../../UI/screenSizes";
+import Passcode from "./Pages/Passcode";
 
 const StyledSettingsContainer = styled.div`
   height: 100%;
@@ -77,6 +78,8 @@ const SettingsContent = () => {
                 return <FormattedMessage id='platform.settings.settings'/>
             case currentPage === 'Language':
                 return <FormattedMessage id='platform.settings.language'/>
+            case currentPage === 'Passcode':
+                return currentPage
             default:
                 break;
         }
@@ -119,7 +122,7 @@ const SettingsContent = () => {
                                           itemRight={<ThemeSelector/>}
                                 />
 
-                                <ListItem itemLeft={<FormattedMessage id='platform.settings.passcode'/>}/>
+                                <ListItem itemLeft={<FormattedMessage id='platform.settings.passcode'/>} onClick={() => dispatch(pageNavigator.navigateToPage('Passcode'))}/>
 
                                 <ListItem
                                     itemLeft={
@@ -177,6 +180,11 @@ const SettingsContent = () => {
                         <Language custom={direction}/>
                     )
                 }
+                {
+                    currentPage === 'Passcode' && (
+                        <Passcode/>
+                    )
+                }
             </AnimatePresence>
         </StyledSettingsContainer>
     )
@@ -184,7 +192,7 @@ const SettingsContent = () => {
 
 
 const Settings = () => {
-    const existingPages = ['Platform Settings', 'Language', 'Add Profile']
+    const existingPages = ['Platform Settings', 'Language', 'Passcode']
 
     return (
         <PageNavigatorProvider existingPages={existingPages}>

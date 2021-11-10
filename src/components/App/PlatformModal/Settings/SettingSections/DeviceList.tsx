@@ -2,7 +2,7 @@ import styled from "styled-components";
 import {Delete, Desktop, Mobile, Tablet, VerticalOptions} from "../../../../UI/Icons/Icons";
 import {screenWidth} from "../../../../UI/screenSizes";
 import {TippyDropdown} from "../../../../UI/Tippy/Tippy";
-import {ReactNode, useState} from "react";
+import {ReactNode, useEffect, useRef, useState} from "react";
 import ContextMenu, {ContextMenuActions} from "../../../../UI/Common/ContextMenu/ContextMenu";
 import {pageNavigator} from "../../../../../contexts/pageNavigator/pageNavigatorActions";
 import {DeviceData, Devices} from "../../../../../store/appState/appStateReducer";
@@ -55,12 +55,14 @@ const StyledDeviceItemName = styled.p`
 `
 
 const StyledDeviceItemNameInput = styled.input`
+  min-width: 10rem;
+  height: 100%;
   margin-left: 15px;
   font-weight: bold;
   font-size: ${props => props.theme.ui.fontSizes.narrow.sm};
   border: none;
   border-bottom: 1px solid ${props => props.theme.ui.borderColor};
-  padding: 5px 0;
+  padding: 2px 0;
   @media (${screenWidth.mediumWidth}) {
     font-size: ${props => props.theme.ui.fontSizes.medium.sm}
   }
@@ -87,6 +89,15 @@ const DeviceItem = ({
                         showDropdown,
                         hideDropdown
                     }: DeviceItemProps) => {
+
+    const editInputRef = useRef<HTMLInputElement>(null)
+
+    useEffect(() => {
+        console.log(editInputRef.current)
+        // if (editInputRef.current) {
+        //     editInputRef.current.focus()
+        // }
+    }, [editInputRef.current])
 
     const getDeviceIcon = () => {
         switch (device.type) {
@@ -122,7 +133,7 @@ const DeviceItem = ({
                     {getDeviceIcon()}
                 </StyledDeviceItemIcon>
                 {
-                    isEditting ? <StyledDeviceItemNameInput defaultValue={device.name}/> :
+                    isEditting ? <StyledDeviceItemNameInput defaultValue={device.name} ref={editInputRef}/> :
                         <StyledDeviceItemName>{device.name}</StyledDeviceItemName>
                 }
             </StyledDeviceItemSection>
@@ -154,14 +165,21 @@ const DeviceList = ({devices}: DeviceListProps) => {
 
 
     const clearContextMenu = () => {
+        setCurrentEditId(null)
         return setCurrentContextIndex(null)
     }
 
     const showContextMenu = (index: number) => {
+        setCurrentEditId(null)
         if (currentContextIndex === index) {
             return clearContextMenu()
         }
         setCurrentContextIndex(index)
+    }
+
+    const setAsCurrentEditId = (id: string) => {
+        setCurrentContextIndex(null)
+        setCurrentEditId(id)
     }
 
 
@@ -171,7 +189,7 @@ const DeviceList = ({devices}: DeviceListProps) => {
                 <DeviceItem
                     index={idx}
                     isEditting={currentEditId === device.id}
-                    setAsEditting={setCurrentEditId}
+                    setAsEditting={setAsCurrentEditId}
                     onClick={showContextMenu}
                     device={device}
                     key={idx}
