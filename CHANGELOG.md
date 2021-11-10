@@ -1,5 +1,27 @@
 # `seguro-platform` CHANGELOG
 
+## `0.29.0`
+
+### Additions
+
+- Add passcode editting page on settings.
+  - Passcode edit title.
+  - Passcode edit input.
+  - Passcode edit keypad.
+  - Passcode and confirmation states.
+  - Passcode edit back and next buttons.
+- Add localization for passcode edit text.
+
+### Changes
+
+- Localization for managing, deleting, adding profile(s).
+
+### Fixes
+
+- Fix CSS issues.
+
+---
+
 ## `0.28.0`
 
 ### Additions

@@ -66,6 +66,7 @@ const en_US: Messages = {
     'platform.settings.theme.dark': 'Dark',
     'platform.settings.theme.auto': 'Auto',
     'platform.settings.passcode': 'Passcode',
+    'platform.settings.passcode.edit': 'Edit',
     'platform.settings.general': 'General',
     'platform.settings.myAccount': 'My Account',
     'platform.settings.profile': 'Profiles',

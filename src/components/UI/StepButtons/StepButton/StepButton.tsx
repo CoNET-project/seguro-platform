@@ -15,7 +15,6 @@ type StyledButtonTextProps = {
 
 const StyledButton = styled.button`
   min-height: 3.5rem;
-  min-width: 8rem;
   border-radius: 10px;
   cursor: pointer;
   display: flex;
@@ -23,7 +22,7 @@ const StyledButton = styled.button`
   justify-content: space-between;
   border: none;
   background-color: transparent;
-  padding: 0 15px 0 20px;
+  padding: 20px 15px 20px 20px;
 `
 
 const StyledButtonText = styled.p<StyledButtonTextProps>`
@@ -33,6 +32,7 @@ const StyledButtonText = styled.p<StyledButtonTextProps>`
   display: flex;
   justify-content: center;
   align-items: center;
+  margin: 0 10px;
 `
 
 const StyledIcon = styled.div`

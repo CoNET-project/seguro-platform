@@ -14,6 +14,7 @@ const StyledPasscodeInput = styled.div`
   align-items: center;
   width: 100%;
   min-width: 100%;
+  
 `
 
 const StyledPasscodeInputDot = styled.div`
@@ -48,6 +49,7 @@ const StyledPasscodeError = styled.div<{ show: boolean }>`
 
 const StyledPasscodeErrorText = styled.p`
   margin-left: 5px;
+  font-size: ${props => props.theme.ui.fontSizes.narrow.sm}
 `
 
 const PasscodeInput = ({value, error}: PasscodeInputProps) => {

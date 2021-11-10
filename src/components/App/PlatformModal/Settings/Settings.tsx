@@ -19,6 +19,7 @@ import DeviceList, {Device} from "./SettingSections/DeviceList";
 import SubscriptionPlan from "./SettingSections/SubscriptionPlan";
 import DeviceCodes from "./SettingSections/DeviceCodes";
 import {screenWidth} from "../../../UI/screenSizes";
+import Passcode from "./Pages/Passcode";
 
 const StyledSettingsContainer = styled.div`
   height: 100%;
@@ -66,6 +67,19 @@ const StyledActivateDevice = styled.p`
   font-size: ${props => props.theme.ui.fontSizes.narrow.sm}
 `
 
+const StyledButton = styled.button`
+  background-color: ${props => props.theme.ui.backgroundColor};
+  border: none;
+  color: ${props => props.theme.ui.text.textPrimary};
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  
+  & > *:last-child {
+    margin-left: 10px;
+  }
+`
+
 const SettingsContent = () => {
     const {setIsModalOpen, clientDevices} = useAppState()
     const {state, dispatch} = usePageNavigator()
@@ -77,6 +91,8 @@ const SettingsContent = () => {
                 return <FormattedMessage id='platform.settings.settings'/>
             case currentPage === 'Language':
                 return <FormattedMessage id='platform.settings.language'/>
+            case currentPage === 'Passcode':
+                return currentPage
             default:
                 break;
         }
@@ -119,7 +135,13 @@ const SettingsContent = () => {
                                           itemRight={<ThemeSelector/>}
                                 />
 
-                                <ListItem itemLeft={<FormattedMessage id='platform.settings.passcode'/>}/>
+                                <ListItem itemLeft={<FormattedMessage id='platform.settings.passcode'/>}
+                                          itemRight={
+                                              <StyledButton onClick={() => dispatch(pageNavigator.navigateToPage('Passcode'))}>
+                                                  <FormattedMessage id='platform.settings.passcode.edit'/>
+                                                  <ChevronRight/>
+                                              </StyledButton>
+                                          }/>
 
                                 <ListItem
                                     itemLeft={
@@ -177,6 +199,11 @@ const SettingsContent = () => {
                         <Language custom={direction}/>
                     )
                 }
+                {
+                    currentPage === 'Passcode' && (
+                        <Passcode/>
+                    )
+                }
             </AnimatePresence>
         </StyledSettingsContainer>
     )
@@ -184,7 +211,7 @@ const SettingsContent = () => {
 
 
 const Settings = () => {
-    const existingPages = ['Platform Settings', 'Language', 'Add Profile']
+    const existingPages = ['Platform Settings', 'Language', 'Passcode']
 
     return (
         <PageNavigatorProvider existingPages={existingPages}>

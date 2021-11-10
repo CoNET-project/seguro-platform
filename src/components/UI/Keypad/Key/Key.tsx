@@ -67,11 +67,13 @@ const StyledText = styled.p`
 
 
 const StyledNumberText = styled(StyledText)`
+  font-size: ${props => props.theme.ui.fontSizes.narrow.md};
   font-weight: bold;
 `
 
 
 const StyledAlphabetText = styled(StyledText)`
+  font-size: ${props => props.theme.ui.fontSizes.narrow.xsm};
   opacity: 0.6;
 `
 
