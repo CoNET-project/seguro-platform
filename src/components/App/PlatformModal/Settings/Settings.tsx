@@ -74,7 +74,7 @@ const StyledButton = styled.button`
   border-radius: 5px;
   display: flex;
   align-items: center;
-  
+
   & > *:last-child {
     margin-left: 10px;
   }
@@ -137,7 +137,8 @@ const SettingsContent = () => {
 
                                 <ListItem itemLeft={<FormattedMessage id='platform.settings.passcode'/>}
                                           itemRight={
-                                              <StyledButton onClick={() => dispatch(pageNavigator.navigateToPage('Passcode'))}>
+                                              <StyledButton
+                                                  onClick={() => dispatch(pageNavigator.navigateToPage('Passcode'))}>
                                                   <FormattedMessage id='platform.settings.passcode.edit'/>
                                                   <ChevronRight/>
                                               </StyledButton>
@@ -201,7 +202,7 @@ const SettingsContent = () => {
                 }
                 {
                     currentPage === 'Passcode' && (
-                        <Passcode/>
+                        <Passcode custom={direction}/>
                     )
                 }
             </AnimatePresence>

@@ -65,11 +65,21 @@ const zh_CN: Messages = {
     'platform.settings.theme.auto': '自动',
     'platform.settings.passcode': '密码',
     'platform.settings.passcode.edit': '更改密码',
+
+    'platform.settings.passcode.title.newPasscode': '新密码',
+    'platform.settings.passcode.title.confirmPasscode': '确认密码',
+    'platform.settings.passcode.button.next': '下一步',
+    'platform.settings.passcode.button.back': '返回',
+
     'platform.settings.general': '一般',
     'platform.settings.myAccount': '我的账户',
     'platform.settings.profile': '资料',
 
     'platform.settings.devices': '设备',
+
+    'platform.settings.devices.contextMenu.edit': '编辑',
+    'platform.settings.devices.contextMenu.delete': '删除',
+
     'platform.settings.deviceCodes': '设备代码',
     'platform.settings.activeCodes': '活动代码',
     'platform.settings.subscriptionPlan': '订阅计划',

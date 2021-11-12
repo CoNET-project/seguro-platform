@@ -3,7 +3,7 @@ import {
     BsChatSquareDots, BsGrid3X3Gap, BsThreeDotsVertical, CgProfile, FaCheckCircle,
     FaChevronLeft,
     FaChevronRight, FaDesktop, FaMobileAlt, FaPlug, FaTabletAlt,
-    GoPrimitiveDot, ImDownload, IoClose, IoIosCheckmarkCircle, IoIosWarning,
+    GoPrimitiveDot, ImDownload, IoCheckmarkSharp, IoClose, IoIosCheckmarkCircle, IoIosWarning,
     IoLanguage, IoMdContacts, IoSettingsOutline, MdContentCopy, MdManageAccounts,
     RiShieldKeyholeLine, TiDelete
 } from "react-icons/all";
@@ -243,10 +243,18 @@ export const Desktop = ({size, color}: IconProps) => {
     )
 }
 
-export const Checkmark = ({size, color}: IconProps) => {
+export const CheckmarkCircle = ({size, color}: IconProps) => {
     return (
         <StyledIcon>
             <IoIosCheckmarkCircle size={getSize(size)} color={color || undefined}/>
+        </StyledIcon>
+    )
+}
+
+export const Checkmark = ({size, color}: IconProps) => {
+    return (
+        <StyledIcon>
+            <IoCheckmarkSharp size={getSize(size)} color={color || undefined}/>
         </StyledIcon>
     )
 }

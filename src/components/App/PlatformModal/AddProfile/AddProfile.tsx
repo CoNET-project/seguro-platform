@@ -10,6 +10,7 @@ import Profile from "../ManageProfiles/Profile/Profile";
 import {usePageNavigator} from "../../../../contexts/pageNavigator/PageNavigatorContext";
 import {toast} from "../../../UI/Toaster/Toaster";
 import {FormattedMessage} from "react-intl";
+import {pageTransitionVariants} from "../../../UI/Motion/Variants/Variants";
 
 
 const StyledAddProfileContainer = styled.div`

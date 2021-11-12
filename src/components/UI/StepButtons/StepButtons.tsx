@@ -11,14 +11,15 @@ import {
 } from "react-icons/all";
 import {FormattedMessage} from "react-intl";
 import {screenWidth} from '../screenSizes';
+import {ReactNode} from "react";
 
 export type StepButtonsClickActions = {
     previousButton?: {
-        text?: string,
+        text?: ReactNode | string,
         action: () => void
     },
     nextButton?: {
-        text?: string,
+        text?: ReactNode | string,
         action: () => void
     }
 }
