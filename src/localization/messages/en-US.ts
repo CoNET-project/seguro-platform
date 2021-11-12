@@ -67,11 +67,21 @@ const en_US: Messages = {
     'platform.settings.theme.auto': 'Auto',
     'platform.settings.passcode': 'Passcode',
     'platform.settings.passcode.edit': 'Edit',
+
+    'platform.settings.passcode.title.newPasscode': 'New passcode',
+    'platform.settings.passcode.title.confirmPasscode': 'Confirm passcode',
+    'platform.settings.passcode.button.next': 'Next',
+    'platform.settings.passcode.button.back': 'Back',
+
     'platform.settings.general': 'General',
     'platform.settings.myAccount': 'My Account',
     'platform.settings.profile': 'Profiles',
 
     'platform.settings.devices': 'Devices',
+
+    'platform.settings.devices.contextMenu.edit': 'Edit',
+    'platform.settings.devices.contextMenu.delete': 'Delete',
+
     'platform.settings.deviceCodes': 'Device Codes',
     'platform.settings.activeCodes': 'Active Codes',
     'platform.settings.subscriptionPlan': 'Subscription Plan',

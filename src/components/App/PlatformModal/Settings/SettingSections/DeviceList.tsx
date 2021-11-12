@@ -1,5 +1,5 @@
 import styled, {keyframes} from "styled-components";
-import {Delete, Desktop, Mobile, Tablet, VerticalOptions} from "../../../../UI/Icons/Icons";
+import {Checkmark, Delete, Desktop, Mobile, Tablet, VerticalOptions} from "../../../../UI/Icons/Icons";
 import {screenWidth} from "../../../../UI/screenSizes";
 import {TippyDropdown} from "../../../../UI/Tippy/Tippy";
 import React, {ReactNode, useCallback, useEffect, useRef, useState} from "react";
@@ -7,6 +7,7 @@ import ContextMenu, {ContextMenuActions} from "../../../../UI/Common/ContextMenu
 import {pageNavigator} from "../../../../../contexts/pageNavigator/pageNavigatorActions";
 import {DeviceData, Devices} from "../../../../../store/appState/appStateReducer";
 import useAppState from "../../../../../store/appState/useAppState";
+import {FormattedMessage} from "react-intl";
 
 export type Device = {
     type: 'mobile' | 'tablet' | 'desktop',
@@ -95,7 +96,7 @@ const simpleFadeIn = keyframes`
 const StyledDeviceItemNameConfirm = styled(StyledDeviceItemButton)`
   background-color: ${props => props.theme.ui.primaryColor};
   color: white;
-  padding: 4px 15px;
+  padding: 3px 10px;
   border-radius: 5px;
   border: 1px solid ${props => props.theme.ui.borderColor};
   animation: ${simpleFadeIn} 100ms linear forwards;
@@ -113,10 +114,14 @@ const DeviceItem = ({
                         hideDropdown
                     }: DeviceItemProps) => {
 
-    const [changedName, setChangedName] = useState('')
+    useEffect(() => {
+        setDeviceName(device.name)
+    }, [])
+
+    const [deviceName, setDeviceName] = useState('')
 
     const onChangeName = (name: string) => {
-        setChangedName(name)
+        setDeviceName(name)
     }
 
     const editInputRef = useCallback((node: HTMLInputElement) => {
@@ -135,7 +140,11 @@ const DeviceItem = ({
     }
 
     const onChangeNameConfirm = () => {
-        onUpdateDeviceName(changedName)
+        if (deviceName !== device.name) {
+            onUpdateDeviceName(deviceName)
+        } else {
+            setAsEditting(null)
+        }
     }
 
     const getDeviceIcon = () => {
@@ -153,13 +162,13 @@ const DeviceItem = ({
 
     const deviceContextMenuButtons: Array<ContextMenuActions> = [
         {
-            text: 'Edit Name',
+            text: <FormattedMessage id='platform.settings.devices.contextMenu.edit'/>,
             action: () => {
                 setAsEditting(device.id)
             }
         },
         {
-            text: 'Delete',
+            text: <FormattedMessage id='platform.settings.devices.contextMenu.delete'/>,
             action: () => {
             }
         }
@@ -183,7 +192,9 @@ const DeviceItem = ({
                 {
                     isEditting ? <StyledDeviceItemNameConfirm
                             ref={editInputButton}
-                            onClick={onChangeNameConfirm}>Ok</StyledDeviceItemNameConfirm> :
+                            onClick={onChangeNameConfirm}>
+                            <Checkmark size={16} color='#fff'/>
+                        </StyledDeviceItemNameConfirm> :
                         <TippyDropdown content={<ContextMenu buttons={deviceContextMenuButtons}/>}
                                        visible={showDropdown}
                                        onClickOutside={(instance => {
@@ -231,7 +242,6 @@ const DeviceList = ({devices}: DeviceListProps) => {
     }
 
     const onUpdateDeviceName = (value: string) => {
-        console.log('hey')
         if (currentEditId) {
             updateClientDevice(currentEditId, {
                 ...clientDevices[currentEditId],

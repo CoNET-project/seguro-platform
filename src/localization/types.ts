@@ -69,11 +69,21 @@ export type Messages = {
     'platform.settings.theme.auto': string,
     'platform.settings.passcode': string,
     'platform.settings.passcode.edit': string,
+
+    'platform.settings.passcode.title.newPasscode': string,
+    'platform.settings.passcode.title.confirmPasscode': string,
+    'platform.settings.passcode.button.next': string,
+    'platform.settings.passcode.button.back': string,
+
     'platform.settings.general': string,
     'platform.settings.myAccount': string,
     'platform.settings.profile': string
 
     'platform.settings.devices': string,
+
+    'platform.settings.devices.contextMenu.edit': string,
+    'platform.settings.devices.contextMenu.delete': string,
+
     'platform.settings.deviceCodes': string,
     'platform.settings.activeCodes': string,
     'platform.settings.subscriptionPlan': string,

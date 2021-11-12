@@ -1,5 +1,21 @@
 # `seguro-platform` CHANGELOG
 
+## `0.31.0`
+
+### Additions
+
+- Add page transition to passcode page.
+
+### Changes
+
+- Button to confirm after editing device name.
+
+### Fixes
+
+- Fix CSS issues.
+
+---
+
 ## `0.30.2`
 
 ### Additions

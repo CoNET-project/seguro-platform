@@ -6,17 +6,20 @@ import {screenWidth} from "../../../../UI/screenSizes";
 import StepButtons, {StepButtonsClickActions} from "../../../../UI/StepButtons/StepButtons";
 import {usePageNavigator} from "../../../../../contexts/pageNavigator/PageNavigatorContext";
 import {pageNavigator} from "../../../../../contexts/pageNavigator/pageNavigatorActions";
+import {pageTransitionVariants} from "../../../../UI/Motion/Variants/Variants";
+import MotionWrapper from "../../../../UI/Motion/MotionWrapper";
+import {FormattedMessage} from "react-intl";
 
 const StyledPasscode = styled.div`
-  margin-top: -20px;
-  padding: 0 20px;
+  min-height: 30rem;
   height: 100%;
+  padding: 20px 0;
+  background-color: ${props => props.theme.ui.backgroundColor};
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
-  
-  
+
+
   @media (${screenWidth.mediumWidth}) {
     margin: 0;
     padding: 40px 20px;
@@ -34,7 +37,11 @@ const StyledPasscodeTitle = styled.h2`
   text-align: center;
 `
 
-const Passcode = () => {
+type PasscodeProps = {
+    custom: number
+}
+
+const Passcode = ({custom}: PasscodeProps) => {
     const {dispatch} = usePageNavigator()
     const [newPasscode, setNewPasscode] = useState<[string, string]>(['', ''])
     const [currentStep, setCurrentStep] = useState<'passcode' | 'confirm'>('passcode')
@@ -96,26 +103,33 @@ const Passcode = () => {
 
     const stepButtonClickActions: StepButtonsClickActions = {
         previousButton: {
-            text: 'Back',
+            text: <FormattedMessage id='platform.settings.passcode.button.back'/>,
             action: onBackStepClick
         },
         nextButton: {
-            text: 'Next',
+            text: <FormattedMessage id='platform.settings.passcode.button.next'/>,
             action: onNextStepClick
         }
     }
 
     return (
-        <StyledPasscode>
-            <StyledPasscodeContent>
-                <StyledPasscodeTitle>{currentStep === "passcode" ? 'New passcode' : 'Confirm passcode'}</StyledPasscodeTitle>
-                <StyledPasscodeInputWrapper>
-                    <PasscodeInput value={currentStep === 'passcode' ? newPasscode[0] : newPasscode[1]} error={inputError}/>
-                </StyledPasscodeInputWrapper>
-                <Keypad numberKeyOnClick={onKeypadClick} deleteKeyOnClick={onKeypadDeleteClick}/>
-                <StepButtons actionHandler={stepButtonClickActions}/>
-            </StyledPasscodeContent>
-        </StyledPasscode>
+        <MotionWrapper runInitialAnimation={true} custom={custom} name="Add Profile"
+                       variants={pageTransitionVariants}>
+            <StyledPasscode>
+                <StyledPasscodeContent>
+                    <StyledPasscodeTitle>
+                        <FormattedMessage
+                            id={currentStep === 'passcode' ? 'platform.settings.passcode.title.newPasscode' : 'platform.settings.passcode.title.confirmPasscode'}/>
+                    </StyledPasscodeTitle>
+                    <StyledPasscodeInputWrapper>
+                        <PasscodeInput value={currentStep === 'passcode' ? newPasscode[0] : newPasscode[1]}
+                                       error={inputError}/>
+                    </StyledPasscodeInputWrapper>
+                    <Keypad numberKeyOnClick={onKeypadClick} deleteKeyOnClick={onKeypadDeleteClick}/>
+                    <StepButtons actionHandler={stepButtonClickActions}/>
+                </StyledPasscodeContent>
+            </StyledPasscode>
+        </MotionWrapper>
     )
 }
 
