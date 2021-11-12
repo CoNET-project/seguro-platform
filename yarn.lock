@@ -1901,14 +1901,6 @@
     ws "^8.2.1"
     yargs "^17.1.1"
 
-"@conet-project/seguro-worker-lib@0.7.0":
-  version "0.7.0"
-  resolved "https://npm.pkg.github.com/download/@conet-project/seguro-worker-lib/0.7.0/30c03226494403dc7831e04ac722479e02e249e31b01c15e69c15b174db595bb#bd4ede62a9e1b5cb96de803e5e19e1a707d11fb1"
-  integrity sha512-Q7hKVGd+diGMH1A0651x4eCTmr7qTy49yrcpWwUYgR3jW6UGldLZBwiHKzOwHw/3ZBSChaEogoSs7/0hKxnHDw==
-  dependencies:
-    async "^3.2.1"
-    uuid "^8.3.2"
-
 "@csstools/convert-colors@^1.4.0":
   version "1.4.0"
   resolved "https://registry.yarnpkg.com/@csstools/convert-colors/-/convert-colors-1.4.0.tgz#ad495dc41b12e75d588c6db8b9834f08fa131eb7"

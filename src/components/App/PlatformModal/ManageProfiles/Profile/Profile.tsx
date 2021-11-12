@@ -59,6 +59,10 @@ const StyledProfileImageEdit = styled.button`
   }
 `
 
+const StyledProfileImageEditText = styled.p`
+  font-size: ${props => props.theme.ui.fontSizes.narrow.sm}
+`
+
 const StyledHiddenInput = styled.input`
   display: none;
 `
@@ -184,8 +188,8 @@ const Profile = ({profile, onChange, disableUpdate, newProfile}: ProfileProps) =
                         {
                             !disableUpdate && (
                                 <StyledProfileImageEdit onClick={() => filePickerRef.current?.click()}>
-                                    <Camera size={20} color="white"/>
-                                    <p>Change Picture</p>
+                                    <Camera size={22} color="white"/>
+                                    <StyledProfileImageEditText><FormattedMessage id='platform.profile.changePicture'/></StyledProfileImageEditText>
                                 </StyledProfileImageEdit>
                             )
                         }

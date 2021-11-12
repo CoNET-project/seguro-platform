@@ -72,9 +72,9 @@ const App = () => {
         })
 
 
-        setTimeout(() => {
-            appState.initialize().then()
-        }, 2000)
+        // setTimeout(() => {
+        //     appState.initialize().then()
+        // }, 2000)
 
         appState.setIsTouchDevice(detectTouchDevice())
         window.addEventListener('resize', windowResizeHandler)

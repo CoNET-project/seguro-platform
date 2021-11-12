@@ -84,6 +84,8 @@ export type Messages = {
     'platform.contextMenu.delete': string,
     'platform.contextMenu.edit': string,
 
+    'platform.profile.changePicture': string,
+
     'globalBar.profile.dropdown.manageProfiles': string,
     'globalBar.profile.dropdown.addProfile': string,
 

@@ -82,6 +82,8 @@ const en_US: Messages = {
     'platform.contextMenu.delete': 'Delete',
     'platform.contextMenu.edit': 'Edit',
 
+    'platform.profile.changePicture': 'Change Picture',
+
     'globalBar.profile.dropdown.manageProfiles': 'Manage Profiles',
     'globalBar.profile.dropdown.addProfile': 'Add Profile',
 
