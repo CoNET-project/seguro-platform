@@ -25,7 +25,6 @@
     "build-storybook": "build-storybook -s public"
   },
   "dependencies": {
-    "@conet-project/seguro-worker-lib": "0.7.0",
     "@tippyjs/react": "^4.2.6",
     "dayjs": "^1.10.7",
     "express": "^4.17.1",

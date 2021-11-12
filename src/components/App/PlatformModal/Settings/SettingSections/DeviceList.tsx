@@ -1,11 +1,12 @@
-import styled from "styled-components";
+import styled, {keyframes} from "styled-components";
 import {Delete, Desktop, Mobile, Tablet, VerticalOptions} from "../../../../UI/Icons/Icons";
 import {screenWidth} from "../../../../UI/screenSizes";
 import {TippyDropdown} from "../../../../UI/Tippy/Tippy";
-import {ReactNode, useEffect, useRef, useState} from "react";
+import React, {ReactNode, useCallback, useEffect, useRef, useState} from "react";
 import ContextMenu, {ContextMenuActions} from "../../../../UI/Common/ContextMenu/ContextMenu";
 import {pageNavigator} from "../../../../../contexts/pageNavigator/pageNavigatorActions";
 import {DeviceData, Devices} from "../../../../../store/appState/appStateReducer";
+import useAppState from "../../../../../store/appState/useAppState";
 
 export type Device = {
     type: 'mobile' | 'tablet' | 'desktop',
@@ -17,7 +18,8 @@ type DeviceItemProps = {
     device: DeviceData,
     index: number,
     isEditting: boolean,
-    setAsEditting: (id: string) => void,
+    setAsEditting: (id: string | null) => void,
+    onUpdateDeviceName: (name: string) => void,
     onClick: (index: number) => void,
     showDropdown: boolean,
     hideDropdown: () => void
@@ -80,24 +82,61 @@ const StyledDeviceItemButton = styled.button`
   opacity: 0.5;
 `
 
+const simpleFadeIn = keyframes`
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+`
+
+const StyledDeviceItemNameConfirm = styled(StyledDeviceItemButton)`
+  background-color: ${props => props.theme.ui.primaryColor};
+  color: white;
+  padding: 4px 15px;
+  border-radius: 5px;
+  border: 1px solid ${props => props.theme.ui.borderColor};
+  animation: ${simpleFadeIn} 100ms linear forwards;
+`
+
+
 const DeviceItem = ({
                         index,
                         device,
                         isEditting,
                         setAsEditting,
+                        onUpdateDeviceName,
                         onClick,
                         showDropdown,
                         hideDropdown
                     }: DeviceItemProps) => {
 
-    const editInputRef = useRef<HTMLInputElement>(null)
+    const [changedName, setChangedName] = useState('')
 
-    useEffect(() => {
-        console.log(editInputRef.current)
-        // if (editInputRef.current) {
-        //     editInputRef.current.focus()
-        // }
-    }, [editInputRef.current])
+    const onChangeName = (name: string) => {
+        setChangedName(name)
+    }
+
+    const editInputRef = useCallback((node: HTMLInputElement) => {
+        if (node) {
+            node.focus()
+        }
+    }, [])
+
+    const editInputButton = useRef<HTMLButtonElement>(null)
+
+    const onEditInputFocusLoss = (event: React.FocusEvent<HTMLInputElement>) => {
+        if (event.relatedTarget === editInputButton.current) {
+            return
+        }
+        return setAsEditting(null)
+    }
+
+    const onChangeNameConfirm = () => {
+        onUpdateDeviceName(changedName)
+    }
 
     const getDeviceIcon = () => {
         switch (device.type) {
@@ -133,21 +172,29 @@ const DeviceItem = ({
                     {getDeviceIcon()}
                 </StyledDeviceItemIcon>
                 {
-                    isEditting ? <StyledDeviceItemNameInput defaultValue={device.name} ref={editInputRef}/> :
+                    isEditting ? <StyledDeviceItemNameInput defaultValue={device.name}
+                                                            onChange={(event) => onChangeName(event.target.value)}
+                                                            ref={editInputRef}
+                                                            onBlur={(event) => onEditInputFocusLoss(event)}/> :
                         <StyledDeviceItemName>{device.name}</StyledDeviceItemName>
                 }
             </StyledDeviceItemSection>
             <StyledDeviceItemSection>
-                <TippyDropdown content={<ContextMenu buttons={deviceContextMenuButtons}/>}
-                               visible={showDropdown}
-                               onClickOutside={(instance => {
-                                   instance.hide();
-                                   hideDropdown()
-                               })}>
-                    <StyledDeviceItemButton onClick={() => onClick(index)}>
-                        <VerticalOptions/>
-                    </StyledDeviceItemButton>
-                </TippyDropdown>
+                {
+                    isEditting ? <StyledDeviceItemNameConfirm
+                            ref={editInputButton}
+                            onClick={onChangeNameConfirm}>Ok</StyledDeviceItemNameConfirm> :
+                        <TippyDropdown content={<ContextMenu buttons={deviceContextMenuButtons}/>}
+                                       visible={showDropdown}
+                                       onClickOutside={(instance => {
+                                           instance.hide();
+                                           hideDropdown()
+                                       })}>
+                            <StyledDeviceItemButton onClick={() => onClick(index)}>
+                                <VerticalOptions/>
+                            </StyledDeviceItemButton>
+                        </TippyDropdown>
+                }
             </StyledDeviceItemSection>
         </StyledDeviceItem>
     )
@@ -160,6 +207,7 @@ const StyledDeviceList = styled.div`
 
 
 const DeviceList = ({devices}: DeviceListProps) => {
+    const {updateClientDevice, clientDevices} = useAppState()
     const [currentContextIndex, setCurrentContextIndex] = useState<number | null>(null)
     const [currentEditId, setCurrentEditId] = useState<string | null>(null)
 
@@ -177,9 +225,20 @@ const DeviceList = ({devices}: DeviceListProps) => {
         setCurrentContextIndex(index)
     }
 
-    const setAsCurrentEditId = (id: string) => {
+    const setAsCurrentEditId = (id: string | null) => {
         setCurrentContextIndex(null)
         setCurrentEditId(id)
+    }
+
+    const onUpdateDeviceName = (value: string) => {
+        console.log('hey')
+        if (currentEditId) {
+            updateClientDevice(currentEditId, {
+                ...clientDevices[currentEditId],
+                name: value
+            })
+            setAsCurrentEditId(null)
+        }
     }
 
 
@@ -190,6 +249,7 @@ const DeviceList = ({devices}: DeviceListProps) => {
                     index={idx}
                     isEditting={currentEditId === device.id}
                     setAsEditting={setAsCurrentEditId}
+                    onUpdateDeviceName={onUpdateDeviceName}
                     onClick={showContextMenu}
                     device={device}
                     key={idx}

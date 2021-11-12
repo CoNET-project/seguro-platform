@@ -81,6 +81,8 @@ const zh_CN: Messages = {
     'platform.contextMenu.delete': '刪除',
     'platform.contextMenu.edit': '編輯',
 
+    'platform.profile.changePicture': '更換圖片',
+
     // 'globalBar.profile.dropdown.manageProfiles': 'Manage Profiles',
     // 'globalBar.profile.dropdown.addProfile': 'Add Profile',
     //

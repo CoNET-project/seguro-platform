@@ -67,7 +67,7 @@ const DeleteProfile = ({profile, custom, onDelete, onBack}: DeleteProfileProps) 
         <MotionWrapper runInitialAnimation={true} custom={custom} name="Manage Profile"
                        variants={pageTransitionVariants}>
             <StyledDeleteProfile>
-                <Profile profile={profile} onChange={(profile) => {
+                <Profile profile={profile} onChange={() => {
                 }} disableUpdate={true}/>
                 <StyledDeleteProfileMessage>
                     {profile.primary ? (
