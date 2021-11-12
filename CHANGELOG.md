@@ -1,5 +1,21 @@
 # `seguro-platform` CHANGELOG
 
+## `0.30.2`
+
+### Additions
+
+- None.
+
+### Changes
+
+- Bump versions for dependencies.
+
+### Fixes
+
+- Fix CSS issues.
+
+---
+
 ## `0.30.0`
 
 ### Additions
