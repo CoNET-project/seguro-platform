@@ -8,6 +8,7 @@ import {pageNavigator} from "../../../../../contexts/pageNavigator/pageNavigator
 import {DeviceData, Devices} from "../../../../../store/appState/appStateReducer";
 import useAppState from "../../../../../store/appState/useAppState";
 import {FormattedMessage} from "react-intl";
+import {usePageNavigator} from "../../../../../contexts/pageNavigator/PageNavigatorContext";
 
 export type Device = {
     type: 'mobile' | 'tablet' | 'desktop',
@@ -22,12 +23,14 @@ type DeviceItemProps = {
     setAsEditting: (id: string | null) => void,
     onUpdateDeviceName: (name: string) => void,
     onClick: (index: number) => void,
+    onDeviceDelete: (deviceId: string) => void,
     showDropdown: boolean,
     hideDropdown: () => void
 }
 
 type DeviceListProps = {
-    devices: Devices
+    devices: Devices,
+    onDeviceDelete: (deviceId: string) => void
 }
 
 const StyledDeviceItem = styled.div`
@@ -52,13 +55,18 @@ const StyledDeviceItemName = styled.p`
   margin-left: 15px;
   font-weight: bold;
   font-size: ${props => props.theme.ui.fontSizes.narrow.sm};
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 150px;
   @media (${screenWidth.mediumWidth}) {
-    font-size: ${props => props.theme.ui.fontSizes.medium.sm}
+    font-size: ${props => props.theme.ui.fontSizes.medium.sm};
+    max-width: 200px;
   }
 `
 
 const StyledDeviceItemNameInput = styled.input`
-  min-width: 10rem;
+  min-width: 200px;
   height: 100%;
   margin-left: 15px;
   font-weight: bold;
@@ -110,6 +118,7 @@ const DeviceItem = ({
                         setAsEditting,
                         onUpdateDeviceName,
                         onClick,
+                        onDeviceDelete,
                         showDropdown,
                         hideDropdown
                     }: DeviceItemProps) => {
@@ -119,6 +128,7 @@ const DeviceItem = ({
     }, [])
 
     const [deviceName, setDeviceName] = useState('')
+    const {dispatch} = usePageNavigator()
 
     const onChangeName = (name: string) => {
         setDeviceName(name)
@@ -170,6 +180,7 @@ const DeviceItem = ({
         {
             text: <FormattedMessage id='platform.settings.devices.contextMenu.delete'/>,
             action: () => {
+                onDeviceDelete(device.id)
             }
         }
     ]
@@ -217,7 +228,7 @@ const StyledDeviceList = styled.div`
 `
 
 
-const DeviceList = ({devices}: DeviceListProps) => {
+const DeviceList = ({devices, onDeviceDelete}: DeviceListProps) => {
     const {updateClientDevice, clientDevices} = useAppState()
     const [currentContextIndex, setCurrentContextIndex] = useState<number | null>(null)
     const [currentEditId, setCurrentEditId] = useState<string | null>(null)
@@ -261,10 +272,13 @@ const DeviceList = ({devices}: DeviceListProps) => {
                     setAsEditting={setAsCurrentEditId}
                     onUpdateDeviceName={onUpdateDeviceName}
                     onClick={showContextMenu}
+                    onDeviceDelete={onDeviceDelete}
                     device={device}
                     key={idx}
                     showDropdown={currentContextIndex === idx}
-                    hideDropdown={clearContextMenu}/>
+                    hideDropdown={clearContextMenu}
+
+                />
             ))}
         </StyledDeviceList>
 

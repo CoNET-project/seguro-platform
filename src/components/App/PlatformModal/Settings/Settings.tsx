@@ -20,6 +20,8 @@ import SubscriptionPlan from "./SettingSections/SubscriptionPlan";
 import DeviceCodes from "./SettingSections/DeviceCodes";
 import {screenWidth} from "../../../UI/screenSizes";
 import Passcode from "./Pages/Passcode";
+import DeviceDelete from "./Pages/DeviceDelete";
+import {useState} from "react";
 
 const StyledSettingsContainer = styled.div`
   height: 100%;
@@ -81,8 +83,9 @@ const StyledButton = styled.button`
 `
 
 const SettingsContent = () => {
-    const {setIsModalOpen, clientDevices} = useAppState()
+    const {setIsModalOpen, clientDevices, deleteClientDevice} = useAppState()
     const {state, dispatch} = usePageNavigator()
+    const [deviceToDeleteId, setDeviceToDeleteId] = useState<string | null>(null)
     const [currentPage, direction] = state.current
 
     const getHeaderBarTitle = () => {
@@ -93,9 +96,32 @@ const SettingsContent = () => {
                 return <FormattedMessage id='platform.settings.language'/>
             case currentPage === 'Passcode':
                 return currentPage
+            case currentPage === 'Delete Device':
+                return currentPage
             default:
                 break;
         }
+    }
+
+
+
+    const onDeviceDelete = (deviceId: string) => {
+        setDeviceToDeleteId(deviceId)
+        dispatch(pageNavigator.navigateToPage('Delete Device'))
+    }
+
+    const onDeviceCancelDelete = () => {
+        setDeviceToDeleteId(null)
+        dispatch(pageNavigator.navigateToPage('Platform Settings'))
+    }
+
+    const onDeviceConfirmDelete = () => {
+        const deviceIdToDelete = deviceToDeleteId
+        if (deviceIdToDelete) {
+            deleteClientDevice(deviceIdToDelete)
+        }
+        setDeviceToDeleteId(null)
+        dispatch(pageNavigator.navigateToPage('Platform Settings'))
     }
 
     const exampleDeviceCodes = ['9d7edca7-52cf-44c2-a904-c2baa7b280']
@@ -167,7 +193,7 @@ const SettingsContent = () => {
                                     itemHeader={{
                                         title: <FormattedMessage id='platform.settings.devices'/>
                                     }}
-                                    itemLeft={<DeviceList devices={clientDevices}/>}
+                                    itemLeft={<DeviceList devices={clientDevices} onDeviceDelete={onDeviceDelete}/>}
                                 />
 
                                 <ListItem
@@ -205,6 +231,11 @@ const SettingsContent = () => {
                         <Passcode custom={direction}/>
                     )
                 }
+                {
+                    currentPage === 'Delete Device' && (
+                        <DeviceDelete custom={direction} device={deviceToDeleteId ? clientDevices[deviceToDeleteId] : undefined} onCancel={onDeviceCancelDelete} onConfirm={onDeviceConfirmDelete} />
+                    )
+                }
             </AnimatePresence>
         </StyledSettingsContainer>
     )
@@ -212,7 +243,7 @@ const SettingsContent = () => {
 
 
 const Settings = () => {
-    const existingPages = ['Platform Settings', 'Language', 'Passcode']
+    const existingPages = ['Platform Settings', 'Language', 'Passcode', 'Delete Device']
 
     return (
         <PageNavigatorProvider existingPages={existingPages}>
