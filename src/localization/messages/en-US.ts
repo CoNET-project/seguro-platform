@@ -82,6 +82,12 @@ const en_US: Messages = {
     'platform.settings.devices.contextMenu.edit': 'Edit',
     'platform.settings.devices.contextMenu.delete': 'Delete',
 
+    'platform.settings.device.delete': 'Delete Device',
+    'platform.settings.device.delete.confirmMessage': "Are you sure?",
+    'platform.settings.device.delete.confirmSubmessage': "Deleting a device is a permanent action!",
+    'platform.settings.device.delete.cancelButton': "Cancel",
+    'platform.settings.device.delete.confirmButton': "Confirm",
+
     'platform.settings.deviceCodes': 'Device Codes',
     'platform.settings.activeCodes': 'Active Codes',
     'platform.settings.subscriptionPlan': 'Subscription Plan',

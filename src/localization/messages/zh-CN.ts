@@ -80,6 +80,12 @@ const zh_CN: Messages = {
     'platform.settings.devices.contextMenu.edit': '编辑',
     'platform.settings.devices.contextMenu.delete': '删除',
 
+    'platform.settings.device.delete': '删除设备',
+    'platform.settings.device.delete.confirmMessage': "你确定吗？",
+    'platform.settings.device.delete.confirmSubmessage': "删除设备是永久操作",
+    'platform.settings.device.delete.cancelButton': "取消",
+    'platform.settings.device.delete.confirmButton': "确认",
+
     'platform.settings.deviceCodes': '设备代码',
     'platform.settings.activeCodes': '活动代码',
     'platform.settings.subscriptionPlan': '订阅计划',
@@ -102,7 +108,7 @@ const zh_CN: Messages = {
     'platform.manageProfiles': '管理个人资料',
     'platform.manageProfiles.deleteProfile': '删除个人资料',
     'platform.manageProfiles.deleteProfile.confirmationTitle': '你确定吗？',
-    'platform.manageProfiles.deleteProfile.confirmationSubtext': '删除个人资料是永久性的！',
+    'platform.manageProfiles.deleteProfile.confirmationSubtext': '删除个人资料是永久性的!',
     'platform.manageProfiles.deleteProfile.cancelButton': '取消',
     'platform.manageProfiles.deleteProfile.confirmButton': '确认',
 
