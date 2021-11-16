@@ -84,6 +84,12 @@ export type Messages = {
     'platform.settings.devices.contextMenu.edit': string,
     'platform.settings.devices.contextMenu.delete': string,
 
+    'platform.settings.device.delete': string,
+    'platform.settings.device.delete.confirmMessage': string,
+    'platform.settings.device.delete.confirmSubmessage': string,
+    'platform.settings.device.delete.cancelButton': string,
+    'platform.settings.device.delete.confirmButton': string,
+
     'platform.settings.deviceCodes': string,
     'platform.settings.activeCodes': string,
     'platform.settings.subscriptionPlan': string,

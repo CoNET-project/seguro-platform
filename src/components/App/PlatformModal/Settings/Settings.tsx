@@ -59,10 +59,6 @@ const StyledNumberBox = styled.span`
   content: '';
   border: 1px solid ${props => props.theme.ui.border.color};
   margin-right: 2.5px;
-
-  @media (${screenWidth.mediumWidth}) {
-    font-size: 13px;
-  }
 `
 
 const StyledActivateDevice = styled.p`
@@ -102,7 +98,6 @@ const SettingsContent = () => {
                 break;
         }
     }
-
 
 
     const onDeviceDelete = (deviceId: string) => {
@@ -233,7 +228,9 @@ const SettingsContent = () => {
                 }
                 {
                     currentPage === 'Delete Device' && (
-                        <DeviceDelete custom={direction} device={deviceToDeleteId ? clientDevices[deviceToDeleteId] : undefined} onCancel={onDeviceCancelDelete} onConfirm={onDeviceConfirmDelete} />
+                        <DeviceDelete custom={direction}
+                                      device={deviceToDeleteId ? clientDevices[deviceToDeleteId] : undefined}
+                                      onCancel={onDeviceCancelDelete} onConfirm={onDeviceConfirmDelete}/>
                     )
                 }
             </AnimatePresence>

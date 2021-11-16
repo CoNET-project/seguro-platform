@@ -36,7 +36,6 @@
     "uuid": "^8.3.2"
   },
   "devDependencies": {
-    "@conet-project/seguro-gateway": "0.12.0",
     "@reduxjs/toolkit": "^1.6.2",
     "@storybook/addon-actions": "^6.3.11",
     "@storybook/addon-essentials": "^6.3.11",

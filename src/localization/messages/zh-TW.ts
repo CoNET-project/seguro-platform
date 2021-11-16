@@ -80,6 +80,12 @@ const zh_CN: Messages = {
     'platform.settings.devices.contextMenu.edit': '編輯',
     'platform.settings.devices.contextMenu.delete': '刪除',
 
+    'platform.settings.device.delete': '刪除設備',
+    'platform.settings.device.delete.confirmMessage': "你確定嗎？",
+    'platform.settings.device.delete.confirmSubmessage': "删除个人资料是永久性的!",
+    'platform.settings.device.delete.cancelButton': "取消",
+    'platform.settings.device.delete.confirmButton': "確認",
+
     'platform.settings.deviceCodes': '設備代碼',
     'platform.settings.activeCodes': '活動代碼',
     'platform.settings.subscriptionPlan': '訂閱計劃',

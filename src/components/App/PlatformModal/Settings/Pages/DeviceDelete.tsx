@@ -7,6 +7,7 @@ import {Desktop, Mobile, Tablet} from "../../../../UI/Icons/Icons";
 import React from "react";
 import {usePageNavigator} from "../../../../../contexts/pageNavigator/PageNavigatorContext";
 import {pageNavigator} from "../../../../../contexts/pageNavigator/pageNavigatorActions";
+import {FormattedMessage} from "react-intl";
 
 type StyledDeviceButtonProps = {
     danger?: boolean
@@ -19,7 +20,7 @@ const StyledDeviceDelete = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  
+
   & > * {
     margin-top: 10px;
   }
@@ -85,22 +86,26 @@ const DeviceDelete = ({custom, device, onConfirm, onCancel}: DeviceDeleteProps) 
         // Shouldn't be able to delete last device!
         <MotionWrapper runInitialAnimation={true} custom={custom} name="Language" variants={pageTransitionVariants}>
             <StyledDeviceDelete>
-                    <StyledDeviceIcon>
-                        {getDeviceIcon()}
-                    </StyledDeviceIcon>
-                    <StyledDeviceName>
-                        {device && device.name}
-                    </StyledDeviceName>
+                <StyledDeviceIcon>
+                    {getDeviceIcon()}
+                </StyledDeviceIcon>
+                <StyledDeviceName>
+                    {device && device.name}
+                </StyledDeviceName>
                 <StyledDeviceMessage>
-                    Are you sure you want to delete this device?
+                    <FormattedMessage id='platform.settings.device.delete.confirmMessage'/>
                 </StyledDeviceMessage>
                 <StyledDeviceSubmessage>
-                    All your data associated with this device will be permanently deleted.
+                    <FormattedMessage id='platform.settings.device.delete.confirmSubmessage'/>
                 </StyledDeviceSubmessage>
-                    <StyledDeviceRow>
-                        <StyledDeviceButton onClick={onCancel}>Cancel</StyledDeviceButton>
-                        <StyledDeviceButton danger={true} onClick={onConfirm}>Delete</StyledDeviceButton>
-                    </StyledDeviceRow>
+                <StyledDeviceRow>
+                    <StyledDeviceButton onClick={onCancel}>
+                        <FormattedMessage id='platform.settings.device.delete.cancelButton'/>
+                    </StyledDeviceButton>
+                    <StyledDeviceButton danger={true} onClick={onConfirm}>
+                        <FormattedMessage id='platform.settings.device.delete.confirmButton'/>
+                    </StyledDeviceButton>
+                </StyledDeviceRow>
             </StyledDeviceDelete>
         </MotionWrapper>
     )

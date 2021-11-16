@@ -53,7 +53,7 @@ const StyledItemSection = styled.div<StyledItemSectionProps>`
   font-family: ${props => props.isSeparator ? "'Lato Bold', san-serif" : 'unset'};
   font-size: ${props => props.isSeparator ? `calc(${props.theme.ui.fontSizes.narrow.sm} + 1px)` : props.theme.ui.fontSizes.narrow.sm};
   @media (${screenWidth.mediumWidth}) {
-    font-size: ${props => props.isSeparator ? props.theme.ui.fontSizes.narrow.md : props.theme.ui.fontSizes.narrow.md};
+    font-size: ${props => props.isSeparator ? props.theme.ui.fontSizes.narrow.md : props.theme.ui.fontSizes.narrow.sm};
   }
 `
 
