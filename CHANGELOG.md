@@ -1,5 +1,22 @@
 # `seguro-platform` CHANGELOG
 
+## `0.32.0`
+
+### Additions
+
+- Add deleting device functionality.
+- Add localization for deleting device.
+
+### Changes
+
+- Modify list item text size for platform settings.
+
+### Fixes
+
+- Fix CSS issues.
+
+---
+
 ## `0.31.0`
 
 ### Additions
