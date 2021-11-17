@@ -1,14 +1,9 @@
 import MotionWrapper from "../../../../UI/Motion/MotionWrapper";
 import {pageTransitionVariants} from "../../../../UI/Motion/Variants/Variants";
 import styled from "styled-components";
-import Image from "../../../../UI/Common/Profile/Image/Image";
-import AnonymousProfile from '../../../../../assets/Avatar-anonymous.png'
-import {Camera} from "../../../../UI/Icons/Icons";
-import {ChangeEvent, useEffect, useRef, useState} from "react";
-import {getBase64FromFile} from "../../../../../utilities/utilities";
+import {useEffect, useState} from "react";
 import {screenWidth} from "../../../../UI/screenSizes";
 import {ProfileData} from "../../../../../store/appState/appStateReducer";
-import {isDisabled} from "@testing-library/user-event/dist/utils";
 import Profile from "../Profile/Profile";
 import {FormattedMessage} from "react-intl";
 

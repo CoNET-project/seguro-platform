@@ -1,30 +1,12 @@
 import {createGlobalStyle} from 'styled-components';
-import {screenWidth} from "../screenSizes";
 
 export default createGlobalStyle`
   h1, h2, h3, h4, h5, h6 {
     font-family: 'Lato Bold', sans-serif;
   }
 
-  //h1 {
-  //  font-size: 24px;
-  //}
-  //
-  //h2 {
-  //  font-size: 20px
-  //}
-  //
-  //h3 {
-  //  font-size: 16px
-  //}
-
   p, a, div, span {
     font-family: 'Lato Regular', sans-serif;
-    //font-size: 13px;
-
-      // @media (${screenWidth.mediumWidth}) {
-    //   font-size: 16px;
-    // }
   }
 
   button {
@@ -41,22 +23,5 @@ export default createGlobalStyle`
 
   .tippy-content {
     padding: 0;
-
   }
-
-  // .tippy-box[data-placement^='bottom'] > .tippy-arrow::before {
-  //   border-bottom-color: ${props => props.theme.ui.backgroundAccent} !important;
-  // }
-  //
-  // .tippy-box[data-placement^='top'] > .tippy-arrow::before {
-  //   border-top-color: ${props => props.theme.ui.backgroundAccent} !important;
-  // }
-  //
-  // .tippy-box[data-placement^='left'] > .tippy-arrow::before {
-  //   border-left-color: ${props => props.theme.ui.backgroundAccent} !important;
-  // }
-  //
-  // .tippy-box[data-placement^='right'] > .tippy-arrow::before {
-  //   border-right-color: ${props => props.theme.ui.backgroundAccent} !important;
-  // }
 `

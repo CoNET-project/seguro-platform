@@ -3,7 +3,6 @@ import LeftPanel from "./LeftPanel/LeftPanel";
 import MainPanel from "./MainPanel/MainPanel";
 import RightPanel from "./RightPanel/RightPanel";
 import {ReactNode} from "react";
-import useAppState from "../../../../store/appState/useAppState";
 import {CurrentFocusPanel} from "../../../../store/appState/appStateReducer";
 
 export type ThreePanelComponents = {

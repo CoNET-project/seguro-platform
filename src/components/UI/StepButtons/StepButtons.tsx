@@ -1,16 +1,10 @@
 import styled from 'styled-components';
 import StepButton from "./StepButton/StepButton";
-import {ChevronLeft, ChevronRight} from "../Icons/Icons";
 import {
     CgArrowLongLeft,
     CgArrowLongRight,
-    FaArrowLeft,
-    FaArrowRight,
-    HiArrowNarrowLeft,
-    HiArrowNarrowRight
 } from "react-icons/all";
 import {FormattedMessage} from "react-intl";
-import {screenWidth} from '../screenSizes';
 import {ReactNode} from "react";
 
 export type StepButtonsClickActions = {

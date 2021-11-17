@@ -1,8 +1,7 @@
 import styled from 'styled-components';
 import Language from "./Language/Language";
 import {Locale} from "../../../localization/types";
-import React, {useEffect} from "react";
-import {windowKeyListener} from "../../../utilities/utilities";
+import React from "react";
 
 type LanguageSelectProps = {
     languages: Array<{ name: string, englishName: string, locale: Locale }>,

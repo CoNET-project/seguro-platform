@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import {ReactNode} from "react";
-import {usePageNavigator} from "../../../../contexts/pageNavigator/PageNavigatorContext";
 import {screenWidth} from "../../screenSizes";
 
 type ListItemProps = {

@@ -1,10 +1,9 @@
 import styled, {keyframes} from "styled-components";
-import {Checkmark, Delete, Desktop, Mobile, Tablet, VerticalOptions} from "../../../../UI/Icons/Icons";
+import {Checkmark, Desktop, Mobile, Tablet, VerticalOptions} from "../../../../UI/Icons/Icons";
 import {screenWidth} from "../../../../UI/screenSizes";
 import {TippyDropdown} from "../../../../UI/Tippy/Tippy";
-import React, {ReactNode, useCallback, useEffect, useRef, useState} from "react";
+import React, {useCallback, useEffect, useRef, useState} from "react";
 import ContextMenu, {ContextMenuActions} from "../../../../UI/Common/ContextMenu/ContextMenu";
-import {pageNavigator} from "../../../../../contexts/pageNavigator/pageNavigatorActions";
 import {DeviceData, Devices} from "../../../../../store/appState/appStateReducer";
 import useAppState from "../../../../../store/appState/useAppState";
 import {FormattedMessage} from "react-intl";

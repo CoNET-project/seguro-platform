@@ -1,5 +1,4 @@
-import {pageNavigator} from "../../../../contexts/pageNavigator/pageNavigatorActions";
-import {Checkmark, ChevronLeft, ProfileIcon} from "../../../UI/Icons/Icons";
+import {ProfileIcon} from "../../../UI/Icons/Icons";
 import styled from "styled-components";
 import {screenWidth} from "../../../UI/screenSizes";
 import HeaderBar from "../../../UI/Common/HeaderBar/HeaderBar";
@@ -7,10 +6,8 @@ import useAppState from "../../../../store/appState/useAppState";
 import {useEffect, useState} from "react";
 import {ProfileData} from "../../../../store/appState/appStateReducer";
 import Profile from "../ManageProfiles/Profile/Profile";
-import {usePageNavigator} from "../../../../contexts/pageNavigator/PageNavigatorContext";
 import {toast} from "../../../UI/Toaster/Toaster";
 import {FormattedMessage} from "react-intl";
-import {pageTransitionVariants} from "../../../UI/Motion/Variants/Variants";
 
 
 const StyledAddProfileContainer = styled.div`

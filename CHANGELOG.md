@@ -1,5 +1,21 @@
 # `seguro-platform` CHANGELOG
 
+## `0.32.1`
+
+### Additions
+
+- None
+
+### Changes
+
+- Remove unused code.
+
+### Fixes
+
+- Fix CSS issues.
+
+---
+
 ## `0.32.0`
 
 ### Additions

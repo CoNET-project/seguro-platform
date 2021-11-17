@@ -1,6 +1,5 @@
-import {useEffect, useState} from 'react'
+import {useState} from 'react'
 import styled from 'styled-components'
-import {getWorkerService} from '../../../services/workerService/workerService'
 import Keypad from '../../UI/Keypad/Keypad'
 import PasscodeInput from "../../UI/Inputs/PasscodeInput/Touch/PasscodeInput";
 import {IoMdLock} from "react-icons/all";

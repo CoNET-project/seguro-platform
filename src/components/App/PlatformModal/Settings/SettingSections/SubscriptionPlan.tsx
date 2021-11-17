@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import Separator from "../../../../UI/Common/Separator/Separator";
 import {screenWidth} from "../../../../UI/screenSizes";
 
 const StyledSubscriptionPlan = styled.div`

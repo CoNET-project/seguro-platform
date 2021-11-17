@@ -1,11 +1,9 @@
-import {m, motion} from 'framer-motion'
+import {motion} from 'framer-motion'
 import styled from 'styled-components'
 import {ReactNode} from "react";
 import StepButtons, {StepButtonsClickActions} from "../../StepButtons/StepButtons";
 import {pageTransitionVariants} from "../../Motion/Variants/Variants";
 import {screenWidth} from "../../screenSizes";
-import {LogoText} from "../../Logo/Logo";
-import {ChevronLeft} from "../../Icons/Icons";
 
 export type PageTransitionProps = {
     pageTransition: {

@@ -3,7 +3,7 @@ import AnonymousProfile from "../../../../../assets/Avatar-anonymous.png";
 import {Camera} from "../../../../UI/Icons/Icons";
 import styled from "styled-components";
 import {screenWidth} from "../../../../UI/screenSizes";
-import {ChangeEvent, useEffect, useRef, useState} from "react";
+import {ChangeEvent, useRef} from "react";
 import {ProfileData} from "../../../../../store/appState/appStateReducer";
 import {getBase64FromFile} from "../../../../../utilities/utilities";
 import {FormattedMessage} from "react-intl";
