@@ -1,5 +1,4 @@
 import {
-    AnimatePresence,
     AnimateSharedLayout,
     motion,
     useAnimation,
@@ -12,7 +11,6 @@ import GlobalBar from "../../UI/Global/GlobalBar/GlobalBar";
 import useAppState from "../../../store/appState/useAppState";
 import Drawer from "../../UI/Drawer/Drawer";
 import {DragOverlay} from "../../UI/Common/Overlay/Overlay";
-import ThreePanels from "../../UI/Layout/ThreePanelLayout/ThreePanels";
 import Messenger from "../Apps/Messenger/Messenger";
 import PlatformModal from "../PlatformModal/PlatformModal";
 import {Toaster} from '../../UI/Toaster/Toaster'

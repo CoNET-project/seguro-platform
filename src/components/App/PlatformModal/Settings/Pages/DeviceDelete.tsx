@@ -1,12 +1,9 @@
 import styled from "styled-components";
 import {pageTransitionVariants} from "../../../../UI/Motion/Variants/Variants";
-import LanguageSelect from "../../../../UI/LanguageSelect/LanguageSelect";
 import MotionWrapper from "../../../../UI/Motion/MotionWrapper";
 import {DeviceData} from "../../../../../store/appState/appStateReducer";
 import {Desktop, Mobile, Tablet} from "../../../../UI/Icons/Icons";
 import React from "react";
-import {usePageNavigator} from "../../../../../contexts/pageNavigator/PageNavigatorContext";
-import {pageNavigator} from "../../../../../contexts/pageNavigator/pageNavigatorActions";
 import {FormattedMessage} from "react-intl";
 
 type StyledDeviceButtonProps = {

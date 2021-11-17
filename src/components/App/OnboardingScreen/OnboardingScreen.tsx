@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 import {motion, AnimatePresence} from "framer-motion"
-import {ReactNode, useEffect, useState} from "react";
 import useAppState from "../../../store/appState/useAppState";
 import {Locale} from "../../../localization/types";
 import SelectLanguagePage from "./SelectLanguagePage/SelectLanguagePage";
@@ -10,10 +9,7 @@ import {FormattedMessage} from 'react-intl';
 import onboardingActions from "../../../contexts/onboarding/onboardingActions";
 import VerificationPage from "./VerificationPage/VerificationPage";
 import ProcessingPage from "./ProcessingPage/ProcessingPage";
-import {createPasscode, getWorkerService} from "../../../services/workerService/workerService";
-import AlertDialog from "../../UI/Common/AlertDialog/AlertDialog";
-import {Warning} from "../../UI/Icons/Icons";
-import {pageFadeTransitionVariants} from "../../UI/Motion/Variants/Variants";
+import {createPasscode} from "../../../services/workerService/workerService";
 
 type Languages = {
     name: string,

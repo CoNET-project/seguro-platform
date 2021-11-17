@@ -1,10 +1,9 @@
 import styled from 'styled-components';
-import ExampleProfile from '../../../../assets/examples/profile-example.jpeg'
 import ProfileImage from '../../Common/Profile/Image/Image'
 import {Grid3X3, Plug, SettingGear, Update} from "../../Icons/Icons";
 import {screenWidth, sizes} from "../../screenSizes";
 import {LogoIcon} from "../../Logo/Logo";
-import ProfileDropdown, {Profiles} from "../../Dropdowns/ProfileDropdown/ProfileDropdown";
+import ProfileDropdown from "../../Dropdowns/ProfileDropdown/ProfileDropdown";
 import useAppState from "../../../../store/appState/useAppState";
 import {TippyDropdown} from "../../Tippy/Tippy";
 import AppsDropdown from "../../Dropdowns/AppsDropdown/AppsDropdown";

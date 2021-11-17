@@ -1,6 +1,5 @@
-import styled from 'styled-components'
 import TabNavigator, {TabNavigatorPages} from "../../../../UI/TabNavigator/TabNavigator";
-import {ChatBubble, Contacts, Gear, SettingGear} from "../../../../UI/Icons/Icons";
+import {ChatBubble, Contacts, Gear} from "../../../../UI/Icons/Icons";
 import useAppState from "../../../../../store/appState/useAppState";
 import {FormattedMessage} from "react-intl";
 

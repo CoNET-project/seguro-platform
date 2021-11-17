@@ -1,6 +1,4 @@
 import styled from 'styled-components';
-import Dropdown from "../../Common/Dropdown/Dropdown";
-import {HTMLAttributes} from "react";
 import {FaAppStoreIos, FaCcApplePay, FaWhatsapp} from "react-icons/all";
 
 type AppsDropdownProps = {

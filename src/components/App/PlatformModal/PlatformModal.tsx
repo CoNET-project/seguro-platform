@@ -1,4 +1,4 @@
-import Modal, {SubModal} from "../../UI/Common/Modal/Modal";
+import Modal from "../../UI/Common/Modal/Modal";
 import useAppState from "../../../store/appState/useAppState";
 import Settings from "./Settings/Settings";
 import ManageProfiles from "./ManageProfiles/ManageProfiles";

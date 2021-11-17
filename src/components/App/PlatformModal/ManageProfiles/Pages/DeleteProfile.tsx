@@ -3,8 +3,6 @@ import MotionWrapper from "../../../../UI/Motion/MotionWrapper";
 import {pageTransitionVariants} from "../../../../UI/Motion/Variants/Variants";
 import Profile from "../Profile/Profile";
 import {ProfileData} from "../../../../../store/appState/appStateReducer";
-import {pageNavigator} from "../../../../../contexts/pageNavigator/pageNavigatorActions";
-import {usePageNavigator} from "../../../../../contexts/pageNavigator/PageNavigatorContext";
 import {FormattedMessage} from "react-intl";
 
 type DeleteProfileProps = {

@@ -1,6 +1,6 @@
 import {AnimatePresence, motion} from 'framer-motion';
 import styled from 'styled-components';
-import {ReactNode, useEffect, useState} from "react";
+import {ReactNode, useEffect} from "react";
 import {pageTransitionVariants} from "../Motion/Variants/Variants";
 import ProgressDots from "../Progress/ProgressDots/ProgressDots";
 

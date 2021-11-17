@@ -2,7 +2,6 @@ import styled from 'styled-components'
 import Page from "../../../UI/Layout/Page/Page";
 import onboardingActions from "../../../../contexts/onboarding/onboardingActions";
 import {useOnboardingPageNavigator} from "../../../../contexts/onboarding/OnboardingContext";
-import {ReactNode} from "react";
 import Input from "../../../UI/Inputs/Input/Input";
 import {FormattedMessage} from "react-intl";
 import {CircleCheck} from "../../../UI/Icons/Icons";

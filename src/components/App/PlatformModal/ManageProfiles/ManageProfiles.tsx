@@ -5,8 +5,6 @@ import {screenWidth} from "../../../UI/screenSizes";
 import ListItem from "../../../UI/Common/ListItem/ListItem";
 import Image from "../../../UI/Common/Profile/Image/Image";
 import AnonymousAvatar from '../../../../assets/Avatar-anonymous.png'
-import ExampleProfile from '../../../../assets/examples/profile-example.jpeg'
-import {Profiles} from "../../../UI/Dropdowns/ProfileDropdown/ProfileDropdown";
 import {TippyDropdown} from "../../../UI/Tippy/Tippy";
 import {ReactNode, useState} from "react";
 import {ChevronLeft, VerticalOptions} from "../../../UI/Icons/Icons";

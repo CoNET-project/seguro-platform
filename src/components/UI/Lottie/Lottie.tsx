@@ -1,4 +1,3 @@
-import styled from 'styled-components';
 import Lottie, {LottieComponentProps} from "lottie-react";
 
 type LottieAnimationProps = {

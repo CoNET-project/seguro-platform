@@ -15,7 +15,6 @@ import {StyledFormattedH1, StyledFormattedParagraph} from "../../../UI/Common/Te
 import {Warning} from "../../../UI/Icons/Icons";
 import AlertDialog, {AlertDialogActions} from "../../../UI/Common/AlertDialog/AlertDialog";
 import onboardingActions from "../../../../contexts/onboarding/onboardingActions";
-import useAppState from "../../../../store/appState/useAppState";
 import Button from '../../../UI/Common/Button/Button';
 
 type CarouselState = [number, -1 | 1]

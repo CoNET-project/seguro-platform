@@ -1,9 +1,6 @@
 import styled, {keyframes} from "styled-components";
 import {screenWidth} from "../../screenSizes";
-import HeaderBar from "../HeaderBar/HeaderBar";
-import ListItem from "../ListItem/ListItem";
 import {ReactNode} from "react";
-import {ChevronLeft} from "../../Icons/Icons";
 
 export type SubModal = {
     title: ReactNode,

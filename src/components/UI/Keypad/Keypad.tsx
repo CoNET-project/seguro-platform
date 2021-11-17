@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 import Key from "./Key/Key";
 import {Fragment} from "react";
-import {FormattedMessage} from "react-intl";
 import {FiDelete} from "react-icons/all";
 
 export type KeypadProps = {
