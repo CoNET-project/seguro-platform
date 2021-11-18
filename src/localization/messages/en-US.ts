@@ -11,8 +11,7 @@ const en_US: Messages = {
     'onboarding.verificationTitle': 'Verify Account',
     'onboarding.verificationInputLabel': 'Enter your invitation code',
     'onboarding.verificationText':
-        'Please enter the invitation code you have received to begin the verification process. ' +
-        'This invitation code ensures that the quality of experience you have on the Seguro Platform is the best.',
+        'Please enter the invitation code you have received to begin the verification process.',
     'onboarding.verification.connecting': 'Connecting to IMAP...',
     'onboarding.verification.sending': 'Sending verification request...',
     'onboarding.verification.waiting': 'Waiting on verification response...',
@@ -35,7 +34,7 @@ const en_US: Messages = {
     'onboarding.carousel.title.decentralized': 'Decentralized',
     'onboarding.carousel.title.anonymity': 'Anonymity',
     'onboarding.carousel.content.seguro-platform': 'Seguro solves the problem of data leaks and unsecured information through innovative technology.',
-    'onboarding.carousel.content.no-ip-tracking': 'Using innovative email tunnel technology, you can access Seguro from anywhere without worrying about IP tracking or Firewalls.',
+    'onboarding.carousel.content.no-ip-tracking': 'You can access Seguro from anywhere without worrying about IP tracking or Firewalls.',
     'onboarding.carousel.content.decentralized': 'Seguro runs on a decentralized system, meaning even we don\'t have access to your information.',
     'onboarding.carousel.content.anonymity': 'Be as public or anonymous as you want with Seguro, no personal information required.',
 

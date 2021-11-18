@@ -20,7 +20,8 @@ import Button from '../../../UI/Common/Button/Button';
 type CarouselState = [number, -1 | 1]
 
 type ProgressingPageProps = {
-    hasTouch: boolean
+    hasTouch: boolean,
+    onSetupComplete: () => void,
 }
 
 const StyledProcessingContent = styled.div`
@@ -33,7 +34,7 @@ const StyledProcessingContent = styled.div`
   padding: 20px;
 `
 
-const ProcessingPage = ({hasTouch}: ProgressingPageProps) => {
+const ProcessingPage = ({hasTouch, onSetupComplete}: ProgressingPageProps) => {
     const MAX_STEPS = 4;
     const {state, dispatch} = useOnboardingPageNavigator()
     const [currentStep, setCurrentStep] = useState(1)
@@ -216,8 +217,7 @@ const ProcessingPage = ({hasTouch}: ProgressingPageProps) => {
                 lowerContentComponents={
                     <>
                         {state.onboardingPageData?.verificationStatus === 'SUCCESS'
-                            ? <Button onClick={() => {
-                            }}>Enter Seguro</Button>
+                            ? <Button onClick={onSetupComplete}>Enter Seguro</Button>
                             : <ProgressSteps
                                 currentStage={currentStep}
                                 numberOfSteps={MAX_STEPS}

@@ -5,12 +5,23 @@ import {FormattedMessage} from "react-intl";
 import Page from '../../../UI/Layout/Page/Page';
 import {useOnboardingPageNavigator} from "../../../../contexts/onboarding/OnboardingContext";
 import onboardingActions from "../../../../contexts/onboarding/onboardingActions";
-import Title from "../../../UI/Common/Title/Title";
 import {LogoImage} from '../../../UI/Logo/Logo';
+import {screenWidth} from "../../../UI/screenSizes";
 
 const StyledContainer = styled.div`
   height: 100%;
   width: 100%;
+
+  @media (${screenWidth.mediumWidth}) {
+    max-height: 50%;
+  }
+`
+
+const StyledTitle = styled.p`
+  font-size: ${props => props.theme.ui.fontSizes.narrow.lg};
+  @media (${screenWidth.mediumWidth}) {
+    font-size: ${props => props.theme.ui.fontSizes.medium.xl};
+  }
 `
 
 export type Languages = {
@@ -51,15 +62,18 @@ const SelectLanguagePage = ({selectLocale, locale}: SelectLanguageProps) => {
                     contentLeft: (
                         <>
                             <LogoImage size={200}/>
-                            <Title>
+                            <StyledTitle>
                                 <FormattedMessage id='onboarding.selectLanguageTitle'/>
-                            </Title>
+                            </StyledTitle>
                         </>
                     ),
                     contentRight: (
-                        <LanguageSelect languages={languages}
-                                        selectLocale={selectLocale}
-                                        selectedLocale={locale}/>
+                        <StyledContainer>
+                            <LanguageSelect languages={languages}
+                                            selectLocale={selectLocale}
+                                            selectedLocale={locale}/>
+                        </StyledContainer>
+
                     )
                 }
             }

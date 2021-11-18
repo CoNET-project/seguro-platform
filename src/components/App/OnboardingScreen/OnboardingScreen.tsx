@@ -11,47 +11,22 @@ import VerificationPage from "./VerificationPage/VerificationPage";
 import ProcessingPage from "./ProcessingPage/ProcessingPage";
 import {createPasscode} from "../../../services/workerService/workerService";
 
-type Languages = {
-    name: string,
-    englishName: string,
-    locale: Locale
-}
-
-type CurrentPage = [number, -1 | 1]
-
-type SavedPasscodes = {
-    [id: string]: string
-}
-
 const StyledContainer = styled.div`
   height: 100%;
   width: 100%;
   display: flex;
-  background-color: ${props => props.theme.ui.backgroundColor};
+  background-color: ${props => props.theme.ui.backgroundAccent};
   color: ${props => props.theme.ui.text.textPrimary};
   flex-direction: column;
   align-items: center;
   justify-content: center;
 `
 
-const AnimatedContent = styled(motion.div)`
-  min-height: 100%;
-  height: 100%;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-`
-
 const OnboardingScreen = () => {
-    const appState = useAppState()
+    const {locale, isTouchDevice, setLocale, setIsUnlocked, setHasContainer} = useAppState()
+
     const {state, dispatch} = useOnboardingPageNavigator()
     const {currentPage, onboardingPageData} = state
-
-    const setLocale = (locale: Locale) => {
-        return appState.setLocale(locale)
-    }
 
     // @ts-ignore
     const confirmationHandler = (): boolean => {
@@ -68,13 +43,18 @@ const OnboardingScreen = () => {
         return false
     }
 
+    const setShowMain = () => {
+        setIsUnlocked(true)
+        setHasContainer(true)
+    }
+
     return (
-        <StyledContainer>
-            <AnimatePresence custom={currentPage[1]}>
+        <AnimatePresence custom={currentPage[1]}>
+            <StyledContainer>
                 {currentPage[0] === 'language' &&
                 <SelectLanguagePage
                     key={currentPage[0]}
-                    locale={appState.locale}
+                    locale={locale}
                     selectLocale={setLocale}
                 />}
 
@@ -104,30 +84,11 @@ const OnboardingScreen = () => {
                 {currentPage[0] === 'verificationProcess' &&
                 <ProcessingPage
                     key={currentPage[0]}
-                    hasTouch={appState.isTouchDevice}
+                    hasTouch={isTouchDevice}
+                    onSetupComplete={setShowMain}
                 />}
-            </AnimatePresence>
-
-            {/*<AnimatePresence>*/}
-            {/*    <StyledContent>*/}
-            {/*        {number === 1 && (*/}
-            {/*            <AnimatedTitle initial={{ opacity: 0 }}*/}
-            {/*                           animate={{ opacity: 1 }}*/}
-            {/*                           exit={{ opacity: 0 }}>*/}
-            {/*                ONE*/}
-            {/*            </AnimatedTitle>*/}
-            {/*        )}*/}
-
-            {/*        {number === 2 && (*/}
-            {/*            <AnimatedTitle initial={{ opacity: 0 }}*/}
-            {/*                           animate={{ opacity: 1 }}*/}
-            {/*                           exit={{ opacity: 0 }}>*/}
-            {/*                TWO*/}
-            {/*            </AnimatedTitle>*/}
-            {/*        )}*/}
-            {/*    </StyledContent>*/}
-            {/*</AnimatePresence>*/}
-        </StyledContainer>
+            </StyledContainer>
+        </AnimatePresence>
     )
 }
 

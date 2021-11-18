@@ -41,17 +41,6 @@ const StyledPage = styled(motion.div)`
   }
 `
 
-const StyledPageButton = styled.button`
-  width: 50px;
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border: none;
-  background-color: transparent;
-  color: ${props => props.theme.ui.text.textPrimary}
-`
-
 const StyledContents = styled.div`
   max-width: 1080px;
   max-height: 1080px;
