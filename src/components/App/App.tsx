@@ -1,17 +1,13 @@
 import {useEffect} from 'react'
 import styled from 'styled-components'
 import useAppState from '../../store/appState/useAppState'
-import LaunchScreen from './LaunchScreen/LaunchScreen'
-import MainScreen from './MainScreen/MainScreen'
-import UnlockScreen from './UnlockScreen/UnlockScreen'
 import {detectTouchDevice, detectWindowInnerSize} from "../../utilities/utilities";
 import OnboardingScreen from "./OnboardingScreen/OnboardingScreen";
 import GlobalStyle from '../UI/Global/Styles'
 import {OnboardingPageProvider} from "../Providers/OnboardingPageProvider";
 import {Overlay} from "../UI/Common/Overlay/Overlay";
-import {Profiles} from "../UI/Dropdowns/ProfileDropdown/ProfileDropdown";
 import ExampleProfile from "../../assets/examples/profile-example.jpeg";
-import {Device} from "./PlatformModal/Settings/SettingSections/DeviceList";
+import MainScreen from './MainScreen/MainScreen';
 
 const StyledContainer = styled.div`
   height: 100vh;
@@ -23,15 +19,23 @@ const StyledContainer = styled.div`
 `
 
 const App = () => {
-    const appState = useAppState()
+    const {
+        setWindowInnerSize,
+        setClientProfiles,
+        setClientDevices,
+        setIsTouchDevice,
+        showOverlay,
+        hasContainer,
+        isUnlocked
+    } = useAppState()
 
     const windowResizeHandler = () => {
-        appState.setWindowInnerSize(detectWindowInnerSize())
+        setWindowInnerSize(detectWindowInnerSize())
     }
 
     useEffect(() => {
 
-        appState.setClientProfiles([
+        setClientProfiles([
             {
                 imageSrc: ExampleProfile,
                 keyid: '75DDC3C4A499F1A1',
@@ -53,7 +57,7 @@ const App = () => {
 
         const randomDeviceIds = Array.from({length: 3}, (_, i) => (Date.now() + Math.round(Math.random() * 100)).toString())
 
-        appState.setClientDevices({
+        setClientDevices({
             [randomDeviceIds[0]]: {
                 id: randomDeviceIds[0],
                 type: 'mobile',
@@ -71,38 +75,32 @@ const App = () => {
             },
         })
 
+        setIsTouchDevice(detectTouchDevice())
 
-        // setTimeout(() => {
-        //     appState.initialize().then()
-        // }, 2000)
-
-        appState.setIsTouchDevice(detectTouchDevice())
         window.addEventListener('resize', windowResizeHandler)
         return () => {
             window.removeEventListener('resize', windowResizeHandler)
         }
+
     }, [])
 
-
-    // let content = (
-    //     // <LaunchScreen/>
-    //     // <OnboardingPageProvider
-    //     //     existingPages={['language', 'setPasscode', 'confirmPasscode', 'verification', 'verificationProcess']}>
-    //     //     <OnboardingScreen/>
-    //     // </OnboardingPageProvider>
-    // )
-
     const getContent = () => {
+        switch (true) {
+            case hasContainer && isUnlocked:
+                return (
+                    <MainScreen/>
+                )
+            case hasContainer && !isUnlocked:
+                return
+            case !hasContainer && !isUnlocked:
+                return (
+                    <OnboardingPageProvider
+                        existingPages={['language', 'setPasscode', 'confirmPasscode', 'verification', 'verificationProcess']}>
+                        <OnboardingScreen/>
+                    </OnboardingPageProvider>
+                )
+        }
         // let content = <MainScreen/>
-let content = (
-        <>
-            {/*<LaunchScreen/>*/}
-            <OnboardingPageProvider
-                existingPages={['language', 'setPasscode', 'confirmPasscode', 'verification', 'verificationProcess']}>
-                <OnboardingScreen/>
-            </OnboardingPageProvider>
-        </>
-        )
         // // launch screen
         // if (appState.isInitializing) {
         //     content = (
@@ -120,7 +118,6 @@ let content = (
         //         <UnlockScreen/>
         //     )
         // }
-        return content
     }
 
     // // unlock screen
@@ -140,7 +137,7 @@ let content = (
         <>
             <GlobalStyle/>
             <StyledContainer>
-                <Overlay show={appState.showOverlay}/>
+                <Overlay show={showOverlay}/>
                 {getContent()}
             </StyledContainer>
         </>

@@ -9,7 +9,7 @@ import {
     setHasUpdateAvailable,
     setIsDrawerOpen,
     setIsModalOpen,
-    setIsTouchDevice,
+    setIsTouchDevice, setIsUnlocked,
     setLocale,
     setShowOverlay,
     setTheme,
@@ -113,6 +113,10 @@ const appStateReducer = createReducer(initialState, builder => {
 
         .addCase(setIsDrawerOpen, (state, action) => {
             state.isDrawerOpen = action.payload.isDrawerOpen
+        })
+
+        .addCase(setIsUnlocked, (state, action) => {
+            state.isUnlocked = action.payload.isUnlocked
         })
 
         .addCase(setHasUpdateAvailable, (state, action) => {

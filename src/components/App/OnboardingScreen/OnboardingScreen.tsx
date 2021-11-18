@@ -15,7 +15,7 @@ const StyledContainer = styled.div`
   height: 100%;
   width: 100%;
   display: flex;
-  background-color: ${props => props.theme.ui.backgroundColor};
+  background-color: ${props => props.theme.ui.backgroundAccent};
   color: ${props => props.theme.ui.text.textPrimary};
   flex-direction: column;
   align-items: center;
@@ -23,13 +23,10 @@ const StyledContainer = styled.div`
 `
 
 const OnboardingScreen = () => {
-    const appState = useAppState()
+    const {locale, isTouchDevice, setLocale, setIsUnlocked, setHasContainer} = useAppState()
+
     const {state, dispatch} = useOnboardingPageNavigator()
     const {currentPage, onboardingPageData} = state
-
-    const setLocale = (locale: Locale) => {
-        return appState.setLocale(locale)
-    }
 
     // @ts-ignore
     const confirmationHandler = (): boolean => {
@@ -46,13 +43,18 @@ const OnboardingScreen = () => {
         return false
     }
 
+    const setShowMain = () => {
+        setIsUnlocked(true)
+        setHasContainer(true)
+    }
+
     return (
-            <AnimatePresence custom={currentPage[1]}>
-                <StyledContainer>
+        <AnimatePresence custom={currentPage[1]}>
+            <StyledContainer>
                 {currentPage[0] === 'language' &&
                 <SelectLanguagePage
                     key={currentPage[0]}
-                    locale={appState.locale}
+                    locale={locale}
                     selectLocale={setLocale}
                 />}
 
@@ -82,10 +84,11 @@ const OnboardingScreen = () => {
                 {currentPage[0] === 'verificationProcess' &&
                 <ProcessingPage
                     key={currentPage[0]}
-                    hasTouch={appState.isTouchDevice}
+                    hasTouch={isTouchDevice}
+                    onSetupComplete={setShowMain}
                 />}
-                </StyledContainer>
-            </AnimatePresence>
+            </StyledContainer>
+        </AnimatePresence>
     )
 }
 

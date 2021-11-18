@@ -15,6 +15,17 @@ export const setWorkerServiceIsInitialized = createAction(
     }
 )
 
+export const setIsUnlocked = createAction(
+    'appState/isUnlocked',
+    (isUnlocked: boolean) => {
+        return {
+            payload: {
+                isUnlocked
+            }
+        }
+    }
+)
+
 export const setHasContainer = createAction(
     'appState/hasContainer',
     (hasContainer: boolean) => {

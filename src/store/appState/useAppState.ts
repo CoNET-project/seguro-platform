@@ -2,10 +2,12 @@ import {useTypedSelector} from '../store'
 import {useDispatch} from 'react-redux'
 import {
     setCurrentFocusPanel as setCurrentFocusPanelActionCreator,
+    setHasContainer as setHasContainerActionCreator,
     setHasUpdateAvailable as setHasUpdateAvailableActionCreator,
     setIsDrawerOpen as setIsDrawerOpenActionCreator,
     setIsTouchDevice as setIsTouchDeviceActionCreator,
     setIsModalOpen as setIsModalOpenActionCreator,
+    setIsUnlocked as setIsUnlockedActionCreator,
     setLocale as setLocaleActionCreator,
     setShowOverlay as setShowOverlayActionCreator,
     setTheme as setThemeActionCreator,
@@ -43,8 +45,17 @@ const useAppState = () => {
     const isUnlocked = useTypedSelector(state => state.appState.isUnlocked)
     const isLocked = !isUnlocked
 
+    const setIsUnlocked = (isUnlocked: boolean) => {
+        dispatch(setIsUnlockedActionCreator(isUnlocked))
+    }
+
     const hasContainer = useTypedSelector(state => state.appState.hasContainer)
     const noContainer = !hasContainer
+
+    const setHasContainer = (hasContainer: boolean) => {
+        dispatch(setHasContainerActionCreator(hasContainer))
+    }
+
 
     const theme = useTypedSelector(state => state.appState.theme)
 
@@ -147,9 +158,11 @@ const useAppState = () => {
         isInitializing,
         hasContainer,
         noContainer,
+        setHasContainer,
         setInitialized,
         isUnlocked,
         isLocked,
+        setIsUnlocked,
         theme,
         setTheme,
         locale,
