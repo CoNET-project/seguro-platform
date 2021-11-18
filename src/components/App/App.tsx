@@ -93,8 +93,16 @@ const App = () => {
     // )
 
     const getContent = () => {
-        let content = <MainScreen/>
-
+        // let content = <MainScreen/>
+let content = (
+        <>
+            {/*<LaunchScreen/>*/}
+            <OnboardingPageProvider
+                existingPages={['language', 'setPasscode', 'confirmPasscode', 'verification', 'verificationProcess']}>
+                <OnboardingScreen/>
+            </OnboardingPageProvider>
+        </>
+        )
         // // launch screen
         // if (appState.isInitializing) {
         //     content = (
