@@ -1,5 +1,22 @@
 # `seguro-platform` CHANGELOG
 
+## `0.33.0`
+
+### Additions
+
+- Hook onboarding and main screen pages.
+- Add isUnlocked state to be used with hasContainer to show main screen.
+
+### Changes
+
+- Clean onboarding styles.
+
+### Fixes
+
+- Fix CSS issues.
+
+---
+
 ## `0.32.1`
 
 ### Additions
