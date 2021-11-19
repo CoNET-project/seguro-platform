@@ -2,7 +2,7 @@ import {createAction} from '@reduxjs/toolkit'
 import {Theme} from '../../theme/types'
 import {Locale} from '../../localization/types'
 import {WindowInnerSize} from './useAppState'
-import {CurrentFocusPanel, DeviceData, ModalNames, ProfileData} from "./appStateReducer";
+import {CurrentFocusPanel, DeviceData, ModalNames, NetworkStates, ProfileData} from "./appStateReducer";
 
 export const setWorkerServiceIsInitialized = createAction(
     'appState/workerServiceIsInitialized',
@@ -65,6 +65,17 @@ export const setIsTouchDevice = createAction(
         return {
             payload: {
                 isTouchDevice: isTouchDevice
+            }
+        }
+    }
+)
+
+export const setNetworkState = createAction(
+    'appState/setNetworkState',
+    (networkState: NetworkStates) => {
+        return {
+            payload: {
+                networkState: networkState
             }
         }
     }

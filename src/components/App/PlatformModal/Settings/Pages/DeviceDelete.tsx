@@ -29,16 +29,19 @@ const StyledDeviceName = styled.p`
   font-size: ${props => props.theme.ui.fontSizes.narrow.lg};
   font-weight: 700;
   margin: 20px 0;
+  color: ${props => props.theme.ui.text.textPrimary}
 `
 
 const StyledDeviceRow = styled.div``
 
 const StyledDeviceMessage = styled.p`
   font-size: ${props => props.theme.ui.fontSizes.narrow.md};
+  color: ${props => props.theme.ui.text.textPrimary}
 `
 
 const StyledDeviceSubmessage = styled(StyledDeviceMessage)`
   font-size: ${props => props.theme.ui.fontSizes.narrow.sm};
+  color: ${props => props.theme.ui.text.textPrimary}
 `
 
 const StyledDeviceButton = styled.button<StyledDeviceButtonProps>`

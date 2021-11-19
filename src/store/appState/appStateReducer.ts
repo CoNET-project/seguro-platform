@@ -10,7 +10,7 @@ import {
     setIsDrawerOpen,
     setIsModalOpen,
     setIsTouchDevice, setIsUnlocked,
-    setLocale,
+    setLocale, setNetworkState,
     setShowOverlay,
     setTheme,
     setWindowInnerSize,
@@ -26,6 +26,8 @@ import {WindowInnerSize} from './useAppState'
 export type CurrentFocusPanel = 'left' | 'main' | 'right'
 
 export type ModalNames = 'settings' | 'manageProfile' | 'addProfile' | null
+
+export type NetworkStates = 'connected' | 'connecting' | 'disconnected' | 'reconnecting'
 
 export type ProfileData = {
     imageSrc?: string,
@@ -59,8 +61,8 @@ type AppStateReducerState = {
     hasUpdateAvailable: boolean,
     clientProfiles: Array<ProfileData>,
     activeProfile: ProfileData | null,
-    clientDevices: Devices
-
+    clientDevices: Devices,
+    networkState: NetworkStates
 }
 
 const initialState: AppStateReducerState = {
@@ -78,13 +80,18 @@ const initialState: AppStateReducerState = {
     hasUpdateAvailable: false,
     clientProfiles: [],
     activeProfile: null,
-    clientDevices: {}
+    clientDevices: {},
+    networkState: 'disconnected'
 }
 
 const appStateReducer = createReducer(initialState, builder => {
     return builder
         .addCase(setWorkerServiceIsInitialized, (state, action) => {
             state.workerServiceIsInitialized = action.payload.workerServiceIsInitialized
+        })
+
+        .addCase(setNetworkState, (state, action) => {
+            state.networkState = action.payload.networkState
         })
 
         .addCase(setHasContainer, (state, action) => {
