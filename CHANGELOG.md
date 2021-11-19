@@ -1,5 +1,21 @@
 # `seguro-platform` CHANGELOG
 
+## `0.33.1` `0.33.2`
+
+### Additions
+
+- None.
+
+### Changes
+
+- Small style change.
+
+### Fixes
+
+- Fix CSS issues.
+
+---
+
 ## `0.33.0`
 
 ### Additions

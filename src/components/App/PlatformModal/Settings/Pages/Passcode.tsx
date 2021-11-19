@@ -35,6 +35,7 @@ const StyledPasscodeInputWrapper = styled.div`
 const StyledPasscodeTitle = styled.h2`
   font-weight: 700;
   text-align: center;
+  color: ${props => props.theme.ui.text.textPrimary}
 `
 
 type PasscodeProps = {

@@ -33,15 +33,12 @@ const StyledProfileDetails = styled.div`
 const StyledProfileName = styled.p`
   font-size: ${props => props.theme.ui.fontSizes.narrow.sm};
   font-weight: bold;
+  color: ${props => props.theme.ui.text.textPrimary};
 `
 
 const StyledProfileKeyId = styled.p`
   color: ${props => props.theme.ui.text.textPrimary};
   font-size: ${props => props.theme.ui.fontSizes.narrow.xsm};
-
-  ${StyledProfileItem}:hover & {
-    color: ${props => props.theme.ui.text.invertedColor}
-  }
 `
 
 const StyledProfileKeyIdCopy = styled.button`
