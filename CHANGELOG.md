@@ -1,5 +1,21 @@
 # `seguro-platform` CHANGELOG
 
+## `0.34.0`
+
+### Additions
+
+- Add network states (Need to add other network icons).
+
+### Changes
+
+- Minor CSS fix in delete device page.
+
+### Fixes
+
+- Fix CSS issues.
+
+---
+
 ## `0.33.1` `0.33.2`
 
 ### Additions
