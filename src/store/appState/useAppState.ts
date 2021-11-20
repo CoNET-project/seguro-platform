@@ -2,6 +2,7 @@ import {useTypedSelector} from '../store'
 import {useDispatch} from 'react-redux'
 import {
     setCurrentFocusPanel as setCurrentFocusPanelActionCreator,
+    setNetworkState as setNetworkStateActionCreator,
     setHasContainer as setHasContainerActionCreator,
     setHasUpdateAvailable as setHasUpdateAvailableActionCreator,
     setIsDrawerOpen as setIsDrawerOpenActionCreator,
@@ -25,7 +26,7 @@ import {
 import {initializeWorkerService} from '../../services/workerService/workerService'
 import {Theme} from '../../theme/types'
 import {Locale} from '../../localization/types'
-import {CurrentFocusPanel, DeviceData, ModalNames, ProfileData} from "./appStateReducer";
+import {CurrentFocusPanel, DeviceData, ModalNames, NetworkStates, ProfileData} from "./appStateReducer";
 
 export type WindowInnerSize = {
     width: number,
@@ -68,6 +69,11 @@ const useAppState = () => {
 
     const setTheme = (theme: Theme) => {
         dispatch(setThemeActionCreator(theme))
+    }
+
+    const networkState = useTypedSelector(state => state.appState.networkState)
+    const setNetworkState = (networkState: NetworkStates) => {
+        dispatch(setNetworkStateActionCreator(networkState))
     }
 
     const createClientProfile = (profile: ProfileData) => {
@@ -165,6 +171,8 @@ const useAppState = () => {
         setIsUnlocked,
         theme,
         setTheme,
+        networkState,
+        setNetworkState,
         locale,
         setLocale,
         isTouchDevice,
