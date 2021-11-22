@@ -156,14 +156,15 @@ const SettingsContent = () => {
                                           itemRight={<ThemeSelector/>}
                                 />
 
-                                <ListItem itemLeft={<FormattedMessage id='platform.settings.passcode'/>}
-                                          itemRight={
-                                              <StyledButton
-                                                  onClick={() => dispatch(pageNavigator.navigateToPage('Passcode'))}>
-                                                  <FormattedMessage id='platform.settings.passcode.edit'/>
-                                                  <ChevronRight/>
-                                              </StyledButton>
-                                          }/>
+                                <ListItem
+                                    onClick={() => dispatch(pageNavigator.navigateToPage('Passcode'))}
+                                    itemLeft={<FormattedMessage id='platform.settings.passcode'/>}
+                                    itemRight={
+                                      <StyledButton>
+                                          <FormattedMessage id='platform.settings.passcode.edit'/>
+                                          <ChevronRight/>
+                                      </StyledButton>
+                                    }/>
 
                                 <ListItem
                                     itemLeft={

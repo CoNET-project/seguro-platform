@@ -82,13 +82,18 @@ const GlobalBar = () => {
 
     const [currentDropdown, setCurrentDropdown] = useState<Dropdowns>(null)
 
-    const dropdownToggle = (dropdown: Dropdowns) => {
+    const setDropdownToggle = (dropdown: Dropdowns) => {
         if (currentDropdown === dropdown) {
             return setCurrentDropdown(null)
         }
-        console.log(dropdown)
         return setCurrentDropdown(dropdown)
     }
+
+    const closeDropdown = () => {
+        setCurrentDropdown(null)
+    }
+
+
 
 
     return (
@@ -114,11 +119,12 @@ const GlobalBar = () => {
 
 
                     <TippyDropdown
-                        content={<AppsDropdown closeDropdown={() => dropdownToggle(null)}/>}
+                        content={<AppsDropdown closeDropdown={closeDropdown}/>}
                         verticalOffset={-3}
                         visible={currentDropdown === 'applications'}
+                        onClickOutside={closeDropdown}
                     >
-                        <StyledGlobalItem onClick={() => dropdownToggle('applications')}>
+                        <StyledGlobalItem onClick={() => setDropdownToggle('applications')}>
                             <Grid3X3 size={18}/>
                         </StyledGlobalItem>
                     </TippyDropdown>
@@ -127,11 +133,12 @@ const GlobalBar = () => {
 
 
                 <TippyDropdown
-                    content={<ProfileDropdown closeDropdown={() => dropdownToggle(null)}/>}
+                    content={<ProfileDropdown closeDropdown={closeDropdown}/>}
                     verticalOffset={-3}
                     visible={currentDropdown === 'profiles'}
+                    onClickOutside={closeDropdown}
                 >
-                    <StyledGlobalItem onClick={() => dropdownToggle('profiles')}>
+                    <StyledGlobalItem onClick={() => setDropdownToggle('profiles')}>
                         <ProfileImage src={activeProfile?.imageSrc} size='sm'/>
                     </StyledGlobalItem>
                 </TippyDropdown>

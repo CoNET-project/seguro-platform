@@ -95,6 +95,7 @@ export type Messages = {
     'platform.settings.subscriptionPlan': string,
 
     'toaster.action.copyDeviceCode': string,
+    'toaster.action.passcodeChange': string,
 
     'platform.contextMenu.manage': string,
     'platform.contextMenu.delete': string,
@@ -116,8 +117,7 @@ export type Messages = {
     'platform.manageProfiles.deleteProfile.cancelButton': string,
     'platform.manageProfiles.deleteProfile.confirmButton': string,
 
-    'platform.manageProfiles.deleteProfile.isPrimaryText': string,
-    'platform.manageProfiles.deleteProfile.isPrimarySubtext': string,
+    'platform.manageProfiles.deleteProfile.onlyProfileError': string,
     'platform.manageProfiles.deleteProfile.returnButton': string,
 
     'platform.addProfile.setAsPrimary': string,

@@ -9,6 +9,8 @@ import {pageNavigator} from "../../../../../contexts/pageNavigator/pageNavigator
 import {pageTransitionVariants} from "../../../../UI/Motion/Variants/Variants";
 import MotionWrapper from "../../../../UI/Motion/MotionWrapper";
 import {FormattedMessage} from "react-intl";
+import {toast} from "../../../../UI/Toaster/Toaster";
+import {Password} from "../../../../UI/Icons/Icons";
 
 const StyledPasscode = styled.div`
   min-height: 30rem;
@@ -91,6 +93,11 @@ const Passcode = ({custom}: PasscodeProps) => {
         }
 
         // Navigate back to settings
+        toast({
+            toastIcon: <Password/>,
+            event: <FormattedMessage id='toaster.action.passcodeChange'/>
+        })
+
         return dispatch(pageNavigator.navigateToPage('Platform Settings'))
     }
 

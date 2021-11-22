@@ -1,5 +1,26 @@
 # `seguro-platform` CHANGELOG
 
+## `0.35.0`
+
+### Additions
+
+- None.
+
+### Changes
+
+- Passcode and language item now use full length item click.
+- Language changes will switch users back to settings page.
+- Passcode change will show a toast.
+- Primary profile deletion will set next client profile as primary.
+- Users cannot delete last profile, they must have at least 2 profiles to delete one.
+- Clicking outside of dropdown will close dropdown.
+
+### Fixes
+
+- Fix CSS issues.
+
+---
+
 ## `0.34.0`
 
 ### Additions

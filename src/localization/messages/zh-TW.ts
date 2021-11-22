@@ -91,6 +91,7 @@ const zh_CN: Messages = {
     'platform.settings.subscriptionPlan': '訂閱計劃',
 
     'toaster.action.copyDeviceCode': '複製的設備代碼!',
+    'toaster.action.passcodeChange': '密碼已更改!',
 
 
     'platform.contextMenu.manage': '管理',
@@ -129,8 +130,7 @@ const zh_CN: Messages = {
     'platform.manageProfiles.deleteProfile.cancelButton': '取消',
     'platform.manageProfiles.deleteProfile.confirmButton': '確認',
 
-    'platform.manageProfiles.deleteProfile.isPrimaryText': '主要配置文件',
-    'platform.manageProfiles.deleteProfile.isPrimarySubtext': '刪除前請取消將配置文件設為主要配置文件！ ',
+    'platform.manageProfiles.deleteProfile.onlyProfileError': '你需要至少 1 個關於 Seguro 的個人資料！',
     'platform.manageProfiles.deleteProfile.returnButton': '返回個人資料',
 
     'platform.addProfile.setAsPrimary': '設置為主',

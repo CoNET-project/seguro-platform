@@ -4,6 +4,7 @@ import {pageTransitionVariants} from "../../../../UI/Motion/Variants/Variants";
 import Profile from "../Profile/Profile";
 import {ProfileData} from "../../../../../store/appState/appStateReducer";
 import {FormattedMessage} from "react-intl";
+import useAppState from "../../../../../store/appState/useAppState";
 
 type DeleteProfileProps = {
     custom: number,
@@ -61,27 +62,33 @@ const StyledDeleteProfileButton = styled.button<ButtonProps>`
 `
 
 const DeleteProfile = ({profile, custom, onDelete, onBack}: DeleteProfileProps) => {
+
+    const {clientProfiles} = useAppState()
     return (
         <MotionWrapper runInitialAnimation={true} custom={custom} name="Manage Profile"
                        variants={pageTransitionVariants}>
             <StyledDeleteProfile>
                 <Profile profile={profile} onChange={() => {
                 }} disableUpdate={true}/>
-                <StyledDeleteProfileMessage>
-                    {profile.primary ? (
-                        <FormattedMessage id='platform.manageProfiles.deleteProfile.isPrimaryText'/>
-                    ) : (
-                        <FormattedMessage id='platform.manageProfiles.deleteProfile.confirmationTitle'/>
-                    )}
-                </StyledDeleteProfileMessage>
-                <StyledDeleteProfileSubmessage>{profile.primary ? (
-                    <FormattedMessage id='platform.manageProfiles.deleteProfile.isPrimarySubtext'/>
-                ) : (
-                    <FormattedMessage id='platform.manageProfiles.deleteProfile.confirmationSubtext'/>
-                )}</StyledDeleteProfileSubmessage>
+                {
+                    clientProfiles.length > 1 && (
+                        <StyledDeleteProfileMessage>
+                            <FormattedMessage id='platform.manageProfiles.deleteProfile.confirmationTitle'/>
+                        </StyledDeleteProfileMessage>
+                    )
+                }
+                <StyledDeleteProfileSubmessage>
+                    {
+                        clientProfiles.length > 1 ? (
+                            <FormattedMessage id='platform.manageProfiles.deleteProfile.confirmationSubtext'/>
+                        ) : (
+                            <FormattedMessage id='platform.manageProfiles.deleteProfile.onlyProfileError'/>
+                        )
+                    }
+                </StyledDeleteProfileSubmessage>
                 <StyledDeleteProfileRow>
                     {
-                        !profile.primary && (
+                        clientProfiles.length > 1 ? (
                             <>
                                 <StyledDeleteProfileButton
                                     onClick={onBack}>
@@ -94,10 +101,7 @@ const DeleteProfile = ({profile, custom, onDelete, onBack}: DeleteProfileProps) 
                                     <FormattedMessage id='platform.manageProfiles.deleteProfile.confirmButton'/>
                                 </StyledDeleteProfileButton>
                             </>
-                        )
-                    }
-                    {
-                        profile.primary && (
+                        ) : (
                             <StyledDeleteProfileButton
                                 onClick={onBack}>
                                 <FormattedMessage
