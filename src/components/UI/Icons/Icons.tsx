@@ -4,7 +4,7 @@ import {
     FaChevronLeft,
     FaChevronRight, FaDesktop, FaMobileAlt, FaPlug, FaTabletAlt,
     GoPrimitiveDot, ImDownload, IoCheckmarkSharp, IoClose, IoIosCheckmarkCircle, IoIosWarning,
-    IoLanguage, IoMdContacts, IoSettingsOutline, MdContentCopy, MdManageAccounts,
+    IoLanguage, IoMdContacts, IoSettingsOutline, MdContentCopy, MdManageAccounts, MdPassword,
     RiShieldKeyholeLine, TiDelete
 } from "react-icons/all";
 import styled from 'styled-components';
@@ -295,6 +295,14 @@ export const Camera = ({size, color}: IconProps) => {
     return (
         <StyledIcon>
             <BsCamera size={getSize(size)} color={color || undefined}/>
+        </StyledIcon>
+    )
+}
+
+export const Password = ({size, color}: IconProps) => {
+    return (
+        <StyledIcon>
+            <MdPassword size={getSize(size)} color={color || undefined}/>
         </StyledIcon>
     )
 }

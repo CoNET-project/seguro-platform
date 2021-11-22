@@ -92,6 +92,7 @@ const en_US: Messages = {
     'platform.settings.subscriptionPlan': 'Subscription Plan',
 
     'toaster.action.copyDeviceCode': 'Copied device code!',
+    'toaster.action.passcodeChange': 'Passcode changed!',
 
     'platform.contextMenu.manage': 'Manage',
     'platform.contextMenu.delete': 'Delete',
@@ -114,8 +115,7 @@ const en_US: Messages = {
     'platform.manageProfiles.deleteProfile.confirmButton': 'Confirm',
 
 
-    'platform.manageProfiles.deleteProfile.isPrimaryText': 'Primary profile',
-    'platform.manageProfiles.deleteProfile.isPrimarySubtext': 'Please unset profile as primary before deleting!',
+    'platform.manageProfiles.deleteProfile.onlyProfileError': 'You need at least 1 profile on Seguro!',
     'platform.manageProfiles.deleteProfile.returnButton': 'Return to profiles',
 
     'platform.addProfile.setAsPrimary': 'Set as primary',

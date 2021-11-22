@@ -4,6 +4,9 @@ import useAppState from "../../../../../store/appState/useAppState";
 import MotionWrapper from "../../../../UI/Motion/MotionWrapper";
 import {pageTransitionVariants} from "../../../../UI/Motion/Variants/Variants";
 import styled from "styled-components";
+import {Locale} from "../../../../../localization/types";
+import {usePageNavigator} from "../../../../../contexts/pageNavigator/PageNavigatorContext";
+import {pageNavigator} from "../../../../../contexts/pageNavigator/pageNavigatorActions";
 
 type LanguageProps = {
     custom: number
@@ -15,7 +18,8 @@ const StyledLanguage = styled.div`
 `
 
 const Language = ({custom}: LanguageProps) => {
-    const appState = useAppState();
+    const {setLocale, locale} = useAppState();
+    const {dispatch} = usePageNavigator()
     const languages: Array<Languages> = [
         {
             name: 'English',
@@ -33,11 +37,18 @@ const Language = ({custom}: LanguageProps) => {
             locale: 'zh-TW'
         }
     ]
+
+    const selectLocale = (locale: Locale) => {
+        setLocale(locale)
+        dispatch(pageNavigator.navigateToPage('Platform Settings'))
+    }
+
+
     return (
         <MotionWrapper runInitialAnimation={true} custom={custom} name="Language" variants={pageTransitionVariants}>
             <StyledLanguage>
-                <LanguageSelect languages={languages} selectLocale={(locale) => appState.setLocale(locale)}
-                                selectedLocale={appState.locale}/>
+                <LanguageSelect languages={languages} selectLocale={selectLocale}
+                                selectedLocale={locale}/>
             </StyledLanguage>
         </MotionWrapper>
     )

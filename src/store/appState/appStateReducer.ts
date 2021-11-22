@@ -169,9 +169,13 @@ const appStateReducer = createReducer(initialState, builder => {
         })
 
         .addCase(deleteClientProfile, (state, action) => {
+            const profile = state.clientProfiles.filter(profile => profile.keyid === action.payload.keyId)[0]
             state.clientProfiles = state.clientProfiles.filter(profile => profile.keyid !== action.payload.keyId)
             if (state.activeProfile?.keyid === action.payload.keyId) {
                 state.activeProfile = state.clientProfiles.filter(profile => profile.primary)[0]
+            }
+            if (profile && profile.primary) {
+                state.clientProfiles[0].primary = true
             }
         })
 
