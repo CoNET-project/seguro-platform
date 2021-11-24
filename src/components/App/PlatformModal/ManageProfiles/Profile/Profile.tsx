@@ -7,6 +7,7 @@ import {ChangeEvent, useRef} from "react";
 import {ProfileData} from "../../../../../store/appState/appStateReducer";
 import {getBase64FromFile} from "../../../../../utilities/utilities";
 import {FormattedMessage} from "react-intl";
+import Checkbox from "../../../../UI/Common/Checkbox/Checkbox";
 
 const StyledManageProfile = styled.div`
   padding: 40px 0 20px 0;
@@ -100,10 +101,14 @@ const StyledPrimarySelectionRow = styled.div`
 
 const StyledPrimaryCheckbox = styled.input`
   margin-right: 10px;
+  &:disabled {
+    background-color: red;
+  }
 `
 
 const StyledPrimaryText = styled.p`
   font-size: ${props => props.theme.ui.fontSizes.narrow.sm};
+  margin-left: 10px;
 `
 
 const StyledKeyIdTextRow = styled(StyledPrimarySelectionRow)``
@@ -209,10 +214,10 @@ const Profile = ({profile, onChange, disableUpdate, newProfile}: ProfileProps) =
                         {
                             !disableUpdate && (
                                 <StyledPrimarySelectionRow>
-                                    <StyledPrimaryCheckbox type='checkbox'
-                                                           onChange={e => onChangePrimary(e.target.checked)}
-                                                           defaultChecked={profile?.primary}
-                                                           disabled={!newProfile && profile?.primary}
+                                    <Checkbox
+                                        defaultValue={profile?.primary}
+                                        onChange={(checked) => onChangePrimary(checked) }
+                                        disabled={!newProfile && profile?.primary}
                                     />
                                     <StyledPrimaryText>
                                         <FormattedMessage id='platform.manageProfile.setAsPrimary'/>
