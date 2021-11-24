@@ -9,6 +9,7 @@
 ### Changes
 
 - Change primary profile checkbox to custom checkbox.
+- Clicking outside of overlay will close all modals.
 
 ### Fixes
 
