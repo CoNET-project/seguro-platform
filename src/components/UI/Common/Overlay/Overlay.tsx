@@ -1,12 +1,14 @@
 import {HTMLMotionProps, motion} from 'framer-motion';
 import styled from 'styled-components';
+import React from "react";
 
 type DragOverlayProps = {
     acceptPointerEvents: boolean
 } & HTMLMotionProps<any>
 
 type OverlayProps = {
-    show: boolean
+    show: boolean,
+    onClick: () => void
 }
 
 type StyledOverlayProps = {
@@ -46,8 +48,8 @@ const StyledDragOverlay = styled(motion.div)<StyledDragOverlayProps>`
   visibility: visible;
 `
 
-export const Overlay = ({show}: OverlayProps) => {
-    return <StyledOverlay show={show}/>
+export const Overlay = ({show, onClick}: OverlayProps) => {
+    return <StyledOverlay show={show} onClick={onClick}/>
 }
 
 export const DragOverlay = (props: DragOverlayProps) => {

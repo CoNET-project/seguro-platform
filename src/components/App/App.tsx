@@ -24,6 +24,8 @@ const App = () => {
         setClientProfiles,
         setClientDevices,
         setIsTouchDevice,
+        setIsModalOpen,
+        setIsShowOverlay,
         showOverlay,
         hasContainer,
         isUnlocked
@@ -137,7 +139,10 @@ const App = () => {
         <>
             <GlobalStyle/>
             <StyledContainer>
-                <Overlay show={showOverlay}/>
+                <Overlay show={showOverlay} onClick={() => {
+                    setIsModalOpen(null)
+                    setIsShowOverlay(false)
+                }}/>
                 {getContent()}
             </StyledContainer>
         </>
