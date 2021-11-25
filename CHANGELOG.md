@@ -1,5 +1,22 @@
 # `seguro-platform` CHANGELOG
 
+## `0.36.0`
+
+### Additions
+
+- None.
+
+### Changes
+
+- Change primary profile checkbox to custom checkbox.
+- Clicking outside of overlay will close all modals.
+
+### Fixes
+
+- Fix CSS issues.
+
+---
+
 ## `0.35.0`
 
 ### Additions
