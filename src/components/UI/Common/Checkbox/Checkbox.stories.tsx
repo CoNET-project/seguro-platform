@@ -18,5 +18,5 @@ export const Primary = Template.bind({})
 
 Primary.args = {
     defaultValue: false,
-    disabled: false
+    disabled: true
 }

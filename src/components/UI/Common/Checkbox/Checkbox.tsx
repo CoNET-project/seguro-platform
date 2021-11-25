@@ -9,7 +9,8 @@ export type CheckboxProps = {
 }
 
 type StyledCheckboxProps = {
-    disabled?: boolean
+    disabled?: boolean,
+    checked: boolean
 }
 
 const HiddenInput = styled.input`
@@ -20,13 +21,19 @@ const HiddenInput = styled.input`
 `
 
 const StyledCheckbox = styled.div<StyledCheckboxProps>`
+  transition: background-color 50ms ease-in-out;
   opacity: ${props => props.disabled ? 0.5 : 1};
   width: 20px;
   height: 20px;
   content: '';
   border-radius: 2.5px;
   border: 1px solid ${props => props.theme.ui.borderColor};
-  background-color: ${props => props.disabled ? props.theme.ui.primaryColorWithOpacity : props.theme.ui.backgroundColor};
+  background-color: 
+          ${props => props.disabled ? 
+                  props.theme.ui.primaryColorWithOpacity : 
+                  props.checked ? 
+                          props.theme.ui.primaryColorWithOpacity : 
+                          props.theme.ui.backgroundColor};
   display: flex;
   justify-content: center;
   align-items: center;
@@ -58,7 +65,7 @@ const Checkbox = ({ defaultValue, onChange, disabled }: CheckboxProps) => {
     }
 
     return (
-        <StyledCheckbox onClick={checkboxClick} disabled={disabled}>
+        <StyledCheckbox onClick={checkboxClick} disabled={disabled} checked={checked}>
             <HiddenInput type='checkbox' checked={checked} onChange={() => {}}/>
             {
                 (checked || disabled) && (
