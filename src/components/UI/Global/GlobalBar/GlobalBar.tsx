@@ -12,10 +12,10 @@ import {useState} from "react";
 const StyledGlobalBar = styled.div`
   height: calc(50px + env(safe-area-inset-top));
   width: 100%;
-  border-bottom: 1px solid ${props => props.theme.ui.border.color};
+  border-bottom: 1px solid ${props => props.theme.ui.colors.border.light};
   display: flex;
   align-items: center;
-  background-color: ${props => props.theme.ui.backgroundColor};
+  background-color: ${props => props.theme.ui.colors.background.foundation};
   padding: calc(env(safe-area-inset-top)) 10px 0 10px;
 
   @media (${screenWidth.mediumWidth}) {
@@ -43,8 +43,8 @@ const StyledBarSectionOptional = styled.div`
 `
 
 const StyledGlobalButton = styled.button`
-  height: 48px;
-  width: 48px;
+  height: 42px;
+  width: 42px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -53,19 +53,16 @@ const StyledGlobalButton = styled.button`
   cursor: pointer;
   padding: 10px;
   position: relative;
+  border-radius: 5px;
+  margin: 10px 0;
+  transition: background-color 100ms ease-in-out;
+
+  &:hover {
+    background-color: ${props => props.theme.ui.colors.hover};
+  }
 `
 
-const StyledGlobalItem = styled.button`
-  height: 48px;
-  width: 48px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border: none;
-  background-color: transparent;
-  cursor: pointer;
-  padding: 10px;
-  position: relative;
+const StyledGlobalItem = styled(StyledGlobalButton)`
 `
 
 type Dropdowns = 'applications' | 'profiles' | null
@@ -94,8 +91,6 @@ const GlobalBar = () => {
     }
 
 
-
-
     return (
         <StyledGlobalBar>
             <StyledBarSectionFullWidth>
@@ -120,7 +115,7 @@ const GlobalBar = () => {
 
                     <TippyDropdown
                         content={<AppsDropdown closeDropdown={closeDropdown}/>}
-                        verticalOffset={-3}
+                        verticalOffset={2}
                         visible={currentDropdown === 'applications'}
                         onClickOutside={closeDropdown}
                     >
@@ -134,7 +129,7 @@ const GlobalBar = () => {
 
                 <TippyDropdown
                     content={<ProfileDropdown closeDropdown={closeDropdown}/>}
-                    verticalOffset={-3}
+                    verticalOffset={2}
                     visible={currentDropdown === 'profiles'}
                     onClickOutside={closeDropdown}
                 >

@@ -44,7 +44,7 @@ const StyledContentComponent = styled.div`
   text-align: center;
   display: flex;
   flex-direction: column;
-  color: ${props => props.theme.ui.text.textPrimary};
+  color: ${props => props.theme.ui.colors.text.primary};
   margin: 20px 0;
   width: 100%;
   line-height: 28px

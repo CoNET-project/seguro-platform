@@ -28,12 +28,12 @@ type StyledHeaderCloseButtonProps = {
 const StyledHeaderBar = styled.div`
   width: 100%;
   height: 50px;
-  background-color: ${props => props.theme.ui.backgroundColor};
-  color: ${props => props.theme.ui.text.textPrimary};
+  background-color: ${props => props.theme.ui.colors.background.foundation};
+  color: ${props => props.theme.ui.colors.text.primary};
   display: flex;
   align-items: center;
   padding: 5px;
-  border-bottom: 1px solid ${props => props.theme.ui.border.color};
+  border-bottom: 1px solid ${props => props.theme.ui.colors.border.light};
   position: relative;
   z-index: 10;
 
@@ -85,7 +85,7 @@ const StyledHeaderTitle = styled.p`
 
 const StyledHeaderSubtitle = styled.p`
   font-size: ${props => props.theme.ui.fontSizes.narrow.xsm};
-  color: ${props => props.theme.ui.text.textSecondary};
+  color: ${props => props.theme.ui.colors.text.secondary};
 `
 
 const HeaderBar = ({className, closeAction, headerContent, headerComponents}: HeaderBarProps) => {

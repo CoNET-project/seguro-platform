@@ -17,11 +17,11 @@ const StyledProfileItem = styled.div<StyledProfileItemProps>`
   align-items: center;
   padding: 12.5px 24px;
   cursor: pointer;
-  background-color: ${props => props.isActive && props.theme.ui.borderColor};
+  background-color: ${props => props.isActive && props.theme.ui.colors.border.light};
 
   &:hover {
-    background-color: ${props => props.theme.ui.primaryColorWithOpacity};
-    color: ${props => props.theme.ui.text.invertedColor}
+    background-color: ${props => props.theme.ui.colors.primary};
+    color: #FFF
   }
 `
 
@@ -33,11 +33,9 @@ const StyledProfileDetails = styled.div`
 const StyledProfileName = styled.p`
   font-size: ${props => props.theme.ui.fontSizes.narrow.sm};
   font-weight: bold;
-  color: ${props => props.theme.ui.text.textPrimary};
 `
 
 const StyledProfileKeyId = styled.p`
-  color: ${props => props.theme.ui.text.textPrimary};
   font-size: ${props => props.theme.ui.fontSizes.narrow.xsm};
 `
 
@@ -51,7 +49,7 @@ const StyledProfileKeyIdCopy = styled.button`
   }
 
   ${StyledProfileItem}:hover & > * {
-    color: ${props => props.theme.ui.text.invertedColor}
+    color: #FFF
   }
 `
 

@@ -10,8 +10,8 @@ const StyledPanel = styled.div`
   height: 100%;
   width: 100%;
   content: '';
-  background-color: ${props => props.theme.ui.backgroundColor};
-  color: ${props => props.theme.ui.text.textPrimary};
+  background-color: ${props => props.theme.ui.colors.background.foundation};
+  color: ${props => props.theme.ui.colors.text.primary};
   transition: width 250ms ease-in-out, opacity 300ms ease-in-out;
   overflow: hidden;
 `

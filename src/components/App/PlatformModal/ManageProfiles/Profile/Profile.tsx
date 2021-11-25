@@ -11,12 +11,12 @@ import Checkbox from "../../../../UI/Common/Checkbox/Checkbox";
 
 const StyledManageProfile = styled.div`
   padding: 40px 0 20px 0;
-  background-color: ${props => props.theme.ui.backgroundColor};
+  background-color: ${props => props.theme.ui.colors.background.elevationOne};
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  color: ${props => props.theme.ui.text.textPrimary};
+  color: ${props => props.theme.ui.colors.text.primary};
   @media (${screenWidth.mediumWidth}) {
     margin: 20px;
   }
@@ -80,13 +80,13 @@ const StyledProfileDetails = styled.div`
 
 const StyledNameInput = styled.input`
   border: none;
-  border-bottom: 2px solid ${props => props.theme.ui.borderColor};
+  border-bottom: 2px solid ${props => props.theme.ui.colors.border.light};
   padding: 5px;
   min-width: 15rem;
   width: 100%;
   text-align: center;
-  background-color: ${props => props.theme.ui.backgroundColor};
-  color: ${props => props.theme.ui.text.textPrimary};
+  background-color: transparent;
+  color: ${props => props.theme.ui.colors.text.primary};
 
   &:focus {
     outline: none;
@@ -101,6 +101,7 @@ const StyledPrimarySelectionRow = styled.div`
 
 const StyledPrimaryCheckbox = styled.input`
   margin-right: 10px;
+
   &:disabled {
     background-color: red;
   }
@@ -115,7 +116,7 @@ const StyledKeyIdTextRow = styled(StyledPrimarySelectionRow)``
 
 const StyledTextLabel = styled.p`
   font-size: ${props => props.theme.ui.fontSizes.narrow.xsm};
-  color: ${props => props.theme.ui.text.textSecondary}
+  color: ${props => props.theme.ui.colors.text.secondary}
 `
 
 const StyledText = styled(StyledTextLabel)`
@@ -216,7 +217,7 @@ const Profile = ({profile, onChange, disableUpdate, newProfile}: ProfileProps) =
                                 <StyledPrimarySelectionRow>
                                     <Checkbox
                                         defaultValue={profile?.primary}
-                                        onChange={(checked) => onChangePrimary(checked) }
+                                        onChange={(checked) => onChangePrimary(checked)}
                                         disabled={!newProfile && profile?.primary}
                                     />
                                     <StyledPrimaryText>

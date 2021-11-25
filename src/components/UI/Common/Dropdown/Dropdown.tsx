@@ -20,12 +20,12 @@ const StyledDropdown = styled.div`
   right: 30%;
   padding: 10px;
   border: 1px solid rgba(0, 0, 0, 0.15);
-  background-color: ${props => props.theme.ui.backgroundColor};
+  background-color: ${props => props.theme.ui.colors.background.foundation};
   margin-top: -7.5px;
   border-radius: 5px;
   box-shadow: 0 5px 5px rgba(0, 0, 0, 0.5);
   animation: ${appearKeyframe} 150ms ease-in-out;
-  color: ${props => props.theme.ui.text.textPrimary};
+  color: ${props => props.theme.ui.colors.text.primary};
   min-width: 10rem;
   z-index: 1000;
 `

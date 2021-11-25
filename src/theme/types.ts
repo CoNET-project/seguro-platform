@@ -1,6 +1,35 @@
 import 'styled-components'
+import {FontSizes} from "./fonts";
 
 export type Theme = 'Auto' | 'Light' | 'Dark'
+
+export type Colors = {
+    primary: string,
+    secondary: string,
+    dangerous: string,
+    text: {
+        primary: string,
+        secondary: string,
+        error: string,
+        disabled: string,
+        inverted: string
+    },
+    background: {
+        foundation: string,
+        elevationOne: string,
+        elevationTwo: string,
+    },
+    border: {
+        light: string,
+        medium: string,
+        heavy: string
+    },
+    icon: {
+        active: string,
+        inactive: string
+    },
+    hover: string
+}
 
 declare module 'styled-components' {
 
@@ -10,18 +39,6 @@ declare module 'styled-components' {
             color: string
         },
         ui: {
-            backgroundColor: string,
-            backgroundAccent: string,
-            backgroundAccentWithOpacity: string,
-            borderColor: string,
-            primaryColor: string,
-            primaryColorWithOpacity: string,
-            accentColor: string,
-            dangerousColor: string,
-            selected: string,
-            outline: {
-                color: string
-            },
             storybook: {
                 canvasDecorator: {
                     backgroundColor: string,
@@ -35,38 +52,6 @@ declare module 'styled-components' {
                 color: string,
                 invertedColor: string
             },
-            text: {
-                textPrimary: string,
-                textSecondary: string,
-                textError: string,
-                textDisabled: string,
-                invertedColor: string
-            },
-            border: {
-                color: string,
-                inverted: string,
-            },
-            fontSizes: {
-                narrow: {
-                    xsm: string,
-                    sm: string,
-                    md: string,
-                    lg: string,
-                    xl: string
-                },
-                medium: {
-                    sm: string,
-                    md: string,
-                    lg: string,
-                    xl: string
-                },
-                wide: {
-                    sm: string,
-                    md: string,
-                    lg: string,
-                    xl: string
-                }
-            },
             keypadKey: {
                 numberColor: string,
                 alphabetColor: string,
@@ -76,10 +61,6 @@ declare module 'styled-components' {
                 color: string,
                 border: string,
                 placeholderColor: string
-            },
-            icon: {
-                inactive: string,
-                active: string
             },
             progress: {
                 bar: {
@@ -91,7 +72,9 @@ declare module 'styled-components' {
                     incomplete: string,
                     complete: string
                 }
-            }
+            },
+            fontSizes: FontSizes,
+            colors: Colors
         }
     }
 }

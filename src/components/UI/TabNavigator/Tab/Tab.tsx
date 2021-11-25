@@ -31,8 +31,8 @@ const StyledTab = styled(motion.button)`
   border: none;
   padding: 10px 0 calc(10px + env(safe-area-inset-bottom)) 0;
   transition: background-color 150ms ease-in-out, color 150ms ease-in-out;
-  background-color: ${props => props.theme.ui.backgroundColor};
-  color: ${props => props.theme.ui.text.textSecondary};
+  background-color: ${props => props.theme.ui.colors.background.foundation};
+  color: ${props => props.theme.ui.colors.text.secondary};
   position: relative;
   @media (${screenWidth.mediumWidth}) {
     min-height: 60px;

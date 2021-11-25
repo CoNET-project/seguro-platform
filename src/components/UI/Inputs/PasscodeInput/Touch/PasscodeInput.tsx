@@ -14,7 +14,7 @@ const StyledPasscodeInput = styled.div`
   align-items: center;
   width: 100%;
   min-width: 100%;
-  
+
 `
 
 const StyledPasscodeInputDot = styled.div`
@@ -53,7 +53,6 @@ const StyledPasscodeErrorText = styled.p`
 `
 
 const PasscodeInput = ({value, error}: PasscodeInputProps) => {
-    console.log(value)
     const getPasscodeDots = (value: string): Array<ReactNode> => {
         const elements: Array<ReactNode> = []
         if (value.length > 8) {

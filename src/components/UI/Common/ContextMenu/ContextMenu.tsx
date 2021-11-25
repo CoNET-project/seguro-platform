@@ -6,6 +6,7 @@ const StyledDropdown = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
+  background-color: ${props => props.theme.ui.colors.background.elevationTwo};
 `
 
 const StyledDropdownItem = styled.button`
@@ -16,13 +17,13 @@ const StyledDropdownItem = styled.button`
   padding: 10px 15px;
 
   &:not(:last-of-type) {
-    border-bottom: 1px solid ${props => props.theme.ui.borderColor};
+    border-bottom: 1px solid ${props => props.theme.ui.colors.border.light};
   }
 `
 
 const StyledDropdownText = styled.p`
   font-size: ${props => props.theme.ui.fontSizes.narrow.sm};
-  color: ${props => props.theme.ui.text.textPrimary}
+  color: ${props => props.theme.ui.colors.text.primary}
 `
 
 export type ContextMenuActions = {

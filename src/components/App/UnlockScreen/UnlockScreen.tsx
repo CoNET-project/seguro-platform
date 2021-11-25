@@ -13,7 +13,7 @@ const StyledContainer = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background-color: ${props => props.theme.ui.backgroundColor};
+  background-color: ${props => props.theme.ui.colors.background.foundation};
 `
 
 const StyledContent = styled.div`
@@ -25,7 +25,7 @@ const StyledContent = styled.div`
 
 const StyledTitle = styled.p`
   margin: 40px 0 20px 0;
-  color: ${props => props.theme.ui.text.textPrimary}
+  color: ${props => props.theme.ui.colors.text.primary}
 `
 
 const UnlockScreen = () => {

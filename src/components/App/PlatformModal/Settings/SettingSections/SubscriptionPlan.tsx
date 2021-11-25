@@ -25,7 +25,7 @@ const StyledInnerRow = styled.div`
 
 const StyledPlanName = styled.p`
   font-weight: 900;
-  color: ${props => props.theme.ui.text.textPrimary}
+  color: ${props => props.theme.ui.colors.text.primary}
 `
 
 const StyledPlanPrice = styled(StyledPlanName)`
@@ -33,7 +33,7 @@ const StyledPlanPrice = styled(StyledPlanName)`
 
 const StyledPlanDescription = styled.p`
   margin-top: 5px;
-  color: ${props => props.theme.ui.text.textSecondary};
+  color: ${props => props.theme.ui.colors.text.secondary};
   @media (${screenWidth.mediumWidth}) {
     font-size: ${props => props.theme.ui.fontSizes.medium.sm}
   }

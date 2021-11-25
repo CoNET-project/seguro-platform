@@ -15,6 +15,8 @@ type ProfileDropdownProps = {
 const StyledProfileDropdown = styled.div`
   width: 100%;
   height: 100%;
+  background-color: ${props => props.theme.ui.colors.background.elevationOne};
+  border-radius: 10px;
   //padding: 0 20px;
 `
 
@@ -27,13 +29,21 @@ const StyledProfileDropdownOption = styled.button`
   width: 100%;
   background-color: transparent;
   border: none;
-  color: ${props => props.theme.ui.text.textPrimary};
+  color: ${props => props.theme.ui.colors.text.primary};
   text-align: start;
   padding: 15px 30px;
   display: flex;
   align-items: center;
   font-size: ${props => props.theme.ui.fontSizes.narrow.sm};
-  border-top: 1px solid ${props => props.theme.ui.borderColor};
+  border-top: 1px solid ${props => props.theme.ui.colors.border.light};
+
+  &:hover {
+    background-color: ${props => props.theme.ui.colors.primary};
+  }
+
+  &:hover > * {
+    color: #fff
+  }
 `
 
 const StyledProfileDropdownOptionsText = styled.p`

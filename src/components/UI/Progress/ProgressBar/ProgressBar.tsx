@@ -12,7 +12,7 @@ const StyledProgressBar = styled.div`
   width: 100%;
   height: 10px;
   content: '';
-  background-color: ${props => props.theme.ui.backgroundAccent};
+  background-color: ${props => props.theme.ui.colors.background.foundation};
   position: relative;
   border-radius: 25px;
   overflow: hidden;
@@ -27,7 +27,7 @@ const StyledProgressComplete = styled.div<StyledProgressCompleteProps>`
   content: '';
   position: absolute;
   top: 0;
-  background-color: ${props => props.theme.ui.primaryColor};
+  background-color: ${props => props.theme.ui.colors.primary};
   border-radius: 25px;
   border-right: 1px solid rgba(0, 0, 0, 0.3);
   z-index: 100;

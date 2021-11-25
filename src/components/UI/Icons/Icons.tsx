@@ -42,8 +42,7 @@ const getSize = (size: Sizes) => {
 }
 
 const StyledIcon = styled.p`
-  transition: color 150ms ease-in-out;
-  color: ${props => props.theme.ui.text.textPrimary};
+  color: ${props => props.theme.ui.colors.text.primary};
   display: flex;
   align-items: center;
   justify-content: center;
@@ -78,7 +77,7 @@ const StyledNoColorIcon = styled(StyledIcon)`
 type StyledValidityIconProps = { valid: boolean }
 
 const StyledValidityIcon = styled(StyledIcon)<StyledValidityIconProps>`
-  color: ${props => props.valid ? props.theme.ui.icon.active : props.theme.ui.icon.inactive}
+  color: ${props => props.valid ? props.theme.ui.colors.icon.active : props.theme.ui.colors.icon.inactive}
 `
 
 export const ChevronLeft = ({size, color}: IconProps) => {

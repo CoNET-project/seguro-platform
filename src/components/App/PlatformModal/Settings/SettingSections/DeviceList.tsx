@@ -71,7 +71,7 @@ const StyledDeviceItemNameInput = styled.input`
   font-weight: bold;
   font-size: ${props => props.theme.ui.fontSizes.narrow.sm};
   border: none;
-  border-bottom: 1px solid ${props => props.theme.ui.borderColor};
+  border-bottom: 1px solid ${props => props.theme.ui.colors.border.light};
   padding: 2px 0;
   @media (${screenWidth.mediumWidth}) {
     font-size: ${props => props.theme.ui.fontSizes.medium.sm}
@@ -86,7 +86,7 @@ const StyledDeviceItemButton = styled.button`
   border: none;
   background-color: transparent;
   padding: 5px;
-  color: ${props => props.theme.ui.text.textPrimary};
+  color: ${props => props.theme.ui.colors.text.primary};
   opacity: 0.5;
 `
 
@@ -101,11 +101,11 @@ const simpleFadeIn = keyframes`
 `
 
 const StyledDeviceItemNameConfirm = styled(StyledDeviceItemButton)`
-  background-color: ${props => props.theme.ui.primaryColor};
+  background-color: ${props => props.theme.ui.colors.primary};
   color: white;
   padding: 3px 10px;
   border-radius: 5px;
-  border: 1px solid ${props => props.theme.ui.borderColor};
+  border: 1px solid ${props => props.theme.ui.colors.border.light};
   animation: ${simpleFadeIn} 100ms linear forwards;
 `
 

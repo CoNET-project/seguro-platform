@@ -31,7 +31,7 @@ const StyledModal = styled.div`
   margin: auto;
   max-width: 40rem;
   opacity: 0;
-  background-color: ${props => props.theme.ui.backgroundColor};
+  background-color: ${props => props.theme.ui.colors.background.foundation};
   z-index: 200;
   animation: ${ModalKeyFrames} 500ms forwards;
   border: 1px solid rgba(200, 200, 200, 0.2);

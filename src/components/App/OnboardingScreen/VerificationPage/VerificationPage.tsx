@@ -17,7 +17,7 @@ const StyledVerificationContent = styled.div`
 const StyledVerificationText = styled.p`
   width: 100%;
   line-height: 24px;
-  color: ${props => props.theme.ui.text.textPrimary}
+  color: ${props => props.theme.ui.colors.text.primary}
 `
 
 const StyledLottieWrapper = styled.div`

@@ -16,7 +16,7 @@ const StyledPasscode = styled.div`
   min-height: 30rem;
   height: 100%;
   padding: 20px 0;
-  background-color: ${props => props.theme.ui.backgroundColor};
+  background-color: ${props => props.theme.ui.colors.background.elevationOne};
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -37,7 +37,7 @@ const StyledPasscodeInputWrapper = styled.div`
 const StyledPasscodeTitle = styled.h2`
   font-weight: 700;
   text-align: center;
-  color: ${props => props.theme.ui.text.textPrimary}
+  color: ${props => props.theme.ui.colors.text.primary}
 `
 
 type PasscodeProps = {

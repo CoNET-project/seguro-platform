@@ -12,7 +12,8 @@ import {FormattedMessage} from "react-intl";
 
 const StyledAddProfileContainer = styled.div`
   width: 100%;
-
+  height: 100%;
+  background-color: ${props => props.theme.ui.colors.background.elevationOne};
   @media (${screenWidth.mediumWidth}) {
     min-width: 30rem;
   }
@@ -26,13 +27,13 @@ const StyledAddProfileRow = styled.div`
 `
 
 const StyledAddProfileContent = styled.div`
-  background-color: ${props => props.theme.ui.backgroundColor};
+  background-color: ${props => props.theme.ui.colors.background.elevationOne};
   padding: 40px 0;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  color: ${props => props.theme.ui.text.textPrimary};
+  color: ${props => props.theme.ui.colors.text.primary};
   @media (${screenWidth.mediumWidth}) {
     margin: 20px;
   }
@@ -40,6 +41,7 @@ const StyledAddProfileContent = styled.div`
 
 const CustomizedHeaderBar = styled(HeaderBar)`
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  background-color: ${props => props.theme.ui.colors.background.elevationOne};
 
   & > * #headerTitle {
     font-size: ${props => props.theme.ui.fontSizes.narrow.md};
@@ -50,10 +52,10 @@ const CustomizedHeaderBar = styled(HeaderBar)`
 const StyledAddProfileButton = styled.button`
   padding: 10px 50px;
   margin-top: 20px;
-  border: 1px solid ${props => props.theme.ui.borderColor};
+  border: 1px solid ${props => props.theme.ui.colors.border.light};
   border-radius: 5px;
-  background-color: ${props => props.theme.ui.primaryColor};
-  color: white;
+  background-color: ${props => props.theme.ui.colors.primary};
+  color: ${props => props.theme.ui.colors.text.primary};
 `
 
 type AddProfileProps = {}
