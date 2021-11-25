@@ -11,6 +11,8 @@ const StyledAppsDropdown = styled.div`
   grid-gap: 15px;
   max-width: 40rem;
   padding: 10px 15px;
+  border-radius: 10px;
+  background-color: ${props => props.theme.ui.colors.background.elevationOne};
 `
 
 const StyledAppItem = styled.div`
@@ -18,8 +20,19 @@ const StyledAppItem = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 60px;
-  height: 60px;
+  width: 80px;
+  height: 80px;
+  border-radius: 5px;
+  padding: 5px 10px;
+  cursor: pointer;
+
+  &:hover {
+    background-color: ${props => props.theme.ui.colors.primary};
+  }
+
+  &:hover > * {
+    color: #fff
+  }
 `
 
 const StyledAppIcon = styled.div`

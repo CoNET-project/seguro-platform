@@ -33,7 +33,7 @@ const StyledPage = styled(motion.div)`
   align-items: center;
   position: absolute;
   padding: 10px 0;
-  background-color: ${props => props.theme.ui.backgroundColor};
+  background-color: ${props => props.theme.ui.colors.background.elevationOne};
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
   @media (${screenWidth.narrowWidth}) {
@@ -47,7 +47,7 @@ const StyledContents = styled.div`
   width: 100%;
   height: 100%;
   content: '';
-  color: ${props => props.theme.ui.text.textPrimary};
+  color: ${props => props.theme.ui.colors.text.primary};
   display: flex;
   flex-direction: column;
   justify-content: space-between;

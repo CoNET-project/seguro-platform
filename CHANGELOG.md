@@ -1,5 +1,24 @@
 # `seguro-platform` CHANGELOG
 
+## `0.37.0`
+
+### Additions
+
+- None.
+
+### Changes
+
+- Refactor theme styles for future scalability.
+- Fix multiple style issues.
+- Create elevation based background colors for better contrast.
+- Delete unnecessary styles.
+
+### Fixes
+
+- Fix CSS issues.
+
+---
+
 ## `0.36.0`
 
 ### Additions

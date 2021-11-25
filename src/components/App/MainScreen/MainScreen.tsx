@@ -20,7 +20,7 @@ const StyledMainScreen = styled(motion.div)`
 `
 
 const StyledContents = styled(motion.div)`
-  background-color: ${props => props.theme.ui.backgroundColor};
+  background-color: ${props => props.theme.ui.colors.background.foundation};
   content: '';
   height: calc(100% - calc(50px + env(safe-area-inset-top)));
   width: 100%;

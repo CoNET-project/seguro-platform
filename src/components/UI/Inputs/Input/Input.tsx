@@ -41,13 +41,13 @@ const StyledInput = styled.input<StyledInputProps>`
   min-width: 100%;
   width: 100%;
   height: 4rem;
-  font-size: ${props => props.fontSize === 'lg' ? '48px' : '20px'};
+  font-size: ${props => props.fontSize === 'lg' ? '34px' : '20px'};
   overflow: hidden;
   text-align: center;
   border: 1px solid rgba(0, 0, 0, 0.1);
   padding: 10px 50px;
   border-radius: 5px;
-  color: ${props => props.theme.ui.text.textPrimary};
+  color: ${props => props.theme.ui.colors.text.primary};
   background-color: rgba(200, 200, 200, 0.1);
   margin: 20px 0;
 

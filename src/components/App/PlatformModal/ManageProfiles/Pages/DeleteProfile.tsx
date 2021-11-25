@@ -16,7 +16,7 @@ type DeleteProfileProps = {
 
 const StyledDeleteProfile = styled.div`
   min-height: 30rem;
-  background-color: ${props => props.theme.ui.backgroundColor};
+  background-color: ${props => props.theme.ui.colors.background.elevationOne};
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -31,13 +31,13 @@ const StyledDeleteProfileRow = styled.div`
 
 const StyledDeleteProfileMessage = styled.p`
   font-size: ${props => props.theme.ui.fontSizes.narrow.md};
-  color: ${props => props.theme.ui.text.textPrimary};
+  color: ${props => props.theme.ui.colors.text.primary};
   font-weight: 700;
 `
 
 const StyledDeleteProfileSubmessage = styled.p`
   font-size: ${props => props.theme.ui.fontSizes.narrow.md};
-  color: ${props => props.theme.ui.text.textPrimary};
+  color: ${props => props.theme.ui.colors.text.primary};
   margin-top: 5px;
   max-width: 75%;
   text-align: center;
@@ -51,10 +51,10 @@ const StyledDeleteProfileButton = styled.button<ButtonProps>`
   max-width: 75%;
   padding: 10px 30px;
   margin-top: 20px;
-  border: 1px solid ${props => props.theme.ui.borderColor};
+  border: 1px solid ${props => props.theme.ui.colors.border.light};
   border-radius: 5px;
-  background-color: ${props => props.danger ? props.theme.ui.dangerousColor : 'initial'};
-  color: ${props => props.danger ? 'white' : props.theme.ui.text.textPrimary};
+  background-color: ${props => props.danger ? props.theme.ui.colors.dangerous : 'initial'};
+  color: ${props => props.danger ? 'white' : props.theme.ui.colors.text.primary};
 
   &:last-of-type {
     margin-left: 20px;

@@ -30,7 +30,7 @@ const StyledTutorialPage = styled(motion.div)`
   align-items: center;
   position: absolute;
   padding: 30px 20px;
-  background-color: ${props => props.theme.ui.backgroundColor};
+  background-color: ${props => props.theme.ui.colors.background.elevationOne};
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
   @media (${screenWidth.narrowWidth}) {
@@ -45,7 +45,7 @@ const StyledContents = styled.div`
   flex: 1;
   height: 100%;
   content: '';
-  color: ${props => props.theme.ui.text.textPrimary};
+  color: ${props => props.theme.ui.colors.text.primary};
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -70,7 +70,7 @@ const StyledTitle = styled.h1`
   width: 100%;
   display: none;
   text-align: center;
-  color: ${props => props.theme.ui.text.textPrimary};
+  color: ${props => props.theme.ui.colors.text.primary};
   font-family: 'Montserrat Bold', sans-serif;
   @media (${screenWidth.narrowWidth}) {
     display: inline-block;

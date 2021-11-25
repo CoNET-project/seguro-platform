@@ -45,14 +45,14 @@ const StyledProfileItemNickname = styled.p`
 `
 
 const StyledProfileItemKeyId = styled.p`
-  color: ${props => props.theme.ui.text.textSecondary};
+  color: ${props => props.theme.ui.colors.text.secondary};
   margin-top: 5px;
   font-size: ${props => props.theme.ui.fontSizes.narrow.sm}
 `
 
 const StyledProfileItemPrimary = styled.p`
   font-weight: 700;
-  color: ${props => props.theme.ui.text.textSecondary};
+  color: ${props => props.theme.ui.colors.text.secondary};
   font-size: ${props => props.theme.ui.fontSizes.narrow.sm};
   @media (${screenWidth.mediumWidth}) {
     font-size: ${props => props.theme.ui.fontSizes.medium.sm};
@@ -60,7 +60,7 @@ const StyledProfileItemPrimary = styled.p`
 `
 
 const StyledProfileItemSetPrimary = styled.a`
-  color: ${props => props.theme.ui.primaryColor};
+  color: ${props => props.theme.ui.colors.text.primary};
   cursor: pointer;
   text-decoration: underline;
   font-size: ${props => props.theme.ui.fontSizes.narrow.sm};

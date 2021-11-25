@@ -15,9 +15,14 @@ const StyledItem = styled.div`
   align-items: center;
   padding: 20px;
   cursor: pointer;
+  transition: background-color 100ms ease-in-out;
 
   &:last-of-type {
     border: none;
+  }
+
+  &:hover {
+    background-color: ${props => props.theme.ui.colors.hover}
   }
 `
 

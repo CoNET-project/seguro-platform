@@ -6,7 +6,7 @@ type IconProps = {
 }
 
 const StyledIcon = styled.div`
-  color: ${props => props.theme.ui.text.textPrimary}
+  color: ${props => props.theme.ui.colors.text.primary}
 `
 
 const Icon = (props: IconProps) => {

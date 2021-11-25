@@ -15,8 +15,8 @@ const StyledContainer = styled.div`
   height: 100%;
   width: 100%;
   display: flex;
-  background-color: ${props => props.theme.ui.backgroundAccent};
-  color: ${props => props.theme.ui.text.textPrimary};
+  background-color: ${props => props.theme.ui.colors.background.foundation};
+  color: ${props => props.theme.ui.colors.text.primary};
   flex-direction: column;
   align-items: center;
   justify-content: center;

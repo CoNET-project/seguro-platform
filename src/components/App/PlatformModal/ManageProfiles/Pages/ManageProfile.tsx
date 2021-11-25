@@ -15,12 +15,12 @@ type ManageProfileProps = {
 
 const StyledManageProfile = styled.div`
   padding: 40px 0;
-  background-color: ${props => props.theme.ui.backgroundColor};
+  background-color: ${props => props.theme.ui.colors.background.elevationOne};
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  color: ${props => props.theme.ui.text.textPrimary};
+  color: ${props => props.theme.ui.colors.text.primary};
   @media (${screenWidth.mediumWidth}) {
     margin: 20px;
   }
@@ -37,10 +37,10 @@ const StyledManageProfileSaveButton = styled.button`
   min-width: 15rem;
   margin-top: 20px;
   padding: 10px 20px;
-  background-color: ${props => props.theme.ui.accentColor};
+  background-color: ${props => props.theme.ui.colors.primary};
   color: white;
   border-radius: 5px;
-  border: 1px solid ${props => props.theme.ui.borderColor};
+  border: 1px solid ${props => props.theme.ui.colors.border.light};
   font-size: ${props => props.theme.ui.fontSizes.narrow.sm};
   font-weight: bold;
   text-transform: capitalize;

@@ -30,7 +30,7 @@ const StyledLogoContainer = styled.div`
 const StyledLogoSVG = styled.svg<StyledLogoSVGProps>`
   width: ${props => props.size};
   height: ${props => props.size};
-  fill: ${props => props.logoColor || props.theme.ui.text.textPrimary}
+  fill: ${props => props.logoColor || props.theme.ui.colors.text.primary}
 `
 
 const StyledLogoText = styled.h1<StyledLogoTextProps>`

@@ -11,7 +11,7 @@ const StyledButton = styled.button<{ isHidden: boolean }>`
   transition: transform 100ms ease-in-out;
   visibility: ${props => props.isHidden ? 'hidden' : 'visible'};
   color: whitesmoke;
-  background-color: ${props => props.theme.ui.primaryColor};
+  background-color: ${props => props.theme.ui.colors.primary};
 
   &:disabled {
     background-color: rgba(255, 255, 255, 0.5);

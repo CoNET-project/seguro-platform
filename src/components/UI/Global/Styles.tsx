@@ -14,11 +14,12 @@ export default createGlobalStyle`
   }
 
   .tippy-box[data-theme~='custom'] {
-    background: ${props => props.theme.ui.backgroundColor};
-    color: ${props => props.theme.ui.text.textPrimary};
-    border: 1px solid ${props => props.theme.ui.borderColor};
+    background: ${props => props.theme.ui.colors.background.foundation};
+    color: ${props => props.theme.ui.colors.text.primary};
+    border: 1px solid ${props => props.theme.ui.colors.border.light};
+    border-radius: 10px;
     box-shadow: 0 2.5px 5px rgba(0, 0, 0, 0.2);
-    padding: 0;
+    overflow: hidden;
   }
 
   .tippy-content {

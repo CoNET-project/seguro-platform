@@ -22,6 +22,8 @@ import ContextMenu, {ContextMenuActions} from "../../../UI/Common/ContextMenu/Co
 
 const StyledManagesProfileContainer = styled.div`
   width: 100%;
+  height: 100%;
+  background-color: ${props => props.theme.ui.colors.background.elevationOne};
 
   @media (${screenWidth.mediumWidth}) {
     min-width: 30rem;
@@ -29,11 +31,11 @@ const StyledManagesProfileContainer = styled.div`
 `
 
 const StyledManageProfilesContent = styled.div`
-  background-color: ${props => props.theme.ui.backgroundColor};
 `
 
 const CustomizedHeaderBar = styled(HeaderBar)`
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  background-color: ${props => props.theme.ui.colors.background.elevationOne};
 
   & > * #headerTitle {
     font-size: ${props => props.theme.ui.fontSizes.narrow.md};

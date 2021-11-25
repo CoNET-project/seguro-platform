@@ -15,8 +15,8 @@ type StyledCheckboxProps = {
 
 const HiddenInput = styled.input`
   visibility: hidden;
-  width: 0px;
-  height: 0px;
+  width: 0;
+  height: 0;
   pointer-events: none;
 `
 
@@ -27,27 +27,25 @@ const StyledCheckbox = styled.div<StyledCheckboxProps>`
   height: 20px;
   content: '';
   border-radius: 2.5px;
-  border: 1px solid ${props => props.theme.ui.borderColor};
-  background-color: 
-          ${props => props.disabled ? 
-                  props.theme.ui.primaryColorWithOpacity : 
-                  props.checked ? 
-                          props.theme.ui.primaryColorWithOpacity : 
-                          props.theme.ui.backgroundColor};
+  border: 1px solid ${props => props.theme.ui.colors.border.light};
+  background-color: ${props => props.disabled ?
+          props.theme.ui.colors.primary :
+          props.checked ?
+                  props.theme.ui.colors.primary :
+                  props.theme.ui.colors.background.foundation};
   display: flex;
   justify-content: center;
   align-items: center;
   color: white;
   cursor: pointer;
-  
+
   & > svg > polyline {
-    stroke: ${props => props.theme.ui.text.textPrimary}
+    stroke: white
   }
 `
 
 
-
-const Checkbox = ({ defaultValue, onChange, disabled }: CheckboxProps) => {
+const Checkbox = ({defaultValue, onChange, disabled}: CheckboxProps) => {
 
     useEffect(() => {
         setIsChecked(defaultValue)
@@ -66,7 +64,8 @@ const Checkbox = ({ defaultValue, onChange, disabled }: CheckboxProps) => {
 
     return (
         <StyledCheckbox onClick={checkboxClick} disabled={disabled} checked={checked}>
-            <HiddenInput type='checkbox' checked={checked} onChange={() => {}}/>
+            <HiddenInput type='checkbox' checked={checked} onChange={() => {
+            }}/>
             {
                 (checked || disabled) && (
                     <GrFormCheckmark size={36}/>

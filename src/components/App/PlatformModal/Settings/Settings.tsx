@@ -37,7 +37,7 @@ const StyledSettingsContainer = styled.div`
 
 const StyledSettingsContentSection = styled.div`
   margin: 0 2.5px;
-  border: 1px solid ${props => props.theme.ui.border.color};
+  border: 1px solid ${props => props.theme.ui.colors.border.light};
   @media (${screenWidth.mediumWidth}) {
     margin: 0 30px 30px 30px;
   }
@@ -45,6 +45,7 @@ const StyledSettingsContentSection = styled.div`
 
 const CustomizedHeaderBar = styled(HeaderBar)`
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  background-color: ${props => props.theme.ui.colors.background.elevationOne};
 
   & > * #headerTitle {
     font-size: ${props => props.theme.ui.fontSizes.narrow.md};
@@ -53,11 +54,11 @@ const CustomizedHeaderBar = styled(HeaderBar)`
 `
 
 const StyledNumberBox = styled.span`
-  background-color: ${props => props.theme.ui.backgroundAccent};
+  background-color: ${props => props.theme.ui.colors.background.foundation};
   padding: 2px 6px;
   border-radius: 5px;
   content: '';
-  border: 1px solid ${props => props.theme.ui.border.color};
+  border: 1px solid ${props => props.theme.ui.colors.border.light};
   margin-right: 2.5px;
 `
 
@@ -66,9 +67,9 @@ const StyledActivateDevice = styled.p`
 `
 
 const StyledButton = styled.button`
-  background-color: ${props => props.theme.ui.backgroundColor};
+  background-color: transparent;
   border: none;
-  color: ${props => props.theme.ui.text.textPrimary};
+  color: ${props => props.theme.ui.colors.text.primary};
   border-radius: 5px;
   display: flex;
   align-items: center;
@@ -160,10 +161,10 @@ const SettingsContent = () => {
                                     onClick={() => dispatch(pageNavigator.navigateToPage('Passcode'))}
                                     itemLeft={<FormattedMessage id='platform.settings.passcode'/>}
                                     itemRight={
-                                      <StyledButton>
-                                          <FormattedMessage id='platform.settings.passcode.edit'/>
-                                          <ChevronRight/>
-                                      </StyledButton>
+                                        <StyledButton>
+                                            <FormattedMessage id='platform.settings.passcode.edit'/>
+                                            <ChevronRight/>
+                                        </StyledButton>
                                     }/>
 
                                 <ListItem

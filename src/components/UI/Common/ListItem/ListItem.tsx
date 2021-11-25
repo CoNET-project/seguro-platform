@@ -26,8 +26,8 @@ type StyledItemSectionProps = {
 const StyledListItem = styled.div<StyledListItemProps>`
   width: 100%;
   min-height: 50px;
-  background-color: ${props => props.isSeparator ? props.theme.ui.backgroundAccent : props.theme.ui.backgroundColor};
-  color: ${props => props.theme.ui.text.textPrimary};
+  background-color: ${props => props.theme.ui.colors.background.elevationOne};
+  color: ${props => props.theme.ui.colors.text.primary};
   padding: 15px 15px;
   display: flex;
   flex-direction: column;
@@ -68,7 +68,7 @@ const StyledItemHeader = styled.div`
 const StyledItemHeaderTitle = styled.p`
   font-family: 'Lato Bold', sans-serif;
   font-size: ${props => props.theme.ui.fontSizes.narrow.sm};
-  color: ${props => props.theme.ui.text.textPrimary};
+  color: ${props => props.theme.ui.colors.text.primary};
     // @media (${screenWidth.mediumWidth}) {
   //   font-size: 16px;
   // }

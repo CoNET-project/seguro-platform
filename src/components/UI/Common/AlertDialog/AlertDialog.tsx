@@ -29,7 +29,7 @@ const StyledDialog = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  background-color: ${props => props.theme.ui.backgroundColor};
+  background-color: ${props => props.theme.ui.colors.background.foundation};
   align-items: center;
   margin: auto;
   border: 1px solid rgba(0, 0, 0, 0.15);
@@ -69,11 +69,11 @@ const StyledDialogButton = styled.button`
   width: 100%;
   padding: 12.5px 0;
   border: none;
-  color: ${props => props.theme.ui.accentColor};
-  background-color: ${props => props.theme.ui.backgroundColor};
+  color: ${props => props.theme.ui.colors.secondary};
+  background-color: ${props => props.theme.ui.colors.background.foundation};
 
   &:active {
-    background-color: ${props => props.theme.ui.backgroundAccent};
+    background-color: ${props => props.theme.ui.colors.background.foundation};
   }
 `
 

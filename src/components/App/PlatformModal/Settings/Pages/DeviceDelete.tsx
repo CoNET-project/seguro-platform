@@ -29,29 +29,29 @@ const StyledDeviceName = styled.p`
   font-size: ${props => props.theme.ui.fontSizes.narrow.lg};
   font-weight: 700;
   margin: 20px 0;
-  color: ${props => props.theme.ui.text.textPrimary}
+  color: ${props => props.theme.ui.colors.text.primary}
 `
 
 const StyledDeviceRow = styled.div``
 
 const StyledDeviceMessage = styled.p`
   font-size: ${props => props.theme.ui.fontSizes.narrow.md};
-  color: ${props => props.theme.ui.text.textPrimary}
+  color: ${props => props.theme.ui.colors.text.primary}
 `
 
 const StyledDeviceSubmessage = styled(StyledDeviceMessage)`
   font-size: ${props => props.theme.ui.fontSizes.narrow.sm};
-  color: ${props => props.theme.ui.text.textPrimary}
+  color: ${props => props.theme.ui.colors.text.primary}
 `
 
 const StyledDeviceButton = styled.button<StyledDeviceButtonProps>`
   margin-top: 20px;
   max-width: 75%;
   padding: 10px 30px;
-  border: 1px solid ${props => props.theme.ui.borderColor};
+  border: 1px solid ${props => props.theme.ui.colors.border.light};
   border-radius: 5px;
-  background-color: ${props => props.danger ? props.theme.ui.dangerousColor : 'initial'};
-  color: ${props => props.danger ? 'white' : props.theme.ui.text.textPrimary};
+  background-color: ${props => props.danger ? props.theme.ui.colors.dangerous : 'initial'};
+  color: ${props => props.danger ? 'white' : props.theme.ui.colors.text.primary};
 
   &:last-of-type {
     margin-left: 20px;

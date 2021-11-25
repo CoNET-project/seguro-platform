@@ -19,9 +19,9 @@ const StyledItem = styled.li<{ selected: boolean }>`
   align-items: center;
   cursor: pointer;
   background-color: ${props => props.selected ?
-          props.theme.ui.selected :
-          props.theme.ui.backgroundAccent};
-  color: ${props => props.selected ? 'white' : props.theme.ui.text.textPrimary};
+          props.theme.ui.colors.primary :
+          props.theme.ui.colors.background.foundation};
+  color: ${props => props.selected ? 'white' : props.theme.ui.colors.text.primary};
   font-size: ${props => props.theme.ui.fontSizes.narrow.sm};
   //&:first-of-type {
   //  border-top-left-radius: 5px;

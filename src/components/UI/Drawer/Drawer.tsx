@@ -26,8 +26,8 @@ type DrawerProps = {
 const StyledDrawer = styled(motion.div)`
   height: 100vh;
   width: 75%;
-  background-color: ${props => props.theme.ui.backgroundAccent};
-  color: ${props => props.theme.ui.text.textPrimary};
+  background-color: ${props => props.theme.ui.colors.background.elevationOne};
+  color: ${props => props.theme.ui.colors.text.primary};
   position: absolute;
   left: 0;
   top: 0;
@@ -42,7 +42,7 @@ const StyledHeader = styled.div`
   height: 60px;
   width: 100%;
   content: '';
-  border-bottom: 1px solid ${props => props.theme.ui.border.color};
+  border-bottom: 1px solid ${props => props.theme.ui.colors.border.light};
   padding: 0 25px;
   display: flex;
   align-items: center;
@@ -58,11 +58,11 @@ const StyledDrawerContents = styled.div`
 
 const StyledSection = styled.div`
   &:first-of-type {
-    border-bottom: 1px solid ${props => props.theme.ui.border.color};
+    border-bottom: 1px solid ${props => props.theme.ui.colors.border.light};
   }
 
   &:last-of-type {
-    border-top: 1px solid ${props => props.theme.ui.border.color};
+    border-top: 1px solid ${props => props.theme.ui.colors.border.light};
   }
 `
 

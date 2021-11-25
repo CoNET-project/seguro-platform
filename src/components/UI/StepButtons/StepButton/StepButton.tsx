@@ -28,7 +28,7 @@ const StyledButton = styled.button`
 const StyledButtonText = styled.p<StyledButtonTextProps>`
   height: 100%;
   font-weight: 700;
-  color: ${props => props.theme.ui.text.textPrimary};
+  color: ${props => props.theme.ui.colors.text.primary};
   display: flex;
   justify-content: center;
   align-items: center;
@@ -41,7 +41,7 @@ const StyledIcon = styled.div`
   justify-content: center;
   align-items: center;
   flex: 1;
-  color: ${props => props.theme.ui.text.textPrimary}
+  color: ${props => props.theme.ui.colors.text.primary}
 `
 
 const StepButton = ({text, onClick, iconLeft, iconRight}: StepButtonProps) => {

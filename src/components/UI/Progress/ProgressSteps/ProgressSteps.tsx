@@ -40,7 +40,7 @@ const StyledProgressText = styled(motion.p)`
   height: 16px;
   content: '';
   text-align: center;
-  color: ${props => props.theme.ui.text.textPrimary};
+  color: ${props => props.theme.ui.colors.text.primary};
   position: absolute;
   bottom: 0;
 `
