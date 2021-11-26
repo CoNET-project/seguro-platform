@@ -43,8 +43,8 @@ const StyledBarSectionOptional = styled.div`
 `
 
 const StyledGlobalButton = styled.button`
-  height: 42px;
-  width: 42px;
+  height: 46px;
+  width: 46px;
   display: flex;
   justify-content: center;
   align-items: center;
