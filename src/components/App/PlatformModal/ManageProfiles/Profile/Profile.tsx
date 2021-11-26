@@ -132,8 +132,6 @@ type ProfileProps = {
 
 const Profile = ({profile, onChange, disableUpdate, newProfile}: ProfileProps) => {
 
-    console.log(profile)
-
     const filePickerRef = useRef<HTMLInputElement>(null)
 
     const profileImageRef = useRef<HTMLImageElement>(null)

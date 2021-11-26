@@ -1,5 +1,22 @@
 # `seguro-platform` CHANGELOG
 
+## `0.37.1`
+
+### Additions
+
+- None.
+
+### Changes
+
+- None.
+
+### Fixes
+
+- Fix CSS issues.
+- Minor fix for profile icon in global bar.
+
+---
+
 ## `0.37.0`
 
 ### Additions
