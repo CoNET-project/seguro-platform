@@ -5,7 +5,7 @@ import {
     setTheme,
     setIsDrawerOpen,
     setHasUpdateAvailable,
-    setCurrentFocusPanel
+    setCurrentFocusPanel, setHasNotification
 } from '../store/appState/appStateActions'
 import {Locale} from '../localization/types'
 import {Theme} from '../theme/types'
@@ -40,6 +40,10 @@ export const enableDebugCommands = () => {
 
             setUpdateAvailable(available: boolean) {
                 store.dispatch(setHasUpdateAvailable(available))
+            },
+
+            setNotification(hasNotification: boolean) {
+                store.dispatch(setHasNotification(hasNotification))
             },
 
             setCurrentPanel(panel: CurrentFocusPanel) {

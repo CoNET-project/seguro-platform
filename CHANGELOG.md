@@ -1,5 +1,24 @@
 # `seguro-platform` CHANGELOG
 
+## `0.38.1`
+
+### Additions
+
+- Notification icon in global bar.
+- Notification red indicator when new notifications are present.
+- Notification dropdown when clicked in global bar.
+- Notification items in dropdown.
+
+### Changes
+
+- None.
+
+### Fixes
+
+- Fix CSS issues.
+
+---
+
 ## `0.37.1`
 
 ### Additions

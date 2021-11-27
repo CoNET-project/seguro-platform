@@ -5,7 +5,7 @@ import {
     setActiveProfile, setClientDevices,
     setClientProfiles,
     setCurrentFocusPanel,
-    setHasContainer,
+    setHasContainer, setHasNotification,
     setHasUpdateAvailable,
     setIsDrawerOpen,
     setIsModalOpen,
@@ -52,6 +52,7 @@ type AppStateReducerState = {
     isDrawerOpen: boolean,
     isModalOpen: ModalNames,
     hasContainer: boolean,
+    hasNotification: boolean,
     showOverlay: boolean,
     currentFocusPanel: CurrentFocusPanel,
     windowInnerSize: WindowInnerSize,
@@ -71,6 +72,7 @@ const initialState: AppStateReducerState = {
     isDrawerOpen: false,
     isModalOpen: null,
     hasContainer: false,
+    hasNotification: false,
     showOverlay: false,
     currentFocusPanel: 'left',
     windowInnerSize: detectWindowInnerSize(),
@@ -96,6 +98,10 @@ const appStateReducer = createReducer(initialState, builder => {
 
         .addCase(setHasContainer, (state, action) => {
             state.hasContainer = action.payload.hasContainer
+        })
+
+        .addCase(setHasNotification, (state, action) => {
+            state.hasNotification = action.payload.hasNotification
         })
 
         .addCase(setTheme, (state, action) => {

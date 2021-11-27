@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import ProfileImage from '../../Common/Profile/Image/Image'
-import {Grid3X3, Plug, SettingGear, Update} from "../../Icons/Icons";
+import {Grid3X3, NotificationBell, Plug, SettingGear, Update} from "../../Icons/Icons";
 import {screenWidth, sizes} from "../../screenSizes";
 import {LogoIcon} from "../../Logo/Logo";
 import ProfileDropdown from "../../Dropdowns/ProfileDropdown/ProfileDropdown";
@@ -8,6 +8,7 @@ import useAppState from "../../../../store/appState/useAppState";
 import {TippyDropdown} from "../../Tippy/Tippy";
 import AppsDropdown from "../../Dropdowns/AppsDropdown/AppsDropdown";
 import {useState} from "react";
+import NotificationDropdown from "../../Dropdowns/NotificationDropdown/NotificationDropdown";
 
 const StyledGlobalBar = styled.div`
   height: calc(50px + env(safe-area-inset-top));
@@ -65,7 +66,19 @@ const StyledGlobalButton = styled.button`
 const StyledGlobalItem = styled(StyledGlobalButton)`
 `
 
-type Dropdowns = 'applications' | 'profiles' | null
+const StyledNotificationDot = styled.div`
+  height: 12.5px;
+  width: 12.5px;
+  content: '';
+  background-color: ${props => props.theme.ui.colors.dangerous};
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  border-radius: 50%;
+  border: 2px solid ${props => props.theme.ui.colors.background.foundation}
+`
+
+type Dropdowns = 'applications' | 'profiles' | 'notifications' | null
 
 const GlobalBar = () => {
     const {
@@ -75,6 +88,7 @@ const GlobalBar = () => {
         windowInnerSize: {width},
         activeProfile,
         setIsModalOpen,
+        hasNotification
     } = useAppState()
 
     const [currentDropdown, setCurrentDropdown] = useState<Dropdowns>(null)
@@ -105,13 +119,30 @@ const GlobalBar = () => {
                 </StyledGlobalButton>
 
                 <StyledBarSectionOptional>
+
+                    <TippyDropdown
+                        content={<NotificationDropdown/>}
+                        verticalOffset={2}
+                        visible={currentDropdown === 'notifications'}
+                        onClickOutside={closeDropdown}
+                    >
+                        <StyledGlobalItem onClick={() => setDropdownToggle('notifications')}>
+                            <NotificationBell size={18}/>
+                            {
+                                hasNotification && (
+                                    <StyledNotificationDot/>
+                                )
+                            }
+                        </StyledGlobalItem>
+                    </TippyDropdown>
+
+
                     <StyledGlobalButton onClick={() => {
                         setCurrentDropdown(null)
                         setIsModalOpen('settings')
                     }}>
                         <SettingGear size={18}/>
                     </StyledGlobalButton>
-
 
                     <TippyDropdown
                         content={<AppsDropdown closeDropdown={closeDropdown}/>}

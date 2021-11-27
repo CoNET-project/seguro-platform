@@ -1,8 +1,8 @@
 import {
-    AiOutlineUserAdd, BsCamera,
-    BsChatSquareDots, BsGrid3X3Gap, BsThreeDotsVertical, CgProfile, FaCheckCircle,
+    AiOutlineUserAdd, BsBell, BsCamera,
+    BsChatSquareDots, BsGrid3X3Gap, BsThreeDotsVertical, CgProfile, FaBell, FaCheckCircle,
     FaChevronLeft,
-    FaChevronRight, FaDesktop, FaMobileAlt, FaPlug, FaTabletAlt,
+    FaChevronRight, FaDesktop, FaMobileAlt, FaPlug, FaRegBell, FaTabletAlt,
     GoPrimitiveDot, ImDownload, IoCheckmarkSharp, IoClose, IoIosCheckmarkCircle, IoIosWarning,
     IoLanguage, IoMdContacts, IoSettingsOutline, MdContentCopy, MdManageAccounts, MdPassword,
     RiShieldKeyholeLine, TiDelete
@@ -302,6 +302,14 @@ export const Password = ({size, color}: IconProps) => {
     return (
         <StyledIcon>
             <MdPassword size={getSize(size)} color={color || undefined}/>
+        </StyledIcon>
+    )
+}
+
+export const NotificationBell = ({size, color}: IconProps) => {
+    return (
+        <StyledIcon>
+            <BsBell size={getSize(size)} color={color || undefined}/>
         </StyledIcon>
     )
 }

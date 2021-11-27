@@ -5,6 +5,7 @@ import {
     setNetworkState as setNetworkStateActionCreator,
     setHasContainer as setHasContainerActionCreator,
     setHasUpdateAvailable as setHasUpdateAvailableActionCreator,
+    setHasNotification as setHasNoticationActionCreator,
     setIsDrawerOpen as setIsDrawerOpenActionCreator,
     setIsTouchDevice as setIsTouchDeviceActionCreator,
     setIsModalOpen as setIsModalOpenActionCreator,
@@ -55,6 +56,12 @@ const useAppState = () => {
 
     const setHasContainer = (hasContainer: boolean) => {
         dispatch(setHasContainerActionCreator(hasContainer))
+    }
+
+
+    const hasNotification = useTypedSelector(state => state.appState.hasNotification)
+    const setHasNotification = (hasNotification: boolean) => {
+        dispatch(setHasNoticationActionCreator(hasNotification))
     }
 
 
@@ -165,6 +172,8 @@ const useAppState = () => {
         hasContainer,
         noContainer,
         setHasContainer,
+        hasNotification,
+        setHasNotification,
         setInitialized,
         isUnlocked,
         isLocked,

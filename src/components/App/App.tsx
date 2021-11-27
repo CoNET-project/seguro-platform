@@ -88,18 +88,22 @@ const App = () => {
 
     const getContent = () => {
         switch (true) {
-            case hasContainer && isUnlocked:
+            // case hasContainer && isUnlocked:
+            //     return (
+            //         <MainScreen/>
+            //     )
+            // case hasContainer && !isUnlocked:
+            //     return
+            // case !hasContainer && !isUnlocked:
+            //     return (
+            //         <OnboardingPageProvider
+            //             existingPages={['language', 'setPasscode', 'confirmPasscode', 'verification', 'verificationProcess']}>
+            //             <OnboardingScreen/>
+            //         </OnboardingPageProvider>
+            //     )
+            default:
                 return (
                     <MainScreen/>
-                )
-            case hasContainer && !isUnlocked:
-                return
-            case !hasContainer && !isUnlocked:
-                return (
-                    <OnboardingPageProvider
-                        existingPages={['language', 'setPasscode', 'confirmPasscode', 'verification', 'verificationProcess']}>
-                        <OnboardingScreen/>
-                    </OnboardingPageProvider>
                 )
         }
         // let content = <MainScreen/>
