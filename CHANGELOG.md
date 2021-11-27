@@ -8,6 +8,7 @@
 - Notification red indicator when new notifications are present.
 - Notification dropdown when clicked in global bar.
 - Notification items in dropdown.
+- Change notification close icon.
 
 ### Changes
 
