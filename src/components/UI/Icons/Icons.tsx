@@ -3,7 +3,7 @@ import {
     BsChatSquareDots, BsGrid3X3Gap, BsThreeDotsVertical, CgProfile, FaBell, FaCheckCircle,
     FaChevronLeft,
     FaChevronRight, FaDesktop, FaMobileAlt, FaPlug, FaRegBell, FaTabletAlt,
-    GoPrimitiveDot, ImDownload, IoCheckmarkSharp, IoClose, IoIosCheckmarkCircle, IoIosWarning,
+    GoPrimitiveDot, ImDownload, IoCheckmarkSharp, IoClose, IoIosCheckmarkCircle, IoIosCloseCircle, IoIosWarning,
     IoLanguage, IoMdContacts, IoSettingsOutline, MdContentCopy, MdManageAccounts, MdPassword,
     RiShieldKeyholeLine, TiDelete
 } from "react-icons/all";
@@ -164,6 +164,14 @@ export const Close = ({size, color}: IconProps) => {
     return (
         <StyledIcon>
             <IoClose size={getSize(size)} color={color || undefined}/>
+        </StyledIcon>
+    )
+}
+
+export const CloseCircle = ({size, color}: IconProps) => {
+    return (
+        <StyledIcon>
+            <IoIosCloseCircle size={getSize(size)} color={color || undefined}/>
         </StyledIcon>
     )
 }

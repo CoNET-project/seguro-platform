@@ -1,6 +1,16 @@
 import styled from "styled-components";
 import ListItem from "./ListItem/ListItem";
 
+export type Notifications = {
+    [id: string]: Notification
+}
+
+export type Notification = {
+    type: string,
+    title: string,
+    text: string
+}
+
 const StyledNotificationDropdown = styled.div`
   display: flex;
   flex-direction: column;
@@ -8,13 +18,13 @@ const StyledNotificationDropdown = styled.div`
   max-width: 40rem;
   max-height: 20rem;
   overflow: scroll;
-  padding: 5px;
+  padding: 15px;
   border-radius: 10px;
   background-color: ${props => props.theme.ui.colors.background.elevationOne};
 `
 
-
 const NotificationDropdown = () => {
+    const ExampleNotifications: Notifications = {}
     return (
         <StyledNotificationDropdown>
             {
