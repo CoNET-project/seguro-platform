@@ -17,7 +17,8 @@ const StyledNotificationDropdown = styled.div`
   min-width: 20rem;
   max-width: 40rem;
   max-height: 20rem;
-  overflow: scroll;
+  overflow-y: scroll;
+  overflow-x: hidden;
   padding: 15px;
   border-radius: 10px;
   background-color: ${props => props.theme.ui.colors.background.elevationOne};
@@ -30,7 +31,7 @@ const NotificationDropdown = () => {
             {
                 Array.from({length: 10}).map(() => {
                     return (
-                        <ListItem/>
+                        <ListItem isOpen={false}/>
                     )
                 })
             }
