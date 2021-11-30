@@ -1,5 +1,7 @@
 import styled from "styled-components";
 import ListItem from "./ListItem/ListItem";
+import {useState} from "react";
+import {AnimateSharedLayout} from "framer-motion";
 
 export type Notifications = {
     [id: string]: Notification
@@ -16,7 +18,7 @@ const StyledNotificationDropdown = styled.div`
   flex-direction: column;
   min-width: 20rem;
   max-width: 40rem;
-  max-height: 20rem;
+  max-height: 30rem;
   overflow-y: scroll;
   overflow-x: hidden;
   padding: 15px;
@@ -26,15 +28,31 @@ const StyledNotificationDropdown = styled.div`
 
 const NotificationDropdown = () => {
     const ExampleNotifications: Notifications = {}
+
+    const [expandNotificationIndex, setExpandNotificationIndex] = useState<number | null>(null)
+
+    const onNotificationClick = (index: number) => {
+        if (expandNotificationIndex === index) {
+            return setExpandNotificationIndex(null)
+        }
+        setExpandNotificationIndex(index)
+    }
+
     return (
         <StyledNotificationDropdown>
-            {
-                Array.from({length: 10}).map(() => {
-                    return (
-                        <ListItem isOpen={false}/>
-                    )
-                })
-            }
+            <AnimateSharedLayout>
+                {
+                    Array.from({length: 10}).map((_, idx) => {
+                        return (
+                            <ListItem
+                                isOpen={expandNotificationIndex === idx}
+                                onClick={onNotificationClick}
+                                notificationIndex={idx}
+                            />
+                        )
+                    })
+                }
+            </AnimateSharedLayout>
         </StyledNotificationDropdown>
     )
 }

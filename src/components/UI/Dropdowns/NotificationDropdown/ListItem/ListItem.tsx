@@ -1,8 +1,15 @@
 import styled from "styled-components";
 import {Close, CloseCircle} from "../../../Icons/Icons";
 import {FaBell} from "react-icons/all";
+import {motion, AnimatePresence} from "framer-motion";
 
 type ListItemProps = {
+    isOpen: boolean,
+    notificationIndex: number,
+    onClick: (index: number) => void
+}
+
+type StyleProps = {
     isOpen: boolean
 }
 
@@ -14,24 +21,23 @@ const StyledListItemWrapper = styled.div`
   }
 `
 
-const StyledListItem = styled.div`
-  min-width: 100%;
+const StyledListItem = styled(motion.div)`
+  transition: height 100ms ease-in-out;
+  //min-width: 100%;
   width: 100%;
-  min-height: 4.5rem;
   // When open should adjust height
-  height: 4.5rem;
   background-color: ${props => props.theme.ui.colors.background.elevationTwo};
   border: 1px solid ${props => props.theme.ui.colors.border.light};
   border-radius: 10px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 10px 15px;
+  padding: 15px 15px;
   box-shadow: 0 2.5px 5px ${props => props.theme.ui.colors.border.light};
   overflow: hidden;
 `;
 
-const StyledNotificationDetails = styled.div`
+const StyledNotificationDetails = styled(motion.div)`
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -40,25 +46,28 @@ const StyledNotificationDetails = styled.div`
   word-break: break-all;
 `
 
-const StyledNotificationHeader = styled.div`
+const StyledNotificationHeader = styled(motion.div)`
   display: flex;
   align-items: center;
   margin-bottom: 5px;
 `
 
-const StyledNotificationTitle = styled.p`
+const StyledNotificationTitle = styled(motion.p)`
   color: ${props => props.theme.ui.colors.text.primary};
   font-weight: bolder;
   margin-left: 5px;
   font-size: ${props => props.theme.ui.fontSizes.narrow.sm}
 `
 
-const StyledNotificationText = styled(StyledNotificationTitle)`
-  font-weight: normal;
+const StyledNotificationText = styled(motion.p)`
   margin: 0;
-  width: 100%;
-  // When not open, set this to nowrap, or else set to 'normal'
-  white-space: normal;
+  width: 16rem;
+  color: ${props => props.theme.ui.colors.text.primary};
+  font-size: ${props => props.theme.ui.fontSizes.narrow.sm};
+`
+
+const StyledNotificationShortText = styled(StyledNotificationText)`
+  white-space: nowrap;
   word-break: break-all;
   text-overflow: ellipsis;
   overflow: hidden;
@@ -77,26 +86,36 @@ const StyledClearIcon = styled.div`
 `
 
 
-const ListItem = ({ isOpen }: ListItemProps) => {
+const ListItem = ({isOpen, notificationIndex, onClick}: ListItemProps) => {
 
+    const exampleNotif = {
+        text: 'Bobby sent you a new message - "Sure, lets meet up for coffee soon!"'
+    }
     const getContent = () => {
-       // if (isOpen) {
-           return 'dkljfhdaskjfhsdkfhcsnfhsasdasdasdasdjrdgskdrhfxgkrdsfhxgkerafgheskuygfuakewgfuseygfdauwyegdaeukygfkuasyegfkuasgFuaygsfg'
-       // }
-       return 'skldjfhaskjdfhsakdjfh'
+        if (isOpen) {
+            return exampleNotif.text
+        }
+        return exampleNotif.text.slice(0, 40) + '...'
     }
 
     return (
-        <StyledListItemWrapper>
-            <StyledListItem>
+        <StyledListItemWrapper onClick={() => onClick(notificationIndex)}>
+            <StyledListItem layout>
                 <StyledNotificationDetails>
-                    <StyledNotificationHeader>
+                    <StyledNotificationHeader layout>
                         <FaBell size={12}/>
                         <StyledNotificationTitle>Hello</StyledNotificationTitle>
                     </StyledNotificationHeader>
-                    <StyledNotificationText>
-                        {getContent()}
-                    </StyledNotificationText>
+                    <AnimatePresence>
+                        <StyledNotificationText
+                            layout="position"
+                            initial={false}
+                            animate={{height: isOpen ? 'initial' : 20}}
+                            transition={{type: "spring", stiffness: 300, damping: 20}}
+                        >
+                            {getContent()}
+                        </StyledNotificationText>
+                    </AnimatePresence>
                 </StyledNotificationDetails>
             </StyledListItem>
             <StyledClearIcon>
