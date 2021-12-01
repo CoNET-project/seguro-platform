@@ -1,9 +1,9 @@
 import {
-    AiOutlineUserAdd, BsCamera,
-    BsChatSquareDots, BsGrid3X3Gap, BsThreeDotsVertical, CgProfile, FaCheckCircle,
+    AiOutlineUserAdd, BsBell, BsCamera,
+    BsChatSquareDots, BsGrid3X3Gap, BsThreeDotsVertical, CgProfile, FaBell, FaCheckCircle,
     FaChevronLeft,
-    FaChevronRight, FaDesktop, FaMobileAlt, FaPlug, FaTabletAlt,
-    GoPrimitiveDot, ImDownload, IoCheckmarkSharp, IoClose, IoIosCheckmarkCircle, IoIosWarning,
+    FaChevronRight, FaDesktop, FaMobileAlt, FaPlug, FaRegBell, FaTabletAlt,
+    GoPrimitiveDot, ImDownload, IoCheckmarkSharp, IoClose, IoIosCheckmarkCircle, IoIosCloseCircle, IoIosWarning,
     IoLanguage, IoMdContacts, IoSettingsOutline, MdContentCopy, MdManageAccounts, MdPassword,
     RiShieldKeyholeLine, TiDelete
 } from "react-icons/all";
@@ -168,6 +168,14 @@ export const Close = ({size, color}: IconProps) => {
     )
 }
 
+export const CloseCircle = ({size, color}: IconProps) => {
+    return (
+        <StyledIcon>
+            <IoIosCloseCircle size={getSize(size)} color={color || undefined}/>
+        </StyledIcon>
+    )
+}
+
 export const Copy = ({size, color}: IconProps) => {
     return (
         <StyledIcon>
@@ -302,6 +310,14 @@ export const Password = ({size, color}: IconProps) => {
     return (
         <StyledIcon>
             <MdPassword size={getSize(size)} color={color || undefined}/>
+        </StyledIcon>
+    )
+}
+
+export const NotificationBell = ({size, color}: IconProps) => {
+    return (
+        <StyledIcon>
+            <BsBell size={getSize(size)} color={color || undefined}/>
         </StyledIcon>
     )
 }

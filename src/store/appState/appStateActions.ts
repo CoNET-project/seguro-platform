@@ -37,6 +37,17 @@ export const setHasContainer = createAction(
     }
 )
 
+export const setHasNotification = createAction(
+    'appState/hasNotification',
+    (hasNotification: boolean) => {
+        return {
+            payload: {
+                hasNotification
+            }
+        }
+    }
+)
+
 export const setTheme = createAction(
     'appState/setTheme',
     (theme: Theme) => {
