@@ -9,6 +9,7 @@
 - Notification dropdown when clicked in global bar.
 - Notification items in dropdown.
 - Change notification close icon.
+- Add example notifications with click actions.
 
 ### Changes
 
