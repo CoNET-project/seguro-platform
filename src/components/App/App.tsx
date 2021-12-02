@@ -2,12 +2,13 @@ import {useEffect} from 'react'
 import styled from 'styled-components'
 import useAppState from '../../store/appState/useAppState'
 import {detectTouchDevice, detectWindowInnerSize} from "../../utilities/utilities";
-import OnboardingScreen from "./OnboardingScreen/OnboardingScreen";
 import GlobalStyle from '../UI/Global/Styles'
-import {OnboardingPageProvider} from "../Providers/OnboardingPageProvider";
 import {Overlay} from "../UI/Common/Overlay/Overlay";
 import ExampleProfile from "../../assets/examples/profile-example.jpeg";
 import MainScreen from './MainScreen/MainScreen';
+import {OnboardingPageProvider} from '../Providers/OnboardingPageProvider';
+import OnboardingScreen from "./OnboardingScreen/OnboardingScreen";
+import UnlockScreen from "./UnlockScreen/UnlockScreen";
 
 const StyledContainer = styled.div`
   height: 100vh;
@@ -20,6 +21,7 @@ const StyledContainer = styled.div`
 
 const App = () => {
     const {
+        initialize,
         setWindowInnerSize,
         setClientProfiles,
         setClientDevices,
@@ -36,6 +38,9 @@ const App = () => {
     }
 
     useEffect(() => {
+
+        initialize().then(() => {
+        })
 
         setClientProfiles([
             {
@@ -88,23 +93,25 @@ const App = () => {
 
     const getContent = () => {
         switch (true) {
-            // case hasContainer && isUnlocked:
-            //     return (
-            //         <MainScreen/>
-            //     )
-            // case hasContainer && !isUnlocked:
-            //     return
-            // case !hasContainer && !isUnlocked:
-            //     return (
-            //         <OnboardingPageProvider
-            //             existingPages={['language', 'setPasscode', 'confirmPasscode', 'verification', 'verificationProcess']}>
-            //             <OnboardingScreen/>
-            //         </OnboardingPageProvider>
-            //     )
-            default:
+            case hasContainer && isUnlocked:
                 return (
                     <MainScreen/>
                 )
+            case hasContainer && !isUnlocked:
+                return (
+                    <UnlockScreen/>
+                )
+            case !hasContainer && !isUnlocked:
+                return (
+                    <OnboardingPageProvider
+                        existingPages={['language', 'setPasscode', 'confirmPasscode', 'verification', 'verificationProcess']}>
+                        <OnboardingScreen/>
+                    </OnboardingPageProvider>
+                )
+            // default:
+            //     return (
+            //         <MainScreen/>
+            //     )
         }
         // let content = <MainScreen/>
         // // launch screen

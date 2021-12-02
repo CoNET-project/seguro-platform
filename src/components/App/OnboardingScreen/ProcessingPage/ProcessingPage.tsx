@@ -43,7 +43,7 @@ const ProcessingPage = ({hasTouch, onSetupComplete}: ProgressingPageProps) => {
     useEffect(() => {
         setTimeout(() => {
             dispatch(onboardingActions.setVerificationStatus('SUCCESS'))
-        }, 16000)
+        }, 7500)
     }, [])
 
     useEffect(() => {
@@ -51,7 +51,7 @@ const ProcessingPage = ({hasTouch, onSetupComplete}: ProgressingPageProps) => {
             if (currentStep < MAX_STEPS) {
                 setCurrentStep(currentStep + 1)
             }
-        }, 5000)
+        }, 2500)
         return () => {
             clearInterval(interval)
         }

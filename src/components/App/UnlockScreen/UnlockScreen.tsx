@@ -5,6 +5,8 @@ import PasscodeInput from "../../UI/Inputs/PasscodeInput/Touch/PasscodeInput";
 import {IoMdLock} from "react-icons/all";
 import Icon from "../../UI/Inputs/Icon/Icon";
 import {FormattedMessage} from "react-intl";
+import {unlockPasscode} from "../../../services/workerService/workerService";
+import Button from "../../UI/Common/Button/Button";
 
 const StyledContainer = styled.div`
   height: 100%;
@@ -28,12 +30,15 @@ const StyledTitle = styled.p`
   color: ${props => props.theme.ui.colors.text.primary}
 `
 
+const StyledUnlockButton = styled(Button)`
+  margin-top: 40px;
+`
+
 const UnlockScreen = () => {
 
     const [passcode, setPasscode] = useState("")
     const [isIncorrect, setIsIncorrect] = useState(false)
     const [isInvalid, setIsInvalid] = useState(false)
-    const tempPasscode = '123456'
 
     const clearError = () => {
         setIsIncorrect(false)
@@ -53,14 +58,22 @@ const UnlockScreen = () => {
             clearError()
             setPasscode('')
         },
-        unlockKeyOnClick: () => {
-            if (passcode.length < 6) {
-                return setIsInvalid(true)
+    }
+
+    const unlockClickHandler = () => {
+        if (passcode.length < 6) {
+            return setIsInvalid(true)
+        }
+        unlockPasscode({
+            passcode, progress: (progress) => {
             }
-            if (passcode !== tempPasscode) {
+        }).then(status => {
+            if (status === 'SUCCESS') {
+                return
+            } else if (status === 'FAILURE') {
                 return setIsIncorrect(true)
             }
-        }
+        })
     }
 
     return (
@@ -70,6 +83,9 @@ const UnlockScreen = () => {
                 <StyledTitle><FormattedMessage id="unlock.title"/></StyledTitle>
                 <PasscodeInput value={passcode} error={isIncorrect}/>
                 <Keypad {...keypadClickHandlers}/>
+                <StyledUnlockButton onClick={unlockClickHandler}>
+                    Unlock
+                </StyledUnlockButton>
             </StyledContent>
         </StyledContainer>
     )
