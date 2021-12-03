@@ -2,8 +2,7 @@ import ProgressNumber from "./ProgressNumber/ProgressNumber";
 import styled from "styled-components";
 
 type StyledProgressNumberBlockProps = {
-    isActive: boolean,
-    nth: number
+    isActive: boolean
 }
 
 const StyledProgressNumberSteps = styled.div`
@@ -14,33 +13,26 @@ const StyledProgressNumberSteps = styled.div`
 const StyledProgressNumberBlock = styled.div<StyledProgressNumberBlockProps>`
   width: 25px;
   height: 3px;
-  margin: 0 5px;
+  margin: 0 6px;
   content: '';
   background-color: ${props => props.isActive ? props.theme.ui.colors.primary : props.theme.ui.colors.background.elevationOne};
-
-  &:nth-child(-n + ${props => props.nth + 1}) {
-    background-color: ${props => props.theme.ui.colors.primary};
-  }
-
-  &:nth-child(n + ${props => props.nth}) {
-    background-color: ${props => props.theme.ui.colors.background.elevationOne};
-  }
-
+  transition: background-color 300ms ease-in-out;
 `
 
 export type ProgressNumberStepsProps = {
-    currentActiveStep: number
+    currentActiveStep: number,
+    steps: number
 }
 
-const ProgressNumberSteps = ({currentActiveStep}: ProgressNumberStepsProps) => {
+const ProgressNumberSteps = ({currentActiveStep, steps}: ProgressNumberStepsProps) => {
 
-    const totalSteps = [1, 2, 3, 4]
+    const totalSteps = Array.from({length: steps}, (_, i) => i + 1)
 
-    const generateContent = (number: number, index: number, active: boolean, start?: boolean) => {
+    const generateContent = (number: number, nthElement: number, start?: boolean) => {
         return (
             <>
-                {!start && <StyledProgressNumberBlock nth={index} isActive={active}/>}
-                <ProgressNumber number={number} isActive={active}/>
+                {!start && <StyledProgressNumberBlock isActive={currentActiveStep >= nthElement}/>}
+                <ProgressNumber number={number} isActive={currentActiveStep >= nthElement}/>
             </>
         )
     }
@@ -49,7 +41,7 @@ const ProgressNumberSteps = ({currentActiveStep}: ProgressNumberStepsProps) => {
         <StyledProgressNumberSteps>
             {totalSteps.map((number, idx) => {
                 return (
-                    generateContent(number, idx, currentActiveStep === idx + 1, idx + 1 === 1)
+                    generateContent(number, idx + 1, idx === 0)
                 )
             })}
         </StyledProgressNumberSteps>

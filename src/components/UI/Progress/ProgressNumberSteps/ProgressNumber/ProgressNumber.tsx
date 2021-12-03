@@ -14,18 +14,18 @@ const StyledProgressNumber = styled.div<StyledProgressNumberProps>`
   align-items: center;
   background-color: ${props => props.isActive ? props.theme.ui.colors.primary : props.theme.ui.colors.background.elevationOne};
   border: 1px solid ${props => props.theme.ui.colors.border.light};
+  transition: background-color 300ms ease-in-out;
 `
 
-const StyledNumberText = styled.p`
+const StyledNumberText = styled.p<StyledProgressNumberProps>`
   color: white;
   font-size: ${props => props.theme.ui.fontSizes.narrow.xsm};
   width: 100%;
   height: 100%;
-  transform: translate(2%, 5%);
   display: flex;
   justify-content: center;
   align-items: center;
-  font-weight: 600;
+  font-weight: ${props => props.isActive ? 700 : 400};
 `
 
 type ProgressNumberProps = {
@@ -36,7 +36,7 @@ type ProgressNumberProps = {
 const ProgressNumber = ({number, isActive}: ProgressNumberProps) => {
     return (
         <StyledProgressNumber isActive={isActive}>
-            <StyledNumberText>
+            <StyledNumberText isActive={isActive}>
                 {number}
             </StyledNumberText>
         </StyledProgressNumber>

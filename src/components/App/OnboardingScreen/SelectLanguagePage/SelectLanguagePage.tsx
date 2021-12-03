@@ -1,27 +1,38 @@
 import styled from 'styled-components';
 import LanguageSelect from "../../../UI/LanguageSelect/LanguageSelect";
 import {Locale} from "../../../../localization/types";
-import {FormattedMessage} from "react-intl";
 import Page from '../../../UI/Layout/Page/Page';
 import {useOnboardingPageNavigator} from "../../../../contexts/onboarding/OnboardingContext";
-import onboardingActions from "../../../../contexts/onboarding/onboardingActions";
-import {LogoImage} from '../../../UI/Logo/Logo';
-import {screenWidth} from "../../../UI/screenSizes";
+import {FormattedMessage} from "react-intl";
 
 const StyledContainer = styled.div`
-  height: 100%;
   width: 100%;
-
-  @media (${screenWidth.mediumWidth}) {
-    max-height: 50%;
-  }
+  height: 100%;
+  //padding: 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 `
 
-const StyledTitle = styled.p`
-  font-size: ${props => props.theme.ui.fontSizes.narrow.lg};
-  @media (${screenWidth.mediumWidth}) {
-    font-size: ${props => props.theme.ui.fontSizes.medium.xl};
-  }
+const StyledPageHeader = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 50px;
+`
+
+const StyledPageTitle = styled.h1`
+  font-size: ${props => props.theme.ui.fontSizes.narrow.xl};
+  margin-bottom: 10px;
+`
+
+const StyledPageSubtitle = styled.p`
+  font-size: ${props => props.theme.ui.fontSizes.narrow.md};
+  text-align: center;
+  min-height: 32px;
+  width: 70%;
 `
 
 export type Languages = {
@@ -57,38 +68,25 @@ const SelectLanguagePage = ({selectLocale, locale}: SelectLanguageProps) => {
 
     return (
         <Page
-            contentComponents={
-                {
-                    contentLeft: (
-                        <>
-                            <LogoImage size={200}/>
-                            <StyledTitle>
-                                <FormattedMessage id='onboarding.selectLanguageTitle'/>
-                            </StyledTitle>
-                        </>
-                    ),
-                    contentRight: (
-                        <StyledContainer>
-                            <LanguageSelect languages={languages}
-                                            selectLocale={selectLocale}
-                                            selectedLocale={locale}/>
-                        </StyledContainer>
-
-                    )
-                }
-            }
-            stepButtonsClickActions={{
-                nextButton: {
-                    action: () => {
-                        dispatch(onboardingActions.nextPage())
-                    }
-                }
-            }}
             pageTransition={{
                 key: state.currentPage[0],
                 direction: state.currentPage[1]
             }}
-        />
+        >
+            <StyledContainer>
+                <StyledPageHeader>
+                    <StyledPageTitle>
+                        <FormattedMessage id='onboarding.selectLanguageTitle'/>
+                    </StyledPageTitle>
+                    <StyledPageSubtitle>
+                        <FormattedMessage id='onboarding.selectLanguageSubtitle'/>
+                    </StyledPageSubtitle>
+                </StyledPageHeader>
+                <LanguageSelect languages={languages}
+                                selectLocale={selectLocale}
+                                selectedLocale={locale}/>
+            </StyledContainer>
+        </Page>
 
     )
 }

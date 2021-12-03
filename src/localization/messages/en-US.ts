@@ -3,7 +3,8 @@ import {Messages} from '../types'
 const en_US: Messages = {
     'main.greeting': 'Hello world!',
     'onboarding.selectLanguageTitle': 'Select your language',
-    'onboarding.selectLanguageSubtitle': 'Select your language...',
+    'onboarding.selectLanguageSubtitle': 'Please select your language for Seguro Platform. ' +
+        'You will be able to change this later in settings.',
     'onboarding.setPasscodeTitle': 'Create Passcode',
     'onboarding.setPasscodeSubtitle': 'Enter a minimum 6 character passcode',
     'onboarding.confirmPasscodeTitle': 'Confirm Passcode',

@@ -6,9 +6,6 @@ import Input from "../../../UI/Inputs/Input/Input";
 import {FormattedMessage} from "react-intl";
 import {CircleCheck} from "../../../UI/Icons/Icons";
 import {isUUIDv4} from "../../../../utilities/utilities";
-import Title from "../../../UI/Common/Title/Title";
-import VerificationAnimation from '../../../../assets/lottie/verification.json'
-import LottieAnimation from '../../../UI/Lottie/Lottie';
 
 const StyledVerificationContent = styled.div`
   width: 100%;
@@ -38,55 +35,30 @@ const VerificationPage = () => {
     }
 
     return <Page
-        contentComponents={
-            {
-                contentLeft: (
-                    <>
-                        <StyledLottieWrapper>
-                            <LottieAnimation animationSrc={VerificationAnimation}/>
-                        </StyledLottieWrapper>
-                        <Title>
-                            <FormattedMessage id='onboarding.verificationTitle'/>
-                        </Title>
-                    </>
-                ),
-                contentRight: (
-                    <StyledVerificationContent>
-                        <>
-                            <Input value=''
-                                   setValue={verificationInputHandler}
-                                   inputOptions={{
-                                       inputLabel: (<FormattedMessage id='onboarding.verificationInputLabel'/>),
-                                       inputRightComponent: (
-                                           <CircleCheck
-                                               size={20}
-                                               valid={isUUIDv4(state.onboardingPageData?.verificationCode)}
-                                           />)
-                                   }}
-                            />
-                            <StyledVerificationText>
-                                <FormattedMessage id='onboarding.verificationText'/>
-                            </StyledVerificationText>
-                        </>
-                    </StyledVerificationContent>
-                )
-            }
-        }
-        stepButtonsClickActions={{
-            nextButton: {
-                action: () => {
-                    dispatch(onboardingActions.nextPage())
-                }
-            },
-            previousButton: {
-                action: previousButtonHandler
-            }
-        }}
         pageTransition={{
             key: state.currentPage[0],
             direction: state.currentPage[1]
         }}
-    />
+    >
+        <StyledVerificationContent>
+            <>
+                <Input value=''
+                       setValue={verificationInputHandler}
+                       inputOptions={{
+                           inputLabel: (<FormattedMessage id='onboarding.verificationInputLabel'/>),
+                           inputRightComponent: (
+                               <CircleCheck
+                                   size={20}
+                                   valid={isUUIDv4(state.onboardingPageData?.verificationCode)}
+                               />)
+                       }}
+                />
+                <StyledVerificationText>
+                    <FormattedMessage id='onboarding.verificationText'/>
+                </StyledVerificationText>
+            </>
+        </StyledVerificationContent>
+    </Page>
 }
 
 export default VerificationPage

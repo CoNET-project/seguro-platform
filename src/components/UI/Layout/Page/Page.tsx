@@ -1,9 +1,8 @@
 import {motion} from 'framer-motion'
 import styled from 'styled-components'
 import {ReactNode} from "react";
-import StepButtons, {StepButtonsClickActions} from "../../StepButtons/StepButtons";
 import {pageTransitionVariants} from "../../Motion/Variants/Variants";
-import {screenWidth} from "../../screenSizes";
+import {screenWidth} from '../../screenSizes';
 
 export type PageTransitionProps = {
     pageTransition: {
@@ -14,80 +13,42 @@ export type PageTransitionProps = {
 
 type PageProps = {
     header?: ReactNode,
-    contentComponents: {
-        contentLeft: ReactNode,
-        contentRight: ReactNode
-    },
-    stepButtonsClickActions: StepButtonsClickActions
+    children: ReactNode
 } & PageTransitionProps
 
 
 const StyledPage = styled(motion.div)`
-  max-width: 1920px;
-  max-height: 1080px;
   width: 100%;
   height: 100%;
+  content: '';
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  position: absolute;
-  padding: 10px 0;
-  background-color: ${props => props.theme.ui.colors.background.elevationOne};
   border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+
   @media (${screenWidth.narrowWidth}) {
-    padding: 20px 0;
+    width: 30rem;
+  }
+
+  @media (${screenWidth.mediumWidth}) {
+      //background-color: ${props => props.theme.ui.colors.background.elevationOne};
+    width: 40rem;
+    height: 40rem;
   }
 `
 
 const StyledContents = styled.div`
-  max-width: 1080px;
-  max-height: 1080px;
   width: 100%;
   height: 100%;
-  content: '';
-  color: ${props => props.theme.ui.colors.text.primary};
   display: flex;
-  flex-direction: column;
-  justify-content: space-between;
   align-items: center;
-`
-
-const StyledContent = styled.div`
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
   justify-content: center;
-  align-items: center;
-  border-radius: 10px;
-  padding: 10px;
-  @media (${screenWidth.mediumWidth}) {
-    flex-direction: row;
-    height: 100%;
-  }
-`
-
-
-const StyledContentTop = styled(StyledContent)`
-  flex-direction: column;
-  border: none;
-`
-
-const StyledContentBottom = styled(StyledContent)`
-  flex-direction: column;
-  border: none;
-`
-
-const StyledActionButtonContainer = styled.div`
-  width: 100%;
-  margin-top: 30px
+  padding: 25px;
 `
 
 const Page = ({
-                  contentComponents,
-                  stepButtonsClickActions,
+                  children,
                   pageTransition
               }: PageProps) => {
     return (
@@ -103,19 +64,7 @@ const Page = ({
                 opacity: {duration: 0.3}
             }}>
             <StyledContents>
-                <StyledContent>
-                    <StyledContentTop>
-                        {contentComponents.contentLeft}
-                    </StyledContentTop>
-                    <StyledContentBottom>
-                        {contentComponents.contentRight}
-                    </StyledContentBottom>
-                </StyledContent>
-                <StyledActionButtonContainer>
-                    {stepButtonsClickActions && (
-                        <StepButtons actionHandler={stepButtonsClickActions}/>
-                    )}
-                </StyledActionButtonContainer>
+                {children}
             </StyledContents>
         </StyledPage>
     )
