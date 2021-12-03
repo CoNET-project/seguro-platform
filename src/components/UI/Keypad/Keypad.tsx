@@ -14,8 +14,8 @@ const StyledKeypad = styled.div`
   display: grid;
   grid-template-columns: repeat(3, 4.5rem);
   grid-template-rows: repeat(4, 4.5rem);
-  grid-row-gap: 10px;
-  grid-column-gap: 30px;
+  grid-row-gap: 5px;
+  grid-column-gap: 5px;
 `
 
 const Keypad = ({numberKeyOnClick, deleteKeyOnClick, cancelKeyOnClick, unlockKeyOnClick}: KeypadProps) => {

@@ -40,7 +40,7 @@ const StyledPageHeader = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin-bottom: 50px;
+  margin-bottom: 20px;
 `
 
 const StyledPageTitle = styled.h1`

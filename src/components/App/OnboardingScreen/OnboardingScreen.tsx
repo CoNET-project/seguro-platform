@@ -34,7 +34,7 @@ const StyledLogoContainer = styled.div`
 `
 
 const StyledOnboardingHeader = styled.div`
-  padding: 75px 0 0 0;
+  padding: 50px 0 20px 0;
 `
 
 const StyledOnboardingContent = styled.div`
@@ -46,7 +46,6 @@ const StyledOnboardingContent = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 30px;
 
   @media (${screenWidth.mediumWidth}) {
     padding: 20px 0;
@@ -75,7 +74,7 @@ const StyledOnboardingNavigation = styled.div`
 `
 
 const StyledNavigationButton = styled.button`
-  padding: 10px 20px;
+  padding: 0 20px;
   display: flex;
   align-items: center;
   font-size: ${props => props.theme.ui.fontSizes.narrow.sm};

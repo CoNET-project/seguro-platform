@@ -20,19 +20,12 @@ const StyledPageHeader = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin-bottom: 50px;
+  margin-bottom: 20px;
 `
 
 const StyledPageTitle = styled.h1`
   font-size: ${props => props.theme.ui.fontSizes.narrow.xl};
   margin-bottom: 10px;
-`
-
-const StyledPageSubtitle = styled.p`
-  font-size: ${props => props.theme.ui.fontSizes.narrow.md};
-  text-align: center;
-  min-height: 32px;
-  width: 70%;
 `
 
 export type Languages = {
@@ -78,9 +71,6 @@ const SelectLanguagePage = ({selectLocale, locale}: SelectLanguageProps) => {
                     <StyledPageTitle>
                         <FormattedMessage id='onboarding.selectLanguageTitle'/>
                     </StyledPageTitle>
-                    <StyledPageSubtitle>
-                        <FormattedMessage id='onboarding.selectLanguageSubtitle'/>
-                    </StyledPageSubtitle>
                 </StyledPageHeader>
                 <LanguageSelect languages={languages}
                                 selectLocale={selectLocale}

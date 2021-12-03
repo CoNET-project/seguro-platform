@@ -25,8 +25,8 @@ const StyledKey = styled.div`
 `
 
 const StyledKeyButton = styled.button`
-  width: 4.5rem;
-  height: 4.5rem;
+  width: 4rem;
+  height: 4rem;
   padding: 20px;
   border-radius: 50px;
   display: flex;
