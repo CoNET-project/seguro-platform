@@ -130,8 +130,7 @@ const Passcode = ({custom}: PasscodeProps) => {
                             id={currentStep === 'passcode' ? 'platform.settings.passcode.title.newPasscode' : 'platform.settings.passcode.title.confirmPasscode'}/>
                     </StyledPasscodeTitle>
                     <StyledPasscodeInputWrapper>
-                        <PasscodeInput value={currentStep === 'passcode' ? newPasscode[0] : newPasscode[1]}
-                                       error={inputError}/>
+                        <PasscodeInput value={currentStep === 'passcode' ? newPasscode[0] : newPasscode[1]}/>
                     </StyledPasscodeInputWrapper>
                     <Keypad numberKeyOnClick={onKeypadClick} deleteKeyOnClick={onKeypadDeleteClick}/>
                     <StepButtons actionHandler={stepButtonClickActions}/>

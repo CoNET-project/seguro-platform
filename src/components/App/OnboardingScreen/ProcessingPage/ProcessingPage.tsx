@@ -1,6 +1,5 @@
 import styled from 'styled-components'
 import {useOnboardingPageNavigator} from "../../../../contexts/onboarding/OnboardingContext";
-import TutorialPage from "../../../UI/Layout/TutorialPage/TutorialPage";
 import {ReactNode, useEffect, useState} from "react";
 import ProgressSteps from "../../../UI/Progress/ProgressSteps/ProgressSteps";
 import {FormattedMessage} from "react-intl";
@@ -16,6 +15,7 @@ import {Warning} from "../../../UI/Icons/Icons";
 import AlertDialog, {AlertDialogActions} from "../../../UI/Common/AlertDialog/AlertDialog";
 import onboardingActions from "../../../../contexts/onboarding/onboardingActions";
 import Button from '../../../UI/Common/Button/Button';
+import Page from "../../../UI/Layout/Page/Page";
 
 type CarouselState = [number, -1 | 1]
 
@@ -24,14 +24,23 @@ type ProgressingPageProps = {
     onSetupComplete: () => void,
 }
 
-const StyledProcessingContent = styled.div`
+const StyledContainer = styled.div`
+  width: 100%;
+  height: 100%;
+  //padding: 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+`
+
+const StyledPageContents = styled.div`
   width: 100%;
   height: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
-  padding: 20px;
+  justify-content: center;
 `
 
 const ProcessingPage = ({hasTouch, onSetupComplete}: ProgressingPageProps) => {
@@ -197,9 +206,14 @@ const ProcessingPage = ({hasTouch, onSetupComplete}: ProgressingPageProps) => {
             {
                 state.onboardingPageData?.verificationStatus && verificationErrorModal()
             }
-            <TutorialPage
-                contentComponents={
-                    <StyledProcessingContent>
+            <Page
+                pageTransition={{
+                    key: state.currentPage[0],
+                    direction: state.currentPage[1]
+                }}
+            >
+                <StyledContainer>
+                    <StyledPageContents>
                         <Carousel
                             current={carouselState[0]}
                             direction={carouselState[1]}
@@ -212,10 +226,6 @@ const ProcessingPage = ({hasTouch, onSetupComplete}: ProgressingPageProps) => {
                                 }
                             }
                         />
-                    </StyledProcessingContent>
-                }
-                lowerContentComponents={
-                    <>
                         {state.onboardingPageData?.verificationStatus === 'SUCCESS'
                             ? <Button onClick={onSetupComplete}>Enter Seguro</Button>
                             : <ProgressSteps
@@ -224,13 +234,10 @@ const ProcessingPage = ({hasTouch, onSetupComplete}: ProgressingPageProps) => {
                                 stepTexts={stepTexts}
                             />
                         }
-                    </>
-                }
-                pageTransition={{
-                    key: state.currentPage[0],
-                    direction: state.currentPage[1]
-                }}
-            />
+                    </StyledPageContents>
+
+                </StyledContainer>
+            </Page>
         </>
     )
 }

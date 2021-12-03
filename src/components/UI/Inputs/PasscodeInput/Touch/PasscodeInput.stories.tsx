@@ -17,6 +17,5 @@ const Template: Story<PasscodeInputProps> = (
 export const Primary = Template.bind({})
 
 Primary.args = {
-    value: '',
-    error: 'Hello'
+    value: ''
 }

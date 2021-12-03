@@ -81,7 +81,7 @@ const UnlockScreen = () => {
             <StyledContent>
                 <Icon component={<IoMdLock size={46}/>}/>
                 <StyledTitle><FormattedMessage id="unlock.title"/></StyledTitle>
-                <PasscodeInput value={passcode} error={isIncorrect}/>
+                <PasscodeInput value={passcode}/>
                 <Keypad {...keypadClickHandlers}/>
                 <StyledUnlockButton onClick={unlockClickHandler}>
                     Unlock

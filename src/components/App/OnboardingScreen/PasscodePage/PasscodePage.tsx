@@ -1,23 +1,22 @@
 import styled from 'styled-components';
-import {FormattedMessage} from "react-intl";
 import Keypad from "../../../UI/Keypad/Keypad";
-import {ReactNode, useState} from 'react';
+import {ReactNode} from 'react';
 import {useOnboardingPageNavigator} from "../../../../contexts/onboarding/OnboardingContext";
-import onboardingActions from "../../../../contexts/onboarding/onboardingActions";
 import Page from '../../../UI/Layout/Page/Page';
 import Input from "../../../UI/Inputs/Input/Input";
 import PasscodeTouchInput from "../../../UI/Inputs/PasscodeInput/Touch/PasscodeInput";
+import {screenWidth} from '../../../UI/screenSizes';
 
 type PasscodeProps = {
     title: string | ReactNode,
     passcode: string,
     setPasscode: (passcode: string) => void,
-    confirmationAction?: () => boolean
+    confirmationAction?: () => boolean,
+    error: ReactNode | string
 }
 
 const StyledContainer = styled.div`
   width: 100%;
-  height: 100%;
   //padding: 50px;
   display: flex;
   flex-direction: column;
@@ -40,30 +39,32 @@ const StyledPageHeader = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin-bottom: 20px;
+  margin-bottom: 30px;
 `
 
 const StyledPageTitle = styled.h1`
   font-size: ${props => props.theme.ui.fontSizes.narrow.xl};
-  margin-bottom: 10px;
+
+  @media (${screenWidth.mediumWidth}) {
+    margin-bottom: 30px;
+    font-size: 30px;
+  }
 `
 
-const StyledPageSubtitle = styled.p`
-  font-size: ${props => props.theme.ui.fontSizes.narrow.md};
-  text-align: center;
-  min-height: 32px;
-  width: 70%;
+const StyledPageError = styled.p`
+  font-size: ${props => props.theme.ui.fontSizes.narrow.sm};
+  margin-bottom: 15px;
+  min-height: calc(${props => props.theme.ui.fontSizes.narrow.sm} + 1px);
 `
 
 const PasscodePage = ({
                           title,
                           passcode,
                           setPasscode,
-                          confirmationAction
+                          error
                       }: PasscodeProps) => {
 
     const {state, dispatch} = useOnboardingPageNavigator()
-    const [error, setError] = useState<ReactNode | null>(null)
 
     const keypadClickHandlers = {
         numberKeyOnClick: (number: number) => {
@@ -78,21 +79,9 @@ const PasscodePage = ({
     //     'passcodeInput.confirm.error': '密碼不對，請再輸入一次',
     //     'passcodeInput.invalidLength': '密碼最少需要6位數',
 
-    const nextButtonHandler = () => {
-        if (passcode.length < 6) {
-            return setError(<FormattedMessage id='passcodeInput.invalidLength'/>)
-        }
-        if (confirmationAction && !confirmationAction()) {
-            return setError(<FormattedMessage id='passcodeInput.confirm.error'/>)
-        }
-        dispatch(onboardingActions.nextPage())
-    }
-
-    const previousButtonHandler = () => {
-        setPasscode('')
-        setError(null)
-        dispatch(onboardingActions.previousPage())
-    }
+    // <FormattedMessage id='passcodeInput.invalidLength'/>
+    // <FormattedMessage id='passcodeInput.incorrect.error'/>
+    // <FormattedMessage id='passcodeInput.confirm.error'/>
 
     return (
         <Page
@@ -104,14 +93,17 @@ const PasscodePage = ({
             <StyledContainer>
                 <StyledPageHeader>
                     <StyledPageTitle>
-                        <FormattedMessage id='onboarding.selectLanguageTitle'/>
+                        {title}
                     </StyledPageTitle>
                 </StyledPageHeader>
                 <StyledContents>
                     {
                         true ? (
                             <>
-                                <PasscodeTouchInput value={passcode} error={error}/>
+                                <PasscodeTouchInput value={passcode}/>
+                                <StyledPageError>
+                                    {error}
+                                </StyledPageError>
                                 <Keypad {...keypadClickHandlers}/>
                             </>
                         ) : (
@@ -121,8 +113,6 @@ const PasscodePage = ({
                                            inputType: 'password'
                                        }
                                        }
-                                       nextStepHandler={nextButtonHandler}
-                                       previousStepHandler={previousButtonHandler}
                                        error={error}
                                        setValue={(val) => {
                                            setPasscode(val)

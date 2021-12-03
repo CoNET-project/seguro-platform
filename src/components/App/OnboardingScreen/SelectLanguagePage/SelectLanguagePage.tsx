@@ -4,10 +4,10 @@ import {Locale} from "../../../../localization/types";
 import Page from '../../../UI/Layout/Page/Page';
 import {useOnboardingPageNavigator} from "../../../../contexts/onboarding/OnboardingContext";
 import {FormattedMessage} from "react-intl";
+import {screenWidth} from '../../../UI/screenSizes';
 
 const StyledContainer = styled.div`
   width: 100%;
-  height: 100%;
   //padding: 50px;
   display: flex;
   flex-direction: column;
@@ -20,12 +20,23 @@ const StyledPageHeader = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin-bottom: 20px;
+  margin-bottom: 30px;
 `
+
+const StyledPageContents = styled.div`
+  width: 100%;
+  height: 20rem;
+`
+
 
 const StyledPageTitle = styled.h1`
   font-size: ${props => props.theme.ui.fontSizes.narrow.xl};
   margin-bottom: 10px;
+
+  @media (${screenWidth.mediumWidth}) {
+    margin-bottom: 30px;
+    font-size: 30px;
+  }
 `
 
 export type Languages = {
@@ -72,9 +83,11 @@ const SelectLanguagePage = ({selectLocale, locale}: SelectLanguageProps) => {
                         <FormattedMessage id='onboarding.selectLanguageTitle'/>
                     </StyledPageTitle>
                 </StyledPageHeader>
-                <LanguageSelect languages={languages}
-                                selectLocale={selectLocale}
-                                selectedLocale={locale}/>
+                <StyledPageContents>
+                    <LanguageSelect languages={languages}
+                                    selectLocale={selectLocale}
+                                    selectedLocale={locale}/>
+                </StyledPageContents>
             </StyledContainer>
         </Page>
 

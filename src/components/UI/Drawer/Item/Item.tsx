@@ -1,6 +1,5 @@
 import {ReactNode} from 'react'
 import styled from 'styled-components'
-import {screenWidth} from "../../screenSizes";
 
 type ItemProps = {
     text: ReactNode | string,
@@ -35,9 +34,6 @@ const StyledIcon = styled.div`
 
 const StyledText = styled.p`
   font-size: ${props => props.theme.ui.fontSizes.narrow.sm};
-  @media (${screenWidth.mediumWidth}) {
-    font-size: ${props => props.theme.ui.fontSizes.medium.sm};
-  }
 `
 
 const Item = ({icon, text, onClick}: ItemProps) => {

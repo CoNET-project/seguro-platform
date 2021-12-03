@@ -6,12 +6,14 @@ import {createPasscode} from "../../../services/workerService/workerService";
 import {LogoIcon, LogoText} from "../../UI/Logo/Logo";
 import {screenWidth} from "../../UI/screenSizes";
 import SelectLanguagePage from "./SelectLanguagePage/SelectLanguagePage";
-import ProgressNumberSteps from "../../UI/Progress/ProgressNumberSteps/ProgressNumberSteps";
 import onboardingActions from '../../../contexts/onboarding/onboardingActions';
 import PasscodePage from './PasscodePage/PasscodePage';
 import {FormattedMessage} from 'react-intl';
 import {ChevronLeft, ChevronRight} from "../../UI/Icons/Icons";
-import {useEffect} from "react";
+import ProgressNumberSteps from "../../UI/Progress/ProgressNumberSteps/ProgressNumberSteps";
+import {ReactNode, useState} from "react";
+import VerificationPage from "./VerificationPage/VerificationPage";
+import ProcessingPage from "./ProcessingPage/ProcessingPage";
 
 const StyledOnboardingContainer = styled.div`
   height: 100%;
@@ -29,12 +31,13 @@ const StyledOnboardingContainer = styled.div`
 `
 
 const StyledLogoContainer = styled.div`
-  display: flex;
+  display: none;
   align-items: center;
-`
+  font-size: 30px;
 
-const StyledOnboardingHeader = styled.div`
-  padding: 50px 0 20px 0;
+  @media (${screenWidth.narrowWidth}) {
+    display: flex;
+  }
 `
 
 const StyledOnboardingContent = styled.div`
@@ -87,25 +90,58 @@ const StyledNavigationButtonText = styled.p`
   margin: 0 10px;
 `
 
+const CustomProgressNumberSteps = styled(ProgressNumberSteps)`
+  margin-bottom: 20px;
+`
+
 const OnboardingScreen = () => {
     const {locale, isTouchDevice, setLocale, setIsUnlocked, setHasContainer} = useAppState()
 
-    const pages = ['language', 'setPasscode', 'confirmPasscode', 'verification', 'verificationProcess']
+    const pages = ['language', 'setPasscode', 'confirmPasscode', 'verification']
 
-    const
-        {
-            state, dispatch
-        }
-            = useOnboardingPageNavigator()
+    const {state, dispatch} = useOnboardingPageNavigator()
+
     const {currentPage, onboardingPageData} = state
-
-    useEffect(() => {
-        console.log(currentPage)
-    }, [state])
-
-    console.log(currentPage)
-
     const currentStep = pages.indexOf(state.currentPage[0]) + 1
+
+    const [error, setError] = useState<ReactNode | null>(null)
+
+    const previousPageHandler = () => {
+        switch (true) {
+            case currentPage[0] === 'setPasscode':
+                dispatch(onboardingActions.setPasscode(''))
+                break;
+            case currentPage[0] === 'confirmPasscode':
+                dispatch(onboardingActions.setConfirmPasscode(''))
+                break;
+        }
+        dispatch(onboardingActions.previousPage())
+    }
+
+    const nextPageHandler = () => {
+        setError(null)
+        switch (true) {
+            case currentPage[0] === 'setPasscode':
+                if (state.onboardingPageData?.passcode.length < 6) {
+                    return setError(<FormattedMessage id='passcodeInput.invalidLength'/>)
+                }
+                break;
+            case currentPage[0] === 'confirmPasscode':
+                if (state.onboardingPageData?.confirmPasscode.length < 6) {
+                    return setError(<FormattedMessage id='passcodeInput.invalidLength'/>)
+                }
+                if (!state.onboardingPageData?.passcode || !state.onboardingPageData?.confirmPasscode)
+                    return setError(<FormattedMessage id='passcodeInput.invalidLength'/>)
+
+                if (state.onboardingPageData?.passcode !== state.onboardingPageData?.confirmPasscode) {
+                    return setError(<FormattedMessage id='passcodeInput.confirm.error'/>)
+                }
+                break;
+            case currentPage[0] === 'verification':
+            case currentPage[0] === 'verificationProcess':
+        }
+        return dispatch(onboardingActions.nextPage())
+    }
 
     // @ts-ignore
     const confirmationHandler = (): boolean => {
@@ -131,46 +167,79 @@ const OnboardingScreen = () => {
     return (
         <StyledOnboardingContainer>
             <StyledLogoContainer>
-                <LogoIcon logoColor='white' size={28}/>
+                <LogoIcon logoColor='white' size={30}/>
                 <LogoText size={26}/>
             </StyledLogoContainer>
-            <StyledOnboardingHeader>
-                <ProgressNumberSteps currentActiveStep={currentStep} steps={pages.length}/>
-            </StyledOnboardingHeader>
-            <StyledOnboardingContent>
-                <AnimatePresence custom={currentPage[1]} exitBeforeEnter>
-                    {currentPage[0] === 'language' &&
-                    <SelectLanguagePage
-                        key={currentPage[0]}
-                        locale={locale}
-                        selectLocale={setLocale}
-                    />}
+            {
+                currentPage[0] === 'verificationProcess' ? (
+                    <ProcessingPage hasTouch={true} onSetupComplete={() => {
+                    }}/>
+                ) : (
+                    <>
+                        <StyledOnboardingContent>
+                            <AnimatePresence custom={currentPage[1]} exitBeforeEnter>
+                                {currentPage[0] === 'language' &&
+                                <SelectLanguagePage
+                                    key={currentPage[0]}
+                                    locale={locale}
+                                    selectLocale={setLocale}
+                                />}
 
-                    {currentPage[0] === 'setPasscode' &&
-                    <PasscodePage
-                        key={currentPage[0]}
-                        title={<FormattedMessage id='onboarding.setPasscodeTitle'/>}
-                        passcode={onboardingPageData?.passcode || ''}
-                        setPasscode={(passcode: string) => {
-                            dispatch(onboardingActions.setPasscode(passcode))
-                        }}
-                    />}
-                </AnimatePresence>
-            </StyledOnboardingContent>
-            <StyledOnboardingNavigation>
-                <StyledNavigationButton onClick={() => dispatch(onboardingActions.previousPage())}>
-                    <ChevronLeft/>
-                    <StyledNavigationButtonText>
-                        <FormattedMessage id='button.back'/>
-                    </StyledNavigationButtonText>
-                </StyledNavigationButton>
-                <StyledNavigationButton onClick={() => dispatch(onboardingActions.nextPage())}>
-                    <StyledNavigationButtonText>
-                        <FormattedMessage id='button.next'/>
-                    </StyledNavigationButtonText>
-                    <ChevronRight/>
-                </StyledNavigationButton>
-            </StyledOnboardingNavigation>
+                                {currentPage[0] === 'setPasscode' &&
+                                <PasscodePage
+                                    key={currentPage[0]}
+                                    title={<FormattedMessage id='onboarding.setPasscodeTitle'/>}
+                                    passcode={onboardingPageData?.passcode || ''}
+                                    setPasscode={(passcode: string) => {
+                                        setError(null)
+                                        dispatch(onboardingActions.setPasscode(passcode))
+                                    }}
+                                    error={error}
+                                />}
+
+                                {currentPage[0] === 'confirmPasscode' &&
+                                <PasscodePage
+                                    key={currentPage[0]}
+                                    title={<FormattedMessage id='onboarding.confirmPasscodeTitle'/>}
+                                    passcode={onboardingPageData?.confirmPasscode || ''}
+                                    setPasscode={(passcode: string) => {
+                                        setError(null)
+                                        dispatch(onboardingActions.setConfirmPasscode(passcode))
+                                    }}
+                                    error={error}
+                                />}
+
+                                {currentPage[0] === 'verification' &&
+                                <VerificationPage
+                                    key={currentPage[0]}
+                                />}
+                            </AnimatePresence>
+                        </StyledOnboardingContent>
+                        <CustomProgressNumberSteps steps={pages.length} currentActiveStep={currentStep}/>
+                        <StyledOnboardingNavigation>
+                            <StyledNavigationButton onClick={previousPageHandler}
+                                                    disabled={currentPage[0] === 'language'}>
+                                {
+                                    currentPage[0] !== 'language' && (
+                                        <>
+                                            <ChevronLeft/>
+                                            <StyledNavigationButtonText>
+                                                <FormattedMessage id='button.back'/>
+                                            </StyledNavigationButtonText>
+                                        </>
+                                    )
+                                }
+                            </StyledNavigationButton>
+                            <StyledNavigationButton onClick={nextPageHandler}>
+                                <StyledNavigationButtonText>
+                                    <FormattedMessage id='button.next'/>
+                                </StyledNavigationButtonText>
+                                <ChevronRight/>
+                            </StyledNavigationButton>
+                        </StyledOnboardingNavigation>
+                    </>
+                )
+            }
             {/*{currentPage[0] === 'language' &&*/}
             {/*<SelectLanguagePage*/}
             {/*    key={currentPage[0]}*/}

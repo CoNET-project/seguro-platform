@@ -21,10 +21,11 @@ const StyledProgressNumberBlock = styled.div<StyledProgressNumberBlockProps>`
 
 export type ProgressNumberStepsProps = {
     currentActiveStep: number,
-    steps: number
+    steps: number,
+    className?: string
 }
 
-const ProgressNumberSteps = ({currentActiveStep, steps}: ProgressNumberStepsProps) => {
+const ProgressNumberSteps = ({currentActiveStep, steps, className}: ProgressNumberStepsProps) => {
 
     const totalSteps = Array.from({length: steps}, (_, i) => i + 1)
 
@@ -38,7 +39,7 @@ const ProgressNumberSteps = ({currentActiveStep, steps}: ProgressNumberStepsProp
     }
 
     return (
-        <StyledProgressNumberSteps>
+        <StyledProgressNumberSteps className={className}>
             {totalSteps.map((number, idx) => {
                 return (
                     generateContent(number, idx + 1, idx === 0)

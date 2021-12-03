@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import {screenWidth} from "../../../../UI/screenSizes";
 
 const StyledSubscriptionPlan = styled.div`
   width: 100%;
@@ -34,9 +33,6 @@ const StyledPlanPrice = styled(StyledPlanName)`
 const StyledPlanDescription = styled.p`
   margin-top: 5px;
   color: ${props => props.theme.ui.colors.text.secondary};
-  @media (${screenWidth.mediumWidth}) {
-    font-size: ${props => props.theme.ui.fontSizes.medium.sm}
-  }
 `
 
 

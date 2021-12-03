@@ -59,7 +59,7 @@ const StyledDeviceItemName = styled.p`
   text-overflow: ellipsis;
   max-width: 150px;
   @media (${screenWidth.mediumWidth}) {
-    font-size: ${props => props.theme.ui.fontSizes.medium.sm};
+    font-size: ${props => props.theme.ui.fontSizes.narrow.sm};
     max-width: 200px;
   }
 `
@@ -74,7 +74,7 @@ const StyledDeviceItemNameInput = styled.input`
   border-bottom: 1px solid ${props => props.theme.ui.colors.border.light};
   padding: 2px 0;
   @media (${screenWidth.mediumWidth}) {
-    font-size: ${props => props.theme.ui.fontSizes.medium.sm}
+    font-size: ${props => props.theme.ui.fontSizes.narrow.sm}
   }
 
   &:focus {

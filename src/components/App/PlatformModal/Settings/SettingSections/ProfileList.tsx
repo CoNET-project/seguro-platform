@@ -4,7 +4,6 @@ import ExampleProfile1 from '../../../../../assets/examples/profile-example.jpeg
 import ExampleProfile2 from '../../../../../assets/examples/profile-example1.png'
 
 import Image from "../../../../UI/Common/Profile/Image/Image";
-import {screenWidth} from "../../../../UI/screenSizes";
 
 type ProfileItemProps = {
     profileImageSrc?: string,
@@ -54,9 +53,6 @@ const StyledProfileItemPrimary = styled.p`
   font-weight: 700;
   color: ${props => props.theme.ui.colors.text.secondary};
   font-size: ${props => props.theme.ui.fontSizes.narrow.sm};
-  @media (${screenWidth.mediumWidth}) {
-    font-size: ${props => props.theme.ui.fontSizes.medium.sm};
-  }
 `
 
 const StyledProfileItemSetPrimary = styled.a`
@@ -64,9 +60,6 @@ const StyledProfileItemSetPrimary = styled.a`
   cursor: pointer;
   text-decoration: underline;
   font-size: ${props => props.theme.ui.fontSizes.narrow.sm};
-  @media (${screenWidth.mediumWidth}) {
-    font-size: ${props => props.theme.ui.fontSizes.medium.sm};
-  }
 `
 
 const ProfileItem = ({profileImageSrc, nickname, keyId, isPrimary, setPrimary}: ProfileItemProps) => {

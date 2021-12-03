@@ -4,40 +4,20 @@ export type FontSizes = {
         sm: string,
         md: string,
         lg: string,
-        xl: string
-    },
-    medium: {
-        sm: string,
-        md: string,
-        lg: string,
-        xl: string
-    },
-    wide: {
-        sm: string,
-        md: string,
-        lg: string,
-        xl: string
+        xl: string,
+        xxl: string,
+        xxxl: string
     }
 }
 
-export const fonts = {
+export const fonts: FontSizes = {
     narrow: {
         xsm: '11px',
         sm: '13px',
         md: '16px',
         lg: '19px',
-        xl: '22px'
-    },
-    medium: {
-        sm: '14px',
-        md: '17px',
-        lg: '20px',
-        xl: '23px'
-    },
-    wide: {
-        sm: '14px',
-        md: '17px',
-        lg: '20px',
-        xl: '23px'
+        xl: '22px',
+        xxl: '26px',
+        xxxl: '30px'
     },
 }

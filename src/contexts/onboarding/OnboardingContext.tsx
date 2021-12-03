@@ -51,9 +51,9 @@ export
 type State = {
     currentPage: CurrentPage,
     existingPages: Array<PageIds>,
-    onboardingPageData?: {
-        passcode?: string,
-        confirmPasscode?: string,
+    onboardingPageData: {
+        passcode: string,
+        confirmPasscode: string,
         verificationCode?: string,
         verificationStatus?: VerificationStates
     }
