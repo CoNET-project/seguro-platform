@@ -226,14 +226,16 @@ const ProcessingPage = ({hasTouch, onSetupComplete}: ProgressingPageProps) => {
                                 }
                             }
                         />
-                        {state.onboardingPageData?.verificationStatus === 'SUCCESS'
-                            ? <Button onClick={onSetupComplete}>Enter Seguro</Button>
-                            : <ProgressSteps
-                                currentStage={currentStep}
-                                numberOfSteps={MAX_STEPS}
-                                stepTexts={stepTexts}
-                            />
-                        }
+                        <StyledPageContents>
+                            {state.onboardingPageData?.verificationStatus === 'SUCCESS'
+                                ? <Button onClick={onSetupComplete}>Enter Seguro</Button>
+                                : <ProgressSteps
+                                    currentStage={currentStep}
+                                    numberOfSteps={MAX_STEPS}
+                                    stepTexts={stepTexts}
+                                />
+                            }
+                        </StyledPageContents>
                     </StyledPageContents>
 
                 </StyledContainer>
