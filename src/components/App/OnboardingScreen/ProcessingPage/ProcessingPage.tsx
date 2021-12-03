@@ -40,7 +40,16 @@ const StyledPageContents = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
+`
+
+const StyledPageLowerContents = styled.div`
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
 `
 
 const ProcessingPage = ({hasTouch, onSetupComplete}: ProgressingPageProps) => {
@@ -206,40 +215,40 @@ const ProcessingPage = ({hasTouch, onSetupComplete}: ProgressingPageProps) => {
             {
                 state.onboardingPageData?.verificationStatus && verificationErrorModal()
             }
-            <Page
-                pageTransition={{
-                    key: state.currentPage[0],
-                    direction: state.currentPage[1]
-                }}
-            >
-                <StyledContainer>
-                    <StyledPageContents>
-                        <Carousel
-                            current={carouselState[0]}
-                            direction={carouselState[1]}
-                            hasTouch={hasTouch}
-                            carouselItems={carouselItems}
-                            actionHandlers={
-                                {
-                                    next: nextItem,
-                                    previous: previousItem
-                                }
-                            }
-                        />
+                <Page
+                    pageTransition={{
+                        key: state.currentPage[0],
+                        direction: state.currentPage[1]
+                    }}
+                >
+                    <StyledContainer>
                         <StyledPageContents>
-                            {state.onboardingPageData?.verificationStatus === 'SUCCESS'
-                                ? <Button onClick={onSetupComplete}>Enter Seguro</Button>
-                                : <ProgressSteps
-                                    currentStage={currentStep}
-                                    numberOfSteps={MAX_STEPS}
-                                    stepTexts={stepTexts}
-                                />
-                            }
+                            <Carousel
+                                current={carouselState[0]}
+                                direction={carouselState[1]}
+                                hasTouch={hasTouch}
+                                carouselItems={carouselItems}
+                                actionHandlers={
+                                    {
+                                        next: nextItem,
+                                        previous: previousItem
+                                    }
+                                }
+                            />
+                            <StyledPageLowerContents>
+                                {state.onboardingPageData?.verificationStatus === 'SUCCESS'
+                                    ? <Button onClick={onSetupComplete}>Enter Seguro</Button>
+                                    : <ProgressSteps
+                                        currentStage={currentStep}
+                                        numberOfSteps={MAX_STEPS}
+                                        stepTexts={stepTexts}
+                                    />
+                                }
+                            </StyledPageLowerContents>
                         </StyledPageContents>
-                    </StyledPageContents>
 
-                </StyledContainer>
-            </Page>
+                    </StyledContainer>
+                </Page>
         </>
     )
 }

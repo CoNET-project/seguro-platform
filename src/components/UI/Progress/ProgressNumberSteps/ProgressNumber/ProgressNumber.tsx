@@ -18,7 +18,7 @@ const StyledProgressNumber = styled.div<StyledProgressNumberProps>`
 `
 
 const StyledNumberText = styled.p<StyledProgressNumberProps>`
-  color: white;
+  color: ${props => props.isActive ? 'white' : props.theme.ui.colors.text.primary};
   font-size: ${props => props.theme.ui.fontSizes.narrow.xsm};
   width: 100%;
   height: 100%;
