@@ -1,23 +1,19 @@
 import {AnimatePresence, motion} from 'framer-motion';
 import styled from 'styled-components';
-import {ReactNode, useEffect} from "react";
+import {ReactNode, useEffect, useState} from "react";
 import {pageTransitionVariants} from "../Motion/Variants/Variants";
 import ProgressDots from "../Progress/ProgressDots/ProgressDots";
 
 type CarouselProps = {
     current: number,
-    direction: -1 | 1,
-    carouselItems: Array<ReactNode>,
-    hasTouch: boolean,
-    actionHandlers: {
-        next: () => void,
-        previous: () => void
-    }
+    carouselVisualItems: Array<ReactNode>,
+    carouselExtraItems?: Array<ReactNode>,
+    hasTouch: boolean
 }
 
 const StyledCarousel = styled.div`
+  flex: 1;
   width: 100%;
-  height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -25,29 +21,58 @@ const StyledCarousel = styled.div`
 `
 
 const StyledCarouselItem = styled(motion.div)`
+  flex: 1;
   width: 100%;
-  height: 100%;
   display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 50px;
+`
+
+const StyledCarouselExtraItem = styled(motion.div)`
+  flex: 0.1;
+  content: '';
+  display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
 `
 
-const Carousel = ({current, direction, hasTouch, carouselItems, actionHandlers}: CarouselProps) => {
+const Carousel = ({hasTouch, carouselVisualItems, carouselExtraItems}: CarouselProps) => {
+
+    const [carouselIndex, setCarouselIndex] = useState(0)
+    const [carouselDirection, setCarouselDirection] = useState<-1 | 1>(1)
 
     useEffect(() => {
         if (!hasTouch) {
             const interval = setInterval(() => {
-                actionHandlers.next()
-            }, 5000)
+                nextItem()
+            }, 4000)
             return () => {
                 clearInterval(interval)
             }
         }
-    }, [current])
+    }, [carouselIndex])
 
 
-    const contentIndex = current - 1
-    const content = carouselItems[current - 1]
+    const nextItem = () => {
+        if (carouselIndex == carouselVisualItems.length - 1) {
+            setCarouselIndex(0)
+        } else {
+            setCarouselIndex(carouselIndex + 1)
+        }
+        setCarouselDirection(1)
+    }
+
+    const previousItem = () => {
+        if (carouselIndex == 0) {
+            setCarouselIndex(carouselVisualItems.length - 1)
+        } else {
+            setCarouselIndex(carouselIndex - 1)
+        }
+        setCarouselDirection(-1)
+    }
 
     const dragProps = (): any => {
 
@@ -65,9 +90,9 @@ const Carousel = ({current, direction, hasTouch, carouselItems, actionHandlers}:
                     const swipe = swipePower(offset.x, velocity.x);
 
                     if (swipe < -swipeConfidenceThreshold) {
-                        actionHandlers.next()
+                        nextItem()
                     } else if (swipe > swipeConfidenceThreshold) {
-                        actionHandlers.previous()
+                        previousItem()
                     }
                 }
             }
@@ -77,10 +102,10 @@ const Carousel = ({current, direction, hasTouch, carouselItems, actionHandlers}:
     }
     return (
         <StyledCarousel>
-            <AnimatePresence custom={direction} initial={false} exitBeforeEnter>
+            <AnimatePresence custom={carouselDirection} initial={false} exitBeforeEnter>
                 <StyledCarouselItem
-                    key={contentIndex}
-                    custom={direction}
+                    key={carouselIndex}
+                    custom={carouselDirection}
                     variants={pageTransitionVariants}
                     initial="enter"
                     animate="center"
@@ -91,10 +116,22 @@ const Carousel = ({current, direction, hasTouch, carouselItems, actionHandlers}:
                     }}
                     {...dragProps()}
                 >
-                    {content}
+                    {carouselVisualItems[carouselIndex]}
                 </StyledCarouselItem>
             </AnimatePresence>
-            <ProgressDots numberOfDots={carouselItems.length} current={current}/>
+            <ProgressDots numberOfDots={carouselVisualItems.length} current={carouselIndex + 1}/>
+            <AnimatePresence>
+                <StyledCarouselExtraItem
+                    key={carouselIndex}
+                    custom={carouselDirection}
+                >
+                    {
+                        carouselExtraItems && carouselExtraItems[carouselIndex] && (
+                            carouselExtraItems[carouselIndex]
+                        )
+                    }
+                </StyledCarouselExtraItem>
+            </AnimatePresence>
         </StyledCarousel>
     )
 }

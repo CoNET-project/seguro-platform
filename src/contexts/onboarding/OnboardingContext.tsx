@@ -30,7 +30,7 @@ export type OnboardingActions =
 
 export type Dispatch = (action: OnboardingActions) => void
 
-export type PageIds = 'language' | 'setPasscode' | 'confirmPasscode' | 'verification' | 'verificationProcess'
+export type PageIds = 'language' | 'setPasscode' | 'confirmPasscode' | 'verification' | 'settingUp'
 
 type AnimateDirection = -1 | 1
 

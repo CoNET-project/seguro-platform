@@ -104,7 +104,7 @@ const App = () => {
             case !hasContainer && !isUnlocked:
                 return (
                     <OnboardingPageProvider
-                        existingPages={['language', 'setPasscode', 'confirmPasscode', 'verification', 'verificationProcess']}>
+                        existingPages={['language', 'setPasscode', 'confirmPasscode', 'verification', 'settingUp']}>
                         <OnboardingScreen/>
                     </OnboardingPageProvider>
                 )

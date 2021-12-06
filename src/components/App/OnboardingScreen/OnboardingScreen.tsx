@@ -13,7 +13,7 @@ import {ChevronLeft, ChevronRight} from "../../UI/Icons/Icons";
 import ProgressNumberSteps from "../../UI/Progress/ProgressNumberSteps/ProgressNumberSteps";
 import {ReactNode, useState} from "react";
 import VerificationPage from "./VerificationPage/VerificationPage";
-import ProcessingPage from "./ProcessingPage/ProcessingPage";
+import SettingUpPage from "./SettingUpPage/SettingUpPage";
 
 const StyledOnboardingContainer = styled.div`
   height: 100%;
@@ -138,7 +138,7 @@ const OnboardingScreen = () => {
                 }
                 break;
             case currentPage[0] === 'verification':
-            case currentPage[0] === 'verificationProcess':
+            case currentPage[0] === 'settingUp':
         }
         return dispatch(onboardingActions.nextPage())
     }
@@ -171,9 +171,8 @@ const OnboardingScreen = () => {
                 <LogoText size={26}/>
             </StyledLogoContainer>
             {
-                currentPage[0] === 'verificationProcess' ? (
-                    <ProcessingPage hasTouch={true} onSetupComplete={() => {
-                    }}/>
+                currentPage[0] === 'settingUp' ? (
+                    <SettingUpPage/>
                 ) : (
                     <>
                         <StyledOnboardingContent>
