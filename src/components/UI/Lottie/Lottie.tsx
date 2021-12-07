@@ -1,4 +1,4 @@
-import Lottie, {LottieComponentProps} from "lottie-react";
+import Lottie from "react-lottie-player";
 
 type LottieAnimationProps = {
     animationSrc: object,
@@ -6,10 +6,10 @@ type LottieAnimationProps = {
 }
 
 const LottieAnimation = ({animationSrc, loop}: LottieAnimationProps) => {
-    const defaultOptions: LottieComponentProps = {
+    const defaultOptions = {
         loop: loop || false,
-        autoplay: true,
-        animationData: animationSrc,
+        play: true,
+        animationData: animationSrc
     }
     return (
         <Lottie

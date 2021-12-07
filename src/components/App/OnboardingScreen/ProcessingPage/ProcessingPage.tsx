@@ -8,7 +8,7 @@ import lottie_platform from '../../../../assets/lottie/platform.json'
 import lottie_tracking from '../../../../assets/lottie/tracking.json'
 import lottie_decentralized from '../../../../assets/lottie/decentralized.json'
 import lottie_privacy from '../../../../assets/lottie/privacy.json'
-import Lottie, {LottieComponentProps} from 'lottie-react'
+import Lottie from 'react-lottie-player'
 import Card from "../../../UI/Layout/Card/Card";
 import {StyledFormattedH1, StyledFormattedParagraph} from "../../../UI/Common/Text/Text";
 import {Warning} from "../../../UI/Icons/Icons";
@@ -83,7 +83,7 @@ const ProcessingPage = ({hasTouch, onSetupComplete}: ProgressingPageProps) => {
     ]
 
     const createLottie = (animation: any) => {
-        const defaultOptions: LottieComponentProps = {
+        const defaultOptions = {
             loop: true,
             autoplay: true,
             animationData: animation
@@ -95,7 +95,7 @@ const ProcessingPage = ({hasTouch, onSetupComplete}: ProgressingPageProps) => {
         )
     }
 
-    const carouselItems: Array<ReactNode> = [
+    const carouselItems = [
         <Card
             visual={createLottie(lottie_platform)}
             contentTitle={

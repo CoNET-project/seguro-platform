@@ -32,8 +32,8 @@
     "express": "^4.17.1",
     "framer-motion": "^4.1.17",
     "get-port": "^6.0.0",
-    "lottie-react": "^2.1.0",
     "react-hot-toast": "^2.1.1",
+    "react-lottie-player": "^1.4.1",
     "react-router-dom": "^5.2.1",
     "uuid": "^8.3.2"
   },

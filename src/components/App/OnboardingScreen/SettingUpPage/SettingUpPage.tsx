@@ -6,8 +6,8 @@ import lottie_platform from '../../../../assets/lottie/platform.json'
 import lottie_tracking from '../../../../assets/lottie/tracking.json'
 import lottie_decentralized from '../../../../assets/lottie/decentralized.json'
 import lottie_privacy from '../../../../assets/lottie/privacy.json'
-import Lottie, {LottieComponentProps} from "lottie-react";
 import {FormattedMessage} from "react-intl";
+import LottieAnimation from "../../../UI/Lottie/Lottie";
 
 const StyledContainer = styled.div`
   width: 100%;
@@ -93,24 +93,23 @@ type CarouselState = [number, -1 | 1]
 const SettingUpPage = () => {
     const [carouselState, setCarouselState] = useState<CarouselState>([1, 1])
 
-    const createLottie = (animation: any) => {
-        const defaultOptions: LottieComponentProps = {
-            loop: true,
-            autoplay: true,
-            animationData: animation
-        }
-        return (
-            <Lottie
-                {...defaultOptions}
-            />
-        )
-    }
-
     const carouselVisualItems = [
-        createLottie(lottie_platform),
-        createLottie(lottie_tracking),
-        createLottie(lottie_decentralized),
-        createLottie(lottie_privacy)
+        () => LottieAnimation({
+            animationSrc: lottie_platform,
+            loop: true
+        }),
+        () => LottieAnimation({
+            animationSrc: lottie_tracking,
+            loop: true
+        }),
+        () => LottieAnimation({
+            animationSrc: lottie_decentralized,
+            loop: true
+        }),
+        () => LottieAnimation({
+            animationSrc: lottie_privacy,
+            loop: true
+        })
     ]
 
     const carouselExtraItems = [

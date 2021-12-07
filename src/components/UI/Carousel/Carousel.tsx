@@ -6,7 +6,7 @@ import ProgressDots from "../Progress/ProgressDots/ProgressDots";
 
 type CarouselProps = {
     current: number,
-    carouselVisualItems: Array<ReactNode>,
+    carouselVisualItems: Array<(() => ReactNode) | ReactNode>,
     carouselExtraItems?: Array<ReactNode>,
     hasTouch: boolean
 }
@@ -23,6 +23,8 @@ const StyledCarousel = styled.div`
 const StyledCarouselItem = styled(motion.div)`
   flex: 1;
   width: 100%;
+  min-height: 200px;
+  height: 200px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -55,6 +57,14 @@ const Carousel = ({hasTouch, carouselVisualItems, carouselExtraItems}: CarouselP
         }
     }, [carouselIndex])
 
+
+    const getItem = (index: number) => {
+        if (typeof carouselVisualItems[index] === 'function') {
+            // @ts-ignore
+            return carouselVisualItems[index]()
+        }
+        return carouselVisualItems[index]
+    }
 
     const nextItem = () => {
         if (carouselIndex == carouselVisualItems.length - 1) {
@@ -100,6 +110,7 @@ const Carousel = ({hasTouch, carouselVisualItems, carouselExtraItems}: CarouselP
             return {}
         }
     }
+    // @ts-ignore
     return (
         <StyledCarousel>
             <AnimatePresence custom={carouselDirection} initial={false} exitBeforeEnter>
@@ -116,7 +127,7 @@ const Carousel = ({hasTouch, carouselVisualItems, carouselExtraItems}: CarouselP
                     }}
                     {...dragProps()}
                 >
-                    {carouselVisualItems[carouselIndex]}
+                    {getItem(carouselIndex)}
                 </StyledCarouselItem>
             </AnimatePresence>
             <ProgressDots numberOfDots={carouselVisualItems.length} current={carouselIndex + 1}/>
