@@ -26,20 +26,23 @@ export type ButtonProps = {
     children: string | ReactNode,
     disabled?: boolean,
     onClick: () => void,
-    isHidden?: boolean
+    isHidden?: boolean,
+    className?: string
 }
 
 const Button = ({
                     children,
                     isHidden,
                     disabled,
-                    onClick
+                    onClick,
+                    className
                 }: ButtonProps) => {
     return (
         <StyledButton
             disabled={disabled}
             isHidden={isHidden || false}
             onClick={onClick}
+            className={className}
         >
             {children}
         </StyledButton>

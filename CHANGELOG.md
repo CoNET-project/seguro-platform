@@ -1,5 +1,24 @@
 # `seguro-platform` CHANGELOG
 
+## `0.39.0`
+
+### Additions
+
+- Onboarding flow overhaul to match platform styles.
+- Add new setting up page for onboarding.
+- Worker bridge integration and password generation.
+- Multiple styles for existing and new components.
+
+### Changes
+
+- None.
+
+### Fixes
+
+- Fix CSS issues.
+
+---
+
 ## `0.38.0`
 
 ### Additions

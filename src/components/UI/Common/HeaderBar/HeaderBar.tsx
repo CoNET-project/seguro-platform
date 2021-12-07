@@ -78,9 +78,6 @@ const StyledHeaderDetails = styled.div`
 
 const StyledHeaderTitle = styled.p`
   font-size: ${props => props.theme.ui.fontSizes.narrow.sm};
-  @media (${screenWidth.mediumWidth}) {
-    font-size: ${props => props.theme.ui.fontSizes.medium.sm}
-  }
 `
 
 const StyledHeaderSubtitle = styled.p`

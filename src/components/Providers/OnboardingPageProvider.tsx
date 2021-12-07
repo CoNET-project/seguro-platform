@@ -10,7 +10,11 @@ type PageProviderProps = {
 export const OnboardingPageProvider = ({children, existingPages}: PageProviderProps) => {
     const [state, dispatch] = React.useReducer(onboardingPageReducer, {
         currentPage: ['language', 1],
-        existingPages: existingPages
+        existingPages: existingPages,
+        onboardingPageData: {
+            passcode: '',
+            confirmPasscode: ''
+        }
     })
     const value = {state, dispatch}
     return (

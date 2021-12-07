@@ -64,7 +64,6 @@ const StyledText = styled.p`
   word-break: break-all;
   display: none;
   @media (${screenWidth.mediumWidth}) {
-    font-size: ${props => props.theme.ui.fontSizes.medium.sm};
     display: flex
   }
 `

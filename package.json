@@ -1,6 +1,6 @@
 {
   "name": "@conet-project/seguro-platform",
-  "version": "0.38.0",
+  "version": "0.39.0",
   "author": "Kloak Information Technologies",
   "description": "The Seguro Platform application.",
   "license": "UNLICENSED",
@@ -9,7 +9,7 @@
   ],
   "main": "./src/electron/electron.js",
   "scripts": {
-    "start": "concurrently --kill-others --success=first 'yarn _start:web' 'wait-on tcp:3000 && NODE_ENV=development yarn _start:desktop'",
+    "start": "concurrently --kill-others --success=first 'yarn start:gateway' 'yarn _start:web' 'wait-on tcp:3000 && NODE_ENV=development yarn _start:desktop'",
     "start:storybook": "start-storybook -p 6006 -s public",
     "start:gateway": "yarn seguro-gateway --port 3001",
     "start:web": "concurrently --kill-others --success=first 'yarn _start:web' 'seguro-gateway --port 3001'",
@@ -25,6 +25,8 @@
     "build-storybook": "build-storybook -s public"
   },
   "dependencies": {
+    "@conet-project/seguro-gateway": "0.13.0",
+    "@conet-project/seguro-worker-lib": "0.8.0",
     "@tippyjs/react": "^4.2.6",
     "dayjs": "^1.10.7",
     "express": "^4.17.1",

@@ -9,7 +9,7 @@ export type CardProps = {
 
 const StyledCard = styled.div`
   max-width: 70rem;
-  min-height: 100%;
+  height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -25,6 +25,7 @@ const StyledVisualContainer = styled.div`
   width: 75%;
   min-width: 16rem;
   max-width: 30rem;
+  min-height: 16rem;
 `
 
 const StyledContents = styled.div`
@@ -37,7 +38,6 @@ const StyledContents = styled.div`
 const StyledContentTitle = styled.div`
   display: flex;
   align-items: center;
-  margin-top: 20px;
 `
 
 const StyledContentComponent = styled.div`

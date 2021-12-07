@@ -1,41 +1,70 @@
 import styled from 'styled-components';
-import {FormattedMessage} from "react-intl";
-import PasscodeTouchInput from "../../../UI/Inputs/PasscodeInput/Touch/PasscodeInput";
 import Keypad from "../../../UI/Keypad/Keypad";
-import {ReactNode, useState} from 'react';
+import {ReactNode} from 'react';
 import {useOnboardingPageNavigator} from "../../../../contexts/onboarding/OnboardingContext";
-import onboardingActions from "../../../../contexts/onboarding/onboardingActions";
 import Page from '../../../UI/Layout/Page/Page';
-import useAppState from '../../../../store/appState/useAppState';
 import Input from "../../../UI/Inputs/Input/Input";
-import Title from "../../../UI/Common/Title/Title";
+import PasscodeTouchInput from "../../../UI/Inputs/PasscodeInput/Touch/PasscodeInput";
+import {screenWidth} from '../../../UI/screenSizes';
 
 type PasscodeProps = {
     title: string | ReactNode,
     passcode: string,
     setPasscode: (passcode: string) => void,
-    confirmationAction?: () => boolean
+    confirmationAction?: () => boolean,
+    error: ReactNode | string
 }
 
-const StyledPasscodeContents = styled.div`
-  height: 100%;
+const StyledContainer = styled.div`
   width: 100%;
-  content: '';
+  //padding: 50px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
 `
 
+const StyledContents = styled.div`
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`
+
+
+const StyledPageHeader = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 30px;
+`
+
+const StyledPageTitle = styled.h1`
+  font-size: ${props => props.theme.ui.fontSizes.narrow.xl};
+
+  @media (${screenWidth.mediumWidth}) {
+    margin-bottom: 30px;
+    font-size: 30px;
+  }
+`
+
+const StyledPageError = styled.p`
+  font-size: ${props => props.theme.ui.fontSizes.narrow.sm};
+  margin-bottom: 15px;
+  min-height: calc(${props => props.theme.ui.fontSizes.narrow.sm} + 1px);
+`
+
 const PasscodePage = ({
                           title,
                           passcode,
                           setPasscode,
-                          confirmationAction
+                          error
                       }: PasscodeProps) => {
 
     const {state, dispatch} = useOnboardingPageNavigator()
-    const [error, setError] = useState<ReactNode | null>(null)
 
     const keypadClickHandlers = {
         numberKeyOnClick: (number: number) => {
@@ -50,117 +79,90 @@ const PasscodePage = ({
     //     'passcodeInput.confirm.error': '密碼不對，請再輸入一次',
     //     'passcodeInput.invalidLength': '密碼最少需要6位數',
 
-    const nextButtonHandler = () => {
-        if (passcode.length < 6) {
-            return setError(<FormattedMessage id='passcodeInput.invalidLength'/>)
-        }
-        if (confirmationAction && !confirmationAction()) {
-            return setError(<FormattedMessage id='passcodeInput.confirm.error'/>)
-        }
-        dispatch(onboardingActions.nextPage())
-    }
-
-    const previousButtonHandler = () => {
-        setPasscode('')
-        setError(null)
-        dispatch(onboardingActions.previousPage())
-    }
+    // <FormattedMessage id='passcodeInput.invalidLength'/>
+    // <FormattedMessage id='passcodeInput.incorrect.error'/>
+    // <FormattedMessage id='passcodeInput.confirm.error'/>
 
     return (
         <Page
-            contentComponents={{
-                contentLeft: (
-                    <>
-                        <Title>
-                            {title}
-                        </Title>
-                        {
-                            useAppState().isTouchDevice ? (
-                                <PasscodeTouchInput value={passcode} error={error}/>
-                            ) : null
-                        }
-                    </>
-                ),
-                contentRight: (
-                    <>
-                        {
-                            useAppState().isTouchDevice ? (
-                                <StyledPasscodeContents>
-                                    <Keypad {...keypadClickHandlers}/>
-                                </StyledPasscodeContents>
-                            ) : (
-                                (
-                                    <Input value={passcode}
-                                           inputOptions={{
-                                               inputType: 'password'
-                                           }
-                                           }
-                                           nextStepHandler={nextButtonHandler}
-                                           previousStepHandler={previousButtonHandler}
-                                           error={error}
-                                           setValue={(val) => {
-                                               setPasscode(val)
-                                           }}/>
-                                )
-                            )
-                            // useAppState().isTouchDevice ? (
-                            //         <>
-                            //             <PasscodeTouchInput value={passcode} error={error}/>
-                            //             <Keypad clickActionHandlers={keypadClickHandlers}/>
-                            //         </>
-                            //     ) :
-                            //     <>
-                            //         <Input value={passcode}
-                            //                inputOptions={{
-                            //                    inputType: 'password'
-                            //                }
-                            //                }
-                            //                nextStepHandler={nextButtonHandler}
-                            //                previousStepHandler={previousButtonHandler}
-                            //                error={error}
-                            //                setValue={(val) => {
-                            //                    setPasscode(val)
-                            //                }}/>
-                            //     </> // useAppState().isTouchDevice ? (
-                            //         <>
-                            //             <PasscodeTouchInput value={passcode} error={error}/>
-                            //             <Keypad clickActionHandlers={keypadClickHandlers}/>
-                            //         </>
-                            //     ) :
-                            //     <>
-                            //         <Input value={passcode}
-                            //                inputOptions={{
-                            //                    inputType: 'password'
-                            //                }
-                            //                }
-                            //                nextStepHandler={nextButtonHandler}
-                            //                previousStepHandler={previousButtonHandler}
-                            //                error={error}
-                            //                setValue={(val) => {
-                            //                    setPasscode(val)
-                            //                }}/>
-                            //     </>
-                        }
-                    </>
-                )
-            }}
-            stepButtonsClickActions={{
-                nextButton: {
-                    action: () => {
-                        nextButtonHandler()
-                    }
-                },
-                previousButton: {
-                    action: () => {
-                        previousButtonHandler()
-                    }
-                }
-            }}
             pageTransition={{
                 key: state.currentPage[0],
                 direction: state.currentPage[1]
             }}
-        />
+        >
+            <StyledContainer>
+                <StyledPageHeader>
+                    <StyledPageTitle>
+                        {title}
+                    </StyledPageTitle>
+                </StyledPageHeader>
+                <StyledContents>
+                    {
+                        true ? (
+                            <>
+                                <PasscodeTouchInput value={passcode}/>
+                                <StyledPageError>
+                                    {error}
+                                </StyledPageError>
+                                <Keypad {...keypadClickHandlers}/>
+                            </>
+                        ) : (
+                            (
+                                <Input value={passcode}
+                                       inputOptions={{
+                                           inputType: 'password'
+                                       }
+                                       }
+                                       error={error}
+                                       setValue={(val) => {
+                                           setPasscode(val)
+                                       }}/>
+                            )
+                        )
+                    }
+                </StyledContents>
+            </StyledContainer>
+            {
+                // useAppState().isTouchDevice
+                // useAppState().isTouchDevice ? (
+                //         <>
+                //             <PasscodeTouchInput value={passcode} error={error}/>
+                //             <Keypad clickActionHandlers={keypadClickHandlers}/>
+                //         </>
+                //     ) :
+                //     <>
+                //         <Input value={passcode}
+                //                inputOptions={{
+                //                    inputType: 'password'
+                //                }
+                //                }
+                //                nextStepHandler={nextButtonHandler}
+                //                previousStepHandler={previousButtonHandler}
+                //                error={error}
+                //                setValue={(val) => {
+                //                    setPasscode(val)
+                //                }}/>
+                //     </> // useAppState().isTouchDevice ? (
+                //         <>
+                //             <PasscodeTouchInput value={passcode} error={error}/>
+                //             <Keypad clickActionHandlers={keypadClickHandlers}/>
+                //         </>
+                //     ) :
+                //     <>
+                //         <Input value={passcode}
+                //                inputOptions={{
+                //                    inputType: 'password'
+                //                }
+                //                }
+                //                nextStepHandler={nextButtonHandler}
+                //                previousStepHandler={previousButtonHandler}
+                //                error={error}
+                //                setValue={(val) => {
+                //                    setPasscode(val)
+                //                }}/>
+                //     </>
+            }
+        </Page>
     )
 }
 

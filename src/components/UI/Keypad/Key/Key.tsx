@@ -1,5 +1,6 @@
 import styled, {css, keyframes} from 'styled-components';
 import {ReactNode, useState} from "react";
+import {screenWidth} from "../../screenSizes";
 
 export type KeyProps = {
     number?: number,
@@ -25,8 +26,8 @@ const StyledKey = styled.div`
 `
 
 const StyledKeyButton = styled.button`
-  width: 4.5rem;
-  height: 4.5rem;
+  width: 4rem;
+  height: 4rem;
   padding: 20px;
   border-radius: 50px;
   display: flex;
@@ -42,6 +43,11 @@ const StyledKeyButton = styled.button`
 
   &:active {
     box-shadow: 0 2px 2px rgba(0, 0, 0, 0.15);
+  }
+
+  @media (${screenWidth.mediumWidth}) {
+    width: 5rem;
+    height: 5rem;
   }
 `
 

@@ -1,10 +1,9 @@
 import {ReactNode} from 'react';
 import styled from 'styled-components';
-import {PasscodeDot, Warning} from '../../../Icons/Icons';
+import {PasscodeDot} from '../../../Icons/Icons';
 
 export type PasscodeInputProps = {
-    value: string,
-    error?: ReactNode | string
+    value: string
 }
 
 const StyledPasscodeInput = styled.div`
@@ -14,7 +13,7 @@ const StyledPasscodeInput = styled.div`
   align-items: center;
   width: 100%;
   min-width: 100%;
-
+  padding-bottom: 20px;
 `
 
 const StyledPasscodeInputDot = styled.div`
@@ -34,25 +33,7 @@ const StyledPasscodeText = styled.p`
   align-items: center;
 `
 
-const StyledPasscodeError = styled.div<{ show: boolean }>`
-  height: 100%;
-  min-width: 100%;
-  width: 100%;
-  content: '';
-  margin-top: 10px;
-  transition: opacity 100ms ease-in-out;
-  opacity: ${props => props.show ? 1 : 0};
-  display: flex;
-  align-items: center;
-  justify-content: center;
-`
-
-const StyledPasscodeErrorText = styled.p`
-  margin-left: 5px;
-  font-size: ${props => props.theme.ui.fontSizes.narrow.sm}
-`
-
-const PasscodeInput = ({value, error}: PasscodeInputProps) => {
+const PasscodeInput = ({value}: PasscodeInputProps) => {
     const getPasscodeDots = (value: string): Array<ReactNode> => {
         const elements: Array<ReactNode> = []
         if (value.length > 8) {
@@ -91,12 +72,6 @@ const PasscodeInput = ({value, error}: PasscodeInputProps) => {
                     )
                 }
             </>
-            <StyledPasscodeError show={!!error}>
-                <Warning/>
-                <StyledPasscodeErrorText>
-                    {error}
-                </StyledPasscodeErrorText>
-            </StyledPasscodeError>
         </StyledPasscodeInput>
     )
 }
