@@ -21,10 +21,10 @@ const StyledCarousel = styled.div`
 `
 
 const StyledCarouselItem = styled(motion.div)`
-  flex: 1;
+  flex: 0.8;
   width: 100%;
-  min-height: 200px;
-  height: 200px;
+  min-height: 100px;
+  height: 100px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -33,12 +33,12 @@ const StyledCarouselItem = styled(motion.div)`
 `
 
 const StyledCarouselExtraItem = styled(motion.div)`
-  flex: 0.1;
   content: '';
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  padding: 0 10px;
 `
 
 const Carousel = ({hasTouch, carouselVisualItems, carouselExtraItems}: CarouselProps) => {

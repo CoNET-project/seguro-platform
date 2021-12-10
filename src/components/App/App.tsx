@@ -4,7 +4,6 @@ import useAppState from '../../store/appState/useAppState'
 import {detectTouchDevice, detectWindowInnerSize} from "../../utilities/utilities";
 import GlobalStyle from '../UI/Global/Styles'
 import {Overlay} from "../UI/Common/Overlay/Overlay";
-import ExampleProfile from "../../assets/examples/profile-example.jpeg";
 import MainScreen from './MainScreen/MainScreen';
 import {OnboardingPageProvider} from '../Providers/OnboardingPageProvider';
 import OnboardingScreen from "./OnboardingScreen/OnboardingScreen";
@@ -41,26 +40,6 @@ const App = () => {
 
         initialize().then(() => {
         })
-
-        setClientProfiles([
-            {
-                imageSrc: ExampleProfile,
-                keyid: '75DDC3C4A499F1A1',
-                nickname: 'Jessica K',
-                primary: true
-            },
-            {
-                keyid: '85CCD3D535DA1DS',
-                nickname: 'Private Account',
-                primary: false
-            },
-            {
-                imageSrc: 'https://source.unsplash.com/random/200x200/?dog',
-                keyid: '96BDA5D6S2C1SDB',
-                nickname: 'Design Studio',
-                primary: false
-            }
-        ])
 
         const randomDeviceIds = Array.from({length: 3}, (_, i) => (Date.now() + Math.round(Math.random() * 100)).toString())
 

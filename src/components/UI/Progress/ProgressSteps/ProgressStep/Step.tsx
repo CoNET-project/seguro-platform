@@ -9,11 +9,10 @@ type StyledStepProps = {
 }
 
 const StyledStep = styled.div<StyledStepProps>`
-  height: 5px;
+  height: 6px;
   width: 100%;
   content: '';
-  background-color: ${props => props.stepReached ? props.theme.ui.progress.bar.complete : props.theme.ui.progress.bar.incomplete};
-  border-right: 1px solid ${props => props.theme.ui.progress.bar.separator};
+  background-color: ${props => props.stepReached ? props.theme.ui.colors.primary : props.theme.ui.colors.background.elevationOne};
   transition: background-color 150ms ease-in-out;
 
   &:last-of-type {
