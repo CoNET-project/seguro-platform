@@ -1,5 +1,22 @@
 # `seguro-platform` CHANGELOG
 
+## `0.40.0`
+
+### Additions
+
+- Onboarding flow overhaul to match platform styles.
+- Continuing integration with `worker-lib` and `gateway`
+
+### Changes
+
+- None.
+
+### Fixes
+
+- Fix CSS issues.
+
+---
+
 ## `0.39.0`
 
 ### Additions

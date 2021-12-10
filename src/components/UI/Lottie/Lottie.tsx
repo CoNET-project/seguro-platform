@@ -1,4 +1,4 @@
-import Lottie, {LottieComponentProps} from "lottie-react";
+import Lottie from "react-lottie-player";
 
 type LottieAnimationProps = {
     animationSrc: object,
@@ -6,14 +6,18 @@ type LottieAnimationProps = {
 }
 
 const LottieAnimation = ({animationSrc, loop}: LottieAnimationProps) => {
-    const defaultOptions: LottieComponentProps = {
+    const defaultOptions = {
         loop: loop || false,
-        autoplay: true,
+        play: true,
         animationData: animationSrc,
+        style: {
+            height: 50
+        }
     }
     return (
         <Lottie
             {...defaultOptions}
+            style={{maxHeight: 550, maxWidth: 550}}
         />
     )
 }

@@ -6,7 +6,7 @@ import ProgressDots from "../Progress/ProgressDots/ProgressDots";
 
 type CarouselProps = {
     current: number,
-    carouselVisualItems: Array<ReactNode>,
+    carouselVisualItems: Array<(() => ReactNode) | ReactNode>,
     carouselExtraItems?: Array<ReactNode>,
     hasTouch: boolean
 }
@@ -21,8 +21,10 @@ const StyledCarousel = styled.div`
 `
 
 const StyledCarouselItem = styled(motion.div)`
-  flex: 1;
+  flex: 0.8;
   width: 100%;
+  min-height: 100px;
+  height: 100px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -31,12 +33,12 @@ const StyledCarouselItem = styled(motion.div)`
 `
 
 const StyledCarouselExtraItem = styled(motion.div)`
-  flex: 0.1;
   content: '';
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  padding: 0 10px;
 `
 
 const Carousel = ({hasTouch, carouselVisualItems, carouselExtraItems}: CarouselProps) => {
@@ -55,6 +57,14 @@ const Carousel = ({hasTouch, carouselVisualItems, carouselExtraItems}: CarouselP
         }
     }, [carouselIndex])
 
+
+    const getItem = (index: number) => {
+        if (typeof carouselVisualItems[index] === 'function') {
+            // @ts-ignore
+            return carouselVisualItems[index]()
+        }
+        return carouselVisualItems[index]
+    }
 
     const nextItem = () => {
         if (carouselIndex == carouselVisualItems.length - 1) {
@@ -100,6 +110,7 @@ const Carousel = ({hasTouch, carouselVisualItems, carouselExtraItems}: CarouselP
             return {}
         }
     }
+    // @ts-ignore
     return (
         <StyledCarousel>
             <AnimatePresence custom={carouselDirection} initial={false} exitBeforeEnter>
@@ -116,7 +127,7 @@ const Carousel = ({hasTouch, carouselVisualItems, carouselExtraItems}: CarouselP
                     }}
                     {...dragProps()}
                 >
-                    {carouselVisualItems[carouselIndex]}
+                    {getItem(carouselIndex)}
                 </StyledCarouselItem>
             </AnimatePresence>
             <ProgressDots numberOfDots={carouselVisualItems.length} current={carouselIndex + 1}/>

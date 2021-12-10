@@ -1886,10 +1886,10 @@
     exec-sh "^0.3.2"
     minimist "^1.2.0"
 
-"@conet-project/seguro-gateway@0.13.0":
-  version "0.13.0"
-  resolved "https://npm.pkg.github.com/download/@conet-project/seguro-gateway/0.13.0/8861d7420d0e651898ce7dd566e92d2c1fcbd5154a194a01fccbe3a9960b42c8#a5b51aab1328ff28c3d864e6e1e19f4f7bf1270a"
-  integrity sha512-OvoBqgMbuvRtzcIfKmfzlKlW7B95lrxz9r9/kDBM6SDkepbn3nRbpRyzelHtCl6AK8VODRlQlpkS0OUqDprNhA==
+"@conet-project/seguro-gateway@0.14.0":
+  version "0.14.0"
+  resolved "https://npm.pkg.github.com/download/@conet-project/seguro-gateway/0.14.0/96d12223bb472b8da7b3be42e139291294eb95519e6f3ebfece34fc7fa908165#5ce0394a6bbbbdf0f19287de0d95598b71d62429"
+  integrity sha512-ahX37Fe0oA21tfwdDEQVz9v8Qf/PY7ROkMiDBZWY3vMvnpCsQsoaaFopPKTky/mCz+T/drT2GY5f9eKeeoxyEw==
   dependencies:
     async "^3.2.2"
     cors "^2.8.5"
@@ -1899,12 +1899,12 @@
     stripe "^8.191.0"
     uuid "^8.3.2"
     ws "^8.3.0"
-    yargs "^17.2.1"
+    yargs "^17.3.0"
 
-"@conet-project/seguro-worker-lib@0.8.0":
-  version "0.8.0"
-  resolved "https://npm.pkg.github.com/download/@conet-project/seguro-worker-lib/0.8.0/8c9c4fad6c1e206ac058c39b878bd0ce87064b58a2f6103461ef77c256ac589a#e77dec044548565fccd476ce860a95458385fc79"
-  integrity sha512-6ttvpt6wezcP8cqfnr88qwPtV8OZFhcjNONmknL8a8jQmysW4dZWYerFEFG84tycDUi8eV3DVYzg4xUqJh+zCw==
+"@conet-project/seguro-worker-lib@0.9.0":
+  version "0.9.0"
+  resolved "https://npm.pkg.github.com/download/@conet-project/seguro-worker-lib/0.9.0/3729ab47a71fd5f55e895b2d7d0df972eb85e0ff03967e5dd68125c1c442c448#f1396ed3884673fbf1353027c447586ab930f623"
+  integrity sha512-SNCxwNmb0P6d3WI9TZKp2KzlFu7iKo2B7mzZWwqewEe0av0M4eSeQWh2TDVeJxU1M+vcXcYeT5VHwvr2MzqxFA==
   dependencies:
     async "^3.2.2"
     uuid "^8.3.2"
@@ -10958,17 +10958,10 @@ loose-envify@^1.0.0, loose-envify@^1.1.0, loose-envify@^1.2.0, loose-envify@^1.3
   dependencies:
     js-tokens "^3.0.0 || ^4.0.0"
 
-lottie-react@^2.1.0:
-  version "2.1.0"
-  resolved "https://registry.yarnpkg.com/lottie-react/-/lottie-react-2.1.0.tgz#24d20ea41dc10791b1253f408dcb6f3e995780be"
-  integrity sha512-sHDJb5aeh1letUIWqwidHoHZj07ZOZQoLuUgy0gqt9FB/XiCtAZ2+421Cn+ZkHR7anVvWljKhGgctQCtgFloUA==
-  dependencies:
-    lottie-web "^5.7.3"
-
-lottie-web@^5.7.3:
-  version "5.7.14"
-  resolved "https://registry.yarnpkg.com/lottie-web/-/lottie-web-5.7.14.tgz#cdabd256181c3ea64cf0c174a61dfa137228981f"
-  integrity sha512-J+QEPse7Rws0XvTqRJNtcE8cszb5FWYFHubEK6bgDJtw64/AQJ40aazbWXsWGBM4sm/PgLBLgmmhDU4QpLiieg==
+lottie-web@^5.7.6:
+  version "5.8.1"
+  resolved "https://registry.yarnpkg.com/lottie-web/-/lottie-web-5.8.1.tgz#807e0af0ad22b59bf867d964eb684cb3368da0ef"
+  integrity sha512-9gIizWADlaHC2GCt+D+yNpk5l2clZQFqnVWWIVdY0LnxC/uLa39dYltAe3fcmC/hrZ2IUQ8dLlY0O934Npjs7Q==
 
 lower-case@^2.0.2:
   version "2.0.2"
@@ -13590,6 +13583,15 @@ react-lifecycles-compat@^3.0.4:
   version "3.0.4"
   resolved "https://registry.yarnpkg.com/react-lifecycles-compat/-/react-lifecycles-compat-3.0.4.tgz#4f1a273afdfc8f3488a8c516bfda78f872352362"
   integrity sha512-fBASbA6LnOU9dOU2eW7aQ8xmYBSXUIWr+UmF9b1efZBazGNO+rcXT/icdKnYm2pTwcRylVUYwW7H1PHfLekVzA==
+
+react-lottie-player@^1.4.1:
+  version "1.4.1"
+  resolved "https://registry.yarnpkg.com/react-lottie-player/-/react-lottie-player-1.4.1.tgz#ddd448486b8e8a42f4ae149751c38a8539f80b77"
+  integrity sha512-8dw3Dt8h6iTIrA+Iz7N/rOZjY1ShEwoxsgFywW2hZPFf58mZL75NFFNXY6v95NNj/25kZQpMV/bDkNoxj4Sang==
+  dependencies:
+    fast-deep-equal "^3.1.3"
+    lodash.clonedeep "^4.5.0"
+    lottie-web "^5.7.6"
 
 react-popper-tooltip@^3.1.1:
   version "3.1.1"
@@ -16947,7 +16949,7 @@ yargs@^17.0.1:
     y18n "^5.0.5"
     yargs-parser "^20.2.2"
 
-yargs@^17.2.1:
+yargs@^17.3.0:
   version "17.3.0"
   resolved "https://registry.yarnpkg.com/yargs/-/yargs-17.3.0.tgz#295c4ffd0eef148ef3e48f7a2e0f58d0e4f26b1c"
   integrity sha512-GQl1pWyDoGptFPJx9b9L6kmR33TGusZvXIZUT+BOz9f7X2L94oeAskFYLEg/FkhV06zZPBYLvLZRWeYId29lew==
