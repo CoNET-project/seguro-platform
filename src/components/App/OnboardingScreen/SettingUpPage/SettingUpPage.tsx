@@ -15,7 +15,12 @@ import Button from "../../../UI/Common/Button/Button";
 import onboardingActions from "../../../../contexts/onboarding/onboardingActions";
 import AlertDialog, {AlertDialogActions} from "../../../UI/Common/AlertDialog/AlertDialog";
 import {Warning} from "../../../UI/Icons/Icons";
-import {createPasscode, getWorkerService} from "../../../../services/workerService/workerService";
+import {
+    createPasscode,
+    getWorkerService,
+    Preferences,
+    savePreferences
+} from "../../../../services/workerService/workerService";
 import {ProfileData} from "../../../../store/appState/appStateReducer";
 
 const StyledContainer = styled.div`
@@ -89,7 +94,15 @@ const StyledCarouselItemDescription = styled.p`
 type CarouselState = [number, -1 | 1]
 
 const SettingUpPage = () => {
-    const {isTouchDevice, setClientProfiles, setIsUnlocked, setHasContainer} = useAppState()
+    const {
+        isTouchDevice,
+        setClientProfiles,
+        setIsUnlocked,
+        setHasContainer,
+        theme,
+        locale,
+        clientProfiles
+    } = useAppState()
 
     const {state, dispatch} = useOnboardingPageNavigator()
 
@@ -164,8 +177,10 @@ const SettingUpPage = () => {
                     }
                 }).then((status) => {
                     if (status === "SUCCESS") {
-                        dispatch(onboardingActions.setVerificationStatus('SUCCESS'))
-                        setInitialProfiles()
+                        storePreferences().then(() => {
+                            setInitialProfiles()
+                            dispatch(onboardingActions.setVerificationStatus('SUCCESS'))
+                        })
                     }
                 })
                 break;
@@ -182,12 +197,22 @@ const SettingUpPage = () => {
                 clientProfiles.push({
                     nickname: profile.nickname,
                     keyid: profile.keyID || '',
-                    primary: false
+                    primary: true
                 })
                 return clientProfiles
             }, [])
             setClientProfiles(clientProfiles)
         }
+    }
+
+    const storePreferences = () => {
+        const {profile} = getWorkerService()
+        const preferences: Preferences = {
+            theme: theme,
+            language: locale,
+            primaryProfile: profile.profiles[0].keyID
+        }
+        return savePreferences(preferences)
     }
 
     const onSetupComplete = () => {

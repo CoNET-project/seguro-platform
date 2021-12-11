@@ -1,5 +1,23 @@
 # `seguro-platform` CHANGELOG
 
+## `0.41.0`
+
+### Additions
+
+- Continuing integration with `worker-lib` and `gateway`
+- Add profile setup and preferences storing (need to fix).
+- Identified a few problems with the `worker-lib` and will wait for fix.
+
+### Changes
+
+- None.
+
+### Fixes
+
+- Fix CSS issues.
+
+---
+
 ## `0.40.0`
 
 ### Additions

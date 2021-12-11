@@ -7,6 +7,7 @@ import Icon from "../../UI/Inputs/Icon/Icon";
 import {FormattedMessage} from "react-intl";
 import {unlockPasscode} from "../../../services/workerService/workerService";
 import Button from "../../UI/Common/Button/Button";
+import useAppState from "../../../store/appState/useAppState";
 
 const StyledContainer = styled.div`
   height: 100%;
@@ -36,6 +37,7 @@ const StyledUnlockButton = styled(Button)`
 
 const UnlockScreen = () => {
 
+    const {setIsUnlocked} = useAppState()
     const [passcode, setPasscode] = useState("")
     const [isIncorrect, setIsIncorrect] = useState(false)
     const [isInvalid, setIsInvalid] = useState(false)
@@ -69,6 +71,7 @@ const UnlockScreen = () => {
             }
         }).then(status => {
             if (status === 'SUCCESS') {
+                setIsUnlocked(true)
                 return
             } else if (status === 'FAILURE') {
                 return setIsIncorrect(true)
