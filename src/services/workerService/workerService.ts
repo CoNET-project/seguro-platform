@@ -3,6 +3,9 @@ import store from '../../store/store'
 import {setHasContainer, setIsUnlocked, setWorkerServiceIsInitialized} from '../../store/appState/appStateActions'
 import {ContainerData} from "@conet-project/seguro-worker-lib/build/workerBridge";
 import logger from "../../utilities/logger/logger";
+import {Theme} from "../../theme/types";
+import {Languages} from "../../components/App/OnboardingScreen/SelectLanguagePage/SelectLanguagePage";
+import {Locale} from "../../localization/types";
 
 let workerService: ContainerData;
 
@@ -10,6 +13,8 @@ type PasscodeFunctionParams = {
     passcode: string,
     progress: (progress: any) => void
 }
+
+type WorkerServiceResolve = 'SUCCESS' | 'FAILURE'
 
 type PasscodeResolves = 'SUCCESS' | 'FAILURE'
 
@@ -73,11 +78,60 @@ export const unlockPasscode = ({passcode, progress}: PasscodeFunctionParams): Pr
 
             switch (status) {
                 case 'SUCCESS':
-                    store.dispatch(setIsUnlocked(true))
                     return resolve(status)
                 case 'FAILURE':
                     return resolve(status)
             }
         }
+    })
+)
+
+export type Preferences = {
+    theme?: Theme,
+    language?: Locale,
+    primaryProfile?: string
+}
+
+export const savePreferences = ({theme, language, primaryProfile}: Preferences): Promise<WorkerServiceResolve> => (
+    new Promise<WorkerServiceResolve>((resolve) => {
+        if (workerService && workerService.preferences && workerService.preferences.storePreferences) {
+            const updatedPreferences: Preferences = {
+                ...workerService.preferences.preferences
+            }
+
+            if (theme) {
+                updatedPreferences.theme = theme
+            }
+
+            if (language) {
+                updatedPreferences.language = language
+            }
+
+            if (primaryProfile) {
+                updatedPreferences.primaryProfile = primaryProfile
+            }
+
+            workerService?.preferences?.storePreferences(updatedPreferences)?.then(([status, container]) => {
+                if (status === 'SUCCESS') {
+                    return resolve('SUCCESS')
+                }
+            })
+        }
+        return resolve('FAILURE')
+    })
+)
+
+export const createProfile = (): Promise<WorkerServiceResolve> => (
+    new Promise<WorkerServiceResolve>((resolve) => {
+        // if (workerService && workerService.profile && workerService.profile.newProfile) {
+        //     workerService.profile.newProfile({
+        //         nickname: '',
+        //         nicknameMark: '',
+        //         alias: '',
+        //         tags: []
+        //     }).then(([status]) => {
+        //
+        //     })
+        // }
     })
 )
