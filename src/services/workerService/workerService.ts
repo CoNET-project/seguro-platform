@@ -1,10 +1,16 @@
 import {startWorker} from '@conet-project/seguro-worker-lib'
 import store from '../../store/store'
-import {setHasContainer, setIsUnlocked, setWorkerServiceIsInitialized} from '../../store/appState/appStateActions'
+import {
+    setHasContainer,
+    setIsPlatformLoading,
+    setIsUnlocked,
+    setLocale,
+    setTheme,
+    setWorkerServiceIsInitialized
+} from '../../store/appState/appStateActions'
 import {ContainerData} from "@conet-project/seguro-worker-lib/build/workerBridge";
 import logger from "../../utilities/logger/logger";
 import {Theme} from "../../theme/types";
-import {Languages} from "../../components/App/OnboardingScreen/SelectLanguagePage/SelectLanguagePage";
 import {Locale} from "../../localization/types";
 
 let workerService: ContainerData;
@@ -22,6 +28,20 @@ export const getWorkerService = () => {
     return workerService
 }
 
+export const setUserPreferences = () => {
+    if (workerService && workerService.preferences && workerService.preferences.preferences) {
+        const {theme, language}: Preferences = workerService.preferences.preferences
+
+        if (theme) {
+            store.dispatch(setTheme(theme))
+        }
+
+        if (language) {
+            store.dispatch(setLocale(language))
+        }
+    }
+}
+
 export const initializeWorkerService = async () => {
     const [status, container] = await startWorker()
 
@@ -31,7 +51,6 @@ export const initializeWorkerService = async () => {
 
     if (status === 'SUCCESS' && container) {
         logger.log('workerService.ts', 'container:', container)
-        store.dispatch(setWorkerServiceIsInitialized(true))
         workerService = container
         switch (true) {
             case container?.passcode.status === 'NOT_SET':
@@ -47,52 +66,66 @@ export const initializeWorkerService = async () => {
                 store.dispatch(setIsUnlocked(true))
                 break;
             default:
-                return
+                break;
         }
+        setUserPreferences()
+        setTimeout(() => {
+            store.dispatch(setWorkerServiceIsInitialized(true))
+        }, 1000)
+    }
+}
+
+export const lockPlatform = () => {
+    if (workerService && workerService.passcode && workerService.passcode.lock) {
+        workerService.passcode.lock().then(() => {
+            store.dispatch(setHasContainer(true))
+            store.dispatch(setIsUnlocked(false))
+        })
     }
 }
 
 export const createPasscode = ({passcode, progress}: PasscodeFunctionParams): Promise<PasscodeResolves> => (
     new Promise<PasscodeResolves>(async (resolve) => {
         if (workerService.passcode.createPasscode) {
-            const [status, container] = await workerService.passcode.createPasscode(passcode, (progressInteger) => {
+            const [status] = await workerService.passcode.createPasscode(passcode, (progressInteger) => {
                 progress(progressInteger)
             })
 
-            if (status === 'SUCCESS' && container) {
-                workerService = container
+            if (status === 'SUCCESS') {
                 resolve(status)
             } else {
                 resolve('FAILURE')
             }
-
-            logger.log('workerService.ts', 'createPasscode', status, container)
+            logger.log('workerService.ts', 'createPasscode', status, workerService)
         }
     })
 )
 
 export const unlockPasscode = ({passcode, progress}: PasscodeFunctionParams): Promise<PasscodeResolves> => (
     new Promise<PasscodeResolves>(async (resolve) => {
+        store.dispatch(setIsPlatformLoading('unlockPasscode'))
         if (workerService.passcode.testPasscode) {
             const [status] = await workerService.passcode.testPasscode(passcode, progress)
 
             switch (status) {
                 case 'SUCCESS':
-                    return resolve(status)
+                    resolve(status)
+                    break;
                 case 'FAILURE':
-                    return resolve(status)
+                    resolve(status)
+                    break;
             }
         }
+        store.dispatch(setIsPlatformLoading(null))
     })
 )
 
 export type Preferences = {
     theme?: Theme,
-    language?: Locale,
-    primaryProfile?: string
+    language?: Locale
 }
 
-export const savePreferences = ({theme, language, primaryProfile}: Preferences): Promise<WorkerServiceResolve> => (
+export const savePreferences = ({theme, language}: Preferences): Promise<WorkerServiceResolve> => (
     new Promise<WorkerServiceResolve>((resolve) => {
         if (workerService && workerService.preferences && workerService.preferences.storePreferences) {
             const updatedPreferences: Preferences = {
@@ -107,11 +140,9 @@ export const savePreferences = ({theme, language, primaryProfile}: Preferences):
                 updatedPreferences.language = language
             }
 
-            if (primaryProfile) {
-                updatedPreferences.primaryProfile = primaryProfile
-            }
+            workerService.preferences.preferences = updatedPreferences
 
-            workerService?.preferences?.storePreferences(updatedPreferences)?.then(([status, container]) => {
+            workerService?.preferences?.storePreferences().then(([status, container]) => {
                 if (status === 'SUCCESS') {
                     return resolve('SUCCESS')
                 }

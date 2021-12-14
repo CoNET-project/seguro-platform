@@ -2,9 +2,10 @@ import styled from 'styled-components';
 import {HTMLAttributes} from "react";
 import ListItem from "./ListItem/ListItem";
 import useAppState from "../../../../store/appState/useAppState";
-import {AddProfile, ManageAccount} from "../../Icons/Icons";
-import {ProfileData} from '../../../../store/appState/appStateReducer';
+import {AddProfile, ManageAccount, PlatformLock} from "../../Icons/Icons";
 import {FormattedMessage} from "react-intl";
+import {lockPlatform} from '../../../../services/workerService/workerService';
+import {ProfileData} from "../../../../store/appState/appStateReducer";
 
 export type Profiles = Array<ProfileData>
 
@@ -92,6 +93,12 @@ const ProfileDropdown = ({closeDropdown}: ProfileDropdownProps) => {
                     <ManageAccount size={20}/>
                     <StyledProfileDropdownOptionsText>
                         <FormattedMessage id='globalBar.profile.dropdown.manageProfiles'/>
+                    </StyledProfileDropdownOptionsText>
+                </StyledProfileDropdownOption>
+                <StyledProfileDropdownOption onClick={lockPlatform}>
+                    <PlatformLock size={20}/>
+                    <StyledProfileDropdownOptionsText>
+                        <FormattedMessage id='globalBar.profile.dropdown.lockPlatform'/>
                     </StyledProfileDropdownOptionsText>
                 </StyledProfileDropdownOption>
             </StyledProfileDropdownOptions>

@@ -3,9 +3,9 @@ import {pageTransitionVariants} from "../../../../UI/Motion/Variants/Variants";
 import styled from "styled-components";
 import {useEffect, useState} from "react";
 import {screenWidth} from "../../../../UI/screenSizes";
-import {ProfileData} from "../../../../../store/appState/appStateReducer";
-import Profile from "../Profile/Profile";
+import ProfileView from "../Profile/Profile";
 import {FormattedMessage} from "react-intl";
+import {ProfileData} from "../../../../../store/appState/appStateReducer";
 
 type ManageProfileProps = {
     custom: number,
@@ -88,7 +88,7 @@ const ManageProfile = ({custom, profile, onUpdate}: ManageProfileProps) => {
         <MotionWrapper runInitialAnimation={true} custom={custom} name="Manage Profile"
                        variants={pageTransitionVariants}>
             <StyledManageProfile>
-                <Profile profile={getProfileViewData()} onChange={(profile) => setCurrentProfile(profile)}/>
+                <ProfileView profile={getProfileViewData()} onChange={(profile) => setCurrentProfile(profile)}/>
                 <StyledManageProfileRow>
                     <StyledManageProfileSaveButton
                         disabled={saveIsDisabled()}

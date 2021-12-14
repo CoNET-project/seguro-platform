@@ -1,5 +1,6 @@
 import ProgressNumber from "./ProgressNumber/ProgressNumber";
 import styled from "styled-components";
+import {Fragment} from "react";
 
 type StyledProgressNumberBlockProps = {
     isActive: boolean
@@ -31,10 +32,11 @@ const ProgressNumberSteps = ({currentActiveStep, steps, className}: ProgressNumb
 
     const generateContent = (number: number, nthElement: number, start?: boolean) => {
         return (
-            <>
-                {!start && <StyledProgressNumberBlock isActive={currentActiveStep >= nthElement}/>}
+            <Fragment key={nthElement}>
+                {!start &&
+                <StyledProgressNumberBlock isActive={currentActiveStep >= nthElement}/>}
                 <ProgressNumber number={number} isActive={currentActiveStep >= nthElement}/>
-            </>
+            </Fragment>
         )
     }
 

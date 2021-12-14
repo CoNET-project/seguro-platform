@@ -72,9 +72,8 @@ const UnlockScreen = () => {
         }).then(status => {
             if (status === 'SUCCESS') {
                 setIsUnlocked(true)
-                return
             } else if (status === 'FAILURE') {
-                return setIsIncorrect(true)
+                setIsIncorrect(true)
             }
         })
     }
@@ -87,7 +86,7 @@ const UnlockScreen = () => {
                 <PasscodeInput value={passcode}/>
                 <Keypad {...keypadClickHandlers}/>
                 <StyledUnlockButton onClick={unlockClickHandler}>
-                    Unlock
+                    <FormattedMessage id='button.unlock'/>
                 </StyledUnlockButton>
             </StyledContent>
         </StyledContainer>

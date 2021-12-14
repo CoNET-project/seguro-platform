@@ -43,6 +43,7 @@ const zh_CN: Messages = {
 
     'button.next': '下一步',
     'button.back': '退一步',
+    'button.unlock': '开锁',
 
     'unlock.title': '输入您的 Seguro 密码',
 
@@ -56,6 +57,8 @@ const zh_CN: Messages = {
     'drawer.settings': '设置',
     'drawer.updates': '更新',
     'drawer.support': '支持',
+
+    'platform.overlay.unlocking': '解锁平台...',
 
     'platform.settings.settings': '平台设置',
     'platform.settings.language': '语言',
@@ -101,6 +104,7 @@ const zh_CN: Messages = {
 
     'globalBar.profile.dropdown.manageProfiles': '管理个人资料',
     'globalBar.profile.dropdown.addProfile': '添加配置文件',
+    'globalBar.profile.dropdown.lockPlatform': '锁定平台',
 
     'platform.manageProfile': '管理个人资料',
     'platform.manageProfile.setAsPrimary': '设置为主',

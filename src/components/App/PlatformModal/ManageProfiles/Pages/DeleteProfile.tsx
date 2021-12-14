@@ -1,10 +1,10 @@
 import styled from "styled-components";
 import MotionWrapper from "../../../../UI/Motion/MotionWrapper";
 import {pageTransitionVariants} from "../../../../UI/Motion/Variants/Variants";
-import Profile from "../Profile/Profile";
-import {ProfileData} from "../../../../../store/appState/appStateReducer";
+import ProfileView from "../Profile/Profile";
 import {FormattedMessage} from "react-intl";
 import useAppState from "../../../../../store/appState/useAppState";
+import {ProfileData} from "../../../../../store/appState/appStateReducer";
 
 type DeleteProfileProps = {
     custom: number,
@@ -68,7 +68,7 @@ const DeleteProfile = ({profile, custom, onDelete, onBack}: DeleteProfileProps) 
         <MotionWrapper runInitialAnimation={true} custom={custom} name="Manage Profile"
                        variants={pageTransitionVariants}>
             <StyledDeleteProfile>
-                <Profile profile={profile} onChange={() => {
+                <ProfileView profile={profile} onChange={() => {
                 }} disableUpdate={true}/>
                 {
                     clientProfiles.length > 1 && (

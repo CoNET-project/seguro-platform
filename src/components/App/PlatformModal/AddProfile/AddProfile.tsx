@@ -3,11 +3,11 @@ import styled from "styled-components";
 import {screenWidth} from "../../../UI/screenSizes";
 import HeaderBar from "../../../UI/Common/HeaderBar/HeaderBar";
 import useAppState from "../../../../store/appState/useAppState";
-import {useEffect, useState} from "react";
-import {ProfileData} from "../../../../store/appState/appStateReducer";
-import Profile from "../ManageProfiles/Profile/Profile";
+import {useState} from "react";
+import ProfileView from "../ManageProfiles/Profile/Profile";
 import {toast} from "../../../UI/Toaster/Toaster";
 import {FormattedMessage} from "react-intl";
+import {ProfileData} from "../../../../store/appState/appStateReducer";
 
 
 const StyledAddProfileContainer = styled.div`
@@ -94,7 +94,7 @@ const AddProfile = ({}: AddProfileProps) => {
                                  }}
             />
             <StyledAddProfileContent>
-                <Profile profile={newProfile} onChange={setNewProfile} newProfile={true}/>
+                <ProfileView profile={newProfile} onChange={setNewProfile} newProfile={true}/>
                 <StyledAddProfileRow>
                     <StyledAddProfileButton onClick={() => onCreateProfile(newProfile)}>
                         <FormattedMessage id='platform.addProfile.createButton'/>

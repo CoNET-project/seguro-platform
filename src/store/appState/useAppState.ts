@@ -1,33 +1,41 @@
 import {useTypedSelector} from '../store'
 import {useDispatch} from 'react-redux'
 import {
+    createClientProfile as createClientProfileActionCreator,
+    deleteClientDevice as deleteClientDeviceActionCreator,
+    deleteClientProfile as deleteClientProfileActionCreator,
+    setActiveProfile as setActiveProfileActionCreator,
+    setClientDevices as setClientDevicesActionCreator,
+    setClientProfiles as setClientProfilesActionCreator,
     setCurrentFocusPanel as setCurrentFocusPanelActionCreator,
-    setNetworkState as setNetworkStateActionCreator,
     setHasContainer as setHasContainerActionCreator,
-    setHasUpdateAvailable as setHasUpdateAvailableActionCreator,
     setHasNotification as setHasNoticationActionCreator,
+    setHasUpdateAvailable as setHasUpdateAvailableActionCreator,
     setIsDrawerOpen as setIsDrawerOpenActionCreator,
-    setIsTouchDevice as setIsTouchDeviceActionCreator,
     setIsModalOpen as setIsModalOpenActionCreator,
+    setIsPlatformLoading as setIsPlatformLoadingActionCreator,
+    setIsTouchDevice as setIsTouchDeviceActionCreator,
     setIsUnlocked as setIsUnlockedActionCreator,
     setLocale as setLocaleActionCreator,
+    setNetworkState as setNetworkStateActionCreator,
     setShowOverlay as setShowOverlayActionCreator,
     setTheme as setThemeActionCreator,
     setWindowInnerSize as setWindowInnerSizeActionCreator,
-    setClientProfiles as setClientProfilesActionCreator,
-    updateClientProfile as updateClientProfileActionCreator,
-    deleteClientProfile as deleteClientProfileActionCreator,
-    setActiveProfile as setActiveProfileActionCreator,
-    createClientProfile as createClientProfileActionCreator,
-    setClientDevices as setClientDevicesActionCreator,
+    setWorkerServiceIsInitialized,
     updateClientDevice as updateClientDeviceActionCreator,
-    deleteClientDevice as deleteClientDeviceActionCreator,
-    setWorkerServiceIsInitialized
+    updateClientProfile as updateClientProfileActionCreator
 } from './appStateActions'
 import {initializeWorkerService} from '../../services/workerService/workerService'
 import {Theme} from '../../theme/types'
 import {Locale} from '../../localization/types'
-import {CurrentFocusPanel, DeviceData, ModalNames, NetworkStates, ProfileData} from "./appStateReducer";
+import {
+    CurrentFocusPanel,
+    DeviceData,
+    ModalNames,
+    NetworkStates,
+    PlatformLoadingTypes,
+    ProfileData
+} from "./appStateReducer";
 
 export type WindowInnerSize = {
     width: number,
@@ -43,6 +51,11 @@ const useAppState = () => {
 
     const isInitialized = useTypedSelector(state => state.appState.workerServiceIsInitialized)
     const isInitializing = !isInitialized
+
+    const isPlatformLoading = useTypedSelector(state => state.appState.isPlatformLoading)
+    const setIsPlatformLoading = (type: PlatformLoadingTypes) => {
+        dispatch(setIsPlatformLoadingActionCreator(type))
+    }
 
     const isUnlocked = useTypedSelector(state => state.appState.isUnlocked)
     const isLocked = !isUnlocked
@@ -169,6 +182,8 @@ const useAppState = () => {
         initialize,
         isInitialized,
         isInitializing,
+        isPlatformLoading,
+        setIsPlatformLoading,
         hasContainer,
         noContainer,
         setHasContainer,

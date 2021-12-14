@@ -1,6 +1,9 @@
 import {HTMLMotionProps, motion} from 'framer-motion';
 import styled from 'styled-components';
 import React from "react";
+import Loader from 'react-loader-spinner';
+import {PlatformLoadingTypes} from "../../../../store/appState/appStateReducer";
+import {FormattedMessage} from "react-intl";
 
 type DragOverlayProps = {
     acceptPointerEvents: boolean
@@ -8,7 +11,7 @@ type DragOverlayProps = {
 
 type OverlayProps = {
     show: boolean,
-    onClick: () => void
+    onClick?: () => void
 }
 
 type StyledOverlayProps = {
@@ -31,6 +34,14 @@ const StyledOverlay = styled.div<StyledOverlayProps>`
   opacity: ${props => props.show ? 1 : 0};
   width: 100%;
   height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`
+
+const StyledOverlayDarker = styled(StyledOverlay)`
+  background-color: rgba(0, 0, 0, 0.95);
 `
 
 const StyledDragOverlay = styled(motion.div)<StyledDragOverlayProps>`
@@ -48,8 +59,42 @@ const StyledDragOverlay = styled(motion.div)<StyledDragOverlayProps>`
   visibility: visible;
 `
 
+const StyledOverlayText = styled.p`
+  margin-top: 20px;
+  color: whitesmoke;
+  font-size: ${props => props.theme.ui.fontSizes.narrow.sm};
+`
+
 export const Overlay = ({show, onClick}: OverlayProps) => {
     return <StyledOverlay show={show} onClick={onClick}/>
+}
+
+const getOverlayText = (type: PlatformLoadingTypes) => {
+    switch (type) {
+        case 'unlockPasscode':
+            return (
+                <FormattedMessage id='platform.overlay.unlocking'/>
+            )
+
+    }
+}
+
+export const OverlayWithLoaderText = ({show, onClick, type}: OverlayProps & { type: PlatformLoadingTypes }) => {
+    return (
+        <StyledOverlayDarker show={show} onClick={onClick}>
+            <Loader
+                type="Oval"
+                color="#396FC0"
+                height={50}
+                width={50}
+            />
+            <StyledOverlayText>
+                {
+                    getOverlayText(type)
+                }
+            </StyledOverlayText>
+        </StyledOverlayDarker>
+    )
 }
 
 export const DragOverlay = (props: DragOverlayProps) => {
