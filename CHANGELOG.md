@@ -1,5 +1,21 @@
 # `seguro-platform` CHANGELOG
 
+## `0.43.0`
+
+### Additions
+
+- None.
+
+### Changes
+
+- Bump package versions.
+
+### Fixes
+
+- Fix CSS issues.
+
+---
+
 ## `0.42.0`
 
 ### Additions
