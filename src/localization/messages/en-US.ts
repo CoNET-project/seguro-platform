@@ -45,6 +45,7 @@ const en_US: Messages = {
 
     'button.next': 'Next',
     'button.back': 'Back',
+    'button.unlock': 'Unlock',
 
     'unlock.title': 'Enter your Seguro passcode',
 
@@ -58,6 +59,8 @@ const en_US: Messages = {
     'drawer.settings': 'Settings',
     'drawer.updates': 'Updates',
     'drawer.support': 'Support',
+
+    'platform.overlay.unlocking': 'Unlocking platform...',
 
     'platform.settings.settings': 'Platform Settings',
     'platform.settings.language': 'Language',
@@ -103,6 +106,7 @@ const en_US: Messages = {
 
     'globalBar.profile.dropdown.manageProfiles': 'Manage Profiles',
     'globalBar.profile.dropdown.addProfile': 'Add Profile',
+    'globalBar.profile.dropdown.lockPlatform': 'Lock Platform',
 
     'platform.manageProfile': 'Manage Profile',
     'platform.manageProfile.setAsPrimary': 'Set as primary',

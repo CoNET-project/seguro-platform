@@ -7,6 +7,7 @@ import styled from "styled-components";
 import {Locale} from "../../../../../localization/types";
 import {usePageNavigator} from "../../../../../contexts/pageNavigator/PageNavigatorContext";
 import {pageNavigator} from "../../../../../contexts/pageNavigator/pageNavigatorActions";
+import {savePreferences} from "../../../../../services/workerService/workerService";
 
 type LanguageProps = {
     custom: number
@@ -40,7 +41,11 @@ const Language = ({custom}: LanguageProps) => {
 
     const selectLocale = (locale: Locale) => {
         setLocale(locale)
-        dispatch(pageNavigator.navigateToPage('Platform Settings'))
+        savePreferences({
+            language: locale
+        }).then(() => {
+            dispatch(pageNavigator.navigateToPage('Platform Settings'))
+        })
     }
 
 

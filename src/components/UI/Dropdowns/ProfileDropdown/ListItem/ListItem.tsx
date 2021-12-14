@@ -5,8 +5,8 @@ import {toast} from "../../../Toaster/Toaster";
 import {FormattedMessage} from "react-intl";
 import {CopyToClipboard} from "../../../../../utilities/utilities";
 import AnonymousProfile from '../../../../../assets/Avatar-anonymous.png'
-import {ProfileData} from '../../../../../store/appState/appStateReducer';
 import React from "react";
+import {ProfileData} from "../../../../../store/appState/appStateReducer";
 
 type StyledProfileItemProps = {
     isActive?: boolean

@@ -4,10 +4,10 @@ import {Camera} from "../../../../UI/Icons/Icons";
 import styled from "styled-components";
 import {screenWidth} from "../../../../UI/screenSizes";
 import {ChangeEvent, useRef} from "react";
-import {ProfileData} from "../../../../../store/appState/appStateReducer";
 import {getBase64FromFile} from "../../../../../utilities/utilities";
 import {FormattedMessage} from "react-intl";
 import Checkbox from "../../../../UI/Common/Checkbox/Checkbox";
+import {ProfileData} from "../../../../../store/appState/appStateReducer";
 
 const StyledManageProfile = styled.div`
   padding: 40px 0 20px 0;
@@ -157,7 +157,7 @@ const Profile = ({profile, onChange, disableUpdate, newProfile}: ProfileProps) =
                         profileImageRef.current.src = base64
                     }
 
-                    const updatedProfile: ProfileData = {
+                    const updatedProfile = {
                         ...profile,
                         imageSrc: base64
                     }

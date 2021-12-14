@@ -2,8 +2,6 @@ import {OnboardingActions, State} from "./OnboardingContext";
 import logger from "../../utilities/logger/logger";
 
 export const onboardingPageReducer = (state: State, action: OnboardingActions): State => {
-    logger.log('onboardingPageReducer.ts', 'onboardingPageState:', state)
-
     const getPage = (direction: 'next' | 'previous'): State => {
         const [currentPageId] = state.currentPage
         const pageIndex = state.existingPages.indexOf(currentPageId)
@@ -27,13 +25,11 @@ export const onboardingPageReducer = (state: State, action: OnboardingActions): 
                 currentPage: [previousPageId, -1]
             }
         }
-        console.log(state)
         return state;
     }
 
     switch (action.type) {
         case 'nextPage':
-            console.log('Hello')
             return getPage('next')
         case 'previousPage':
             return getPage('previous')

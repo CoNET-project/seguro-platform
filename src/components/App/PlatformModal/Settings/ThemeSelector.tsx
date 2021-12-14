@@ -2,6 +2,7 @@ import styled from "styled-components";
 import useAppState from "../../../../store/appState/useAppState";
 import {Theme} from "../../../../theme/types";
 import {FormattedMessage} from "react-intl";
+import {savePreferences} from "../../../../services/workerService/workerService";
 
 const StyledThemeSelector = styled.form`
   display: flex;
@@ -22,7 +23,11 @@ const ThemeSelector = () => {
     const appState = useAppState()
 
     const changeTheme = (theme: Theme) => {
-        appState.setTheme(theme)
+        savePreferences({
+            theme: theme
+        }).then(() => {
+            appState.setTheme(theme)
+        })
     }
 
     return (

@@ -1,11 +1,10 @@
 import ListItem from "../../../UI/Common/ListItem/ListItem";
-import {BiPlus} from "react-icons/all";
 import ThemeSelector from "./ThemeSelector";
 import {PageNavigatorProvider} from "../../../Providers/PageNavigatorProvider";
 import {usePageNavigator} from "../../../../contexts/pageNavigator/PageNavigatorContext";
 import Language from "./Pages/Language";
 import {pageNavigator} from "../../../../contexts/pageNavigator/pageNavigatorActions";
-import {AnimatePresence, motion} from "framer-motion";
+import {AnimatePresence} from "framer-motion";
 import styled from "styled-components";
 import MotionWrapper from "../../../UI/Motion/MotionWrapper";
 import {pageTransitionVariants} from "../../../UI/Motion/Variants/Variants";
@@ -14,8 +13,7 @@ import HeaderBar from "../../../UI/Common/HeaderBar/HeaderBar";
 import useAppState from "../../../../store/appState/useAppState";
 import {FormattedMessage} from "react-intl";
 import SeguroDrive from "./SettingSections/SeguroDrive";
-import ProfileList from "./SettingSections/ProfileList";
-import DeviceList, {Device} from "./SettingSections/DeviceList";
+import DeviceList from "./SettingSections/DeviceList";
 import SubscriptionPlan from "./SettingSections/SubscriptionPlan";
 import DeviceCodes from "./SettingSections/DeviceCodes";
 import {screenWidth} from "../../../UI/screenSizes";
@@ -157,15 +155,15 @@ const SettingsContent = () => {
                                           itemRight={<ThemeSelector/>}
                                 />
 
-                                <ListItem
-                                    onClick={() => dispatch(pageNavigator.navigateToPage('Passcode'))}
-                                    itemLeft={<FormattedMessage id='platform.settings.passcode'/>}
-                                    itemRight={
-                                        <StyledButton>
-                                            <FormattedMessage id='platform.settings.passcode.edit'/>
-                                            <ChevronRight/>
-                                        </StyledButton>
-                                    }/>
+                                {/*<ListItem*/}
+                                {/*    onClick={() => dispatch(pageNavigator.navigateToPage('Passcode'))}*/}
+                                {/*    itemLeft={<FormattedMessage id='platform.settings.passcode'/>}*/}
+                                {/*    itemRight={*/}
+                                {/*        <StyledButton>*/}
+                                {/*            <FormattedMessage id='platform.settings.passcode.edit'/>*/}
+                                {/*            <ChevronRight/>*/}
+                                {/*        </StyledButton>*/}
+                                {/*    }/>*/}
 
                                 <ListItem
                                     itemLeft={

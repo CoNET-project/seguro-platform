@@ -1,20 +1,27 @@
 import {createReducer} from '@reduxjs/toolkit'
 import {
-    createClientProfile, deleteClientDevice,
+    createClientProfile,
+    deleteClientDevice,
     deleteClientProfile,
-    setActiveProfile, setClientDevices,
+    setActiveProfile,
+    setClientDevices,
     setClientProfiles,
     setCurrentFocusPanel,
-    setHasContainer, setHasNotification,
+    setHasContainer,
+    setHasNotification,
     setHasUpdateAvailable,
     setIsDrawerOpen,
     setIsModalOpen,
-    setIsTouchDevice, setIsUnlocked,
-    setLocale, setNetworkState,
+    setIsPlatformLoading,
+    setIsTouchDevice,
+    setIsUnlocked,
+    setLocale,
+    setNetworkState,
     setShowOverlay,
     setTheme,
     setWindowInnerSize,
-    setWorkerServiceIsInitialized, updateClientDevice,
+    setWorkerServiceIsInitialized,
+    updateClientDevice,
     updateClientProfile
 } from './appStateActions'
 import {Theme} from '../../theme/types'
@@ -46,11 +53,14 @@ export type DeviceData = {
     name: string,
 }
 
+export type PlatformLoadingTypes = 'unlockPasscode' | null
+
 type AppStateReducerState = {
     isTouchDevice: boolean,
     isUnlocked: boolean,
     isDrawerOpen: boolean,
     isModalOpen: ModalNames,
+    isPlatformLoading: PlatformLoadingTypes,
     hasContainer: boolean,
     hasNotification: boolean,
     showOverlay: boolean,
@@ -71,6 +81,7 @@ const initialState: AppStateReducerState = {
     isUnlocked: false,
     isDrawerOpen: false,
     isModalOpen: null,
+    isPlatformLoading: null,
     hasContainer: false,
     hasNotification: false,
     showOverlay: false,
@@ -90,6 +101,10 @@ const appStateReducer = createReducer(initialState, builder => {
     return builder
         .addCase(setWorkerServiceIsInitialized, (state, action) => {
             state.workerServiceIsInitialized = action.payload.workerServiceIsInitialized
+        })
+
+        .addCase(setIsPlatformLoading, (state, action) => {
+            state.isPlatformLoading = action.payload.type
         })
 
         .addCase(setNetworkState, (state, action) => {

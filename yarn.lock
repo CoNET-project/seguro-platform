@@ -1886,10 +1886,10 @@
     exec-sh "^0.3.2"
     minimist "^1.2.0"
 
-"@conet-project/seguro-gateway@0.14.0":
-  version "0.14.0"
-  resolved "https://npm.pkg.github.com/download/@conet-project/seguro-gateway/0.14.0/96d12223bb472b8da7b3be42e139291294eb95519e6f3ebfece34fc7fa908165#5ce0394a6bbbbdf0f19287de0d95598b71d62429"
-  integrity sha512-ahX37Fe0oA21tfwdDEQVz9v8Qf/PY7ROkMiDBZWY3vMvnpCsQsoaaFopPKTky/mCz+T/drT2GY5f9eKeeoxyEw==
+"@conet-project/seguro-gateway@0.14.2":
+  version "0.14.2"
+  resolved "https://npm.pkg.github.com/download/@conet-project/seguro-gateway/0.14.2/fac795b8ec704d08a1f7fac85baf2299c11fca75d665c29322d1d531557ffd7a#e0951346b7fc42a6111dc4b3675960c949ef76ac"
+  integrity sha512-IYcS3BTERSqP82PCNUxz3VFn+uj+NsIBssnupUBb0BHhgCkqWPjpAo9lpj9Ocv3i9OoXchTkHIPcQmD0MM9xjA==
   dependencies:
     async "^3.2.2"
     cors "^2.8.5"
@@ -1901,10 +1901,10 @@
     ws "^8.3.0"
     yargs "^17.3.0"
 
-"@conet-project/seguro-worker-lib@0.9.0":
-  version "0.9.0"
-  resolved "https://npm.pkg.github.com/download/@conet-project/seguro-worker-lib/0.9.0/3729ab47a71fd5f55e895b2d7d0df972eb85e0ff03967e5dd68125c1c442c448#f1396ed3884673fbf1353027c447586ab930f623"
-  integrity sha512-SNCxwNmb0P6d3WI9TZKp2KzlFu7iKo2B7mzZWwqewEe0av0M4eSeQWh2TDVeJxU1M+vcXcYeT5VHwvr2MzqxFA==
+"@conet-project/seguro-worker-lib@0.9.6":
+  version "0.9.6"
+  resolved "https://npm.pkg.github.com/download/@conet-project/seguro-worker-lib/0.9.6/a3d67e069e5b4dcf5f8a1c547271a7b82b61210ff75ecdf1f321f0d9d4de6433#301896a50c337e9bddd5589a6ea697cb398843e9"
+  integrity sha512-UtvNFdyrzy7VdfRRaUzt04NsMLoIApF23Cn82YOTZsWOASNLJr7J7Yhtbw0kGPhCZi576YOXHmWX6UNaHGhDNw==
   dependencies:
     async "^3.2.2"
     uuid "^8.3.2"
@@ -13583,6 +13583,13 @@ react-lifecycles-compat@^3.0.4:
   version "3.0.4"
   resolved "https://registry.yarnpkg.com/react-lifecycles-compat/-/react-lifecycles-compat-3.0.4.tgz#4f1a273afdfc8f3488a8c516bfda78f872352362"
   integrity sha512-fBASbA6LnOU9dOU2eW7aQ8xmYBSXUIWr+UmF9b1efZBazGNO+rcXT/icdKnYm2pTwcRylVUYwW7H1PHfLekVzA==
+
+react-loader-spinner@^4.0.0:
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/react-loader-spinner/-/react-loader-spinner-4.0.0.tgz#43d9e71b0574219f64216933c28ef5faa12262f6"
+  integrity sha512-RU2vpEej6G4ECei0h3q6bgLU10of9Lw5O+4AwF/mtkrX5oY20Sh/AxoPJ7etbrs/7Q3u4jN5qwCwGLRKCHpk6g==
+  dependencies:
+    prop-types "^15.7.2"
 
 react-lottie-player@^1.4.1:
   version "1.4.1"

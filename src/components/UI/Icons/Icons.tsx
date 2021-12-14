@@ -1,15 +1,37 @@
 import {
-    AiOutlineUserAdd, BsBell, BsCamera,
-    BsChatSquareDots, BsGrid3X3Gap, BsThreeDotsVertical, CgProfile, FaBell, FaCheckCircle,
+    AiOutlineUserAdd,
+    BsBell,
+    BsCamera,
+    BsChatSquareDots,
+    BsGrid3X3Gap,
+    BsThreeDotsVertical,
+    CgProfile,
+    FaCheckCircle,
     FaChevronLeft,
-    FaChevronRight, FaDesktop, FaMobileAlt, FaPlug, FaRegBell, FaTabletAlt,
-    GoPrimitiveDot, ImDownload, IoCheckmarkSharp, IoClose, IoIosCheckmarkCircle, IoIosCloseCircle, IoIosWarning,
-    IoLanguage, IoMdContacts, IoSettingsOutline, MdContentCopy, MdManageAccounts, MdPassword,
-    RiShieldKeyholeLine, TiDelete
+    FaChevronRight,
+    FaDesktop,
+    FaMobileAlt,
+    FaPlug,
+    FaTabletAlt,
+    GoPrimitiveDot,
+    ImDownload,
+    IoCheckmarkSharp,
+    IoClose,
+    IoIosCheckmarkCircle,
+    IoIosCloseCircle,
+    IoIosLock,
+    IoIosWarning,
+    IoLanguage,
+    IoMdContacts,
+    IoSettingsOutline,
+    MdContentCopy,
+    MdManageAccounts,
+    MdPassword,
+    RiShieldKeyholeLine,
+    TiDelete
 } from "react-icons/all";
 import styled from 'styled-components';
-import {ComponentPropsWithRef, ForwardedRef} from "react";
-import React from "react";
+import React, {ComponentPropsWithRef, ForwardedRef} from "react";
 
 export type Sizes = 'sm' | 'md' | 'lg' | 'xl' | 'xxl' | number | undefined
 
@@ -318,6 +340,14 @@ export const NotificationBell = ({size, color}: IconProps) => {
     return (
         <StyledIcon>
             <BsBell size={getSize(size)} color={color || undefined}/>
+        </StyledIcon>
+    )
+}
+
+export const PlatformLock = ({size, color}: IconProps) => {
+    return (
+        <StyledIcon>
+            <IoIosLock size={getSize(size)} color={color || undefined}/>
         </StyledIcon>
     )
 }

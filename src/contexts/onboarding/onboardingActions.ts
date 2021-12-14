@@ -1,9 +1,10 @@
 import {
     NavigatePageAction,
+    PageIds,
     SetOnboardingDataAction,
     SetVerificationCode,
-    VerificationStates,
-    SetVerificationStatus, PageIds
+    SetVerificationStatus,
+    VerificationStates
 } from "./OnboardingContext";
 import logger from '../../utilities/logger/logger'
 
@@ -50,7 +51,6 @@ const onboardingActions = {
         }
     },
     setVerificationStatus: (status: VerificationStates | ''): SetVerificationStatus => {
-        logger.log('onboardingActions.ts', 'setVerificationStatus: ', status)
         return {
             type: 'setVerificationStatus',
             payload: status

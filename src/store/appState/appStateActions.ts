@@ -2,7 +2,14 @@ import {createAction} from '@reduxjs/toolkit'
 import {Theme} from '../../theme/types'
 import {Locale} from '../../localization/types'
 import {WindowInnerSize} from './useAppState'
-import {CurrentFocusPanel, DeviceData, ModalNames, NetworkStates, ProfileData} from "./appStateReducer";
+import {
+    CurrentFocusPanel,
+    DeviceData,
+    ModalNames,
+    NetworkStates,
+    PlatformLoadingTypes,
+    ProfileData
+} from "./appStateReducer";
 
 export const setWorkerServiceIsInitialized = createAction(
     'appState/workerServiceIsInitialized',
@@ -10,6 +17,17 @@ export const setWorkerServiceIsInitialized = createAction(
         return {
             payload: {
                 workerServiceIsInitialized
+            }
+        }
+    }
+)
+
+export const setIsPlatformLoading = createAction(
+    'appState/isPlatformLoading',
+    (type: PlatformLoadingTypes) => {
+        return {
+            payload: {
+                type
             }
         }
     }

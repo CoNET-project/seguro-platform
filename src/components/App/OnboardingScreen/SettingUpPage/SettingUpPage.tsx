@@ -15,13 +15,7 @@ import Button from "../../../UI/Common/Button/Button";
 import onboardingActions from "../../../../contexts/onboarding/onboardingActions";
 import AlertDialog, {AlertDialogActions} from "../../../UI/Common/AlertDialog/AlertDialog";
 import {Warning} from "../../../UI/Icons/Icons";
-import {
-    createPasscode,
-    getWorkerService,
-    Preferences,
-    savePreferences
-} from "../../../../services/workerService/workerService";
-import {ProfileData} from "../../../../store/appState/appStateReducer";
+import {createPasscode, Preferences, savePreferences} from "../../../../services/workerService/workerService";
 
 const StyledContainer = styled.div`
   width: 100%;
@@ -178,7 +172,6 @@ const SettingUpPage = () => {
                 }).then((status) => {
                     if (status === "SUCCESS") {
                         storePreferences().then(() => {
-                            setInitialProfiles()
                             dispatch(onboardingActions.setVerificationStatus('SUCCESS'))
                         })
                     }
@@ -189,28 +182,10 @@ const SettingUpPage = () => {
         }
     }, [setupState])
 
-    const setInitialProfiles = () => {
-        const {profile} = getWorkerService()
-        if (profile && profile.profiles && profile.profiles.length) {
-            const profiles = profile.profiles
-            const clientProfiles = profiles.reduce((clientProfiles: Array<ProfileData>, profile) => {
-                clientProfiles.push({
-                    nickname: profile.nickname,
-                    keyid: profile.keyID || '',
-                    primary: true
-                })
-                return clientProfiles
-            }, [])
-            setClientProfiles(clientProfiles)
-        }
-    }
-
     const storePreferences = () => {
-        const {profile} = getWorkerService()
         const preferences: Preferences = {
             theme: theme,
-            language: locale,
-            primaryProfile: profile.profiles[0].keyID
+            language: locale
         }
         return savePreferences(preferences)
     }

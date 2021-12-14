@@ -3,11 +3,12 @@ import styled from 'styled-components'
 import useAppState from '../../store/appState/useAppState'
 import {detectTouchDevice, detectWindowInnerSize} from "../../utilities/utilities";
 import GlobalStyle from '../UI/Global/Styles'
-import {Overlay} from "../UI/Common/Overlay/Overlay";
+import {Overlay, OverlayWithLoaderText} from "../UI/Common/Overlay/Overlay";
 import MainScreen from './MainScreen/MainScreen';
 import {OnboardingPageProvider} from '../Providers/OnboardingPageProvider';
 import OnboardingScreen from "./OnboardingScreen/OnboardingScreen";
 import UnlockScreen from "./UnlockScreen/UnlockScreen";
+import LaunchScreen from "./LaunchScreen/LaunchScreen";
 
 const StyledContainer = styled.div`
   height: 100vh;
@@ -21,6 +22,9 @@ const StyledContainer = styled.div`
 const App = () => {
     const {
         initialize,
+        isInitialized,
+        isInitializing,
+        isPlatformLoading,
         setWindowInnerSize,
         setClientProfiles,
         setClientDevices,
@@ -72,6 +76,10 @@ const App = () => {
 
     const getContent = () => {
         switch (true) {
+            case isInitializing:
+                return (
+                    <LaunchScreen/>
+                )
             case hasContainer && isUnlocked:
                 return (
                     <MainScreen/>
@@ -133,6 +141,7 @@ const App = () => {
                     setIsModalOpen(null)
                     setIsShowOverlay(false)
                 }}/>
+                <OverlayWithLoaderText show={isPlatformLoading !== null} type={isPlatformLoading}/>
                 {getContent()}
             </StyledContainer>
         </>

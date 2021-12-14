@@ -47,6 +47,7 @@ export type Messages = {
 
     'button.next': string,
     'button.back': string,
+    'button.unlock': string,
 
     'unlock.title': string,
 
@@ -60,6 +61,8 @@ export type Messages = {
     'drawer.settings': string,
     'drawer.updates': string,
     'drawer.support': string,
+
+    'platform.overlay.unlocking': string,
 
     'platform.settings.settings': string,
     'platform.settings.language': string,
@@ -105,6 +108,7 @@ export type Messages = {
 
     'globalBar.profile.dropdown.manageProfiles': string,
     'globalBar.profile.dropdown.addProfile': string,
+    'globalBar.profile.dropdown.lockPlatform': string,
 
     'platform.manageProfile': string,
     'platform.manageProfile.setAsPrimary': string,

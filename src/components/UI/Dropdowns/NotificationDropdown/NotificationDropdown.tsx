@@ -96,6 +96,7 @@ const NotificationDropdown = () => {
                     Object.keys(exampleNotifications).map(id => {
                         return (
                             <ListItem
+                                key={id}
                                 notification={exampleNotifications[id]}
                                 isOpen={expandNotificationId === id}
                                 onExpand={onNotificationExpand}
