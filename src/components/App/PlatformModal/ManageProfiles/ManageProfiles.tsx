@@ -116,12 +116,8 @@ const ManageProfilesContent = () => {
     const onUpdateProfile = (profileData: ProfileData) => {
         setCurrentDropdownIndex(null)
 
-        const currentIndex = currentSelectedProfileIndex
-
-        if (currentIndex !== null) {
-            updateClientProfiles(currentIndex, profileData)
-            setCurrentSelectedProfileIndex(null)
-        }
+        updateClientProfiles(profileData)
+        setCurrentSelectedProfileIndex(null)
 
         dispatch(pageNavigator.navigateToPage('Manage Profiles'))
     }
@@ -180,7 +176,7 @@ const ManageProfilesContent = () => {
                                        name={currentPage}
                                        variants={pageTransitionVariants}>
                             <StyledManageProfilesContent>
-                                {clientProfiles.map((profile, idx) => (
+                                {Object.values(clientProfiles).map((profile, idx) => (
                                     <ListItem
                                         key={profile.keyid + idx}
                                         itemLeft={<ProfileItem {...profile} current={true} primary={true}/>}
@@ -208,13 +204,14 @@ const ManageProfilesContent = () => {
                         <ManageProfile
                             custom={direction}
                             onUpdate={onUpdateProfile}
-                            profile={clientProfiles[currentDropdownIndex || 0]}/>
+                            profile={Object.values(clientProfiles)[currentDropdownIndex || 0]}/>
                     )
                 }
 
                 {
                     currentPage === 'Delete Profile' && (
-                        <DeleteProfile custom={direction} profile={clientProfiles[currentDropdownIndex || 0]}
+                        <DeleteProfile custom={direction}
+                                       profile={Object.values(clientProfiles)[currentDropdownIndex || 0]}
                                        onDelete={onDeleteProfile} onBack={onBack}/>
                     )
                 }

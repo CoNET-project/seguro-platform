@@ -71,7 +71,7 @@ const DeleteProfile = ({profile, custom, onDelete, onBack}: DeleteProfileProps) 
                 <ProfileView profile={profile} onChange={() => {
                 }} disableUpdate={true}/>
                 {
-                    clientProfiles.length > 1 && (
+                    Object.values(clientProfiles).length > 1 && (
                         <StyledDeleteProfileMessage>
                             <FormattedMessage id='platform.manageProfiles.deleteProfile.confirmationTitle'/>
                         </StyledDeleteProfileMessage>
@@ -79,7 +79,7 @@ const DeleteProfile = ({profile, custom, onDelete, onBack}: DeleteProfileProps) 
                 }
                 <StyledDeleteProfileSubmessage>
                     {
-                        clientProfiles.length > 1 ? (
+                        Object.values(clientProfiles).length > 1 ? (
                             <FormattedMessage id='platform.manageProfiles.deleteProfile.confirmationSubtext'/>
                         ) : (
                             <FormattedMessage id='platform.manageProfiles.deleteProfile.onlyProfileError'/>
@@ -88,7 +88,7 @@ const DeleteProfile = ({profile, custom, onDelete, onBack}: DeleteProfileProps) 
                 </StyledDeleteProfileSubmessage>
                 <StyledDeleteProfileRow>
                     {
-                        clientProfiles.length > 1 ? (
+                        Object.values(clientProfiles).length > 1 ? (
                             <>
                                 <StyledDeleteProfileButton
                                     onClick={onBack}>

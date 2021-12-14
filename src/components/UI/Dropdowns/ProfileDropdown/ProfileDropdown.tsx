@@ -65,17 +65,14 @@ const ProfileDropdown = ({closeDropdown}: ProfileDropdownProps) => {
     }
 
     const onSwitchProfile = (keyId: string) => {
-        const profile = clientProfiles.filter(profile => profile.keyid === keyId)
-        if (profile.length) {
-            setActiveProfile(profile[0])
-        }
+        setActiveProfile(clientProfiles[keyId])
     }
 
 
     return (
         <StyledProfileDropdown>
             {
-                clientProfiles.map((profile, idx) => <
+                Object.values(clientProfiles).map((profile, idx) => <
                     ListItem
                     key={idx} {...profile}
                     active={activeProfile?.keyid === profile.keyid}

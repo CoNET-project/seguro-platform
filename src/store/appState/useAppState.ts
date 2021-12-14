@@ -29,6 +29,7 @@ import {initializeWorkerService} from '../../services/workerService/workerServic
 import {Theme} from '../../theme/types'
 import {Locale} from '../../localization/types'
 import {
+    ClientProfiles,
     CurrentFocusPanel,
     DeviceData,
     ModalNames,
@@ -100,8 +101,8 @@ const useAppState = () => {
         dispatch(createClientProfileActionCreator(profile))
     }
 
-    const updateClientProfiles = (index: number, profile: ProfileData) => {
-        dispatch(updateClientProfileActionCreator(index, profile))
+    const updateClientProfiles = (profile: ProfileData) => {
+        dispatch(updateClientProfileActionCreator(profile))
     }
 
     const deleteClientProfile = (keyId: string) => {
@@ -114,12 +115,12 @@ const useAppState = () => {
     }
 
     const clientProfiles = useTypedSelector(state => state.appState.clientProfiles)
-    const setClientProfiles = (profiles: Array<ProfileData>) => {
-        const primaryProfile = profiles.filter(profile => profile.primary)
+    const setClientProfiles = (clientProfiles: ClientProfiles) => {
+        const primaryProfile = Object.values(clientProfiles).filter(profile => profile.primary)
         if (primaryProfile.length) {
             setActiveProfile(primaryProfile[0])
         }
-        dispatch(setClientProfilesActionCreator(profiles))
+        dispatch(setClientProfilesActionCreator(clientProfiles))
     }
 
     const clientDevices = useTypedSelector(state => state.appState.clientDevices)

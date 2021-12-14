@@ -3,6 +3,7 @@ import {Theme} from '../../theme/types'
 import {Locale} from '../../localization/types'
 import {WindowInnerSize} from './useAppState'
 import {
+    ClientProfiles,
     CurrentFocusPanel,
     DeviceData,
     ModalNames,
@@ -178,7 +179,7 @@ export const setIsModalOpen = createAction(
 
 export const setClientProfiles = createAction(
     'appState/setClientProfiles',
-    (profiles: Array<ProfileData>) => {
+    (profiles: ClientProfiles) => {
         return {
             payload: {
                 profiles: profiles
@@ -211,10 +212,9 @@ export const createClientProfile = createAction(
 
 export const updateClientProfile = createAction(
     'appState/updateClientProfile',
-    (index: number, profile: ProfileData) => {
+    (profile: ProfileData) => {
         return {
             payload: {
-                index: index,
                 profile: profile
             }
         }

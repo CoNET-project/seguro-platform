@@ -12,6 +12,7 @@ import {ContainerData} from "@conet-project/seguro-worker-lib/build/workerBridge
 import logger from "../../utilities/logger/logger";
 import {Theme} from "../../theme/types";
 import {Locale} from "../../localization/types";
+import {ClientProfiles} from "../../store/appState/appStateReducer";
 
 let workerService: ContainerData;
 
@@ -149,6 +150,14 @@ export const savePreferences = ({theme, language}: Preferences): Promise<WorkerS
             })
         }
         return resolve('FAILURE')
+    })
+)
+
+export const updateProfiles = (clientProfiles: ClientProfiles): Promise<WorkerServiceResolve> => (
+    new Promise<WorkerServiceResolve>((resolve) => {
+        if (workerService && workerService.profile && workerService.profile.profiles) {
+            
+        }
     })
 )
 

@@ -53,6 +53,10 @@ export type DeviceData = {
     name: string,
 }
 
+export type ClientProfiles = {
+    [keyId: string]: ProfileData
+}
+
 export type PlatformLoadingTypes = 'unlockPasscode' | null
 
 type AppStateReducerState = {
@@ -70,7 +74,7 @@ type AppStateReducerState = {
     theme: Theme,
     locale: Locale,
     hasUpdateAvailable: boolean,
-    clientProfiles: Array<ProfileData>,
+    clientProfiles: ClientProfiles,
     activeProfile: ProfileData | null,
     clientDevices: Devices,
     networkState: NetworkStates
@@ -91,7 +95,7 @@ const initialState: AppStateReducerState = {
     theme: 'Auto',
     locale: getPreferredLocale(),
     hasUpdateAvailable: false,
-    clientProfiles: [],
+    clientProfiles: {},
     activeProfile: null,
     clientDevices: {},
     networkState: 'disconnected'
@@ -164,24 +168,27 @@ const appStateReducer = createReducer(initialState, builder => {
         })
 
         .addCase(createClientProfile, (state, action) => {
-            let updatedProfiles = state.clientProfiles
+            let updatedProfiles = {
+                ...state.clientProfiles
+            }
+
+            updatedProfiles[action.payload.profile.keyid] = action.payload.profile
+
             if (action.payload.profile.primary) {
-                updatedProfiles = updatedProfiles.map(profile => {
-                    return {
-                        ...profile,
-                        primary: false
+                Object.values(state.clientProfiles).map((profile) => {
+                    if (profile.primary) {
+                        updatedProfiles[profile.keyid].primary = false
                     }
                 })
             }
-            state.clientProfiles = [...updatedProfiles, action.payload.profile]
+            state.clientProfiles = updatedProfiles
         })
 
         .addCase(updateClientProfile, (state, action) => {
-            const updatedProfiles = state.clientProfiles.map(profile => {
-                profile.primary = false
-                return profile
-            })
-            updatedProfiles[action.payload.index] = action.payload.profile
+            const updatedProfiles = {
+                ...state.clientProfiles
+            }
+            updatedProfiles[action.payload.profile.keyid] = action.payload.profile
             state.clientProfiles = updatedProfiles
         })
 
@@ -190,14 +197,13 @@ const appStateReducer = createReducer(initialState, builder => {
         })
 
         .addCase(deleteClientProfile, (state, action) => {
-            const profile = state.clientProfiles.filter(profile => profile.keyid === action.payload.keyId)[0]
-            state.clientProfiles = state.clientProfiles.filter(profile => profile.keyid !== action.payload.keyId)
-            if (state.activeProfile?.keyid === action.payload.keyId) {
-                state.activeProfile = state.clientProfiles.filter(profile => profile.primary)[0]
+            const updatedClientProfiles = {
+                ...state.clientProfiles
             }
-            if (profile && profile.primary) {
-                state.clientProfiles[0].primary = true
-            }
+
+            delete updatedClientProfiles[action.payload.keyId]
+
+            state.clientProfiles = updatedClientProfiles
         })
 
         .addCase(setClientDevices, (state, action) => {
