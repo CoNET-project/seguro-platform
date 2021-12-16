@@ -97,7 +97,7 @@ const DeleteProfile = ({profile, custom, onDelete, onBack}: DeleteProfileProps) 
                                 <StyledDeleteProfileButton
                                     danger={true}
                                     onClick={() =>
-                                        onDelete(profile.keyid)}>
+                                        onDelete(profile.keyID)}>
                                     <FormattedMessage id='platform.manageProfiles.deleteProfile.confirmButton'/>
                                 </StyledDeleteProfileButton>
                             </>

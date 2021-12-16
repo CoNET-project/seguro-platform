@@ -68,18 +68,18 @@ const StyledProfileItemOptions = styled.button`
 `
 
 const ProfileItem = ({
-                         imageSrc,
+                         profileImg,
                          nickname,
-                         keyid,
+                         keyID,
                          current,
                          primary
                      }: ProfileData & { current?: boolean, primary?: boolean }) => {
     return (
         <StyledProfileItem>
-            <Image src={imageSrc || AnonymousAvatar} size={50}/>
+            <Image src={profileImg || AnonymousAvatar} size={50}/>
             <StyledProfileItemDetail>
                 <StyledProfileItemName>{nickname || 'Anonymous User'}</StyledProfileItemName>
-                <StyledProfileItemKeyId>{keyid}</StyledProfileItemKeyId>
+                <StyledProfileItemKeyId>{keyID}</StyledProfileItemKeyId>
             </StyledProfileItemDetail>
         </StyledProfileItem>
     )
@@ -123,9 +123,9 @@ const ManageProfilesContent = () => {
     }
 
     const onDeleteProfile = (keyId: string) => {
+        deleteClientProfile(keyId)
         setCurrentDropdownIndex(null)
         dispatch(pageNavigator.navigateToPage('Manage Profiles'))
-        deleteClientProfile(keyId)
     }
 
     const onBack = () => {
@@ -178,7 +178,7 @@ const ManageProfilesContent = () => {
                             <StyledManageProfilesContent>
                                 {Object.values(clientProfiles).map((profile, idx) => (
                                     <ListItem
-                                        key={profile.keyid + idx}
+                                        key={profile.keyID + idx}
                                         itemLeft={<ProfileItem {...profile} current={true} primary={true}/>}
                                         itemRight={
                                             <TippyDropdown content={<ContextMenu buttons={profileContextMenuButtons}/>}

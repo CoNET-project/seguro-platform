@@ -21,6 +21,15 @@ const StyledProfileDropdown = styled.div`
   //padding: 0 20px;
 `
 
+const StyledProfileDropdownList = styled.div`
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+  max-height: calc(70px * 5);
+  overflow-y: auto;
+`
+
 const StyledProfileDropdownOptions = styled.div`
   width: 100%;
 
@@ -71,14 +80,16 @@ const ProfileDropdown = ({closeDropdown}: ProfileDropdownProps) => {
 
     return (
         <StyledProfileDropdown>
-            {
-                Object.values(clientProfiles).map((profile, idx) => <
-                    ListItem
-                    key={idx} {...profile}
-                    active={activeProfile?.keyid === profile.keyid}
-                    onSwitchProfile={onSwitchProfile}
-                />)
-            }
+            <StyledProfileDropdownList>
+                {
+                    Object.values(clientProfiles).map((profile, idx) => <
+                        ListItem
+                        key={idx} {...profile}
+                        active={activeProfile?.keyID === profile.keyID}
+                        onSwitchProfile={onSwitchProfile}
+                    />)
+                }
+            </StyledProfileDropdownList>
             <StyledProfileDropdownOptions>
                 <StyledProfileDropdownOption onClick={addProfileHandler}>
                     <AddProfile size={20}/>

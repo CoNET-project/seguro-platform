@@ -3,7 +3,6 @@ import {useDispatch} from 'react-redux'
 import {
     createClientProfile as createClientProfileActionCreator,
     deleteClientDevice as deleteClientDeviceActionCreator,
-    deleteClientProfile as deleteClientProfileActionCreator,
     setActiveProfile as setActiveProfileActionCreator,
     setClientDevices as setClientDevicesActionCreator,
     setClientProfiles as setClientProfilesActionCreator,
@@ -25,7 +24,12 @@ import {
     updateClientDevice as updateClientDeviceActionCreator,
     updateClientProfile as updateClientProfileActionCreator
 } from './appStateActions'
-import {initializeWorkerService} from '../../services/workerService/workerService'
+import {
+    createProfile,
+    getWorkerService,
+    initializeWorkerService,
+    saveProfiles
+} from '../../services/workerService/workerService'
 import {Theme} from '../../theme/types'
 import {Locale} from '../../localization/types'
 import {
@@ -97,16 +101,127 @@ const useAppState = () => {
         dispatch(setNetworkStateActionCreator(networkState))
     }
 
-    const createClientProfile = (profile: ProfileData) => {
-        dispatch(createClientProfileActionCreator(profile))
+    const setProfilesToNonPrimary = () => {
+        let profiles = getWorkerService().profile.profiles
+        profiles = profiles.map(profile => {
+            return {
+                ...profile,
+                isPrimary: false
+            }
+        })
+        getWorkerService().profile.profiles = profiles
+        return saveProfiles()
     }
 
-    const updateClientProfiles = (profile: ProfileData) => {
-        dispatch(updateClientProfileActionCreator(profile))
+    const createClientProfile = (profile: ProfileData) => {
+        setIsPlatformLoading('createProfile')
+
+        if (profile.isPrimary) {
+            setProfilesToNonPrimary().then((status) => {
+                if (status === 'SUCCESS') {
+                    return createProfile(profile).then((status) => {
+                        if (status === 'SUCCESS') {
+                            setIsPlatformLoading(null)
+                            return dispatch(createClientProfileActionCreator(profile))
+                        }
+                        return
+                    })
+                }
+            })
+        } else {
+            return createProfile(profile).then((status) => {
+                if (status === 'SUCCESS') {
+                    setIsPlatformLoading(null)
+                    return dispatch(createClientProfileActionCreator(profile))
+                }
+                return
+            })
+        }
+
+        // createProfile(profile).then((status) => {
+        //     if (status === 'SUCCESS') {
+        //         if (profile.isPrimary) {
+        //             const updatedProfiles = getWorkerService().profile.profiles
+        //             for (let i = 0; i < updatedProfiles.length - 1; i++) {
+        //                 updatedProfiles[i].isPrimary = false
+        //             }
+        //             getWorkerService().profile.profiles = updatedProfiles
+        //             if (getWorkerService().profile.storeProfile) {
+        //                 saveProfiles().then((status) => {
+        //                     console.log(status)
+        //                     return dispatch(createClientProfileActionCreator(profile))
+        //                 })
+        //             }
+        //         } else {
+        //             console.log(getWorkerService().profile.profiles)
+        //             return dispatch(createClientProfileActionCreator(profile))
+        //         }
+        //     }
+        //     return
+        // })
+    }
+
+    const updateClientProfiles = (updatedProfile: ProfileData) => {
+        let currentClientProfiles = {
+            ...clientProfiles
+        }
+        let updatedClientProfiles: Array<ProfileData>
+        if (!clientProfiles[updatedProfile.keyID].isPrimary && updatedProfile.isPrimary) {
+            updatedClientProfiles = Object.values(currentClientProfiles).map(profile => {
+                if (profile.keyID === updatedProfile.keyID) {
+                    return {
+                        ...updatedProfile
+                    }
+                }
+                return {
+                    ...profile,
+                    isPrimary: false
+                }
+            })
+        } else {
+            currentClientProfiles[updatedProfile.keyID] = updatedProfile
+            updatedClientProfiles = Object.values(currentClientProfiles)
+        }
+        getWorkerService().profile.profiles = updatedClientProfiles
+        saveProfiles().then((status) => {
+            console.log(getWorkerService().profile.profiles)
+            if (status === 'SUCCESS') {
+                dispatch(updateClientProfileActionCreator(updatedProfile))
+            }
+            return
+        })
     }
 
     const deleteClientProfile = (keyId: string) => {
-        dispatch(deleteClientProfileActionCreator(keyId))
+        const profiles = getWorkerService().profile.profiles
+        profiles.shift()
+        saveProfiles().then((status) => {
+            console.log('SAVED WORKER SERVICE', getWorkerService())
+        })
+        // const updatedClientProfiles = {
+        //     ...clientProfiles
+        // }
+        //
+        // console.log('Original length', Object.keys(updatedClientProfiles).length)
+        //
+        // if (updatedClientProfiles[keyId].isPrimary) {
+        //     delete updatedClientProfiles[keyId]
+        //     updatedClientProfiles[Object.keys(updatedClientProfiles)[0]].isPrimary = true
+        // } else {
+        //     delete updatedClientProfiles[keyId]
+        // }
+        //
+        // console.log('Modified length', Object.keys(updatedClientProfiles).length)
+        //
+        // getWorkerService().profile.profiles = Object.values(updatedClientProfiles)
+        // saveProfiles().then((status) => {
+        //     if (status === 'SUCCESS') {
+        //         console.log(getWorkerService().profile.profiles)
+        //         return dispatch(deleteClientProfileActionCreator(keyId))
+        //     }
+        //     return
+        // })
+
     }
 
     const activeProfile = useTypedSelector(state => state.appState.activeProfile)
@@ -116,7 +231,7 @@ const useAppState = () => {
 
     const clientProfiles = useTypedSelector(state => state.appState.clientProfiles)
     const setClientProfiles = (clientProfiles: ClientProfiles) => {
-        const primaryProfile = Object.values(clientProfiles).filter(profile => profile.primary)
+        const primaryProfile = Object.values(clientProfiles).filter(profile => profile.isPrimary)
         if (primaryProfile.length) {
             setActiveProfile(primaryProfile[0])
         }

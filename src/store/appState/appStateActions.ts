@@ -223,10 +223,11 @@ export const updateClientProfile = createAction(
 
 export const deleteClientProfile = createAction(
     'appState/deleteClientProfile',
-    (keyId: string) => {
+    (keyId: string, setAsPrimaryKeyId?: string) => {
         return {
             payload: {
-                keyId
+                keyId,
+                setAsPrimaryKeyId
             }
         }
     }

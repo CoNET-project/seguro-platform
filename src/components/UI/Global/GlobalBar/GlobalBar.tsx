@@ -165,7 +165,7 @@ const GlobalBar = () => {
                     onClickOutside={closeDropdown}
                 >
                     <StyledGlobalItem onClick={() => setDropdownToggle('profiles')}>
-                        <ProfileImage src={activeProfile?.imageSrc} size='sm'/>
+                        <ProfileImage src={activeProfile?.profileImg} size='sm'/>
                     </StyledGlobalItem>
                 </TippyDropdown>
 

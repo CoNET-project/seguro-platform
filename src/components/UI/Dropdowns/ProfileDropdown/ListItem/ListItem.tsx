@@ -18,6 +18,7 @@ const StyledProfileItem = styled.div<StyledProfileItemProps>`
   padding: 12.5px 24px;
   cursor: pointer;
   background-color: ${props => props.isActive && props.theme.ui.colors.border.light};
+  min-height: 70px;
 
   &:hover {
     background-color: ${props => props.theme.ui.colors.primary};
@@ -65,7 +66,7 @@ type ListItemProps = {
 } & ProfileData
 
 
-const ListItem = ({imageSrc, keyid, nickname, active, onSwitchProfile}: ListItemProps) => {
+const ListItem = ({profileImg, keyID, nickname, active, onSwitchProfile}: ListItemProps) => {
 
     const copyDeviceCode = (event: React.MouseEvent<HTMLButtonElement>, code: string) => {
         event.stopPropagation()
@@ -78,13 +79,13 @@ const ListItem = ({imageSrc, keyid, nickname, active, onSwitchProfile}: ListItem
     }
 
     return (
-        <StyledProfileItem onClick={() => onSwitchProfile(keyid)} isActive={active}>
-            <ProfileImage src={imageSrc || AnonymousProfile} size={45}/>
+        <StyledProfileItem onClick={() => onSwitchProfile(keyID)} isActive={active}>
+            <ProfileImage src={profileImg || AnonymousProfile} size={45}/>
             <StyledProfileDetails>
                 <StyledProfileName>{nickname || 'Anonymous User'}</StyledProfileName>
                 <RowWrapper>
-                    <StyledProfileKeyId>{keyid}</StyledProfileKeyId>
-                    <StyledProfileKeyIdCopy onClick={(event) => copyDeviceCode(event, keyid)}>
+                    <StyledProfileKeyId>{keyID}</StyledProfileKeyId>
+                    <StyledProfileKeyIdCopy onClick={(event) => copyDeviceCode(event, keyID)}>
                         <Copy/>
                     </StyledProfileKeyIdCopy>
                 </RowWrapper>

@@ -60,8 +60,9 @@ const ManageProfile = ({custom, profile, onUpdate}: ManageProfileProps) => {
     }, [])
 
     const [currentProfile, setCurrentProfile] = useState<ProfileData>({
-        keyid: '',
-        primary: false
+        alias: "", bio: "", nickname: "", profileImg: "", tags: [],
+        keyID: '',
+        isPrimary: false
     })
 
     const onSave = () => {
@@ -74,14 +75,14 @@ const ManageProfile = ({custom, profile, onUpdate}: ManageProfileProps) => {
         const profileViewData = {
             ...profile
         }
-        if (profile.imageSrc !== currentProfile.imageSrc) {
-            profileViewData.imageSrc = currentProfile.imageSrc
+        if (profile.profileImg !== currentProfile.profileImg) {
+            profileViewData.profileImg = currentProfile.profileImg
         }
         return profileViewData
     }
 
     const saveIsDisabled = () => {
-        return (profile?.nickname === currentProfile?.nickname) && (profile?.imageSrc === currentProfile?.imageSrc) && ((profile?.primary === currentProfile?.primary))
+        return (profile?.nickname === currentProfile?.nickname) && (profile?.profileImg === currentProfile?.profileImg) && ((profile?.isPrimary === currentProfile?.isPrimary))
     }
 
     return (

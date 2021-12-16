@@ -12,7 +12,7 @@ import {ContainerData} from "@conet-project/seguro-worker-lib/build/workerBridge
 import logger from "../../utilities/logger/logger";
 import {Theme} from "../../theme/types";
 import {Locale} from "../../localization/types";
-import {ClientProfiles} from "../../store/appState/appStateReducer";
+import {ClientProfiles, ProfileData} from "../../store/appState/appStateReducer";
 
 let workerService: ContainerData;
 
@@ -156,22 +156,33 @@ export const savePreferences = ({theme, language}: Preferences): Promise<WorkerS
 export const updateProfiles = (clientProfiles: ClientProfiles): Promise<WorkerServiceResolve> => (
     new Promise<WorkerServiceResolve>((resolve) => {
         if (workerService && workerService.profile && workerService.profile.profiles) {
-            
+
         }
     })
 )
 
-export const createProfile = (): Promise<WorkerServiceResolve> => (
+export const createProfile = (profile: ProfileData): Promise<WorkerServiceResolve> => (
     new Promise<WorkerServiceResolve>((resolve) => {
-        // if (workerService && workerService.profile && workerService.profile.newProfile) {
-        //     workerService.profile.newProfile({
-        //         nickname: '',
-        //         nicknameMark: '',
-        //         alias: '',
-        //         tags: []
-        //     }).then(([status]) => {
-        //
-        //     })
-        // }
+        if (workerService && workerService.profile && workerService.profile.newProfile) {
+            workerService.profile.newProfile(profile).then(([status]) => {
+                if (status === 'SUCCESS') {
+                    return resolve('SUCCESS')
+                }
+                return resolve('FAILURE')
+            })
+        }
+    })
+)
+
+export const saveProfiles = (): Promise<WorkerServiceResolve> => (
+    new Promise<WorkerServiceResolve>((resolve) => {
+        if (workerService && workerService.profile && workerService.profile.storeProfile) {
+            workerService.profile.storeProfile().then(([status]) => {
+                if (status === "SUCCESS") {
+                    return resolve(status)
+                }
+                return resolve('FAILURE')
+            })
+        }
     })
 )

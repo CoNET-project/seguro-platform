@@ -2435,10 +2435,10 @@
     exec-sh "^0.3.2"
     minimist "^1.2.0"
 
-"@conet-project/seguro-gateway@0.14.2":
-  version "0.14.2"
-  resolved "https://npm.pkg.github.com/download/@conet-project/seguro-gateway/0.14.2/fac795b8ec704d08a1f7fac85baf2299c11fca75d665c29322d1d531557ffd7a#e0951346b7fc42a6111dc4b3675960c949ef76ac"
-  integrity sha512-IYcS3BTERSqP82PCNUxz3VFn+uj+NsIBssnupUBb0BHhgCkqWPjpAo9lpj9Ocv3i9OoXchTkHIPcQmD0MM9xjA==
+"@conet-project/seguro-gateway@^0.14.3":
+  version "0.14.3"
+  resolved "https://npm.pkg.github.com/download/@conet-project/seguro-gateway/0.14.3/9486f0bb1d54f57d9b86346a7e7cf57b5ed925e88bb5a29a1ea0aa4768cae5ba#3d863edb5139d525e4b3a1eee222387dfb3e3da2"
+  integrity sha512-rHKJsDTsTFVa4xU09TDBlFaCRocy3s+VMiugvEAHVk6qOvLrfrYdFmoaF9oAJ8jF6Q1fL45F0Ggdt9G0g7FZGQ==
   dependencies:
     async "^3.2.2"
     cors "^2.8.5"

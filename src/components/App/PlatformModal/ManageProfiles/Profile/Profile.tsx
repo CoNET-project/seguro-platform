@@ -157,10 +157,11 @@ const Profile = ({profile, onChange, disableUpdate, newProfile}: ProfileProps) =
                         profileImageRef.current.src = base64
                     }
 
-                    const updatedProfile = {
+                    const updatedProfile: ProfileData = {
                         ...profile,
-                        imageSrc: base64
+                        profileImg: base64
                     }
+
                     if (filePickerRef && filePickerRef.current) {
                         filePickerRef.current.files = null
                         filePickerRef.current.value = ""
@@ -173,9 +174,9 @@ const Profile = ({profile, onChange, disableUpdate, newProfile}: ProfileProps) =
     }
 
     const onChangePrimary = (checked: boolean) => {
-        const updatedProfile = {
+        const updatedProfile: ProfileData = {
             ...profile,
-            primary: checked
+            isPrimary: checked
         }
 
         onChange(updatedProfile)
@@ -188,7 +189,8 @@ const Profile = ({profile, onChange, disableUpdate, newProfile}: ProfileProps) =
             <StyledManageProfile>
                 <StyledProfileRow>
                     <StyledProfileImage>
-                        <Image src={profile && profile.imageSrc || AnonymousProfile} size={150} ref={profileImageRef}/>
+                        <Image src={profile && profile.profileImg || AnonymousProfile} size={150}
+                               ref={profileImageRef}/>
                         {
                             !disableUpdate && (
                                 <StyledProfileImageEdit onClick={() => filePickerRef.current?.click()}>
@@ -208,15 +210,15 @@ const Profile = ({profile, onChange, disableUpdate, newProfile}: ProfileProps) =
                         />
                         <StyledKeyIdTextRow>
                             <StyledTextLabel>Key ID:</StyledTextLabel>
-                            <StyledText>{profile.keyid}</StyledText>
+                            <StyledText>{profile.keyID}</StyledText>
                         </StyledKeyIdTextRow>
                         {
                             !disableUpdate && (
                                 <StyledPrimarySelectionRow>
                                     <Checkbox
-                                        defaultValue={profile?.primary}
+                                        defaultValue={profile?.isPrimary}
                                         onChange={(checked) => onChangePrimary(checked)}
-                                        disabled={!newProfile && profile?.primary}
+                                        disabled={!newProfile && profile?.isPrimary}
                                     />
                                     <StyledPrimaryText>
                                         <FormattedMessage id='platform.manageProfile.setAsPrimary'/>

@@ -10,7 +10,6 @@ import {Toaster} from '../../UI/Toaster/Toaster'
 import {getWorkerService} from "../../../services/workerService/workerService";
 import {useEffect} from "react";
 import {ClientProfiles} from "../../../store/appState/appStateReducer";
-import {getAnonymousProfileImage} from "../../../utilities/utilities";
 
 const StyledMainScreen = styled(motion.div)`
   width: 100%;
@@ -54,12 +53,8 @@ const MainScreen = () => {
             const profiles = profile.profiles
             const clientProfiles = profiles.reduce((clientProfiles: ClientProfiles, profile) => {
                 if (profile.keyID) {
-                    clientProfiles[profile.keyID] = {
-                        nickname: profile.nickname,
-                        keyid: profile.keyID || '',
-                        primary: profile.isPrimary,
-                        imageSrc: profile.profileImg || getAnonymousProfileImage()
-                    }
+                    // @ts-ignore
+                    clientProfiles[profile.keyID] = profile
                 }
                 return clientProfiles
             }, {})
