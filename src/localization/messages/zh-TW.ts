@@ -59,6 +59,7 @@ const zh_CN: Messages = {
     'drawer.support': '支持',
 
     'platform.overlay.unlocking': '解鎖平台...',
+    'platform.overlay.createProfile': '創建配置文件...',
 
     'platform.settings.settings': '平台設置',
     'platform.settings.language': '語言',

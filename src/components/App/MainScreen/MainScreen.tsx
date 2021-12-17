@@ -9,7 +9,7 @@ import PlatformModal from "../PlatformModal/PlatformModal";
 import {Toaster} from '../../UI/Toaster/Toaster'
 import {getWorkerService} from "../../../services/workerService/workerService";
 import {useEffect} from "react";
-import {ProfileData} from "../../../store/appState/appStateReducer";
+import {ClientProfiles} from "../../../store/appState/appStateReducer";
 
 const StyledMainScreen = styled(motion.div)`
   width: 100%;
@@ -51,14 +51,13 @@ const MainScreen = () => {
         const {profile} = getWorkerService()
         if (profile && profile.profiles && profile.profiles.length) {
             const profiles = profile.profiles
-            const clientProfiles = profiles.reduce((clientProfiles: Array<ProfileData>, profile) => {
-                clientProfiles.push({
-                    nickname: profile.nickname,
-                    keyid: profile.keyID || '',
-                    primary: profile.isPrimary
-                })
+            const clientProfiles = profiles.reduce((clientProfiles: ClientProfiles, profile) => {
+                if (profile.keyID) {
+                    // @ts-ignore
+                    clientProfiles[profile.keyID] = profile
+                }
                 return clientProfiles
-            }, [])
+            }, {})
             setClientProfiles(clientProfiles)
         }
     }

@@ -61,6 +61,7 @@ const en_US: Messages = {
     'drawer.support': 'Support',
 
     'platform.overlay.unlocking': 'Unlocking platform...',
+    'platform.overlay.createProfile': 'Creating profile...',
 
     'platform.settings.settings': 'Platform Settings',
     'platform.settings.language': 'Language',

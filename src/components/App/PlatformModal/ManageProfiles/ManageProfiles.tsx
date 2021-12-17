@@ -68,18 +68,18 @@ const StyledProfileItemOptions = styled.button`
 `
 
 const ProfileItem = ({
-                         imageSrc,
+                         profileImg,
                          nickname,
-                         keyid,
+                         keyID,
                          current,
                          primary
                      }: ProfileData & { current?: boolean, primary?: boolean }) => {
     return (
         <StyledProfileItem>
-            <Image src={imageSrc || AnonymousAvatar} size={50}/>
+            <Image src={profileImg || AnonymousAvatar} size={50}/>
             <StyledProfileItemDetail>
                 <StyledProfileItemName>{nickname || 'Anonymous User'}</StyledProfileItemName>
-                <StyledProfileItemKeyId>{keyid}</StyledProfileItemKeyId>
+                <StyledProfileItemKeyId>{keyID}</StyledProfileItemKeyId>
             </StyledProfileItemDetail>
         </StyledProfileItem>
     )
@@ -105,31 +105,29 @@ const ManageProfilesContent = () => {
                 dispatch(pageNavigator.navigateToPage('Manage Profile'))
             }
         },
-        {
-            text: <FormattedMessage id='platform.contextMenu.delete'/>,
-            action: () => {
-                dispatch(pageNavigator.navigateToPage('Delete Profile'))
-            }
-        }
+        // Temporarily disabled...searching for solution to delete profiles!
+        
+        // {
+        //     text: <FormattedMessage id='platform.contextMenu.delete'/>,
+        //     action: () => {
+        //         dispatch(pageNavigator.navigateToPage('Delete Profile'))
+        //     }
+        // }
     ]
 
     const onUpdateProfile = (profileData: ProfileData) => {
         setCurrentDropdownIndex(null)
 
-        const currentIndex = currentSelectedProfileIndex
-
-        if (currentIndex !== null) {
-            updateClientProfiles(currentIndex, profileData)
-            setCurrentSelectedProfileIndex(null)
-        }
+        updateClientProfiles(profileData)
+        setCurrentSelectedProfileIndex(null)
 
         dispatch(pageNavigator.navigateToPage('Manage Profiles'))
     }
 
     const onDeleteProfile = (keyId: string) => {
+        deleteClientProfile(keyId)
         setCurrentDropdownIndex(null)
         dispatch(pageNavigator.navigateToPage('Manage Profiles'))
-        deleteClientProfile(keyId)
     }
 
     const onBack = () => {
@@ -180,9 +178,9 @@ const ManageProfilesContent = () => {
                                        name={currentPage}
                                        variants={pageTransitionVariants}>
                             <StyledManageProfilesContent>
-                                {clientProfiles.map((profile, idx) => (
+                                {Object.values(clientProfiles).map((profile, idx) => (
                                     <ListItem
-                                        key={profile.keyid + idx}
+                                        key={profile.keyID + idx}
                                         itemLeft={<ProfileItem {...profile} current={true} primary={true}/>}
                                         itemRight={
                                             <TippyDropdown content={<ContextMenu buttons={profileContextMenuButtons}/>}
@@ -208,13 +206,14 @@ const ManageProfilesContent = () => {
                         <ManageProfile
                             custom={direction}
                             onUpdate={onUpdateProfile}
-                            profile={clientProfiles[currentDropdownIndex || 0]}/>
+                            profile={Object.values(clientProfiles)[currentDropdownIndex || 0]}/>
                     )
                 }
 
                 {
                     currentPage === 'Delete Profile' && (
-                        <DeleteProfile custom={direction} profile={clientProfiles[currentDropdownIndex || 0]}
+                        <DeleteProfile custom={direction}
+                                       profile={Object.values(clientProfiles)[currentDropdownIndex || 0]}
                                        onDelete={onDeleteProfile} onBack={onBack}/>
                     )
                 }

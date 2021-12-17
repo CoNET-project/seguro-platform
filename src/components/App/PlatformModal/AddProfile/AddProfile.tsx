@@ -1,11 +1,9 @@
-import {ProfileIcon} from "../../../UI/Icons/Icons";
 import styled from "styled-components";
 import {screenWidth} from "../../../UI/screenSizes";
 import HeaderBar from "../../../UI/Common/HeaderBar/HeaderBar";
 import useAppState from "../../../../store/appState/useAppState";
 import {useState} from "react";
 import ProfileView from "../ManageProfiles/Profile/Profile";
-import {toast} from "../../../UI/Toaster/Toaster";
 import {FormattedMessage} from "react-intl";
 import {ProfileData} from "../../../../store/appState/appStateReducer";
 
@@ -67,20 +65,15 @@ const AddProfile = ({}: AddProfileProps) => {
     const onCreateProfile = (profile: ProfileData) => {
         createClientProfile(profile)
         setIsModalOpen(null)
-        toast({
-            toastIcon: <ProfileIcon size={18}/>,
-            event: `New profile: ${profile.nickname || 'Anonymous User'} created!`,
-            duration: 'sm'
-        })
     }
 
     const [newProfile, setNewProfile] = useState<ProfileData>({
-        imageSrc: '',
-        keyid: Date.now().toString(),
+        alias: "", bio: "", tags: [],
+        profileImg: '',
+        keyID: '',
         nickname: '',
-        primary: false
+        isPrimary: false
     })
-
 
     return (
         <StyledAddProfileContainer>
