@@ -17,6 +17,7 @@ import {
     setIsUnlocked,
     setLocale,
     setNetworkState,
+    setNetworkStrength,
     setShowOverlay,
     setTheme,
     setWindowInnerSize,
@@ -63,6 +64,8 @@ export type ClientProfiles = {
 
 export type PlatformLoadingTypes = 'unlockPasscode' | 'createProfile' | null
 
+export type NetworkStrength = 0 | 1 | 2 | 3
+
 type AppStateReducerState = {
     isTouchDevice: boolean,
     isUnlocked: boolean,
@@ -70,6 +73,7 @@ type AppStateReducerState = {
     isModalOpen: ModalNames,
     isPlatformLoading: PlatformLoadingTypes,
     hasContainer: boolean,
+    networkStrength: NetworkStrength,
     hasNotification: boolean,
     showOverlay: boolean,
     currentFocusPanel: CurrentFocusPanel,
@@ -91,6 +95,7 @@ const initialState: AppStateReducerState = {
     isModalOpen: null,
     isPlatformLoading: null,
     hasContainer: false,
+    networkStrength: 3,
     hasNotification: false,
     showOverlay: false,
     currentFocusPanel: 'left',
@@ -121,6 +126,10 @@ const appStateReducer = createReducer(initialState, builder => {
 
         .addCase(setHasContainer, (state, action) => {
             state.hasContainer = action.payload.hasContainer
+        })
+
+        .addCase(setNetworkStrength, (state, action) => {
+            state.networkStrength = action.payload.networkStrength
         })
 
         .addCase(setHasNotification, (state, action) => {

@@ -8,6 +8,7 @@ import {
     DeviceData,
     ModalNames,
     NetworkStates,
+    NetworkStrength,
     PlatformLoadingTypes,
     ProfileData
 } from "./appStateReducer";
@@ -51,6 +52,17 @@ export const setHasContainer = createAction(
         return {
             payload: {
                 hasContainer
+            }
+        }
+    }
+)
+
+export const setNetworkStrength = createAction(
+    'appState/setNetworkStrength',
+    (networkStrength: NetworkStrength) => {
+        return {
+            payload: {
+                networkStrength
             }
         }
     }

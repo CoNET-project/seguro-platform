@@ -1,5 +1,23 @@
 # `seguro-platform` CHANGELOG
 
+## `0.45.0`
+
+### Additions
+
+- Network status.
+- Network dropdown.
+- Network localization types.
+
+### Changes
+
+- None.
+
+### Fixes
+
+- Fix CSS issues.
+
+---
+
 ## `0.44.0`
 
 ### Additions

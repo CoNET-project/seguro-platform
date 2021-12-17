@@ -17,6 +17,7 @@ import {
     setIsUnlocked as setIsUnlockedActionCreator,
     setLocale as setLocaleActionCreator,
     setNetworkState as setNetworkStateActionCreator,
+    setNetworkStrength as setNetworkStrengthActionCreator,
     setShowOverlay as setShowOverlayActionCreator,
     setTheme as setThemeActionCreator,
     setWindowInnerSize as setWindowInnerSizeActionCreator,
@@ -38,6 +39,7 @@ import {
     DeviceData,
     ModalNames,
     NetworkStates,
+    NetworkStrength,
     PlatformLoadingTypes,
     ProfileData
 } from "./appStateReducer";
@@ -99,6 +101,11 @@ const useAppState = () => {
     const networkState = useTypedSelector(state => state.appState.networkState)
     const setNetworkState = (networkState: NetworkStates) => {
         dispatch(setNetworkStateActionCreator(networkState))
+    }
+
+    const networkStrength = useTypedSelector(state => state.appState.networkStrength)
+    const setNetworkStrength = (networkStrength: NetworkStrength) => {
+        dispatch(setNetworkStrengthActionCreator(networkStrength))
     }
 
     const setProfilesToNonPrimary = () => {
@@ -305,6 +312,8 @@ const useAppState = () => {
         setHasContainer,
         hasNotification,
         setHasNotification,
+        networkStrength,
+        setNetworkStrength,
         setInitialized,
         isUnlocked,
         isLocked,
