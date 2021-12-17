@@ -61,6 +61,15 @@ const zh_CN: Messages = {
     'platform.overlay.unlocking': '解锁平台...',
     'platform.overlay.createProfile': '创建配置文件...',
 
+    'platform.network.status.label': '当前状态：',
+    'platform.network.status.low': '低',
+    'platform.network.status.medium': '中',
+    'platform.network.status.high': '高',
+
+    'platform.network.status.description.low': '您与 Seguro 的连接似乎具有很高的延迟。请检查您的互联网连接是否稳定。数据可能比平时下降得更多。',
+    'platform.network.status.description.medium': '您与 Seguro 的连接具有中等延迟。您的数据可能偶尔会丢失或无法发送，请检查您的互联网连接。',
+    'platform.network.status.description.high': '您与 Seguro 的连接非常好，您应该能够快速接收和发送数据！',
+
     'platform.settings.settings': '平台设置',
     'platform.settings.language': '语言',
     'platform.settings.theme': '主题',

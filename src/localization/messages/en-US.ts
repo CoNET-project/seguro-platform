@@ -63,6 +63,15 @@ const en_US: Messages = {
     'platform.overlay.unlocking': 'Unlocking platform...',
     'platform.overlay.createProfile': 'Creating profile...',
 
+    'platform.network.status.label': 'Current Status:',
+    'platform.network.status.low': 'Low',
+    'platform.network.status.medium': 'Medium',
+    'platform.network.status.high': 'High',
+
+    'platform.network.status.description.low': 'Your connection to Seguro appears to have high latency. Please check your internet connection is stable. Data may drop more than usual.',
+    'platform.network.status.description.medium': 'Your connection to Seguro has medium latency. Your data might be occasionally dropped or have trouble sending, please check your internet connection.',
+    'platform.network.status.description.high': 'Your connection to Seguro is very good, you should be able to receive and send data fast!',
+
     'platform.settings.settings': 'Platform Settings',
     'platform.settings.language': 'Language',
     'platform.settings.theme': 'Theme',

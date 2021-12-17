@@ -65,6 +65,15 @@ export type Messages = {
     'platform.overlay.unlocking': string,
     'platform.overlay.createProfile': string,
 
+    'platform.network.status.label': string,
+    'platform.network.status.low': string,
+    'platform.network.status.medium': string,
+    'platform.network.status.high': string,
+
+    'platform.network.status.description.low': string,
+    'platform.network.status.description.medium': string,
+    'platform.network.status.description.high': string,
+
     'platform.settings.settings': string,
     'platform.settings.language': string,
     'platform.settings.theme': string,

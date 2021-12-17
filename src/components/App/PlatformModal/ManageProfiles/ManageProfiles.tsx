@@ -104,15 +104,7 @@ const ManageProfilesContent = () => {
                 setCurrentSelectedProfileIndex(currentDropdownIndex)
                 dispatch(pageNavigator.navigateToPage('Manage Profile'))
             }
-        },
-        // Temporarily disabled...searching for solution to delete profiles!
-        
-        // {
-        //     text: <FormattedMessage id='platform.contextMenu.delete'/>,
-        //     action: () => {
-        //         dispatch(pageNavigator.navigateToPage('Delete Profile'))
-        //     }
-        // }
+        }
     ]
 
     const onUpdateProfile = (profileData: ProfileData) => {

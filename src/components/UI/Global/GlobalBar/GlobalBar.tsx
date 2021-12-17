@@ -1,14 +1,16 @@
 import styled from 'styled-components';
 import ProfileImage from '../../Common/Profile/Image/Image'
-import {Grid3X3, NotificationBell, Plug, SettingGear, Update} from "../../Icons/Icons";
+import {Grid3X3, NotificationBell, SettingGear, Update} from "../../Icons/Icons";
 import {screenWidth, sizes} from "../../screenSizes";
 import {LogoIcon} from "../../Logo/Logo";
 import ProfileDropdown from "../../Dropdowns/ProfileDropdown/ProfileDropdown";
 import useAppState from "../../../../store/appState/useAppState";
 import {TippyDropdown} from "../../Tippy/Tippy";
 import AppsDropdown from "../../Dropdowns/AppsDropdown/AppsDropdown";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import NotificationDropdown from "../../Dropdowns/NotificationDropdown/NotificationDropdown";
+import NetworkIcon from "../../Icons/NetworkIcon/NetworkIcon";
+import NetworkDropdown from "../../Dropdowns/NetworkDropdown/NetworkDropdown";
 
 const StyledGlobalBar = styled.div`
   height: calc(50px + env(safe-area-inset-top));
@@ -78,13 +80,15 @@ const StyledNotificationDot = styled.div`
   border: 2px solid ${props => props.theme.ui.colors.background.foundation}
 `
 
-type Dropdowns = 'applications' | 'profiles' | 'notifications' | null
+type Dropdowns = 'applications' | 'profiles' | 'notifications' | 'network' | null
 
 const GlobalBar = () => {
     const {
         hasUpdateAvailable,
+        networkStrength,
         setIsDrawerOpen,
         isDrawerOpen,
+        setIsShowOverlay,
         windowInnerSize: {width},
         activeProfile,
         setIsModalOpen,
@@ -92,6 +96,14 @@ const GlobalBar = () => {
     } = useAppState()
 
     const [currentDropdown, setCurrentDropdown] = useState<Dropdowns>(null)
+
+    useEffect(() => {
+        if (currentDropdown) {
+            setIsShowOverlay(true)
+        } else {
+            setIsShowOverlay(false)
+        }
+    }, [currentDropdown])
 
     const setDropdownToggle = (dropdown: Dropdowns) => {
         if (currentDropdown === dropdown) {
@@ -114,9 +126,16 @@ const GlobalBar = () => {
             </StyledBarSectionFullWidth>
             <StyledBarSectionFullWidth/>
             <StyledBarSection>
-                <StyledGlobalButton>
-                    <Plug size={18}/>
-                </StyledGlobalButton>
+                <TippyDropdown
+                    content={<NetworkDropdown/>}
+                    verticalOffset={2}
+                    visible={currentDropdown === 'network'}
+                    onClickOutside={closeDropdown}
+                >
+                    <StyledGlobalItem onClick={() => setDropdownToggle('network')}>
+                        <NetworkIcon strength={networkStrength}/>
+                    </StyledGlobalItem>
+                </TippyDropdown>
 
                 <StyledBarSectionOptional>
 
