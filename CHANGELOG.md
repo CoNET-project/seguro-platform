@@ -1,5 +1,24 @@
 # `seguro-platform` CHANGELOG
 
+## `0.44.0`
+
+### Additions
+
+- Integration of profile functionality.
+    - Adding a new profile
+    - Updating a profile
+- Beginning network UI.
+
+### Changes
+
+- None.
+
+### Fixes
+
+- Fix CSS issues.
+
+---
+
 ## `0.43.0`
 
 ### Additions

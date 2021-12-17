@@ -1,8 +1,7 @@
 import {Story} from '@storybook/react'
 import Card, {CardProps} from './Card'
-import SecurityLock from '../../../../assets/security-lock.svg'
-import {FormattedMessage} from "react-intl";
 import styled from "styled-components";
+import {FormattedMessage} from "react-intl";
 
 const StyledContainer = styled.div`
   min-width: 20rem;
@@ -26,10 +25,8 @@ const Template: Story<CardProps> = (
 export const Primary = Template.bind({})
 
 Primary.args = {
-    visual: SecurityLock,
     contentTitle: 'Seguro Platform',
     contentComponent: (
         <FormattedMessage id='onboarding.verificationText'/>
     )
 }
-

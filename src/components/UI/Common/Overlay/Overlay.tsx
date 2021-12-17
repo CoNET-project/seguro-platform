@@ -75,6 +75,10 @@ const getOverlayText = (type: PlatformLoadingTypes) => {
             return (
                 <FormattedMessage id='platform.overlay.unlocking'/>
             )
+        case 'createProfile':
+            return (
+                <FormattedMessage id='platform.overlay.createProfile'/>
+            )
 
     }
 }

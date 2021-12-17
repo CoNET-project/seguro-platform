@@ -63,6 +63,7 @@ export type Messages = {
     'drawer.support': string,
 
     'platform.overlay.unlocking': string,
+    'platform.overlay.createProfile': string,
 
     'platform.settings.settings': string,
     'platform.settings.language': string,
