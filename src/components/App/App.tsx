@@ -9,6 +9,8 @@ import {OnboardingPageProvider} from '../Providers/OnboardingPageProvider';
 import OnboardingScreen from "./OnboardingScreen/OnboardingScreen";
 import UnlockScreen from "./UnlockScreen/UnlockScreen";
 import LaunchScreen from "./LaunchScreen/LaunchScreen";
+import Logger from '../../utilities/logger/logger'
+
 
 const StyledContainer = styled.div`
   height: 100vh;
@@ -25,6 +27,7 @@ const App = () => {
         isInitialized,
         isInitializing,
         isPlatformLoading,
+        setNetworkStrength,
         setWindowInnerSize,
         setClientProfiles,
         setClientDevices,
@@ -66,6 +69,15 @@ const App = () => {
         })
 
         setIsTouchDevice(detectTouchDevice())
+
+        // Test network connection icon
+
+        setInterval(() => {
+            const rndInt = Math.floor(Math.random() * 4);
+            // @ts-ignore
+            setNetworkStrength(rndInt)
+            Logger.log('setNetworkStrength random number UI test')
+        }, 10000)
 
         window.addEventListener('resize', windowResizeHandler)
         return () => {
