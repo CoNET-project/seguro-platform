@@ -1,5 +1,21 @@
 # `seguro-platform` CHANGELOG
 
+## `0.45.1`
+
+### Additions
+
+- Network status test
+
+### Changes
+
+- None.
+
+### Fixes
+
+- Fix CSS issues.
+
+---
+
 ## `0.45.0`
 
 ### Additions
