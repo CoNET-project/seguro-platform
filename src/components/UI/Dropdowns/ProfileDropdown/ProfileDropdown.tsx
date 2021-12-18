@@ -32,7 +32,6 @@ const StyledProfileDropdownList = styled.div`
 
 const StyledProfileDropdownOptions = styled.div`
   width: 100%;
-
 `
 
 const StyledProfileDropdownOption = styled.button`
