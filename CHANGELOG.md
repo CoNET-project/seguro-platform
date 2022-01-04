@@ -1,5 +1,22 @@
 # `seguro-platform` CHANGELOG
 
+## `0.46`
+
+### Additions
+
+- None.
+
+### Changes
+
+- None.
+
+### Fixes
+
+- Fix CSS issues.
+- Fix global bar active profile update when profile has been editted.
+
+---
+
 ## `0.45.1`
 
 ### Additions

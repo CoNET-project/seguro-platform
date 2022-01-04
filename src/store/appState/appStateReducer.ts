@@ -64,7 +64,7 @@ export type ClientProfiles = {
 
 export type PlatformLoadingTypes = 'unlockPasscode' | 'createProfile' | null
 
-export type NetworkStrength = 0 | 1 | 2 | 3
+export type NetworkStrength = 1 | 2 | 3
 
 type AppStateReducerState = {
     isTouchDevice: boolean,
@@ -203,6 +203,11 @@ const appStateReducer = createReducer(initialState, builder => {
             if (action.payload.profile.keyID) {
                 updatedProfiles[action.payload.profile.keyID] = action.payload.profile
             }
+
+            if (state.activeProfile?.keyID === action.payload.profile.keyID) {
+                state.activeProfile = action.payload.profile
+            }
+
             state.clientProfiles = updatedProfiles
         })
 
