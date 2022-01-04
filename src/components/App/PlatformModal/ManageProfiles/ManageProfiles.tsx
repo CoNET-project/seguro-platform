@@ -6,7 +6,7 @@ import ListItem from "../../../UI/Common/ListItem/ListItem";
 import Image from "../../../UI/Common/Profile/Image/Image";
 import AnonymousAvatar from '../../../../assets/Avatar-anonymous.png'
 import {TippyDropdown} from "../../../UI/Tippy/Tippy";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import {ChevronLeft, VerticalOptions} from "../../../UI/Icons/Icons";
 import {PageNavigatorProvider} from "../../../Providers/PageNavigatorProvider";
 import {usePageNavigator} from "../../../../contexts/pageNavigator/PageNavigatorContext";

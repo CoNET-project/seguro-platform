@@ -71,13 +71,9 @@ const App = () => {
         setIsTouchDevice(detectTouchDevice())
 
         // Test network connection icon
-
-        setInterval(() => {
-            const rndInt = Math.floor(Math.random() * 4);
-            // @ts-ignore
-            setNetworkStrength(rndInt)
-            Logger.log('setNetworkStrength random number UI test')
-        }, 10000)
+        const rndInt = Math.floor(Math.random() * 4) + 1;
+        // @ts-ignore
+        setNetworkStrength(rndInt)
 
         window.addEventListener('resize', windowResizeHandler)
         return () => {
