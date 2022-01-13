@@ -1,6 +1,25 @@
 # `seguro-platform` CHANGELOG
 
-## `0.46`
+## `0.47.0`
+
+### Additions
+
+- None.
+
+### Changes
+
+- Remove electron build processes.
+  - Remove `electron-builder`.
+  - Remove `electron notarize`.
+- Future builds will be in release repository `seguro-platform-release`.
+
+### Fixes
+
+- None.
+
+---
+
+## `0.46.0`
 
 ### Additions
 
