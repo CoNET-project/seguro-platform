@@ -4,7 +4,7 @@ import {
     setHasContainer,
     setIsPlatformLoading,
     setIsUnlocked,
-    setLocale,
+    setLocale, setShowOverlay,
     setTheme,
     setWorkerServiceIsInitialized
 } from '../../store/appState/appStateActions'
@@ -79,6 +79,7 @@ export const initializeWorkerService = async () => {
 export const lockPlatform = () => {
     if (workerService && workerService.passcode && workerService.passcode.lock) {
         workerService.passcode.lock().then(() => {
+            store.dispatch(setShowOverlay(false))
             store.dispatch(setHasContainer(true))
             store.dispatch(setIsUnlocked(false))
         })
