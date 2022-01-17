@@ -50,7 +50,7 @@ const onboardingActions = {
             payload: code
         }
     },
-    setVerificationStatus: (status: VerificationStates | ''): SetVerificationStatus => {
+    setVerificationStatus: (status: VerificationStates | 'FAILURE'): SetVerificationStatus => {
         return {
             type: 'setVerificationStatus',
             payload: status

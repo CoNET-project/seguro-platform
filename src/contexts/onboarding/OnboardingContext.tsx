@@ -1,4 +1,5 @@
 import React from "react";
+import {SeguroNetworkStatus} from "@conet-project/seguro-worker-lib/build/workerBridge";
 
 export type NavigatePageAction = {
     type: 'navigateToPage' | 'nextPage' | 'previousPage',
@@ -36,16 +37,7 @@ type AnimateDirection = -1 | 1
 
 type CurrentPage = [PageIds, AnimateDirection]
 
-export type VerificationStates =
-    'SUCCESS'
-    | 'INCORRECT_CODE'
-    | 'NOT_INTERNET'
-    | 'NOT_STRIPE' // Cannot connect to STRIPE gateway
-    | 'ALL_EMAIL_SERVER_CAN_NOT_CONNECTING'
-    | 'LOCALSERVER_ERROR'
-    | 'WAITING_SEGURO_RESPONSE_TIMEOUT'
-    | 'EMAIL_ACCOUNT_AUTH_ERROR' // Needs to update Seguro Platform software
-    | ''
+export type VerificationStates = SeguroNetworkStatus | 'FAILURE' | null
 
 export
 type State = {

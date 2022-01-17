@@ -94,6 +94,7 @@ const CustomProgressNumberSteps = styled(ProgressNumberSteps)`
   margin-bottom: 20px;
 `
 
+
 const OnboardingScreen = () => {
     const {locale, isTouchDevice, setLocale, setIsUnlocked, setHasContainer} = useAppState()
 
@@ -138,7 +139,13 @@ const OnboardingScreen = () => {
                 }
                 break;
             case currentPage[0] === 'verification':
+                if (!state.onboardingPageData.verificationCode) {
+                    return
+                } else {
+                    break;
+                }
             case currentPage[0] === 'settingUp':
+                break;
         }
         return dispatch(onboardingActions.nextPage())
     }
@@ -167,7 +174,7 @@ const OnboardingScreen = () => {
     return (
         <StyledOnboardingContainer>
             <StyledLogoContainer>
-                <LogoIcon logoColor='white' size={30}/>
+                <LogoIcon size={30}/>
                 <LogoText size={26}/>
             </StyledLogoContainer>
             {
@@ -182,7 +189,8 @@ const OnboardingScreen = () => {
                                     key={currentPage[0]}
                                     locale={locale}
                                     selectLocale={setLocale}
-                                />}
+                                />
+                                }
 
                                 {currentPage[0] === 'setPasscode' &&
                                 <PasscodePage

@@ -8,7 +8,7 @@ import {
     setTheme,
     setWorkerServiceIsInitialized
 } from '../../store/appState/appStateActions'
-import {ContainerData} from "@conet-project/seguro-worker-lib/build/workerBridge";
+import {ContainerData, SeguroNetworkStatus} from "@conet-project/seguro-worker-lib/build/workerBridge";
 import logger from "../../utilities/logger/logger";
 import {Theme} from "../../theme/types";
 import {Locale} from "../../localization/types";
@@ -110,6 +110,7 @@ export const unlockPasscode = ({passcode, progress}: PasscodeFunctionParams): Pr
             const [status] = await workerService.passcode.testPasscode(passcode, progress)
 
             switch (status) {
+
                 case 'SUCCESS':
                     resolve(status)
                     break;
@@ -119,6 +120,15 @@ export const unlockPasscode = ({passcode, progress}: PasscodeFunctionParams): Pr
             }
         }
         store.dispatch(setIsPlatformLoading(null))
+    })
+)
+
+export const verifyInvitation = (code: string): Promise<SeguroNetworkStatus | 'FAILURE'> => (
+    new Promise<SeguroNetworkStatus | 'FAILURE'>((resolve) => {
+        if (workerService.SeguroNetwork.invitation) {
+            return resolve(workerService.SeguroNetwork.invitation(code))
+        }
+        return resolve('FAILURE')
     })
 )
 
