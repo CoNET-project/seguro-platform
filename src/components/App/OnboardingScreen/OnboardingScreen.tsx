@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import {AnimatePresence} from "framer-motion"
 import useAppState from "../../../store/appState/useAppState";
 import {useOnboardingPageNavigator} from "../../../contexts/onboarding/OnboardingContext";
-import {createPasscode} from "../../../services/workerService/workerService";
+import {createPasscode, deletePasscode, getWorkerService} from "../../../services/workerService/workerService";
 import {LogoIcon, LogoText} from "../../UI/Logo/Logo";
 import {screenWidth} from "../../UI/screenSizes";
 import SelectLanguagePage from "./SelectLanguagePage/SelectLanguagePage";
@@ -11,7 +11,7 @@ import PasscodePage from './PasscodePage/PasscodePage';
 import {FormattedMessage} from 'react-intl';
 import {ChevronLeft, ChevronRight} from "../../UI/Icons/Icons";
 import ProgressNumberSteps from "../../UI/Progress/ProgressNumberSteps/ProgressNumberSteps";
-import {ReactNode, useState} from "react";
+import {ReactNode, useEffect, useState} from "react";
 import VerificationPage from "./VerificationPage/VerificationPage";
 import SettingUpPage from "./SettingUpPage/SettingUpPage";
 
@@ -94,8 +94,9 @@ const CustomProgressNumberSteps = styled(ProgressNumberSteps)`
   margin-bottom: 20px;
 `
 
+
 const OnboardingScreen = () => {
-    const {locale, isTouchDevice, setLocale, setIsUnlocked, setHasContainer} = useAppState()
+    const {locale, isTouchDevice, setLocale, setIsUnlocked, setHasContainer, hasContainer} = useAppState()
 
     const pages = ['language', 'setPasscode', 'confirmPasscode', 'verification']
 
@@ -105,6 +106,16 @@ const OnboardingScreen = () => {
     const currentStep = pages.indexOf(state.currentPage[0]) + 1
 
     const [error, setError] = useState<ReactNode | null>(null)
+
+    useEffect(() => {
+        if (hasContainer) {
+            deletePasscode().then((status) => {
+                if (status === 'SUCCESS') {
+                    return setHasContainer(false)
+                }
+            })
+        }
+    }, [])
 
     const previousPageHandler = () => {
         switch (true) {
@@ -138,7 +149,13 @@ const OnboardingScreen = () => {
                 }
                 break;
             case currentPage[0] === 'verification':
+                if (!state.onboardingPageData.verificationCode) {
+                    return
+                } else {
+                    break;
+                }
             case currentPage[0] === 'settingUp':
+                break;
         }
         return dispatch(onboardingActions.nextPage())
     }
@@ -167,7 +184,7 @@ const OnboardingScreen = () => {
     return (
         <StyledOnboardingContainer>
             <StyledLogoContainer>
-                <LogoIcon logoColor='white' size={30}/>
+                <LogoIcon size={30}/>
                 <LogoText size={26}/>
             </StyledLogoContainer>
             {
@@ -182,7 +199,8 @@ const OnboardingScreen = () => {
                                     key={currentPage[0]}
                                     locale={locale}
                                     selectLocale={setLocale}
-                                />}
+                                />
+                                }
 
                                 {currentPage[0] === 'setPasscode' &&
                                 <PasscodePage

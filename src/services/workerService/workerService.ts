@@ -8,7 +8,7 @@ import {
     setTheme,
     setWorkerServiceIsInitialized
 } from '../../store/appState/appStateActions'
-import {ContainerData} from "@conet-project/seguro-worker-lib/build/workerBridge";
+import {ContainerData, SeguroNetworkStatus} from "@conet-project/seguro-worker-lib/build/workerBridge";
 import logger from "../../utilities/logger/logger";
 import {Theme} from "../../theme/types";
 import {Locale} from "../../localization/types";
@@ -86,6 +86,10 @@ export const lockPlatform = () => {
     }
 }
 
+export const hasPasscode = () => workerService.passcode.status === 'LOCKED' || workerService.passcode.status === 'UNLOCKED'
+
+export const isVerified = () => workerService.SeguroNetwork.SeguroStatus !== 'INIT'
+
 export const createPasscode = ({passcode, progress}: PasscodeFunctionParams): Promise<PasscodeResolves> => (
     new Promise<PasscodeResolves>(async (resolve) => {
         if (workerService.passcode.createPasscode) {
@@ -110,6 +114,7 @@ export const unlockPasscode = ({passcode, progress}: PasscodeFunctionParams): Pr
             const [status] = await workerService.passcode.testPasscode(passcode, progress)
 
             switch (status) {
+
                 case 'SUCCESS':
                     resolve(status)
                     break;
@@ -119,6 +124,28 @@ export const unlockPasscode = ({passcode, progress}: PasscodeFunctionParams): Pr
             }
         }
         store.dispatch(setIsPlatformLoading(null))
+    })
+)
+
+export const deletePasscode = (): Promise<PasscodeResolves> => (
+    new Promise<PasscodeResolves>(async (resolve) => {
+        if (workerService.passcode.deletePasscode) {
+            const [status] = await workerService.passcode.deletePasscode()
+
+            if (status === 'SUCCESS') {
+                return resolve('SUCCESS')
+            }
+            return resolve('FAILURE')
+        }
+    })
+)
+
+export const verifyInvitation = (code: string): Promise<SeguroNetworkStatus | 'FAILURE'> => (
+    new Promise<SeguroNetworkStatus | 'FAILURE'>((resolve) => {
+        if (workerService.SeguroNetwork.invitation) {
+            return resolve(workerService.SeguroNetwork.invitation(code))
+        }
+        return resolve('FAILURE')
     })
 )
 

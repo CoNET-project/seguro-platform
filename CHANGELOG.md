@@ -1,5 +1,22 @@
 # `seguro-platform` CHANGELOG
 
+## `0.49.0`
+
+### Additions
+
+- Verification integration.
+- Add generic verification error and localization.
+
+### Changes
+
+- Onboarding view switch statement.
+
+### Fixes
+
+- Fix issue with having container but not verified, changed flow accordingly.
+
+---
+
 ## `0.47.0`
 
 ### Additions

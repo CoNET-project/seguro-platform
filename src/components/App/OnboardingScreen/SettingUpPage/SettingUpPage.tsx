@@ -15,7 +15,12 @@ import Button from "../../../UI/Common/Button/Button";
 import onboardingActions from "../../../../contexts/onboarding/onboardingActions";
 import AlertDialog, {AlertDialogActions} from "../../../UI/Common/AlertDialog/AlertDialog";
 import {Warning} from "../../../UI/Icons/Icons";
-import {createPasscode, Preferences, savePreferences} from "../../../../services/workerService/workerService";
+import {
+    createPasscode,
+    getWorkerService, hasPasscode,
+    Preferences,
+    savePreferences, verifyInvitation
+} from "../../../../services/workerService/workerService";
 
 const StyledContainer = styled.div`
   width: 100%;
@@ -101,9 +106,8 @@ const SettingUpPage = () => {
     const {state, dispatch} = useOnboardingPageNavigator()
 
     const setupStateText = [
-        'Contacting Seguro',
-        'Verifying invitation code',
-        'Creating container'
+        'Creating container',
+        'Verifying invitation code'
     ]
 
     const [setupState, setSetupState] = useState<number>(1)
@@ -111,45 +115,43 @@ const SettingUpPage = () => {
     const verificationErrorModal = () => {
         const verificationStatus = state.onboardingPageData?.verificationStatus
 
-        let dialogMessage: ReactNode | string = <FormattedMessage id='onboarding.verification.modal.button.retry'/>
+        if (verificationStatus === 'SUCCESS') {
+            return
+        }
+
+        let dialogMessage: ReactNode | string = <FormattedMessage id='onboarding.verification.error.generic'/>
         const dialogActions: AlertDialogActions = {
             confirm: {
                 action: () => {
+                    dispatch(onboardingActions.setVerificationCode(''))
+                    dispatch(onboardingActions.setVerificationStatus(null))
+                    dispatch(onboardingActions.navigateToPage('verification'))
                 }
             }
         }
 
         switch (verificationStatus) {
-            case 'WAITING_SEGURO_RESPONSE_TIMEOUT':
-                dialogMessage = <FormattedMessage id='onboarding.verification.error.timeout'/>
+            case 'LOCAL_SERVER_ERROR':
+                dialogMessage = <FormattedMessage id='onboarding.verification.error.localserver'/>
                 break;
-            case 'NOT_INTERNET':
+            case 'NO_INTERNET':
                 dialogMessage = <FormattedMessage id='onboarding.verification.error.internet'/>
                 break;
             case 'NOT_STRIPE':
                 dialogMessage = <FormattedMessage id='onboarding.verification.error.stripe'/>
                 break;
-            case 'ALL_EMAIL_SERVER_CAN_NOT_CONNECTING':
-                dialogMessage = <FormattedMessage id='onboarding.verification.error.email'/>
+            case 'SEGURO_ERROR' || 'TIMEOUT_SEGURO_NETWORK':
+                dialogMessage = <FormattedMessage id='onboarding.verification.error.timeout'/>
                 break;
-            case 'LOCALSERVER_ERROR':
-                dialogMessage = <FormattedMessage id='onboarding.verification.error.localserver'/>
-                break;
-            case 'INCORRECT_CODE':
+            case 'INVITATION_CODE_ERROR' || 'FAILURE':
                 dialogMessage = <FormattedMessage id='onboarding.verification.error.incorrect'/>
                 dialogActions.confirm.text = <FormattedMessage id='onboarding.verification.modal.button.newCode'/>
                 dialogActions.confirm.action = () => {
                     dispatch(onboardingActions.setVerificationCode(''))
-                    dispatch(onboardingActions.setVerificationStatus(''))
+                    dispatch(onboardingActions.setVerificationStatus(null))
                     dispatch(onboardingActions.navigateToPage('verification'))
                 }
                 break;
-            case 'EMAIL_ACCOUNT_AUTH_ERROR':
-                dialogMessage = <FormattedMessage id='onboarding.verification.error.authError'/>
-                dialogActions.confirm.text = <FormattedMessage id='onboarding.verification.modal.button.update'/>
-                break;
-            default:
-                return
         }
 
         return (
@@ -160,22 +162,38 @@ const SettingUpPage = () => {
     useEffect(() => {
         switch (setupState) {
             case 1:
-            case 2:
-                setTimeout(() => {
+                if (!hasPasscode()) {
+                    createPasscode({
+                        passcode: state.onboardingPageData.passcode, progress: () => {
+                        }
+                    }).then((status) => {
+                        if (status === "SUCCESS") {
+                            setSetupState(prevState => prevState + 1)
+                        }
+                    })
+                } else {
                     setSetupState(prevState => prevState + 1)
-                }, 2000)
+                }
+                break
+            case 2:
+                if (state.onboardingPageData.verificationCode) {
+                    verifyInvitation(state.onboardingPageData.verificationCode).then((status) => {
+                        dispatch(onboardingActions.setVerificationStatus(status))
+                    })
+                }
+                // Verification
                 break;
             case 3:
-                createPasscode({
-                    passcode: state.onboardingPageData.passcode, progress: () => {
-                    }
-                }).then((status) => {
-                    if (status === "SUCCESS") {
-                        storePreferences().then(() => {
-                            dispatch(onboardingActions.setVerificationStatus('SUCCESS'))
-                        })
-                    }
-                })
+                // createPasscode({
+                //     passcode: state.onboardingPageData.passcode, progress: () => {
+                //     }
+                // }).then((status) => {
+                //     if (status === "SUCCESS") {
+                //         storePreferences().then(() => {
+                //             dispatch(onboardingActions.setVerificationStatus('SUCCESS'))
+                //         })
+                //     }
+                // })
                 break;
             default:
                 break;
