@@ -9,8 +9,7 @@ import {OnboardingPageProvider} from '../Providers/OnboardingPageProvider';
 import OnboardingScreen from "./OnboardingScreen/OnboardingScreen";
 import UnlockScreen from "./UnlockScreen/UnlockScreen";
 import LaunchScreen from "./LaunchScreen/LaunchScreen";
-import Logger from '../../utilities/logger/logger'
-
+import {deletePasscode, initializeWorkerService, isVerified} from "../../services/workerService/workerService";
 
 const StyledContainer = styled.div`
   height: 100vh;
@@ -92,11 +91,16 @@ const App = () => {
                 return (
                     <MainScreen/>
                 )
-            case hasContainer && !isUnlocked:
+            case hasContainer && !isUnlocked && isVerified():
                 return (
                     <UnlockScreen/>
                 )
-            case !hasContainer && !isUnlocked:
+            case (!hasContainer && !isUnlocked) || !isVerified():
+                deletePasscode().then((status) => {
+                    if (status === 'SUCCESS') {
+                        initializeWorkerService()
+                    }
+                })
                 return (
                     <OnboardingPageProvider
                         existingPages={['language', 'setPasscode', 'confirmPasscode', 'verification', 'settingUp']}>

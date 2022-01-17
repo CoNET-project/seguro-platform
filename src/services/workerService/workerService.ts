@@ -86,7 +86,9 @@ export const lockPlatform = () => {
     }
 }
 
-export const hasPasscode = () => workerService.passcode.deletePasscode
+export const hasPasscode = () => workerService.passcode.status === 'LOCKED' || workerService.passcode.status === 'UNLOCKED'
+
+export const isVerified = () => workerService.SeguroNetwork.SeguroStatus !== 'INIT'
 
 export const createPasscode = ({passcode, progress}: PasscodeFunctionParams): Promise<PasscodeResolves> => (
     new Promise<PasscodeResolves>(async (resolve) => {
@@ -122,6 +124,19 @@ export const unlockPasscode = ({passcode, progress}: PasscodeFunctionParams): Pr
             }
         }
         store.dispatch(setIsPlatformLoading(null))
+    })
+)
+
+export const deletePasscode = (): Promise<PasscodeResolves> => (
+    new Promise<PasscodeResolves>(async (resolve) => {
+        if (workerService.passcode.deletePasscode) {
+            const [status] = await workerService.passcode.deletePasscode()
+
+            if (status === 'SUCCESS') {
+                return resolve('SUCCESS')
+            }
+            return resolve('FAILURE')
+        }
     })
 )
 
