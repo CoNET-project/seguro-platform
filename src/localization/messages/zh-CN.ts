@@ -16,6 +16,7 @@ const zh_CN: Messages = {
     'onboarding.verification.waiting': '等待 Seguro 的验证响应...',
     'onboarding.verification.finished': '验证完成!',
 
+    'onboarding.verification.error.generic': 'Seguro 无法验证您的代码，请重试!',
     'onboarding.verification.error.incorrect': '您的验证码有误，请重试！',
     'onboarding.verification.error.internet': 'Seguro 无法连接到互联网 请再试一次！',
     'onboarding.verification.error.stripe': 'Seguro 无法连接到 STRIPE 请再试一次！',

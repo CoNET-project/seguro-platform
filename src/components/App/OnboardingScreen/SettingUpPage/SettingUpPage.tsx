@@ -119,7 +119,7 @@ const SettingUpPage = () => {
             return
         }
 
-        let dialogMessage: ReactNode | string = <FormattedMessage id='onboarding.verification.modal.button.retry'/>
+        let dialogMessage: ReactNode | string = <FormattedMessage id='onboarding.verification.error.generic'/>
         const dialogActions: AlertDialogActions = {
             confirm: {
                 action: () => {

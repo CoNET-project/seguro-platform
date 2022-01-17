@@ -5,6 +5,7 @@
 ### Additions
 
 - Verification integration.
+- Add generic verification error and localization.
 
 ### Changes
 

@@ -20,6 +20,7 @@ export type Messages = {
     'onboarding.verification.waiting': string,
     'onboarding.verification.finished': string,
 
+    'onboarding.verification.error.generic': string,
     'onboarding.verification.error.incorrect': string,
     'onboarding.verification.error.internet': string,
     'onboarding.verification.error.stripe': string,
