@@ -10,6 +10,7 @@ import {
 import {Locale} from '../localization/types'
 import {Theme} from '../theme/types'
 import {CurrentFocusPanel} from "../store/appState/appStateReducer";
+import {getWorkerService} from "../services/workerService/workerService";
 
 export const enableDebugCommands = () => {
 
@@ -20,6 +21,10 @@ export const enableDebugCommands = () => {
 
             getStoreState() {
                 return store.getState()
+            },
+
+            getSeguroObject() {
+                return getWorkerService().SeguroNetwork
             },
 
             setTheme(theme: Theme) {

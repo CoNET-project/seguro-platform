@@ -86,6 +86,8 @@ export const lockPlatform = () => {
     }
 }
 
+export const hasPasscode = () => workerService.passcode.deletePasscode
+
 export const createPasscode = ({passcode, progress}: PasscodeFunctionParams): Promise<PasscodeResolves> => (
     new Promise<PasscodeResolves>(async (resolve) => {
         if (workerService.passcode.createPasscode) {

@@ -17,7 +17,7 @@ import AlertDialog, {AlertDialogActions} from "../../../UI/Common/AlertDialog/Al
 import {Warning} from "../../../UI/Icons/Icons";
 import {
     createPasscode,
-    getWorkerService,
+    getWorkerService, hasPasscode,
     Preferences,
     savePreferences, verifyInvitation
 } from "../../../../services/workerService/workerService";
@@ -115,7 +115,9 @@ const SettingUpPage = () => {
     const verificationErrorModal = () => {
         const verificationStatus = state.onboardingPageData?.verificationStatus
 
-        console.log(verificationStatus)
+        if (verificationStatus === 'SUCCESS') {
+            return
+        }
 
         let dialogMessage: ReactNode | string = <FormattedMessage id='onboarding.verification.modal.button.retry'/>
         const dialogActions: AlertDialogActions = {
@@ -160,14 +162,18 @@ const SettingUpPage = () => {
     useEffect(() => {
         switch (setupState) {
             case 1:
-                createPasscode({
-                    passcode: state.onboardingPageData.passcode, progress: () => {
-                    }
-                }).then((status) => {
-                    if (status === "SUCCESS") {
-                        setSetupState(prevState => prevState + 1)
-                    }
-                })
+                if (!hasPasscode()) {
+                    createPasscode({
+                        passcode: state.onboardingPageData.passcode, progress: () => {
+                        }
+                    }).then((status) => {
+                        if (status === "SUCCESS") {
+                            setSetupState(prevState => prevState + 1)
+                        }
+                    })
+                } else {
+                    setSetupState(prevState => prevState + 1)
+                }
                 break
             case 2:
                 if (state.onboardingPageData.verificationCode) {
