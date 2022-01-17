@@ -18,7 +18,7 @@ const en_US: Messages = {
     'onboarding.verification.waiting': 'Waiting on verification response...',
     'onboarding.verification.finished': 'Verification complete!',
 
-    'onboarding.verification.error.generic': 'Oh no! Seguro was unable to verify your code, please try again!',
+    'onboarding.verification.error.generic': 'Seguro was unable to verify your code, please try again!',
     'onboarding.verification.error.incorrect': 'Your verification code is incorrect, please try again!',
     'onboarding.verification.error.internet': 'Seguro cannot connect to internet. Please try again!',
     'onboarding.verification.error.stripe': 'Seguro cannot connect to STRIPE. Please try again!',
