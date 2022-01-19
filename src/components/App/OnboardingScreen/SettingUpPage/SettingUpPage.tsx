@@ -18,7 +18,6 @@ import {Warning} from "../../../UI/Icons/Icons";
 import {
     createPasscode,
     hasPasscode,
-    Preferences,
     savePreferences,
     verifyInvitation
 } from "../../../../services/workerService/workerService";
@@ -169,7 +168,9 @@ const SettingUpPage = () => {
                         }
                     }).then((status) => {
                         if (status === "SUCCESS") {
-                            setSetupState(prevState => prevState + 1)
+                            savePreferences({theme: theme, language: locale}).then((status) => {
+                                setSetupState(prevState => prevState + 1)
+                            })
                         }
                     })
                 } else {
@@ -184,30 +185,10 @@ const SettingUpPage = () => {
                 }
                 // Verification
                 break;
-            case 3:
-                // createPasscode({
-                //     passcode: state.onboardingPageData.passcode, progress: () => {
-                //     }
-                // }).then((status) => {
-                //     if (status === "SUCCESS") {
-                //         storePreferences().then(() => {
-                //             dispatch(onboardingActions.setVerificationStatus('SUCCESS'))
-                //         })
-                //     }
-                // })
-                break;
             default:
                 break;
         }
     }, [setupState])
-
-    const storePreferences = () => {
-        const preferences: Preferences = {
-            theme: theme,
-            language: locale
-        }
-        return savePreferences(preferences)
-    }
 
     const onSetupComplete = () => {
         setHasContainer(true)
@@ -290,7 +271,7 @@ const SettingUpPage = () => {
             </StyledPageUpper>
             <StyledPageLower>
                 {state.onboardingPageData?.verificationStatus === 'SUCCESS'
-                    ? <Button onClick={onSetupComplete}>Enter Seguro</Button>
+                    ? <Button onClick={onSetupComplete}><FormattedMessage id='onboarding.setup.enter.button'/></Button>
                     : <ProgressSteps
                         currentStage={setupState}
                         numberOfSteps={setupStateText.length}

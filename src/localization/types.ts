@@ -35,6 +35,7 @@ export type Messages = {
 
     'onboarding.setup.create.container': string,
     'onboarding.setup.verify.code': string,
+    'onboarding.setup.enter.button': string,
 
     'onboarding.carousel.title.seguro-platform': string,
     'onboarding.carousel.title.no-ip-tracking': string,
@@ -57,6 +58,11 @@ export type Messages = {
 
     'keypad.cancel': string,
     'keypad.unlock': string
+
+    'platform.unlock.button.forgot': string,
+    'platform.dialog.delete.message': string,
+    'platform.dialog.delete.button.cancel': string,
+    'platform.dialog.delete.button.confirm': string,
 
     'tabnavigator.tab.chats': string,
     'tabnavigator.tab.contacts': string,

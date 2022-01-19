@@ -33,6 +33,7 @@ const en_US: Messages = {
 
     'onboarding.setup.create.container': 'Creating container...',
     'onboarding.setup.verify.code': 'Verifying invitation code...',
+    'onboarding.setup.enter.button': 'Enter Seguro',
 
     'onboarding.carousel.title.seguro-platform': 'Seguro Platform',
     'onboarding.carousel.title.no-ip-tracking': 'No IP tracking',
@@ -52,6 +53,11 @@ const en_US: Messages = {
     'button.unlock': 'Unlock',
 
     'unlock.title': 'Enter your Seguro passcode',
+
+    'platform.unlock.button.forgot': 'Forgot your passcode?',
+    'platform.dialog.delete.message': 'Deleting your container is a permanent action, you will need to create a new passcode with a new invitation code.',
+    'platform.dialog.delete.button.cancel': 'Cancel',
+    'platform.dialog.delete.button.confirm': 'Delete',
 
     'keypad.cancel': 'Cancel',
     'keypad.unlock': 'Unlock',

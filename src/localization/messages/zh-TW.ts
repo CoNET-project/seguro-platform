@@ -32,6 +32,7 @@ const zh_CN: Messages = {
 
     'onboarding.setup.create.container': '正在創建帳戶...',
     'onboarding.setup.verify.code': '驗證邀請碼...',
+    'onboarding.setup.enter.button': '進入 Seguro',
 
     'onboarding.carousel.title.seguro-platform': 'Seguro 平台',
     'onboarding.carousel.title.no-ip-tracking': '無 IP 追踪',
@@ -51,6 +52,11 @@ const zh_CN: Messages = {
     'button.unlock': '開鎖',
 
     'unlock.title': '輸入您的 Seguro 密碼',
+    
+    'platform.unlock.button.forgot': '忘記密碼了？',
+    'platform.dialog.delete.message': '刪除容器是一項永久性操作，您需要使用新的邀請碼創建新密碼',
+    'platform.dialog.delete.button.cancel': '取消',
+    'platform.dialog.delete.button.confirm': '刪除',
 
     'keypad.cancel': '取消',
     'keypad.unlock': '解鎖',

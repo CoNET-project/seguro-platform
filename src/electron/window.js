@@ -1,16 +1,17 @@
-const { app, BrowserWindow } = require('electron')
+const {app, BrowserWindow} = require('electron')
+const path = require("path");
 
 const isDevelopmentMode = process.env.NODE_ENV === 'development'
 
 const createWindow = async ({
-    clientServerPort
-}) => {
+                                clientServerPort
+                            }) => {
     await app.whenReady()
 
     const window = new BrowserWindow({
         width: 1280,
         height: 720,
-        show: false
+        show: false,
     })
 
     const mobileWindow = new BrowserWindow({

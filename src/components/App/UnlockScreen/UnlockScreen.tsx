@@ -5,10 +5,12 @@ import PasscodeInput from "../../UI/Inputs/PasscodeInput/Touch/PasscodeInput";
 import {IoMdLock} from "react-icons/all";
 import Icon from "../../UI/Inputs/Icon/Icon";
 import {FormattedMessage} from "react-intl";
-import {unlockPasscode} from "../../../services/workerService/workerService";
+import {checkIsVerified, deletePasscode, unlockPasscode} from "../../../services/workerService/workerService";
 import Button from "../../UI/Common/Button/Button";
 import useAppState from "../../../store/appState/useAppState";
 import VerificationModal from './Verification/Modal';
+import {Warning} from "../../UI/Icons/Icons";
+import AlertDialog, {AlertDialogActions} from "../../UI/Common/AlertDialog/AlertDialog";
 
 const StyledContainer = styled.div`
   height: 100%;
@@ -29,7 +31,15 @@ const StyledContent = styled.div`
 
 const StyledTitle = styled.p`
   margin: 40px 0 20px 0;
-  color: ${props => props.theme.ui.colors.text.primary}
+  color: ${props => props.theme.ui.colors.text.primary};
+`
+
+const StyledForgotText = styled.a`
+  margin-top: 20px;
+  font-size: calc(${props => props.theme.ui.fontSizes.narrow.sm} - 1px);
+  color: ${props => props.theme.ui.colors.primary};
+  text-decoration: underline;
+  cursor: pointer;
 `
 
 const StyledUnlockButton = styled(Button)`
@@ -43,6 +53,7 @@ const UnlockScreen = () => {
     const [isIncorrect, setIsIncorrect] = useState(false)
     const [isInvalid, setIsInvalid] = useState(false)
     const [needVerification, setNeedVerification] = useState(false)
+    const [showDeleteModal, setShowDeleteModal] = useState(false)
 
     const clearError = () => {
         setIsIncorrect(false)
@@ -73,14 +84,32 @@ const UnlockScreen = () => {
             }
         }).then(status => {
             if (status === 'SUCCESS') {
-                // if (checkIsVerified()) {
-                //     return setIsUnlocked(true)
-                // }
+                if (checkIsVerified()) {
+                    return setIsUnlocked(true)
+                }
                 return setNeedVerification(true)
             } else if (status === 'FAILURE') {
                 setIsIncorrect(true)
             }
         })
+    }
+
+    const deleteConfirmationActions: AlertDialogActions = {
+        cancel: {
+            action: () => setShowDeleteModal(false),
+            text: <FormattedMessage id='platform.dialog.delete.button.cancel'/>
+        },
+        confirm: {
+            action: () => {
+                deletePasscode().then(() => {
+                    if (typeof window !== undefined) {
+                        window.location.reload()
+                    }
+                })
+            },
+            text: <FormattedMessage id='platform.dialog.delete.button.confirm'/>,
+            isDangerous: true
+        }
     }
 
     return (
@@ -93,7 +122,16 @@ const UnlockScreen = () => {
                 <StyledUnlockButton onClick={unlockClickHandler}>
                     <FormattedMessage id='button.unlock'/>
                 </StyledUnlockButton>
+                <StyledForgotText onClick={() => setShowDeleteModal(true)}>
+                    <FormattedMessage id='platform.unlock.button.forgot'/>
+                </StyledForgotText>
             </StyledContent>
+            {
+                showDeleteModal && (
+                    <AlertDialog message={<FormattedMessage id='platform.dialog.delete.message'/>} icon={<Warning/>}
+                                 dialogActions={deleteConfirmationActions}/>
+                )
+            }
             {
                 needVerification && <VerificationModal/>
             }

@@ -46,7 +46,7 @@ const StyledInput = styled.input<StyledInputProps>`
   overflow: hidden;
   text-align: center;
   border: ${props => props.error ? '2px' : '1px'} solid ${props => props.error ? props.theme.ui.colors.dangerous : props.theme.ui.colors.border.light};
-  padding: 10px 50px;
+  padding: 10px 15px;
   border-radius: 5px;
   color: ${props => props.theme.ui.colors.text.primary};
   background-color: rgba(200, 200, 200, 0.1);
@@ -56,16 +56,6 @@ const StyledInput = styled.input<StyledInputProps>`
     outline: none;
     border: ${props => !props.error && '2px solid rgba(0, 0, 0, 0.5)'}
   }
-`
-
-const StyledInputRightComponent = styled.span`
-  position: absolute;
-  top: 0;
-  right: 20px;
-  bottom: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 `
 
 const StyledInputLabel = styled.label`
@@ -128,11 +118,6 @@ const Input = ({value, setValue, nextStepHandler, previousStepHandler, error, in
                              defaultValue={value} ref={inputRef}
                              fontSize={inputOptions?.inputType === 'password' ? 'lg' : 'sm'}
                              placeholder={inputOptions?.placeholder}/>
-                {inputOptions?.inputRightComponent && (
-                    <StyledInputRightComponent>
-                        {inputOptions?.inputRightComponent}
-                    </StyledInputRightComponent>
-                )}
             </StyledInputWrapper>
             {
                 error !== undefined && typeof error !== "boolean" && (

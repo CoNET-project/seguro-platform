@@ -4,7 +4,6 @@ import useAppState from "../../../../store/appState/useAppState";
 import React, {useEffect, useState} from "react";
 import VerificationAnimation from "../../../../assets/lottie/verification.json";
 import LottieAnimation from "../../../UI/Lottie/Lottie";
-import {CircleCheck} from "../../../UI/Icons/Icons";
 import {isUUIDv4} from "../../../../utilities/utilities";
 import Input from "../../../UI/Inputs/Input/Input";
 import Button from "../../../UI/Common/Button/Button";
@@ -133,13 +132,6 @@ const VerificationModal = () => {
                                setVerificationError(false)
                            }}
                            error={!!verificationError}
-                           inputOptions={{
-                               inputRightComponent: (
-                                   <CircleCheck
-                                       size={20}
-                                       valid={isUUIDv4(verificationCode)}
-                                   />)
-                           }}
                     />
                     <StyledErrorMessage>
                         {
