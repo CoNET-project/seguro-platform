@@ -1,5 +1,4 @@
 const {app, BrowserWindow} = require('electron')
-const path = require("path");
 
 const isDevelopmentMode = process.env.NODE_ENV === 'development'
 
