@@ -42,9 +42,7 @@ export const onboardingPageReducer = (state: State, action: OnboardingActions): 
                 ...state,
                 currentPage: [newPage, direction]
             }
-        case
-        'setPasscode'
-        :
+        case 'setPasscode':
             return {
                 ...state,
                 onboardingPageData: {
@@ -52,9 +50,7 @@ export const onboardingPageReducer = (state: State, action: OnboardingActions): 
                     passcode: action.payload
                 }
             }
-        case
-        'setConfirmPasscode'
-        :
+        case 'setConfirmPasscode':
             return {
                 ...state,
                 onboardingPageData: {
@@ -62,9 +58,7 @@ export const onboardingPageReducer = (state: State, action: OnboardingActions): 
                     confirmPasscode: action.payload
                 }
             }
-        case
-        'setVerificationCode'
-        :
+        case 'setVerificationCode':
             return {
                 ...state,
                 onboardingPageData: {
@@ -72,9 +66,15 @@ export const onboardingPageReducer = (state: State, action: OnboardingActions): 
                     verificationCode: action.payload
                 }
             }
-        case
-        'setVerificationStatus'
-        :
+        case 'setVerificationCodeError':
+            return {
+                ...state,
+                onboardingPageData: {
+                    ...state.onboardingPageData,
+                    verificationCodeError: action.payload
+                }
+            }
+        case 'setVerificationStatus':
             return {
                 ...state,
                 onboardingPageData: {

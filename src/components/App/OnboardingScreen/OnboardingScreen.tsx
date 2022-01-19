@@ -107,16 +107,6 @@ const OnboardingScreen = () => {
 
     const [error, setError] = useState<ReactNode | null>(null)
 
-    useEffect(() => {
-        if (hasContainer) {
-            deletePasscode().then((status) => {
-                if (status === 'SUCCESS') {
-                    return setHasContainer(false)
-                }
-            })
-        }
-    }, [])
-
     const previousPageHandler = () => {
         switch (true) {
             case currentPage[0] === 'setPasscode':
@@ -149,8 +139,12 @@ const OnboardingScreen = () => {
                 }
                 break;
             case currentPage[0] === 'verification':
-                if (!state.onboardingPageData.verificationCode) {
-                    return
+                if (
+                    !state.onboardingPageData.verificationCode ||
+                    state.onboardingPageData.verificationCode.length < 36 ||
+                    state.onboardingPageData.verificationCode.length > 36
+                ) {
+                    return dispatch(onboardingActions.setVerificationCodeError(true))
                 } else {
                     break;
                 }
@@ -158,27 +152,6 @@ const OnboardingScreen = () => {
                 break;
         }
         return dispatch(onboardingActions.nextPage())
-    }
-
-    // @ts-ignore
-    const confirmationHandler = (): boolean => {
-        if (!state.onboardingPageData?.passcode || !state.onboardingPageData?.confirmPasscode)
-            return false
-
-        if (state.onboardingPageData?.passcode == state.onboardingPageData?.confirmPasscode) {
-            createPasscode({
-                passcode: state.onboardingPageData?.passcode,
-                progress: (progress) => console.log(progress)
-            })
-            return true;
-        }
-
-        return false
-    }
-
-    const setShowMain = () => {
-        setIsUnlocked(true)
-        setHasContainer(true)
     }
 
     return (

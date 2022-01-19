@@ -89,6 +89,7 @@ const VerificationPage = () => {
             <StyledPageContents>
                 <Input value=''
                        setValue={verificationInputHandler}
+                       error={state.onboardingPageData.verificationCodeError}
                        inputOptions={{
                            inputLabel: (
                                <StyledVerificationInputLabel><FormattedMessage id='onboarding.verificationInputLabel'/></StyledVerificationInputLabel>),

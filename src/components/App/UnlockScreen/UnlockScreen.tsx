@@ -8,6 +8,7 @@ import {FormattedMessage} from "react-intl";
 import {unlockPasscode} from "../../../services/workerService/workerService";
 import Button from "../../UI/Common/Button/Button";
 import useAppState from "../../../store/appState/useAppState";
+import VerificationModal from './Verification/Modal';
 
 const StyledContainer = styled.div`
   height: 100%;
@@ -41,6 +42,7 @@ const UnlockScreen = () => {
     const [passcode, setPasscode] = useState("")
     const [isIncorrect, setIsIncorrect] = useState(false)
     const [isInvalid, setIsInvalid] = useState(false)
+    const [needVerification, setNeedVerification] = useState(false)
 
     const clearError = () => {
         setIsIncorrect(false)
@@ -71,7 +73,10 @@ const UnlockScreen = () => {
             }
         }).then(status => {
             if (status === 'SUCCESS') {
-                setIsUnlocked(true)
+                // if (checkIsVerified()) {
+                //     return setIsUnlocked(true)
+                // }
+                return setNeedVerification(true)
             } else if (status === 'FAILURE') {
                 setIsIncorrect(true)
             }
@@ -89,6 +94,9 @@ const UnlockScreen = () => {
                     <FormattedMessage id='button.unlock'/>
                 </StyledUnlockButton>
             </StyledContent>
+            {
+                needVerification && <VerificationModal/>
+            }
         </StyledContainer>
     )
 }

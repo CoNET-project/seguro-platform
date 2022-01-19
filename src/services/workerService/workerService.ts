@@ -4,7 +4,8 @@ import {
     setHasContainer,
     setIsPlatformLoading,
     setIsUnlocked,
-    setLocale, setShowOverlay,
+    setLocale,
+    setShowOverlay,
     setTheme,
     setWorkerServiceIsInitialized
 } from '../../store/appState/appStateActions'
@@ -88,7 +89,7 @@ export const lockPlatform = () => {
 
 export const hasPasscode = () => workerService.passcode.status === 'LOCKED' || workerService.passcode.status === 'UNLOCKED'
 
-export const isVerified = () => workerService.SeguroNetwork.SeguroStatus !== 'INIT'
+export const checkIsVerified = () => workerService.SeguroNetwork.SeguroStatus !== 'INIT'
 
 export const createPasscode = ({passcode, progress}: PasscodeFunctionParams): Promise<PasscodeResolves> => (
     new Promise<PasscodeResolves>(async (resolve) => {
@@ -114,7 +115,6 @@ export const unlockPasscode = ({passcode, progress}: PasscodeFunctionParams): Pr
             const [status] = await workerService.passcode.testPasscode(passcode, progress)
 
             switch (status) {
-
                 case 'SUCCESS':
                     resolve(status)
                     break;

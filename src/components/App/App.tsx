@@ -1,4 +1,5 @@
 import {useEffect} from 'react'
+import {ipcRenderer} from 'electron'
 import styled from 'styled-components'
 import useAppState from '../../store/appState/useAppState'
 import {detectTouchDevice, detectWindowInnerSize} from "../../utilities/utilities";
@@ -9,7 +10,7 @@ import {OnboardingPageProvider} from '../Providers/OnboardingPageProvider';
 import OnboardingScreen from "./OnboardingScreen/OnboardingScreen";
 import UnlockScreen from "./UnlockScreen/UnlockScreen";
 import LaunchScreen from "./LaunchScreen/LaunchScreen";
-import {deletePasscode, initializeWorkerService, isVerified} from "../../services/workerService/workerService";
+import {deletePasscode, initializeWorkerService} from "../../services/workerService/workerService";
 
 const StyledContainer = styled.div`
   height: 100vh;
@@ -91,16 +92,11 @@ const App = () => {
                 return (
                     <MainScreen/>
                 )
-            case hasContainer && !isUnlocked && isVerified():
+            case hasContainer && !isUnlocked:
                 return (
                     <UnlockScreen/>
                 )
-            case (!hasContainer && !isUnlocked) || !isVerified():
-                deletePasscode().then((status) => {
-                    if (status === 'SUCCESS') {
-                        initializeWorkerService()
-                    }
-                })
+            case !hasContainer && !isUnlocked:
                 return (
                     <OnboardingPageProvider
                         existingPages={['language', 'setPasscode', 'confirmPasscode', 'verification', 'settingUp']}>

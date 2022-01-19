@@ -17,9 +17,10 @@ import AlertDialog, {AlertDialogActions} from "../../../UI/Common/AlertDialog/Al
 import {Warning} from "../../../UI/Icons/Icons";
 import {
     createPasscode,
-    getWorkerService, hasPasscode,
+    hasPasscode,
     Preferences,
-    savePreferences, verifyInvitation
+    savePreferences,
+    verifyInvitation
 } from "../../../../services/workerService/workerService";
 
 const StyledContainer = styled.div`
@@ -106,8 +107,8 @@ const SettingUpPage = () => {
     const {state, dispatch} = useOnboardingPageNavigator()
 
     const setupStateText = [
-        'Creating container',
-        'Verifying invitation code'
+        <FormattedMessage id='onboarding.setup.create.container'/>,
+        <FormattedMessage id='onboarding.setup.verify.code'/>
     ]
 
     const [setupState, setSetupState] = useState<number>(1)

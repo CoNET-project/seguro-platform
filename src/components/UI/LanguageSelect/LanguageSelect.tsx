@@ -15,7 +15,6 @@ const StyledContainer = styled.ul`
   //max-height: 540px;
   border-radius: 5px;
   overflow-y: auto;
-  background-color: ${props => props.theme.ui.colors.background.foundation};
   -webkit-touch-callout: none; /* iOS Safari */
   -webkit-user-select: none; /* Safari */
   -moz-user-select: none; /* Old versions of Firefox */

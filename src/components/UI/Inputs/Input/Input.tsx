@@ -7,7 +7,7 @@ type InputProps = {
     setValue: (inputValue: string) => void,
     nextStepHandler?: () => void,
     previousStepHandler?: () => void,
-    error?: ReactNode | string,
+    error?: ReactNode | string | boolean,
     inputOptions?: {
         inputLabel?: ReactNode | string,
         inputType?: 'password' | 'text',
@@ -17,7 +17,8 @@ type InputProps = {
 }
 
 type StyledInputProps = {
-    fontSize: 'sm' | 'lg'
+    fontSize: 'sm' | 'lg',
+    error?: boolean
 }
 
 type StyledInputContainerProps = {
@@ -41,10 +42,10 @@ const StyledInput = styled.input<StyledInputProps>`
   min-width: 100%;
   width: 100%;
   height: 4rem;
-  font-size: ${props => props.fontSize === 'lg' ? '34px' : '20px'};
+  font-size: ${props => props.fontSize === 'lg' ? props.theme.ui.fontSizes.narrow.lg : props.theme.ui.fontSizes.narrow.md};
   overflow: hidden;
   text-align: center;
-  border: 1px solid rgba(0, 0, 0, 0.1);
+  border: ${props => props.error ? '2px' : '1px'} solid ${props => props.error ? props.theme.ui.colors.dangerous : props.theme.ui.colors.border.light};
   padding: 10px 50px;
   border-radius: 5px;
   color: ${props => props.theme.ui.colors.text.primary};
@@ -53,7 +54,7 @@ const StyledInput = styled.input<StyledInputProps>`
 
   &:focus {
     outline: none;
-    border: 1px solid rgba(0, 0, 0, 0.5)
+    border: ${props => !props.error && '2px solid rgba(0, 0, 0, 0.5)'}
   }
 `
 
@@ -123,6 +124,7 @@ const Input = ({value, setValue, nextStepHandler, previousStepHandler, error, in
             <StyledInputWrapper>
                 <StyledInput type={inputOptions?.inputType || 'text'} onChange={inputChangeHandler}
                              onKeyUp={keyUpHandler}
+                             error={!!error}
                              defaultValue={value} ref={inputRef}
                              fontSize={inputOptions?.inputType === 'password' ? 'lg' : 'sm'}
                              placeholder={inputOptions?.placeholder}/>
@@ -133,7 +135,7 @@ const Input = ({value, setValue, nextStepHandler, previousStepHandler, error, in
                 )}
             </StyledInputWrapper>
             {
-                error !== undefined && (
+                error !== undefined && typeof error !== "boolean" && (
                     <StyledInputError show={!!error}>
                         <Warning/>
                         <StyledInputErrorText>

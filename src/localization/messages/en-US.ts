@@ -31,6 +31,9 @@ const en_US: Messages = {
     'onboarding.verification.modal.button.update': 'Update',
     'onboarding.verification.modal.button.newCode': 'Enter new verification code',
 
+    'onboarding.setup.create.container': 'Creating container...',
+    'onboarding.setup.verify.code': 'Verifying invitation code...',
+
     'onboarding.carousel.title.seguro-platform': 'Seguro Platform',
     'onboarding.carousel.title.no-ip-tracking': 'No IP tracking',
     'onboarding.carousel.title.decentralized': 'Decentralized',
@@ -63,6 +66,10 @@ const en_US: Messages = {
 
     'platform.overlay.unlocking': 'Unlocking platform...',
     'platform.overlay.createProfile': 'Creating profile...',
+
+    'platform.modal.verification.title': 'Verification Required',
+    'platform.modal.verification.text': 'Please enter your 36 character invitation code to complete your setup.',
+    'platform.modal.verification.button': "Verify",
 
     'platform.network.status.label': 'Current Status:',
     'platform.network.status.low': 'Low',

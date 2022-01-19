@@ -29,6 +29,10 @@ const zh_CN: Messages = {
     'onboarding.verification.modal.button.update': '更新 Seguro',
     'onboarding.verification.modal.button.newCode': '輸入新的驗證碼',
 
+
+    'onboarding.setup.create.container': '正在創建帳戶...',
+    'onboarding.setup.verify.code': '驗證邀請碼...',
+
     'onboarding.carousel.title.seguro-platform': 'Seguro 平台',
     'onboarding.carousel.title.no-ip-tracking': '無 IP 追踪',
     'onboarding.carousel.title.decentralized': '去中心化',
@@ -62,11 +66,16 @@ const zh_CN: Messages = {
     'platform.overlay.unlocking': '解鎖平台...',
     'platform.overlay.createProfile': '創建配置文件...',
 
+
+    'platform.modal.verification.title': '需要驗證',
+    'platform.modal.verification.text': '請輸入您的 36 字符邀請碼以完成設置。',
+    'platform.modal.verification.button': "開始驗證",
+
     'platform.network.status.label': '当前状态：',
     'platform.network.status.low': '低',
     'platform.network.status.medium': '中',
     'platform.network.status.high': '高',
-    
+
     'platform.network.status.description.low': '您與 Seguro 的連接似乎需要延遲。請檢查您的互聯網連接是否穩定。數據可能比平時下降得更多。',
     'platform.network.status.description.medium': '您與 Seguro 的連接具有中等延遲。您的數據可能會意外丟失或無法發送，請檢查您的互聯網連接。',
     'platform.network.status.description.high': '您與 Seguro 的連接非常好，您應該能夠快速接收和發送數據！',

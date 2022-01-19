@@ -18,6 +18,7 @@ const StyledProgressNumberBlock = styled.div<StyledProgressNumberBlockProps>`
   content: '';
   background-color: ${props => props.isActive ? props.theme.ui.colors.primary : props.theme.ui.colors.background.elevationOne};
   transition: background-color 300ms ease-in-out;
+  border: 1px solid ${props => props.theme.ui.colors.border.light}
 `
 
 export type ProgressNumberStepsProps = {
