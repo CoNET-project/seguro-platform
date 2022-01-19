@@ -29,6 +29,10 @@ const zh_CN: Messages = {
     'onboarding.verification.modal.button.update': '更新 Seguro',
     'onboarding.verification.modal.button.newCode': '输入新的验证码',
 
+    'onboarding.setup.create.container': '正在创建帐户...',
+    'onboarding.setup.verify.code': '验证邀请码...',
+    'onboarding.setup.enter.button': '进入 Seguro',
+
     'onboarding.carousel.title.seguro-platform': 'Seguro 平台',
     'onboarding.carousel.title.no-ip-tracking': '无 IP 跟踪',
     'onboarding.carousel.title.decentralized': '去中心化',
@@ -47,6 +51,11 @@ const zh_CN: Messages = {
     'button.unlock': '开锁',
 
     'unlock.title': '输入您的 Seguro 密码',
+    
+    'platform.unlock.button.forgot': '忘记密码了？',
+    'platform.dialog.delete.message': '删除您的容器是不同的操作，需要使用新的邀请码创建新密码',
+    'platform.dialog.delete.button.cancel': '取消',
+    'platform.dialog.delete.button.confirm': '删除',
 
     'keypad.cancel': '取消',
     'keypad.unlock': '解锁',
@@ -61,6 +70,10 @@ const zh_CN: Messages = {
 
     'platform.overlay.unlocking': '解锁平台...',
     'platform.overlay.createProfile': '创建配置文件...',
+
+    'platform.modal.verification.title': '需要验证',
+    'platform.modal.verification.text': '请输入您的 36 字符邀请码以完成设置。',
+    'platform.modal.verification.button': "开始验证",
 
     'platform.network.status.label': '当前状态：',
     'platform.network.status.low': '低',

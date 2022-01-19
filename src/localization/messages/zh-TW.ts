@@ -29,6 +29,11 @@ const zh_CN: Messages = {
     'onboarding.verification.modal.button.update': '更新 Seguro',
     'onboarding.verification.modal.button.newCode': '輸入新的驗證碼',
 
+
+    'onboarding.setup.create.container': '正在創建帳戶...',
+    'onboarding.setup.verify.code': '驗證邀請碼...',
+    'onboarding.setup.enter.button': '進入 Seguro',
+
     'onboarding.carousel.title.seguro-platform': 'Seguro 平台',
     'onboarding.carousel.title.no-ip-tracking': '無 IP 追踪',
     'onboarding.carousel.title.decentralized': '去中心化',
@@ -47,6 +52,11 @@ const zh_CN: Messages = {
     'button.unlock': '開鎖',
 
     'unlock.title': '輸入您的 Seguro 密碼',
+    
+    'platform.unlock.button.forgot': '忘記密碼了？',
+    'platform.dialog.delete.message': '刪除容器是一項永久性操作，您需要使用新的邀請碼創建新密碼',
+    'platform.dialog.delete.button.cancel': '取消',
+    'platform.dialog.delete.button.confirm': '刪除',
 
     'keypad.cancel': '取消',
     'keypad.unlock': '解鎖',
@@ -62,11 +72,16 @@ const zh_CN: Messages = {
     'platform.overlay.unlocking': '解鎖平台...',
     'platform.overlay.createProfile': '創建配置文件...',
 
+
+    'platform.modal.verification.title': '需要驗證',
+    'platform.modal.verification.text': '請輸入您的 36 字符邀請碼以完成設置。',
+    'platform.modal.verification.button': "開始驗證",
+
     'platform.network.status.label': '当前状态：',
     'platform.network.status.low': '低',
     'platform.network.status.medium': '中',
     'platform.network.status.high': '高',
-    
+
     'platform.network.status.description.low': '您與 Seguro 的連接似乎需要延遲。請檢查您的互聯網連接是否穩定。數據可能比平時下降得更多。',
     'platform.network.status.description.medium': '您與 Seguro 的連接具有中等延遲。您的數據可能會意外丟失或無法發送，請檢查您的互聯網連接。',
     'platform.network.status.description.high': '您與 Seguro 的連接非常好，您應該能夠快速接收和發送數據！',

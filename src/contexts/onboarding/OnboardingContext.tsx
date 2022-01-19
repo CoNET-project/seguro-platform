@@ -18,6 +18,11 @@ export type SetVerificationCode = {
     payload: string
 }
 
+export type SetVerificationCodeError = {
+    type: 'setVerificationCodeError',
+    payload: boolean
+}
+
 export type SetVerificationStatus = {
     type: 'setVerificationStatus',
     payload: VerificationStates
@@ -27,6 +32,7 @@ export type OnboardingActions =
     NavigatePageAction
     | SetOnboardingDataAction
     | SetVerificationCode
+    | SetVerificationCodeError
     | SetVerificationStatus
 
 export type Dispatch = (action: OnboardingActions) => void
@@ -47,6 +53,7 @@ type State = {
         passcode: string,
         confirmPasscode: string,
         verificationCode?: string,
+        verificationCodeError?: boolean,
         verificationStatus?: VerificationStates
     }
 }

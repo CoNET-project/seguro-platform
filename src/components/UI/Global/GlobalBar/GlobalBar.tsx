@@ -65,6 +65,12 @@ const StyledGlobalButton = styled.button`
   }
 `
 
+const StyledGlobalButton_NoHover = styled(StyledGlobalButton)`
+  &:hover {
+    background-color: initial;
+  }
+`
+
 const StyledGlobalItem = styled(StyledGlobalButton)`
 `
 
@@ -120,9 +126,9 @@ const GlobalBar = () => {
     return (
         <StyledGlobalBar>
             <StyledBarSectionFullWidth>
-                <StyledGlobalButton onClick={() => setIsDrawerOpen(!isDrawerOpen)} disabled={width >= sizes.medium}>
+                <StyledGlobalButton_NoHover onClick={() => setIsDrawerOpen(!isDrawerOpen)} disabled={width >= sizes.medium}>
                     <LogoIcon size={24}/>
-                </StyledGlobalButton>
+                </StyledGlobalButton_NoHover>
             </StyledBarSectionFullWidth>
             <StyledBarSectionFullWidth/>
             <StyledBarSection>

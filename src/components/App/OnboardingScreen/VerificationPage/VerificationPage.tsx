@@ -4,8 +4,6 @@ import onboardingActions from "../../../../contexts/onboarding/onboardingActions
 import {useOnboardingPageNavigator} from "../../../../contexts/onboarding/OnboardingContext";
 import Input from "../../../UI/Inputs/Input/Input";
 import {FormattedMessage} from "react-intl";
-import {CircleCheck} from "../../../UI/Icons/Icons";
-import {isUUIDv4} from "../../../../utilities/utilities";
 import LottieAnimation from '../../../UI/Lottie/Lottie';
 import VerificationAnimation from '../../../../assets/lottie/verification.json'
 import {screenWidth} from "../../../UI/screenSizes";
@@ -89,14 +87,10 @@ const VerificationPage = () => {
             <StyledPageContents>
                 <Input value=''
                        setValue={verificationInputHandler}
+                       error={state.onboardingPageData.verificationCodeError}
                        inputOptions={{
                            inputLabel: (
-                               <StyledVerificationInputLabel><FormattedMessage id='onboarding.verificationInputLabel'/></StyledVerificationInputLabel>),
-                           inputRightComponent: (
-                               <CircleCheck
-                                   size={20}
-                                   valid={isUUIDv4(state.onboardingPageData?.verificationCode)}
-                               />)
+                               <StyledVerificationInputLabel><FormattedMessage id='onboarding.verificationInputLabel'/></StyledVerificationInputLabel>)
                        }}
                 />
                 <StyledVerificationText>

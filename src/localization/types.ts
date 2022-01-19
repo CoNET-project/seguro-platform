@@ -33,6 +33,10 @@ export type Messages = {
     'onboarding.verification.modal.button.update': string,
     'onboarding.verification.modal.button.newCode': string
 
+    'onboarding.setup.create.container': string,
+    'onboarding.setup.verify.code': string,
+    'onboarding.setup.enter.button': string,
+
     'onboarding.carousel.title.seguro-platform': string,
     'onboarding.carousel.title.no-ip-tracking': string,
     'onboarding.carousel.title.decentralized': string,
@@ -55,6 +59,11 @@ export type Messages = {
     'keypad.cancel': string,
     'keypad.unlock': string
 
+    'platform.unlock.button.forgot': string,
+    'platform.dialog.delete.message': string,
+    'platform.dialog.delete.button.cancel': string,
+    'platform.dialog.delete.button.confirm': string,
+
     'tabnavigator.tab.chats': string,
     'tabnavigator.tab.contacts': string,
     'tabnavigator.tab.settings': string,
@@ -65,6 +74,10 @@ export type Messages = {
 
     'platform.overlay.unlocking': string,
     'platform.overlay.createProfile': string,
+
+    'platform.modal.verification.title': string,
+    'platform.modal.verification.text': string,
+    'platform.modal.verification.button': string,
 
     'platform.network.status.label': string,
     'platform.network.status.low': string,

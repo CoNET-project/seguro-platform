@@ -2,7 +2,7 @@ import {
     NavigatePageAction,
     PageIds,
     SetOnboardingDataAction,
-    SetVerificationCode,
+    SetVerificationCode, SetVerificationCodeError,
     SetVerificationStatus,
     VerificationStates
 } from "./OnboardingContext";
@@ -54,6 +54,12 @@ const onboardingActions = {
         return {
             type: 'setVerificationStatus',
             payload: status
+        }
+    },
+    setVerificationCodeError: (isError: boolean): SetVerificationCodeError => {
+        return {
+            type: 'setVerificationCodeError',
+            payload: isError
         }
     }
 }

@@ -6,7 +6,8 @@ import useAppState from "../../../../store/appState/useAppState";
 export type AlertDialogActions = {
     confirm: {
         text?: ReactNode | string,
-        action: () => void
+        action: () => void,
+        isDangerous?: boolean
     },
     cancel?: {
         text?: ReactNode | string,
@@ -65,15 +66,25 @@ const StyledDialogButtons = styled.div`
   border-top: 1px solid rgba(0, 0, 0, 0.1);
 `
 
-const StyledDialogButton = styled.button`
+type StyledDialogButtonProps = {
+    isDangerous?: boolean
+}
+
+const StyledDialogButton = styled.button<StyledDialogButtonProps>`
   width: 100%;
   padding: 12.5px 0;
   border: none;
-  color: ${props => props.theme.ui.colors.secondary};
-  background-color: ${props => props.theme.ui.colors.background.foundation};
+  color: ${props => props.isDangerous ? props.theme.ui.colors.text.inverted : props.theme.ui.colors.secondary};
+  background-color: ${props => props.isDangerous ? props.theme.ui.colors.dangerous : props.theme.ui.colors.background.foundation};
+  font-size: ${props => props.theme.ui.fontSizes.narrow.sm};
+  cursor: pointer;
 
   &:active {
     background-color: ${props => props.theme.ui.colors.background.foundation};
+  }
+
+  &:not(:first-of-type) {
+    border-left: 1px solid rgba(0, 0, 0, 0.05);
   }
 `
 
@@ -105,7 +116,9 @@ const AlertDialog = ({icon, message, dialogActions}: AlertDialogProps) => {
                     )
                 }
                 <StyledDialogButton
-                    onClick={dialogActions.confirm.action}>{dialogActions.confirm.text || 'OK'}
+                    onClick={dialogActions.confirm.action}
+                    isDangerous={dialogActions.confirm.isDangerous}
+                >{dialogActions.confirm.text || 'Ok'}
                 </StyledDialogButton>
             </StyledDialogButtons>
         </StyledDialog>

@@ -35,7 +35,7 @@ const StyledKeyButton = styled.button`
   justify-content: center;
   align-items: center;
   border: 1px solid rgba(0, 0, 0, 0.1);
-  background-color: ${props => props.theme.ui.colors.background.foundation};
+  background-color: ${props => props.theme.ui.colors.background.elevationOne};
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
   position: relative;
   z-index: 2;

@@ -33,7 +33,7 @@ const StyledAddProfileContent = styled.div`
   justify-content: center;
   color: ${props => props.theme.ui.colors.text.primary};
   @media (${screenWidth.mediumWidth}) {
-    margin: 20px;
+    //margin: 20px;
   }
 `
 

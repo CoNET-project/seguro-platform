@@ -7,7 +7,7 @@ type InputProps = {
     setValue: (inputValue: string) => void,
     nextStepHandler?: () => void,
     previousStepHandler?: () => void,
-    error?: ReactNode | string,
+    error?: ReactNode | string | boolean,
     inputOptions?: {
         inputLabel?: ReactNode | string,
         inputType?: 'password' | 'text',
@@ -17,7 +17,8 @@ type InputProps = {
 }
 
 type StyledInputProps = {
-    fontSize: 'sm' | 'lg'
+    fontSize: 'sm' | 'lg',
+    error?: boolean
 }
 
 type StyledInputContainerProps = {
@@ -41,11 +42,11 @@ const StyledInput = styled.input<StyledInputProps>`
   min-width: 100%;
   width: 100%;
   height: 4rem;
-  font-size: ${props => props.fontSize === 'lg' ? '34px' : '20px'};
+  font-size: ${props => props.fontSize === 'lg' ? props.theme.ui.fontSizes.narrow.lg : props.theme.ui.fontSizes.narrow.md};
   overflow: hidden;
   text-align: center;
-  border: 1px solid rgba(0, 0, 0, 0.1);
-  padding: 10px 50px;
+  border: ${props => props.error ? '2px' : '1px'} solid ${props => props.error ? props.theme.ui.colors.dangerous : props.theme.ui.colors.border.light};
+  padding: 10px 15px;
   border-radius: 5px;
   color: ${props => props.theme.ui.colors.text.primary};
   background-color: rgba(200, 200, 200, 0.1);
@@ -53,18 +54,8 @@ const StyledInput = styled.input<StyledInputProps>`
 
   &:focus {
     outline: none;
-    border: 1px solid rgba(0, 0, 0, 0.5)
+    border: ${props => !props.error && '2px solid rgba(0, 0, 0, 0.5)'}
   }
-`
-
-const StyledInputRightComponent = styled.span`
-  position: absolute;
-  top: 0;
-  right: 20px;
-  bottom: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 `
 
 const StyledInputLabel = styled.label`
@@ -123,17 +114,13 @@ const Input = ({value, setValue, nextStepHandler, previousStepHandler, error, in
             <StyledInputWrapper>
                 <StyledInput type={inputOptions?.inputType || 'text'} onChange={inputChangeHandler}
                              onKeyUp={keyUpHandler}
+                             error={!!error}
                              defaultValue={value} ref={inputRef}
                              fontSize={inputOptions?.inputType === 'password' ? 'lg' : 'sm'}
                              placeholder={inputOptions?.placeholder}/>
-                {inputOptions?.inputRightComponent && (
-                    <StyledInputRightComponent>
-                        {inputOptions?.inputRightComponent}
-                    </StyledInputRightComponent>
-                )}
             </StyledInputWrapper>
             {
-                error !== undefined && (
+                error !== undefined && typeof error !== "boolean" && (
                     <StyledInputError show={!!error}>
                         <Warning/>
                         <StyledInputErrorText>

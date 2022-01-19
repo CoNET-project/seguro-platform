@@ -26,6 +26,8 @@ const StyledPageHeader = styled.div`
 const StyledPageContents = styled.div`
   width: 100%;
   height: 20rem;
+  background-color: ${props => props.theme.ui.colors.background.elevationOne};
+  border-radius: 5px;
 `
 
 

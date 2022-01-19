@@ -69,6 +69,10 @@ export const Overlay = ({show, onClick}: OverlayProps) => {
     return <StyledOverlay show={show} onClick={onClick}/>
 }
 
+export const OverlayDarker = ({show, onClick}: OverlayProps) => {
+    return <StyledOverlay show={show} onClick={onClick}/>
+}
+
 const getOverlayText = (type: PlatformLoadingTypes) => {
     switch (type) {
         case 'unlockPasscode':

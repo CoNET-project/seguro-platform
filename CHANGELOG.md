@@ -6,10 +6,13 @@
 
 - Verification integration.
 - Add generic verification error and localization.
+- Add delete passcode container button on `unlockScreen`.
+- Add additional localization across application.
 
 ### Changes
 
 - Onboarding view switch statement.
+- Minor adjustments to styles and flow of onboarding/unlocking.
 
 ### Fixes
 
@@ -26,8 +29,8 @@
 ### Changes
 
 - Remove electron build processes.
-  - Remove `electron-builder`.
-  - Remove `electron notarize`.
+    - Remove `electron-builder`.
+    - Remove `electron notarize`.
 - Future builds will be in release repository `seguro-platform-release`.
 
 ### Fixes
