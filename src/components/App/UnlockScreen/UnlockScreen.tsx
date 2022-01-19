@@ -90,6 +90,7 @@ const UnlockScreen = () => {
                 return setNeedVerification(true)
             } else if (status === 'FAILURE') {
                 setIsIncorrect(true)
+                setPasscode('')
             }
         })
     }
