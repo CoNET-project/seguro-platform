@@ -2,7 +2,7 @@ import {motion} from 'framer-motion'
 import styled from 'styled-components'
 import {ReactNode} from "react";
 import {pageTransitionVariants} from "../../Motion/Variants/Variants";
-import {screenWidth} from '../../screenSizes';
+import {screenHeight, screenWidth} from '../../screenSizes';
 
 export type PageTransitionProps = {
     pageTransition: {
@@ -34,7 +34,10 @@ const StyledPage = styled(motion.div)`
   @media (${screenWidth.mediumWidth}) {
       //background-color: ${props => props.theme.ui.colors.background.elevationOne};
     width: 40rem;
-    height: 40rem;
+
+    @media (${screenHeight.mediumHeight}) {
+      height: 40rem;
+    }
   }
 `
 

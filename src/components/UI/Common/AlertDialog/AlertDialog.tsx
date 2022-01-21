@@ -30,7 +30,7 @@ const StyledDialog = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  background-color: ${props => props.theme.ui.colors.background.foundation};
+  background-color: #F8F8F8;
   align-items: center;
   margin: auto;
   border: 1px solid rgba(0, 0, 0, 0.15);

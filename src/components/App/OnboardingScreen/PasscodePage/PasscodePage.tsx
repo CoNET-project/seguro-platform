@@ -6,6 +6,7 @@ import Page from '../../../UI/Layout/Page/Page';
 import Input from "../../../UI/Inputs/Input/Input";
 import PasscodeTouchInput from "../../../UI/Inputs/PasscodeInput/Touch/PasscodeInput";
 import {screenWidth} from '../../../UI/screenSizes';
+import useAppState from "../../../../store/appState/useAppState";
 
 type PasscodeProps = {
     title: string | ReactNode,
@@ -98,7 +99,7 @@ const PasscodePage = ({
                 </StyledPageHeader>
                 <StyledContents>
                     {
-                        true ? (
+                        useAppState().isTouchDevice ? (
                             <>
                                 <PasscodeTouchInput value={passcode}/>
                                 <StyledPageError>

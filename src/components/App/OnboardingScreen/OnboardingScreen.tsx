@@ -2,7 +2,6 @@ import styled from 'styled-components';
 import {AnimatePresence} from "framer-motion"
 import useAppState from "../../../store/appState/useAppState";
 import {useOnboardingPageNavigator} from "../../../contexts/onboarding/OnboardingContext";
-import {createPasscode, deletePasscode, getWorkerService} from "../../../services/workerService/workerService";
 import {LogoIcon, LogoText} from "../../UI/Logo/Logo";
 import {screenWidth} from "../../UI/screenSizes";
 import SelectLanguagePage from "./SelectLanguagePage/SelectLanguagePage";
@@ -11,7 +10,7 @@ import PasscodePage from './PasscodePage/PasscodePage';
 import {FormattedMessage} from 'react-intl';
 import {ChevronLeft, ChevronRight} from "../../UI/Icons/Icons";
 import ProgressNumberSteps from "../../UI/Progress/ProgressNumberSteps/ProgressNumberSteps";
-import {ReactNode, useEffect, useState} from "react";
+import {ReactNode, useState} from "react";
 import VerificationPage from "./VerificationPage/VerificationPage";
 import SettingUpPage from "./SettingUpPage/SettingUpPage";
 
@@ -168,41 +167,41 @@ const OnboardingScreen = () => {
                         <StyledOnboardingContent>
                             <AnimatePresence custom={currentPage[1]} exitBeforeEnter>
                                 {currentPage[0] === 'language' &&
-                                <SelectLanguagePage
-                                    key={currentPage[0]}
-                                    locale={locale}
-                                    selectLocale={setLocale}
-                                />
+                                    <SelectLanguagePage
+                                        key={currentPage[0]}
+                                        locale={locale}
+                                        selectLocale={setLocale}
+                                    />
                                 }
 
                                 {currentPage[0] === 'setPasscode' &&
-                                <PasscodePage
-                                    key={currentPage[0]}
-                                    title={<FormattedMessage id='onboarding.setPasscodeTitle'/>}
-                                    passcode={onboardingPageData?.passcode || ''}
-                                    setPasscode={(passcode: string) => {
-                                        setError(null)
-                                        dispatch(onboardingActions.setPasscode(passcode))
-                                    }}
-                                    error={error}
-                                />}
+                                    <PasscodePage
+                                        key={currentPage[0]}
+                                        title={<FormattedMessage id='onboarding.setPasscodeTitle'/>}
+                                        passcode={onboardingPageData?.passcode || ''}
+                                        setPasscode={(passcode: string) => {
+                                            setError(null)
+                                            dispatch(onboardingActions.setPasscode(passcode))
+                                        }}
+                                        error={error}
+                                    />}
 
                                 {currentPage[0] === 'confirmPasscode' &&
-                                <PasscodePage
-                                    key={currentPage[0]}
-                                    title={<FormattedMessage id='onboarding.confirmPasscodeTitle'/>}
-                                    passcode={onboardingPageData?.confirmPasscode || ''}
-                                    setPasscode={(passcode: string) => {
-                                        setError(null)
-                                        dispatch(onboardingActions.setConfirmPasscode(passcode))
-                                    }}
-                                    error={error}
-                                />}
+                                    <PasscodePage
+                                        key={currentPage[0]}
+                                        title={<FormattedMessage id='onboarding.confirmPasscodeTitle'/>}
+                                        passcode={onboardingPageData?.confirmPasscode || ''}
+                                        setPasscode={(passcode: string) => {
+                                            setError(null)
+                                            dispatch(onboardingActions.setConfirmPasscode(passcode))
+                                        }}
+                                        error={error}
+                                    />}
 
                                 {currentPage[0] === 'verification' &&
-                                <VerificationPage
-                                    key={currentPage[0]}
-                                />}
+                                    <VerificationPage
+                                        key={currentPage[0]}
+                                    />}
                             </AnimatePresence>
                         </StyledOnboardingContent>
                         <CustomProgressNumberSteps steps={pages.length} currentActiveStep={currentStep}/>

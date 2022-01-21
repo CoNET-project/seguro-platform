@@ -39,7 +39,6 @@ const StyledInput = styled.input<StyledInputProps>`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  min-width: 100%;
   width: 100%;
   height: 4rem;
   font-size: ${props => props.fontSize === 'lg' ? props.theme.ui.fontSizes.narrow.lg : props.theme.ui.fontSizes.narrow.md};
@@ -51,6 +50,7 @@ const StyledInput = styled.input<StyledInputProps>`
   color: ${props => props.theme.ui.colors.text.primary};
   background-color: rgba(200, 200, 200, 0.1);
   margin: 20px 0;
+  min-width: 300px;
 
   &:focus {
     outline: none;

@@ -4,7 +4,7 @@ import {Locale} from "../../../../localization/types";
 import Page from '../../../UI/Layout/Page/Page';
 import {useOnboardingPageNavigator} from "../../../../contexts/onboarding/OnboardingContext";
 import {FormattedMessage} from "react-intl";
-import {screenWidth} from '../../../UI/screenSizes';
+import {screenHeight, screenWidth} from '../../../UI/screenSizes';
 
 const StyledContainer = styled.div`
   width: 100%;
@@ -25,9 +25,12 @@ const StyledPageHeader = styled.div`
 
 const StyledPageContents = styled.div`
   width: 100%;
-  height: 20rem;
   background-color: ${props => props.theme.ui.colors.background.elevationOne};
   border-radius: 5px;
+
+  @media (${screenHeight.tallHeight}) {
+    height: 20rem;
+  }
 `
 
 

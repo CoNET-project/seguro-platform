@@ -1,5 +1,21 @@
 # `seguro-platform` CHANGELOG
 
+## `0.49.1`
+
+### Additions
+
+- None.
+
+### Changes
+
+- Put previous passcode input back for non-touch devices.
+
+### Fixes
+
+- None.
+
+---
+
 ## `0.49.0`
 
 ### Additions

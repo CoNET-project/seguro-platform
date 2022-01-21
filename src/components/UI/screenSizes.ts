@@ -9,3 +9,9 @@ export const screenWidth = {
     mediumWidth: `min-width: ${sizes.medium}px`,
     narrowWidth: `min-width: ${sizes.narrow}px`
 }
+
+export const screenHeight = {
+    tallHeight: `min-height: 1080px`,
+    mediumHeight: `min-height: 850px`,
+    shortHeight: `min-height: 500px`
+}
