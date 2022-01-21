@@ -11,6 +11,7 @@ import useAppState from "../../../store/appState/useAppState";
 import VerificationModal from './Verification/Modal';
 import {Warning} from "../../UI/Icons/Icons";
 import AlertDialog, {AlertDialogActions} from "../../UI/Common/AlertDialog/AlertDialog";
+import Input from "../../UI/Inputs/Input/Input";
 
 const StyledContainer = styled.div`
   height: 100%;
@@ -27,6 +28,10 @@ const StyledContent = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+`
+
+const StyledFlexContainer = styled.div`
+  flex: 1;
 `
 
 const StyledTitle = styled.p`
@@ -48,7 +53,7 @@ const StyledUnlockButton = styled(Button)`
 
 const UnlockScreen = () => {
 
-    const {setIsUnlocked} = useAppState()
+    const {setIsUnlocked, isTouchDevice} = useAppState()
     const [passcode, setPasscode] = useState("")
     const [isIncorrect, setIsIncorrect] = useState(false)
     const [isInvalid, setIsInvalid] = useState(false)
@@ -118,8 +123,27 @@ const UnlockScreen = () => {
             <StyledContent>
                 <Icon component={<IoMdLock size={46}/>}/>
                 <StyledTitle><FormattedMessage id="unlock.title"/></StyledTitle>
-                <PasscodeInput value={passcode}/>
-                <Keypad {...keypadClickHandlers}/>
+                {
+                    isTouchDevice ? (
+                        <>
+                            <PasscodeInput value={passcode}/>
+                            <Keypad {...keypadClickHandlers}/>
+                        </>
+                    ) : (
+                        (
+                            <StyledFlexContainer>
+                                <Input value={passcode}
+                                       inputOptions={{
+                                           inputType: 'password'
+                                       }
+                                       }
+                                       setValue={(val) => {
+                                           setPasscode(val)
+                                       }}/>
+                            </StyledFlexContainer>
+                        )
+                    )
+                }
                 <StyledUnlockButton onClick={unlockClickHandler}>
                     <FormattedMessage id='button.unlock'/>
                 </StyledUnlockButton>
