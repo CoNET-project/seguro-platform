@@ -1,5 +1,22 @@
 # `seguro-platform` CHANGELOG
 
+## `0.49.2`
+
+### Additions
+
+- None.
+
+### Changes
+
+- Put previous passcode input back for non-touch devices.
+
+### Fixes
+
+- Maximize electron app on click when minimized.
+- Style issues (Still need to address completely).
+
+---
+
 ## `0.49.1`
 
 ### Additions

@@ -16,7 +16,7 @@ import SeguroDrive from "./SettingSections/SeguroDrive";
 import DeviceList from "./SettingSections/DeviceList";
 import SubscriptionPlan from "./SettingSections/SubscriptionPlan";
 import DeviceCodes from "./SettingSections/DeviceCodes";
-import {screenWidth} from "../../../UI/screenSizes";
+import {screenHeight, screenWidth} from "../../../UI/screenSizes";
 import Passcode from "./Pages/Passcode";
 import DeviceDelete from "./Pages/DeviceDelete";
 import {useState} from "react";
@@ -30,6 +30,10 @@ const StyledSettingsContainer = styled.div`
 
   @media (${screenWidth.wideWidth}) {
     min-width: 50rem;
+  }
+
+  @media (${screenHeight.shortHeight}) and (${screenWidth.narrowWidth}) {
+    height: 35rem;
   }
 `
 

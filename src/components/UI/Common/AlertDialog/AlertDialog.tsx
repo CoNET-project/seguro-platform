@@ -74,8 +74,8 @@ const StyledDialogButton = styled.button<StyledDialogButtonProps>`
   width: 100%;
   padding: 12.5px 0;
   border: none;
-  color: ${props => props.isDangerous ? props.theme.ui.colors.text.inverted : props.theme.ui.colors.secondary};
-  background-color: ${props => props.isDangerous ? props.theme.ui.colors.dangerous : props.theme.ui.colors.background.foundation};
+  color: ${props => props.isDangerous ? 'white' : props.theme.ui.colors.secondary};
+  background-color: ${props => props.isDangerous ? props.theme.ui.colors.dangerous : '#F8F8F8'};
   font-size: ${props => props.theme.ui.fontSizes.narrow.sm};
   cursor: pointer;
 
