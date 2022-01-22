@@ -1,6 +1,6 @@
 # `seguro-platform` CHANGELOG
 
-## `0.49.2`
+## `0.50.0`
 
 ### Additions
 
