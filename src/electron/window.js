@@ -2,18 +2,21 @@ const {app, BrowserWindow} = require('electron')
 
 const isDevelopmentMode = process.env.NODE_ENV === 'development'
 
+let mainWindow
+let mobileWindow
+
 const createWindow = async ({
                                 clientServerPort
                             }) => {
     await app.whenReady()
 
-    const window = new BrowserWindow({
+    mainWindow = new BrowserWindow({
         width: 1280,
         height: 720,
         show: false,
     })
 
-    const mobileWindow = new BrowserWindow({
+    mobileWindow = new BrowserWindow({
         width: 320,
         height: 640,
         show: false,
@@ -24,9 +27,9 @@ const createWindow = async ({
 
     try {
         console.log(`loading client index from ${clientServerUrl}`)
-        await window.loadURL(clientServerUrl)
+        await mainWindow.loadURL(clientServerUrl)
         if (isDevelopmentMode) {
-            window.webContents.openDevTools()
+            mainWindow.webContents.openDevTools()
             await mobileWindow.loadURL(clientServerUrl)
             mobileWindow.webContents.openDevTools()
         }
@@ -46,11 +49,12 @@ const createWindow = async ({
             createWindow({
                 clientServerPort
             })
+        } else {
+            mainWindow.restore()
         }
     })
 
-    window.maximize()
-    window.show()
+    mainWindow.show()
 
     if (isDevelopmentMode) {
         mobileWindow.show()

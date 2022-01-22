@@ -155,7 +155,7 @@ const SettingUpPage = () => {
         }
 
         return (
-            <AlertDialog message={dialogMessage} icon={<Warning/>} dialogActions={dialogActions}/>
+            <AlertDialog message={dialogMessage} icon={<Warning color="black"/>} dialogActions={dialogActions}/>
         )
     }
 

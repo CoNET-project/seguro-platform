@@ -153,7 +153,8 @@ const UnlockScreen = () => {
             </StyledContent>
             {
                 showDeleteModal && (
-                    <AlertDialog message={<FormattedMessage id='platform.dialog.delete.message'/>} icon={<Warning/>}
+                    <AlertDialog message={<FormattedMessage id='platform.dialog.delete.message'/>}
+                                 icon={<Warning color="black"/>}
                                  dialogActions={deleteConfirmationActions}/>
                 )
             }
