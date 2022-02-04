@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import {AnimatePresence, HTMLMotionProps, motion} from "framer-motion";
+import {AnimatePresence, motion} from "framer-motion";
 import TabNavigatorTabs from "./TabNavigatorTabs/TabNavigatorTabs";
 import {PageNavigatorProvider} from "../../Providers/PageNavigatorProvider";
 import {ReactNode} from "react";
@@ -17,7 +17,8 @@ export type TabNavigatorPages = {
 
 type TabNavigatorProps = {
     screens: TabNavigatorPages,
-    activeStyles?: TabActiveStyles
+    activeStyles?: TabActiveStyles,
+    className?: string
 }
 
 const StyledTabNavigator = styled.div`
@@ -58,11 +59,11 @@ const TabNavigatorContent = ({screens}: TabNavigatorProps) => {
     )
 }
 
-const TabNavigator = ({screens, activeStyles}: TabNavigatorProps) => {
+const TabNavigator = ({screens, activeStyles, className}: TabNavigatorProps) => {
 
     return (
         <PageNavigatorProvider existingPages={Object.keys(screens)}>
-            <StyledTabNavigator>
+            <StyledTabNavigator className={className}>
                 <TabNavigatorContent screens={screens}/>
                 <TabNavigatorTabs screens={screens} activeStyles={activeStyles}/>
             </StyledTabNavigator>

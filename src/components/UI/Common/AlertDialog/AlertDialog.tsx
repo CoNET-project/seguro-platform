@@ -1,6 +1,5 @@
 import {ReactNode, useEffect} from 'react';
 import styled from 'styled-components';
-import {StyledFormattedParagraph} from "../Text/Text";
 import useAppState from "../../../../store/appState/useAppState";
 
 export type AlertDialogActions = {
@@ -59,6 +58,10 @@ const StyledDialogIcon = styled.div`
   margin-bottom: 10px;
 `
 
+const StyledDialogText = styled.p`
+  font-size: 16px;
+`
+
 const StyledDialogButtons = styled.div`
   width: 100%;
   display: flex;
@@ -103,9 +106,9 @@ const AlertDialog = ({icon, message, dialogActions}: AlertDialogProps) => {
                 <StyledDialogIcon>
                     {icon && icon}
                 </StyledDialogIcon>
-                <StyledFormattedParagraph>
+                <StyledDialogText>
                     {message}
-                </StyledFormattedParagraph>
+                </StyledDialogText>
             </StyledDialogContents>
             <StyledDialogButtons>
                 {

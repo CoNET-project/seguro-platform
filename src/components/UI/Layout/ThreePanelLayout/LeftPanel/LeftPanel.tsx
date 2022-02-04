@@ -17,7 +17,7 @@ const StyledLeftPanel = styled(StyledPanel)<StyledLeftPanelProps>`
   border-right: 1px solid ${props => props.theme.ui.colors.border.light};
   opacity: ${props => props.visible ? 1 : 0};
   @media (${screenWidth.narrowWidth}) {
-    max-width: 300px;
+    max-width: 350px;
     opacity: 1;
   }
   @media (${screenWidth.mediumWidth}) {

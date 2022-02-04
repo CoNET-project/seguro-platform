@@ -2,34 +2,56 @@ import TabNavigator, {TabNavigatorPages} from "../../../../UI/TabNavigator/TabNa
 import {ChatBubble, Contacts, Gear} from "../../../../UI/Icons/Icons";
 import useAppState from "../../../../../store/appState/useAppState";
 import {FormattedMessage} from "react-intl";
+import VerticalTabNavigator from "../../../../UI/VerticalTabNavigator/VerticalTabNavigator";
+import ContactsScreen from './LeftPanel/Contacts'
+import ChatsScreen from './LeftPanel/Chats'
+import SettingsScreen from './LeftPanel/Settings'
+import styled from "styled-components";
+import {screenWidth} from "../../../../UI/screenSizes";
+
+const CustomVerticalTabNavigator = styled(VerticalTabNavigator)`
+  display: none;
+  @media (${screenWidth.mediumWidth}) {
+    display: flex;
+  }
+`
+
+const CustomTabNavigator = styled(TabNavigator)`
+  @media (${screenWidth.mediumWidth}) {
+    display: none;
+  }
+`
 
 const LeftPanel = () => {
     const {setCurrentFocusPanel} = useAppState()
 
 
-    const tabNavigatorScreens: TabNavigatorPages = {
+    const navigatorScreens: TabNavigatorPages = {
         'Chats': {
-            screen: <h1 onClick={() => setCurrentFocusPanel('main')}>CHATS</h1>,
+            screen: <ChatsScreen/>,
             text: <FormattedMessage id='tabnavigator.tab.chats'/>,
             icon: <ChatBubble/>
         },
         'Contacts': {
-            screen: <h1>CONTACTS</h1>,
+            screen: <ContactsScreen/>,
             text: <FormattedMessage id='tabnavigator.tab.contacts'/>,
             icon: <Contacts/>
         },
         'Settings': {
-            screen: <h1>SETTINGS</h1>,
+            screen: <SettingsScreen/>,
             text: <FormattedMessage id='tabnavigator.tab.settings'/>,
             icon: <Gear/>
         },
     }
 
     return (
-        <TabNavigator screens={tabNavigatorScreens} activeStyles={{
-            borderColor: 'rgb(135,206,250)',
-            color: 'rgb(135,206,250)'
-        }}/>
+        <>
+            <CustomVerticalTabNavigator screens={navigatorScreens}/>
+            <CustomTabNavigator screens={navigatorScreens} activeStyles={{
+                borderColor: 'rgb(135,206,250)',
+                color: 'rgb(135,206,250)'
+            }}/>
+        </>
     )
 }
 
