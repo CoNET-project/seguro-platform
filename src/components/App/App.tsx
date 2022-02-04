@@ -3,12 +3,12 @@ import styled from 'styled-components'
 import useAppState from '../../store/appState/useAppState'
 import {detectTouchDevice, detectWindowInnerSize} from "../../utilities/utilities";
 import GlobalStyle from '../UI/Global/Styles'
-import {Overlay, OverlayWithLoaderText} from "../UI/Common/Overlay/Overlay";
 import MainScreen from './MainScreen/MainScreen';
 import {OnboardingPageProvider} from '../Providers/OnboardingPageProvider';
 import OnboardingScreen from "./OnboardingScreen/OnboardingScreen";
 import UnlockScreen from "./UnlockScreen/UnlockScreen";
 import LaunchScreen from "./LaunchScreen/LaunchScreen";
+import {Overlay, OverlayWithLoaderText} from '../UI/Common/Overlay/Overlay';
 
 const StyledContainer = styled.div`
   height: 100vh;
@@ -82,6 +82,11 @@ const App = () => {
     }, [])
 
     const getContent = () => {
+
+        // return (
+        //     <MainScreen/>
+        // )
+
         switch (true) {
             case isInitializing:
                 return (

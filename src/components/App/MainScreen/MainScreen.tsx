@@ -1,14 +1,14 @@
 import {AnimateSharedLayout, motion, useAnimation, useDragControls, useMotionValue, useTransform} from 'framer-motion';
 import styled from 'styled-components';
-import GlobalBar from "../../UI/Global/GlobalBar/GlobalBar";
 import useAppState from "../../../store/appState/useAppState";
 import Drawer from "../../UI/Drawer/Drawer";
 import {DragOverlay} from "../../UI/Common/Overlay/Overlay";
-import Messenger from "../Apps/Messenger/Messenger";
 import PlatformModal from "../PlatformModal/PlatformModal";
 import {Toaster} from '../../UI/Toaster/Toaster'
+import GlobalBar from '../../UI/Global/GlobalBar/GlobalBar';
+import Messenger from '../Apps/Messenger/Messenger';
+import {useEffect} from 'react';
 import {getWorkerService} from "../../../services/workerService/workerService";
-import {useEffect} from "react";
 import {ClientProfiles} from "../../../store/appState/appStateReducer";
 
 const StyledMainScreen = styled(motion.div)`

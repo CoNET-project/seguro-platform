@@ -3,7 +3,6 @@ import styled from 'styled-components'
 import Keypad from '../../UI/Keypad/Keypad'
 import PasscodeInput from "../../UI/Inputs/PasscodeInput/Touch/PasscodeInput";
 import {IoMdLock} from "react-icons/all";
-import Icon from "../../UI/Inputs/Icon/Icon";
 import {FormattedMessage} from "react-intl";
 import {checkIsVerified, deletePasscode, unlockPasscode} from "../../../services/workerService/workerService";
 import Button from "../../UI/Common/Button/Button";
@@ -21,6 +20,10 @@ const StyledContainer = styled.div`
   align-items: center;
   justify-content: center;
   background-color: ${props => props.theme.ui.colors.background.foundation};
+`
+
+const StyledIcon = styled.div`
+  color: ${props => props.theme.ui.colors.text.primary};
 `
 
 const StyledContent = styled.div`
@@ -121,7 +124,7 @@ const UnlockScreen = () => {
     return (
         <StyledContainer>
             <StyledContent>
-                <Icon component={<IoMdLock size={46}/>}/>
+                <StyledIcon><IoMdLock size={46}/></StyledIcon>
                 <StyledTitle><FormattedMessage id="unlock.title"/></StyledTitle>
                 {
                     isTouchDevice ? (

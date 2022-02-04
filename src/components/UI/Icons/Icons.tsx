@@ -1,5 +1,6 @@
 import {
     AiOutlineUserAdd,
+    BiMessageAdd,
     BsBell,
     BsCamera,
     BsChatSquareDots,
@@ -27,6 +28,7 @@ import {
     MdContentCopy,
     MdManageAccounts,
     MdPassword,
+    MdPersonAddAlt1,
     RiShieldKeyholeLine,
     TiDelete
 } from "react-icons/all";
@@ -348,6 +350,22 @@ export const PlatformLock = ({size, color}: IconProps) => {
     return (
         <StyledIcon>
             <IoIosLock size={getSize(size)} color={color || undefined}/>
+        </StyledIcon>
+    )
+}
+
+export const CreateChat = ({size, color}: IconProps) => {
+    return (
+        <StyledIcon>
+            <BiMessageAdd size={getSize(size)} color={color || undefined}/>
+        </StyledIcon>
+    )
+}
+
+export const AddContact = ({size, color}: IconProps) => {
+    return (
+        <StyledIcon>
+            <MdPersonAddAlt1 size={getSize(size)} color={color || undefined}/>
         </StyledIcon>
     )
 }

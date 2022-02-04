@@ -37,9 +37,9 @@ const StyledHeaderBar = styled.div`
   position: relative;
   z-index: 10;
 
-  @media (${screenWidth.mediumWidth}) {
-    height: 60px;
-  }
+    // @media (${screenWidth.mediumWidth}) {
+  //   height: 60px;
+  // }
 `
 
 const StyledHeaderSection = styled.div`

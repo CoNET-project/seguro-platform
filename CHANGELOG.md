@@ -1,5 +1,25 @@
 # `seguro-platform` CHANGELOG
 
+## `0.51.0`
+
+### Additions
+
+- Add VerticalTabNavigator for messenger.
+- Create separate components for panel content.
+- Add header bars for each left panel content.
+- Add new icons for header bars.
+
+### Changes
+
+- Removed legacy code.
+- Remove unused or components that were used once.
+
+### Fixes
+
+- None.
+
+---
+
 ## `0.50.0`
 
 ### Additions

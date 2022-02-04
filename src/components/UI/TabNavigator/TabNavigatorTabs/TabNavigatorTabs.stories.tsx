@@ -1,6 +1,6 @@
 import {Story} from '@storybook/react'
 import TabNavigatorTabs, {TabNavigatorTabsProps} from './TabNavigatorTabs'
-import {TabNavigatorPages} from "../TabNavigator";
+import {PageNavigatorProvider} from "../../../Providers/PageNavigatorProvider";
 
 export default {
     component: TabNavigatorTabs,
@@ -11,7 +11,9 @@ const Template: Story<TabNavigatorTabsProps> = (
     args
 ) => {
     return (
-        <TabNavigatorTabs {...args}/>
+        <PageNavigatorProvider existingPages={Object.keys(args.screens)}>
+            <TabNavigatorTabs {...args}/>
+        </PageNavigatorProvider>
     )
 }
 
