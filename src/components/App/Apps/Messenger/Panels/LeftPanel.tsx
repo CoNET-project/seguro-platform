@@ -25,7 +25,6 @@ const CustomTabNavigator = styled(TabNavigator)`
 const LeftPanel = () => {
     const {setCurrentFocusPanel} = useAppState()
 
-
     const navigatorScreens: TabNavigatorPages = {
         'Chats': {
             screen: <ChatsScreen/>,

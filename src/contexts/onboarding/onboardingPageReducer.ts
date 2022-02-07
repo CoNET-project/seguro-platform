@@ -1,5 +1,26 @@
-import {OnboardingActions, State} from "./OnboardingContext";
 import logger from "../../utilities/logger/logger";
+import {OnboardingActions} from "./onboardingActions";
+import {SeguroNetworkStatus} from "@conet-project/seguro-worker-lib/build/workerBridge";
+
+export type PageIds = 'language' | 'setPasscode' | 'confirmPasscode' | 'verification' | 'settingUp'
+
+type AnimateDirection = -1 | 1
+
+type CurrentPage = [PageIds, AnimateDirection]
+
+export type VerificationStates = SeguroNetworkStatus | 'FAILURE' | null
+
+export type State = {
+    currentPage: CurrentPage,
+    existingPages: Array<PageIds>,
+    onboardingPageData: {
+        passcode: string,
+        confirmPasscode: string,
+        verificationCode?: string,
+        verificationCodeError?: boolean,
+        verificationStatus?: VerificationStates
+    }
+}
 
 export const onboardingPageReducer = (state: State, action: OnboardingActions): State => {
     const getPage = (direction: 'next' | 'previous'): State => {

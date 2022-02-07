@@ -1,7 +1,5 @@
 import React from "react";
-import {ActionTypes} from "./pageNavigatorReducer";
-
-export type Dispatch = (action: ActionTypes) => void
+import {Dispatch} from "./pageNavigatorActions";
 
 type CurrentPage = [string, number]
 
