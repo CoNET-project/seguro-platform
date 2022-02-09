@@ -6,7 +6,6 @@ import {
     setActiveProfile as setActiveProfileActionCreator,
     setClientDevices as setClientDevicesActionCreator,
     setClientProfiles as setClientProfilesActionCreator,
-    setCurrentFocusPanel as setCurrentFocusPanelActionCreator,
     setHasContainer as setHasContainerActionCreator,
     setHasNotification as setHasNoticationActionCreator,
     setHasUpdateAvailable as setHasUpdateAvailableActionCreator,
@@ -35,7 +34,6 @@ import {Theme} from '../../theme/types'
 import {Locale} from '../../localization/types'
 import {
     ClientProfiles,
-    CurrentFocusPanel,
     DeviceData,
     ModalNames,
     NetworkStates,
@@ -291,11 +289,6 @@ const useAppState = () => {
         dispatch(setIsDrawerOpenActionCreator(openDrawer))
     }
 
-    const currentFocusPanel = useTypedSelector(state => state.appState.currentFocusPanel)
-    const setCurrentFocusPanel = (panel: CurrentFocusPanel) => {
-        dispatch(setCurrentFocusPanelActionCreator(panel))
-    }
-
     const hasUpdateAvailable = useTypedSelector(state => state.appState.hasUpdateAvailable)
     const setHasUpdateAvailable = (hasUpdateAvailable: boolean) => {
         dispatch(setHasUpdateAvailableActionCreator(hasUpdateAvailable))
@@ -334,8 +327,6 @@ const useAppState = () => {
         setIsDrawerOpen,
         hasUpdateAvailable,
         setHasUpdateAvailable,
-        currentFocusPanel,
-        setCurrentFocusPanel,
         isModalOpen,
         setIsModalOpen,
         clientProfiles,

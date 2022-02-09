@@ -3,7 +3,8 @@ import Image from "../../Common/Profile/Image/Image";
 import {Contact} from "../../../../contexts/messenger/messengerActions";
 
 type ListItemProps = {
-    contact: Contact
+    contact: Contact,
+    onClick?: (contact: Contact) => void
 }
 
 const StyledListItem = styled.div`
@@ -18,7 +19,8 @@ const StyledListItem = styled.div`
 
   & > * {
     text-align: left;
-    color: ${props => props.theme.ui.colors.text.primary}
+    color: ${props => props.theme.ui.colors.text.primary};
+    white-space: nowrap;
   }
 `
 
@@ -32,6 +34,7 @@ const StyledListDetails = styled.div`
 const StyledListName = styled.p`
   font-size: ${props => props.theme.ui.fontSizes.narrow.sm};
   font-family: 'Lato Bold', sans-serif;
+  color: ${props => props.theme.ui.colors.text.secondary}
 `
 
 const StyledListStatus = styled.p`
@@ -41,10 +44,9 @@ const StyledListStatus = styled.p`
 `
 
 
-const ListItem = ({contact}: ListItemProps) => {
-    console.log(contact)
+const ListItem = ({contact, onClick}: ListItemProps) => {
     return (
-        <StyledListItem>
+        <StyledListItem onClick={() => onClick ? onClick(contact) : null}>
             <Image size={36} src={contact.profileSrc}/>
             <StyledListDetails>
                 <StyledListName>

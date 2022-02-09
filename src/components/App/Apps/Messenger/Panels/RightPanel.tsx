@@ -1,16 +1,16 @@
 import styled from 'styled-components'
 import HeaderBar from "../../../../UI/Common/HeaderBar/HeaderBar";
-import useAppState from "../../../../../store/appState/useAppState";
+import {useMessengerContext} from "../../../../../contexts/messenger/MessengerContext";
 
 const StyledRightPanel = styled.div`
   height: 100%;
   width: 100%;
   content: '';
+  border-left: 1px solid red;
 `
 
 const RightPanel = () => {
-
-    const {setCurrentFocusPanel} = useAppState()
+    const {setCurrentFocusPanel} = useMessengerContext()
     return (
         <StyledRightPanel>
             <HeaderBar
@@ -22,7 +22,7 @@ const RightPanel = () => {
                     title: 'Jennifer Work',
                     subtitle: '4E1F799AA4FF2279'
                 }}
-
+                border='left'
             />
         </StyledRightPanel>
     )

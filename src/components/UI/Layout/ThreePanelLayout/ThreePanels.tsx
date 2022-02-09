@@ -3,7 +3,6 @@ import LeftPanel from "./LeftPanel/LeftPanel";
 import MainPanel from "./MainPanel/MainPanel";
 import RightPanel from "./RightPanel/RightPanel";
 import {ReactNode} from "react";
-import {CurrentFocusPanel} from "../../../../store/appState/appStateReducer";
 
 export type ThreePanelComponents = {
     leftPanelComponent: ReactNode,
@@ -13,7 +12,7 @@ export type ThreePanelComponents = {
 
 type ThreePanelProps = {
     components: ThreePanelComponents,
-    currentPanel: CurrentFocusPanel
+    currentPanel: 'left' | 'main' | 'right'
 }
 
 const StyledThreePanels = styled.div`

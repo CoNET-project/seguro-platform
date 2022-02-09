@@ -3,11 +3,9 @@ import {Contact, MessengerActions} from "./messengerActions";
 export type Contacts = Map<string, { [keyId: string]: Contact }>
 
 export type MessengerState = {
-    contacts: Contacts
-}
-
-const checkHasKey = (map: Map<any, any>, key: any): boolean => {
-    return map.has(key)
+    contacts: Contacts,
+    selectedContact: Contact | null,
+    currentFocusPanel: 'left' | 'main' | 'right'
 }
 
 export const generateDefaultContactsMap = () => {
@@ -24,6 +22,11 @@ export const generateDefaultContactsMap = () => {
 
 export const messengerReducer = (state: MessengerState, action: MessengerActions): MessengerState => {
     switch (action.type) {
+        case "setCurrentFocusPanel":
+            return {
+                ...state,
+                currentFocusPanel: action.payload
+            }
         case "setInitialContacts":
             const contacts: Contacts = new Map(state.contacts)
 
@@ -44,6 +47,16 @@ export const messengerReducer = (state: MessengerState, action: MessengerActions
             return {
                 ...state,
                 contacts: contacts
+            }
+        case "setSelectedContact":
+            return {
+                ...state,
+                selectedContact: action.payload
+            }
+        case "clearSelectedContact":
+            return {
+                ...state,
+                selectedContact: null
             }
         default:
             return state

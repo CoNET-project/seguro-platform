@@ -31,7 +31,7 @@ const StyledTabNavigator = styled.div`
 `
 
 const StyledTabNavigatorContent = styled(motion.div)`
-  height: 100%;
+  height: calc(100% - 51px);
 `
 
 const TabNavigatorContent = ({screens}: TabNavigatorProps) => {

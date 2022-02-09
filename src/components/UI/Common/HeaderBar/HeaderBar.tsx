@@ -5,6 +5,7 @@ import {screenWidth} from "../../screenSizes";
 
 export type HeaderBarProps = {
     className?: string,
+    border?: 'left' | 'right',
     closeAction?: {
         action: () => void,
         alignRight?: boolean,
@@ -21,11 +22,15 @@ export type HeaderBarProps = {
     }
 }
 
+type StyledHeaderBarProps = {
+    border?: 'left' | 'right'
+}
+
 type StyledHeaderCloseButtonProps = {
     alwaysVisible?: boolean
 }
 
-const StyledHeaderBar = styled.div`
+const StyledHeaderBar = styled.div<StyledHeaderBarProps>`
   width: 100%;
   height: 50px;
   background-color: ${props => props.theme.ui.colors.background.foundation};
@@ -36,7 +41,8 @@ const StyledHeaderBar = styled.div`
   border-bottom: 1px solid ${props => props.theme.ui.colors.border.light};
   position: relative;
   z-index: 10;
-
+  border-right: ${props => props.border === 'right' && `1px solid ${props.theme.ui.colors.border.light}`};
+  border-left: ${props => props.border === 'left' && `1px solid ${props.theme.ui.colors.border.light}`};
     // @media (${screenWidth.mediumWidth}) {
   //   height: 60px;
   // }
@@ -73,21 +79,23 @@ const StyledHeaderDetails = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  margin-left: 7.5px;
+  margin-left: 4px;
 `
 
 const StyledHeaderTitle = styled.p`
   font-size: ${props => props.theme.ui.fontSizes.narrow.sm};
+  font-family: 'Lato Bold', sans-serif;
 `
 
 const StyledHeaderSubtitle = styled.p`
+  margin-top: 3px;
   font-size: ${props => props.theme.ui.fontSizes.narrow.xsm};
   color: ${props => props.theme.ui.colors.text.secondary};
 `
 
-const HeaderBar = ({className, closeAction, headerContent, headerComponents}: HeaderBarProps) => {
+const HeaderBar = ({className, closeAction, headerContent, headerComponents, border}: HeaderBarProps) => {
     return (
-        <StyledHeaderBar className={className}>
+        <StyledHeaderBar className={className} border={border}>
             <StyledHeaderSection>
                 {
                     closeAction && !closeAction.alignRight && (

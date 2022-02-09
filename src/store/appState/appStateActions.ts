@@ -4,7 +4,6 @@ import {Locale} from '../../localization/types'
 import {WindowInnerSize} from './useAppState'
 import {
     ClientProfiles,
-    CurrentFocusPanel,
     DeviceData,
     ModalNames,
     NetworkStates,
@@ -151,17 +150,6 @@ export const setIsDrawerOpen = createAction(
         return {
             payload: {
                 isDrawerOpen
-            }
-        }
-    }
-)
-
-export const setCurrentFocusPanel = createAction(
-    'appState/setCurrentFocusPanel',
-    (panel: CurrentFocusPanel) => {
-        return {
-            payload: {
-                panel
             }
         }
     }

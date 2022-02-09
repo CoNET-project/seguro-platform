@@ -1,6 +1,5 @@
 import TabNavigator, {TabNavigatorPages} from "../../../../UI/TabNavigator/TabNavigator";
 import {ChatBubble, Contacts, Gear} from "../../../../UI/Icons/Icons";
-import useAppState from "../../../../../store/appState/useAppState";
 import {FormattedMessage} from "react-intl";
 import VerticalTabNavigator from "../../../../UI/VerticalTabNavigator/VerticalTabNavigator";
 import ContactsScreen from './LeftPanel/Contacts'
@@ -23,8 +22,6 @@ const CustomTabNavigator = styled(TabNavigator)`
 `
 
 const LeftPanel = () => {
-    const {setCurrentFocusPanel} = useAppState()
-
     const navigatorScreens: TabNavigatorPages = {
         'Chats': {
             screen: <ChatsScreen/>,

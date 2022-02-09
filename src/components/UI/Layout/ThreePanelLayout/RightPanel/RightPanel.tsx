@@ -17,7 +17,6 @@ const StyledRightPanel = styled(StyledPanel)<StyledRightPanelProps>`
   position: absolute;
   right: 0;
   width: ${props => props.visible ? '100%' : 0};
-  border-left: 1px solid rgba(0, 0, 0, 0.05);
   @media (${screenWidth.narrowWidth}) {
     max-width: 350px;
   }
