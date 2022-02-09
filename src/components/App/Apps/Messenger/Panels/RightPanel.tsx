@@ -6,7 +6,6 @@ const StyledRightPanel = styled.div`
   height: 100%;
   width: 100%;
   content: '';
-  border-left: 1px solid red;
 `
 
 const RightPanel = () => {
@@ -22,7 +21,6 @@ const RightPanel = () => {
                     title: 'Jennifer Work',
                     subtitle: '4E1F799AA4FF2279'
                 }}
-                border='left'
             />
         </StyledRightPanel>
     )

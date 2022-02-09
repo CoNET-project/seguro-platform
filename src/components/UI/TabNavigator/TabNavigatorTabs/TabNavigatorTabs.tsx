@@ -1,4 +1,4 @@
-import {AnimateSharedLayout, HTMLMotionProps} from 'framer-motion';
+import {AnimateSharedLayout} from 'framer-motion';
 import styled from 'styled-components'
 import Tab, {TabActiveStyles} from '../Tab/Tab'
 import {TabNavigatorPages} from "../TabNavigator";
@@ -19,15 +19,17 @@ const TabNavigatorTabs = ({screens, activeStyles}: TabNavigatorTabsProps) => {
         <StyledTabNavigatorTabs>
             <AnimateSharedLayout>
                 {
-                    Object.keys(screens).map((screen, idx) => (
-                        <Tab
-                            key={idx}
-                            id={screen}
-                            text={screens[screen].text || screen}
-                            icon={screens[screen]?.icon || null}
-                            activeStyles={activeStyles}
-                        />
-                    ))
+                    Object.keys(screens).map((id, idx) => {
+                        if (screens[id].isTopLevel == undefined || screens[id].isTopLevel) {
+                            return <Tab
+                                key={`id${idx}`}
+                                id={id}
+                                text={screens[id].text || id}
+                                icon={screens[id]?.icon || null}
+                                activeStyles={activeStyles}
+                            />
+                        }
+                    })
                 }
             </AnimateSharedLayout>
         </StyledTabNavigatorTabs>

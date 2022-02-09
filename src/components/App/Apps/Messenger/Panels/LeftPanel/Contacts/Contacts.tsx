@@ -1,9 +1,11 @@
 import styled from "styled-components";
-import Header from "./Header";
-import {useMessengerContext} from "../../../../../../contexts/messenger/MessengerContext";
-import ListItem from "../../../../../UI/Messenger/Contact/ListItem";
+import Header from "../Header";
+import {useMessengerContext} from "../../../../../../../contexts/messenger/MessengerContext";
+import ListItem from "../../../../../../UI/Messenger/Contact/ListItem";
 import {ReactNode} from "react";
-import {Contact} from "../../../../../../contexts/messenger/messengerActions";
+import {Contact} from "../../../../../../../contexts/messenger/messengerActions";
+import {usePageNavigator} from "../../../../../../../contexts/pageNavigator/PageNavigatorContext";
+import {pageNavigator} from "../../../../../../../contexts/pageNavigator/pageNavigatorActions";
 
 const StyledContacts = styled.div`
   height: 100%;
@@ -34,6 +36,7 @@ const StyledSection = styled.div`
 
 const Contacts = () => {
     const {contacts, setSelectedContact, setCurrentFocusPanel} = useMessengerContext()
+    const {dispatch} = usePageNavigator()
 
     const contactOnClick = (contact: Contact) => {
         setCurrentFocusPanel('main')
@@ -62,7 +65,7 @@ const Contacts = () => {
     renderList()
     return (
         <StyledContacts>
-            <Header/>
+            <Header onClick={() => dispatch(pageNavigator.navigateToPage('Contacts/Add Contact'))}/>
             <StyledContactContent>
                 {
                     renderList().map((item, index) => <StyledSection

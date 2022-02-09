@@ -46,14 +46,17 @@ export type TabProps = {
 
 const Tab = ({icon, id}: TabProps) => {
     const {state, dispatch} = usePageNavigator()
+
+    const rootPageId = state.current[0].split('/')[0]
+
     return (
         <StyledTab
-            active={state.current[0] === id}
+            active={rootPageId === id}
             onClick={() => dispatch(pageNavigator.navigateToPage(id))}
         >
             {icon && (
                 <StyledTabIcon
-                    active={state.current[0] === id}>{icon}</StyledTabIcon>
+                    active={rootPageId === id}>{icon}</StyledTabIcon>
             )}
         </StyledTab>
     )

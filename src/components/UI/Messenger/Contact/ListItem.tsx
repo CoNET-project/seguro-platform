@@ -34,7 +34,8 @@ const StyledListDetails = styled.div`
 const StyledListName = styled.p`
   font-size: ${props => props.theme.ui.fontSizes.narrow.sm};
   font-family: 'Lato Bold', sans-serif;
-  color: ${props => props.theme.ui.colors.text.secondary}
+  color: ${props => props.theme.ui.colors.text.primary};
+  opacity: 0.9
 `
 
 const StyledListStatus = styled.p`

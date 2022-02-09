@@ -19,7 +19,15 @@ const VerticalNavigatorTabs = ({screens}: VerticalNavigatorTabsProps) => {
     return (
         <StyledVerticalNavigatorTabs>
             {
-                Object.keys(screens).map((id, index) => <Tab key={id + index} id={id} icon={screens[id].icon}/>)
+                Object.keys(screens).map((id, idx) => {
+                    if (screens[id].isTopLevel == undefined || screens[id].isTopLevel) {
+                        return <Tab
+                            key={`id${idx}`}
+                            id={id}
+                            icon={screens[id]?.icon || null}
+                        />
+                    }
+                })
             }
         </StyledVerticalNavigatorTabs>
     )

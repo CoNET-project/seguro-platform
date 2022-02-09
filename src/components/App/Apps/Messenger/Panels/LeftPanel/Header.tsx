@@ -1,8 +1,13 @@
 import styled from "styled-components";
 import HeaderBar from "../../../../../UI/Common/HeaderBar/HeaderBar";
 import {usePageNavigator} from "../../../../../../contexts/pageNavigator/PageNavigatorContext";
-import {AddContact, CreateChat} from "../../../../../UI/Icons/Icons";
-import {ReactNode} from "react";
+import {AddContact, ChevronLeft, CreateChat} from "../../../../../UI/Icons/Icons";
+import {ReactNode, useEffect, useState} from "react";
+import {pageNavigator} from "../../../../../../contexts/pageNavigator/pageNavigatorActions";
+
+type HeaderProps = {
+    onClick?: () => void
+}
 
 const StyledHeaderBar = styled(HeaderBar)`
   font-weight: bolder;
@@ -23,8 +28,21 @@ type Icons = {
     [id: string]: ReactNode
 }
 
-const Header = () => {
-    const {state} = usePageNavigator()
+const Header = ({onClick}: HeaderProps) => {
+    const {state, dispatch} = usePageNavigator()
+    const [rootPageId, setRootPageId] = useState<string | null>(null)
+
+    useEffect(() => {
+        const pageIdArray = state.current[0]?.split('/')
+        if (pageIdArray.length > 1) {
+            setRootPageId(pageIdArray[0])
+        }
+    }, [state])
+
+    const getPageTitle = () => {
+        const pageIdArray = state.current[0]?.split('/')
+        return pageIdArray[pageIdArray.length - 1]
+    }
 
     const icons: Icons = {
         'Chats': <CreateChat size={18}/>,
@@ -34,14 +52,18 @@ const Header = () => {
     return (
         <StyledHeaderBar
             headerContent={{
-                title: state.current[0]
+                title: getPageTitle()
             }}
             headerComponents={{
                 headerRight: [
-                    <StyledHeaderButton>
+                    <StyledHeaderButton onClick={onClick}>
                         {icons[state.current[0]]}
                     </StyledHeaderButton>
-                ]
+                ],
+                headerLeft: rootPageId &&
+                    <StyledHeaderButton onClick={() => dispatch(pageNavigator.navigateToPage(rootPageId))}>
+                        <ChevronLeft/>
+                    </StyledHeaderButton>
             }}
         />
     )

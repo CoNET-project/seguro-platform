@@ -5,7 +5,6 @@ import {screenWidth} from "../../screenSizes";
 
 export type HeaderBarProps = {
     className?: string,
-    border?: 'left' | 'right',
     closeAction?: {
         action: () => void,
         alignRight?: boolean,
@@ -22,15 +21,11 @@ export type HeaderBarProps = {
     }
 }
 
-type StyledHeaderBarProps = {
-    border?: 'left' | 'right'
-}
-
 type StyledHeaderCloseButtonProps = {
     alwaysVisible?: boolean
 }
 
-const StyledHeaderBar = styled.div<StyledHeaderBarProps>`
+const StyledHeaderBar = styled.div`
   width: 100%;
   height: 50px;
   background-color: ${props => props.theme.ui.colors.background.foundation};
@@ -41,8 +36,6 @@ const StyledHeaderBar = styled.div<StyledHeaderBarProps>`
   border-bottom: 1px solid ${props => props.theme.ui.colors.border.light};
   position: relative;
   z-index: 10;
-  border-right: ${props => props.border === 'right' && `1px solid ${props.theme.ui.colors.border.light}`};
-  border-left: ${props => props.border === 'left' && `1px solid ${props.theme.ui.colors.border.light}`};
     // @media (${screenWidth.mediumWidth}) {
   //   height: 60px;
   // }
@@ -93,9 +86,9 @@ const StyledHeaderSubtitle = styled.p`
   color: ${props => props.theme.ui.colors.text.secondary};
 `
 
-const HeaderBar = ({className, closeAction, headerContent, headerComponents, border}: HeaderBarProps) => {
+const HeaderBar = ({className, closeAction, headerContent, headerComponents}: HeaderBarProps) => {
     return (
-        <StyledHeaderBar className={className} border={border}>
+        <StyledHeaderBar className={className}>
             <StyledHeaderSection>
                 {
                     closeAction && !closeAction.alignRight && (
@@ -130,7 +123,7 @@ const HeaderBar = ({className, closeAction, headerContent, headerComponents, bor
                 {
                     headerComponents?.headerRight && (
                         headerComponents.headerRight.map((component, idx) => (
-                            <Fragment key={Math.random() * Math.random()}>
+                            <Fragment key={`headerRight${idx}`}>
                                 {component}
                             </Fragment>
                         ))
