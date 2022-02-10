@@ -2,7 +2,7 @@ import styled from 'styled-components'
 import Page from "../../../UI/Layout/Page/Page";
 import onboardingActions from "../../../../contexts/onboarding/onboardingActions";
 import {useOnboardingPageNavigator} from "../../../../contexts/onboarding/OnboardingContext";
-import Input from "../../../UI/Inputs/Input/Input";
+import LargeInput from "../../../UI/Inputs/LargeInput/LargeInput";
 import {FormattedMessage} from "react-intl";
 import LottieAnimation from '../../../UI/Lottie/Lottie';
 import VerificationAnimation from '../../../../assets/lottie/verification.json'
@@ -85,13 +85,14 @@ const VerificationPage = () => {
                 <LottieAnimation animationSrc={VerificationAnimation}/>
             </StyledLottieWrapper>
             <StyledPageContents>
-                <Input value=''
-                       setValue={verificationInputHandler}
-                       error={state.onboardingPageData.verificationCodeError}
-                       inputOptions={{
-                           inputLabel: (
-                               <StyledVerificationInputLabel><FormattedMessage id='onboarding.verificationInputLabel'/></StyledVerificationInputLabel>)
-                       }}
+                <LargeInput value=''
+                            setValue={verificationInputHandler}
+                            error={state.onboardingPageData.verificationCodeError}
+                            inputOptions={{
+                                inputLabel: (
+                                    <StyledVerificationInputLabel><FormattedMessage
+                                        id='onboarding.verificationInputLabel'/></StyledVerificationInputLabel>)
+                            }}
                 />
                 <StyledVerificationText>
                     <FormattedMessage id='onboarding.verificationText'/>

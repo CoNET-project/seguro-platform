@@ -3,7 +3,7 @@ import Keypad from "../../../UI/Keypad/Keypad";
 import {ReactNode} from 'react';
 import {useOnboardingPageNavigator} from "../../../../contexts/onboarding/OnboardingContext";
 import Page from '../../../UI/Layout/Page/Page';
-import Input from "../../../UI/Inputs/Input/Input";
+import LargeInput from "../../../UI/Inputs/LargeInput/LargeInput";
 import PasscodeTouchInput from "../../../UI/Inputs/PasscodeInput/Touch/PasscodeInput";
 import {screenWidth} from '../../../UI/screenSizes';
 import useAppState from "../../../../store/appState/useAppState";
@@ -109,15 +109,15 @@ const PasscodePage = ({
                             </>
                         ) : (
                             (
-                                <Input value={passcode}
-                                       inputOptions={{
-                                           inputType: 'password'
-                                       }
-                                       }
-                                       error={error}
-                                       setValue={(val) => {
-                                           setPasscode(val)
-                                       }}/>
+                                <LargeInput value={passcode}
+                                            inputOptions={{
+                                                inputType: 'password'
+                                            }
+                                            }
+                                            error={error}
+                                            setValue={(val) => {
+                                                setPasscode(val)
+                                            }}/>
                             )
                         )
                     }
