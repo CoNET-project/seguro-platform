@@ -1,14 +1,19 @@
 import styled from 'styled-components'
 import HeaderBar from "../../../../UI/Common/HeaderBar/HeaderBar";
 import {useMessengerContext} from "../../../../../contexts/messenger/MessengerContext";
-import {EditPencilIcon} from "../../../../UI/Icons/Icons";
+import {Checkmark, EditPencilIcon} from "../../../../UI/Icons/Icons";
 import Input from "../../../../UI/Inputs/Input/Input";
-import {useState} from "react";
+import {useEffect, useState} from "react";
+import { Contact } from '../../../../../contexts/messenger/messengerActions';
+import {Overlay} from "../../../../UI/Common/Overlay/Overlay";
 
 const StyledRightPanel = styled.div`
   height: 100%;
   width: 100%;
   content: '';
+`
+
+const CustomStyledHeader = styled(HeaderBar)`
 `
 
 const StyledRightPanelContent = styled.div`
@@ -18,13 +23,14 @@ const StyledRightPanelContent = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  position: relative;
   overflow: auto;
 `
 
 const StyledProfileImage = styled.img`
   width: 100%;
   min-width: 300px;
-  max-height: 300px;
+  min-height: 50%;
   object-position: center;
   object-fit: cover;
   border-bottom-left-radius: 2px;
@@ -43,7 +49,6 @@ type StyledPanelRowProps = {
 
 const StyledPanelRow = styled.div<StyledPanelRowProps>`
   padding: 0 15px;
-  width: 100%;
   min-height: 50px;
   display: flex;
   align-items: center;
@@ -97,16 +102,31 @@ const StyledPanelButton = styled.button`
   justify-content: center;
   align-items: center;
   border: none;
-  padding: 5px;
-  background-color: transparent;
+  padding: 8px;
+  background-color: red;
   font-size: ${props => props.theme.ui.fontSizes.narrow.sm};
   opacity: 1;
   cursor: pointer;
+  border-radius: 5px;
 `
 
 const StyledCustomNicknameInput = styled(Input)`
   min-height: 20px;
+  min-width: 100px;
   margin: 0;
+`
+
+const StyledPopupModal = styled.div`
+  position: absolute;
+  min-height: 50%;
+  width: 100%;
+  bottom: 0;
+  left: 0;
+  content: '';
+  border-top-right-radius: 10px;
+  border-top-left-radius: 10px;
+  background-color: ${props => props.theme.ui.colors.background.elevationOne};
+  box-shadow: -5px 0 15px rgba(0,0,0,0.4)
 `
 
 const RightPanel = () => {
@@ -114,64 +134,58 @@ const RightPanel = () => {
     const [nicknameEdit, setNicknameEdit] = useState('')
     const [toggleEdit, setToggleEdit] = useState(false)
 
+    const [contactProfile, setContactProfile] = useState<Contact>()
+
+    useEffect(() => {
+        if (currentFocusPanel === 'right' && selectedContact) {
+            setContactProfile(selectedContact)
+        }
+        setToggleEdit(false)
+    }, [currentFocusPanel])
+
     const onConfirmNickname = () => {
 
     }
+
     return (
+        <>
         <StyledRightPanel>
-            <HeaderBar
+            <CustomStyledHeader
                 closeAction={{
                     action: () => setCurrentFocusPanel('main'),
                     alwaysVisible: true
                 }}
                 headerContent={{
-                    title: selectedContact?.nickname || selectedContact?.alias || selectedContact?.keyId,
-                    subtitle: selectedContact && (selectedContact.nickname || selectedContact.alias) ? selectedContact.keyId : null
+                    title: contactProfile?.nickname || contactProfile?.alias || contactProfile?.keyId,
+                    subtitle: contactProfile && (contactProfile?.nickname || contactProfile?.alias) ? contactProfile?.keyId : null
                 }}
             />
             <StyledRightPanelContent>
-                <StyledProfileImage src={selectedContact?.profileSrc}/>
+                <StyledProfileImage src={contactProfile?.profileSrc}/>
                 <StyledRightPanelSection>
                     <StyledPanelRow border>
                         <StyledPanelTitle>Contact Information</StyledPanelTitle>
                     </StyledPanelRow>
                     <StyledPanelRow>
                         <StyledPanelLabel>ID</StyledPanelLabel>
-                        <StyledPanelText>{selectedContact?.keyId}</StyledPanelText>
+                        <StyledPanelText>{contactProfile?.keyId}</StyledPanelText>
                     </StyledPanelRow>
                     <StyledPanelRow>
                         <StyledPanelLabel>Alias</StyledPanelLabel>
-                        <StyledPanelText isSet={!!selectedContact?.alias}>
-                            {selectedContact?.alias}
+                        <StyledPanelText isSet={!!contactProfile?.alias}>
+                            {contactProfile?.alias}
                         </StyledPanelText>
                     </StyledPanelRow>
                     <StyledPanelRow>
                         <StyledPanelLabel>Nickname</StyledPanelLabel>
                         <StyledPanelRowWrapper>
-                            {
-                                toggleEdit ? (
-                                    <>
-                                        <StyledCustomNicknameInput
-                                            id='nameInput'
-                                            defaultValue={selectedContact?.nickname}
-                                            onChange={setNicknameEdit}
-                                        />
-                                        <StyledPanelButton>
-                                            Ok
-                                        </StyledPanelButton>
-                                    </>
-                                ) : (
-                                    <>
-                                        <StyledPanelText
-                                            isSet={!!selectedContact?.nickname}>
-                                            {selectedContact?.nickname || 'Unset'}
-                                        </StyledPanelText>
-                                        <StyledPanelIconButton onClick={() => setToggleEdit(true)}>
-                                            <EditPencilIcon/>
-                                        </StyledPanelIconButton>
-                                    </>
-                                )
-                            }
+                            <StyledPanelText
+                                isSet={!!contactProfile?.nickname}>
+                                {contactProfile?.nickname || 'Unset'}
+                            </StyledPanelText>
+                            <StyledPanelIconButton onClick={() => setToggleEdit(true)}>
+                                <EditPencilIcon/>
+                            </StyledPanelIconButton>
                         </StyledPanelRowWrapper>
                     </StyledPanelRow>
                 </StyledRightPanelSection>
@@ -182,12 +196,20 @@ const RightPanel = () => {
                     <StyledPanelRow>
                         <StyledPanelText
                             style={{justifyContent: 'flex-start', textAlign: 'left', marginBottom: '20px'}}>
-                            {selectedContact?.bio}
+                            {contactProfile?.bio}
                         </StyledPanelText>
                     </StyledPanelRow>
                 </StyledRightPanelSection>
             </StyledRightPanelContent>
         </StyledRightPanel>
+        {
+            toggleEdit && (
+                <StyledPopupModal>
+                    Edit your name
+                </StyledPopupModal>
+            )
+        }
+        </>
     )
 }
 

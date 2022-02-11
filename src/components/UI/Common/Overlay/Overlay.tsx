@@ -11,7 +11,8 @@ type DragOverlayProps = {
 
 type OverlayProps = {
     show: boolean,
-    onClick?: () => void
+    onClick?: () => void,
+    className?: string
 }
 
 type StyledOverlayProps = {
@@ -65,8 +66,8 @@ const StyledOverlayText = styled.p`
   font-size: ${props => props.theme.ui.fontSizes.narrow.sm};
 `
 
-export const Overlay = ({show, onClick}: OverlayProps) => {
-    return <StyledOverlay show={show} onClick={onClick}/>
+export const Overlay = ({show, onClick, className}: OverlayProps) => {
+    return <StyledOverlay show={show} onClick={onClick} className={className}/>
 }
 
 export const OverlayDarker = ({show, onClick}: OverlayProps) => {
