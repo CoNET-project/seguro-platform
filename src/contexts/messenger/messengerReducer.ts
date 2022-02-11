@@ -21,6 +21,7 @@ export const generateDefaultContactsMap = () => {
 
 
 export const messengerReducer = (state: MessengerState, action: MessengerActions): MessengerState => {
+    let contacts: Contacts
     switch (action.type) {
         case "setCurrentFocusPanel":
             return {
@@ -28,7 +29,7 @@ export const messengerReducer = (state: MessengerState, action: MessengerActions
                 currentFocusPanel: action.payload
             }
         case "setInitialContacts":
-            const contacts: Contacts = new Map(state.contacts)
+            contacts = new Map(state.contacts)
 
             action.payload.map(contact => {
                 let firstChar = ''
@@ -43,6 +44,22 @@ export const messengerReducer = (state: MessengerState, action: MessengerActions
                 previous = contacts.get(firstChar)
                 contacts.set(firstChar.toUpperCase(), {...previous, [contact.keyId]: contact})
             })
+
+            return {
+                ...state,
+                contacts: contacts
+            }
+        case "setNewContact":
+            contacts = new Map(state.contacts)
+
+            let firstChar = ''
+            if (action.payload.nickname) {
+                firstChar = action.payload.nickname[0]
+            } else if (action.payload.alias) {
+                firstChar = action.payload.alias[0]
+            }
+            const previous = contacts.get(firstChar)
+            contacts.set(firstChar.toUpperCase(), {...previous, [action.payload.keyId]: action.payload})
 
             return {
                 ...state,

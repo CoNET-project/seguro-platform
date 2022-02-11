@@ -19,6 +19,9 @@ export const useMessengerContext = () => {
         setInitialContacts: (contacts: Contact[]) => {
             dispatch(messengerActions.setInitialContacts(contacts))
         },
+        setNewContact: (contact: Contact) => {
+            dispatch(messengerActions.setNewContact(contact))
+        },
         setSelectedContact: (contact: Contact) => {
             dispatch(messengerActions.setSelectedContact(contact))
         },

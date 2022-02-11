@@ -8,7 +8,12 @@ export type Contact = {
     nickname: string
 }
 
-export type MessengerActions = SetCurrentFocusPanel | SetInitialContacts | SetSelectedContact | ClearSelectedContact
+export type MessengerActions =
+    SetCurrentFocusPanel
+    | SetInitialContacts
+    | SetNewContact
+    | SetSelectedContact
+    | ClearSelectedContact
 
 type SetCurrentFocusPanel = {
     type: "setCurrentFocusPanel",
@@ -19,6 +24,11 @@ type SetCurrentFocusPanel = {
 type SetInitialContacts = {
     type: "setInitialContacts",
     payload: Contact[]
+}
+
+type SetNewContact = {
+    type: "setNewContact",
+    payload: Contact
 }
 
 type SetSelectedContact = {
@@ -41,6 +51,12 @@ export const messengerActions = {
         return {
             type: 'setInitialContacts',
             payload: contacts
+        }
+    },
+    setNewContact: (contact: Contact): SetNewContact => {
+        return {
+            type: 'setNewContact',
+            payload: contact
         }
     },
     setSelectedContact: (contact: Contact): SetSelectedContact => {
