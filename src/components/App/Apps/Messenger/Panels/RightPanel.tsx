@@ -9,16 +9,16 @@ const StyledRightPanel = styled.div`
   height: 100%;
   width: 100%;
   content: '';
-  overflow: hidden;
 `
 
 const StyledRightPanelContent = styled.div`
-  height: 100%;
+  height: calc(100% - 50px);
   width: 100%;
   content: '';
   display: flex;
   flex-direction: column;
   align-items: center;
+  overflow: auto;
 `
 
 const StyledProfileImage = styled.img`
@@ -110,7 +110,7 @@ const StyledCustomNicknameInput = styled(Input)`
 `
 
 const RightPanel = () => {
-    const {setCurrentFocusPanel, selectedContact} = useMessengerContext()
+    const {setCurrentFocusPanel, selectedContact, currentFocusPanel} = useMessengerContext()
     const [nicknameEdit, setNicknameEdit] = useState('')
     const [toggleEdit, setToggleEdit] = useState(false)
 
