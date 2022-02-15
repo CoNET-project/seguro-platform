@@ -26,6 +26,7 @@ import {
     IoMdContacts,
     IoSettingsOutline,
     MdContentCopy,
+    MdEdit,
     MdManageAccounts,
     MdPassword,
     MdPersonAddAlt1,
@@ -366,6 +367,14 @@ export const AddContact = ({size, color}: IconProps) => {
     return (
         <StyledIcon>
             <MdPersonAddAlt1 size={getSize(size)} color={color || undefined}/>
+        </StyledIcon>
+    )
+}
+
+export const EditPencilIcon = ({size, color}: IconProps) => {
+    return (
+        <StyledIcon>
+            <MdEdit size={getSize(size)} color={color || undefined}/>
         </StyledIcon>
     )
 }

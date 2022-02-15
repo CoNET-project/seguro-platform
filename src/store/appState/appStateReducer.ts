@@ -6,7 +6,6 @@ import {
     setActiveProfile,
     setClientDevices,
     setClientProfiles,
-    setCurrentFocusPanel,
     setHasContainer,
     setHasNotification,
     setHasUpdateAvailable,
@@ -31,8 +30,6 @@ import {getPreferredLocale} from '../../localization/localization'
 import {detectWindowInnerSize} from "../../utilities/utilities";
 import {WindowInnerSize} from './useAppState'
 import {getWorkerService} from "../../services/workerService/workerService";
-
-export type CurrentFocusPanel = 'left' | 'main' | 'right'
 
 export type ModalNames = 'settings' | 'manageProfile' | 'addProfile' | null
 
@@ -76,7 +73,6 @@ type AppStateReducerState = {
     networkStrength: NetworkStrength,
     hasNotification: boolean,
     showOverlay: boolean,
-    currentFocusPanel: CurrentFocusPanel,
     windowInnerSize: WindowInnerSize,
     workerServiceIsInitialized: boolean,
     theme: Theme,
@@ -98,7 +94,6 @@ const initialState: AppStateReducerState = {
     networkStrength: 3,
     hasNotification: false,
     showOverlay: false,
-    currentFocusPanel: 'left',
     windowInnerSize: detectWindowInnerSize(),
     workerServiceIsInitialized: false,
     theme: 'Auto',
@@ -166,10 +161,6 @@ const appStateReducer = createReducer(initialState, builder => {
 
         .addCase(setHasUpdateAvailable, (state, action) => {
             state.hasUpdateAvailable = action.payload.hasUpdateAvailable
-        })
-
-        .addCase(setCurrentFocusPanel, (state, action) => {
-            state.currentFocusPanel = action.payload.panel
         })
 
         .addCase(setIsModalOpen, (state, action) => {

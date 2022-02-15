@@ -1,12 +1,41 @@
-import {
-    NavigatePageAction,
-    PageIds,
-    SetOnboardingDataAction,
-    SetVerificationCode, SetVerificationCodeError,
-    SetVerificationStatus,
-    VerificationStates
-} from "./OnboardingContext";
 import logger from '../../utilities/logger/logger'
+import {PageIds, VerificationStates} from './onboardingPageReducer'
+
+export type NavigatePageAction = {
+    type: 'navigateToPage' | 'nextPage' | 'previousPage',
+    payload?: {
+        pageId: PageIds
+    }
+}
+
+export type SetOnboardingDataAction = {
+    type: 'setPasscode' | 'setConfirmPasscode',
+    payload: string
+}
+
+export type SetVerificationCode = {
+    type: 'setVerificationCode',
+    payload: string
+}
+
+export type SetVerificationCodeError = {
+    type: 'setVerificationCodeError',
+    payload: boolean
+}
+
+export type SetVerificationStatus = {
+    type: 'setVerificationStatus',
+    payload: VerificationStates
+}
+
+export type OnboardingActions =
+    NavigatePageAction
+    | SetOnboardingDataAction
+    | SetVerificationCode
+    | SetVerificationCodeError
+    | SetVerificationStatus
+
+export type Dispatch = (action: OnboardingActions) => void
 
 const onboardingActions = {
     nextPage: (): NavigatePageAction => {

@@ -10,7 +10,7 @@ import useAppState from "../../../store/appState/useAppState";
 import VerificationModal from './Verification/Modal';
 import {Warning} from "../../UI/Icons/Icons";
 import AlertDialog, {AlertDialogActions} from "../../UI/Common/AlertDialog/AlertDialog";
-import Input from "../../UI/Inputs/Input/Input";
+import LargeInput from "../../UI/Inputs/LargeInput/LargeInput";
 
 const StyledContainer = styled.div`
   height: 100%;
@@ -135,14 +135,14 @@ const UnlockScreen = () => {
                     ) : (
                         (
                             <StyledFlexContainer>
-                                <Input value={passcode}
-                                       inputOptions={{
-                                           inputType: 'password'
-                                       }
-                                       }
-                                       setValue={(val) => {
-                                           setPasscode(val)
-                                       }}/>
+                                <LargeInput value={passcode}
+                                            inputOptions={{
+                                                inputType: 'password'
+                                            }
+                                            }
+                                            setValue={(val) => {
+                                                setPasscode(val)
+                                            }}/>
                             </StyledFlexContainer>
                         )
                     )

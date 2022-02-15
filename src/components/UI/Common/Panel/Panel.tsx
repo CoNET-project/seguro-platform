@@ -12,7 +12,9 @@ const StyledPanel = styled.div`
   content: '';
   background-color: ${props => props.theme.ui.colors.background.foundation};
   color: ${props => props.theme.ui.colors.text.primary};
-  transition: width 250ms ease-in-out, opacity 300ms ease-in-out;
+  transition: width 150ms ease-in-out, opacity 150ms ease-in-out;
+
+  // Don't change this!
   overflow: hidden;
 `
 

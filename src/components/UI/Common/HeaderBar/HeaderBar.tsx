@@ -36,7 +36,6 @@ const StyledHeaderBar = styled.div`
   border-bottom: 1px solid ${props => props.theme.ui.colors.border.light};
   position: relative;
   z-index: 10;
-
     // @media (${screenWidth.mediumWidth}) {
   //   height: 60px;
   // }
@@ -73,14 +72,16 @@ const StyledHeaderDetails = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  margin-left: 7.5px;
+  margin-left: 4px;
 `
 
 const StyledHeaderTitle = styled.p`
   font-size: ${props => props.theme.ui.fontSizes.narrow.sm};
+  font-family: 'Lato Bold', sans-serif;
 `
 
 const StyledHeaderSubtitle = styled.p`
+  margin-top: 3px;
   font-size: ${props => props.theme.ui.fontSizes.narrow.xsm};
   color: ${props => props.theme.ui.colors.text.secondary};
 `
@@ -122,7 +123,7 @@ const HeaderBar = ({className, closeAction, headerContent, headerComponents}: He
                 {
                     headerComponents?.headerRight && (
                         headerComponents.headerRight.map((component, idx) => (
-                            <Fragment key={Math.random() * Math.random()}>
+                            <Fragment key={`headerRight${idx}`}>
                                 {component}
                             </Fragment>
                         ))

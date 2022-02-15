@@ -1,15 +1,14 @@
 import store from '../store/store'
 import {
+    setHasNotification,
+    setHasUpdateAvailable,
+    setIsDrawerOpen,
     setIsTouchDevice,
     setLocale,
-    setTheme,
-    setIsDrawerOpen,
-    setHasUpdateAvailable,
-    setCurrentFocusPanel, setHasNotification
+    setTheme
 } from '../store/appState/appStateActions'
 import {Locale} from '../localization/types'
 import {Theme} from '../theme/types'
-import {CurrentFocusPanel} from "../store/appState/appStateReducer";
 import {getWorkerService} from "../services/workerService/workerService";
 
 export const enableDebugCommands = () => {
@@ -49,10 +48,6 @@ export const enableDebugCommands = () => {
 
             setNotification(hasNotification: boolean) {
                 store.dispatch(setHasNotification(hasNotification))
-            },
-
-            setCurrentPanel(panel: CurrentFocusPanel) {
-                store.dispatch(setCurrentFocusPanel(panel))
             }
         }
     }

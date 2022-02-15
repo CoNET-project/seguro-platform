@@ -12,6 +12,7 @@ const StyledButton = styled.button<{ isHidden: boolean }>`
   visibility: ${props => props.isHidden ? 'hidden' : 'visible'};
   color: whitesmoke;
   background-color: ${props => props.theme.ui.colors.primary};
+  font-size: ${props => props.theme.ui.fontSizes.narrow.sm};
 
   &:disabled {
     background-color: rgba(255, 255, 255, 0.5);

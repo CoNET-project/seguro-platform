@@ -5,7 +5,7 @@ import React, {useEffect, useState} from "react";
 import VerificationAnimation from "../../../../assets/lottie/verification.json";
 import LottieAnimation from "../../../UI/Lottie/Lottie";
 import {isUUIDv4} from "../../../../utilities/utilities";
-import Input from "../../../UI/Inputs/Input/Input";
+import LargeInput from "../../../UI/Inputs/LargeInput/LargeInput";
 import Button from "../../../UI/Common/Button/Button";
 import {FormattedMessage} from "react-intl";
 import {verifyInvitation} from "../../../../services/workerService/workerService";
@@ -126,12 +126,12 @@ const VerificationModal = () => {
                     <StyledModalTitle>Verification Required</StyledModalTitle>
                     <StyledModalSubtitle>Please enter your 36 character invitation code to complete your
                         setup.</StyledModalSubtitle>
-                    <Input value=''
-                           setValue={(val) => {
-                               setVerificationCode(val)
-                               setVerificationError(false)
-                           }}
-                           error={!!verificationError}
+                    <LargeInput value=''
+                                setValue={(val) => {
+                                    setVerificationCode(val)
+                                    setVerificationError(false)
+                                }}
+                                error={!!verificationError}
                     />
                     <StyledErrorMessage>
                         {

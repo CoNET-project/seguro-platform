@@ -81,14 +81,16 @@ const StyledTabHighlight = styled(motion.div)`
 const Tab = ({id, text, icon, activeStyles}: TabProps) => {
     const {state, dispatch} = usePageNavigator()
 
+    const rootPageId = state.current[0].split('/')[0]
+
 
     return (
         <StyledTab
             initial={false}
             onClick={() => dispatch(pageNavigator.navigateToPage(id))}
             style={{
-                color: state.current[0] === id ? activeStyles?.color : '',
-                backgroundColor: state.current[0] === id ? activeStyles?.backgroundColor : '',
+                color: rootPageId === id ? activeStyles?.color : '',
+                backgroundColor: rootPageId === id ? activeStyles?.backgroundColor : '',
             }}
         >
             <StyledIcon>
@@ -96,7 +98,7 @@ const Tab = ({id, text, icon, activeStyles}: TabProps) => {
             </StyledIcon>
             <StyledText>{text}</StyledText>
             {
-                state.current[0] === id && (
+                rootPageId === id && (
                     <StyledTabHighlight
                         layoutId='tabHighlight'
                         initial={false}

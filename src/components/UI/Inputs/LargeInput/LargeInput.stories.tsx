@@ -1,17 +1,17 @@
 import {Story} from '@storybook/react'
-import Input from './Input'
+import LargeInput from './LargeInput'
 import {FormattedMessage} from "react-intl";
 
 export default {
-    component: Input,
-    title: 'Inputs/Input'
+    component: LargeInput,
+    title: 'Inputs/LargeInput'
 }
 
 const Template: Story = (
     args
 ) => {
     return (
-        <Input value='hello' error={<FormattedMessage id='passcodeInput.invalidLength'/>} setValue={e => {
+        <LargeInput value='hello' error={<FormattedMessage id='passcodeInput.invalidLength'/>} setValue={e => {
         }}/>
     )
 }

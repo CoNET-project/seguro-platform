@@ -1,7 +1,6 @@
 import styled from 'styled-components'
 import {AnimatePresence, motion} from "framer-motion";
 import TabNavigatorTabs from "./TabNavigatorTabs/TabNavigatorTabs";
-import {PageNavigatorProvider} from "../../Providers/PageNavigatorProvider";
 import {ReactNode} from "react";
 import {usePageNavigator} from "../../../contexts/pageNavigator/PageNavigatorContext";
 import {TabActiveStyles} from "./Tab/Tab";
@@ -11,7 +10,8 @@ export type TabNavigatorPages = {
     [id: string]: {
         text?: ReactNode | string,
         icon?: ReactNode,
-        screen: ReactNode
+        screen: ReactNode,
+        isTopLevel?: boolean
     }
 }
 
@@ -31,13 +31,13 @@ const StyledTabNavigator = styled.div`
 `
 
 const StyledTabNavigatorContent = styled(motion.div)`
-  height: 100%;
+  height: calc(100% - 51px);
 `
 
 const TabNavigatorContent = ({screens}: TabNavigatorProps) => {
     const {state} = usePageNavigator()
 
-    const content = screens[state.current[0]].screen
+    const content = screens[state.current[0]]?.screen
 
     return (
         <AnimatePresence custom={state.current[1]} exitBeforeEnter>
@@ -62,12 +62,10 @@ const TabNavigatorContent = ({screens}: TabNavigatorProps) => {
 const TabNavigator = ({screens, activeStyles, className}: TabNavigatorProps) => {
 
     return (
-        <PageNavigatorProvider existingPages={Object.keys(screens)}>
-            <StyledTabNavigator className={className}>
-                <TabNavigatorContent screens={screens}/>
-                <TabNavigatorTabs screens={screens} activeStyles={activeStyles}/>
-            </StyledTabNavigator>
-        </PageNavigatorProvider>
+        <StyledTabNavigator className={className}>
+            <TabNavigatorContent screens={screens}/>
+            <TabNavigatorTabs screens={screens} activeStyles={activeStyles}/>
+        </StyledTabNavigator>
     )
 }
 

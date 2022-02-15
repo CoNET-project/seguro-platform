@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import VerticalNavigatorTabs from "./VerticalNavigatorTabs/VerticalNavigatorTabs";
-import {PageNavigatorProvider} from "../../Providers/PageNavigatorProvider";
 import {ReactNode} from "react";
 import {usePageNavigator} from "../../../contexts/pageNavigator/PageNavigatorContext";
 
@@ -20,7 +19,8 @@ export type VerticalTabNavigatorPages = {
     [id: string]: {
         text?: ReactNode | string,
         icon?: ReactNode,
-        screen: ReactNode
+        screen: ReactNode,
+        isTopLevel?: boolean
     }
 }
 
@@ -32,7 +32,7 @@ type VerticalTabNavigatorProps = {
 const VerticalTabNavigatorContent = ({screens}: VerticalTabNavigatorProps) => {
     const {state} = usePageNavigator()
 
-    const screen = screens[state.current[0]].screen
+    const screen = screens[state.current[0]]?.screen
 
     return (
         <StyledVerticalTabNavigatorContent>
@@ -43,12 +43,10 @@ const VerticalTabNavigatorContent = ({screens}: VerticalTabNavigatorProps) => {
 
 const VerticalTabNavigator = ({screens, className}: VerticalTabNavigatorProps) => {
     return (
-        <PageNavigatorProvider existingPages={Object.keys(screens)}>
-            <StyledVerticalTabNavigator className={className}>
-                <VerticalNavigatorTabs screens={screens}/>
-                <VerticalTabNavigatorContent screens={screens}/>
-            </StyledVerticalTabNavigator>
-        </PageNavigatorProvider>
+        <StyledVerticalTabNavigator className={className}>
+            <VerticalNavigatorTabs screens={screens}/>
+            <VerticalTabNavigatorContent screens={screens}/>
+        </StyledVerticalTabNavigator>
     )
 }
 
