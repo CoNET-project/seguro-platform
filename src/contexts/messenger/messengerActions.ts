@@ -12,6 +12,7 @@ export type MessengerActions =
     SetCurrentFocusPanel
     | SetInitialContacts
     | SetNewContact
+    | UpdateContact
     | SetSelectedContact
     | ClearSelectedContact
 
@@ -29,6 +30,14 @@ type SetInitialContacts = {
 type SetNewContact = {
     type: "setNewContact",
     payload: Contact
+}
+
+type UpdateContact = {
+    type: "updateContact",
+    payload: {
+        previous: Contact,
+        updated: Contact
+    }
 }
 
 type SetSelectedContact = {
@@ -57,6 +66,15 @@ export const messengerActions = {
         return {
             type: 'setNewContact',
             payload: contact
+        }
+    },
+    updateContact: (previousContact: Contact, updatedContact: Contact): UpdateContact => {
+        return {
+            type: 'updateContact',
+            payload: {
+                previous: previousContact,
+                updated: updatedContact
+            }
         }
     },
     setSelectedContact: (contact: Contact): SetSelectedContact => {

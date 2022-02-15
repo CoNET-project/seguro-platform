@@ -3,6 +3,7 @@ import HeaderBar from "../../../../UI/Common/HeaderBar/HeaderBar";
 import {ChevronLeft, ChevronRight} from "../../../../UI/Icons/Icons";
 import ProfileImage from "../../../../UI/Common/Profile/Image/Image";
 import {useMessengerContext} from "../../../../../contexts/messenger/MessengerContext";
+import {trimToLength} from "../../../../../utilities/utilities";
 
 const StyledMainPanel = styled.div`
   height: 100%;
@@ -37,7 +38,7 @@ const MainPanel = () => {
                     icon: currentFocusPanel === 'left' ? <ChevronLeft/> : <ChevronRight/>
                 }}
                 headerContent={{
-                    title: selectedContact && (selectedContact.nickname || selectedContact.alias || selectedContact.keyId),
+                    title: selectedContact && (trimToLength(selectedContact.nickname, 20) || trimToLength(selectedContact.alias, 20) || selectedContact.keyId),
                     subtitle: selectedContact && (selectedContact.nickname || selectedContact.alias) ? selectedContact.keyId : null
                 }}
                 headerComponents={{

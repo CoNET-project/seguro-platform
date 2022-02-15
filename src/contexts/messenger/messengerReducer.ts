@@ -22,6 +22,8 @@ export const generateDefaultContactsMap = () => {
 
 export const messengerReducer = (state: MessengerState, action: MessengerActions): MessengerState => {
     let contacts: Contacts
+    let firstChar = ''
+    let previous
     switch (action.type) {
         case "setCurrentFocusPanel":
             return {
@@ -52,17 +54,45 @@ export const messengerReducer = (state: MessengerState, action: MessengerActions
         case "setNewContact":
             contacts = new Map(state.contacts)
 
-            let firstChar = ''
             if (action.payload.nickname) {
                 firstChar = action.payload.nickname[0]
             } else if (action.payload.alias) {
                 firstChar = action.payload.alias[0]
             }
-            const previous = contacts.get(firstChar)
+            previous = contacts.get(firstChar)
             contacts.set(firstChar.toUpperCase(), {...previous, [action.payload.keyId]: action.payload})
 
             return {
                 ...state,
+                contacts: contacts
+            }
+        case "updateContact":
+            contacts = new Map(state.contacts)
+            if (action.payload.previous.nickname) {
+                firstChar = action.payload.previous.nickname[0]
+            } else if (action.payload.previous.alias) {
+                firstChar = action.payload.previous.alias[0]
+            }
+
+            const contactGroup = contacts.get(firstChar)
+
+            if (contactGroup) {
+                delete contactGroup[action.payload.previous.keyId]
+                contacts.set(firstChar, contactGroup)
+            }
+
+            if (action.payload.updated.nickname) {
+                firstChar = action.payload.updated.nickname[0]
+            } else if (action.payload.updated.alias) {
+                firstChar = action.payload.updated.alias[0]
+            }
+
+            previous = contacts.get(firstChar)
+            contacts.set(firstChar.toUpperCase(), {...previous, [action.payload.updated.keyId]: action.payload.updated})
+
+            return {
+                ...state,
+                selectedContact: action.payload.updated,
                 contacts: contacts
             }
         case "setSelectedContact":

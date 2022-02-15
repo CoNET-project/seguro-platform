@@ -1,4 +1,4 @@
-import {ReactNode} from 'react'
+import React, {ReactNode, Ref} from 'react'
 import styled from 'styled-components'
 
 type StyledInputProps = {
@@ -41,6 +41,8 @@ const StyledAsterisk = styled.span`
 type InputProps = {
     id: string,
     onChange: (val: string) => void,
+    disabled?: boolean,
+    placeholder?: string,
     defaultValue?: string,
     labelText?: ReactNode | string,
     hasError?: boolean,
@@ -48,7 +50,17 @@ type InputProps = {
     className?: string
 }
 
-const Input = ({id, labelText, onChange, defaultValue, hasError, required, className}: InputProps) => {
+const Input = React.forwardRef(({
+                                    id,
+                                    labelText,
+                                    onChange,
+                                    defaultValue,
+                                    hasError,
+                                    required,
+                                    className,
+                                    disabled,
+                                    placeholder
+                                }: InputProps, ref: Ref<HTMLInputElement>) => {
     return (
         <>
             {
@@ -60,9 +72,10 @@ const Input = ({id, labelText, onChange, defaultValue, hasError, required, class
                 )
             }
             <StyledInput id={id} type='text' hasError={hasError} onChange={e => onChange(e.target.value)}
-                         className={className} defaultValue={defaultValue}/>
+                         className={className} defaultValue={defaultValue} disabled={disabled} ref={ref}
+                         placeholder={placeholder}/>
         </>
     )
-}
+})
 
 export default Input
