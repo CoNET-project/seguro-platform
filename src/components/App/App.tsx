@@ -44,8 +44,8 @@ const App = () => {
     useEffect(() => {
 
 
-        // initialize().then(() => {
-        // })
+        initialize().then(() => {
+        })
 
         const randomDeviceIds = Array.from({length: 3}, (_, i) => (Date.now() + Math.round(Math.random() * 100)).toString())
 
@@ -83,9 +83,9 @@ const App = () => {
 
     const getContent = () => {
 
-        return (
-            <MainScreen/>
-        )
+        // return (
+        //     <MainScreen/>
+        // )
 
         switch (true) {
             case isInitializing:
