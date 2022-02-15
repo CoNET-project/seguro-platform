@@ -1,5 +1,25 @@
 # `seguro-platform` CHANGELOG
 
+## `0.52.0`
+
+### Additions
+
+- Add example contacts and list items for contacts.
+- Add states for contacts, set, update, new, select.
+- Add right panel information for contacts when selected.
+- Add update nickname functionality.
+
+### Changes
+
+- Removed legacy code.
+- Remove unused or components that were used once.
+
+### Fixes
+
+- Minor style fixes throughout.
+
+---
+
 ## `0.51.0`
 
 ### Additions
