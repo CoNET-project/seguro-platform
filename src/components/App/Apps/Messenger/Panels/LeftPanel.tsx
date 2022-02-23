@@ -9,6 +9,7 @@ import styled from "styled-components";
 import {screenWidth} from "../../../../UI/screenSizes";
 import {PageNavigatorProvider} from "../../../../Providers/PageNavigatorProvider";
 import AddContact from "./LeftPanel/Contacts/AddContact";
+import AddChat from "./LeftPanel/Chats/AddChat";
 
 const CustomVerticalTabNavigator = styled(VerticalTabNavigator)`
   display: none;
@@ -29,6 +30,10 @@ const LeftPanel = () => {
             screen: <ChatsScreen/>,
             text: <FormattedMessage id='tabnavigator.tab.chats'/>,
             icon: <ChatBubble/>
+        },
+        'Chats/Add Chat': {
+            screen: <AddChat/>,
+            isTopLevel: false
         },
         'Contacts': {
             screen: <ContactsScreen/>,

@@ -1,6 +1,6 @@
 import React from "react";
 import {Contact, Dispatch, messengerActions} from "./messengerActions";
-import {MessengerState} from "./messengerReducer";
+import {Chat, MessengerState} from "./messengerReducer";
 
 export const MessengerContext = React.createContext<{ state: MessengerState; dispatch: Dispatch } | undefined>(undefined)
 
@@ -24,6 +24,9 @@ export const useMessengerContext = () => {
         },
         updateContact: (previousContact: Contact, updatedContact: Contact) => {
             dispatch(messengerActions.updateContact(previousContact, updatedContact))
+        },
+        setCurrentChat: (chat: Chat) => {
+            dispatch(messengerActions.setCurrentChat(chat))
         },
         setSelectedContact: (contact: Contact) => {
             dispatch(messengerActions.setSelectedContact(contact))

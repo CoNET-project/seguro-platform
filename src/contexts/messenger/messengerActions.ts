@@ -1,3 +1,5 @@
+import {Chat} from "./messengerReducer";
+
 export type Dispatch = (action: any) => void
 
 export type Contact = {
@@ -13,6 +15,7 @@ export type MessengerActions =
     | SetInitialContacts
     | SetNewContact
     | UpdateContact
+    | SetCurrentChat
     | SetSelectedContact
     | ClearSelectedContact
 
@@ -21,6 +24,10 @@ type SetCurrentFocusPanel = {
     payload: 'left' | 'main' | 'right'
 }
 
+type SetCurrentChat = {
+    type: "setCurrentChat",
+    payload: Chat
+}
 
 type SetInitialContacts = {
     type: "setInitialContacts",
@@ -75,6 +82,12 @@ export const messengerActions = {
                 previous: previousContact,
                 updated: updatedContact
             }
+        }
+    },
+    setCurrentChat: (chat: Chat): SetCurrentChat => {
+        return {
+            type: 'setCurrentChat',
+            payload: chat
         }
     },
     setSelectedContact: (contact: Contact): SetSelectedContact => {

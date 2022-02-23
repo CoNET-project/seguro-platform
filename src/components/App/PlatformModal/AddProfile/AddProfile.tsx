@@ -53,7 +53,7 @@ const StyledAddProfileButton = styled.button`
   border: 1px solid ${props => props.theme.ui.colors.border.light};
   border-radius: 5px;
   background-color: ${props => props.theme.ui.colors.primary};
-  color: ${props => props.theme.ui.colors.text.primary};
+  color: white;
 `
 
 type AddProfileProps = {}

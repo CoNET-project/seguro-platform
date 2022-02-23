@@ -1,5 +1,23 @@
 # `seguro-platform` CHANGELOG
 
+## `0.53.0`
+
+### Additions
+
+- Add `Add Chat` functionality.
+- Add `ContactList` component.
+- Add `categorizedContact` hook.
+
+### Changes
+
+- Refactored Contact list into separate component.
+
+### Fixes
+
+- Minor style fixes throughout.
+
+---
+
 ## `0.52.0`
 
 ### Additions
