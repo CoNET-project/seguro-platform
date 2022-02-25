@@ -11,20 +11,26 @@ const StyledContacts = styled.div`
   width: 100%;
 `
 
+const StyledContactsContent = styled.div`
+  height: calc(100% - 50px);
+`
+
 const Contacts = () => {
     const {contacts, setSelectedContact, setCurrentFocusPanel} = useMessengerContext()
     const {dispatch} = usePageNavigator()
 
 
     const contactOnClick = (contact: Contact) => {
-        setCurrentFocusPanel('right')
+        setCurrentFocusPanel('main')
         setSelectedContact(contact)
     }
 
     return (
         <StyledContacts>
             <Header onClick={() => dispatch(pageNavigator.navigateToPage('Contacts/Add Contact'))}/>
-            <ContactList onClick={contactOnClick}/>
+            <StyledContactsContent>
+                <ContactList onClick={contactOnClick}/>
+            </StyledContactsContent>
         </StyledContacts>
     )
 }

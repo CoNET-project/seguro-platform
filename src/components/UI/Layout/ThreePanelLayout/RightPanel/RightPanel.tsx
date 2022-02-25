@@ -20,6 +20,7 @@ const StyledRightPanel = styled(StyledPanel)<StyledRightPanelProps>`
   border-left: 1px solid ${props => props.theme.ui.colors.border.light};
   z-index: 11;
   box-shadow: 1px 7px 7px rgba(0, 0, 0, 0.15);
+  overflow: hidden;
   @media (${screenWidth.narrowWidth}) {
     max-width: 350px;
   }
