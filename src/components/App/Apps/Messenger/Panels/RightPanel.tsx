@@ -29,12 +29,10 @@ const StyledRightPanelContent = styled.div`
 
 const StyledProfileImage = styled.img`
   width: 100%;
-  min-width: 300px;
-  height: 300px;
+  height: 350px;
   object-position: center;
   object-fit: cover;
-  border-bottom-left-radius: 2px;
-  border-bottom-right-radius: 2px;
+  display: block
 `
 
 const StyledRightPanelSection = styled.div`

@@ -11,7 +11,7 @@ import {ProfileData} from "../../../../store/appState/appStateReducer";
 const StyledAddProfileContainer = styled.div`
   width: 100%;
   height: 100%;
-  background-color: ${props => props.theme.ui.colors.background.elevationOne};
+  background-color: ${props => props.theme.ui.colors.background.foundation};
   @media (${screenWidth.mediumWidth}) {
     min-width: 30rem;
   }
@@ -25,7 +25,7 @@ const StyledAddProfileRow = styled.div`
 `
 
 const StyledAddProfileContent = styled.div`
-  background-color: ${props => props.theme.ui.colors.background.elevationOne};
+  background-color: ${props => props.theme.ui.colors.background.foundation};
   padding: 40px 0;
   display: flex;
   flex-direction: column;
@@ -39,7 +39,7 @@ const StyledAddProfileContent = styled.div`
 
 const CustomizedHeaderBar = styled(HeaderBar)`
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-  background-color: ${props => props.theme.ui.colors.background.elevationOne};
+  background-color: ${props => props.theme.ui.colors.background.foundation};
 
   & > * #headerTitle {
     font-size: ${props => props.theme.ui.fontSizes.narrow.md};
@@ -53,7 +53,7 @@ const StyledAddProfileButton = styled.button`
   border: 1px solid ${props => props.theme.ui.colors.border.light};
   border-radius: 5px;
   background-color: ${props => props.theme.ui.colors.primary};
-  color: ${props => props.theme.ui.colors.text.primary};
+  color: white;
 `
 
 type AddProfileProps = {}

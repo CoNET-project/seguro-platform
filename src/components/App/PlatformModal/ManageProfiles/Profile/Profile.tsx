@@ -11,7 +11,7 @@ import {ProfileData} from "../../../../../store/appState/appStateReducer";
 
 const StyledManageProfile = styled.div`
   padding: 40px 0 20px 0;
-  background-color: ${props => props.theme.ui.colors.background.elevationOne};
+  background-color: ${props => props.theme.ui.colors.background.foundation};
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -195,7 +195,8 @@ const Profile = ({profile, onChange, disableUpdate, newProfile}: ProfileProps) =
                             !disableUpdate && (
                                 <StyledProfileImageEdit onClick={() => filePickerRef.current?.click()}>
                                     <Camera size={22} color="white"/>
-                                    <StyledProfileImageEditText><FormattedMessage id='platform.profile.changePicture'/></StyledProfileImageEditText>
+                                    <StyledProfileImageEditText><FormattedMessage
+                                        id='platform.profile.changePicture'/></StyledProfileImageEditText>
                                 </StyledProfileImageEdit>
                             )
                         }

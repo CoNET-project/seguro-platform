@@ -3,6 +3,7 @@ import {ReactNode} from "react";
 import {screenWidth} from "../../screenSizes";
 
 type ListItemProps = {
+    className?: string,
     onClick?: () => void,
     itemHeader?: {
         title: ReactNode | string,
@@ -25,8 +26,8 @@ type StyledItemSectionProps = {
 
 const StyledListItem = styled.div<StyledListItemProps>`
   width: 100%;
-  min-height: 50px;
-  background-color: ${props => props.theme.ui.colors.background.elevationOne};
+  min-height: 40px;
+  background-color: ${props => props.theme.ui.colors.background.foundation};
   color: ${props => props.theme.ui.colors.text.primary};
   padding: 15px 15px;
   display: flex;
@@ -35,7 +36,7 @@ const StyledListItem = styled.div<StyledListItemProps>`
   cursor: ${props => props.hasClick ? 'pointer' : 'unset'};
 
   @media (${screenWidth.mediumWidth}) {
-    padding: 15px 20px;
+    padding: 10px 20px;
   }
 `
 
@@ -75,9 +76,9 @@ const StyledItemHeaderTitle = styled.p`
 `
 
 
-const ListItem = ({isSectionSeparator, itemHeader, itemLeft, itemRight, onClick}: ListItemProps) => {
+const ListItem = ({isSectionSeparator, itemHeader, itemLeft, itemRight, onClick, className}: ListItemProps) => {
     return (
-        <StyledListItem isSeparator={isSectionSeparator} onClick={onClick} hasClick={!!onClick}>
+        <StyledListItem isSeparator={isSectionSeparator} onClick={onClick} hasClick={!!onClick} className={className}>
             {
                 itemHeader && (
                     <StyledItemHeader>

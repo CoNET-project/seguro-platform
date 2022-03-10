@@ -1,21 +1,15 @@
 import styled from 'styled-components';
 import {AnimationControls, HTMLMotionProps, motion} from "framer-motion";
 import Item from "./Item/Item";
-import {
-    AiOutlineMessage,
-    AiOutlineQuestionCircle,
-    FaCcApplePay,
-    IoFileTrayStackedOutline,
-    MdSystemUpdateAlt
-} from "react-icons/all";
+import {AiOutlineMessage, AiOutlineQuestionCircle, IoFileTrayStackedOutline, MdSystemUpdateAlt} from "react-icons/all";
 import {Gear} from "../Icons/Icons";
 import React, {useEffect, useRef} from 'react';
 import {drawerTransitionVariants} from "../Motion/Variants/Variants";
 import useAppState from "../../../store/appState/useAppState";
 import logger from "../../../utilities/logger/logger";
-import {useDidMountEffect} from "../../../utilities/utilities";
 import {LogoIcon, LogoText} from "../Logo/Logo";
 import {FormattedMessage} from "react-intl";
+import {useDidMountEffect} from "../../../utilities/hooks";
 
 type DrawerAnimations = 'enter' | 'exit'
 

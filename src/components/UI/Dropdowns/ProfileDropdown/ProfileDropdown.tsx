@@ -40,7 +40,7 @@ const StyledProfileDropdownOption = styled.button`
   border: none;
   color: ${props => props.theme.ui.colors.text.primary};
   text-align: start;
-  padding: 15px 30px;
+  padding: 15px 20px;
   display: flex;
   align-items: center;
   font-size: ${props => props.theme.ui.fontSizes.narrow.sm};
@@ -56,7 +56,7 @@ const StyledProfileDropdownOption = styled.button`
 `
 
 const StyledProfileDropdownOptionsText = styled.p`
-  margin-left: 10px;
+  margin-left: 16px;
 `
 
 const ProfileDropdown = ({closeDropdown}: ProfileDropdownProps) => {

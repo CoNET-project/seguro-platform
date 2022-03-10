@@ -18,7 +18,7 @@ const StyledGlobalBar = styled.div`
   border-bottom: 1px solid ${props => props.theme.ui.colors.border.light};
   display: flex;
   align-items: center;
-  background-color: ${props => props.theme.ui.colors.background.foundation};
+  background-color: ${props => props.theme.ui.colors.globalBar.background};
   padding: calc(env(safe-area-inset-top)) 10px 0 10px;
 
   @media (${screenWidth.mediumWidth}) {
@@ -126,8 +126,9 @@ const GlobalBar = () => {
     return (
         <StyledGlobalBar>
             <StyledBarSectionFullWidth>
-                <StyledGlobalButton_NoHover onClick={() => setIsDrawerOpen(!isDrawerOpen)} disabled={width >= sizes.medium}>
-                    <LogoIcon size={24}/>
+                <StyledGlobalButton_NoHover onClick={() => setIsDrawerOpen(!isDrawerOpen)}
+                                            disabled={width >= sizes.medium}>
+                    <LogoIcon size={24} color="white"/>
                 </StyledGlobalButton_NoHover>
             </StyledBarSectionFullWidth>
             <StyledBarSectionFullWidth/>
@@ -152,7 +153,7 @@ const GlobalBar = () => {
                         onClickOutside={closeDropdown}
                     >
                         <StyledGlobalItem onClick={() => setDropdownToggle('notifications')}>
-                            <NotificationBell size={18}/>
+                            <NotificationBell size={20} color="white"/>
                             {
                                 hasNotification && (
                                     <StyledNotificationDot/>
@@ -166,7 +167,7 @@ const GlobalBar = () => {
                         setCurrentDropdown(null)
                         setIsModalOpen('settings')
                     }}>
-                        <SettingGear size={18}/>
+                        <SettingGear size={18} color="white"/>
                     </StyledGlobalButton>
 
                     <TippyDropdown
@@ -176,7 +177,7 @@ const GlobalBar = () => {
                         onClickOutside={closeDropdown}
                     >
                         <StyledGlobalItem onClick={() => setDropdownToggle('applications')}>
-                            <Grid3X3 size={18}/>
+                            <Grid3X3 size={18} color="white"/>
                         </StyledGlobalItem>
                     </TippyDropdown>
 

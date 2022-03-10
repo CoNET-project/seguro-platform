@@ -6,7 +6,7 @@ import ListItem from "../../../UI/Common/ListItem/ListItem";
 import Image from "../../../UI/Common/Profile/Image/Image";
 import AnonymousAvatar from '../../../../assets/Avatar-anonymous.png'
 import {TippyDropdown} from "../../../UI/Tippy/Tippy";
-import {useEffect, useState} from "react";
+import {useState} from "react";
 import {ChevronLeft, VerticalOptions} from "../../../UI/Icons/Icons";
 import {PageNavigatorProvider} from "../../../Providers/PageNavigatorProvider";
 import {usePageNavigator} from "../../../../contexts/pageNavigator/PageNavigatorContext";
@@ -23,7 +23,7 @@ import {ProfileData} from "../../../../store/appState/appStateReducer";
 const StyledManagesProfileContainer = styled.div`
   width: 100%;
   height: 100%;
-  background-color: ${props => props.theme.ui.colors.background.elevationOne};
+  background-color: ${props => props.theme.ui.colors.background.foundation};
 
   @media (${screenWidth.mediumWidth}) {
     min-width: 30rem;
@@ -35,7 +35,7 @@ const StyledManageProfilesContent = styled.div`
 
 const CustomizedHeaderBar = styled(HeaderBar)`
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-  background-color: ${props => props.theme.ui.colors.background.elevationOne};
+  background-color: ${props => props.theme.ui.colors.background.foundation};
 
   & > * #headerTitle {
     font-size: ${props => props.theme.ui.fontSizes.narrow.md};

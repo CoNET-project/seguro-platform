@@ -4,13 +4,9 @@ import RightPanel from "./Panels/RightPanel";
 import MainPanel from "./Panels/MainPanel";
 import {MessengerContext} from "../../../../contexts/messenger/MessengerContext";
 import React, {useEffect} from "react";
-import {
-    generateDefaultContactsMap,
-    messengerReducer,
-    MessengerState
-} from "../../../../contexts/messenger/messengerReducer";
+import {messengerReducer, MessengerState} from "../../../../contexts/messenger/messengerReducer";
 import {messengerActions} from "../../../../contexts/messenger/messengerActions";
-import {exampleContacts} from "./ExampleContacts";
+import {exampleData} from "./ExampleData";
 
 const Messenger = () => {
     const contents: ThreePanelComponents = {
@@ -20,15 +16,16 @@ const Messenger = () => {
     }
 
     const defaultMessengerState: MessengerState = {
-        contacts: generateDefaultContactsMap(),
+        contacts: {},
         selectedContact: null,
+        currentChat: null,
         currentFocusPanel: 'left'
     }
 
     const [state, dispatch] = React.useReducer(messengerReducer, defaultMessengerState)
 
     useEffect(() => {
-        dispatch(messengerActions.setInitialContacts(exampleContacts))
+        dispatch(messengerActions.setInitialContacts(exampleData))
     }, [])
 
     return (

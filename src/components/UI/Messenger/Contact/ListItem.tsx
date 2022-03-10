@@ -1,9 +1,11 @@
 import styled from "styled-components";
 import Image from "../../Common/Profile/Image/Image";
 import {Contact} from "../../../../contexts/messenger/messengerActions";
+import {ReactNode} from "react";
 
 type ListItemProps = {
     contact: Contact,
+    subtext?: ReactNode | string,
     onClick?: (contact: Contact) => void
 }
 
@@ -38,14 +40,14 @@ const StyledListName = styled.p`
   opacity: 0.9
 `
 
-const StyledListStatus = styled.p`
+const StyledListSubtext = styled.p`
   font-size: calc(${props => props.theme.ui.fontSizes.narrow.sm} - 2px);
   opacity: 0.6;
   margin-top: 4px;
 `
 
 
-const ListItem = ({contact, onClick}: ListItemProps) => {
+const ListItem = ({contact, subtext, onClick}: ListItemProps) => {
     return (
         <StyledListItem onClick={() => onClick ? onClick(contact) : null}>
             <Image size={36} src={contact.profileSrc}/>
@@ -53,9 +55,13 @@ const ListItem = ({contact, onClick}: ListItemProps) => {
                 <StyledListName>
                     {contact.nickname || contact.alias || contact.keyId}
                 </StyledListName>
-                <StyledListStatus>
-                    Last seen at 9:01 am
-                </StyledListStatus>
+                {
+                    subtext && (
+                        <StyledListSubtext>
+                            {subtext}
+                        </StyledListSubtext>
+                    )
+                }
             </StyledListDetails>
         </StyledListItem>
     )

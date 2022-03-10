@@ -65,7 +65,7 @@ const StyledHeaderCloseButton = styled.button<StyledHeaderCloseButtonProps>`
 `
 
 const StyledHeaderComponentWrapper = styled.div`
-  margin: 0 7.5px;
+  margin: 0 2.5px;
 `
 
 const StyledHeaderDetails = styled.div`

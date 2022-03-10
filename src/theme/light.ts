@@ -2,10 +2,6 @@ import {DefaultTheme} from 'styled-components'
 import {fonts} from "./fonts";
 
 const light: DefaultTheme = {
-    globalBar: {
-        backgroundColor: '#fff',
-        color: '#000'
-    },
     ui: {
         colors: {
             primary: '#477EAD',
@@ -19,8 +15,8 @@ const light: DefaultTheme = {
                 inverted: '#FFF'
             },
             background: {
-                foundation: '#F8F8F8',
-                elevationOne: '#fff',
+                foundation: '#fff',
+                elevationOne: '#f8f8f8',
                 elevationTwo: '#fff',
             },
             border: {
@@ -32,7 +28,11 @@ const light: DefaultTheme = {
                 active: '#343434',
                 inactive: '#C2C2C2'
             },
-            hover: 'rgba(0, 0, 0, 0.1)'
+            hover: 'rgba(0, 0, 0, 0.1)',
+            globalBar: {
+                background: '#597CB3',
+                color: '#000'
+            },
         },
         storybook: {
             canvasDecorator: {
