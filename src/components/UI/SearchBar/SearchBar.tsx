@@ -1,17 +1,19 @@
 import styled from "styled-components"
-import {ChangeEvent, ReactNode, useRef, useState} from "react";
+import React, {ChangeEvent, useRef, useState} from "react";
+import SearchResult, {SearchResults} from "./SearchResult/SearchResult";
 
 const StyledSearchContainer = styled.div`
   height: 50px;
   width: 100%;
   padding: 10px;
   position: relative;
+  border-radius: 5px;
 `
 
 const StyledSearchBar = styled.input`
   background-color: rgba(0, 0, 0, 0.15);
   border: 1px solid ${props => props.theme.ui.colors.border.light};
-  border-radius: 5px;
+  border-radius: 2px;
   padding: 5px 10px;
   font-size: ${props => props.theme.ui.fontSizes.narrow.sm};
   width: 100%;
@@ -23,10 +25,12 @@ const StyledSearchBar = styled.input`
 
   &:focus {
     background-color: ${props => props.theme.ui.colors.background.elevationOne};
+    outline: none;
+    border: 1px solid ${props => props.theme.ui.colors.border.medium};
   }
 `
 
-const StyledSearchResults = styled.div`
+const StyledSearchResults = styled.ul`
   width: calc(100% - 20px);
   height: 250px;
   content: '';
@@ -35,7 +39,7 @@ const StyledSearchResults = styled.div`
   border-top: none;
   position: absolute;
   top: 10px;
-  padding: 30px 5px 5px 5px;
+  padding-top: 30px;
   overflow: auto;
   word-wrap: anywhere;
   border-bottom-left-radius: 5px;
@@ -47,7 +51,7 @@ const StyledSearchResults = styled.div`
 type SearchBarProps = {
     onSearch?: (value: string) => void,
     onFocus?: (isFocused: boolean) => void,
-    results?: ReactNode[]
+    results?: SearchResults[]
 }
 
 const SearchBar = ({onFocus, results, onSearch}: SearchBarProps) => {
@@ -56,7 +60,6 @@ const SearchBar = ({onFocus, results, onSearch}: SearchBarProps) => {
     const searchBarRef = useRef<HTMLInputElement>(null)
 
     const onFocusBlur = (focused: boolean) => {
-        setShowResults(focused)
         if (onFocus) {
             onFocus(focused)
         }
@@ -65,14 +68,16 @@ const SearchBar = ({onFocus, results, onSearch}: SearchBarProps) => {
         }
     }
 
+    const stopPropagation = (event: React.MouseEvent<HTMLUListElement>) => {
+        event.preventDefault()
+    }
+
     const onSearchBarChange = (event: ChangeEvent<HTMLInputElement>) => {
         const value = event.target.value
         if (onSearch) {
-            onSearch(value)
+            onSearch(value.toLowerCase())
         }
     }
-
-    console.log(results)
 
     return (
         <StyledSearchContainer>
@@ -82,8 +87,19 @@ const SearchBar = ({onFocus, results, onSearch}: SearchBarProps) => {
                              onFocus={() => onFocusBlur(true)}
                              onBlur={() => onFocusBlur(false)}/>
             {
-                showResults && results && results.length > 0 && (
-                    <StyledSearchResults>heyheyheyheyheyheyheyheyheyheyheyheyheyheyheyheyhey</StyledSearchResults>
+                results && results.length > 0 && (
+                    <StyledSearchResults onMouseDown={e => stopPropagation(e)}>
+                        {
+                            results?.map((result, index) => (
+                                <SearchResult
+                                    key={`contact-list-search-result-${index}`}
+                                    leftComponent={result.leftComponent}
+                                    rightText={result.rightText}
+                                    onClick={result.onClick}
+                                />
+                            ))
+                        }
+                    </StyledSearchResults>
                 )
             }
         </StyledSearchContainer>

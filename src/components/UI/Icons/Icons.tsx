@@ -1,7 +1,7 @@
 import {
     AiOutlineUserAdd,
+    BiBell,
     BiMessageAdd,
-    BsBell,
     BsCamera,
     BsChatSquareDots,
     BsGrid3X3Gap,
@@ -14,6 +14,7 @@ import {
     FaMobileAlt,
     FaPlug,
     FaTabletAlt,
+    FiSettings,
     GoPrimitiveDot,
     ImDownload,
     IoCheckmarkSharp,
@@ -172,7 +173,7 @@ export const Grid3X3 = React.forwardRef(({size, color}: IconProps, ref: Forwarde
 export const SettingGear = ({size, color}: IconProps) => {
     return (
         <StyledIcon>
-            <IoSettingsOutline size={getSize(size)} color={color || undefined}/>
+            <FiSettings size={getSize(size)} color={color || undefined}/>
         </StyledIcon>
     )
 }
@@ -342,7 +343,7 @@ export const Password = ({size, color}: IconProps) => {
 export const NotificationBell = ({size, color}: IconProps) => {
     return (
         <StyledIcon>
-            <BsBell size={getSize(size)} color={color || undefined}/>
+            <BiBell size={getSize(size)} color={color || undefined}/>
         </StyledIcon>
     )
 }

@@ -2,10 +2,6 @@ import {DefaultTheme} from 'styled-components'
 import {fonts} from "./fonts";
 
 const dark: DefaultTheme = {
-    globalBar: {
-        backgroundColor: '#000',
-        color: '#fff'
-    },
     ui: {
         colors: {
             primary: '#396FC0',
@@ -32,7 +28,11 @@ const dark: DefaultTheme = {
                 active: '#FFF',
                 inactive: '#6E6E6E'
             },
-            hover: 'rgba(200,200,200,0.1)'
+            hover: 'rgba(200,200,200,0.1)',
+            globalBar: {
+                background: '#000',
+                color: '#fff'
+            },
         },
         storybook: {
             canvasDecorator: {

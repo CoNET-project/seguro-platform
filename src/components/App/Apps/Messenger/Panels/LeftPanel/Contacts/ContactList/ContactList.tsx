@@ -7,6 +7,8 @@ import {Contact} from "../../../../../../../../contexts/messenger/messengerActio
 import SearchBar from "../../../../../../../UI/SearchBar/SearchBar";
 import {Overlay} from "../../../../../../../UI/Common/Overlay/Overlay";
 import {useEffect, useState} from "react";
+import {SearchResults} from "../../../../../../../UI/SearchBar/SearchResult/SearchResult";
+import Image from "../../../../../../../UI/Common/Profile/Image/Image";
 
 const StyledContactList = styled.div`
   height: 100%;
@@ -66,37 +68,36 @@ const ContactList = ({onClick}: ContactListProps) => {
         return componentList
     }
 
+    // Needs fixing
     const onSearch = (value: string) => {
         setResults({})
         if (value) {
             const firstChar = value[0].toUpperCase()
             if (categorizedContact[firstChar]) {
+                console.log(categorizedContact[firstChar])
                 Object.values(categorizedContact[firstChar]).map(contact => {
-                    if (contact.nickname) {
-                        if (contact.nickname.includes(value)) {
-                            setResults(
-                                {
-                                    ...results,
-                                    contact
-                                }
-                            )
-                        }
-                    } else if (contact.alias) {
-                        if (contact.alias.includes(value)) {
-                            setResults(
-                                {
-                                    ...results,
-                                    contact
-                                }
-                            )
-                        }
+                    if (contact.nickname && contact.nickname.toLowerCase().includes(value)) {
+                        setResults(prevResult => {
+                            return {
+                                ...prevResult,
+                                [contact.keyId]: contact
+                            }
+                        })
+                    } else if (contact.alias && contact.alias.toLowerCase().includes(value)) {
+                        setResults(prevResult => {
+                            return {
+                                ...prevResult,
+                                [contact.keyId]: contact
+                            }
+                        })
                     } else {
-                        if (contact.keyId.includes(value)) {
-                            setResults(
-                                {
-                                    ...results,
-                                    contact
-                                })
+                        if (contact.keyId.toLowerCase().includes(value)) {
+                            setResults(prevResult => {
+                                return {
+                                    ...prevResult,
+                                    [contact.keyId]: contact
+                                }
+                            })
                         }
                     }
                 })
@@ -104,9 +105,22 @@ const ContactList = ({onClick}: ContactListProps) => {
         }
     }
 
+    const generateResultsComponents = () => {
+        console.log(results)
+        const searchResults: SearchResults[] = []
+        Object.values(results).map(result => {
+            searchResults.push({
+                leftComponent: <Image size={30} src={result.profileSrc}/>,
+                rightText: result.nickname || result.alias || result.keyId,
+                onClick: () => console.log("hey")
+            })
+        })
+        return searchResults
+    }
+
     return (
         <StyledContactList>
-            <SearchBar onFocus={setShowOverlay} onSearch={onSearch} results={Object.values(results)}/>
+            <SearchBar onFocus={setShowOverlay} onSearch={onSearch} results={generateResultsComponents()}/>
             <CustomOverlay show={showOverlay}/>
             {
                 renderList().map(item => item)

@@ -17,7 +17,7 @@ const StyledContainer = styled.div`
 const LaunchScreen = () => {
     return (
         <StyledContainer>
-            <LogoImage logoColor='white'/>
+            <LogoImage color='white'/>
             <Loader
                 type="Oval"
                 color="white"

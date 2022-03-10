@@ -24,7 +24,9 @@ const AddChat = () => {
     return (
         <StyledAddChat>
             <Header/>
-            <ContactList onClick={onClickContact}/>
+            <StyledAddChatContent>
+                <ContactList onClick={onClickContact}/>
+            </StyledAddChatContent>
         </StyledAddChat>
     )
 }

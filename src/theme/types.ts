@@ -28,16 +28,16 @@ export type Colors = {
         active: string,
         inactive: string
     },
-    hover: string
+    hover: string,
+    globalBar: {
+        background: string,
+        color: string
+    },
 }
 
 declare module 'styled-components' {
 
     export interface DefaultTheme {
-        globalBar: {
-            backgroundColor: string,
-            color: string
-        },
         ui: {
             storybook: {
                 canvasDecorator: {

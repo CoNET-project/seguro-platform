@@ -10,6 +10,12 @@ import {screenWidth} from "../../../../UI/screenSizes";
 import {PageNavigatorProvider} from "../../../../Providers/PageNavigatorProvider";
 import AddContact from "./LeftPanel/Contacts/AddContact";
 import AddChat from "./LeftPanel/Chats/AddChat";
+import DisappearingMessages from "./LeftPanel/Settings/Chats/DisappearingMessages";
+import FontSize from "./LeftPanel/Settings/Chats/FontSize";
+import Wallpaper from "./LeftPanel/Settings/Chats/Wallpaper";
+import Sounds from "./LeftPanel/Settings/Notifications/Sounds";
+import ChatHistory from "./LeftPanel/Settings/PrivacySecurity/ChatHistory";
+import Status from "./LeftPanel/Settings/PrivacySecurity/Status";
 
 const CustomVerticalTabNavigator = styled(VerticalTabNavigator)`
   display: none;
@@ -40,13 +46,37 @@ const LeftPanel = () => {
             text: <FormattedMessage id='tabnavigator.tab.contacts'/>,
             icon: <Contacts/>
         },
+        'Contacts/Add Contact': {
+            screen: <AddContact/>,
+            isTopLevel: false
+        },
         'Settings': {
             screen: <SettingsScreen/>,
             text: <FormattedMessage id='tabnavigator.tab.settings'/>,
             icon: <Gear/>
         },
-        'Contacts/Add Contact': {
-            screen: <AddContact/>,
+        'Settings/Disappearing Messages': {
+            screen: <DisappearingMessages/>,
+            isTopLevel: false
+        },
+        'Settings/Font Size': {
+            screen: <FontSize/>,
+            isTopLevel: false
+        },
+        'Settings/Wallpaper': {
+            screen: <Wallpaper/>,
+            isTopLevel: false
+        },
+        'Settings/Sounds': {
+            screen: <Sounds/>,
+            isTopLevel: false
+        },
+        'Settings/Chat History': {
+            screen: <ChatHistory/>,
+            isTopLevel: false
+        },
+        'Settings/Status': {
+            screen: <Status/>,
             isTopLevel: false
         }
     }
