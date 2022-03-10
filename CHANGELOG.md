@@ -1,5 +1,27 @@
 # `seguro-platform` CHANGELOG
 
+## `0.54.0`
+
+### Additions
+
+- Add `Settings` page into Messenger.
+- Add `Chat History` page into Messenger Settings.
+- Add `Wallpaper` page into Messenger Settings.
+- Add `Status` page into Messenger Settings.
+- Add `Font Size` page into Messenger Settings.
+- Add `Disappearing Messages` page into Messenger Settings.
+- Add `Sounds` page into Messenger Settings.
+
+### Changes
+
+- None.
+
+### Fixes
+
+- Minor style fixes throughout.
+
+---
+
 ## `0.53.0`
 
 ### Additions
