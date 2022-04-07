@@ -1,7 +1,14 @@
 import styled from "styled-components";
 import Header from "../../Header";
-import {randomColor} from "../../../../../../../../utilities/utilities";
+import Wallpaper_1 from '../../../../../../../../assets/messenger/wallpaper/messenger-wallpaper-1.jpg'
+import Wallpaper_2 from '../../../../../../../../assets/messenger/wallpaper/messenger-wallpaper-2.jpg'
+import Wallpaper_3 from '../../../../../../../../assets/messenger/wallpaper/messenger-wallpaper-3.jpg'
+import Wallpaper_4 from '../../../../../../../../assets/messenger/wallpaper/messenger-wallpaper-4.jpg'
 import {useState} from "react";
+
+type StyledWallpaperBoxProps = {
+    imageSrc?: string
+}
 
 const StyledContainer = styled.div`
   height: 100%;
@@ -32,11 +39,12 @@ const StyledWallpaperSelection = styled.div`
   align-items: center;
 `
 
-const StyledWallpaperBox = styled.div`
+const StyledWallpaperBox = styled.label<StyledWallpaperBoxProps>`
+  background-image: ${props => props.imageSrc ? `url("${props.imageSrc}")` : null};
+  background-position: center top;
   width: 100px;
   height: 100px;
   content: '';
-  background-color: ${props => randomColor()};
   display: flex;
 `
 
@@ -55,24 +63,24 @@ const Wallpaper = () => {
             <StyledContent>
                 <StyledWallpaperGrid>
                     <StyledWallpaperSelection>
-                        <StyledWallpaperBox/>
-                        <StyledWallpaperRadio type="radio" defaultChecked={selected == 1}
-                                              onClick={() => setSelected(1)}/>
+                        <StyledWallpaperBox imageSrc={Wallpaper_1}/>
+                        <StyledWallpaperRadio type="radio" checked={selected == 1}
+                                              onChange={() => setSelected(1)}/>
                     </StyledWallpaperSelection>
                     <StyledWallpaperSelection>
-                        <StyledWallpaperBox/>
-                        <StyledWallpaperRadio type="radio" defaultChecked={selected == 2}
-                                              onClick={() => setSelected(2)}/>
+                        <StyledWallpaperBox imageSrc={Wallpaper_2}/>
+                        <StyledWallpaperRadio type="radio" checked={selected == 2}
+                                              onChange={() => setSelected(2)}/>
                     </StyledWallpaperSelection>
                     <StyledWallpaperSelection>
-                        <StyledWallpaperBox/>
-                        <StyledWallpaperRadio type="radio" defaultChecked={selected == 3}
-                                              onClick={() => setSelected(3)}/>
+                        <StyledWallpaperBox imageSrc={Wallpaper_3}/>
+                        <StyledWallpaperRadio type="radio" checked={selected == 3}
+                                              onChange={() => setSelected(3)}/>
                     </StyledWallpaperSelection>
                     <StyledWallpaperSelection>
-                        <StyledWallpaperBox/>
-                        <StyledWallpaperRadio type="radio" defaultChecked={selected == 4}
-                                              onClick={() => setSelected(4)}/>
+                        <StyledWallpaperBox imageSrc={Wallpaper_4}/>
+                        <StyledWallpaperRadio type="radio" checked={selected == 4}
+                                              onChange={() => setSelected(4)}/>
                     </StyledWallpaperSelection>
                 </StyledWallpaperGrid>
             </StyledContent>

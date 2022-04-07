@@ -59,25 +59,25 @@ const ChatHistory = () => {
                 </StyledSection>
                 <StyledSection>
                     <StyledRadioSelection>
-                        <StyledRadio type="radio" name="never" value="never"
+                        <StyledRadio type="radio" value="never"
                                      checked={selectedRadio == "never"} onChange={() => setSelectedRadio("never")}/>
                         <StyledRadioLabel htmlFor="never">Never</StyledRadioLabel>
                     </StyledRadioSelection>
 
                     <StyledRadioSelection>
-                        <StyledRadio type="radio" name="24hours" value="24hours"
+                        <StyledRadio type="radio" value="24hours"
                                      checked={selectedRadio == "24hours"} onChange={() => setSelectedRadio("24hours")}/>
                         <StyledRadioLabel htmlFor="24-hours">24 Hours</StyledRadioLabel>
                     </StyledRadioSelection>
 
                     <StyledRadioSelection>
-                        <StyledRadio type="radio" name="3days" value="3days"
+                        <StyledRadio type="radio" value="3days"
                                      checked={selectedRadio == "3days"} onChange={() => setSelectedRadio("3days")}/>
                         <StyledRadioLabel htmlFor="3-days">3 Days</StyledRadioLabel>
                     </StyledRadioSelection>
 
                     <StyledRadioSelection>
-                        <StyledRadio type="radio" name="1month" value="1month"
+                        <StyledRadio type="radio" value="1month"
                                      checked={selectedRadio == "1month"} onChange={() => setSelectedRadio("1month")}/>
                         <StyledRadioLabel htmlFor="1-month">1 Month</StyledRadioLabel>
                     </StyledRadioSelection>

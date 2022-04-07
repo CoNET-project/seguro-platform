@@ -4,17 +4,24 @@ import {ChevronLeft, ChevronRight} from "../../../../UI/Icons/Icons";
 import ProfileImage from "../../../../UI/Common/Profile/Image/Image";
 import {useMessengerContext} from "../../../../../contexts/messenger/MessengerContext";
 import {trimToLength} from "../../../../../utilities/utilities";
+import ChatMessages from "./MainPanel/ChatMessages";
+import BottomBar from "./MainPanel/BottomBar/BottomBar";
 
 const StyledMainPanel = styled.div`
   height: 100%;
   width: 100%;
   content: '';
+
 `
 
 const StyledMainContent = styled.div`
   width: 100%;
   height: calc(100% - 50px);
   content: '';
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   //background: #E0EAFC; /* fallback for old browsers */
   //background: -webkit-linear-gradient(to right, #CFDEF3, #E0EAFC); /* Chrome 10-25, Safari 5.1-6 */
   //background: linear-gradient(to right, #CFDEF3, #E0EAFC); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
@@ -47,6 +54,14 @@ const MainPanel = () => {
                 }}
             />
             <StyledMainContent>
+                {
+                    selectedContact && (
+                        <>
+                            <ChatMessages/>
+                            <BottomBar/>
+                        </>
+                    )
+                }
             </StyledMainContent>
         </StyledMainPanel>
     )

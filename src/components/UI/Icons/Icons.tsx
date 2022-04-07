@@ -14,6 +14,7 @@ import {
     FaMobileAlt,
     FaPlug,
     FaTabletAlt,
+    FiSend,
     FiSettings,
     GoPrimitiveDot,
     ImDownload,
@@ -376,6 +377,15 @@ export const EditPencilIcon = ({size, color}: IconProps) => {
     return (
         <StyledIcon>
             <MdEdit size={getSize(size)} color={color || undefined}/>
+        </StyledIcon>
+    )
+}
+
+
+export const SendIcon = ({size, color}: IconProps) => {
+    return (
+        <StyledIcon>
+            <FiSend size={getSize(size)} color={color || undefined}/>
         </StyledIcon>
     )
 }

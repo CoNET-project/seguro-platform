@@ -38,11 +38,9 @@ export const messengerReducer = (state: MessengerState, action: MessengerActions
             }
         case "setInitialContacts":
             contacts = {}
-
             action.payload.map(contact => {
                 contacts[contact.keyId] = contact
             })
-
             return {
                 ...state,
                 contacts: contacts
@@ -50,16 +48,13 @@ export const messengerReducer = (state: MessengerState, action: MessengerActions
         case "setNewContact":
             contacts = {...state.contacts}
             contacts[action.payload.keyId] = action.payload
-
             return {
                 ...state,
                 contacts: contacts
             }
         case "updateContact":
             contacts = {...state.contacts}
-
             contacts[action.payload.updated.keyId] = action.payload.updated
-
             return {
                 ...state,
                 selectedContact: action.payload.updated,
