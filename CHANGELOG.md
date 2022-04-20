@@ -1,5 +1,22 @@
 # `seguro-platform` CHANGELOG
 
+## `0.55.0`
+
+### Additions
+
+- Add initial messenger chat UI.
+- Prepare for code transition to Peter.
+
+### Changes
+
+- None.
+
+### Fixes
+
+- Minor style fixes throughout.
+
+---
+
 ## `0.54.0`
 
 ### Additions
