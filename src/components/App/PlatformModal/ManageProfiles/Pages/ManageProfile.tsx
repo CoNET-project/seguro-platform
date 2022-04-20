@@ -15,7 +15,6 @@ type ManageProfileProps = {
 
 const StyledManageProfile = styled.div`
   padding: 40px 0;
-  background-color: ${props => props.theme.ui.colors.background.elevationOne};
   display: flex;
   flex-direction: column;
   align-items: center;

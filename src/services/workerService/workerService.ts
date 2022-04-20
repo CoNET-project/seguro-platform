@@ -142,19 +142,25 @@ export const deletePasscode = (): Promise<PasscodeResolves> => (
 
 export const verifyInvitation = (code: string): Promise<SeguroNetworkStatus | 'FAILURE'> => (
     new Promise<SeguroNetworkStatus | 'FAILURE'>((resolve) => {
-        if (workerService.SeguroNetwork.invitation) {
-            return resolve(workerService.SeguroNetwork.invitation(code))
-        }
-        return resolve('FAILURE')
+        setTimeout(() => {
+            return resolve('SUCCESS')
+        }, 2000)
+        // if (workerService.SeguroNetwork.invitation) {
+        //     return resolve(workerService.SeguroNetwork.invitation(code))
+        // }
+        // return resolve('FAILURE')
     })
 )
 
 export type Preferences = {
     theme?: Theme,
-    language?: Locale
+    language?: Locale,
+    extras?: {
+        [key: string]: {}
+    }
 }
 
-export const savePreferences = ({theme, language}: Preferences): Promise<WorkerServiceResolve> => (
+export const savePreferences = ({theme, language, extras}: Preferences): Promise<WorkerServiceResolve> => (
     new Promise<WorkerServiceResolve>((resolve) => {
         if (workerService && workerService.preferences && workerService.preferences.storePreferences) {
             const updatedPreferences: Preferences = {
@@ -167,6 +173,10 @@ export const savePreferences = ({theme, language}: Preferences): Promise<WorkerS
 
             if (language) {
                 updatedPreferences.language = language
+            }
+
+            if (extras) {
+                updatedPreferences.extras = extras
             }
 
             workerService.preferences.preferences = updatedPreferences

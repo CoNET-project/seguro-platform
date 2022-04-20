@@ -18,9 +18,8 @@ const StyledChatsContent = styled.div`
 `
 
 const Chats = () => {
-    const {currentChat, contacts, setCurrentChat} = useMessengerContext()
+    const {currentChat, contacts, setCurrentChat, setSelectedContact} = useMessengerContext()
     const {dispatch} = usePageNavigator()
-    console.log(contacts)
 
     const getContact = () => {
 
@@ -36,7 +35,10 @@ const Chats = () => {
                         <ListItem contact={contacts[chat.contactId]}
                                   key={`chat-${chat.chatId}-${index}`}
                                   subtext={chat.messageHistory[chat.messageHistory.length - 1]?.data || undefined}
-                                  onClick={() => setCurrentChat(chat)}
+                                  onClick={() => {
+                                      setCurrentChat(chat)
+                                      setSelectedContact(contacts[chat.contactId])
+                                  }}
                         />
                     )
                 ))}

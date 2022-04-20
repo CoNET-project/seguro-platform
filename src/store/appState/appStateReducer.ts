@@ -175,30 +175,25 @@ const appStateReducer = createReducer(initialState, builder => {
             const profiles = [
                 ...getWorkerService().profile.profiles
             ]
-            const updatedClientProfiles = profiles.reduce((clientProfiles: ClientProfiles, profile) => {
-                console.log(profile)
+            state.clientProfiles = profiles.reduce((clientProfiles: ClientProfiles, profile) => {
                 if (profile.keyID) {
                     // @ts-ignore
                     clientProfiles[profile.keyID] = profile
                 }
                 return clientProfiles
             }, {})
-            state.clientProfiles = updatedClientProfiles
         })
 
         .addCase(updateClientProfile, (state, action) => {
             const updatedProfiles = {
                 ...state.clientProfiles
             }
-
             if (action.payload.profile.keyID) {
                 updatedProfiles[action.payload.profile.keyID] = action.payload.profile
             }
-
             if (state.activeProfile?.keyID === action.payload.profile.keyID) {
                 state.activeProfile = action.payload.profile
             }
-
             state.clientProfiles = updatedProfiles
         })
 
@@ -210,13 +205,10 @@ const appStateReducer = createReducer(initialState, builder => {
             const updatedClientProfiles = {
                 ...state.clientProfiles
             }
-
             delete updatedClientProfiles[action.payload.keyId]
-
             if (action.payload.setAsPrimaryKeyId) {
                 updatedClientProfiles[action.payload.setAsPrimaryKeyId].isPrimary = true
             }
-
             state.clientProfiles = updatedClientProfiles
         })
 
@@ -227,7 +219,6 @@ const appStateReducer = createReducer(initialState, builder => {
         .addCase(deleteClientDevice, (state, action) => {
             const updatedDevices = state.clientDevices
             delete updatedDevices[action.payload]
-
             state.clientDevices = updatedDevices
         })
 

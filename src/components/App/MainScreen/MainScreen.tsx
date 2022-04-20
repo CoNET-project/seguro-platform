@@ -7,6 +7,9 @@ import PlatformModal from "../PlatformModal/PlatformModal";
 import {Toaster} from '../../UI/Toaster/Toaster'
 import GlobalBar from '../../UI/Global/GlobalBar/GlobalBar';
 import Messenger from '../Apps/Messenger/Messenger';
+import {getWorkerService} from '../../../services/workerService/workerService';
+import {ClientProfiles} from '../../../store/appState/appStateReducer';
+import {useEffect} from 'react';
 
 const StyledMainScreen = styled(motion.div)`
   width: 100%;
@@ -44,24 +47,24 @@ const MainScreen = () => {
     const overlayOpacity = [0, 1]
     const opacity = useTransform(currentDrawerX, drawerXMovements, overlayOpacity)
 
-    // const setInitialProfiles = () => {
-    //     const {profile} = getWorkerService()
-    //     if (profile && profile.profiles && profile.profiles.length) {
-    //         const profiles = profile.profiles
-    //         const clientProfiles = profiles.reduce((clientProfiles: ClientProfiles, profile) => {
-    //             if (profile.keyID) {
-    //                 // @ts-ignore
-    //                 clientProfiles[profile.keyID] = profile
-    //             }
-    //             return clientProfiles
-    //         }, {})
-    //         setClientProfiles(clientProfiles)
-    //     }
-    // }
-    //
-    // useEffect(() => {
-    //     setInitialProfiles()
-    // }, [])
+    const setInitialProfiles = () => {
+        const {profile} = getWorkerService()
+        if (profile && profile.profiles && profile.profiles.length) {
+            const profiles = profile.profiles
+            const clientProfiles = profiles.reduce((clientProfiles: ClientProfiles, profile) => {
+                if (profile.keyID) {
+                    // @ts-ignore
+                    clientProfiles[profile.keyID] = profile
+                }
+                return clientProfiles
+            }, {})
+            setClientProfiles(clientProfiles)
+        }
+    }
+
+    useEffect(() => {
+        setInitialProfiles()
+    }, [])
 
     const startDrag = (event: any) => {
         drawerDragControls.start(event);

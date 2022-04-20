@@ -9,8 +9,6 @@ import {TippyDropdown} from "../../Tippy/Tippy";
 import AppsDropdown from "../../Dropdowns/AppsDropdown/AppsDropdown";
 import {useEffect, useState} from "react";
 import NotificationDropdown from "../../Dropdowns/NotificationDropdown/NotificationDropdown";
-import NetworkIcon from "../../Icons/NetworkIcon/NetworkIcon";
-import NetworkDropdown from "../../Dropdowns/NetworkDropdown/NetworkDropdown";
 
 const StyledGlobalBar = styled.div`
   height: calc(50px + env(safe-area-inset-top));
@@ -133,16 +131,16 @@ const GlobalBar = () => {
             </StyledBarSectionFullWidth>
             <StyledBarSectionFullWidth/>
             <StyledBarSection>
-                <TippyDropdown
-                    content={<NetworkDropdown/>}
-                    verticalOffset={2}
-                    visible={currentDropdown === 'network'}
-                    onClickOutside={closeDropdown}
-                >
-                    <StyledGlobalItem onClick={() => setDropdownToggle('network')}>
-                        <NetworkIcon strength={networkStrength}/>
-                    </StyledGlobalItem>
-                </TippyDropdown>
+                {/*<TippyDropdown*/}
+                {/*    content={<NetworkDropdown/>}*/}
+                {/*    verticalOffset={2}*/}
+                {/*    visible={currentDropdown === 'network'}*/}
+                {/*    onClickOutside={closeDropdown}*/}
+                {/*>*/}
+                {/*    <StyledGlobalItem onClick={() => setDropdownToggle('network')}>*/}
+                {/*        <NetworkIcon strength={networkStrength}/>*/}
+                {/*    </StyledGlobalItem>*/}
+                {/*</TippyDropdown>*/}
 
                 <StyledBarSectionOptional>
 
