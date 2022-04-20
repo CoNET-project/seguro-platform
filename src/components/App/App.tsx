@@ -22,12 +22,10 @@ const StyledContainer = styled.div`
 const App = () => {
     const {
         initialize,
-        isInitialized,
         isInitializing,
         isPlatformLoading,
         setNetworkStrength,
         setWindowInnerSize,
-        setClientProfiles,
         setClientDevices,
         setIsTouchDevice,
         setIsModalOpen,
