@@ -18,6 +18,8 @@ dependencies, you should follow the steps below:
    are: `https://github.com/CoNET-project/seguro-worker-lib.git`
    and `https://github.com/CoNET-project/seguro-gateway.git`
 
+2. install dependencies by using `yarn` in both two projects.
+
 3. go to the `seguro-worker-lib` and `seguro-gateway` folder, and run `npm link` to link the two folder in the global of
    your environment
 
