@@ -1,4 +1,4 @@
-import {startWorker} from '@conet-project/seguro-worker-lib'
+import {startWorker} from '@conet.project/seguro-worker-lib'
 import store from '../../store/store'
 import {
     setHasContainer,
@@ -9,7 +9,7 @@ import {
     setTheme,
     setWorkerServiceIsInitialized
 } from '../../store/appState/appStateActions'
-import {ContainerData, SeguroNetworkStatus} from "@conet-project/seguro-worker-lib/build/workerBridge";
+import {ContainerData, SeguroNetworkStatus} from "@conet.project/seguro-worker-lib/build/workerBridge";
 import logger from "../../utilities/logger/logger";
 import {Theme} from "../../theme/types";
 import {Locale} from "../../localization/types";

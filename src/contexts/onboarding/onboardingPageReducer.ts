@@ -1,6 +1,6 @@
 import logger from "../../utilities/logger/logger";
 import {OnboardingActions} from "./onboardingActions";
-import {SeguroNetworkStatus} from "@conet-project/seguro-worker-lib/build/workerBridge";
+import {SeguroNetworkStatus} from "@conet.project/seguro-worker-lib/build/workerBridge";
 
 export type PageIds = 'language' | 'setPasscode' | 'confirmPasscode' | 'verification' | 'settingUp'
 
