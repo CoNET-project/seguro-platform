@@ -1,5 +1,21 @@
 # `seguro-platform` CHANGELOG
 
+## `0.55.3`
+
+### Additions
+
+- None.
+
+### Changes
+
+- Replace the on boarding page step4 contents.  
+
+### Fixes
+
+- None.
+
+---
+
 ## `0.55.2`
 
 ### Additions

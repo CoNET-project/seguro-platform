@@ -7,6 +7,8 @@ import {FormattedMessage} from "react-intl";
 import LottieAnimation from '../../../UI/Lottie/Lottie';
 import VerificationAnimation from '../../../../assets/lottie/verification.json'
 import {screenWidth} from "../../../UI/screenSizes";
+import Wallpaper_1 from "../../../../assets/messenger/wallpaper/messenger-wallpaper-1.jpg";
+import {StyledWallpaperBox} from '../../Apps/Messenger/Panels/LeftPanel/Settings/Chats/Wallpaper';
 
 const StyledContainer = styled.div`
   width: 100%;
@@ -61,45 +63,26 @@ const StyledLottieWrapper = styled.div`
   }
 `
 
-
 const VerificationPage = () => {
-    const {state, dispatch} = useOnboardingPageNavigator()
+	const {state, dispatch} = useOnboardingPageNavigator()
 
-    const verificationInputHandler = (value: string) => {
-        dispatch(onboardingActions.setVerificationCode(value))
-    }
+	const verificationInputHandler = (value: string) => {
+		dispatch(onboardingActions.setVerificationCode(value))
+	}
 
-    return <Page
-        pageTransition={{
-            key: state.currentPage[0],
-            direction: state.currentPage[1]
-        }}
-    >
-        <StyledContainer>
-            <StyledPageHeader>
-                <StyledPageTitle>
-                    <FormattedMessage id='onboarding.verificationTitle'/>
-                </StyledPageTitle>
-            </StyledPageHeader>
-            <StyledLottieWrapper>
-                <LottieAnimation animationSrc={VerificationAnimation}/>
-            </StyledLottieWrapper>
-            <StyledPageContents>
-                <LargeInput value=''
-                            setValue={verificationInputHandler}
-                            error={state.onboardingPageData.verificationCodeError}
-                            inputOptions={{
-                                inputLabel: (
-                                    <StyledVerificationInputLabel><FormattedMessage
-                                        id='onboarding.verificationInputLabel'/></StyledVerificationInputLabel>)
-                            }}
-                />
-                <StyledVerificationText>
-                    <FormattedMessage id='onboarding.verificationText'/>
-                </StyledVerificationText>
-            </StyledPageContents>
-        </StyledContainer>
-    </Page>
+	return <Page
+		pageTransition={{
+			key: state.currentPage[0],
+			direction: state.currentPage[1]
+		}}
+	>
+		<StyledContainer>
+			<StyledPageHeader>
+				This is my local change
+			</StyledPageHeader>
+			<StyledWallpaperBox imageSrc={Wallpaper_1} height={"500px"} width={"300px"}/>
+		</StyledContainer>
+	</Page>
 }
 
 export default VerificationPage
