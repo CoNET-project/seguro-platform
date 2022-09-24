@@ -1,5 +1,24 @@
 # `seguro-platform` CHANGELOG
 
+## `0.55.2`
+
+### Additions
+
+- None.
+
+### Changes
+
+- Use publish package
+- @conet.project/seguro-gateway
+- @conet.project/seguro-worker-lib
+
+### Fixes
+
+- Minor style fixes throughout.
+
+---
+
+
 ## `0.55.0`
 
 ### Additions
