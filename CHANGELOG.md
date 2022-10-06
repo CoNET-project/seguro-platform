@@ -1,5 +1,21 @@
 # `seguro-platform` CHANGELOG
 
+## `0.55.5`
+
+### Additions
+
+- None.
+
+### Changes
+
+- Upgrade all included package to current version.
+
+### Fixes
+
+- None.
+
+---
+
 ## `0.55.4`
 
 ### Additions
