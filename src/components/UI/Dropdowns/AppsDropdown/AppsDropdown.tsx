@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import {FaAppStoreIos, FaCcApplePay, FaWhatsapp} from "react-icons/all";
+import {FaAppStoreIos, FaCcApplePay, FaWhatsapp} from "react-icons/fa";
 
 type AppsDropdownProps = {
     closeDropdown: () => void

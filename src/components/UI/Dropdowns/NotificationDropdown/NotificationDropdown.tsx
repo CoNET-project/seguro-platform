@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import ListItem from "./ListItem/ListItem";
 import {ReactNode, useState} from "react";
-import {AnimateSharedLayout} from "framer-motion";
+import {LayoutGroup} from "framer-motion";
 
 export type Notifications = {
     [id: string]: Notification
@@ -91,7 +91,7 @@ const NotificationDropdown = () => {
             className='hideScrollbar'
         >
             <StyledNotificationTitle>Your Notifications</StyledNotificationTitle>
-            <AnimateSharedLayout>
+            <LayoutGroup>
                 {
                     Object.keys(exampleNotifications).map(id => {
                         return (
@@ -104,7 +104,7 @@ const NotificationDropdown = () => {
                         )
                     })
                 }
-            </AnimateSharedLayout>
+            </LayoutGroup>
         </StyledNotificationDropdown>
     )
 }

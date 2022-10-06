@@ -1,4 +1,4 @@
-import {AnimateSharedLayout, motion, useAnimation, useDragControls, useMotionValue, useTransform} from 'framer-motion';
+import { LayoutGroup, motion, useAnimation, useDragControls, useMotionValue, useTransform} from 'framer-motion';
 import styled from 'styled-components';
 import useAppState from "../../../store/appState/useAppState";
 import Drawer from "../../UI/Drawer/Drawer";
@@ -100,11 +100,11 @@ const MainScreen = () => {
             <StyledMainScreen onTouchStart={startDrag} onPointerDown={startDrag}>
                 <Toaster/>
                 <GlobalBar/>
-                <AnimateSharedLayout>
+                <LayoutGroup id="a">
                     <StyledContents>
                         <Messenger/>
                     </StyledContents>
-                </AnimateSharedLayout>
+                </LayoutGroup>
             </StyledMainScreen>
         </>
     )

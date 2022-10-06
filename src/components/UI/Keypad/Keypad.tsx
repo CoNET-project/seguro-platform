@@ -1,8 +1,8 @@
-import styled from 'styled-components';
-import Key from "./Key/Key";
-import {Fragment} from "react";
-import {FiDelete} from "react-icons/all";
-import {screenWidth} from "../screenSizes";
+import styled from 'styled-components'
+import Key from "./Key/Key"
+import {Fragment} from "react"
+import {FiDelete} from "react-icons/fi"
+import {screenWidth} from "../screenSizes"
 
 export type KeypadProps = {
     numberKeyOnClick: (num: number) => void,

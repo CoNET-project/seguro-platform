@@ -9,7 +9,7 @@ import LargeInput from "../../../UI/Inputs/LargeInput/LargeInput";
 import Button from "../../../UI/Common/Button/Button";
 import {FormattedMessage} from "react-intl";
 import {verifyInvitation} from "../../../../services/workerService/workerService";
-import Loader from "react-loader-spinner";
+import {ThreeCircles} from "react-loader-spinner";
 import {OverlayDarker} from "../../../UI/Common/Overlay/Overlay";
 
 const StyledVerificationModal = styled.div`
@@ -141,8 +141,7 @@ const VerificationModal = () => {
                 </StyledSection>
                 {
                     isVerifying ? (
-                        <Loader
-                            type="Oval"
+                        <ThreeCircles
                             color="#396FC0"
                             height={30}
                             width={30}

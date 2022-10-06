@@ -2,7 +2,7 @@ import {useState} from 'react'
 import styled from 'styled-components'
 import Keypad from '../../UI/Keypad/Keypad'
 import PasscodeInput from "../../UI/Inputs/PasscodeInput/Touch/PasscodeInput";
-import {IoMdLock} from "react-icons/all";
+import {IoMdLock} from "react-icons/io";
 import {FormattedMessage} from "react-intl";
 import {checkIsVerified, deletePasscode, unlockPasscode} from "../../../services/workerService/workerService";
 import Button from "../../UI/Common/Button/Button";

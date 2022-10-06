@@ -1,6 +1,6 @@
 import styled from 'styled-components'
-import {GrFormCheckmark, IoIosCheckmark} from "react-icons/all";
-import {useEffect, useState} from "react";
+import {GrFormCheckmark} from "react-icons/gr"
+import {useEffect, useState} from "react"
 
 export type CheckboxProps = {
     defaultValue: boolean,
