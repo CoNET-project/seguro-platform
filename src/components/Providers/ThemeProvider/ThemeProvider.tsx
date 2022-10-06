@@ -31,7 +31,7 @@ const ThemeProvider = ({
     return (
         <StyledComponentsThemeProvider theme={themeToConfig[activeTheme]}>
             <GlobalStyle/>
-            {children}
+            <>{children}</>
         </StyledComponentsThemeProvider>
     )
 }

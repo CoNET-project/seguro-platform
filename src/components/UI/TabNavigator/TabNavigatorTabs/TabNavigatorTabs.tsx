@@ -1,4 +1,4 @@
-import {AnimateSharedLayout} from 'framer-motion';
+import {LayoutGroup} from 'framer-motion';
 import styled from 'styled-components'
 import Tab, {TabActiveStyles} from '../Tab/Tab'
 import {TabNavigatorPages} from "../TabNavigator";
@@ -17,7 +17,7 @@ const StyledTabNavigatorTabs = styled.div`
 const TabNavigatorTabs = ({screens, activeStyles}: TabNavigatorTabsProps) => {
     return (
         <StyledTabNavigatorTabs>
-            <AnimateSharedLayout>
+            <LayoutGroup>
                 {
                     Object.keys(screens).map((id, idx) => {
                         if (screens[id].isTopLevel == undefined || screens[id].isTopLevel) {
@@ -31,7 +31,7 @@ const TabNavigatorTabs = ({screens, activeStyles}: TabNavigatorTabsProps) => {
                         }
                     })
                 }
-            </AnimateSharedLayout>
+            </LayoutGroup>
         </StyledTabNavigatorTabs>
     )
 }

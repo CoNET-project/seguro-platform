@@ -1,7 +1,9 @@
 import styled from 'styled-components';
 import {AnimationControls, HTMLMotionProps, motion} from "framer-motion";
 import Item from "./Item/Item";
-import {AiOutlineMessage, AiOutlineQuestionCircle, IoFileTrayStackedOutline, MdSystemUpdateAlt} from "react-icons/all";
+import {AiOutlineMessage, AiOutlineQuestionCircle} from "react-icons/ai"
+import {MdSystemUpdateAlt} from "react-icons/md"
+import {IoFileTrayStackedOutline} from "react-icons/io5"
 import {Gear} from "../Icons/Icons";
 import React, {useEffect, useRef} from 'react';
 import {drawerTransitionVariants} from "../Motion/Variants/Variants";

@@ -3,7 +3,7 @@ import HeaderBar, {HeaderBarProps} from "./HeaderBar";
 import ExampleProfile from '../../../../assets/examples/profile-example.jpeg'
 import ProfileImage from '../Profile/Image/Image'
 import styled from 'styled-components'
-import {BsThreeDotsVertical} from "react-icons/all";
+import {BsThreeDotsVertical} from "react-icons/bs"
 
 const Wrapper = styled.div`
   display: flex;

@@ -8,13 +8,13 @@ const LocalizationProvider = ({
 }: ProviderProps) => {
     const { locale } = useAppState()
     const messages = messagesByLocale[locale]
-
+	
     return (
         <IntlProvider
             locale={locale}
             messages={messages}
         >
-            {children}
+            <>{ children }</>
         </IntlProvider>
     )
 }

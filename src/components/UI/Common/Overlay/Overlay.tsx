@@ -1,7 +1,7 @@
 import {HTMLMotionProps, motion} from 'framer-motion';
 import styled from 'styled-components';
 import React from "react";
-import Loader from 'react-loader-spinner';
+import {ThreeCircles} from 'react-loader-spinner';
 import {PlatformLoadingTypes} from "../../../../store/appState/appStateReducer";
 import {FormattedMessage} from "react-intl";
 
@@ -91,8 +91,7 @@ const getOverlayText = (type: PlatformLoadingTypes) => {
 export const OverlayWithLoaderText = ({show, onClick, type}: OverlayProps & { type: PlatformLoadingTypes }) => {
     return (
         <StyledOverlayDarker show={show} onClick={onClick}>
-            <Loader
-                type="Oval"
+            <ThreeCircles
                 color="#396FC0"
                 height={50}
                 width={50}

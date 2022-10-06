@@ -1,40 +1,77 @@
 import {
-    AiOutlineUserAdd,
+    AiOutlineUserAdd
+} from "react-icons/ai"
+
+import {
     BiBell,
-    BiMessageAdd,
+    BiMessageAdd
+} from "react-icons/bi"
+
+import {
     BsCamera,
     BsChatSquareDots,
     BsGrid3X3Gap,
-    BsThreeDotsVertical,
-    CgProfile,
+    BsThreeDotsVertical
+} from "react-icons/bs"
+
+import {
+    CgProfile
+} from "react-icons/cg"
+
+import {
     FaCheckCircle,
     FaChevronLeft,
     FaChevronRight,
     FaDesktop,
     FaMobileAlt,
     FaPlug,
-    FaTabletAlt,
-    FiSend,
-    FiSettings,
-    GoPrimitiveDot,
-    ImDownload,
-    IoCheckmarkSharp,
-    IoClose,
+    FaTabletAlt
+} from "react-icons/fa"
+
+import {
+	FiSend,
+    FiSettings
+} from 'react-icons/fi'
+
+import {
+	GoPrimitiveDot
+} from 'react-icons/go'
+
+import {
+	ImDownload
+} from 'react-icons/im'
+
+import {
     IoIosCheckmarkCircle,
     IoIosCloseCircle,
     IoIosLock,
     IoIosWarning,
+	IoMdContacts
+} from 'react-icons/io'
+
+import {
+	IoCheckmarkSharp,
+    IoClose,
     IoLanguage,
-    IoMdContacts,
-    IoSettingsOutline,
-    MdContentCopy,
+    IoSettingsOutline
+} from 'react-icons/io5'
+
+import {
+	MdContentCopy,
     MdEdit,
     MdManageAccounts,
     MdPassword,
-    MdPersonAddAlt1,
-    RiShieldKeyholeLine,
+    MdPersonAddAlt1
+} from 'react-icons/md'
+
+import {
+	RiShieldKeyholeLine
+} from 'react-icons/ri'
+
+import {
     TiDelete
-} from "react-icons/all";
+} from 'react-icons/ti'
+
 import styled from 'styled-components';
 import React, {ComponentPropsWithRef, ForwardedRef} from "react";
 

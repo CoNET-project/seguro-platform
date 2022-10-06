@@ -1,11 +1,11 @@
-import styled from 'styled-components';
-import StepButton from "./StepButton/StepButton";
+import styled from 'styled-components'
+import StepButton from "./StepButton/StepButton"
 import {
     CgArrowLongLeft,
     CgArrowLongRight,
-} from "react-icons/all";
-import {FormattedMessage} from "react-intl";
-import {ReactNode} from "react";
+} from "react-icons/cg"
+import {FormattedMessage} from "react-intl"
+import {ReactNode} from "react"
 
 export type StepButtonsClickActions = {
     previousButton?: {
