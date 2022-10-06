@@ -5,15 +5,15 @@ import {
     CgArrowLongRight,
 } from "react-icons/cg"
 import {FormattedMessage} from "react-intl"
-import {ReactNode} from "react"
+import React from "react"
 
 export type StepButtonsClickActions = {
     previousButton?: {
-        text?: ReactNode | string,
+        text?: React.ReactNode | string,
         action: () => void
     },
     nextButton?: {
-        text?: ReactNode | string,
+        text?: React.ReactNode | string,
         action: () => void
     }
 }

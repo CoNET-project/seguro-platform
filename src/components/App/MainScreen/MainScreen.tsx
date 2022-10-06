@@ -1,15 +1,16 @@
-import { LayoutGroup, motion, useAnimation, useDragControls, useMotionValue, useTransform} from 'framer-motion';
-import styled from 'styled-components';
-import useAppState from "../../../store/appState/useAppState";
-import Drawer from "../../UI/Drawer/Drawer";
-import {DragOverlay} from "../../UI/Common/Overlay/Overlay";
-import PlatformModal from "../PlatformModal/PlatformModal";
+import { LayoutGroup, motion, useAnimation, useDragControls, useMotionValue, useTransform} from 'framer-motion'
+import styled from 'styled-components'
+import useAppState from "../../../store/appState/useAppState"
+import Drawer from "../../UI/Drawer/Drawer"
+import {DragOverlay} from "../../UI/Common/Overlay/Overlay"
+import PlatformModal from "../PlatformModal/PlatformModal"
 import {Toaster} from '../../UI/Toaster/Toaster'
-import GlobalBar from '../../UI/Global/GlobalBar/GlobalBar';
-import Messenger from '../Apps/Messenger/Messenger';
-import {getWorkerService} from '../../../services/workerService/workerService';
-import {ClientProfiles} from '../../../store/appState/appStateReducer';
-import {useEffect} from 'react';
+import GlobalBar from '../../UI/Global/GlobalBar/GlobalBar'
+import Messenger from '../Apps/Messenger/Messenger'
+import {getWorkerService} from '../../../services/workerService/workerService'
+import {ClientProfiles} from '../../../store/appState/appStateReducer'
+import {useEffect} from 'react'
+import React from 'react'
 
 const StyledMainScreen = styled(motion.div)`
   width: 100%;

@@ -1,16 +1,17 @@
 import {useState} from 'react'
 import styled from 'styled-components'
 import Keypad from '../../UI/Keypad/Keypad'
-import PasscodeInput from "../../UI/Inputs/PasscodeInput/Touch/PasscodeInput";
-import {IoMdLock} from "react-icons/io";
-import {FormattedMessage} from "react-intl";
-import {checkIsVerified, deletePasscode, unlockPasscode} from "../../../services/workerService/workerService";
+import PasscodeInput from "../../UI/Inputs/PasscodeInput/Touch/PasscodeInput"
+import {IoMdLock} from "react-icons/io"
+import {FormattedMessage} from "react-intl"
+import {checkIsVerified, deletePasscode, unlockPasscode} from "../../../services/workerService/workerService"
 import Button from "../../UI/Common/Button/Button";
-import useAppState from "../../../store/appState/useAppState";
-import VerificationModal from './Verification/Modal';
-import {Warning} from "../../UI/Icons/Icons";
-import AlertDialog, {AlertDialogActions} from "../../UI/Common/AlertDialog/AlertDialog";
-import LargeInput from "../../UI/Inputs/LargeInput/LargeInput";
+import useAppState from "../../../store/appState/useAppState"
+import VerificationModal from './Verification/Modal'
+import {Warning} from "../../UI/Icons/Icons"
+import AlertDialog, {AlertDialogActions} from "../../UI/Common/AlertDialog/AlertDialog"
+import LargeInput from "../../UI/Inputs/LargeInput/LargeInput"
+import React from 'react'
 
 const StyledContainer = styled.div`
   height: 100%;

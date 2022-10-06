@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 import {GrFormCheckmark} from "react-icons/gr"
-import {useEffect, useState} from "react"
+import React from "react"
 
 export type CheckboxProps = {
     defaultValue: boolean,
@@ -47,11 +47,11 @@ const StyledCheckbox = styled.div<StyledCheckboxProps>`
 
 const Checkbox = ({defaultValue, onChange, disabled}: CheckboxProps) => {
 
-    useEffect(() => {
+    React.useEffect(() => {
         setIsChecked(defaultValue)
     }, [])
 
-    const [checked, setIsChecked] = useState(false)
+    const [checked, setIsChecked] = React.useState(false)
 
     const checkboxClick = () => {
         if (!disabled) {
