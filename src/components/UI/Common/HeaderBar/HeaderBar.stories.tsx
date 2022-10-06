@@ -1,5 +1,6 @@
-import {Story} from '@storybook/react'
-import HeaderBar, {HeaderBarProps} from "./HeaderBar";
+import React from '@storybook/react'
+import HeaderBar, {HeaderBarProps} from "./HeaderBar"
+// @ts-ignore: Unreachable code error
 import ExampleProfile from '../../../../assets/examples/profile-example.jpeg'
 import ProfileImage from '../Profile/Image/Image'
 import styled from 'styled-components'
@@ -21,7 +22,7 @@ export default {
     title: 'Header/Bar'
 }
 
-const Template: Story<HeaderBarProps> = (
+const Template: React.Story<HeaderBarProps> = (
     args
 ) => {
     return (

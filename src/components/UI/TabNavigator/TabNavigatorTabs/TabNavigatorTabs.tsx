@@ -1,7 +1,8 @@
-import {LayoutGroup} from 'framer-motion';
+import {LayoutGroup} from 'framer-motion'
 import styled from 'styled-components'
 import Tab, {TabActiveStyles} from '../Tab/Tab'
-import {TabNavigatorPages} from "../TabNavigator";
+import {TabNavigatorPages} from "../TabNavigator"
+import React from 'react'
 
 export type TabNavigatorTabsProps = {
     screens: TabNavigatorPages,

@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 import Key from "./Key/Key"
-import {Fragment} from "react"
+import React from "react"
 import {FiDelete} from "react-icons/fi"
 import {screenWidth} from "../screenSizes"
 
@@ -30,8 +30,8 @@ const Keypad = ({numberKeyOnClick, deleteKeyOnClick, cancelKeyOnClick, unlockKey
 
     const generateKeys = () => {
         const alphabets = ['ABC', 'DEF', 'GHI', 'JKL', 'MNO', 'PQRS', 'TUV', 'WXYZ']
-        const keys = []
-        let key = null;
+        const keys: [] = []
+        let key
         for (let i = 1; i <= 12; i++) {
             if (i === 1) {
                 key = <Key number={i} alphabet={''} onClick={() => numberKeyOnClick(i)}/>
@@ -42,6 +42,7 @@ const Keypad = ({numberKeyOnClick, deleteKeyOnClick, cancelKeyOnClick, unlockKey
             } else if (i == 12) {
                 key = <Key text={<FiDelete size={20}/>} onClick={deleteKeyOnClick}/>
             }
+			// @ts-ignore: Unreachable code error
             keys.push(key)
             key = null
         }
@@ -51,11 +52,11 @@ const Keypad = ({numberKeyOnClick, deleteKeyOnClick, cancelKeyOnClick, unlockKey
     return (
         <StyledKeypad>
             {generateKeys().map((key, idx) => (
-                <Fragment key={idx}>
+                <React.Fragment key={idx}>
                     {key ? key : (
                         <div/>
                     )}
-                </Fragment>
+                </React.Fragment>
             ))}
         </StyledKeypad>
     )

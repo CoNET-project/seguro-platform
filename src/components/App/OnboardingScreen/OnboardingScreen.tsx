@@ -1,18 +1,19 @@
-import styled from 'styled-components';
+import styled from 'styled-components'
 import {AnimatePresence} from "framer-motion"
-import useAppState from "../../../store/appState/useAppState";
-import {useOnboardingPageNavigator} from "../../../contexts/onboarding/OnboardingContext";
-import {LogoIcon, LogoText} from "../../UI/Logo/Logo";
+import useAppState from "../../../store/appState/useAppState"
+import {useOnboardingPageNavigator} from "../../../contexts/onboarding/OnboardingContext"
+import {LogoIcon, LogoText} from "../../UI/Logo/Logo"
 import {screenWidth} from "../../UI/screenSizes";
-import SelectLanguagePage from "./SelectLanguagePage/SelectLanguagePage";
-import onboardingActions from '../../../contexts/onboarding/onboardingActions';
-import PasscodePage from './PasscodePage/PasscodePage';
-import {FormattedMessage} from 'react-intl';
-import {ChevronLeft, ChevronRight} from "../../UI/Icons/Icons";
-import ProgressNumberSteps from "../../UI/Progress/ProgressNumberSteps/ProgressNumberSteps";
-import {ReactNode, useState} from "react";
-import VerificationPage from "./VerificationPage/VerificationPage";
-import SettingUpPage from "./SettingUpPage/SettingUpPage";
+import SelectLanguagePage from "./SelectLanguagePage/SelectLanguagePage"
+import onboardingActions from '../../../contexts/onboarding/onboardingActions'
+import PasscodePage from './PasscodePage/PasscodePage'
+import {FormattedMessage} from 'react-intl'
+import {ChevronLeft, ChevronRight} from "../../UI/Icons/Icons"
+import ProgressNumberSteps from "../../UI/Progress/ProgressNumberSteps/ProgressNumberSteps"
+import {ReactNode, useState} from "react"
+import VerificationPage from "./VerificationPage/VerificationPage"
+import SettingUpPage from "./SettingUpPage/SettingUpPage"
+import React from 'react'
 
 const StyledOnboardingContainer = styled.div`
   height: 100%;

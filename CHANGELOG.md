@@ -1,5 +1,21 @@
 # `seguro-platform` CHANGELOG
 
+## `0.55.4`
+
+### Additions
+
+- None.
+
+### Changes
+
+- None.
+
+### Fixes
+
+- Fixed react build bug.
+
+---
+
 ## `0.55.3`
 
 ### Additions

@@ -1,6 +1,7 @@
-import styled, {css, keyframes} from 'styled-components';
-import {ReactNode, useState} from "react";
-import {screenWidth} from "../../screenSizes";
+import styled, {css, keyframes} from 'styled-components'
+import {ReactNode, useState} from "react"
+import React from "react"
+import {screenWidth} from "../../screenSizes"
 
 export type KeyProps = {
     number?: number,

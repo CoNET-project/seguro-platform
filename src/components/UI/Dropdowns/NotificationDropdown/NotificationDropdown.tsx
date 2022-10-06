@@ -1,14 +1,14 @@
-import styled from "styled-components";
-import ListItem from "./ListItem/ListItem";
-import {ReactNode, useState} from "react";
-import {LayoutGroup} from "framer-motion";
+import styled from "styled-components"
+import ListItem from "./ListItem/ListItem"
+import React from "react"
+import {LayoutGroup} from "framer-motion"
 
 export type Notifications = {
     [id: string]: Notification
 }
 
 export type NotificationAction = {
-    text: ReactNode | string,
+    text: React.ReactNode | string,
     onClick: () => void
 }
 
@@ -77,7 +77,7 @@ const NotificationDropdown = () => {
         }
     }
 
-    const [expandNotificationId, setExpandNotificationId] = useState<string | null>(null)
+    const [expandNotificationId, setExpandNotificationId] = React.useState<string | null>(null)
 
     const onNotificationExpand = (id: string) => {
         if (expandNotificationId === id) {

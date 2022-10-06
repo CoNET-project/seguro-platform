@@ -6,6 +6,7 @@ import useAppState from '../../../store/appState/useAppState'
 import usePreferredTheme from './usePreferredTheme'
 import lightTheme from '../../../theme/light'
 import darkTheme from '../../../theme/dark'
+import React from 'react'
 
 type ActiveTheme = 'Light' | 'Dark'
 
