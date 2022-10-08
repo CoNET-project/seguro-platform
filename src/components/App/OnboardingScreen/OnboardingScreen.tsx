@@ -3,7 +3,7 @@ import {AnimatePresence} from "framer-motion"
 import useAppState from "../../../store/appState/useAppState"
 import {useOnboardingPageNavigator} from "../../../contexts/onboarding/OnboardingContext"
 import {LogoIcon, LogoText} from "../../UI/Logo/Logo"
-import {screenWidth} from "../../UI/screenSizes";
+import {screenWidth} from "../../UI/screenSizes"
 import SelectLanguagePage from "./SelectLanguagePage/SelectLanguagePage"
 import onboardingActions from '../../../contexts/onboarding/onboardingActions'
 import PasscodePage from './PasscodePage/PasscodePage'
@@ -126,7 +126,7 @@ const OnboardingScreen = () => {
                 if (state.onboardingPageData?.passcode.length < 6) {
                     return setError(<FormattedMessage id='passcodeInput.invalidLength'/>)
                 }
-                break;
+                break
             case currentPage[0] === 'confirmPasscode':
                 if (state.onboardingPageData?.confirmPasscode.length < 6) {
                     return setError(<FormattedMessage id='passcodeInput.invalidLength'/>)
@@ -137,7 +137,7 @@ const OnboardingScreen = () => {
                 if (state.onboardingPageData?.passcode !== state.onboardingPageData?.confirmPasscode) {
                     return setError(<FormattedMessage id='passcodeInput.confirm.error'/>)
                 }
-                break;
+                break
             case currentPage[0] === 'verification':
                 if (
                     !state.onboardingPageData.verificationCode ||
@@ -146,10 +146,10 @@ const OnboardingScreen = () => {
                 ) {
                     return dispatch(onboardingActions.setVerificationCodeError(true))
                 } else {
-                    break;
+                    break
                 }
             case currentPage[0] === 'settingUp':
-                break;
+                break
         }
         return dispatch(onboardingActions.nextPage())
     }
@@ -184,6 +184,7 @@ const OnboardingScreen = () => {
                                             setError(null)
                                             dispatch(onboardingActions.setPasscode(passcode))
                                         }}
+										nextPageHandler={nextPageHandler}
                                         error={error}
                                     />}
 
@@ -196,6 +197,7 @@ const OnboardingScreen = () => {
                                             setError(null)
                                             dispatch(onboardingActions.setConfirmPasscode(passcode))
                                         }}
+										nextPageHandler={nextPageHandler}
                                         error={error}
                                     />}
 
@@ -270,4 +272,4 @@ const OnboardingScreen = () => {
     )
 }
 
-export default OnboardingScreen;
+export default OnboardingScreen

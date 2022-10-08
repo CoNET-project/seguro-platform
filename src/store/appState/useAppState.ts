@@ -50,7 +50,7 @@ export type WindowInnerSize = {
 const useAppState = () => {
     const dispatch = useDispatch()
 
-    const initialize = async () => {
+    const dAPPInitialize = async () => {
         await initializeWorkerService()
     }
 
@@ -295,7 +295,7 @@ const useAppState = () => {
     }
 
     return {
-        initialize,
+        dAPPInitialize,
         isInitialized,
         isInitializing,
         isPlatformLoading,
