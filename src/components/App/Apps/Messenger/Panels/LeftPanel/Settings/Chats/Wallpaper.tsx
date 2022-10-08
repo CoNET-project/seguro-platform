@@ -1,10 +1,14 @@
-import styled from "styled-components";
-import Header from "../../Header";
+import styled from "styled-components"
+import Header from "../../Header"
+// @ts-ignore: Unreachable code error
 import Wallpaper_1 from '../../../../../../../../assets/messenger/wallpaper/messenger-wallpaper-1.jpg'
+// @ts-ignore: Unreachable code error
 import Wallpaper_2 from '../../../../../../../../assets/messenger/wallpaper/messenger-wallpaper-2.jpg'
+// @ts-ignore: Unreachable code error
 import Wallpaper_3 from '../../../../../../../../assets/messenger/wallpaper/messenger-wallpaper-3.jpg'
+// @ts-ignore: Unreachable code error
 import Wallpaper_4 from '../../../../../../../../assets/messenger/wallpaper/messenger-wallpaper-4.jpg'
-import {useState} from "react";
+import React, {useState} from "react"
 
 type StyledWallpaperBoxProps = {
     imageSrc?: string

@@ -1,7 +1,7 @@
-import styled from "styled-components";
-import VerticalNavigatorTabs from "./VerticalNavigatorTabs/VerticalNavigatorTabs";
-import {ReactNode} from "react";
-import {usePageNavigator} from "../../../contexts/pageNavigator/PageNavigatorContext";
+import styled from "styled-components"
+import VerticalNavigatorTabs from "./VerticalNavigatorTabs/VerticalNavigatorTabs"
+import React, {ReactNode} from "react"
+import {usePageNavigator} from "../../../contexts/pageNavigator/PageNavigatorContext"
 
 const StyledVerticalTabNavigator = styled.div`
   width: 100%;

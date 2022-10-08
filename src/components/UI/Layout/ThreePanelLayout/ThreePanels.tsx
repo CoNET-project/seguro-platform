@@ -1,8 +1,8 @@
-import styled from "styled-components";
-import LeftPanel from "./LeftPanel/LeftPanel";
-import MainPanel from "./MainPanel/MainPanel";
-import RightPanel from "./RightPanel/RightPanel";
-import {ReactNode} from "react";
+import styled from "styled-components"
+import LeftPanel from "./LeftPanel/LeftPanel"
+import MainPanel from "./MainPanel/MainPanel"
+import RightPanel from "./RightPanel/RightPanel"
+import React, {ReactNode} from "react"
 
 export type ThreePanelComponents = {
     leftPanelComponent: ReactNode,

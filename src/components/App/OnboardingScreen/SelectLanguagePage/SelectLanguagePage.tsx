@@ -1,10 +1,11 @@
-import styled from 'styled-components';
-import LanguageSelect from "../../../UI/LanguageSelect/LanguageSelect";
-import {Locale} from "../../../../localization/types";
-import Page from '../../../UI/Layout/Page/Page';
-import {useOnboardingPageNavigator} from "../../../../contexts/onboarding/OnboardingContext";
+import styled from 'styled-components'
+import LanguageSelect from "../../../UI/LanguageSelect/LanguageSelect"
+import {Locale} from "../../../../localization/types"
+import Page from '../../../UI/Layout/Page/Page'
+import {useOnboardingPageNavigator} from "../../../../contexts/onboarding/OnboardingContext"
 import {FormattedMessage} from "react-intl";
-import {screenHeight, screenWidth} from '../../../UI/screenSizes';
+import {screenHeight, screenWidth} from '../../../UI/screenSizes'
+import React from 'react'
 
 const StyledContainer = styled.div`
   width: 100%;

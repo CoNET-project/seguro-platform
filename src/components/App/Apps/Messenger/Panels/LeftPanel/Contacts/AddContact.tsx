@@ -1,13 +1,13 @@
-import styled from "styled-components";
-import Header from "../Header";
-import Input from "../../../../../../UI/Inputs/Input/Input";
-import Textarea from "../../../../../../UI/Inputs/Textarea/TextArea";
-import Button from "../../../../../../UI/Common/Button/Button";
-import {useState} from "react";
-import {Contact} from "../../../../../../../contexts/messenger/messengerActions";
-import {useMessengerContext} from "../../../../../../../contexts/messenger/MessengerContext";
-import {usePageNavigator} from "../../../../../../../contexts/pageNavigator/PageNavigatorContext";
-import {pageNavigator} from "../../../../../../../contexts/pageNavigator/pageNavigatorActions";
+import styled from "styled-components"
+import Header from "../Header"
+import Input from "../../../../../../UI/Inputs/Input/Input"
+import Textarea from "../../../../../../UI/Inputs/Textarea/TextArea"
+import Button from "../../../../../../UI/Common/Button/Button"
+import React, {useState} from "react"
+import {Contact} from "../../../../../../../contexts/messenger/messengerActions"
+import {useMessengerContext} from "../../../../../../../contexts/messenger/MessengerContext"
+import {usePageNavigator} from "../../../../../../../contexts/pageNavigator/PageNavigatorContext"
+import {pageNavigator} from "../../../../../../../contexts/pageNavigator/pageNavigatorActions"
 
 const StyledAddContact = styled.div`
   width: 100%;

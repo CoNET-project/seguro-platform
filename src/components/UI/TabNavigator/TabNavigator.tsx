@@ -1,10 +1,10 @@
 import styled from 'styled-components'
-import {AnimatePresence, motion} from "framer-motion";
-import TabNavigatorTabs from "./TabNavigatorTabs/TabNavigatorTabs";
-import {ReactNode} from "react";
-import {usePageNavigator} from "../../../contexts/pageNavigator/PageNavigatorContext";
-import {TabActiveStyles} from "./Tab/Tab";
-import {pageTransitionVariants} from "../Motion/Variants/Variants";
+import {AnimatePresence, motion} from "framer-motion"
+import TabNavigatorTabs from "./TabNavigatorTabs/TabNavigatorTabs"
+import React, {ReactNode} from "react"
+import {usePageNavigator} from "../../../contexts/pageNavigator/PageNavigatorContext"
+import {TabActiveStyles} from "./Tab/Tab"
+import {pageTransitionVariants} from "../Motion/Variants/Variants"
 
 export type TabNavigatorPages = {
     [id: string]: {

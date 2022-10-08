@@ -1,13 +1,13 @@
-import styled, {keyframes} from "styled-components";
-import {Checkmark, Desktop, Mobile, Tablet, VerticalOptions} from "../../../../UI/Icons/Icons";
-import {screenWidth} from "../../../../UI/screenSizes";
-import {TippyDropdown} from "../../../../UI/Tippy/Tippy";
-import React, {useCallback, useEffect, useRef, useState} from "react";
-import ContextMenu, {ContextMenuActions} from "../../../../UI/Common/ContextMenu/ContextMenu";
-import {DeviceData, Devices} from "../../../../../store/appState/appStateReducer";
-import useAppState from "../../../../../store/appState/useAppState";
-import {FormattedMessage} from "react-intl";
-import {usePageNavigator} from "../../../../../contexts/pageNavigator/PageNavigatorContext";
+import styled, {keyframes} from "styled-components"
+import {Checkmark, Desktop, Mobile, Tablet, VerticalOptions} from "../../../../UI/Icons/Icons"
+import {screenWidth} from "../../../../UI/screenSizes"
+import {TippyDropdown} from "../../../../UI/Tippy/Tippy"
+import React, {useCallback, useEffect, useRef, useState} from "react"
+import ContextMenu, {ContextMenuActions} from "../../../../UI/Common/ContextMenu/ContextMenu"
+import {DeviceData, Devices} from "../../../../../store/appState/appStateReducer"
+import useAppState from "../../../../../store/appState/useAppState"
+import {FormattedMessage} from "react-intl"
+import {usePageNavigator} from "../../../../../contexts/pageNavigator/PageNavigatorContext"
 
 export type Device = {
     type: 'mobile' | 'tablet' | 'desktop',

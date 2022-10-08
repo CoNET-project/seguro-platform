@@ -1,5 +1,6 @@
-import styled from "styled-components";
-import ProgressBar from "../../../../UI/Progress/ProgressBar/ProgressBar";
+import styled from "styled-components"
+import ProgressBar from "../../../../UI/Progress/ProgressBar/ProgressBar"
+import React from 'react'
 
 const StyledSeguroDrive = styled.div`
   width: 100%;

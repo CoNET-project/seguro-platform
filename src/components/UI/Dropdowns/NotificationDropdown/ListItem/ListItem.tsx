@@ -1,6 +1,6 @@
 import styled from "styled-components"
 import {CloseCircle} from "../../../Icons/Icons"
-import {FaBell} from "react-icons/fa";
+import {FaBell} from "react-icons/fa"
 import {AnimatePresence, motion} from "framer-motion"
 import React from "react"
 import {Notification} from "../NotificationDropdown"

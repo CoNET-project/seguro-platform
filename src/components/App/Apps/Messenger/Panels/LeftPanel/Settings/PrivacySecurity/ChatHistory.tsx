@@ -1,6 +1,6 @@
-import styled from "styled-components";
-import Header from "../../Header";
-import {useEffect, useState} from "react";
+import styled from "styled-components"
+import Header from "../../Header"
+import React, {useEffect, useState} from "react"
 
 const StyledContainer = styled.div`
   height: 100%;

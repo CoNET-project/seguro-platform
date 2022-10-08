@@ -1,9 +1,9 @@
-import styled from "styled-components";
-import {Checkmark, Copy} from "../../../../UI/Icons/Icons";
-import {CopyToClipboard} from "../../../../../utilities/utilities";
-import {toast} from "../../../../UI/Toaster/Toaster";
-import {FormattedMessage} from "react-intl";
-
+import styled from "styled-components"
+import {Checkmark, Copy} from "../../../../UI/Icons/Icons"
+import {CopyToClipboard} from "../../../../../utilities/utilities"
+import {toast} from "../../../../UI/Toaster/Toaster"
+import {FormattedMessage} from "react-intl"
+import React from 'react'
 type DeviceCodesProp = {
     deviceCodes: Array<string>
 }

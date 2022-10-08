@@ -1,9 +1,10 @@
-import styled from "styled-components";
-import Header from "../Header";
-import ListItem from "../../../../../../UI/Common/ListItem/ListItem";
-import {ChevronRight} from "../../../../../../UI/Icons/Icons";
-import {usePageNavigator} from "../../../../../../../contexts/pageNavigator/PageNavigatorContext";
-import {pageNavigator} from "../../../../../../../contexts/pageNavigator/pageNavigatorActions";
+import styled from "styled-components"
+import Header from "../Header"
+import ListItem from "../../../../../../UI/Common/ListItem/ListItem"
+import {ChevronRight} from "../../../../../../UI/Icons/Icons"
+import {usePageNavigator} from "../../../../../../../contexts/pageNavigator/PageNavigatorContext"
+import {pageNavigator} from "../../../../../../../contexts/pageNavigator/pageNavigatorActions"
+import React from 'react'
 
 const StyledSettings = styled.div`
   height: 100%;

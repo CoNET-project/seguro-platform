@@ -1,9 +1,9 @@
 import styled from 'styled-components'
 import Step from './ProgressStep/Step'
-import {Fragment, ReactNode} from "react";
+import React, {Fragment, ReactNode} from "react"
 import {AnimatePresence, motion} from 'framer-motion'
-import {progressStepTransitionVariants} from "../../Motion/Variants/Variants";
-import {screenWidth} from "../../screenSizes";
+import {progressStepTransitionVariants} from "../../Motion/Variants/Variants"
+import {screenWidth} from "../../screenSizes"
 
 export type ProgressStepsProps = {
     currentStage: number,

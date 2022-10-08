@@ -1,4 +1,4 @@
-import {Story} from '@storybook/react'
+import React, {Story} from '@storybook/react'
 import ProgressDots, {ProgressDotsProps} from './ProgressDots'
 
 export default {

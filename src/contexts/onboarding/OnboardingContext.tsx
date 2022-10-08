@@ -1,6 +1,6 @@
-import React from "react";
-import {Dispatch} from "./onboardingActions";
-import {State} from "./onboardingPageReducer";
+import React from "react"
+import {Dispatch} from "./onboardingActions"
+import {State} from "./onboardingPageReducer"
 
 export const OnboardingContext = React.createContext<{ state: State; dispatch: Dispatch } | undefined>(undefined)
 

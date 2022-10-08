@@ -1,6 +1,6 @@
-import React, {ReactNode} from "react";
-import {onboardingPageReducer, PageIds} from "../../contexts/onboarding/onboardingPageReducer";
-import {OnboardingContext} from "../../contexts/onboarding/OnboardingContext";
+import React, {ReactNode} from "react"
+import {onboardingPageReducer, PageIds} from "../../contexts/onboarding/onboardingPageReducer"
+import {OnboardingContext} from "../../contexts/onboarding/OnboardingContext"
 
 type PageProviderProps = {
     children: ReactNode,

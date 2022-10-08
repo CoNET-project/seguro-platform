@@ -1,7 +1,7 @@
-import styled from "styled-components";
-import {ReactNode} from "react";
-import {usePageNavigator} from "../../../../contexts/pageNavigator/PageNavigatorContext";
-import {pageNavigator} from "../../../../contexts/pageNavigator/pageNavigatorActions";
+import styled from "styled-components"
+import React, {ReactNode} from "react"
+import {usePageNavigator} from "../../../../contexts/pageNavigator/PageNavigatorContext"
+import {pageNavigator} from "../../../../contexts/pageNavigator/pageNavigatorActions"
 
 type StyledTabProps = {
     active: boolean

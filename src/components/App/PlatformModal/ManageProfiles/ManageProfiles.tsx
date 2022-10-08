@@ -1,24 +1,25 @@
-import styled from "styled-components";
-import HeaderBar from "../../../UI/Common/HeaderBar/HeaderBar";
-import useAppState from "../../../../store/appState/useAppState";
-import {screenWidth} from "../../../UI/screenSizes";
-import ListItem from "../../../UI/Common/ListItem/ListItem";
-import Image from "../../../UI/Common/Profile/Image/Image";
+import styled from "styled-components"
+import HeaderBar from "../../../UI/Common/HeaderBar/HeaderBar"
+import useAppState from "../../../../store/appState/useAppState"
+import {screenWidth} from "../../../UI/screenSizes"
+import ListItem from "../../../UI/Common/ListItem/ListItem"
+import Image from "../../../UI/Common/Profile/Image/Image"
+// @ts-ignore: Unreachable code error
 import AnonymousAvatar from '../../../../assets/Avatar-anonymous.png'
 import {TippyDropdown} from "../../../UI/Tippy/Tippy";
-import {useState} from "react";
-import {ChevronLeft, VerticalOptions} from "../../../UI/Icons/Icons";
-import {PageNavigatorProvider} from "../../../Providers/PageNavigatorProvider";
-import {usePageNavigator} from "../../../../contexts/pageNavigator/PageNavigatorContext";
-import {AnimatePresence} from "framer-motion";
-import MotionWrapper from "../../../UI/Motion/MotionWrapper";
-import {pageTransitionVariants} from "../../../UI/Motion/Variants/Variants";
-import ManageProfile from "./Pages/ManageProfile";
-import DeleteProfile from "./Pages/DeleteProfile";
-import {pageNavigator} from "../../../../contexts/pageNavigator/pageNavigatorActions";
-import {FormattedMessage} from "react-intl";
-import ContextMenu, {ContextMenuActions} from "../../../UI/Common/ContextMenu/ContextMenu";
-import {ProfileData} from "../../../../store/appState/appStateReducer";
+import React, {useState} from "react"
+import {ChevronLeft, VerticalOptions} from "../../../UI/Icons/Icons"
+import {PageNavigatorProvider} from "../../../Providers/PageNavigatorProvider"
+import {usePageNavigator} from "../../../../contexts/pageNavigator/PageNavigatorContext"
+import {AnimatePresence} from "framer-motion"
+import MotionWrapper from "../../../UI/Motion/MotionWrapper"
+import {pageTransitionVariants} from "../../../UI/Motion/Variants/Variants"
+import ManageProfile from "./Pages/ManageProfile"
+import DeleteProfile from "./Pages/DeleteProfile"
+import {pageNavigator} from "../../../../contexts/pageNavigator/pageNavigatorActions"
+import {FormattedMessage} from "react-intl"
+import ContextMenu, {ContextMenuActions} from "../../../UI/Common/ContextMenu/ContextMenu"
+import {ProfileData} from "../../../../store/appState/appStateReducer"
 
 const StyledManagesProfileContainer = styled.div`
   width: 100%;

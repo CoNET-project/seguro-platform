@@ -1,10 +1,11 @@
-import styled from "styled-components";
+import styled from "styled-components"
 import Header from "../Header";
-import {useMessengerContext} from "../../../../../../../contexts/messenger/MessengerContext";
+import {useMessengerContext} from "../../../../../../../contexts/messenger/MessengerContext"
 import {exampleChats} from "../../../ExampleData";
-import ListItem from "../../../../../../UI/Messenger/Contact/ListItem";
-import {pageNavigator} from "../../../../../../../contexts/pageNavigator/pageNavigatorActions";
-import {usePageNavigator} from "../../../../../../../contexts/pageNavigator/PageNavigatorContext";
+import ListItem from "../../../../../../UI/Messenger/Contact/ListItem"
+import {pageNavigator} from "../../../../../../../contexts/pageNavigator/pageNavigatorActions"
+import {usePageNavigator} from "../../../../../../../contexts/pageNavigator/PageNavigatorContext"
+import React from 'react'
 
 const StyledChats = styled.div`
   height: 100%;

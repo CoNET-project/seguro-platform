@@ -1,4 +1,4 @@
-import React, {ReactNode} from "react";
+import React, {ReactNode} from "react"
 import {pageNavigatorReducer} from '../../contexts/pageNavigator/pageNavigatorReducer'
 import {PageNavigatorContext} from '../../contexts/pageNavigator/PageNavigatorContext'
 

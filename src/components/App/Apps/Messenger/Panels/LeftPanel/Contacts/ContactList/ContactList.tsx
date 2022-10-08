@@ -1,14 +1,14 @@
-import styled from "styled-components";
-import {isObjectEmpty} from "../../../../../../../../utilities/utilities";
-import ListItem from "../../../../../../../UI/Messenger/Contact/ListItem";
-import {useMessengerContext} from "../../../../../../../../contexts/messenger/MessengerContext";
-import {useCategorizeContact} from "../../../../../../../../utilities/hooks";
-import {Contact} from "../../../../../../../../contexts/messenger/messengerActions";
-import SearchBar from "../../../../../../../UI/SearchBar/SearchBar";
-import {Overlay} from "../../../../../../../UI/Common/Overlay/Overlay";
-import {useEffect, useState} from "react";
-import {SearchResults} from "../../../../../../../UI/SearchBar/SearchResult/SearchResult";
-import Image from "../../../../../../../UI/Common/Profile/Image/Image";
+import styled from "styled-components"
+import {isObjectEmpty} from "../../../../../../../../utilities/utilities"
+import ListItem from "../../../../../../../UI/Messenger/Contact/ListItem"
+import {useMessengerContext} from "../../../../../../../../contexts/messenger/MessengerContext"
+import {useCategorizeContact} from "../../../../../../../../utilities/hooks"
+import {Contact} from "../../../../../../../../contexts/messenger/messengerActions"
+import SearchBar from "../../../../../../../UI/SearchBar/SearchBar"
+import {Overlay} from "../../../../../../../UI/Common/Overlay/Overlay"
+import React, {useEffect, useState} from "react"
+import {SearchResults} from "../../../../../../../UI/SearchBar/SearchResult/SearchResult"
+import Image from "../../../../../../../UI/Common/Profile/Image/Image"
 
 const StyledContactList = styled.div`
   height: 100%;

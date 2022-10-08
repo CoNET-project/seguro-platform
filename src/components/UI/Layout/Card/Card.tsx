@@ -1,5 +1,5 @@
-import styled from 'styled-components';
-import React, {ReactNode} from "react";
+import styled from 'styled-components'
+import React, {ReactNode} from "react"
 
 export type CardProps = {
     visual: ReactNode | string,

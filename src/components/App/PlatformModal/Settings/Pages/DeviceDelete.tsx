@@ -1,10 +1,10 @@
-import styled from "styled-components";
-import {pageTransitionVariants} from "../../../../UI/Motion/Variants/Variants";
-import MotionWrapper from "../../../../UI/Motion/MotionWrapper";
-import {DeviceData} from "../../../../../store/appState/appStateReducer";
-import {Desktop, Mobile, Tablet} from "../../../../UI/Icons/Icons";
-import React from "react";
-import {FormattedMessage} from "react-intl";
+import styled from "styled-components"
+import {pageTransitionVariants} from "../../../../UI/Motion/Variants/Variants"
+import MotionWrapper from "../../../../UI/Motion/MotionWrapper"
+import {DeviceData} from "../../../../../store/appState/appStateReducer"
+import {Desktop, Mobile, Tablet} from "../../../../UI/Icons/Icons"
+import React from "react"
+import {FormattedMessage} from "react-intl"
 
 type StyledDeviceButtonProps = {
     danger?: boolean

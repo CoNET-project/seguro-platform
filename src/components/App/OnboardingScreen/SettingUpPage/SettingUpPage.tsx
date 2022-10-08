@@ -1,26 +1,26 @@
-import styled from "styled-components";
-import {screenWidth} from "../../../UI/screenSizes";
-import {ReactNode, useEffect, useState} from "react";
-import Carousel from "../../../UI/Carousel/Carousel";
+import styled from "styled-components"
+import {screenWidth} from "../../../UI/screenSizes"
+import React, {ReactNode, useEffect, useState} from "react"
+import Carousel from "../../../UI/Carousel/Carousel"
 import lottie_platform from '../../../../assets/lottie/platform.json'
 import lottie_tracking from '../../../../assets/lottie/tracking.json'
 import lottie_decentralized from '../../../../assets/lottie/decentralized.json'
 import lottie_privacy from '../../../../assets/lottie/privacy.json'
 import {FormattedMessage} from "react-intl";
-import LottieAnimation from "../../../UI/Lottie/Lottie";
-import ProgressSteps from "../../../UI/Progress/ProgressSteps/ProgressSteps";
-import useAppState from "../../../../store/appState/useAppState";
-import {useOnboardingPageNavigator} from "../../../../contexts/onboarding/OnboardingContext";
-import Button from "../../../UI/Common/Button/Button";
-import onboardingActions from "../../../../contexts/onboarding/onboardingActions";
-import AlertDialog, {AlertDialogActions} from "../../../UI/Common/AlertDialog/AlertDialog";
-import {Warning} from "../../../UI/Icons/Icons";
+import LottieAnimation from "../../../UI/Lottie/Lottie"
+import ProgressSteps from "../../../UI/Progress/ProgressSteps/ProgressSteps"
+import useAppState from "../../../../store/appState/useAppState"
+import {useOnboardingPageNavigator} from "../../../../contexts/onboarding/OnboardingContext"
+import Button from "../../../UI/Common/Button/Button"
+import onboardingActions from "../../../../contexts/onboarding/onboardingActions"
+import AlertDialog, {AlertDialogActions} from "../../../UI/Common/AlertDialog/AlertDialog"
+import {Warning} from "../../../UI/Icons/Icons"
 import {
     createPasscode,
     hasPasscode,
     savePreferences,
     verifyInvitation
-} from "../../../../services/workerService/workerService";
+} from "../../../../services/workerService/workerService"
 
 const StyledContainer = styled.div`
   width: 100%;

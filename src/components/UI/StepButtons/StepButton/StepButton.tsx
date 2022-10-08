@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import {ReactNode} from "react";
+import React, {ReactNode} from "react"
 
 export type StepButtonProps = {
     text: ReactNode | string,

@@ -1,14 +1,14 @@
-import styled from 'styled-components';
+import styled from 'styled-components'
 import ProfileImage from '../../Common/Profile/Image/Image'
-import {Grid3X3, NotificationBell, SettingGear, Update} from "../../Icons/Icons";
-import {screenWidth, sizes} from "../../screenSizes";
-import {LogoIcon} from "../../Logo/Logo";
-import ProfileDropdown from "../../Dropdowns/ProfileDropdown/ProfileDropdown";
-import useAppState from "../../../../store/appState/useAppState";
-import {TippyDropdown} from "../../Tippy/Tippy";
-import AppsDropdown from "../../Dropdowns/AppsDropdown/AppsDropdown";
-import {useEffect, useState} from "react";
-import NotificationDropdown from "../../Dropdowns/NotificationDropdown/NotificationDropdown";
+import {Grid3X3, NotificationBell, SettingGear, Update} from "../../Icons/Icons"
+import {screenWidth, sizes} from "../../screenSizes"
+import {LogoIcon} from "../../Logo/Logo"
+import ProfileDropdown from "../../Dropdowns/ProfileDropdown/ProfileDropdown"
+import useAppState from "../../../../store/appState/useAppState"
+import {TippyDropdown} from "../../Tippy/Tippy"
+import AppsDropdown from "../../Dropdowns/AppsDropdown/AppsDropdown"
+import React, {useEffect, useState} from "react"
+import NotificationDropdown from "../../Dropdowns/NotificationDropdown/NotificationDropdown"
 
 const StyledGlobalBar = styled.div`
   height: calc(50px + env(safe-area-inset-top));

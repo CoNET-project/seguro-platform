@@ -1,4 +1,4 @@
-import {useState} from 'react'
+import React, {useState} from 'react'
 import ProviderProps from '../ProviderProps'
 import GlobalStyle from '../../UI/Global/Styles'
 import {DefaultTheme, ThemeProvider as StyledComponentsThemeProvider} from 'styled-components'
@@ -6,7 +6,6 @@ import useAppState from '../../../store/appState/useAppState'
 import usePreferredTheme from './usePreferredTheme'
 import lightTheme from '../../../theme/light'
 import darkTheme from '../../../theme/dark'
-import React from 'react'
 
 type ActiveTheme = 'Light' | 'Dark'
 

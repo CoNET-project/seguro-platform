@@ -1,6 +1,6 @@
-import styled from "styled-components";
-import {ReactNode} from "react";
-import {screenWidth} from "../../screenSizes";
+import styled from "styled-components"
+import React, {ReactNode} from "react"
+import {screenWidth} from "../../screenSizes"
 
 type ListItemProps = {
     className?: string,

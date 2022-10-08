@@ -1,9 +1,9 @@
-import {HTMLMotionProps, motion} from 'framer-motion';
-import styled from 'styled-components';
-import React from "react";
-import {ThreeCircles} from 'react-loader-spinner';
-import {PlatformLoadingTypes} from "../../../../store/appState/appStateReducer";
-import {FormattedMessage} from "react-intl";
+import {HTMLMotionProps, motion} from 'framer-motion'
+import styled from 'styled-components'
+import React from "react"
+import {ThreeCircles} from 'react-loader-spinner'
+import {PlatformLoadingTypes} from "../../../../store/appState/appStateReducer"
+import {FormattedMessage} from "react-intl"
 
 type DragOverlayProps = {
     acceptPointerEvents: boolean

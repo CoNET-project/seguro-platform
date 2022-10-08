@@ -1,12 +1,13 @@
-import styled from 'styled-components';
-import ProfileImage from "../../../Common/Profile/Image/Image";
-import {Checkmark, Copy} from "../../../Icons/Icons";
-import {toast} from "../../../Toaster/Toaster";
-import {FormattedMessage} from "react-intl";
-import {CopyToClipboard} from "../../../../../utilities/utilities";
+import styled from 'styled-components'
+import ProfileImage from "../../../Common/Profile/Image/Image"
+import {Checkmark, Copy} from "../../../Icons/Icons"
+import {toast} from "../../../Toaster/Toaster"
+import {FormattedMessage} from "react-intl"
+import {CopyToClipboard} from "../../../../../utilities/utilities"
+// @ts-ignore: Unreachable code error
 import AnonymousProfile from '../../../../../assets/Avatar-anonymous.png'
-import React from "react";
-import {ProfileData} from "../../../../../store/appState/appStateReducer";
+import React from "react"
+import {ProfileData} from "../../../../../store/appState/appStateReducer"
 
 type StyledProfileItemProps = {
     isActive?: boolean

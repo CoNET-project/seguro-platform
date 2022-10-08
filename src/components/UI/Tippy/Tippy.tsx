@@ -1,7 +1,7 @@
 import ReactTippy, {TippyProps as ReactTippyProps} from '@tippyjs/react'
-import 'tippy.js/dist/tippy.css';
-import 'tippy.js/animations/scale.css';
-import {JSXElementConstructor, ReactElement, ReactNode, useEffect, useState} from "react";
+import 'tippy.js/dist/tippy.css'
+import 'tippy.js/animations/scale.css'
+import React, {JSXElementConstructor, ReactElement, ReactNode, useEffect, useState} from "react"
 import styled from 'styled-components';
 import useAppState from "../../../store/appState/useAppState";
 

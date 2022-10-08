@@ -2,6 +2,7 @@ import ProviderProps from './ProviderProps'
 import StoreProvider from './StoreProvider/StoreProvider'
 import ThemeProvider from './ThemeProvider/ThemeProvider'
 import LocalizationProvider from './LocalizationProvider/LocalizationProvider'
+import React from 'react'
 
 const RootProvider = ({
     children

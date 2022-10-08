@@ -1,7 +1,7 @@
-import styled from 'styled-components';
-import {screenWidth} from '../../../screenSizes';
-import StyledPanel from "../../../Common/Panel/Panel";
-import {ReactNode} from 'react';
+import styled from 'styled-components'
+import {screenWidth} from '../../../screenSizes'
+import StyledPanel from "../../../Common/Panel/Panel"
+import React, {ReactNode} from 'react'
 
 type LeftPanelProps = {
     children: ReactNode,

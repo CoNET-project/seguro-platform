@@ -1,4 +1,4 @@
-import {Story} from '@storybook/react'
+import React, {Story} from '@storybook/react'
 import Checkbox, {CheckboxProps} from './Checkbox'
 
 export default {

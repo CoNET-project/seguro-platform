@@ -1,4 +1,4 @@
-import {Chat} from "./messengerReducer";
+import {Chat} from "./messengerReducer"
 
 export type Dispatch = (action: any) => void
 

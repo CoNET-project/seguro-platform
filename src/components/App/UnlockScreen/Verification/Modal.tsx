@@ -1,16 +1,16 @@
 import styled from "styled-components"
-import {screenWidth} from "../../../UI/screenSizes";
-import useAppState from "../../../../store/appState/useAppState";
-import React, {useEffect, useState} from "react";
-import VerificationAnimation from "../../../../assets/lottie/verification.json";
-import LottieAnimation from "../../../UI/Lottie/Lottie";
-import {isUUIDv4} from "../../../../utilities/utilities";
-import LargeInput from "../../../UI/Inputs/LargeInput/LargeInput";
-import Button from "../../../UI/Common/Button/Button";
-import {FormattedMessage} from "react-intl";
-import {verifyInvitation} from "../../../../services/workerService/workerService";
-import {ThreeCircles} from "react-loader-spinner";
-import {OverlayDarker} from "../../../UI/Common/Overlay/Overlay";
+import {screenWidth} from "../../../UI/screenSizes"
+import useAppState from "../../../../store/appState/useAppState"
+import React, {useEffect, useState} from "react"
+import VerificationAnimation from "../../../../assets/lottie/verification.json"
+import LottieAnimation from "../../../UI/Lottie/Lottie"
+import {isUUIDv4} from "../../../../utilities/utilities"
+import LargeInput from "../../../UI/Inputs/LargeInput/LargeInput"
+import Button from "../../../UI/Common/Button/Button"
+import {FormattedMessage} from "react-intl"
+import {verifyInvitation} from "../../../../services/workerService/workerService"
+import {ThreeCircles} from "react-loader-spinner"
+import {OverlayDarker} from "../../../UI/Common/Overlay/Overlay"
 
 const StyledVerificationModal = styled.div`
   width: 360px;

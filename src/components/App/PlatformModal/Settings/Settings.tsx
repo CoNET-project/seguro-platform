@@ -1,25 +1,25 @@
-import ListItem from "../../../UI/Common/ListItem/ListItem";
-import ThemeSelector from "./ThemeSelector";
+import ListItem from "../../../UI/Common/ListItem/ListItem"
+import ThemeSelector from "./ThemeSelector"
 import {PageNavigatorProvider} from "../../../Providers/PageNavigatorProvider";
-import {usePageNavigator} from "../../../../contexts/pageNavigator/PageNavigatorContext";
-import Language from "./Pages/Language";
-import {pageNavigator} from "../../../../contexts/pageNavigator/pageNavigatorActions";
-import {AnimatePresence} from "framer-motion";
-import styled from "styled-components";
-import MotionWrapper from "../../../UI/Motion/MotionWrapper";
-import {pageTransitionVariants} from "../../../UI/Motion/Variants/Variants";
-import {ChevronLeft, ChevronRight} from "../../../UI/Icons/Icons";
-import HeaderBar from "../../../UI/Common/HeaderBar/HeaderBar";
-import useAppState from "../../../../store/appState/useAppState";
-import {FormattedMessage} from "react-intl";
-import SeguroDrive from "./SettingSections/SeguroDrive";
-import DeviceList from "./SettingSections/DeviceList";
-import SubscriptionPlan from "./SettingSections/SubscriptionPlan";
-import DeviceCodes from "./SettingSections/DeviceCodes";
-import {screenHeight, screenWidth} from "../../../UI/screenSizes";
-import Passcode from "./Pages/Passcode";
-import DeviceDelete from "./Pages/DeviceDelete";
-import {useState} from "react";
+import {usePageNavigator} from "../../../../contexts/pageNavigator/PageNavigatorContext"
+import Language from "./Pages/Language"
+import {pageNavigator} from "../../../../contexts/pageNavigator/pageNavigatorActions"
+import {AnimatePresence} from "framer-motion"
+import styled from "styled-components"
+import MotionWrapper from "../../../UI/Motion/MotionWrapper"
+import {pageTransitionVariants} from "../../../UI/Motion/Variants/Variants"
+import {ChevronLeft, ChevronRight} from "../../../UI/Icons/Icons"
+import HeaderBar from "../../../UI/Common/HeaderBar/HeaderBar"
+import useAppState from "../../../../store/appState/useAppState"
+import {FormattedMessage} from "react-intl"
+import SeguroDrive from "./SettingSections/SeguroDrive"
+import DeviceList from "./SettingSections/DeviceList"
+import SubscriptionPlan from "./SettingSections/SubscriptionPlan"
+import DeviceCodes from "./SettingSections/DeviceCodes"
+import {screenHeight, screenWidth} from "../../../UI/screenSizes"
+import Passcode from "./Pages/Passcode"
+import DeviceDelete from "./Pages/DeviceDelete"
+import React, {useState} from "react"
 
 const StyledSettingsContainer = styled.div`
   height: 100%;

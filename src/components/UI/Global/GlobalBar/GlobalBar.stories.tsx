@@ -1,5 +1,5 @@
-import {Story} from '@storybook/react'
-import GlobalBar from "./GlobalBar";
+import React, {Story} from '@storybook/react'
+import GlobalBar from "./GlobalBar"
 
 export default {
     component: GlobalBar,

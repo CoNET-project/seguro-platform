@@ -1,6 +1,6 @@
-import styled from "styled-components";
-import {ReactNode} from "react";
-import {motion, Variants} from "framer-motion";
+import styled from "styled-components"
+import React, {ReactNode} from "react"
+import {motion, Variants} from "framer-motion"
 
 type MotionWrapperProps = {
     children: ReactNode,

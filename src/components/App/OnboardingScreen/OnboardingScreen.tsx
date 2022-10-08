@@ -10,10 +10,10 @@ import PasscodePage from './PasscodePage/PasscodePage'
 import {FormattedMessage} from 'react-intl'
 import {ChevronLeft, ChevronRight} from "../../UI/Icons/Icons"
 import ProgressNumberSteps from "../../UI/Progress/ProgressNumberSteps/ProgressNumberSteps"
-import {ReactNode, useState} from "react"
+import React, {ReactNode, useState} from "react"
 import VerificationPage from "./VerificationPage/VerificationPage"
 import SettingUpPage from "./SettingUpPage/SettingUpPage"
-import React from 'react'
+
 
 const StyledOnboardingContainer = styled.div`
   height: 100%;

@@ -1,6 +1,8 @@
 import {Story} from '@storybook/react'
+// @ts-ignore: Unreachable code error
 import ProfileImage from '../../../../../assets/examples/profile-example.jpeg'
 import Image, {ImageProps} from './Image'
+import React from 'react'
 
 export default {
     component: Image,

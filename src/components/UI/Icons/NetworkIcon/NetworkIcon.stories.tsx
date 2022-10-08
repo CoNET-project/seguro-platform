@@ -1,6 +1,6 @@
-import {Story} from '@storybook/react'
-import styled from 'styled-components';
-import NetworkIcon, {NetworkIconProps} from "./NetworkIcon";
+import React, {Story} from '@storybook/react'
+import styled from 'styled-components'
+import NetworkIcon, {NetworkIconProps} from "./NetworkIcon"
 
 export default {
     component: NetworkIcon,

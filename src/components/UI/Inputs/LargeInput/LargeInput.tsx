@@ -1,6 +1,6 @@
-import React, {ReactNode, useEffect, useRef} from 'react';
-import styled from 'styled-components';
-import {Warning} from '../../Icons/Icons';
+import React, {ReactNode, useEffect, useRef} from 'react'
+import styled from 'styled-components'
+import {Warning} from '../../Icons/Icons'
 
 type InputProps = {
     value: string,

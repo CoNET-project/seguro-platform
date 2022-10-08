@@ -1,7 +1,7 @@
 import styled from 'styled-components'
-import {Fragment, ReactNode} from "react";
-import {Close} from "../../Icons/Icons";
-import {screenWidth} from "../../screenSizes";
+import React, {Fragment, ReactNode} from "react"
+import {Close} from "../../Icons/Icons"
+import {screenWidth} from "../../screenSizes"
 
 export type HeaderBarProps = {
     className?: string,

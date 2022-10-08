@@ -1,4 +1,4 @@
-import {Story} from '@storybook/react'
+import React, {Story} from '@storybook/react'
 import PasscodeInput, {PasscodeInputProps} from './PasscodeInput'
 
 export default {

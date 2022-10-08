@@ -1,13 +1,14 @@
-import Image from "../../../../UI/Common/Profile/Image/Image";
-import AnonymousProfile from "../../../../../assets/Avatar-anonymous.png";
-import {Camera} from "../../../../UI/Icons/Icons";
-import styled from "styled-components";
-import {screenWidth} from "../../../../UI/screenSizes";
-import {ChangeEvent, useRef} from "react";
-import {getBase64FromFile} from "../../../../../utilities/utilities";
-import {FormattedMessage} from "react-intl";
-import Checkbox from "../../../../UI/Common/Checkbox/Checkbox";
-import {ProfileData} from "../../../../../store/appState/appStateReducer";
+import Image from "../../../../UI/Common/Profile/Image/Image"
+// @ts-ignore: Unreachable code error
+import AnonymousProfile from "../../../../../assets/Avatar-anonymous.png"
+import {Camera} from "../../../../UI/Icons/Icons"
+import styled from "styled-components"
+import {screenWidth} from "../../../../UI/screenSizes"
+import React, {ChangeEvent, useRef} from "react"
+import {getBase64FromFile} from "../../../../../utilities/utilities"
+import {FormattedMessage} from "react-intl"
+import Checkbox from "../../../../UI/Common/Checkbox/Checkbox"
+import {ProfileData} from "../../../../../store/appState/appStateReducer"
 
 const StyledManageProfile = styled.div`
   padding: 40px 0 20px 0;

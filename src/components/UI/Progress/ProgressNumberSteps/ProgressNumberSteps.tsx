@@ -1,6 +1,6 @@
-import ProgressNumber from "./ProgressNumber/ProgressNumber";
-import styled from "styled-components";
-import {Fragment} from "react";
+import ProgressNumber from "./ProgressNumber/ProgressNumber"
+import styled from "styled-components"
+import React, {Fragment} from "react"
 
 type StyledProgressNumberBlockProps = {
     isActive: boolean

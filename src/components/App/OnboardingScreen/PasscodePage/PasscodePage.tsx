@@ -1,12 +1,12 @@
-import styled from 'styled-components';
-import Keypad from "../../../UI/Keypad/Keypad";
-import {ReactNode} from 'react';
-import {useOnboardingPageNavigator} from "../../../../contexts/onboarding/OnboardingContext";
-import Page from '../../../UI/Layout/Page/Page';
-import LargeInput from "../../../UI/Inputs/LargeInput/LargeInput";
-import PasscodeTouchInput from "../../../UI/Inputs/PasscodeInput/Touch/PasscodeInput";
-import {screenWidth} from '../../../UI/screenSizes';
-import useAppState from "../../../../store/appState/useAppState";
+import styled from 'styled-components'
+import Keypad from "../../../UI/Keypad/Keypad"
+import React, {ReactNode} from 'react'
+import {useOnboardingPageNavigator} from "../../../../contexts/onboarding/OnboardingContext"
+import Page from '../../../UI/Layout/Page/Page'
+import LargeInput from "../../../UI/Inputs/LargeInput/LargeInput"
+import PasscodeTouchInput from "../../../UI/Inputs/PasscodeInput/Touch/PasscodeInput"
+import {screenWidth} from '../../../UI/screenSizes'
+import useAppState from "../../../../store/appState/useAppState"
 
 type PasscodeProps = {
     title: string | ReactNode

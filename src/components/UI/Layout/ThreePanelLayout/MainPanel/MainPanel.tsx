@@ -1,7 +1,7 @@
-import styled from 'styled-components';
-import {ReactNode} from "react";
-import {motion} from 'framer-motion';
-import StyledPanel from "../../../Common/Panel/Panel";
+import styled from 'styled-components'
+import React, {ReactNode} from "react"
+import {motion} from 'framer-motion'
+import StyledPanel from "../../../Common/Panel/Panel"
 
 type MainPanelProps = {
     rightPanel: ReactNode,

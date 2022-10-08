@@ -1,5 +1,5 @@
-import {Story} from '@storybook/react'
-import Drawer from "./Drawer";
+import React, {Story} from '@storybook/react'
+import Drawer from "./Drawer"
 
 export default {
     component: Drawer,

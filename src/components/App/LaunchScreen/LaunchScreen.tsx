@@ -1,7 +1,7 @@
 import styled from 'styled-components'
-import {LogoImage} from "../../UI/Logo/Logo";
-import {ThreeCircles} from "react-loader-spinner";
-import React from "react";
+import {LogoImage} from "../../UI/Logo/Logo"
+import {ThreeCircles} from "react-loader-spinner"
+import React from "react"
 
 const StyledContainer = styled.div`
   height: 100%;

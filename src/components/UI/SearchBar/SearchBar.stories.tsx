@@ -1,6 +1,6 @@
-import {Story} from '@storybook/react'
-import styled from 'styled-components';
-import SearchBar from "./SearchBar";
+import React, {Story} from '@storybook/react'
+import styled from 'styled-components'
+import SearchBar from "./SearchBar"
 
 export default {
     component: SearchBar,

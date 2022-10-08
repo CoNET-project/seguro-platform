@@ -1,11 +1,11 @@
 import styled from 'styled-components'
-import HeaderBar from "../../../../UI/Common/HeaderBar/HeaderBar";
-import {useMessengerContext} from "../../../../../contexts/messenger/MessengerContext";
-import {Checkmark, EditPencilIcon} from "../../../../UI/Icons/Icons";
-import Input from "../../../../UI/Inputs/Input/Input";
-import {useEffect, useRef, useState} from "react";
-import {Contact} from '../../../../../contexts/messenger/messengerActions';
-import {trimToLength} from "../../../../../utilities/utilities";
+import HeaderBar from "../../../../UI/Common/HeaderBar/HeaderBar"
+import {useMessengerContext} from "../../../../../contexts/messenger/MessengerContext"
+import {Checkmark, EditPencilIcon} from "../../../../UI/Icons/Icons"
+import Input from "../../../../UI/Inputs/Input/Input"
+import React, {useEffect, useRef, useState} from "react"
+import {Contact} from '../../../../../contexts/messenger/messengerActions'
+import {trimToLength} from "../../../../../utilities/utilities"
 
 const StyledRightPanel = styled.div`
   height: 100%;

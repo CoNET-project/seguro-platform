@@ -1,13 +1,14 @@
 import {Languages} from "../../../OnboardingScreen/SelectLanguagePage/SelectLanguagePage"
-import LanguageSelect from "../../../../UI/LanguageSelect/LanguageSelect";
-import useAppState from "../../../../../store/appState/useAppState";
-import MotionWrapper from "../../../../UI/Motion/MotionWrapper";
-import {pageTransitionVariants} from "../../../../UI/Motion/Variants/Variants";
-import styled from "styled-components";
-import {Locale} from "../../../../../localization/types";
-import {usePageNavigator} from "../../../../../contexts/pageNavigator/PageNavigatorContext";
-import {pageNavigator} from "../../../../../contexts/pageNavigator/pageNavigatorActions";
-import {savePreferences} from "../../../../../services/workerService/workerService";
+import LanguageSelect from "../../../../UI/LanguageSelect/LanguageSelect"
+import useAppState from "../../../../../store/appState/useAppState"
+import MotionWrapper from "../../../../UI/Motion/MotionWrapper"
+import {pageTransitionVariants} from "../../../../UI/Motion/Variants/Variants"
+import styled from "styled-components"
+import {Locale} from "../../../../../localization/types"
+import {usePageNavigator} from "../../../../../contexts/pageNavigator/PageNavigatorContext"
+import {pageNavigator} from "../../../../../contexts/pageNavigator/pageNavigatorActions"
+import {savePreferences} from "../../../../../services/workerService/workerService"
+import React from 'react'
 
 type LanguageProps = {
     custom: number

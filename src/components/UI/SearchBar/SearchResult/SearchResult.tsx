@@ -1,5 +1,5 @@
-import styled from "styled-components";
-import {ReactNode} from "react";
+import styled from "styled-components"
+import React, {ReactNode} from "react"
 
 const StyledSearchResult = styled.li`
   width: 100%;
