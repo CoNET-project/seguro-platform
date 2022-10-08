@@ -21,7 +21,7 @@ const StyledContainer = styled.div`
 
 const App = () => {
     const {
-        initialize,
+        dAPPInitialize,
         isInitializing,
         isPlatformLoading,
         setNetworkStrength,
@@ -41,8 +41,9 @@ const App = () => {
 
     useEffect(() => {
 
-
-        initialize().then(() => {
+		
+        dAPPInitialize().then(() => {
+			
         })
 
         const randomDeviceIds = Array.from({length: 3}, (_, i) => (Date.now() + Math.round(Math.random() * 100)).toString())
@@ -101,7 +102,7 @@ const App = () => {
             case !hasContainer && !isUnlocked:
                 return (
                     <OnboardingPageProvider
-                        existingPages={['language', 'setPasscode', 'confirmPasscode', 'verification', 'settingUp']}>
+                        existingPages={['language', 'setPasscode', 'confirmPasscode', 'settingUp']}>
                         <OnboardingScreen/>
                     </OnboardingPageProvider>
                 )

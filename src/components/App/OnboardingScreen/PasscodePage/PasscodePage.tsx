@@ -9,10 +9,11 @@ import {screenWidth} from '../../../UI/screenSizes';
 import useAppState from "../../../../store/appState/useAppState";
 
 type PasscodeProps = {
-    title: string | ReactNode,
-    passcode: string,
-    setPasscode: (passcode: string) => void,
-    confirmationAction?: () => boolean,
+    title: string | ReactNode
+    passcode: string
+    setPasscode: (passcode: string) => void
+    confirmationAction?: () => boolean
+	nextPageHandler: ()=> void
     error: ReactNode | string
 }
 
@@ -62,6 +63,7 @@ const PasscodePage = ({
                           title,
                           passcode,
                           setPasscode,
+						  nextPageHandler,
                           error
                       }: PasscodeProps) => {
 
@@ -74,6 +76,7 @@ const PasscodePage = ({
         deleteKeyOnClick: () => {
             setPasscode(passcode.slice(0, passcode.length - 1))
         }
+		
     }
 
     // 'passcodeInput.incorrect.error': '密碼錯誤，請再試一次',
@@ -114,6 +117,7 @@ const PasscodePage = ({
                                                 inputType: 'password'
                                             }
                                             }
+											nextStepHandler={nextPageHandler}
                                             error={error}
                                             setValue={(val) => {
                                                 setPasscode(val)
