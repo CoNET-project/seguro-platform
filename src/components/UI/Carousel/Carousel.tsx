@@ -1,8 +1,8 @@
-import {AnimatePresence, motion} from 'framer-motion';
-import styled from 'styled-components';
-import {ReactNode, useEffect, useState} from "react";
-import {pageTransitionVariants} from "../Motion/Variants/Variants";
-import ProgressDots from "../Progress/ProgressDots/ProgressDots";
+import {AnimatePresence, motion} from 'framer-motion'
+import styled from 'styled-components'
+import React, {ReactNode, useEffect, useState} from "react"
+import {pageTransitionVariants} from "../Motion/Variants/Variants"
+import ProgressDots from "../Progress/ProgressDots/ProgressDots"
 
 type CarouselProps = {
     current: number,

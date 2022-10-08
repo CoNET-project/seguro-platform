@@ -1,7 +1,7 @@
-import styled from "styled-components";
-import Image from "../../Common/Profile/Image/Image";
-import {Contact} from "../../../../contexts/messenger/messengerActions";
-import {ReactNode} from "react";
+import styled from "styled-components"
+import Image from "../../Common/Profile/Image/Image"
+import {Contact} from "../../../../contexts/messenger/messengerActions"
+import React, {ReactNode} from "react"
 
 type ListItemProps = {
     contact: Contact,

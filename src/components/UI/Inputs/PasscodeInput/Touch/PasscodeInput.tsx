@@ -1,6 +1,6 @@
-import {ReactNode} from 'react';
-import styled from 'styled-components';
-import {PasscodeDot} from '../../../Icons/Icons';
+import React, {ReactNode} from 'react'
+import styled from 'styled-components'
+import {PasscodeDot} from '../../../Icons/Icons'
 
 export type PasscodeInputProps = {
     value: string

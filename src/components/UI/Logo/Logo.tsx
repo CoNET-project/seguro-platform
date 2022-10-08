@@ -1,6 +1,7 @@
-import styled from 'styled-components';
-import {getPixelSize} from "../../../utilities/utilities";
-import {Sizes} from '../Icons/Icons';
+import styled from 'styled-components'
+import {getPixelSize} from "../../../utilities/utilities"
+import {Sizes} from '../Icons/Icons'
+import React from 'react'
 
 type LogoTextProps = {
     size?: Sizes

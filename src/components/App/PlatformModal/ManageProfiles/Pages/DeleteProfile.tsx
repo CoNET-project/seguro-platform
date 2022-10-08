@@ -1,10 +1,11 @@
-import styled from "styled-components";
-import MotionWrapper from "../../../../UI/Motion/MotionWrapper";
-import {pageTransitionVariants} from "../../../../UI/Motion/Variants/Variants";
-import ProfileView from "../Profile/Profile";
-import {FormattedMessage} from "react-intl";
-import useAppState from "../../../../../store/appState/useAppState";
-import {ProfileData} from "../../../../../store/appState/appStateReducer";
+import styled from "styled-components"
+import MotionWrapper from "../../../../UI/Motion/MotionWrapper"
+import {pageTransitionVariants} from "../../../../UI/Motion/Variants/Variants"
+import ProfileView from "../Profile/Profile"
+import {FormattedMessage} from "react-intl"
+import useAppState from "../../../../../store/appState/useAppState"
+import {ProfileData} from "../../../../../store/appState/appStateReducer"
+import React from 'react'
 
 type DeleteProfileProps = {
     custom: number,
@@ -12,6 +13,7 @@ type DeleteProfileProps = {
     onDelete: (keyId: string) => void,
     onBack: () => void
 }
+
 
 
 const StyledDeleteProfile = styled.div`

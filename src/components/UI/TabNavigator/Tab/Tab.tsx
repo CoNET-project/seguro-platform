@@ -1,9 +1,9 @@
-import {ReactNode} from 'react';
-import styled from 'styled-components';
-import {usePageNavigator} from "../../../../contexts/pageNavigator/PageNavigatorContext";
-import {pageNavigator} from "../../../../contexts/pageNavigator/pageNavigatorActions";
+import React, {ReactNode} from 'react'
+import styled from 'styled-components'
+import {usePageNavigator} from "../../../../contexts/pageNavigator/PageNavigatorContext"
+import {pageNavigator} from "../../../../contexts/pageNavigator/pageNavigatorActions"
 import {motion} from 'framer-motion';
-import {screenWidth} from "../../screenSizes";
+import {screenWidth} from "../../screenSizes"
 
 export type TabActiveStyles = {
     borderColor?: string,

@@ -1,10 +1,11 @@
-import styled from 'styled-components';
-import {Sizes} from '../../../Icons/Icons';
-import {getPixelSize} from "../../../../../utilities/utilities";
-import {ForwardedRef, ReactNode} from 'react';
-import {screenWidth} from "../../../screenSizes";
+import styled from 'styled-components'
+import {Sizes} from '../../../Icons/Icons'
+import {getPixelSize} from "../../../../../utilities/utilities"
+import {ForwardedRef, ReactNode} from 'react'
+import {screenWidth} from "../../../screenSizes"
+// @ts-ignore: Unreachable code error
 import AnonymousProfile from '../../../../../assets/Avatar-anonymous.png'
-import React from 'react';
+import React from 'react'
 
 export type ImageProps = {
     src?: string,

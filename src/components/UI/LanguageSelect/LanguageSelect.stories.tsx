@@ -1,4 +1,4 @@
-import {Story} from '@storybook/react'
+import React, {Story} from '@storybook/react'
 import LanguageSelect from "./LanguageSelect";
 
 export default {

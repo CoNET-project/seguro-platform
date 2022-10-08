@@ -1,11 +1,11 @@
-import styled from 'styled-components';
-import {HTMLAttributes} from "react";
-import ListItem from "./ListItem/ListItem";
-import useAppState from "../../../../store/appState/useAppState";
-import {AddProfile, ManageAccount, PlatformLock} from "../../Icons/Icons";
-import {FormattedMessage} from "react-intl";
-import {lockPlatform} from '../../../../services/workerService/workerService';
-import {ProfileData} from "../../../../store/appState/appStateReducer";
+import styled from 'styled-components'
+import React, {HTMLAttributes} from "react"
+import ListItem from "./ListItem/ListItem"
+import useAppState from "../../../../store/appState/useAppState"
+import {AddProfile, ManageAccount, PlatformLock} from "../../Icons/Icons"
+import {FormattedMessage} from "react-intl"
+import {lockPlatform} from '../../../../services/workerService/workerService'
+import {ProfileData} from "../../../../store/appState/appStateReducer"
 
 export type Profiles = Array<ProfileData>
 

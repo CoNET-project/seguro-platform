@@ -1,5 +1,6 @@
 import styled from 'styled-components'
-import {NetworkStrength} from "../../../../store/appState/appStateReducer";
+import {NetworkStrength} from "../../../../store/appState/appStateReducer"
+import React from 'react'
 
 const StyledNetworkIcon = styled.div`
   min-height: 20px;

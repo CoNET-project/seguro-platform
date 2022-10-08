@@ -1,5 +1,6 @@
-import styled from "styled-components";
-import Header from "../../Header";
+import styled from "styled-components"
+import Header from "../../Header"
+import React from 'react'
 
 const StyledContainer = styled.div`
   height: 100%;

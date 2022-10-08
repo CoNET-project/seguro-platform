@@ -1,16 +1,16 @@
-import styled from "styled-components";
-import Keypad from "../../../../UI/Keypad/Keypad";
-import PasscodeInput from "../../../../UI/Inputs/PasscodeInput/Touch/PasscodeInput";
-import {ReactNode, useState} from "react";
-import {screenWidth} from "../../../../UI/screenSizes";
-import StepButtons, {StepButtonsClickActions} from "../../../../UI/StepButtons/StepButtons";
-import {usePageNavigator} from "../../../../../contexts/pageNavigator/PageNavigatorContext";
-import {pageNavigator} from "../../../../../contexts/pageNavigator/pageNavigatorActions";
-import {pageTransitionVariants} from "../../../../UI/Motion/Variants/Variants";
-import MotionWrapper from "../../../../UI/Motion/MotionWrapper";
-import {FormattedMessage} from "react-intl";
-import {toast} from "../../../../UI/Toaster/Toaster";
-import {Password} from "../../../../UI/Icons/Icons";
+import styled from "styled-components"
+import Keypad from "../../../../UI/Keypad/Keypad"
+import PasscodeInput from "../../../../UI/Inputs/PasscodeInput/Touch/PasscodeInput"
+import React, {ReactNode, useState} from "react"
+import {screenWidth} from "../../../../UI/screenSizes"
+import StepButtons, {StepButtonsClickActions} from "../../../../UI/StepButtons/StepButtons"
+import {usePageNavigator} from "../../../../../contexts/pageNavigator/PageNavigatorContext"
+import {pageNavigator} from "../../../../../contexts/pageNavigator/pageNavigatorActions"
+import {pageTransitionVariants} from "../../../../UI/Motion/Variants/Variants"
+import MotionWrapper from "../../../../UI/Motion/MotionWrapper"
+import {FormattedMessage} from "react-intl"
+import {toast} from "../../../../UI/Toaster/Toaster"
+import {Password} from "../../../../UI/Icons/Icons"
 
 const StyledPasscode = styled.div`
   min-height: 30rem;

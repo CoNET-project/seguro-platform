@@ -1,8 +1,8 @@
-import styled from 'styled-components';
-import {screenWidth} from "../../../screenSizes";
-import {HTMLMotionProps} from "framer-motion";
-import StyledPanel from "../../../Common/Panel/Panel";
-import {ReactNode} from "react";
+import styled from 'styled-components'
+import {screenWidth} from "../../../screenSizes"
+import {HTMLMotionProps} from "framer-motion"
+import StyledPanel from "../../../Common/Panel/Panel"
+import React, {ReactNode} from "react"
 
 type RightPanelProps = {
     children: ReactNode,

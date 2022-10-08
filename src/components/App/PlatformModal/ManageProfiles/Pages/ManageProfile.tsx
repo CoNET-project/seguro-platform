@@ -1,11 +1,11 @@
-import MotionWrapper from "../../../../UI/Motion/MotionWrapper";
-import {pageTransitionVariants} from "../../../../UI/Motion/Variants/Variants";
-import styled from "styled-components";
-import {useEffect, useState} from "react";
-import {screenWidth} from "../../../../UI/screenSizes";
-import ProfileView from "../Profile/Profile";
-import {FormattedMessage} from "react-intl";
-import {ProfileData} from "../../../../../store/appState/appStateReducer";
+import MotionWrapper from "../../../../UI/Motion/MotionWrapper"
+import {pageTransitionVariants} from "../../../../UI/Motion/Variants/Variants"
+import styled from "styled-components"
+import React, {useEffect, useState} from "react"
+import {screenWidth} from "../../../../UI/screenSizes"
+import ProfileView from "../Profile/Profile"
+import {FormattedMessage} from "react-intl"
+import {ProfileData} from "../../../../../store/appState/appStateReducer"
 
 type ManageProfileProps = {
     custom: number,

@@ -1,6 +1,6 @@
-import React, {ReactNode} from 'react';
-import {Toaster as ToasterRHT, toast as toastRHT} from 'react-hot-toast';
-import styled, {useTheme} from 'styled-components';
+import React, {ReactNode} from 'react'
+import {Toaster as ToasterRHT, toast as toastRHT} from 'react-hot-toast'
+import styled, {useTheme} from 'styled-components'
 
 export const Toaster = () => {
     const theme = useTheme()

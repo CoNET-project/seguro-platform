@@ -1,5 +1,5 @@
-import logger from "../../utilities/logger/logger";
-import {PageNavigatorState} from "./PageNavigatorContext";
+import logger from "../../utilities/logger/logger"
+import {PageNavigatorState} from "./PageNavigatorContext"
 
 interface IPageNavigatorAction {
     type: string,

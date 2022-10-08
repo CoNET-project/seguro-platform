@@ -1,6 +1,7 @@
 import {Story} from '@storybook/react'
 import AlertDialog, {AlertDialogProps} from './AlertDialog'
-import {Warning} from "../../Icons/Icons";
+import {Warning} from "../../Icons/Icons"
+import React from 'react'
 
 export default {
     component: AlertDialog,

@@ -1,4 +1,4 @@
-import {Story} from '@storybook/react'
+import React, {Story} from '@storybook/react'
 import StepButton, {StepButtonProps} from './StepButton'
 import {ChevronLeft, ChevronRight} from "../../Icons/Icons";
 

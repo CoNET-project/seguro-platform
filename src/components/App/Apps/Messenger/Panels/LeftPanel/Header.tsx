@@ -1,9 +1,9 @@
-import styled from "styled-components";
-import HeaderBar from "../../../../../UI/Common/HeaderBar/HeaderBar";
-import {usePageNavigator} from "../../../../../../contexts/pageNavigator/PageNavigatorContext";
-import {AddContact, ChevronLeft, CreateChat} from "../../../../../UI/Icons/Icons";
-import {ReactNode, useEffect, useState} from "react";
-import {pageNavigator} from "../../../../../../contexts/pageNavigator/pageNavigatorActions";
+import styled from "styled-components"
+import HeaderBar from "../../../../../UI/Common/HeaderBar/HeaderBar"
+import {usePageNavigator} from "../../../../../../contexts/pageNavigator/PageNavigatorContext"
+import {AddContact, ChevronLeft, CreateChat} from "../../../../../UI/Icons/Icons"
+import React, {ReactNode, useEffect, useState} from "react"
+import {pageNavigator} from "../../../../../../contexts/pageNavigator/pageNavigatorActions"
 
 type HeaderProps = {
     onClick?: () => void

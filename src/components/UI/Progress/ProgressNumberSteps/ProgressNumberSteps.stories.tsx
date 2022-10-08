@@ -1,4 +1,6 @@
 import {Story} from '@storybook/react'
+import React from 'react'
+
 import ProgressNumberSteps, {ProgressNumberStepsProps} from './ProgressNumberSteps'
 
 export default {

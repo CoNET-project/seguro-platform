@@ -1,6 +1,7 @@
 import {Story} from '@storybook/react'
 import LargeInput from './LargeInput'
-import {FormattedMessage} from "react-intl";
+import {FormattedMessage} from "react-intl"
+import React from 'react'
 
 export default {
     component: LargeInput,

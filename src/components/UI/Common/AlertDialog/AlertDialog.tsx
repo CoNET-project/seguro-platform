@@ -1,6 +1,6 @@
-import {ReactNode, useEffect} from 'react';
-import styled from 'styled-components';
-import useAppState from "../../../../store/appState/useAppState";
+import React, {ReactNode, useEffect} from 'react'
+import styled from 'styled-components'
+import useAppState from "../../../../store/appState/useAppState"
 
 export type AlertDialogActions = {
     confirm: {

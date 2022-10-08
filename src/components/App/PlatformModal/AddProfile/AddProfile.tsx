@@ -1,11 +1,11 @@
-import styled from "styled-components";
-import {screenWidth} from "../../../UI/screenSizes";
-import HeaderBar from "../../../UI/Common/HeaderBar/HeaderBar";
-import useAppState from "../../../../store/appState/useAppState";
-import {useState} from "react";
-import ProfileView from "../ManageProfiles/Profile/Profile";
+import styled from "styled-components"
+import {screenWidth} from "../../../UI/screenSizes"
+import HeaderBar from "../../../UI/Common/HeaderBar/HeaderBar"
+import useAppState from "../../../../store/appState/useAppState"
+import React, {useState} from "react"
+import ProfileView from "../ManageProfiles/Profile/Profile"
 import {FormattedMessage} from "react-intl";
-import {ProfileData} from "../../../../store/appState/appStateReducer";
+import {ProfileData} from "../../../../store/appState/appStateReducer"
 
 
 const StyledAddProfileContainer = styled.div`

@@ -1,6 +1,7 @@
 import styled from "styled-components"
-import {FormattedMessage} from "react-intl";
-import useAppState from "../../../../store/appState/useAppState";
+import {FormattedMessage} from "react-intl"
+import useAppState from "../../../../store/appState/useAppState"
+import React from 'react'
 
 const StyledNetworkDropdown = styled.div`
   width: 100%;

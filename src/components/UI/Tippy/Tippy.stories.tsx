@@ -1,6 +1,7 @@
 import {Story} from '@storybook/react'
-import styled from 'styled-components';
-import {TippyDropdown} from "./Tippy";
+import styled from 'styled-components'
+import {TippyDropdown} from "./Tippy"
+import React from 'react'
 
 export default {
     component: TippyDropdown,

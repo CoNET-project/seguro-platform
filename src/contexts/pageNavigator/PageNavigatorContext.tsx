@@ -1,5 +1,5 @@
-import React from "react";
-import {Dispatch} from "./pageNavigatorActions";
+import React from "react"
+import {Dispatch} from "./pageNavigatorActions"
 
 type CurrentPage = [string, number]
 

@@ -1,6 +1,6 @@
-import styled from 'styled-components';
-import Dot from './Dot/Dot';
-import {Fragment, ReactNode} from "react";
+import styled from 'styled-components'
+import Dot from './Dot/Dot'
+import React, {Fragment, ReactNode} from "react"
 
 export type ProgressDotsProps = {
     numberOfDots: number,

@@ -1,4 +1,5 @@
-import styled from "styled-components";
+import styled from "styled-components"
+import React from 'react'
 
 const StyledSubscriptionPlan = styled.div`
   width: 100%;

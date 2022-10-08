@@ -1,4 +1,4 @@
-import {Contact, MessengerActions} from "./messengerActions";
+import {Contact, MessengerActions} from "./messengerActions"
 
 export type ChatMessage = {
     id: string,

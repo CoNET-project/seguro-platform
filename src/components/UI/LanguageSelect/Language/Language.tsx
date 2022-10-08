@@ -1,6 +1,7 @@
-import styled from 'styled-components';
-import {Locale} from "../../../../localization/types";
+import styled from 'styled-components'
+import {Locale} from "../../../../localization/types"
 import {screenWidth} from "../../screenSizes";
+import React from 'react'
 
 type LanguageProps = {
     index: number,

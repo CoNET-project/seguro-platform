@@ -1,6 +1,7 @@
-import styled from "styled-components";
-import Tab from "../Tab/Tab";
-import {VerticalTabNavigatorPages} from "../VerticalTabNavigator";
+import styled from "styled-components"
+import Tab from "../Tab/Tab"
+import {VerticalTabNavigatorPages} from "../VerticalTabNavigator"
+import React from 'react'
 
 const StyledVerticalNavigatorTabs = styled.div`
   display: flex;

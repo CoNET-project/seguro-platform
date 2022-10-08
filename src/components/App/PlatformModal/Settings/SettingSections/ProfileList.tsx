@@ -1,9 +1,12 @@
-import styled from "styled-components";
+import styled from "styled-components"
+// @ts-ignore: Unreachable code error
 import AnonymousAvatar from '../../../../../assets/Avatar-anonymous.png'
+// @ts-ignore: Unreachable code error
 import ExampleProfile1 from '../../../../../assets/examples/profile-example.jpeg'
+// @ts-ignore: Unreachable code error
 import ExampleProfile2 from '../../../../../assets/examples/profile-example1.png'
-
-import Image from "../../../../UI/Common/Profile/Image/Image";
+import React from 'react'
+import Image from "../../../../UI/Common/Profile/Image/Image"
 
 type ProfileItemProps = {
     profileImageSrc?: string,

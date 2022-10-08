@@ -1,4 +1,5 @@
-import Lottie from "react-lottie-player";
+import Lottie from "react-lottie-player"
+import React from 'react'
 
 type LottieAnimationProps = {
     animationSrc: object,

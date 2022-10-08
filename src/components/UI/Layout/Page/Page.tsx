@@ -1,8 +1,8 @@
 import {motion} from 'framer-motion'
 import styled from 'styled-components'
-import {ReactNode} from "react";
-import {pageTransitionVariants} from "../../Motion/Variants/Variants";
-import {screenHeight, screenWidth} from '../../screenSizes';
+import React, {ReactNode} from "react"
+import {pageTransitionVariants} from "../../Motion/Variants/Variants"
+import {screenHeight, screenWidth} from '../../screenSizes'
 
 export type PageTransitionProps = {
     pageTransition: {

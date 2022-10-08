@@ -1,8 +1,9 @@
-import styled from "styled-components";
-import useAppState from "../../../../store/appState/useAppState";
-import {Theme} from "../../../../theme/types";
-import {FormattedMessage} from "react-intl";
-import {savePreferences} from "../../../../services/workerService/workerService";
+import styled from "styled-components"
+import useAppState from "../../../../store/appState/useAppState"
+import {Theme} from "../../../../theme/types"
+import {FormattedMessage} from "react-intl"
+import {savePreferences} from "../../../../services/workerService/workerService"
+import React from 'react'
 
 const StyledThemeSelector = styled.form`
   display: flex;

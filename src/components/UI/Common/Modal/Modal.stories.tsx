@@ -1,5 +1,5 @@
-import {Story} from '@storybook/react'
-import Modal, {ModalProps} from "./Modal";
+import React, {Story} from '@storybook/react'
+import Modal, {ModalProps} from "./Modal"
 
 export default {
     component: Modal,

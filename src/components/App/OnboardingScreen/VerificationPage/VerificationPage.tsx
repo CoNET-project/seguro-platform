@@ -1,12 +1,13 @@
 import styled from 'styled-components'
-import Page from "../../../UI/Layout/Page/Page";
-import onboardingActions from "../../../../contexts/onboarding/onboardingActions";
-import {useOnboardingPageNavigator} from "../../../../contexts/onboarding/OnboardingContext";
-import LargeInput from "../../../UI/Inputs/LargeInput/LargeInput";
-import {FormattedMessage} from "react-intl";
-import LottieAnimation from '../../../UI/Lottie/Lottie';
+import Page from "../../../UI/Layout/Page/Page"
+import onboardingActions from "../../../../contexts/onboarding/onboardingActions"
+import {useOnboardingPageNavigator} from "../../../../contexts/onboarding/OnboardingContext"
+import LargeInput from "../../../UI/Inputs/LargeInput/LargeInput"
+import {FormattedMessage} from "react-intl"
+import LottieAnimation from '../../../UI/Lottie/Lottie'
 import VerificationAnimation from '../../../../assets/lottie/verification.json'
-import {screenWidth} from "../../../UI/screenSizes";
+import {screenWidth} from "../../../UI/screenSizes"
+import React from 'react'
 
 const StyledContainer = styled.div`
   width: 100%;

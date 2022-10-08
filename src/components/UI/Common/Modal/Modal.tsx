@@ -1,6 +1,6 @@
-import styled, {keyframes} from "styled-components";
-import {screenWidth} from "../../screenSizes";
-import {ReactNode} from "react";
+import styled, {keyframes} from "styled-components"
+import {screenWidth} from "../../screenSizes"
+import React, {ReactNode} from "react"
 
 export type SubModal = {
     title: ReactNode,

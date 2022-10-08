@@ -1,5 +1,5 @@
-import {Story} from '@storybook/react'
-import VerticalNavigatorTabs from "./VerticalNavigatorTabs";
+import React, {Story} from '@storybook/react'
+import VerticalNavigatorTabs from "./VerticalNavigatorTabs"
 
 
 export default {

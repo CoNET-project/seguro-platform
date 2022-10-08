@@ -1,5 +1,6 @@
 import {Story} from '@storybook/react'
 import Panel, {PanelProps} from './Panel'
+import React from 'react'
 
 export default {
     component: Panel,

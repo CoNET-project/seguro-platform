@@ -1,6 +1,6 @@
-import React from "react";
-import {Contact, Dispatch, messengerActions} from "./messengerActions";
-import {Chat, MessengerState} from "./messengerReducer";
+import React from "react"
+import {Contact, Dispatch, messengerActions} from "./messengerActions"
+import {Chat, MessengerState} from "./messengerReducer"
 
 export const MessengerContext = React.createContext<{ state: MessengerState; dispatch: Dispatch } | undefined>(undefined)
 

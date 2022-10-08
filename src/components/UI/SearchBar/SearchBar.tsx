@@ -1,6 +1,6 @@
 import styled from "styled-components"
-import React, {ChangeEvent, useRef, useState} from "react";
-import SearchResult, {SearchResults} from "./SearchResult/SearchResult";
+import React, {ChangeEvent, useRef, useState} from "react"
+import SearchResult, {SearchResults} from "./SearchResult/SearchResult"
 
 const StyledSearchContainer = styled.div`
   height: 50px;

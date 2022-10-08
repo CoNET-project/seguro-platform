@@ -1,6 +1,6 @@
-import {Story} from '@storybook/react'
+import React, {Story} from '@storybook/react'
 import TabNavigatorTabs, {TabNavigatorTabsProps} from './TabNavigatorTabs'
-import {PageNavigatorProvider} from "../../../Providers/PageNavigatorProvider";
+import {PageNavigatorProvider} from "../../../Providers/PageNavigatorProvider"
 
 export default {
     component: TabNavigatorTabs,

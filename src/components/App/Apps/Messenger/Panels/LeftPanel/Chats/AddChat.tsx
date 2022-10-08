@@ -1,8 +1,9 @@
-import styled from "styled-components";
-import Header from "../Header";
-import {Contact} from "../../../../../../../contexts/messenger/messengerActions";
-import ContactList from "../Contacts/ContactList/ContactList";
-import {useMessengerContext} from "../../../../../../../contexts/messenger/MessengerContext";
+import styled from "styled-components"
+import Header from "../Header"
+import {Contact} from "../../../../../../../contexts/messenger/messengerActions"
+import ContactList from "../Contacts/ContactList/ContactList"
+import {useMessengerContext} from "../../../../../../../contexts/messenger/MessengerContext"
+import React from 'react'
 
 const StyledAddChat = styled.div`
   height: 100%;
