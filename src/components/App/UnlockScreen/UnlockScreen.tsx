@@ -141,6 +141,7 @@ const UnlockScreen = () => {
                                                 inputType: 'password'
                                             }
                                             }
+											nextStepHandler = {unlockClickHandler}
                                             setValue={(val) => {
                                                 setPasscode(val)
                                             }}/>
