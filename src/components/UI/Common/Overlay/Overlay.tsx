@@ -4,9 +4,11 @@ import React from "react"
 import {ThreeCircles} from 'react-loader-spinner'
 import {PlatformLoadingTypes} from "../../../../store/appState/appStateReducer"
 import {FormattedMessage} from "react-intl"
+import useAppState from "../../../../store/appState/useAppState"
+import logger from "../../../../utilities/logger/logger"
 
 type DragOverlayProps = {
-    acceptPointerEvents: boolean
+    acceptPointerEvents?: boolean
 } & HTMLMotionProps<any>
 
 type OverlayProps = {
@@ -20,7 +22,8 @@ type StyledOverlayProps = {
 }
 
 type StyledDragOverlayProps = {
-    acceptPointerEvents: boolean
+    acceptPointerEvents?: boolean
+	pointerEvents?: string	
 }
 
 const StyledOverlay = styled.div<StyledOverlayProps>`
@@ -45,20 +48,7 @@ const StyledOverlayDarker = styled(StyledOverlay)`
   background-color: rgba(0, 0, 0, 0.95);
 `
 
-const StyledDragOverlay = styled(motion.div)<StyledDragOverlayProps>`
-  position: absolute;
-  z-index: 1000;
-  left: 0;
-  right: 0;
-  top: 0;
-  bottom: 0;
-  background-color: rgba(0, 0, 0, 0.65);
-  width: 100%;
-  height: 100vh;
-  pointer-events: ${props => props.acceptPointerEvents ? 'initial' : 'none'};
-  opacity: 0;
-  visibility: visible;
-`
+
 
 const StyledOverlayText = styled.p`
   margin-top: 20px;
@@ -106,7 +96,35 @@ export const OverlayWithLoaderText = ({show, onClick, type}: OverlayProps & { ty
 }
 
 export const DragOverlay = (props: DragOverlayProps) => {
-    return <StyledDragOverlay
-        {...props}
-    />
+	const {
+        setIsDrawerOpen,
+        isDrawerOpen
+    } = useAppState()
+	const divProps = Object.assign({}, props)
+	delete divProps.acceptPointerEvents
+	//		pointer-events: ${props => props.acceptPointerEvents ? 'initial' : 'none'};
+	const StyledDragOverlay = styled(motion.div)<StyledDragOverlayProps>`
+		position: absolute;
+		z-index: 1000;
+		left: 0;
+		right: 0;
+		top: 0;
+		bottom: 0;
+		background-color: rgba(0, 0, 0, 0.65);
+		width: 100%;
+		height: 100vh;
+		opacity: 0;
+		visibility: visible;
+		pointer-events: ${props => props.acceptPointerEvents ? 'initial' : 'none'};
+	`
+	const onclick = () => {
+		if ( props.acceptPointerEvents ) {
+			return setIsDrawerOpen(false)
+		}
+	}
+	logger.log ('Overlay.tsx', 'DragOverlay', props.acceptPointerEvents)
+	return <StyledDragOverlay
+		onClick={onclick}
+		{...divProps} 
+	/>
 }

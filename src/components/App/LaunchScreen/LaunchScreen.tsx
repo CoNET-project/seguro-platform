@@ -1,6 +1,5 @@
 import styled from 'styled-components'
 import {LogoImage} from "../../UI/Logo/Logo"
-import {ThreeCircles} from "react-loader-spinner"
 import React from "react"
 
 const StyledContainer = styled.div`
@@ -18,11 +17,6 @@ const LaunchScreen = () => {
     return (
         <StyledContainer>
             <LogoImage color='white'/>
-            <ThreeCircles
-                color="white"
-                height={40}
-                width={40}
-            />
         </StyledContainer>
     )
 }

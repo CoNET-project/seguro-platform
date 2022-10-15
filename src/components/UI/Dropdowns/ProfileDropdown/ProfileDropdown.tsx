@@ -6,11 +6,12 @@ import {AddProfile, ManageAccount, PlatformLock} from "../../Icons/Icons"
 import {FormattedMessage} from "react-intl"
 import {lockPlatform} from '../../../../services/workerService/workerService'
 import {ProfileData} from "../../../../store/appState/appStateReducer"
+import CurrentProfileItem from './CurrentProfileItem/CurrentProfileItem'
 
 export type Profiles = Array<ProfileData>
 
 type ProfileDropdownProps = {
-    closeDropdown: () => void
+    closeDropdown: (app:string) => void
 } & HTMLAttributes<HTMLDivElement>
 
 const StyledProfileDropdown = styled.div`
@@ -63,52 +64,63 @@ const ProfileDropdown = ({closeDropdown}: ProfileDropdownProps) => {
     const {setIsModalOpen, clientProfiles, setActiveProfile, activeProfile} = useAppState()
 
     const manageProfileHandler = () => {
-        closeDropdown()
+        closeDropdown('')
         setIsModalOpen('manageProfile')
     }
 
     const addProfileHandler = () => {
-        closeDropdown()
+        closeDropdown('')
         setIsModalOpen('addProfile')
     }
 
     const onSwitchProfile = (keyId: string) => {
         setActiveProfile(clientProfiles[keyId])
+		closeDropdown('')
     }
 
 
     return (
         <StyledProfileDropdown>
-            <StyledProfileDropdownList>
+
+			{
+				activeProfile
+				? <CurrentProfileItem
+				{...activeProfile}
+				/>: null
+			}
+
+            {/* { <StyledProfileDropdownList>
                 {
-                    Object.values(clientProfiles).map((profile, idx) => <
-                        ListItem
+                    Object.values(clientProfiles).map(
+						(profile, idx) =>
+                        <ListItem
                         key={idx} {...profile}
                         active={activeProfile?.keyID === profile.keyID}
                         onSwitchProfile={onSwitchProfile}
-                    />)
+                    	/>
+					)
                 }
-            </StyledProfileDropdownList>
+            </StyledProfileDropdownList> } */}
             <StyledProfileDropdownOptions>
-                <StyledProfileDropdownOption onClick={addProfileHandler}>
-                    <AddProfile size={20}/>
-                    <StyledProfileDropdownOptionsText>
-                        <FormattedMessage id='globalBar.profile.dropdown.addProfile'/>
-                    </StyledProfileDropdownOptionsText>
-                </StyledProfileDropdownOption>
-                <StyledProfileDropdownOption onClick={manageProfileHandler}>
-                    <ManageAccount size={20}/>
-                    <StyledProfileDropdownOptionsText>
-                        <FormattedMessage id='globalBar.profile.dropdown.manageProfiles'/>
-                    </StyledProfileDropdownOptionsText>
-                </StyledProfileDropdownOption>
-                <StyledProfileDropdownOption onClick={lockPlatform}>
-                    <PlatformLock size={20}/>
-                    <StyledProfileDropdownOptionsText>
-                        <FormattedMessage id='globalBar.profile.dropdown.lockPlatform'/>
-                    </StyledProfileDropdownOptionsText>
-                </StyledProfileDropdownOption>
-            </StyledProfileDropdownOptions>
+                 <StyledProfileDropdownOption onClick={addProfileHandler}>
+                     <AddProfile size={20}/>
+                     <StyledProfileDropdownOptionsText>
+                         <FormattedMessage id='globalBar.profile.dropdown.addProfile'/>
+                     </StyledProfileDropdownOptionsText>
+                 </StyledProfileDropdownOption>
+                 <StyledProfileDropdownOption onClick={manageProfileHandler}>
+                     <ManageAccount size={20}/>
+                     <StyledProfileDropdownOptionsText>
+                         <FormattedMessage id='globalBar.profile.dropdown.manageProfiles'/>
+                     </StyledProfileDropdownOptionsText>
+                 </StyledProfileDropdownOption>
+                 <StyledProfileDropdownOption onClick={lockPlatform}>
+                     <PlatformLock size={20}/>
+                     <StyledProfileDropdownOptionsText>
+                         <FormattedMessage id='globalBar.profile.dropdown.lockPlatform'/>
+                     </StyledProfileDropdownOptionsText>
+                 </StyledProfileDropdownOption>
+             </StyledProfileDropdownOptions>
         </StyledProfileDropdown>
     )
 }

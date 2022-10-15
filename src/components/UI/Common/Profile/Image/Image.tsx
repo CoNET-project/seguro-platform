@@ -21,16 +21,16 @@ type StyledImageWrapperProps = {
 }
 
 const StyledImageWrapper = styled.div<StyledImageWrapperProps>`
-  width: ${props => props.size || '30px'};
-  height: ${props => props.size || '30px'};
-  content: '';
-  border-radius: ${props => props.square ? '3px' : '50%'};
-  overflow: hidden;
+	width: ${props => props.size || '30px'};
+	height: ${props => props.size || '30px'};
+	content: '';
+	border-radius: ${props => props.square ? '3px' : '50%'};
+	overflow: hidden;
 
-  @media (${screenWidth.mediumWidth}) {
-    width: ${props => props.size || '75px'};
-    height: ${props => props.size || '75px'};
-  }
+	@media (${screenWidth.mediumWidth}) {
+		width: ${props => props.size || '75px'};
+		height: ${props => props.size || '75px'};
+	}
 `
 
 const StyledImage = styled.img`

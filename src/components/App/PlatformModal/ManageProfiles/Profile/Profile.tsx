@@ -235,4 +235,5 @@ const Profile = ({profile, onChange, disableUpdate, newProfile}: ProfileProps) =
     )
 }
 
+
 export default Profile

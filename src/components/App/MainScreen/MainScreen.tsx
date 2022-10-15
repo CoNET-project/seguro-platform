@@ -7,6 +7,7 @@ import PlatformModal from "../PlatformModal/PlatformModal"
 import {Toaster} from '../../UI/Toaster/Toaster'
 import GlobalBar from '../../UI/Global/GlobalBar/GlobalBar'
 import Messenger from '../Apps/Messenger/Messenger'
+import GuildShow from '../Apps/GuideShow/GuildShow'
 import {getWorkerService} from '../../../services/workerService/workerService'
 import {ClientProfiles} from '../../../store/appState/appStateReducer'
 import {useEffect} from 'react'
@@ -35,6 +36,7 @@ const MainScreen = () => {
         isDrawerOpen,
         isTouchDevice,
         isModalOpen,
+		showGuide,
         setClientProfiles
     } = useAppState()
 
@@ -68,7 +70,7 @@ const MainScreen = () => {
     }, [])
 
     const startDrag = (event: any) => {
-        drawerDragControls.start(event);
+        drawerDragControls.start(event)
     }
 
     const dragOptions = (): any => {
@@ -91,19 +93,18 @@ const MainScreen = () => {
             <Drawer
                 {...dragOptions()}
                 style={{x: currentDrawerX}}
-                animationControls={animationControls}
+                CoNETanimationControls={animationControls}
             />
-            <DragOverlay
+            {<DragOverlay
                 acceptPointerEvents={isDrawerOpen}
-                onClick={() => setIsDrawerOpen(!isDrawerOpen)}
                 style={{opacity}}
-            />
+            />}
             <StyledMainScreen onTouchStart={startDrag} onPointerDown={startDrag}>
                 <Toaster/>
                 <GlobalBar/>
                 <LayoutGroup id="a">
                     <StyledContents>
-                        <Messenger/>
+                        {showGuide?<GuildShow/>:<Messenger/>}
                     </StyledContents>
                 </LayoutGroup>
             </StyledMainScreen>

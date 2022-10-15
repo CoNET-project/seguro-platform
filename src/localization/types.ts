@@ -134,6 +134,10 @@ export type Messages = {
     'globalBar.profile.dropdown.addProfile': string,
     'globalBar.profile.dropdown.lockPlatform': string,
 
+	'globalBar.application.home': string
+	'globalBar.application.SeguroMessage': string
+	
+
     'platform.manageProfile': string,
     'platform.manageProfile.setAsPrimary': string,
     'platform.manageProfile.saveButton': string,
@@ -150,6 +154,10 @@ export type Messages = {
 
     'platform.addProfile.setAsPrimary': string,
     'platform.addProfile.createButton': string,
+
+	'platform.ProfileDropdown.CurrentProfileItem.actionFondWallet': string
+
+	'tabnavigator.guide.title': string
 }
 
 export type MessagesByLocale = Record<Locale, Messages>

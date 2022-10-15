@@ -80,13 +80,20 @@ const ListItem = ({profileImg, keyID, nickname, active, onSwitchProfile}: ListIt
     }
 
     return (
-        <StyledProfileItem onClick={() => onSwitchProfile(keyID)} isActive={active}>
+        <StyledProfileItem onClick={
+			() => {
+				onSwitchProfile(keyID)
+			}} 
+			isActive={ active }>
             <ProfileImage src={profileImg || AnonymousProfile} size={45}/>
             <StyledProfileDetails>
                 <StyledProfileName>{nickname || 'Anonymous User'}</StyledProfileName>
                 <RowWrapper>
                     <StyledProfileKeyId>{keyID}</StyledProfileKeyId>
-                    <StyledProfileKeyIdCopy onClick={(event) => copyDeviceCode(event, keyID)}>
+                    <StyledProfileKeyIdCopy onClick={
+						(event) => {
+							copyDeviceCode(event, keyID)
+						}}>
                         <Copy/>
                     </StyledProfileKeyIdCopy>
                 </RowWrapper>

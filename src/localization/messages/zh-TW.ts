@@ -51,7 +51,7 @@ const zh_CN: Messages = {
     'button.back': '退一步',
     'button.unlock': '開鎖',
 
-    'unlock.title': '輸入您的 Seguro 密碼',
+    'unlock.title': '輸入您的 Platform 平台密碼',
     
     'platform.unlock.button.forgot': '忘記密碼了？',
     'platform.dialog.delete.message': '刪除容器是一項永久性操作，您需要使用新的邀請碼創建新密碼',
@@ -87,7 +87,7 @@ const zh_CN: Messages = {
     'platform.network.status.description.high': '您與 Seguro 的連接非常好，您應該能夠快速接收和發送數據！',
 
     'platform.settings.settings': '平台設置',
-    'platform.settings.language': '語言',
+    'platform.settings.language': '語言(Language)',
     'platform.settings.theme': '主題',
     'platform.settings.theme.light': '淺色',
     'platform.settings.theme.dark': '深色',
@@ -165,6 +165,11 @@ const zh_CN: Messages = {
 
     'platform.addProfile.setAsPrimary': '設置為主',
     'platform.addProfile.createButton': '創建',
+
+	'platform.ProfileDropdown.CurrentProfileItem.actionFondWallet': '錢包充值',
+	'tabnavigator.guide.title': '歡迎來到Seguro',
+	'globalBar.application.home': 'CoNET平台',
+	'globalBar.application.SeguroMessage': 'Seguro聊天'
 }
 
 export default zh_CN

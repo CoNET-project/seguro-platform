@@ -96,7 +96,8 @@ const GlobalBar = () => {
         windowInnerSize: {width},
         activeProfile,
         setIsModalOpen,
-        hasNotification
+        hasNotification,
+		setShowGuide
     } = useAppState()
 
     const [currentDropdown, setCurrentDropdown] = useState<Dropdowns>(null)
@@ -116,16 +117,35 @@ const GlobalBar = () => {
         return setCurrentDropdown(dropdown)
     }
 
-    const closeDropdown = () => {
+    const closeDropdown = (app: string ) => {
         setCurrentDropdown(null)
+		switch (app) {
+			case 'showGuide': {
+				setShowGuide(true)
+				break
+			}
+			default: {
+				setShowGuide(false)
+				break
+			}
+		}
     }
+
+	const profileSelected = (dropdown: Dropdowns) => {
+
+	}
 
 
     return (
         <StyledGlobalBar>
             <StyledBarSectionFullWidth>
-                <StyledGlobalButton_NoHover onClick={() => setIsDrawerOpen(!isDrawerOpen)}
-                                            disabled={width >= sizes.medium}>
+                <StyledGlobalButton_NoHover 
+				onClick={
+					() => {
+						setIsDrawerOpen(!isDrawerOpen)
+					}
+				}
+                disabled={width >= sizes.medium}>
                     <LogoIcon size={24} color="white"/>
                 </StyledGlobalButton_NoHover>
             </StyledBarSectionFullWidth>
@@ -148,7 +168,7 @@ const GlobalBar = () => {
                         content={<NotificationDropdown/>}
                         verticalOffset={2}
                         visible={currentDropdown === 'notifications'}
-                        onClickOutside={closeDropdown}
+                        onClickOutside={()=>closeDropdown('')}
                     >
                         <StyledGlobalItem onClick={() => setDropdownToggle('notifications')}>
                             <NotificationBell size={20} color="white"/>
@@ -161,10 +181,11 @@ const GlobalBar = () => {
                     </TippyDropdown>
 
 
-                    <StyledGlobalButton onClick={() => {
-                        setCurrentDropdown(null)
-                        setIsModalOpen('settings')
-                    }}>
+                    <StyledGlobalButton id="Setting"
+						onClick={() => {
+							setCurrentDropdown(null);
+							setIsModalOpen('settings')
+						}}>
                         <SettingGear size={18} color="white"/>
                     </StyledGlobalButton>
 
@@ -172,9 +193,13 @@ const GlobalBar = () => {
                         content={<AppsDropdown closeDropdown={closeDropdown}/>}
                         verticalOffset={2}
                         visible={currentDropdown === 'applications'}
-                        onClickOutside={closeDropdown}
+                        onClickOutside={()=>closeDropdown('applications')}
                     >
-                        <StyledGlobalItem onClick={() => setDropdownToggle('applications')}>
+                        <StyledGlobalItem
+							onClick={
+								() => setDropdownToggle('applications')
+							}
+						>
                             <Grid3X3 size={18} color="white"/>
                         </StyledGlobalItem>
                     </TippyDropdown>
@@ -183,12 +208,16 @@ const GlobalBar = () => {
 
 
                 <TippyDropdown
-                    content={<ProfileDropdown closeDropdown={closeDropdown}/>}
+                    content={<ProfileDropdown closeDropdown={()=> closeDropdown('profiles')}/>}
                     verticalOffset={2}
                     visible={currentDropdown === 'profiles'}
-                    onClickOutside={closeDropdown}
+                    onClickOutside={()=>{
+						closeDropdown('profiles')
+					}}
                 >
-                    <StyledGlobalItem onClick={() => setDropdownToggle('profiles')}>
+                    <StyledGlobalItem onClick={() => {
+						setDropdownToggle('profiles')
+					}}>
                         <ProfileImage src={activeProfile?.profileImg} size='sm'/>
                     </StyledGlobalItem>
                 </TippyDropdown>
@@ -196,7 +225,8 @@ const GlobalBar = () => {
 
                 {
                     hasUpdateAvailable && (
-                        <StyledGlobalButton onClick={() => {
+                        <StyledGlobalButton onClick={(e) => {
+							const k = e
                         }}>
                             <Update size='sm'/>
                         </StyledGlobalButton>

@@ -117,6 +117,7 @@ const VerificationModal = () => {
     return (
         <>
             <OverlayDarker show={true} onClick={() => {
+				
             }}/>
             <StyledVerificationModal>
                 <StyledSection>
