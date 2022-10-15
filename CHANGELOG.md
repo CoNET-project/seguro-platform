@@ -1,5 +1,21 @@
 # `seguro-platform` CHANGELOG
 
+## `0.55.6`
+
+### Additions
+
+- CoNET Platfrom menu.
+
+### Changes
+
+- Main menu & Global Bar.
+
+### Fixes
+
+- React issue at Drawer & Overlay.
+
+---
+
 ## `0.55.5`
 
 ### Additions

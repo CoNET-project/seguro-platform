@@ -169,7 +169,8 @@ const SettingUpPage = () => {
                     }).then((status) => {
                         if (status === "SUCCESS") {
                             savePreferences({theme: theme, language: locale}).then((status) => {
-                                setSetupState(prevState => prevState + 1)
+                                //setSetupState(prevState => prevState + 1)
+								dispatch(onboardingActions.setVerificationStatus('SUCCESS'))
                             })
                         }
                     })

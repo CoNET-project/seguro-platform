@@ -32,7 +32,8 @@ const App = () => {
         setIsShowOverlay,
         showOverlay,
         hasContainer,
-        isUnlocked
+        isUnlocked,
+		showGuide,
     } = useAppState()
 
     const windowResizeHandler = () => {
@@ -106,10 +107,10 @@ const App = () => {
                         <OnboardingScreen/>
                     </OnboardingPageProvider>
                 )
-            // default:
-            //     return (
-            //         <MainScreen/>
-            //     )
+            default:
+                return (
+                    <MainScreen/>
+                )
         }
         // let content = <MainScreen/>
         // // launch screen
@@ -148,10 +149,13 @@ const App = () => {
         <>
             <GlobalStyle/>
             <StyledContainer>
-                <Overlay show={showOverlay} onClick={() => {
-                    setIsModalOpen(null)
-                    setIsShowOverlay(false)
-                }}/>
+                <Overlay 
+					show={ showOverlay } 
+					onClick={
+						() => {
+							setIsModalOpen(null)
+							setIsShowOverlay(false)
+						}}/>
                 <OverlayWithLoaderText show={isPlatformLoading !== null} type={isPlatformLoading}/>
                 {getContent()}
             </StyledContainer>

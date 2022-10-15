@@ -22,7 +22,8 @@ import {
     setWindowInnerSize,
     setWorkerServiceIsInitialized,
     updateClientDevice,
-    updateClientProfile
+    updateClientProfile,
+	setShowGuide
 } from './appStateActions'
 import {Theme} from '../../theme/types'
 import {Locale} from '../../localization/types'
@@ -35,14 +36,40 @@ export type ModalNames = 'settings' | 'manageProfile' | 'addProfile' | null
 
 export type NetworkStates = 'connected' | 'connecting' | 'disconnected' | 'reconnecting'
 
+type CryptoAssetHistory = {
+	status: 'Pending'|'Confirmed'
+	amount: number
+	Nonce: number
+	to: string
+	transactionFee: number
+	gasLimit: number
+	gasUsed: number
+	baseFee: number
+	priorityFee: number
+	totalGasFee: number
+	maxFeePerGas: number
+	total: number
+}
+
+export type CryptoAsset = {
+	balance: number
+	history: CryptoAssetHistory[]
+	networkName: string						//
+	RpcURL: string							//		Token Contract Address
+	chainID: number							//		Token Decimal
+	currencySymbol: string					//		Token Symbol
+	blockExplorerURL: string
+}
+
 export type ProfileData = {
-    bio: string;
-    nickname: string;
-    keyID: string;
-    tags: string[];
-    alias: string;
-    isPrimary: boolean;
-    profileImg: string;
+    bio: string
+    nickname: string
+    keyID: string
+    tags: string[]
+	profileImg: string
+    alias: string
+    isPrimary: boolean
+	assets?: CryptoAsset[]
 }
 
 export type Devices = {
@@ -82,6 +109,7 @@ type AppStateReducerState = {
     activeProfile: ProfileData | null,
     clientDevices: Devices,
     networkState: NetworkStates
+	showGuide: boolean
 }
 
 const initialState: AppStateReducerState = {
@@ -89,6 +117,7 @@ const initialState: AppStateReducerState = {
     isUnlocked: false,
     isDrawerOpen: false,
     isModalOpen: null,
+	showGuide: false,
     isPlatformLoading: null,
     hasContainer: false,
     networkStrength: 3,
@@ -157,6 +186,10 @@ const appStateReducer = createReducer(initialState, builder => {
 
         .addCase(setIsUnlocked, (state, action) => {
             state.isUnlocked = action.payload.isUnlocked
+        })
+
+		.addCase(setShowGuide, (state, action) => {
+            state.showGuide = action.payload.showGuide
         })
 
         .addCase(setHasUpdateAvailable, (state, action) => {

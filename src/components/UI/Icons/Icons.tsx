@@ -11,7 +11,12 @@ import {
     BsCamera,
     BsChatSquareDots,
     BsGrid3X3Gap,
-    BsThreeDotsVertical
+    BsThreeDotsVertical,
+	BsArrowUpRightCircleFill,
+	BsPatchPlusFill,
+	BsCashCoin,
+	BsX,
+	BsFillHouseFill
 } from "react-icons/bs"
 
 import {
@@ -61,7 +66,8 @@ import {
     MdEdit,
     MdManageAccounts,
     MdPassword,
-    MdPersonAddAlt1
+    MdPersonAddAlt1,
+	MdDownloadForOffline
 } from 'react-icons/md'
 
 import {
@@ -338,6 +344,22 @@ export const VerticalOptions = ({size, color}: IconProps) => {
     )
 }
 
+export const VerticalOptions_ArrowDownloadCircleFill = ({size, color}: IconProps) => {
+    return (
+        <StyledIcon>
+            <BsPatchPlusFill size={getSize(size)} color={color || undefined}/>
+        </StyledIcon>
+    )
+}
+
+export const VerticalOptions_ArrowUpRightCircleFill = ({size, color}: IconProps) => {
+    return (
+        <StyledIcon>
+            <BsCashCoin size={getSize(size)} color={color || undefined}/>
+        </StyledIcon>
+    )
+}
+
 export const AddProfile = ({size, color}: IconProps) => {
     return (
         <StyledIcon>
@@ -423,6 +445,22 @@ export const SendIcon = ({size, color}: IconProps) => {
     return (
         <StyledIcon>
             <FiSend size={getSize(size)} color={color || undefined}/>
+        </StyledIcon>
+    )
+}
+
+export const CloseIcon = ({size, color}: IconProps) => {
+    return (
+        <StyledIcon>
+            <BsX size={getSize(size)} color={color || undefined}/>
+        </StyledIcon>
+    )
+}
+
+export const CloseHome = ({size, color}: IconProps) => {
+    return (
+        <StyledIcon>
+            <BsFillHouseFill size={getSize(size)} color={color || undefined}/>
         </StyledIcon>
     )
 }

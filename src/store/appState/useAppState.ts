@@ -22,7 +22,8 @@ import {
     setWindowInnerSize as setWindowInnerSizeActionCreator,
     setWorkerServiceIsInitialized,
     updateClientDevice as updateClientDeviceActionCreator,
-    updateClientProfile as updateClientProfileActionCreator
+    updateClientProfile as updateClientProfileActionCreator,
+	setShowGuide as _setShowGuide
 } from './appStateActions'
 import {
     createProfile,
@@ -53,6 +54,11 @@ const useAppState = () => {
     const dAPPInitialize = async () => {
         await initializeWorkerService()
     }
+
+	const showGuide = useTypedSelector(state => state.appState.showGuide)
+	const setShowGuide = (showguide: boolean ) => {
+		dispatch (_setShowGuide(showguide))
+	}
 
     const isInitialized = useTypedSelector(state => state.appState.workerServiceIsInitialized)
     const isInitializing = !isInitialized
@@ -230,11 +236,13 @@ const useAppState = () => {
     }
 
     const activeProfile = useTypedSelector(state => state.appState.activeProfile)
+	
     const setActiveProfile = (profile: ProfileData) => {
         dispatch(setActiveProfileActionCreator(profile))
     }
 
     const clientProfiles = useTypedSelector(state => state.appState.clientProfiles)
+	
     const setClientProfiles = (clientProfiles: ClientProfiles) => {
         const primaryProfile = Object.values(clientProfiles).filter(profile => profile.isPrimary)
         if (primaryProfile.length) {
@@ -294,7 +302,10 @@ const useAppState = () => {
         dispatch(setHasUpdateAvailableActionCreator(hasUpdateAvailable))
     }
 
+
+
     return {
+		showGuide,
         dAPPInitialize,
         isInitialized,
         isInitializing,
@@ -339,7 +350,8 @@ const useAppState = () => {
         clientDevices,
         setClientDevices,
         updateClientDevice,
-        deleteClientDevice
+        deleteClientDevice,
+		setShowGuide
     }
 }
 

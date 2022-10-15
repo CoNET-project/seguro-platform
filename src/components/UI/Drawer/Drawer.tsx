@@ -10,13 +10,14 @@ import {drawerTransitionVariants} from "../Motion/Variants/Variants"
 import useAppState from "../../../store/appState/useAppState"
 import logger from "../../../utilities/logger/logger"
 import {LogoIcon, LogoText} from "../Logo/Logo"
+import { SeguroLogoIcon} from "../Logo/Seguro"
 import {FormattedMessage} from "react-intl"
 import {useDidMountEffect} from "../../../utilities/hooks"
 
 type DrawerAnimations = 'enter' | 'exit'
 
 type DrawerProps = {
-    animationControls?: AnimationControls
+    CoNETanimationControls?: AnimationControls
 } & HTMLMotionProps<'div'>
 
 const StyledDrawer = styled(motion.div)`
@@ -63,21 +64,27 @@ const StyledSection = styled.div`
 `
 
 const Drawer = (props: DrawerProps) => {
-    const {animationControls, dragControls} = props
+	if (props === undefined) {
+		return (
+			<StyledDrawer></StyledDrawer>
+		)
+	}
+	const divProps = Object.assign({}, props)
+	
 
-    const {windowInnerSize: {width}, setIsDrawerOpen, isDrawerOpen, setIsModalOpen} = useAppState()
+    const {windowInnerSize: {width}, setIsDrawerOpen, isDrawerOpen, setIsModalOpen, setShowGuide} = useAppState()
 
     const drawerRef = useRef<HTMLDivElement>(null)
 
     const drawerWidth = width * 0.80
 
     const playAnimation = (animationName: DrawerAnimations) => {
-        animationControls?.start(animationName).then()
+        props.CoNETanimationControls?.start(animationName).then()
     }
 
     useEffect(() => {
-        setIsDrawerOpen(false)
-        animationControls?.start('setup').then(() => {
+        //setIsDrawerOpen(!isDrawerOpen)
+        props.CoNETanimationControls?.start('setup').then(() => {
         })
     }, [width])
 
@@ -105,11 +112,12 @@ const Drawer = (props: DrawerProps) => {
             playAnimation(currentDrawerState ? 'enter' : 'exit')
         }
     }
-
+	
+	delete divProps.CoNETanimationControls
     return (
         <StyledDrawer
-            {...props}
-            dragControls={dragControls}
+            {...divProps}
+            dragControls={divProps.dragControls}
             dragElastic={false}
             dragMomentum={false}
             dragConstraints={{
@@ -123,12 +131,15 @@ const Drawer = (props: DrawerProps) => {
             onDragEnd={() => {
                 drawerAnimation(drawerRef.current?.getBoundingClientRect().x)
             }}
-            animate={animationControls}
+            animate={props.CoNETanimationControls}
             custom={drawerWidth}
             variants={
                 drawerTransitionVariants
             }
             ref={drawerRef}
+			onClick={()=> {
+				setIsDrawerOpen(false)
+			}}
         >
             <StyledHeader>
                 <LogoIcon size={24}/>
@@ -136,12 +147,22 @@ const Drawer = (props: DrawerProps) => {
             </StyledHeader>
             <StyledDrawerContents>
                 <StyledSection>
-                    <Item text='Messenger' icon={<AiOutlineMessage/>}/>
-                    <Item text='File Storage' icon={<IoFileTrayStackedOutline/>}/>
+                    <Item text={<FormattedMessage id = 'globalBar.application.home'/>} icon={<LogoIcon/>}
+						onClick={() => {
+							setShowGuide(true)
+						}}
+					/>
+                    <Item text={<FormattedMessage id = 'globalBar.application.SeguroMessage'/>} icon={<SeguroLogoIcon/>}
+						onClick={() => {
+							setShowGuide(false)
+						}}
+					/>
                 </StyledSection>
                 <StyledSection>
                     <Item text={<FormattedMessage id='drawer.settings'/>} icon={<Gear size={16}/>}
-                          onClick={() => setIsModalOpen('settings')}/>
+						onClick={() => {
+							setIsModalOpen('settings')
+						}}/>
                     <Item text={<FormattedMessage id='drawer.updates'/>} icon={<MdSystemUpdateAlt size={16}/>}/>
                     <Item text={<FormattedMessage id='drawer.support'/>} icon={<AiOutlineQuestionCircle size={16}/>}/>
                 </StyledSection>

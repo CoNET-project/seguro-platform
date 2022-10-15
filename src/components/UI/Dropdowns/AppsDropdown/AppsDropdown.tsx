@@ -1,15 +1,20 @@
-import styled from 'styled-components'
-import {FaAppStoreIos, FaCcApplePay, FaWhatsapp} from "react-icons/fa"
-import React from 'react'
+import styled, {useTheme} from 'styled-components'
+import {FaAppStoreIos, FaCcApplePay, FaWhatsapp } from "react-icons/fa"
+import { BsFillHouseFill } from 'react-icons/bs'
+import {SeguroLogoIcon} from '../../Logo/Seguro'
+import {LogoIcon} from '../../Logo/Logo'
+import {FormattedMessage} from "react-intl"
+import React, {useEffect, useState} from 'react'
+
+
 type AppsDropdownProps = {
-    closeDropdown: () => void
+    closeDropdown: (app:string) => void
 }
 
 const StyledAppsDropdown = styled.div`
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-gap: 15px;
-  max-width: 40rem;
   padding: 10px 15px;
   border-radius: 10px;
   background-color: ${props => props.theme.ui.colors.background.elevationOne};
@@ -28,6 +33,7 @@ const StyledAppItem = styled.div`
 
   &:hover {
     background-color: ${props => props.theme.ui.colors.primary};
+	color: #fff;
   }
 
   &:hover > * {
@@ -44,36 +50,34 @@ const StyledAppName = styled.p`
 `
 
 const AppsDropdown = ({closeDropdown}: AppsDropdownProps) => {
+	const theme = useTheme()
+
     return (
         <StyledAppsDropdown>
-            <StyledAppItem>
+            <StyledAppItem onClick={() => {
+				closeDropdown('showGuide')
+			}}>
                 <StyledAppIcon>
-                    <FaWhatsapp size={24}/>
+                    <LogoIcon size={24} color={theme.ui.colors.primary}/>
                 </StyledAppIcon>
                 <StyledAppName>
-                    WhatsApp
+                    <FormattedMessage id = 'globalBar.application.home'/>
                 </StyledAppName>
             </StyledAppItem>
 
-            <StyledAppItem>
+            <StyledAppItem onClick={() => {
+				closeDropdown('')
+			}}>
                 <StyledAppIcon>
-                    <FaCcApplePay size={24}/>
+                    <SeguroLogoIcon size={24} color={theme.ui.colors.primary}/>
                 </StyledAppIcon>
                 <StyledAppName>
-                    Apple Pay
+					<FormattedMessage id = 'globalBar.application.SeguroMessage'/>
                 </StyledAppName>
             </StyledAppItem>
 
-            <StyledAppItem>
-                <StyledAppIcon>
-                    <FaAppStoreIos size={24}/>
-                </StyledAppIcon>
-                <StyledAppName>
-                    App Store
-                </StyledAppName>
-            </StyledAppItem>
         </StyledAppsDropdown>
     )
 }
 
-export default AppsDropdown;
+export default AppsDropdown

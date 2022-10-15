@@ -52,7 +52,7 @@ const en_US: Messages = {
     'button.back': 'Back',
     'button.unlock': 'Unlock',
 
-    'unlock.title': 'Enter your Seguro passcode',
+    'unlock.title': 'Enter your CoNET Platform passcode',
 
     'platform.unlock.button.forgot': 'Forgot your passcode?',
     'platform.dialog.delete.message': 'Deleting your container is a permanent action, you will need to create a new passcode with a new invitation code.',
@@ -87,7 +87,7 @@ const en_US: Messages = {
     'platform.network.status.description.high': 'Your connection to Seguro is very good, you should be able to receive and send data fast!',
 
     'platform.settings.settings': 'Platform Settings',
-    'platform.settings.language': 'Language',
+    'platform.settings.language': 'Language(語言)',
     'platform.settings.theme': 'Theme',
     'platform.settings.theme.light': 'Light',
     'platform.settings.theme.dark': 'Dark',
@@ -131,6 +131,7 @@ const en_US: Messages = {
     'globalBar.profile.dropdown.manageProfiles': 'Manage Profiles',
     'globalBar.profile.dropdown.addProfile': 'Add Profile',
     'globalBar.profile.dropdown.lockPlatform': 'Lock Platform',
+	'globalBar.application.home': 'CoNET Platform',
 
     'platform.manageProfile': 'Manage Profile',
     'platform.manageProfile.setAsPrimary': 'Set as primary',
@@ -149,6 +150,11 @@ const en_US: Messages = {
 
     'platform.addProfile.setAsPrimary': 'Set as primary',
     'platform.addProfile.createButton': 'Create',
+
+	'platform.ProfileDropdown.CurrentProfileItem.actionFondWallet': 'Fund Wallet',
+
+	'tabnavigator.guide.title': 'Welcome to Seguro',
+	'globalBar.application.SeguroMessage': 'Seguro Message'
 
 }
 

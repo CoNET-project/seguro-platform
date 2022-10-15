@@ -45,6 +45,18 @@ export const setIsUnlocked = createAction(
     }
 )
 
+export const setShowGuide = createAction(
+    'appState/showGuide',
+    (showGuide: boolean) => {
+        return {
+            payload: {
+                showGuide
+            }
+        }
+    }
+)
+
+
 export const setHasContainer = createAction(
     'appState/hasContainer',
     (hasContainer: boolean) => {
