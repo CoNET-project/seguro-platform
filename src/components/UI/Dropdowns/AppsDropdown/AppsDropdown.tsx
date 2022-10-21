@@ -1,6 +1,5 @@
 import styled, {useTheme} from 'styled-components'
 import {FaAppStoreIos, FaCcApplePay, FaWhatsapp } from "react-icons/fa"
-import { BsFillHouseFill } from 'react-icons/bs'
 import {SeguroLogoIcon} from '../../Logo/Seguro'
 import {LogoIcon} from '../../Logo/Logo'
 import {FormattedMessage} from "react-intl"
@@ -12,33 +11,30 @@ type AppsDropdownProps = {
 }
 
 const StyledAppsDropdown = styled.div`
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-gap: 15px;
-  padding: 10px 15px;
-  border-radius: 10px;
-  background-color: ${props => props.theme.ui.colors.background.elevationOne};
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	grid-gap: 15px;
+	padding: 10px 15px;
+	border-radius: 10px;
+	background-color: ${props => props.theme.ui.colors.background.elevationOne};
+	min-width: 10rem;
 `
 
 const StyledAppItem = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  width: 80px;
-  height: 80px;
-  border-radius: 5px;
-  padding: 5px 10px;
-  cursor: pointer;
-
-  &:hover {
-    background-color: ${props => props.theme.ui.colors.primary};
-	color: #fff;
-  }
-
-  &:hover > * {
-    color: #fff
-  }
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	width: 80px;
+	height: 80px;
+	border-radius: 5px;
+	padding: 5px 5px;
+	cursor: pointer;
+	color: ${props => props.theme.ui.colors.secondary};
+	&:hover {
+		background-color: ${props => props.theme.ui.colors.secondary};
+		color: #fff;
+	};
 `
 
 const StyledAppIcon = styled.div`
@@ -58,15 +54,26 @@ const AppsDropdown = ({closeDropdown}: AppsDropdownProps) => {
 				closeDropdown('showGuide')
 			}}>
                 <StyledAppIcon>
-                    <LogoIcon size={24} color={theme.ui.colors.primary}/>
+                    <LogoIcon size={24} />
                 </StyledAppIcon>
                 <StyledAppName>
                     <FormattedMessage id = 'globalBar.application.home'/>
                 </StyledAppName>
             </StyledAppItem>
 
+			<StyledAppItem onClick={() => {
+				closeDropdown('showAppStore')
+			}}>
+                <StyledAppIcon>
+                    <FaAppStoreIos size={24} />
+                </StyledAppIcon>
+                <StyledAppName>
+                    <FormattedMessage id = 'globalBar.application.AppStore'/>
+                </StyledAppName>
+            </StyledAppItem>
+
             <StyledAppItem onClick={() => {
-				closeDropdown('')
+				closeDropdown('Seguro Messanger')
 			}}>
                 <StyledAppIcon>
                     <SeguroLogoIcon size={24} color={theme.ui.colors.primary}/>

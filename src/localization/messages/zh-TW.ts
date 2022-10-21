@@ -34,7 +34,7 @@ const zh_CN: Messages = {
     'onboarding.setup.verify.code': '驗證邀請碼...',
     'onboarding.setup.enter.button': '進入 Seguro',
 
-    'onboarding.carousel.title.seguro-platform': 'Seguro 平台',
+    'onboarding.carousel.title.seguro-platform': 'CoNET 平台',
     'onboarding.carousel.title.no-ip-tracking': '無 IP 追踪',
     'onboarding.carousel.title.decentralized': '去中心化',
     'onboarding.carousel.title.anonymity': '匿名',
@@ -166,10 +166,18 @@ const zh_CN: Messages = {
     'platform.addProfile.setAsPrimary': '設置為主',
     'platform.addProfile.createButton': '創建',
 
-	'platform.ProfileDropdown.CurrentProfileItem.actionFondWallet': '錢包充值',
-	'tabnavigator.guide.title': '歡迎來到Seguro',
-	'globalBar.application.home': 'CoNET平台',
-	'globalBar.application.SeguroMessage': 'Seguro聊天'
+	'platform.ProfileDropdown.CurrentProfileItem.actionFondWallet': '水龍頭',
+	'platform.ProfileDropdown.CurrentProfileItem.actionSend': '轉帳',
+	'platform.ProfileDropdown.CurrentProfileItem.buy': '購買',
+	'platform.ProfileDropdown.Tablable.Assets': '加密資產',
+	'platform.ProfileDropdown.Tablable.Activity': '歷史記錄',
+
+	'platform.ProfileDropdown.CurrentProfileItem.AnonymousUser': '匿名用戶',
+	'tabnavigator.guide.title': '歡迎使用CoNET平台',
+	'globalBar.application.home': 'CoNET 平台',
+	'globalBar.application.SeguroMessage': 'Seguro 聊天',
+	'globalBar.application.AppStore': 'CoNET 應用商店',
+	'tabnavigator.appStore.title': '歡迎使用CoNET應用商店'
 }
 
 export default zh_CN

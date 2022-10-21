@@ -35,7 +35,7 @@ const en_US: Messages = {
     'onboarding.setup.verify.code': 'Verifying invitation code...',
     'onboarding.setup.enter.button': 'Enter Seguro',
 
-    'onboarding.carousel.title.seguro-platform': 'Seguro Platform',
+    'onboarding.carousel.title.seguro-platform': 'CoNET Platform',
     'onboarding.carousel.title.no-ip-tracking': 'No IP tracking',
     'onboarding.carousel.title.decentralized': 'Decentralized',
     'onboarding.carousel.title.anonymity': 'Anonymity',
@@ -131,7 +131,7 @@ const en_US: Messages = {
     'globalBar.profile.dropdown.manageProfiles': 'Manage Profiles',
     'globalBar.profile.dropdown.addProfile': 'Add Profile',
     'globalBar.profile.dropdown.lockPlatform': 'Lock Platform',
-	'globalBar.application.home': 'CoNET Platform',
+	
 
     'platform.manageProfile': 'Manage Profile',
     'platform.manageProfile.setAsPrimary': 'Set as primary',
@@ -151,10 +151,20 @@ const en_US: Messages = {
     'platform.addProfile.setAsPrimary': 'Set as primary',
     'platform.addProfile.createButton': 'Create',
 
-	'platform.ProfileDropdown.CurrentProfileItem.actionFondWallet': 'Fund Wallet',
+	'platform.ProfileDropdown.CurrentProfileItem.actionFondWallet': 'Faucet',
+	'platform.ProfileDropdown.CurrentProfileItem.AnonymousUser': 'Anonymous User',
+	'platform.ProfileDropdown.CurrentProfileItem.actionSend': 'Send',
+	'platform.ProfileDropdown.CurrentProfileItem.buy': 'Buy',
+	'platform.ProfileDropdown.Tablable.Assets': 'Assets',
+	'platform.ProfileDropdown.Tablable.Activity': 'Activity',
 
-	'tabnavigator.guide.title': 'Welcome to Seguro',
-	'globalBar.application.SeguroMessage': 'Seguro Message'
+	'tabnavigator.guide.title': 'Welcome to CoNET Platform',
+	'globalBar.application.SeguroMessage': 'Seguro Messenger',
+	'globalBar.application.home': 'CoNET Platform',
+
+	'globalBar.application.AppStore': 'CoNET APP Store',
+
+	'tabnavigator.appStore.title': 'Welcome to CoNET App Store'
 
 }
 

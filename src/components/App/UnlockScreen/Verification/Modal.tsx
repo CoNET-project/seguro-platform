@@ -8,7 +8,6 @@ import {isUUIDv4} from "../../../../utilities/utilities"
 import LargeInput from "../../../UI/Inputs/LargeInput/LargeInput"
 import Button from "../../../UI/Common/Button/Button"
 import {FormattedMessage} from "react-intl"
-import {verifyInvitation} from "../../../../services/workerService/workerService"
 import {ThreeCircles} from "react-loader-spinner"
 import {OverlayDarker} from "../../../UI/Common/Overlay/Overlay"
 
@@ -88,21 +87,6 @@ const VerificationModal = () => {
             return setVerificationError('INVITATION_CODE_ERROR')
         }
         setIsVerifying(true)
-        verifyInvitation(verificationCode).then((status) => {
-            switch (status) {
-                case 'SUCCESS':
-                    setIsUnlocked(true)
-                    return
-                case 'INVITATION_CODE_ERROR':
-                    setVerificationError(status)
-                    setIsVerifying(false)
-                    return
-                default:
-                    setVerificationError('ERROR')
-                    setIsVerifying(false)
-                    return
-            }
-        })
     }
 
     const getErrorMessage = () => {

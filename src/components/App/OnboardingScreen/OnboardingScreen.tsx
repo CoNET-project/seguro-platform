@@ -41,8 +41,7 @@ const StyledLogoContainer = styled.div`
 `
 
 const StyledOnboardingContent = styled.div`
-  //min-height: 100%;
-  height: 100%;
+  height: 70%;
   width: 100%;
   content: '';
   display: flex;

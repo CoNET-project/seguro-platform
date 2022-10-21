@@ -14,6 +14,7 @@ export type State = {
     currentPage: CurrentPage,
     existingPages: Array<PageIds>,
     onboardingPageData: {
+		locale: string
         passcode: string,
         confirmPasscode: string,
         verificationCode?: string,

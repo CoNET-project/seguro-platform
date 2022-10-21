@@ -8,6 +8,7 @@ import {Toaster} from '../../UI/Toaster/Toaster'
 import GlobalBar from '../../UI/Global/GlobalBar/GlobalBar'
 import Messenger from '../Apps/Messenger/Messenger'
 import GuildShow from '../Apps/GuideShow/GuildShow'
+import AppStore from '../Apps/appStore/AppStore'
 import {getWorkerService} from '../../../services/workerService/workerService'
 import {ClientProfiles} from '../../../store/appState/appStateReducer'
 import {useEffect} from 'react'
@@ -37,7 +38,8 @@ const MainScreen = () => {
         isTouchDevice,
         isModalOpen,
 		showGuide,
-        setClientProfiles
+        setClientProfiles,
+		showAppStore
     } = useAppState()
 
     const drawerWidth = width * 0.80
@@ -51,10 +53,10 @@ const MainScreen = () => {
     const opacity = useTransform(currentDrawerX, drawerXMovements, overlayOpacity)
 
     const setInitialProfiles = () => {
-        const {profile} = getWorkerService()
-        if (profile && profile.profiles && profile.profiles.length) {
-            const profiles = profile.profiles
-            const clientProfiles = profiles.reduce((clientProfiles: ClientProfiles, profile) => {
+        const { data } = getWorkerService()
+        if ( data.profiles?.length ) {
+            const profile = data.profiles
+            const clientProfiles = profile.reduce((clientProfiles: ClientProfiles, profile: any) => {
                 if (profile.keyID) {
                     // @ts-ignore
                     clientProfiles[profile.keyID] = profile
@@ -104,7 +106,7 @@ const MainScreen = () => {
                 <GlobalBar/>
                 <LayoutGroup id="a">
                     <StyledContents>
-                        {showGuide?<GuildShow/>:<Messenger/>}
+                        {showGuide?<GuildShow/>:(showAppStore ? <AppStore/>:<Messenger/>)}
                     </StyledContents>
                 </LayoutGroup>
             </StyledMainScreen>

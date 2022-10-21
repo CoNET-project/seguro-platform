@@ -97,7 +97,8 @@ const GlobalBar = () => {
         activeProfile,
         setIsModalOpen,
         hasNotification,
-		setShowGuide
+		setShowGuide,
+		setShowAppStore
     } = useAppState()
 
     const [currentDropdown, setCurrentDropdown] = useState<Dropdowns>(null)
@@ -119,22 +120,20 @@ const GlobalBar = () => {
 
     const closeDropdown = (app: string ) => {
         setCurrentDropdown(null)
-		switch (app) {
-			case 'showGuide': {
-				setShowGuide(true)
-				break
+
+		if (app) {
+			if (app === 'showGuide') {
+				setShowAppStore (false)
+				return setShowGuide(true)
 			}
-			default: {
+			if (app == 'showAppStore') {
 				setShowGuide(false)
-				break
+				return setShowAppStore (true)
 			}
+			setShowAppStore (false)
+			setShowGuide(false)
 		}
     }
-
-	const profileSelected = (dropdown: Dropdowns) => {
-
-	}
-
 
     return (
         <StyledGlobalBar>
@@ -163,23 +162,24 @@ const GlobalBar = () => {
                 {/*</TippyDropdown>*/}
 
                 <StyledBarSectionOptional>
-
-                    <TippyDropdown
-                        content={<NotificationDropdown/>}
-                        verticalOffset={2}
-                        visible={currentDropdown === 'notifications'}
-                        onClickOutside={()=>closeDropdown('')}
-                    >
-                        <StyledGlobalItem onClick={() => setDropdownToggle('notifications')}>
-                            <NotificationBell size={20} color="white"/>
-                            {
-                                hasNotification && (
-                                    <StyledNotificationDot/>
-                                )
-                            }
-                        </StyledGlobalItem>
-                    </TippyDropdown>
-
+					{
+						<TippyDropdown
+							content={<NotificationDropdown/>}
+							verticalOffset={2}
+							onClickOutside={()=>closeDropdown('')}
+							visible={currentDropdown === 'notifications'}
+						>
+							<StyledGlobalItem onClick={() => setDropdownToggle('notifications')}>
+								<NotificationBell size={20} color="white"/>
+								{
+									hasNotification && (
+										<StyledNotificationDot/>
+									)
+								}
+							</StyledGlobalItem>
+						</TippyDropdown>
+					}
+                    
 
                     <StyledGlobalButton id="Setting"
 						onClick={() => {
@@ -189,39 +189,49 @@ const GlobalBar = () => {
                         <SettingGear size={18} color="white"/>
                     </StyledGlobalButton>
 
-                    <TippyDropdown
-                        content={<AppsDropdown closeDropdown={closeDropdown}/>}
-                        verticalOffset={2}
-                        visible={currentDropdown === 'applications'}
-                        onClickOutside={()=>closeDropdown('applications')}
-                    >
-                        <StyledGlobalItem
-							onClick={
-								() => setDropdownToggle('applications')
-							}
+					{
+
+						<TippyDropdown
+							content={<AppsDropdown closeDropdown={closeDropdown}/>}
+							verticalOffset={2}
+							visible={currentDropdown === 'applications'}
+							onClickOutside={()=>closeDropdown('')}
 						>
-                            <Grid3X3 size={18} color="white"/>
-                        </StyledGlobalItem>
-                    </TippyDropdown>
+							<StyledGlobalItem
+								onClick={
+									() => setDropdownToggle('applications')
+								}
+							>
+								<Grid3X3 size={18} color="white"/>
+							</StyledGlobalItem>
+						</TippyDropdown>
+
+					}
+                    
 
                 </StyledBarSectionOptional>
 
+				{
 
-                <TippyDropdown
-                    content={<ProfileDropdown closeDropdown={()=> closeDropdown('profiles')}/>}
-                    verticalOffset={2}
-                    visible={currentDropdown === 'profiles'}
-                    onClickOutside={()=>{
-						closeDropdown('profiles')
-					}}
-                >
-                    <StyledGlobalItem onClick={() => {
-						setDropdownToggle('profiles')
-					}}>
-                        <ProfileImage src={activeProfile?.profileImg} size='sm'/>
-                    </StyledGlobalItem>
-                </TippyDropdown>
+					<TippyDropdown
+						content={
+						<ProfileDropdown 
+							closeDropdown={()=> closeDropdown('')}
+						/>}
+						visible={currentDropdown === 'profiles'}
+						verticalOffset={2}
+						onClickOutside={()=>{
+							closeDropdown('')
+						}}
+					>
+						<StyledGlobalItem onClick={() => {
+							setDropdownToggle('profiles')
+						}}>
+							<ProfileImage src={activeProfile?.profileImg} size='sm'/>
+						</StyledGlobalItem>
+					</TippyDropdown>
 
+				}
 
                 {
                     hasUpdateAvailable && (

@@ -1,17 +1,15 @@
-import {useState} from 'react'
+import React, {useState, ReactNode} from 'react'
 import styled from 'styled-components'
 import Keypad from '../../UI/Keypad/Keypad'
 import PasscodeInput from "../../UI/Inputs/PasscodeInput/Touch/PasscodeInput"
 import {IoMdLock} from "react-icons/io"
 import {FormattedMessage} from "react-intl"
-import {checkIsVerified, deletePasscode, unlockPasscode} from "../../../services/workerService/workerService"
+import {deletePasscode, unlockPasscode} from "../../../services/workerService/workerService"
 import Button from "../../UI/Common/Button/Button"
 import useAppState from "../../../store/appState/useAppState"
-import VerificationModal from './Verification/Modal'
 import {Warning} from "../../UI/Icons/Icons"
 import AlertDialog, {AlertDialogActions} from "../../UI/Common/AlertDialog/AlertDialog"
 import LargeInput from "../../UI/Inputs/LargeInput/LargeInput"
-import React from 'react'
 
 const StyledContainer = styled.div`
   height: 100%;
@@ -56,17 +54,13 @@ const StyledUnlockButton = styled(Button)`
 `
 
 const UnlockScreen = () => {
-
+	const [error, setError] = useState<ReactNode | null>(null)
     const {setIsUnlocked, isTouchDevice} = useAppState()
     const [passcode, setPasscode] = useState("")
-    const [isIncorrect, setIsIncorrect] = useState(false)
-    const [isInvalid, setIsInvalid] = useState(false)
-    const [needVerification, setNeedVerification] = useState(false)
+	const [locale, setLocale]= useState("")
     const [showDeleteModal, setShowDeleteModal] = useState(false)
-
     const clearError = () => {
-        setIsIncorrect(false)
-        setIsInvalid(false)
+		setError (null)
     }
 
     const keypadClickHandlers = {
@@ -86,21 +80,22 @@ const UnlockScreen = () => {
 
     const unlockClickHandler = () => {
         if (passcode.length < 6) {
-            return setIsInvalid(true)
+            return setError(<FormattedMessage id='passcodeInput.invalidLength'/>)
         }
+		// setError (null)
         unlockPasscode({
-            passcode, progress: (progress) => {
+            passcode, locale, progress: (progress) => {
+				//	get process 
             }
-        }).then(status => {
+        }).then( status => {
             if (status === 'SUCCESS') {
-                if (checkIsVerified()) {
-                    return setIsUnlocked(true)
-                }
-                return setNeedVerification(true)
-            } else if (status === 'FAILURE') {
-                setIsIncorrect(true)
-                setPasscode('')
-            }
+                
+                return setIsUnlocked(true)
+                
+            } 
+			setPasscode('')
+			setError (<FormattedMessage id='platform.unlock.button.forgot'/>)
+            
         })
     }
 
@@ -139,12 +134,13 @@ const UnlockScreen = () => {
                                 <LargeInput value={passcode}
                                             inputOptions={{
                                                 inputType: 'password'
-                                            }
-                                            }
+                                            }}
 											nextStepHandler = {unlockClickHandler}
                                             setValue={(val) => {
                                                 setPasscode(val)
-                                            }}/>
+                                            }}
+											error={error}
+								/>
                             </StyledFlexContainer>
                         )
                     )
@@ -162,9 +158,6 @@ const UnlockScreen = () => {
                                  icon={<Warning color="black"/>}
                                  dialogActions={deleteConfirmationActions}/>
                 )
-            }
-            {
-                needVerification && <VerificationModal/>
             }
         </StyledContainer>
     )

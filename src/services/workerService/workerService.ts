@@ -1,4 +1,4 @@
-import {startWorker} from '@conet.project/seguro-worker-lib'
+import {startWorker} from '@conet.project/seguro-worker-lib/build'
 import store from '../../store/store'
 import {
     setHasContainer,
@@ -9,16 +9,17 @@ import {
     setTheme,
     setWorkerServiceIsInitialized
 } from '../../store/appState/appStateActions'
-import {ContainerData, SeguroNetworkStatus} from "@conet.project/seguro-worker-lib/build/workerBridge";
-import logger from "../../utilities/logger/logger";
-import {Theme} from "../../theme/types";
-import {Locale} from "../../localization/types";
-import {ClientProfiles, ProfileData} from "../../store/appState/appStateReducer";
+import { ContainerData } from "@conet.project/seguro-worker-lib/build/workerBridge"
+import logger from "../../utilities/logger/logger"
+import {Theme} from "../../theme/types"
+import {Locale} from "../../localization/types"
+import {ClientProfiles, ProfileData} from "../../store/appState/appStateReducer"
 
-let workerService: ContainerData;
+let workerService: ContainerData
 
 type PasscodeFunctionParams = {
     passcode: string,
+	locale: string,
     progress: (progress: any) => void
 }
 
@@ -31,7 +32,7 @@ export const getWorkerService = () => {
 }
 
 export const setUserPreferences = () => {
-    if (workerService && workerService.preferences && workerService.preferences.preferences) {
+    if ( workerService?.preferences?.preferences) {
         const {theme, language}: Preferences = workerService.preferences.preferences
 
         if (theme) {
@@ -47,28 +48,28 @@ export const setUserPreferences = () => {
 export const initializeWorkerService = async () => {
     const [status, container] = await startWorker()
 
-    if (status === 'NOT_READY') {
+    if (status === 'NOT_READY' || !container) {
         return
     }
 
-    if (status === 'SUCCESS' && container) {
+    if (status === 'SUCCESS') {
         logger.log('workerService.ts', 'container:', container)
         workerService = container
         switch (true) {
-            case container?.passcode.status === 'NOT_SET':
+            case container.status === 'NOT_SET':
                 store.dispatch(setHasContainer(false))
                 store.dispatch(setIsUnlocked(false))
                 break;
-            case container?.passcode.status === 'LOCKED':
+            case container.status === 'LOCKED':
                 store.dispatch(setHasContainer(true))
                 store.dispatch(setIsUnlocked(false))
                 break;
-            case container?.passcode.status === 'UNLOCKED':
+            case container.status === 'UNLOCKED':
                 store.dispatch(setHasContainer(true))
                 store.dispatch(setIsUnlocked(true))
-                break;
+                break
             default:
-                break;
+                break
         }
         setUserPreferences()
         setTimeout(() => {
@@ -78,8 +79,8 @@ export const initializeWorkerService = async () => {
 }
 
 export const lockPlatform = () => {
-    if (workerService && workerService.passcode && workerService.passcode.lock) {
-        workerService.passcode.lock().then(() => {
+    if (workerService.method.lock) {
+        workerService.method.lock().then(() => {
             store.dispatch(setShowOverlay(false))
             store.dispatch(setHasContainer(true))
             store.dispatch(setIsUnlocked(false))
@@ -87,22 +88,27 @@ export const lockPlatform = () => {
     }
 }
 
-export const hasPasscode = () => workerService.passcode.status === 'LOCKED' || workerService.passcode.status === 'UNLOCKED'
+export const hasPasscode = () => workerService.status === 'LOCKED' || workerService.status === 'UNLOCKED'
 
-export const checkIsVerified = () => workerService.SeguroNetwork.SeguroStatus !== 'INIT'
+export const checkIsVerified = true
 
-export const createPasscode = ({passcode, progress}: PasscodeFunctionParams): Promise<PasscodeResolves> => (
+export const createPasscode = ({passcode, locale, progress}: PasscodeFunctionParams): Promise<PasscodeResolves> => (
     new Promise<PasscodeResolves>(async (resolve) => {
-        if (workerService.passcode.createPasscode) {
-            const [status] = await workerService.passcode.createPasscode(passcode, (progressInteger) => {
+        if (workerService.method.createPasscode) {
+            const [status, data] = await workerService.method.createPasscode(passcode, (progressInteger: any) => {
                 progress(progressInteger)
             })
 
             if (status === 'SUCCESS') {
-                resolve(status)
-            } else {
-                resolve('FAILURE')
+				if (!data) {
+					return resolve('FAILURE')
+				}
+				workerService = data
+                resolve( status )
             }
+            
+			resolve('FAILURE')
+            
             logger.log('workerService.ts', 'createPasscode', status, workerService)
         }
     })
@@ -111,11 +117,15 @@ export const createPasscode = ({passcode, progress}: PasscodeFunctionParams): Pr
 export const unlockPasscode = ({passcode, progress}: PasscodeFunctionParams): Promise<PasscodeResolves> => (
     new Promise<PasscodeResolves>(async (resolve) => {
         store.dispatch(setIsPlatformLoading('unlockPasscode'))
-        if (workerService.passcode.testPasscode) {
-            const [status] = await workerService.passcode.testPasscode(passcode, progress)
+        if (workerService.method.testPasscode) {
+            const [status, container] = await workerService.method.testPasscode(passcode, progress)
 
             switch (status) {
                 case 'SUCCESS':
+					if (container ) {
+						workerService = container
+					}
+					
                     resolve(status)
                     break;
                 case 'FAILURE':
@@ -129,8 +139,8 @@ export const unlockPasscode = ({passcode, progress}: PasscodeFunctionParams): Pr
 
 export const deletePasscode = (): Promise<PasscodeResolves> => (
     new Promise<PasscodeResolves>(async (resolve) => {
-        if (workerService.passcode.deletePasscode) {
-            const [status] = await workerService.passcode.deletePasscode()
+        if (workerService.method.deletePasscode) {
+            const [status] = await workerService.method.deletePasscode()
 
             if (status === 'SUCCESS') {
                 return resolve('SUCCESS')
@@ -140,17 +150,17 @@ export const deletePasscode = (): Promise<PasscodeResolves> => (
     })
 )
 
-export const verifyInvitation = (code: string): Promise<SeguroNetworkStatus | 'FAILURE'> => (
-    new Promise<SeguroNetworkStatus | 'FAILURE'>((resolve) => {
-        setTimeout(() => {
-            return resolve('SUCCESS')
-        }, 2000)
-        // if (workerService.SeguroNetwork.invitation) {
-        //     return resolve(workerService.SeguroNetwork.invitation(code))
-        // }
-        // return resolve('FAILURE')
-    })
-)
+// export const verifyInvitation = (code: string): Promise<SeguroNetworkStatus | 'FAILURE'> => (
+//     new Promise<SeguroNetworkStatus | 'FAILURE'>((resolve) => {
+//         setTimeout(() => {
+//             return resolve('SUCCESS')
+//         }, 2000)
+//         // if (workerService.SeguroNetwork.invitation) {
+//         //     return resolve(workerService.SeguroNetwork.invitation(code))
+//         // }
+//         // return resolve('FAILURE')
+//     })
+// )
 
 export type Preferences = {
     theme?: Theme,
@@ -162,9 +172,12 @@ export type Preferences = {
 
 export const savePreferences = ({theme, language, extras}: Preferences): Promise<WorkerServiceResolve> => (
     new Promise<WorkerServiceResolve>((resolve) => {
-        if (workerService && workerService.preferences && workerService.preferences.storePreferences) {
+		if ( !workerService || !workerService.method.storePreferences ) {
+			throw new Error (`savePreferences Error: Empty workerService!`)
+		}
+        if (workerService && workerService.preferences.preferences && workerService.preferences.storePreferences) {
             const updatedPreferences: Preferences = {
-                ...workerService.preferences.preferences
+                ...workerService.preferences
             }
 
             if (theme) {
@@ -179,9 +192,10 @@ export const savePreferences = ({theme, language, extras}: Preferences): Promise
                 updatedPreferences.extras = extras
             }
 
-            workerService.preferences.preferences = updatedPreferences
+            workerService.preferences = updatedPreferences
 
-            workerService?.preferences?.storePreferences().then(([status, container]) => {
+            workerService.method.storePreferences()
+			.then(([ status, container] )=> {
                 if (status === 'SUCCESS') {
                     return resolve('SUCCESS')
                 }
@@ -193,34 +207,35 @@ export const savePreferences = ({theme, language, extras}: Preferences): Promise
 
 export const updateProfiles = (clientProfiles: ClientProfiles): Promise<WorkerServiceResolve> => (
     new Promise<WorkerServiceResolve>((resolve) => {
-        if (workerService && workerService.profile && workerService.profile.profiles) {
-
+        if (workerService.method) {
+			const kk = workerService
         }
     })
 )
 
 export const createProfile = (profile: ProfileData): Promise<WorkerServiceResolve> => (
     new Promise<WorkerServiceResolve>((resolve) => {
-        if (workerService && workerService.profile && workerService.profile.newProfile) {
-            workerService.profile.newProfile(profile).then(([status]) => {
-                if (status === 'SUCCESS') {
-                    return resolve('SUCCESS')
-                }
-                return resolve('FAILURE')
-            })
+
+        if (workerService.method.newProfile) {
+            // workerService.profiles.newProfile(profile).then(([status]) => {
+            //     if (status === 'SUCCESS') {
+            //         return resolve('SUCCESS')
+            //     }
+            //     return resolve('FAILURE')
+            // })
         }
     })
 )
 
 export const saveProfiles = (): Promise<WorkerServiceResolve> => (
     new Promise<WorkerServiceResolve>((resolve) => {
-        if (workerService && workerService.profile && workerService.profile.storeProfile) {
-            workerService.profile.storeProfile().then(([status]) => {
-                if (status === "SUCCESS") {
-                    return resolve(status)
-                }
-                return resolve('FAILURE')
-            })
+        if (workerService.method.storeProfile) {
+            // workerService.profiles.storeProfile().then(([status]) => {
+            //     if (status === "SUCCESS") {
+            //         return resolve(status)
+            //     }
+            //     return resolve('FAILURE')
+            // })
         }
     })
 )

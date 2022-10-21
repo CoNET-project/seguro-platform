@@ -11,12 +11,12 @@ import {
     BsCamera,
     BsChatSquareDots,
     BsGrid3X3Gap,
-    BsThreeDotsVertical,
 	BsArrowUpRightCircleFill,
 	BsPatchPlusFill,
 	BsCashCoin,
 	BsX,
-	BsFillHouseFill
+	BsFillHouseFill,
+	BsThreeDotsVertical
 } from "react-icons/bs"
 
 import {

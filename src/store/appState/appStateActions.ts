@@ -56,6 +56,18 @@ export const setShowGuide = createAction(
     }
 )
 
+export const setShowAppStore= createAction(
+    'appState/showAppStore',
+    (showAppStore: boolean) => {
+        return {
+            payload: {
+                showAppStore
+            }
+        }
+    }
+)
+
+
 
 export const setHasContainer = createAction(
     'appState/hasContainer',

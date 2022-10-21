@@ -2,14 +2,21 @@ import React from "react"
 import styled, {useTheme} from 'styled-components'
 import {ProfileData} from "../../../../../store/appState/appStateReducer"
 import ProfileImage from "../../../Common/Profile/Image/Image"
+//	@ts-ignore
 import AnonymousProfile from '../../../../../assets/Avatar-anonymous.png'
 import {toast} from "../../../Toaster/Toaster"
 import {Checkmark, Copy} from "../../../Icons/Icons"
 import {FormattedMessage} from "react-intl"
 import {CopyToClipboard} from "../../../../../utilities/utilities"
-import CoNETTokenIMG from '../../../../../assets/logo/CoNET_logo.svg'
-import CoNETCashIMG from '../../../../../assets/logo/usd-coin-usdc-logo.svg'
-import {VerticalOptions_ArrowUpRightCircleFill, VerticalOptions_ArrowDownloadCircleFill} from "../../../Icons/Icons"
+
+import {VerticalOptions_ArrowUpRightCircleFill, VerticalOptions_ArrowDownloadCircleFill, VerticalOptions} from "../../../Icons/Icons"
+import {getWorkerService} from '../../../../../services/workerService/workerService'
+import AssetView from'./AssetView'
+
+import Accordion from '@mui/material/Accordion'
+import AccordionSummary from '@mui/material/AccordionSummary'
+
+
 
 type CurrentProfileItemProps = {
 } & ProfileData
@@ -19,22 +26,33 @@ type StyledProfileItemProps = {
 }
 
 const RowWrapper = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+`
+
+const Margin1rem = styled.div`
+	margin-right: 1rem;
 `
 
 const StyledProfileDetails = styled.div`
-  margin: 0 15px;
-  flex: 1;
+	cursor: pointer;
+	border-radius: 10px;
+	flex: 1;
+	&:hover {
+		background-color: #eee;
+		color: ${props => props.theme.ui.colors.secondary};
+	}
+	padding: 15px 15px;
 `
 
 const StyledProfileItem = styled.div<StyledProfileItemProps>`
 	display: flex;
 	align-items: center;
-	padding: 12.5px 24px;
+	padding: 0px 24px 0 24px;
 	background-color: ${props => props.isActive && props.theme.ui.colors.border.light};
 	min-height: 70px;
+	
 `
 const StyledProfileName = styled.p`
   font-size: ${props => props.theme.ui.fontSizes.narrow.sm};
@@ -42,6 +60,7 @@ const StyledProfileName = styled.p`
 `
 const StyledProfileDropdownOptions = styled.div`
   width: 100%;
+  padding-bottom: unset;
 `
 
 const StyledProfileKeyId = styled.p`
@@ -61,15 +80,7 @@ const StyledTokenBalance = styled.p`
 const StyledProfileKeyIdCopy = styled.button`
 	background-color: transparent;
 	border: none;
-	margin-left: 15px;
-
-	& > * {
-		transition: color 0ms ease-in-out;
-	}
-
-	${StyledProfileItem}:hover & > * {
-		color: #597CB3;
-	}
+	margin-left: 0.1rem;
 `
 
 const ImgCenter = styled.div`
@@ -80,13 +91,14 @@ const ImgCenter = styled.div`
 const GreyLine = styled.hr`
 	color: ${props => props.theme.ui.colors.border.light};
 	backgroundColor: ${props => props.theme.ui.colors.border.light};
-	height: 1;
-
+	height: 1px;
 `
 
 const IconArea = styled.div`
-	margin-top: 1rem;
 	cursor: pointer;
+	&:hover > * {
+		background-color: initial;
+	}
 `
 
 const TableArea_body_wrapper = styled.div`
@@ -94,12 +106,13 @@ const TableArea_body_wrapper = styled.div`
     border-collapse:collapse;
 	text-align: center;
     width: 100%;
+	margin-top: 1rem;
+	margin-bottom: 1rem;
 `
 
 const TableArea_content_body = styled.div`
 	display:table-row;
-	
-	
+	width: 100%;
 `
 
 const TableArea_content_cell = styled.div`
@@ -116,12 +129,39 @@ const Icon_Name_cell = styled.div`
 
 const TokenLogoImg = styled.img`
 	margin-top: 1.5rem;
-	width: 40px;
-	height: 40px;
+	width: 45px;
+	height: 45px;
 	object-fit: cover;
 `
 
-const CurrentProfileItem = ({ bio, nickname, profileImg, keyID, isPrimary, assets }: ProfileData ) => {
+
+const RightToolIcon = styled.div`
+	cursor: pointer;
+	margin-left: 1rem;
+`
+
+
+const StyledProfileDropdownOption = styled.button`
+	width: 100%;
+	background-color: transparent;
+	border: none;
+	color: ${props => props.theme.ui.colors.text.primary};
+	text-align: start;
+	padding: 15px 20px;
+	display: flex;
+	align-items: center;
+	font-size: ${props => props.theme.ui.fontSizes.narrow.sm};
+	border-top: 1px solid ${props => props.theme.ui.colors.border.light};
+
+	&:hover {
+			background-color: ${props => props.theme.ui.colors.hover};
+	}
+`
+
+const CurrentProfileItem = () => {
+	const workerService = getWorkerService()
+	const currentProfile = workerService.data.profiles.filter((n:any)=> n.isPrimary)[0]
+	const keyID = currentProfile.keyID
 	const shortID = keyID.substring(0,2) + keyID.substring(2,6).toUpperCase() + '....' + keyID.substring(keyID.length-4,keyID.length).toUpperCase()
 	const copyDeviceCode = (event: React.MouseEvent<HTMLButtonElement>, code: string) => {
         event.stopPropagation()
@@ -132,83 +172,47 @@ const CurrentProfileItem = ({ bio, nickname, profileImg, keyID, isPrimary, asset
         })
         CopyToClipboard(code)
     }
-	const CoNETTokenAsset = assets && assets.length
-	const CoNETToken = CoNETTokenAsset ? assets[0].balance : 0
-	const CoNETTokenName = CoNETTokenAsset ?  assets[0].currencySymbol : 'CoNET Token'
+	const conetToken = currentProfile.tokens.conet
+	const usdc = currentProfile.tokens.usdc
+	// const CoNETTokenAsset = assets && assets.length
+	// const CoNETToken = CoNETTokenAsset ? assets[0].balance : 0
+	// const CoNETTokenName = CoNETTokenAsset ?  assets[0].currencySymbol : 'CoNET Token'
 
-	const CoNET_USDC = CoNETTokenAsset ? assets[1].balance : 0
-	const CoNET_USDC_name = 'USDC'
+	// const CoNET_USDC = CoNETTokenAsset ? assets[1].balance : 0
+	// const CoNET_USDC_name = 'USDC'
 
 	const theme = useTheme()
 	return (
 		<StyledProfileDropdownOptions>
-			<StyledProfileItem>
-				<ProfileImage src={profileImg || AnonymousProfile} size={45}/>
+			{ currentProfile ? <StyledProfileItem id='Top Profiles'>
+				<Margin1rem>
+					<ProfileImage src={currentProfile.profileImg || AnonymousProfile} size={45}/>
+				</Margin1rem>
+				
 				<StyledProfileDetails>
-					<StyledProfileName>{nickname || 'Anonymous User'}</StyledProfileName>
+					<StyledProfileName>{currentProfile.nickname || <FormattedMessage id='platform.ProfileDropdown.CurrentProfileItem.AnonymousUser'/>}</StyledProfileName>
+					<RowWrapper>
+						<StyledProfileKeyId>{shortID}</StyledProfileKeyId>
+						<StyledProfileKeyIdCopy onClick={
+							(event) => {
+								copyDeviceCode(event, currentProfile.keyID)
+							}}>
+							<Copy/>
+						</StyledProfileKeyIdCopy>
+					</RowWrapper>
 				</StyledProfileDetails>
-				<RowWrapper>
-					<StyledProfileKeyId>{shortID}</StyledProfileKeyId>
-					<StyledProfileKeyIdCopy onClick={
-						(event) => {
-							copyDeviceCode(event, keyID)
-						}}>
-						<Copy/>
-					</StyledProfileKeyIdCopy>
-				</RowWrapper>
-			</StyledProfileItem>
+				<RightToolIcon>
+					<VerticalOptions size={30} color={theme.ui.colors.text.secondary}/>
+				</RightToolIcon>
+			</StyledProfileItem> : null }
 
-			<GreyLine/>
 
-			<TableArea_body_wrapper>
-				<TableArea_content_body id="Token Logo Area">
-
-					<TableArea_content_cell>
-						<TokenLogoImg src={CoNETTokenIMG} />
-					</TableArea_content_cell>
-
-					<TableArea_content_cell>
-						<TokenLogoImg src={CoNETCashIMG} />
-					</TableArea_content_cell>
-				</TableArea_content_body>
-
-				<TableArea_content_body id="Token Balance Area">
-
-					<TableArea_content_cell>
-						<StyledTokenBalance>
-							{CoNETToken}
-						</StyledTokenBalance>
-					</TableArea_content_cell>
-
-					<TableArea_content_cell>
-						<StyledTokenBalance>
-							{CoNET_USDC}
-						</StyledTokenBalance>
-					</TableArea_content_cell>
-
-				</TableArea_content_body>
-
-				<TableArea_content_body id="Token Name Area">
-
-					<TableArea_content_cell>
-						<StyledTokenBalance>
-							{CoNETTokenName}
-						</StyledTokenBalance>
-					</TableArea_content_cell>
-
-					<TableArea_content_cell>
-						<StyledTokenBalance>
-							{CoNET_USDC_name}
-						</StyledTokenBalance>
-					</TableArea_content_cell>
-
-				</TableArea_content_body>
-
+			{/* <TableArea_body_wrapper>
 				<TableArea_content_body id="action icon Area">
 
 					<TableArea_content_cell>
 						<IconArea>
-							<VerticalOptions_ArrowDownloadCircleFill size={30} color={theme.ui.colors.secondary}/>
+							<VerticalOptions_ArrowDownloadCircleFill size={30} color={theme.ui.colors.icon.inactive}/>
 						</IconArea>
 					</TableArea_content_cell>
 
@@ -230,15 +234,15 @@ const CurrentProfileItem = ({ bio, nickname, profileImg, keyID, isPrimary, asset
 
 					<TableArea_content_cell>
 						<Icon_Name_cell>
-							{CoNET_USDC_name}
+							{'CoNET_USDC_name'}
 						</Icon_Name_cell>
 					</TableArea_content_cell>
 
 				</TableArea_content_body>
-				
-			</TableArea_body_wrapper>
 
-			
+				
+			</TableArea_body_wrapper> */}
+
 		</StyledProfileDropdownOptions>
 	)
 }

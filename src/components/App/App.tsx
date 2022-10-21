@@ -32,8 +32,7 @@ const App = () => {
         setIsShowOverlay,
         showOverlay,
         hasContainer,
-        isUnlocked,
-		showGuide,
+        isUnlocked
     } = useAppState()
 
     const windowResizeHandler = () => {
