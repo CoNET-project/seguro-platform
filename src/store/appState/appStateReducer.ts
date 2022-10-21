@@ -23,7 +23,8 @@ import {
     setWorkerServiceIsInitialized,
     updateClientDevice,
     updateClientProfile,
-	setShowGuide
+	setShowGuide,
+	setShowAppStore
 } from './appStateActions'
 import {Theme} from '../../theme/types'
 import {Locale} from '../../localization/types'
@@ -91,25 +92,26 @@ export type PlatformLoadingTypes = 'unlockPasscode' | 'createProfile' | null
 export type NetworkStrength = 1 | 2 | 3
 
 type AppStateReducerState = {
-    isTouchDevice: boolean,
-    isUnlocked: boolean,
-    isDrawerOpen: boolean,
-    isModalOpen: ModalNames,
-    isPlatformLoading: PlatformLoadingTypes,
-    hasContainer: boolean,
-    networkStrength: NetworkStrength,
-    hasNotification: boolean,
-    showOverlay: boolean,
-    windowInnerSize: WindowInnerSize,
-    workerServiceIsInitialized: boolean,
-    theme: Theme,
-    locale: Locale,
-    hasUpdateAvailable: boolean,
-    clientProfiles: ClientProfiles,
-    activeProfile: ProfileData | null,
-    clientDevices: Devices,
+    isTouchDevice: boolean
+    isUnlocked: boolean
+    isDrawerOpen: boolean
+    isModalOpen: ModalNames
+    isPlatformLoading: PlatformLoadingTypes
+    hasContainer: boolean
+    networkStrength: NetworkStrength
+    hasNotification: boolean
+    showOverlay: boolean
+    windowInnerSize: WindowInnerSize
+    workerServiceIsInitialized: boolean
+    theme: Theme
+    locale: Locale
+    hasUpdateAvailable: boolean
+    clientProfiles: ClientProfiles
+    activeProfile: ProfileData | null
+    clientDevices: Devices
     networkState: NetworkStates
 	showGuide: boolean
+	showAppStore: boolean
 }
 
 const initialState: AppStateReducerState = {
@@ -117,7 +119,8 @@ const initialState: AppStateReducerState = {
     isUnlocked: false,
     isDrawerOpen: false,
     isModalOpen: null,
-	showGuide: false,
+	showGuide: true,
+	showAppStore: false,
     isPlatformLoading: null,
     hasContainer: false,
     networkStrength: 3,
@@ -192,6 +195,10 @@ const appStateReducer = createReducer(initialState, builder => {
             state.showGuide = action.payload.showGuide
         })
 
+		.addCase(setShowAppStore, (state, action) => {
+            state.showAppStore = action.payload.showAppStore
+        })
+
         .addCase(setHasUpdateAvailable, (state, action) => {
             state.hasUpdateAvailable = action.payload.hasUpdateAvailable
         })
@@ -206,7 +213,7 @@ const appStateReducer = createReducer(initialState, builder => {
 
         .addCase(createClientProfile, (state, action) => {
             const profiles = [
-                ...getWorkerService().profile.profiles
+                ...getWorkerService().data.profile
             ]
             state.clientProfiles = profiles.reduce((clientProfiles: ClientProfiles, profile) => {
                 if (profile.keyID) {

@@ -23,16 +23,21 @@ import {
     setWorkerServiceIsInitialized,
     updateClientDevice as updateClientDeviceActionCreator,
     updateClientProfile as updateClientProfileActionCreator,
-	setShowGuide as _setShowGuide
+	setShowGuide as _setShowGuide,
+	setShowAppStore as _setShowAppStore
 } from './appStateActions'
+
+
 import {
     createProfile,
     getWorkerService,
     initializeWorkerService,
     saveProfiles
 } from '../../services/workerService/workerService'
+
 import {Theme} from '../../theme/types'
 import {Locale} from '../../localization/types'
+
 import {
     ClientProfiles,
     DeviceData,
@@ -41,7 +46,7 @@ import {
     NetworkStrength,
     PlatformLoadingTypes,
     ProfileData
-} from "./appStateReducer";
+} from "./appStateReducer"
 
 export type WindowInnerSize = {
     width: number,
@@ -58,6 +63,11 @@ const useAppState = () => {
 	const showGuide = useTypedSelector(state => state.appState.showGuide)
 	const setShowGuide = (showguide: boolean ) => {
 		dispatch (_setShowGuide(showguide))
+	}
+
+	const showAppStore = useTypedSelector(state => state.appState.showAppStore)
+	const setShowAppStore = (showAppStore: boolean ) => {
+		dispatch (_setShowAppStore(showAppStore))
 	}
 
     const isInitialized = useTypedSelector(state => state.appState.workerServiceIsInitialized)
@@ -113,14 +123,14 @@ const useAppState = () => {
     }
 
     const setProfilesToNonPrimary = () => {
-        let profiles = getWorkerService().profile.profiles
-        profiles = profiles.map(profile => {
+        let profiles = getWorkerService().data.profiles
+        profiles = profiles.map((pro: any) => {
             return {
-                ...profile,
+                ...pro,
                 isPrimary: false
             }
         })
-        getWorkerService().profile.profiles = profiles
+        getWorkerService().data.profile = profiles
         return saveProfiles()
     }
 
@@ -193,9 +203,9 @@ const useAppState = () => {
             currentClientProfiles[updatedProfile.keyID] = updatedProfile
             updatedClientProfiles = Object.values(currentClientProfiles)
         }
-        getWorkerService().profile.profiles = updatedClientProfiles
+        getWorkerService().data.profile = updatedClientProfiles
         saveProfiles().then((status) => {
-            console.log(getWorkerService().profile.profiles)
+            console.log(getWorkerService().data.profile)
             if (status === 'SUCCESS') {
                 dispatch(updateClientProfileActionCreator(updatedProfile))
             }
@@ -204,7 +214,7 @@ const useAppState = () => {
     }
 
     const deleteClientProfile = (keyId: string) => {
-        const profiles = getWorkerService().profile.profiles
+        const profiles = getWorkerService().data.profile
         profiles.shift()
         saveProfiles().then((status) => {
             console.log('SAVED WORKER SERVICE', getWorkerService())
@@ -306,6 +316,7 @@ const useAppState = () => {
 
     return {
 		showGuide,
+		showAppStore,
         dAPPInitialize,
         isInitialized,
         isInitializing,
@@ -351,7 +362,8 @@ const useAppState = () => {
         setClientDevices,
         updateClientDevice,
         deleteClientDevice,
-		setShowGuide
+		setShowGuide,
+		setShowAppStore
     }
 }
 

@@ -152,6 +152,12 @@ const Drawer = (props: DrawerProps) => {
 							setShowGuide(true)
 						}}
 					/>
+					<Item text={<FormattedMessage id = 'globalBar.application.AppStore'/>} icon={<LogoIcon/>}
+						onClick={() => {
+							
+							setShowGuide(false)
+						}}
+					/>
                     <Item text={<FormattedMessage id = 'globalBar.application.SeguroMessage'/>} icon={<SeguroLogoIcon/>}
 						onClick={() => {
 							setShowGuide(false)

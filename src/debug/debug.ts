@@ -22,10 +22,6 @@ export const enableDebugCommands = () => {
                 return store.getState()
             },
 
-            getSeguroObject() {
-                return getWorkerService().SeguroNetwork
-            },
-
             setTheme(theme: Theme) {
                 store.dispatch(setTheme(theme))
             },

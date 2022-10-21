@@ -13,7 +13,8 @@ export const OnboardingPageProvider = ({children, existingPages}: PageProviderPr
         existingPages: existingPages,
         onboardingPageData: {
             passcode: '',
-            confirmPasscode: ''
+            confirmPasscode: '',
+			locale: ''
         }
     })
     const value = {state, dispatch}

@@ -6,7 +6,7 @@ import lottie_platform from '../../../../assets/lottie/platform.json'
 import lottie_tracking from '../../../../assets/lottie/tracking.json'
 import lottie_decentralized from '../../../../assets/lottie/decentralized.json'
 import lottie_privacy from '../../../../assets/lottie/privacy.json'
-import {FormattedMessage} from "react-intl";
+import {FormattedMessage} from "react-intl"
 import LottieAnimation from "../../../UI/Lottie/Lottie"
 import ProgressSteps from "../../../UI/Progress/ProgressSteps/ProgressSteps"
 import useAppState from "../../../../store/appState/useAppState"
@@ -19,12 +19,11 @@ import {
     createPasscode,
     hasPasscode,
     savePreferences,
-    verifyInvitation
 } from "../../../../services/workerService/workerService"
 
 const StyledContainer = styled.div`
   width: 100%;
-  height: 100%;
+  height: 70%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -164,13 +163,14 @@ const SettingUpPage = () => {
             case 1:
                 if (!hasPasscode()) {
                     createPasscode({
-                        passcode: state.onboardingPageData.passcode, progress: () => {
+                        passcode: state.onboardingPageData.passcode, locale: state.onboardingPageData.locale, progress: () => {
                         }
                     }).then((status) => {
                         if (status === "SUCCESS") {
-                            savePreferences({theme: theme, language: locale}).then((status) => {
+                            savePreferences({theme: theme, language: locale}).then(status => {
                                 //setSetupState(prevState => prevState + 1)
 								dispatch(onboardingActions.setVerificationStatus('SUCCESS'))
+								
                             })
                         }
                     })
@@ -178,14 +178,14 @@ const SettingUpPage = () => {
                     setSetupState(prevState => prevState + 1)
                 }
                 break
-            case 2:
-                if (state.onboardingPageData.verificationCode) {
-                    verifyInvitation(state.onboardingPageData.verificationCode).then((status) => {
-                        dispatch(onboardingActions.setVerificationStatus(status))
-                    })
-                }
-                // Verification
-                break;
+            // case 2:
+            //     if (state.onboardingPageData.verificationCode) {
+            //         verifyInvitation(state.onboardingPageData.verificationCode).then((status) => {
+            //             dispatch(onboardingActions.setVerificationStatus(status))
+            //         })
+            //     }
+            //     // Verification
+            //     break;
             default:
                 break;
         }

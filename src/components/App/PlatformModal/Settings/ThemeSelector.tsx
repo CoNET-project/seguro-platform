@@ -3,7 +3,6 @@ import useAppState from "../../../../store/appState/useAppState"
 import {Theme} from "../../../../theme/types"
 import {FormattedMessage} from "react-intl"
 import {savePreferences} from "../../../../services/workerService/workerService"
-import React from 'react'
 
 const StyledThemeSelector = styled.form`
   display: flex;
@@ -19,6 +18,10 @@ const StyledThemeItem = styled.div`
 const StyledThemeLabel = styled.label`
   margin-left: 5px;
 `
+const input = styled.input`
+  	lables: ''
+`
+
 
 const ThemeSelector = () => {
     const appState = useAppState()
@@ -34,18 +37,27 @@ const ThemeSelector = () => {
     return (
         <StyledThemeSelector>
             <StyledThemeItem>
-                <input type="radio" name='theme' onChange={() => changeTheme('Light')}
-                       checked={appState.theme === 'Light'}/>
+                <input 	type="radio" 
+						name='theme'
+						aria-label="theme"
+						onChange={() => changeTheme('Light')}
+                       	checked={appState.theme === 'Light'}/>
                 <StyledThemeLabel><FormattedMessage id='platform.settings.theme.light'/></StyledThemeLabel>
             </StyledThemeItem>
             <StyledThemeItem>
-                <input type="radio" name='theme' onChange={() => changeTheme('Dark')}
-                       checked={appState.theme === 'Dark'}/>
+                <input 	type="radio"
+						name='theme'
+						aria-label="theme"
+						onChange={() => changeTheme('Dark')}
+                       	checked={appState.theme === 'Dark'}/>
                 <StyledThemeLabel><FormattedMessage id='platform.settings.theme.dark'/></StyledThemeLabel>
             </StyledThemeItem>
             <StyledThemeItem>
-                <input type="radio" name='theme' onChange={() => changeTheme('Auto')}
-                       checked={appState.theme === 'Auto'}/>
+                <input 	type="radio"
+						name='theme'
+						aria-label="theme"
+						onChange={() => changeTheme('Auto')}
+                       	checked={appState.theme === 'Auto'}/>
                 <StyledThemeLabel><FormattedMessage id='platform.settings.theme.auto'/></StyledThemeLabel>
             </StyledThemeItem>
         </StyledThemeSelector>
