@@ -1,5 +1,21 @@
 # `seguro-platform` CHANGELOG
 
+## `0.56.0`
+
+### Additions
+
+- Support CoNET testnet
+
+### Changes
+
+- None.
+
+### Fixes
+
+- None.
+
+---
+
 ## `0.55.6`
 
 ### Additions
