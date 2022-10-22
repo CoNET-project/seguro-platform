@@ -1205,10 +1205,10 @@
     uuid "^9.0.0"
     yargs "^17.6.0"
 
-"@conet.project/seguro-worker-lib@^0.10.10":
-  version "0.10.10"
-  resolved "https://registry.yarnpkg.com/@conet.project/seguro-worker-lib/-/seguro-worker-lib-0.10.10.tgz#6447f2711e9979f84b32708afa6e4104d532e84c"
-  integrity sha512-jDfaOqCIgnm0nKX4xJNRtq++3mDmJUYEWcYbPWmxpjMRijQqAJL8Il0oj2DlrqmF01h4DBXI7EacINz60rzvag==
+"@conet.project/seguro-worker-lib@^0.10.11":
+  version "0.10.11"
+  resolved "https://registry.yarnpkg.com/@conet.project/seguro-worker-lib/-/seguro-worker-lib-0.10.11.tgz#af73455857d0e99c9862887461ba3a851b6397d2"
+  integrity sha512-n8+odrbcKFA/8KQLBC2apWWiX4EaeBPYVJja9NORUUDOpp7vJlwPe7g6KRkN9LO1qglmOYn+LGCDHtVNlcLVvw==
   dependencies:
     async "^3.2.4"
     uuid "^9.0.0"
@@ -6316,10 +6316,10 @@ date-fns@^2.29.1:
   resolved "https://registry.npmjs.org/date-fns/-/date-fns-2.29.3.tgz"
   integrity sha512-dDCnyH2WnnKusqvZZ6+jA1O51Ibt8ZMRNkDZdyAyK4YfbDwa/cEmuztzG5pk6hqlp9aSBPYcjOlktquahGwGeA==
 
-dayjs@^1.11.5:
-  version "1.11.5"
-  resolved "https://registry.npmjs.org/dayjs/-/dayjs-1.11.5.tgz"
-  integrity sha512-CAdX5Q3YW3Gclyo5Vpqkgpj8fSdLQcRuzfX6mC6Phy0nfJ0eGYOeS7m4mt2plDWLAtA4TqTakvbboHvUxfe4iA==
+dayjs@^1.11.6:
+  version "1.11.6"
+  resolved "https://registry.yarnpkg.com/dayjs/-/dayjs-1.11.6.tgz#2e79a226314ec3ec904e3ee1dd5a4f5e5b1c7afb"
+  integrity sha512-zZbY5giJAinCG+7AGaw0wIhNZ6J8AhWuSXKvuc1KAyMiRsvGQWqh4L+MomvhdAYjN+lqvVCMq1I41e3YHvXkyQ==
 
 debug@2.6.9, debug@^2.2.0, debug@^2.3.3, debug@^2.6.0, debug@^2.6.9:
   version "2.6.9"
@@ -7735,10 +7735,10 @@ fragment-cache@^0.2.1:
   dependencies:
     map-cache "^0.2.2"
 
-framer-motion@^7.5.3:
-  version "7.5.3"
-  resolved "https://registry.npmjs.org/framer-motion/-/framer-motion-7.5.3.tgz"
-  integrity sha512-VvANga9Z7bYtKMAsM/je81FwJDHfThOYywN04xVQ4OGdMVY09Bowx/q7nZd6XtytLuv6byc6GT1mYwag+SQ/nw==
+framer-motion@^7.6.1:
+  version "7.6.1"
+  resolved "https://registry.yarnpkg.com/framer-motion/-/framer-motion-7.6.1.tgz#45356eb5519275bce42121a3b3849a6243d45a22"
+  integrity sha512-8US03IWJKrLoSb81l5OahNzB9Sv7Jo1RhIwUoTG/25BRUdO9lOqq/klsdZqNmNG0ua9IEJJQ8hkYpETJ4N6VSw==
   dependencies:
     "@motionone/dom" "10.13.1"
     framesync "6.1.2"
@@ -12531,10 +12531,10 @@ react-loader-spinner@^5.3.4:
     styled-components "^5.3.5"
     styled-tools "^1.7.2"
 
-react-lottie-player@^1.4.3:
-  version "1.4.3"
-  resolved "https://registry.npmjs.org/react-lottie-player/-/react-lottie-player-1.4.3.tgz"
-  integrity sha512-RUhbwNgUDY482AbYyrsb2q+UyiCNFfUJbmbFEmrpCrtBV0qFYx6v9fC9ur5q8xGyZLWIYTsmD48oe18xZhXATA==
+react-lottie-player@^1.5.0:
+  version "1.5.0"
+  resolved "https://registry.yarnpkg.com/react-lottie-player/-/react-lottie-player-1.5.0.tgz#5be7a4ddb009eb253348da5038cdcab933ce2a05"
+  integrity sha512-lrAC6dfOoFh68PNgeOnYpYeZ5ZrckixzkFxSNjvizxWK7K2rkh5X5hAlXaF21bqzFrFsSbdWVKOxwNiIuQG3cQ==
   dependencies:
     fast-deep-equal "^3.1.3"
     lottie-web "^5.7.6"

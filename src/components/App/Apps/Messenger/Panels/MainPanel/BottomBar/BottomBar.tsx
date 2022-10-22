@@ -1,5 +1,6 @@
 import styled from "styled-components"
-import {SendIcon} from "../../../../../../UI/Icons/Icons";
+import {SendIcon} from "../../../../../../UI/Icons/Icons"
+import React from "react"
 
 const StyledBottomBar = styled.div`
   height: 50px;

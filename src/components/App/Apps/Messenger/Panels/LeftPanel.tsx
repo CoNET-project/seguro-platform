@@ -1,21 +1,22 @@
-import TabNavigator, {TabNavigatorPages} from "../../../../UI/TabNavigator/TabNavigator";
-import {ChatBubble, Contacts, Gear} from "../../../../UI/Icons/Icons";
-import {FormattedMessage} from "react-intl";
-import VerticalTabNavigator from "../../../../UI/VerticalTabNavigator/VerticalTabNavigator";
+import TabNavigator, {TabNavigatorPages} from "../../../../UI/TabNavigator/TabNavigator"
+import {ChatBubble, Contacts, Gear} from "../../../../UI/Icons/Icons"
+import {FormattedMessage} from "react-intl"
+import VerticalTabNavigator from "../../../../UI/VerticalTabNavigator/VerticalTabNavigator"
 import ContactsScreen from './LeftPanel/Contacts/Contacts'
 import ChatsScreen from './LeftPanel/Chats/Chats'
 import SettingsScreen from './LeftPanel/Settings/Settings'
 import styled from "styled-components";
-import {screenWidth} from "../../../../UI/screenSizes";
-import {PageNavigatorProvider} from "../../../../Providers/PageNavigatorProvider";
-import AddContact from "./LeftPanel/Contacts/AddContact";
-import AddChat from "./LeftPanel/Chats/AddChat";
-import DisappearingMessages from "./LeftPanel/Settings/Chats/DisappearingMessages";
-import FontSize from "./LeftPanel/Settings/Chats/FontSize";
-import Wallpaper from "./LeftPanel/Settings/Chats/Wallpaper";
-import Sounds from "./LeftPanel/Settings/Notifications/Sounds";
-import ChatHistory from "./LeftPanel/Settings/PrivacySecurity/ChatHistory";
-import Status from "./LeftPanel/Settings/PrivacySecurity/Status";
+import {screenWidth} from "../../../../UI/screenSizes"
+import {PageNavigatorProvider} from "../../../../Providers/PageNavigatorProvider"
+import AddContact from "./LeftPanel/Contacts/AddContact"
+import AddChat from "./LeftPanel/Chats/AddChat"
+import DisappearingMessages from "./LeftPanel/Settings/Chats/DisappearingMessages"
+import FontSize from "./LeftPanel/Settings/Chats/FontSize"
+import Wallpaper from "./LeftPanel/Settings/Chats/Wallpaper"
+import Sounds from "./LeftPanel/Settings/Notifications/Sounds"
+import ChatHistory from "./LeftPanel/Settings/PrivacySecurity/ChatHistory"
+import Status from "./LeftPanel/Settings/PrivacySecurity/Status"
+import React from "react"
 
 const CustomVerticalTabNavigator = styled(VerticalTabNavigator)`
   display: none;
