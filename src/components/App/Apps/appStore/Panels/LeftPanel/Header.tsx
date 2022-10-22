@@ -3,7 +3,6 @@ import HeaderBar from "../../../../../UI/Common/HeaderBar/HeaderBar"
 import {usePageNavigator} from "../../../../../../contexts/pageNavigator/PageNavigatorContext"
 import {AddContact, ChevronLeft, CreateChat} from "../../../../../UI/Icons/Icons"
 import React, {ReactNode, useEffect, useState} from "react"
-import {FormattedMessage} from "react-intl"
 import {pageNavigator} from "../../../../../../contexts/pageNavigator/pageNavigatorActions"
 
 type HeaderProps = {
@@ -53,11 +52,14 @@ const Header = ({onClick}: HeaderProps) => {
     return (
         <StyledHeaderBar
             headerContent={{
-                title: <FormattedMessage id='tabnavigator.appStore.title'/>
+                title: getPageTitle()
             }}
             headerComponents={{
                 headerRight: [],
-                headerLeft: null
+                headerLeft: rootPageId &&
+                    <StyledHeaderButton onClick={() => dispatch(pageNavigator.navigateToPage(rootPageId))}>
+                        <ChevronLeft/>
+                    </StyledHeaderButton>
             }}
         />
     )

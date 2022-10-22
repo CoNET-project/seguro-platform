@@ -32,29 +32,16 @@ const StyledTokenBalanceLeft = styled.span`
 	padding-right: 0.5rem;
 `
 const StyledTokenBalanceRight = styled.span`
-
 `
-type AssetViewProps = {
-    balance: number
-	icon?: ReactNode
-    onChange?: (val: string) => void
-    disabled?: boolean,
-    placeholder?: string,
-    defaultValue?: string,
-    labelText?: ReactNode | string,
-    hasError?: boolean,
-    required?: boolean,
-    className?: string
+interface TabPanelProps {
+	labelText?: React.ReactNode
+	balance?: number
+	icon?: React.ReactNode
 }
 
 
-
-const AssetView = React.forwardRef((
-	{
-		balance,
-		icon,
-		labelText
-	}: AssetViewProps, ref: React.ForwardedRef<HTMLParagraphElement>) => {
+const AssetView =( props: TabPanelProps ) => {
+	const {icon, balance, labelText} = props
 	return (
 		<TableArea_body_wrapper>
 			<TableArea_content_body id="CoNET Token Logo Area">
@@ -77,6 +64,6 @@ const AssetView = React.forwardRef((
 			</TableArea_content_body>
 	</TableArea_body_wrapper>
 	)
-})
+}
 
 export default AssetView

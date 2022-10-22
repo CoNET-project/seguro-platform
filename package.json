@@ -23,7 +23,7 @@
   },
   "dependencies": {
     "@conet.project/seguro-gateway": "^0.15.6",
-    "@conet.project/seguro-worker-lib": "^0.10.10",
+    "@conet.project/seguro-worker-lib": "^0.10.11",
     "@emotion/react": "^11.10.4",
     "@emotion/styled": "^11.10.4",
     "@mui/icons-material": "^5.10.9",

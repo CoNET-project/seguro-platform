@@ -1,5 +1,6 @@
 import styled, {useTheme} from 'styled-components'
 import {VerticalOptions_ArrowUpRightCircleFill, VerticalOptions_ArrowDownloadCircleFill, VerticalOptions} from "../../../Icons/Icons"
+import React from "react"
 
 const IconArea = styled.div`
 	cursor: pointer;

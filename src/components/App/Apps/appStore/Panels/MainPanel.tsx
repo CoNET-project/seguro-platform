@@ -6,6 +6,7 @@ import {useMessengerContext} from "../../../../../contexts/messenger/MessengerCo
 import {trimToLength} from "../../../../../utilities/utilities";
 import ChatMessages from "./MainPanel/ChatMessages";
 import BottomBar from "./MainPanel/BottomBar/BottomBar";
+import React from "react"
 
 const StyledMainPanel = styled.div`
   height: 100%;
