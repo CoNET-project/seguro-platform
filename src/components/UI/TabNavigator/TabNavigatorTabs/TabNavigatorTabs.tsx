@@ -8,14 +8,15 @@ export type TabNavigatorTabsProps = {
     screens: TabNavigatorPages,
     activeStyles?: TabActiveStyles
 }
-
 const StyledTabNavigatorTabs = styled.div`
-  display: flex;
-  align-items: center;
-  border-top: 1px solid ${props => props.theme.ui.colors.border.light};
+	display: flex;
+	align-items: center;
+	border-top: 1px solid ${props => props.theme.ui.colors.border.light};
 `
 
 const TabNavigatorTabs = ({screens, activeStyles}: TabNavigatorTabsProps) => {
+
+
     return (
         <StyledTabNavigatorTabs>
             <LayoutGroup>

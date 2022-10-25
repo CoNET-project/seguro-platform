@@ -1,9 +1,10 @@
 import { useEffect, useState } from 'react'
 
-const queryPrefersLight = '(prefers-color-scheme: light)'
-const queryPrefersDark = '(prefers-color-scheme: dark)'
 
 const usePreferredTheme = () => {
+
+	const queryPrefersLight = '(prefers-color-scheme: light)'
+	const queryPrefersDark = '(prefers-color-scheme: dark)'
     const [theme, setTheme] = useState<'Light' | 'Dark'>('Light')
 
     useEffect(() => {

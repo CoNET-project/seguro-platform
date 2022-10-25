@@ -18,19 +18,19 @@ import ChatHistory from "./LeftPanel/Settings/PrivacySecurity/ChatHistory"
 import Status from "./LeftPanel/Settings/PrivacySecurity/Status"
 import React from "react"
 
+
 const CustomVerticalTabNavigator = styled(VerticalTabNavigator)`
-  display: none;
-  @media (${screenWidth.mediumWidth}) {
-    display: flex;
-  }
+	display: none;
+	@media (${screenWidth.mediumWidth}) {
+		display: flex;
+	}
 `
 
 const CustomTabNavigator = styled(TabNavigator)`
-  @media (${screenWidth.mediumWidth}) {
-    display: none;
-  }
+	@media (${screenWidth.mediumWidth}) {
+		display: none;
+	}
 `
-
 const LeftPanel = () => {
     const navigatorScreens: TabNavigatorPages = {
         'Chats': {
@@ -81,7 +81,7 @@ const LeftPanel = () => {
             isTopLevel: false
         }
     }
-
+  
     return (
         <PageNavigatorProvider existingPages={Object.keys(navigatorScreens)}>
             <CustomVerticalTabNavigator screens={navigatorScreens}/>

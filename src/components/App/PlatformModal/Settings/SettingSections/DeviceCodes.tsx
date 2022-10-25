@@ -9,32 +9,33 @@ type DeviceCodesProp = {
 }
 
 const StyledDeviceCodes = styled.div`
-  width: 100%;
+	width: 100%;
 `
 
 const StyledItemRow = styled.div`
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-top: 15px;
+	width: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	margin-top: 15px;
 `
 
 const StyledDeviceCode = styled.p`
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  overflow: hidden;
-  width: 75%;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	overflow: hidden;
+	width: 75%;
 `
 
 const StyledCopyButton = styled.button`
-  background-color: transparent;
-  border: none;
-  padding: 4px;
-  border-radius: 5px;
+	background-color: transparent;
+	border: none;
+	padding: 4px;
+	border-radius: 5px;
 `
 
 const DeviceCodes = ({deviceCodes}: DeviceCodesProp) => {
+	
 
     const copyDeviceCode = (code: string) => {
         toast({

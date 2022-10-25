@@ -12,39 +12,41 @@ import {FormattedMessage} from "react-intl"
 import {toast} from "../../../../UI/Toaster/Toaster"
 import {Password} from "../../../../UI/Icons/Icons"
 
+type PasscodeProps = {
+    custom: number
+}
+
 const StyledPasscode = styled.div`
-  min-height: 30rem;
-  height: 100%;
-  padding: 20px 0;
-  background-color: ${props => props.theme.ui.colors.background.elevationOne};
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+	min-height: 30rem;
+	height: 100%;
+	padding: 20px 0;
+	background-color: ${props => props.theme.ui.colors.background.elevationOne};
+	display: flex;
+	flex-direction: column;
+	align-items: center;
 
 
-  @media (${screenWidth.mediumWidth}) {
-    margin: 0;
-    padding: 40px 20px;
-  }
+	@media (${screenWidth.mediumWidth}) {
+		margin: 0;
+		padding: 40px 20px;
+	}
 `
 
 const StyledPasscodeContent = styled.div``
 
 const StyledPasscodeInputWrapper = styled.div`
-  padding: 50px 0 30px 0;
+	padding: 50px 0 30px 0;
 `
 
 const StyledPasscodeTitle = styled.h2`
-  font-weight: 700;
-  text-align: center;
-  color: ${props => props.theme.ui.colors.text.primary}
+	font-weight: 700;
+	text-align: center;
+	color: ${props => props.theme.ui.colors.text.primary}
 `
 
-type PasscodeProps = {
-    custom: number
-}
 
 const Passcode = ({custom}: PasscodeProps) => {
+	
     const {dispatch} = usePageNavigator()
     const [newPasscode, setNewPasscode] = useState<[string, string]>(['', ''])
     const [currentStep, setCurrentStep] = useState<'passcode' | 'confirm'>('passcode')

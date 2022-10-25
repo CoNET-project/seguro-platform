@@ -34,18 +34,20 @@ const StyledImageWrapper = styled.div<StyledImageWrapperProps>`
 `
 
 const StyledImage = styled.img`
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
 `
+const Image = React.forwardRef
+	(({
+		src,
+		square,
+		size,
+		onClick,
+		children
+	}: ImageProps, ref: ForwardedRef<HTMLDivElement>) => {
 
-const Image = React.forwardRef(({
-                                    src,
-                                    square,
-                                    size,
-                                    onClick,
-                                    children
-                                }: ImageProps, ref: ForwardedRef<HTMLDivElement>) => {
+	
     return (
         <StyledImageWrapper square={square} size={getPixelSize(size)} ref={ref} onClick={onClick || (() => {
         })}>

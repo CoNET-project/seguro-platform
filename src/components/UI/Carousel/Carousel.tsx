@@ -12,39 +12,40 @@ type CarouselProps = {
 }
 
 const StyledCarousel = styled.div`
-  flex: 1;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+	flex: 1;
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
 `
 
 const StyledCarouselItem = styled(motion.div)`
-  flex: 0.8;
-  width: 100%;
-  min-height: 100px;
-  height: 100px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding: 50px;
+	flex: 0.8;
+	width: 100%;
+	min-height: 100px;
+	height: 100px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	padding: 50px;
 `
 
 const StyledCarouselExtraItem = styled(motion.div)`
-  content: '';
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding: 0 10px;
+	content: '';
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	padding: 0 10px;
 `
-
 const Carousel = ({hasTouch, carouselVisualItems, carouselExtraItems}: CarouselProps) => {
 
     const [carouselIndex, setCarouselIndex] = useState(0)
     const [carouselDirection, setCarouselDirection] = useState<-1 | 1>(1)
+
+	
 
     useEffect(() => {
         if (!hasTouch) {
@@ -110,10 +111,10 @@ const Carousel = ({hasTouch, carouselVisualItems, carouselExtraItems}: CarouselP
             return {}
         }
     }
-    // @ts-ignore
+
     return (
         <StyledCarousel>
-            <AnimatePresence custom={carouselDirection} initial={false} exitBeforeEnter>
+            <AnimatePresence custom={carouselDirection} initial={false} >
                 <StyledCarouselItem
                     key={carouselIndex}
                     custom={carouselDirection}

@@ -10,24 +10,25 @@ type HeaderProps = {
     onClick?: () => void
 }
 
-const StyledHeaderBar = styled(HeaderBar)`
-  font-weight: bolder;
-
-  * > p {
-    font-size: calc(${props => props.theme.ui.fontSizes.narrow.sm} + 2px)
-  }
-`
-
-const StyledHeaderButton = styled.button`
-  padding: 5px;
-  border: none;
-  background-color: transparent;
-  color: ${props => props.theme.ui.colors.text.secondary};
-`
 
 type Icons = {
     [id: string]: ReactNode
 }
+
+const StyledHeaderBar = styled(HeaderBar)`
+	font-weight: bolder;
+
+	* > p {
+		font-size: calc(${props => props.theme.ui.fontSizes.narrow.sm} + 2px)
+	}
+`
+
+const StyledHeaderButton = styled.button`
+	padding: 5px;
+	border: none;
+	background-color: transparent;
+	color: ${props => props.theme.ui.colors.text.secondary};
+`
 
 const Header = ({onClick}: HeaderProps) => {
     const {state, dispatch} = usePageNavigator()

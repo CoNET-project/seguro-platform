@@ -13,14 +13,15 @@ import React from 'react'
 type LanguageProps = {
     custom: number
 }
-
 const StyledLanguage = styled.div`
-  min-height: 30rem;
-  height: 100%;
+	min-height: 30rem;
+	height: 100%;
 `
 
+
 const Language = ({custom}: LanguageProps) => {
-    const {setLocale, locale} = useAppState();
+
+    const {setLocale, locale} = useAppState()
     const {dispatch} = usePageNavigator()
     const languages: Array<Languages> = [
         {

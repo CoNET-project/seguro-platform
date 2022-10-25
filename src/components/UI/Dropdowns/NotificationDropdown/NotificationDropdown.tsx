@@ -21,26 +21,26 @@ export type Notification = {
 }
 
 const StyledNotificationDropdown = styled.div`
-  display: flex;
-  flex-direction: column;
-  min-width: 20rem;
-  max-width: 40rem;
-  max-height: 30rem;
-  overflow-y: scroll;
-  overflow-x: hidden;
-  padding: 15px 15px 30px 15px;
-  border-radius: 10px;
-  background-color: ${props => props.theme.ui.colors.background.elevationOne};
+	display: flex;
+	flex-direction: column;
+	min-width: 20rem;
+	max-width: 40rem;
+	max-height: 30rem;
+	overflow-y: scroll;
+	overflow-x: hidden;
+	padding: 15px 15px 30px 15px;
+	border-radius: 10px;
+	background-color: ${props => props.theme.ui.colors.background.elevationOne};
 `
 
 const StyledNotificationTitle = styled.p`
-  margin-bottom: 10px;
-  font-size: ${props => props.theme.ui.fontSizes.narrow.sm};
-  font-weight: 700;
+	margin-bottom: 10px;
+	font-size: ${props => props.theme.ui.fontSizes.narrow.sm};
+	font-weight: 700;
 `
 
 const NotificationDropdown = () => {
-
+	
     const exampleNotifications: Notifications = {
         '1': {
             id: '1',

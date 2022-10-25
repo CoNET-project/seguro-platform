@@ -9,25 +9,26 @@ import {useMessengerContext} from "../../../../../../../contexts/messenger/Messe
 import {usePageNavigator} from "../../../../../../../contexts/pageNavigator/PageNavigatorContext"
 import {pageNavigator} from "../../../../../../../contexts/pageNavigator/pageNavigatorActions"
 
+
 const StyledAddContact = styled.div`
-  width: 100%;
-  height: 100%;
-  content: ''
+	width: 100%;
+	height: 100%;
+	content: ''
 `
 
 const StyledAddContactContent = styled.div`
-  width: 100%;
-  height: 100%;
-  content: '';
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  padding: 20px;
+	width: 100%;
+	height: 100%;
+	content: '';
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	padding: 20px;
 `
 
 const StyledAddContactDesc = styled.p`
-  font-size: calc(${props => props.theme.ui.fontSizes.narrow.sm});
-  margin-bottom: 15px;
+	font-size: calc(${props => props.theme.ui.fontSizes.narrow.sm});
+	margin-bottom: 15px;
 `
 
 const AddContact = () => {

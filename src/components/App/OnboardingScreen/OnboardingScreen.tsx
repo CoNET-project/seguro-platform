@@ -16,85 +16,86 @@ import SettingUpPage from "./SettingUpPage/SettingUpPage"
 
 
 const StyledOnboardingContainer = styled.div`
-  height: 100%;
-  width: 100%;
-  display: flex;
-  background-color: ${props => props.theme.ui.colors.background.foundation};
-  color: ${props => props.theme.ui.colors.text.primary};
-  flex-direction: column;
-  align-items: center;
-  padding: 20px 0;
+	height: 100%;
+	width: 100%;
+	display: flex;
+	background-color: ${props => props.theme.ui.colors.background.foundation};
+	color: ${props => props.theme.ui.colors.text.primary};
+	flex-direction: column;
+	align-items: center;
+	padding: 20px 0;
 
-  @media (${screenWidth.mediumWidth}) {
-    padding: 30px 0;
-  }
+	@media (${screenWidth.mediumWidth}) {
+		padding: 30px 0;
+	}
 `
 
 const StyledLogoContainer = styled.div`
-  display: none;
-  align-items: center;
-  font-size: 30px;
+	display: none;
+	align-items: center;
+	font-size: 30px;
 
-  @media (${screenWidth.narrowWidth}) {
-    display: flex;
-  }
+	@media (${screenWidth.narrowWidth}) {
+		display: flex;
+	}
 `
 
 const StyledOnboardingContent = styled.div`
-  height: 70%;
-  width: 100%;
-  content: '';
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+	height: 70%;
+	width: 100%;
+	content: '';
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
 
-  @media (${screenWidth.mediumWidth}) {
-    padding: 20px 0;
-    width: initial;
-    min-width: 30rem;
-    max-width: 60rem;
-  }
+	@media (${screenWidth.mediumWidth}) {
+		padding: 20px 0;
+		width: initial;
+		min-width: 30rem;
+		max-width: 60rem;
+	}
 `
 const StyledOnboardingNavigation = styled.div`
-  width: 100%;
-  padding: 20px 30px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+	width: 100%;
+	padding: 20px 30px;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
 
-  @media (${screenWidth.narrowWidth}) {
-    width: 30rem;
-  }
+	@media (${screenWidth.narrowWidth}) {
+		width: 30rem;
+	}
 
-  @media (${screenWidth.mediumWidth}) {
-    padding: 20px 10px;
-    width: initial;
-    min-width: 40rem;
-    max-width: 60rem;
-  }
+	@media (${screenWidth.mediumWidth}) {
+		padding: 20px 10px;
+		width: initial;
+		min-width: 40rem;
+		max-width: 60rem;
+	}
 `
 
 const StyledNavigationButton = styled.button`
-  padding: 0 20px;
-  display: flex;
-  align-items: center;
-  font-size: ${props => props.theme.ui.fontSizes.narrow.sm};
-  background-color: transparent;
-  border: none;
-  color: ${props => props.theme.ui.colors.text.primary};
+	padding: 0 20px;
+	display: flex;
+	align-items: center;
+	font-size: ${props => props.theme.ui.fontSizes.narrow.sm};
+	background-color: transparent;
+	border: none;
+	color: ${props => props.theme.ui.colors.text.primary};
 `
 
 const StyledNavigationButtonText = styled.p`
-  margin: 0 10px;
+	margin: 0 10px;
 `
 
 const CustomProgressNumberSteps = styled(ProgressNumberSteps)`
-  margin-bottom: 20px;
+	margin-bottom: 20px;
 `
 
 
 const OnboardingScreen = () => {
+	
     const {locale, isTouchDevice, setLocale, setIsUnlocked, setHasContainer, hasContainer} = useAppState()
 
     const pages = ['language', 'setPasscode', 'confirmPasscode', 'verification']
@@ -165,7 +166,7 @@ const OnboardingScreen = () => {
                 ) : (
                     <>
                         <StyledOnboardingContent>
-                            <AnimatePresence custom={currentPage[1]} exitBeforeEnter>
+                            <AnimatePresence custom={currentPage[1]}>
                                 {currentPage[0] === 'language' &&
                                     <SelectLanguagePage
                                         key={currentPage[0]}

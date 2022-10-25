@@ -6,22 +6,22 @@ import {usePageNavigator} from "../../../../../../../contexts/pageNavigator/Page
 import {pageNavigator} from "../../../../../../../contexts/pageNavigator/pageNavigatorActions"
 import React from 'react'
 
+
 const StyledSettings = styled.div`
-  height: 100%;
-  width: 100%;
-  content: '';
+	height: 100%;
+	width: 100%;
+	content: '';
 `
 
 const StyledSettingsContent = styled.div`
-  height: calc(100% - 50px);
-  width: 100%;
-  content: '';
+	height: calc(100% - 50px);
+	width: 100%;
+	content: '';
 `
 
 const CustomListItem = styled(ListItem)`
-  border-bottom: ${props => props.isSectionSeparator ? `1px solid ${props.theme.ui.colors.border.light}` : 'unset'}
+	border-bottom: ${props => props.isSectionSeparator ? `1px solid ${props.theme.ui.colors.border.light}` : 'unset'}
 `
-
 
 const Settings = () => {
     const {dispatch} = usePageNavigator()

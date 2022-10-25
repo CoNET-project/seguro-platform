@@ -138,7 +138,7 @@ const useAppState = () => {
         setIsPlatformLoading('createProfile')
 
         if (profile.isPrimary) {
-            setProfilesToNonPrimary().then((status) => {
+            return setProfilesToNonPrimary().then((status) => {
                 if (status === 'SUCCESS') {
                     return createProfile(profile).then((status) => {
                         if (status === 'SUCCESS') {
@@ -149,15 +149,15 @@ const useAppState = () => {
                     })
                 }
             })
-        } else {
-            return createProfile(profile).then((status) => {
-                if (status === 'SUCCESS') {
-                    setIsPlatformLoading(null)
-                    return dispatch(createClientProfileActionCreator(profile))
-                }
-                return
-            })
         }
+		return createProfile(profile).then((status) => {
+			if (status === 'SUCCESS') {
+				setIsPlatformLoading(null)
+				return dispatch(createClientProfileActionCreator(profile))
+			}
+			return
+		})
+        
 
         // createProfile(profile).then((status) => {
         //     if (status === 'SUCCESS') {

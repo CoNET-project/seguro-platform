@@ -27,14 +27,15 @@ type StyledLogoSVGProps = {
     logoColor?: string
 } & StyledLogoTextProps
 
-
 const StyledLogoSVG = styled.svg<StyledLogoSVGProps>`
-  width: ${props => props.size};
-  height: ${props => props.size};
-  fill: ${props => props.logoColor || props.theme.ui.colors.text.primary}
+	width: ${props => props.size};
+	height: ${props => props.size};
+	fill: ${props => props.logoColor || props.theme.ui.colors.text.primary}
 `
 
 export const USDCLogoIcon = ({color, size}: LogoImageProps) => {
+
+
 	return (
 		<StyledLogoContainer>
 			<StyledLogoSVG width="20" height="30" viewBox="0 0 2000 2000" xmlns="http://www.w3.org/2000/svg"

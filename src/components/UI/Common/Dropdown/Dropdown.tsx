@@ -7,44 +7,46 @@ export type DropdownProps = {
     closeAction?: () => void
 }
 const appearKeyframe = keyframes({
-    from: {
-        opacity: 0
-    },
-    to: {
-        opacity: 1
-    }
+	from: {
+		opacity: 0
+	},
+	to: {
+		opacity: 1
+	}
 })
 
 const StyledDropdown = styled.div`
-  position: absolute;
-  right: 30%;
-  padding: 10px;
-  border: 1px solid rgba(0, 0, 0, 0.15);
-  background-color: ${props => props.theme.ui.colors.background.foundation};
-  margin-top: -7.5px;
-  border-radius: 5px;
-  box-shadow: 0 5px 5px rgba(0, 0, 0, 0.5);
-  animation: ${appearKeyframe} 150ms ease-in-out;
-  color: ${props => props.theme.ui.colors.text.primary};
-  min-width: 10rem;
-  z-index: 1000;
+	position: absolute;
+	right: 30%;
+	padding: 10px;
+	border: 1px solid rgba(0, 0, 0, 0.15);
+	background-color: ${props => props.theme.ui.colors.background.foundation};
+	margin-top: -7.5px;
+	border-radius: 5px;
+	box-shadow: 0 5px 5px rgba(0, 0, 0, 0.5);
+	animation: ${appearKeyframe} 150ms ease-in-out;
+	color: ${props => props.theme.ui.colors.text.primary};
+	min-width: 10rem;
+	z-index: 1000;
 `
 
 const StyledDropdownHeader = styled.div`
-  width: 100%;
-  height: 30px;
-  display: flex;
-  margin-bottom: 10px;
+	width: 100%;
+	height: 30px;
+	display: flex;
+	margin-bottom: 10px;
 `
 
 const StyledDropdownButton = styled.button`
-  border: none;
-  background-color: transparent;
-  height: 100%;
-  width: 30px;
+	border: none;
+	background-color: transparent;
+	height: 100%;
+	width: 30px;
 `
 
 const Dropdown = ({content, closeAction}: DropdownProps) => {
+
+	
     return (
         <StyledDropdown>
             {

@@ -15,8 +15,6 @@ type LogoImageProps = {
     color?: string
 } & LogoTextProps
 
-
-
 export const CNTCashLogoIcon = ({color, size}: LogoImageProps) => {
 	return (
 		<ProfileImage src={ cotcashImg } size={size}/>

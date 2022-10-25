@@ -1,5 +1,6 @@
 import {Story} from '@storybook/react'
 import ProgressBar, {ProgressBarProps} from "./ProgressBar"
+import styled from 'styled-components'
 import React from 'react'
 
 export default {
@@ -7,13 +8,14 @@ export default {
     title: 'Progress/ProgressBar'
 }
 
+const StyledDiv = styled.div``
 const Template: Story<ProgressBarProps> = (
     args
 ) => {
     return (
-        <div style={{width: '500px'}}>
+        <StyledDiv style={{width: '500px'}}>
             <ProgressBar {...args}/>
-        </div>
+        </StyledDiv>
     )
 }
 

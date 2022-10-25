@@ -10,6 +10,7 @@ type AppsDropdownProps = {
     closeDropdown: (app:string) => void
 }
 
+
 const StyledAppsDropdown = styled.div`
 	display: grid;
 	grid-template-columns: repeat(3, 1fr);
@@ -34,18 +35,18 @@ const StyledAppItem = styled.div`
 	&:hover {
 		background-color: ${props => props.theme.ui.colors.secondary};
 		color: #fff;
-	};
+	}
 `
 
 const StyledAppIcon = styled.div`
 `
 
 const StyledAppName = styled.p`
-  text-align: center;
-  font-size: 13px;
+	text-align: center;
+	font-size: 13px;
 `
-
 const AppsDropdown = ({closeDropdown}: AppsDropdownProps) => {
+	
 	const theme = useTheme()
 
     return (

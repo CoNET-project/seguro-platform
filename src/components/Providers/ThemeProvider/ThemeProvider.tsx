@@ -9,14 +9,16 @@ import darkTheme from '../../../theme/dark'
 
 type ActiveTheme = 'Light' | 'Dark'
 
-const themeToConfig: Record<ActiveTheme, DefaultTheme> = {
-    'Light': lightTheme,
-    'Dark': darkTheme
-}
 
-const ThemeProvider = ({
-                           children
-                       }: ProviderProps) => {
+
+const ThemeProvider = 
+	({
+		children
+	}: ProviderProps) => {
+	const themeToConfig: Record<ActiveTheme, DefaultTheme> = {
+		'Light': lightTheme,
+		'Dark': darkTheme
+	}
     const [activeTheme, setActiveTheme] = useState<ActiveTheme>('Light')
 
     const appState = useAppState()

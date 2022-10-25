@@ -129,6 +129,7 @@ export type Messages = {
     'platform.contextMenu.edit': string
 
     'platform.profile.changePicture': string
+	'platform.profile.walletAddr': string,
 
     'globalBar.profile.dropdown.manageProfiles': string
     'globalBar.profile.dropdown.addProfile': string

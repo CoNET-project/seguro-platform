@@ -6,17 +6,18 @@ import {useMessengerContext} from "../../../../../../../contexts/messenger/Messe
 import React from 'react'
 
 const StyledAddChat = styled.div`
-  height: 100%;
-  width: 100%;
+	height: 100%;
+	width: 100%;
 `
 
 const StyledAddChatContent = styled.div`
-  height: calc(100% - 50px);
-  width: 100%;
-  overflow: auto;
+	height: calc(100% - 50px);
+	width: 100%;
+	overflow: auto;
 `
 
 const AddChat = () => {
+
     const {setSelectedContact, setCurrentFocusPanel} = useMessengerContext()
     const onClickContact = (contact: Contact) => {
         setCurrentFocusPanel("main")

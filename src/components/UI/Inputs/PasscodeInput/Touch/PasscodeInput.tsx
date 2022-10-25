@@ -7,30 +7,30 @@ export type PasscodeInputProps = {
 }
 
 const StyledPasscodeInput = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  min-width: 100%;
-  padding-bottom: 20px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
+	min-width: 100%;
+	padding-bottom: 20px;
 `
 
 const StyledPasscodeInputDot = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 `
 
 const StyledPasscodePlaceholderDots = styled(StyledPasscodeInputDot)`
-  color: ${props => props.theme.ui.input.placeholderColor} !important;
+	color: ${props => props.theme.ui.input.placeholderColor} !important;
 `
 
 const StyledPasscodeText = styled.p`
-  height: 100%;
-  letter-spacing: 2px;
-  display: flex;
-  align-items: center;
+	height: 100%;
+	letter-spacing: 2px;
+	display: flex;
+	align-items: center;
 `
 
 const PasscodeInput = ({value}: PasscodeInputProps) => {
@@ -51,6 +51,8 @@ const PasscodeInput = ({value}: PasscodeInputProps) => {
         })
         return elements
     }
+
+	
     return (
         <StyledPasscodeInput>
             <>

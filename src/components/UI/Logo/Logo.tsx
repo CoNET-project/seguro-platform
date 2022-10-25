@@ -22,38 +22,19 @@ type StyledLogoSVGProps = {
     logoColor?: string
 } & StyledLogoTextProps
 
-
 const StyledLogoContainer = styled.div`
-  &:not(:first-child) {
-    margin-left: 5px;
-  }
-`
-
-const StyledLogoPATH0 = styled.path<StyledLogoSVGProps>`
-`
-
-const StyledLogoRect = styled.rect<StyledLogoSVGProps>`
-
-`
-
-const StyledLogoPATH1 = styled.path<StyledLogoSVGProps>`
-	fill: none;
-	stroke-width:10;
-	stroke-miterlimit:10;
-`
-
-const StyledLogoSVG = styled.svg<StyledLogoSVGProps>`
-	width: ${props => props.size};
-	height: ${props => props.size};
-	fill: ${props => props.logoColor || props.theme.ui.colors.text.primary};
+	&:not(:first-child) {
+		margin-left: 5px;
+	}
 `
 
 const StyledLogoText = styled.h1<StyledLogoTextProps>`
-  font-family: 'Montserrat Bold', sans-serif;
-  font-size: ${props => props.size || 'initial'};
+	font-family: 'Montserrat Bold', sans-serif;
+	font-size: ${props => props.size || 'initial'};
 `
 
 export const LogoText = ({size}: LogoTextProps) => {
+	
     return (
         <StyledLogoContainer>
             <StyledLogoText size={getPixelSize(size)}>CoNET</StyledLogoText>
@@ -193,7 +174,28 @@ export const LogoImage = ({color}: LogoImageProps) => {
     )
 }
 
+
+const StyledLogoSVG = styled.svg<StyledLogoSVGProps>`
+	width: ${props => props.size};
+	height: ${props => props.size};
+	fill: ${props => props.logoColor || props.theme.ui.colors.text.primary};
+`
+
+const StyledLogoPATH0 = styled.path<StyledLogoSVGProps>`
+`
+
+const StyledLogoRect = styled.rect<StyledLogoSVGProps>`
+`
+
+
+const StyledLogoPATH1 = styled.path<StyledLogoSVGProps>`
+	fill: none;
+	stroke-width:10;
+	stroke-miterlimit:10;
+`
 export const LogoIcon = ({color, size}: LogoImageProps) => {
+	
+
     return (
         <StyledLogoContainer>
             <StyledLogoSVG width="548" height="548" viewBox="0 0 548 548" xmlns="http://www.w3.org/2000/svg"

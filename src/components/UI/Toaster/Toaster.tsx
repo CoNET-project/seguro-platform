@@ -23,7 +23,7 @@ export const Toaster = () => {
     );
 }
 
-export default Toaster;
+export default Toaster
 
 interface ToastProps {
     toastId: string,
@@ -31,36 +31,39 @@ interface ToastProps {
     event: ReactNode | string
 }
 
+const StyledToastText = styled.p``
+const StyledToastIcon = styled.div`
+	margin-right: 5px;
+`
+const StyledToastContent = styled.div`
+	display: flex;
+	align-items: center;
+	justify-content: space-around;
+`
+
 const StyledToast = styled.div``
 
-const StyledToastContent = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
-`
+const Toast = ({toastId, toastIcon, event}: ToastProps) => {
 
-const StyledToastIcon = styled.div`
-  margin-right: 5px;
-`
+	return (
+	
+		<StyledToast>
+			{/* Text */}
+			<StyledToastContent>
+				{
+					toastIcon && (
+						<StyledToastIcon>
+							{toastIcon}
+						</StyledToastIcon>
+					)
+				}
+				<StyledToastText>{event}</StyledToastText>
+			</StyledToastContent>
+		</StyledToast>
+	)
+}
 
-const StyledToastText = styled.p``
 
-
-const Toast = ({toastId, toastIcon, event}: ToastProps) => (
-    <StyledToast>
-        {/* Text */}
-        <StyledToastContent>
-            {
-                toastIcon && (
-                    <StyledToastIcon>
-                        {toastIcon}
-                    </StyledToastIcon>
-                )
-            }
-            <StyledToastText>{event}</StyledToastText>
-        </StyledToastContent>
-    </StyledToast>
-);
 
 interface ToastParams {
     event: ReactNode | string,
@@ -74,7 +77,7 @@ const durations = {
     md: 6000,
     lg: 12000,
     xl: 24000
-};
+}
 
 export const toast = ({toastIcon, event, duration = 'sm'}: ToastParams) => {
     toastRHT.dismiss();

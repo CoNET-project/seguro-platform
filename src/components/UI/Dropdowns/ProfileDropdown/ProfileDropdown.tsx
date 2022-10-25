@@ -33,9 +33,7 @@ type ProfileDropdownProps = {
     closeDropdown: (app:string) => void
 } & HTMLAttributes<HTMLDivElement>
 
-const StyleListText = styled.div`
-	width:100%;
-`
+
 
 interface TabPanelProps {
 	children?: React.ReactNode;
@@ -46,11 +44,12 @@ interface TabPanelProps {
 
 
 const ProfileDropdown = ({closeDropdown}: ProfileDropdownProps) => {
+
 	const {
         windowInnerSize: {width}
     } = useAppState()
 
-
+	const {setIsModalOpen, clientProfiles, setActiveProfile, activeProfile} = useAppState()
 	const workerService = getWorkerService()
 	const currentProfile = workerService.data.profiles.filter((n:any)=> n.isPrimary)[0]
 	const conetToken = currentProfile.tokens.conet
@@ -60,13 +59,16 @@ const ProfileDropdown = ({closeDropdown}: ProfileDropdownProps) => {
 	const [currectAsset, setcurrectAsset] = React.useState(0)
 	
 	const [valueTab, setValueTab] = React.useState(0)
+
+
 	const handleTabChange = (event: React.SyntheticEvent, newValue: number) => {
 		setValueTab(newValue)
 	}
+
 	const a11yProps = (index: number) => {
 		return {
-		  id: `simple-tab-${index}`,
-		  'aria-controls': `simple-tabpanel-${index}`,
+			id: `simple-tab-${index}`,
+			'aria-controls': `simple-tabpanel-${index}`,
 		}
 	}
 
@@ -133,7 +135,7 @@ const ProfileDropdown = ({closeDropdown}: ProfileDropdownProps) => {
 
 		<List sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}>
 			<ListItem>
-				<CurrentProfileItem />
+				<CurrentProfileItem closeDropdown={closeDropdown}/>
 			</ListItem>
 
 			<Divider/>
@@ -142,7 +144,7 @@ const ProfileDropdown = ({closeDropdown}: ProfileDropdownProps) => {
 				<AssetView balance={assetList[currectAsset].balance} icon={assetList[currectAsset].icon} labelText = {assetList[currectAsset].primary} />
 			</ListItem>
 			{
-				valueTab === 0 &&
+				
 				<ListItem>
 					<BottomNavigation
 						showLabels={true}

@@ -8,12 +8,12 @@ import ContactList from "./ContactList/ContactList"
 import React from 'react'
 
 const StyledContacts = styled.div`
-  height: 100%;
-  width: 100%;
+	height: 100%;
+	width: 100%;
 `
 
 const StyledContactsContent = styled.div`
-  height: calc(100% - 50px);
+	height: calc(100% - 50px);
 `
 
 const Contacts = () => {
@@ -25,6 +25,8 @@ const Contacts = () => {
         setCurrentFocusPanel('main')
         setSelectedContact(contact)
     }
+
+
 
     return (
         <StyledContacts>

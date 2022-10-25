@@ -13,20 +13,21 @@ type StyledLeftPanelProps = {
 }
 
 const StyledLeftPanel = styled(StyledPanel)<StyledLeftPanelProps>`
-  width: ${props => props.visible ? '100%' : 0};
-  border-right: 1px solid ${props => props.theme.ui.colors.border.light};
-  opacity: ${props => props.visible ? 1 : 0};
-  @media (${screenWidth.narrowWidth}) {
-    max-width: 350px;
-    opacity: 1;
-  }
-  @media (${screenWidth.mediumWidth}) {
-    max-width: 350px;
-    width: 100%;
-  }
+	width: ${props => props.visible ? '100%' : 0};
+	border-right: 1px solid ${props => props.theme.ui.colors.border.light};
+	opacity: ${props => props.visible ? 1 : 0};
+	@media (${screenWidth.narrowWidth}) {
+		max-width: 350px;
+		opacity: 1;
+	}
+	@media (${screenWidth.mediumWidth}) {
+		max-width: 350px;
+		width: 100%;
+	}
 `
 
 const LeftPanel = ({focus, children}: LeftPanelProps) => {
+	
     return (
         <StyledLeftPanel visible={focus}>
             {children}
@@ -34,4 +35,4 @@ const LeftPanel = ({focus, children}: LeftPanelProps) => {
     )
 }
 
-export default LeftPanel;
+export default LeftPanel

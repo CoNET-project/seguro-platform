@@ -1,5 +1,5 @@
 import React, {Story} from '@storybook/react'
-import LanguageSelect from "./LanguageSelect";
+import LanguageSelect from "./LanguageSelect"
 
 export default {
     component: LanguageSelect,

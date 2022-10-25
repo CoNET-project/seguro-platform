@@ -11,13 +11,14 @@ import LaunchScreen from "./LaunchScreen/LaunchScreen"
 import {Overlay, OverlayWithLoaderText} from '../UI/Common/Overlay/Overlay'
 
 const StyledContainer = styled.div`
-  height: 100vh;
-  width: 100%;
-  background-color: white;
-  display: flex;
-  justify-content: center;
-  color: black;
+	height: 100vh;
+	width: 100%;
+	background-color: white;
+	display: flex;
+	justify-content: center;
+	color: black;
 `
+
 
 const App = () => {
     const {
@@ -34,7 +35,7 @@ const App = () => {
         hasContainer,
         isUnlocked
     } = useAppState()
-
+	
     const windowResizeHandler = () => {
         setWindowInnerSize(detectWindowInnerSize())
     }
@@ -43,7 +44,7 @@ const App = () => {
 
 		
         dAPPInitialize().then(() => {
-			
+			const kkk = true
         })
 
         const randomDeviceIds = Array.from({length: 3}, (_, i) => (Date.now() + Math.round(Math.random() * 100)).toString())

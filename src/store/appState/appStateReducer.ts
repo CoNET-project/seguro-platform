@@ -33,7 +33,7 @@ import {detectWindowInnerSize} from "../../utilities/utilities";
 import {WindowInnerSize} from './useAppState'
 import {getWorkerService} from "../../services/workerService/workerService";
 
-export type ModalNames = 'settings' | 'manageProfile' | 'addProfile' | null
+export type ModalNames = 'settings' | 'manageProfile' | 'addProfile' | 'profilesList' | null
 
 export type NetworkStates = 'connected' | 'connecting' | 'disconnected' | 'reconnecting'
 
@@ -71,6 +71,7 @@ export type ProfileData = {
     alias: string
     isPrimary: boolean
 	assets?: CryptoAsset[]
+	shortID: string
 }
 
 export type Devices = {
@@ -217,8 +218,9 @@ const appStateReducer = createReducer(initialState, builder => {
             ]
             state.clientProfiles = profiles.reduce((clientProfiles: ClientProfiles, profile) => {
                 if (profile.keyID) {
-                    // @ts-ignore
-                    clientProfiles[profile.keyID] = profile
+					const keyID = profile.keyID
+                    clientProfiles[keyID] = profile
+					profile['shortID'] = keyID.substring(0,2) + keyID.substring(2,6).toUpperCase() + '....' + keyID.substring(keyID.length-4,keyID.length).toUpperCase()
                 }
                 return clientProfiles
             }, {})

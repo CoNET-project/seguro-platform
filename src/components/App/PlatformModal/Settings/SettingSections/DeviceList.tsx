@@ -33,95 +33,99 @@ type DeviceListProps = {
 }
 
 const StyledDeviceItem = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  width: 100%;
-
-  &:not(:first-of-type) {
-    margin-top: 15px;
-  }
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	width: 100%;
+	
+	&:not(:first-of-type) {
+		margin-top: 15px;
+	}
 `
 
 const StyledDeviceItemSection = styled.div`
-  display: flex;
-  align-items: center;
+	display: flex;
+	align-items: center;
 `
 
 const StyledDeviceItemIcon = styled.div``
 
 const StyledDeviceItemName = styled.p`
-  margin-left: 15px;
-  font-weight: bold;
-  font-size: ${props => props.theme.ui.fontSizes.narrow.sm};
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  max-width: 150px;
-  @media (${screenWidth.mediumWidth}) {
-    font-size: ${props => props.theme.ui.fontSizes.narrow.sm};
-    max-width: 200px;
-  }
+	margin-left: 15px;
+	font-weight: bold;
+	font-size: ${props => props.theme.ui.fontSizes.narrow.sm};
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	max-width: 150px;
+	@media (${screenWidth.mediumWidth}) {
+		font-size: ${props => props.theme.ui.fontSizes.narrow.sm};
+		max-width: 200px;
+	}
 `
 
 const StyledDeviceItemNameInput = styled.input`
-  min-width: 200px;
-  height: 100%;
-  margin-left: 15px;
-  font-weight: bold;
-  font-size: ${props => props.theme.ui.fontSizes.narrow.sm};
-  border: none;
-  border-bottom: 1px solid ${props => props.theme.ui.colors.border.light};
-  padding: 2px 0;
-  @media (${screenWidth.mediumWidth}) {
-    font-size: ${props => props.theme.ui.fontSizes.narrow.sm}
-  }
-
-  &:focus {
-    outline: none;
-  }
+	min-width: 200px;
+	height: 100%;
+	margin-left: 15px;
+	font-weight: bold;
+	font-size: ${props => props.theme.ui.fontSizes.narrow.sm};
+	border: none;
+	border-bottom: 1px solid ${props => props.theme.ui.colors.border.light};
+	padding: 2px 0;
+	@media (${screenWidth.mediumWidth}) {
+		font-size: ${props => props.theme.ui.fontSizes.narrow.sm}
+	}
+	
+	&:focus {
+		outline: none;
+	}
 `
 
 const StyledDeviceItemButton = styled.button`
-  border: none;
-  background-color: transparent;
-  padding: 5px;
-  color: ${props => props.theme.ui.colors.text.primary};
-  opacity: 0.5;
+	border: none;
+	background-color: transparent;
+	padding: 5px;
+	color: ${props => props.theme.ui.colors.text.primary};
+	opacity: 0.5;
 `
 
 const simpleFadeIn = keyframes`
-  from {
-    opacity: 0;
-  }
-
-  to {
-    opacity: 1;
-  }
+	from {
+		opacity: 0;
+	}
+	
+	to {
+		opacity: 1;
+	}
 `
 
 const StyledDeviceItemNameConfirm = styled(StyledDeviceItemButton)`
-  background-color: ${props => props.theme.ui.colors.primary};
-  color: white;
-  padding: 3px 10px;
-  border-radius: 5px;
-  border: 1px solid ${props => props.theme.ui.colors.border.light};
-  animation: ${simpleFadeIn} 100ms linear forwards;
+	background-color: ${props => props.theme.ui.colors.primary};
+	color: white;
+	padding: 3px 10px;
+	border-radius: 5px;
+	border: 1px solid ${props => props.theme.ui.colors.border.light};
+	animation: ${simpleFadeIn} 100ms linear forwards;
 `
-
+const StyledDeviceList = styled.div`
+	width: 100%;
+	margin-top: 15px;
+`	
 
 const DeviceItem = ({
-                        index,
-                        device,
-                        isEditting,
-                        setAsEditting,
-                        onUpdateDeviceName,
-                        onClick,
-                        onDeviceDelete,
-                        showDropdown,
-                        hideDropdown
-                    }: DeviceItemProps) => {
+		index,
+		device,
+		isEditting,
+		setAsEditting,
+		onUpdateDeviceName,
+		onClick,
+		onDeviceDelete,
+		showDropdown,
+		hideDropdown
+	}: DeviceItemProps) => {
 
+	  
     useEffect(() => {
         setDeviceName(device.name)
     }, [])
@@ -221,13 +225,9 @@ const DeviceItem = ({
     )
 }
 
-const StyledDeviceList = styled.div`
-  width: 100%;
-  margin-top: 15px;
-`
-
 
 const DeviceList = ({devices, onDeviceDelete}: DeviceListProps) => {
+
     const {updateClientDevice, clientDevices} = useAppState()
     const [currentContextIndex, setCurrentContextIndex] = useState<number | null>(null)
     const [currentEditId, setCurrentEditId] = useState<string | null>(null)

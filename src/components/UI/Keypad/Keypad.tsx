@@ -12,19 +12,20 @@ export type KeypadProps = {
 }
 
 const StyledKeypad = styled.div`
-  display: grid;
-  grid-template-columns: repeat(3, 4rem);
-  grid-template-rows: repeat(4, 4rem);
-  grid-row-gap: 5px;
-  grid-column-gap: 20px;
+	display: grid;
+	grid-template-columns: repeat(3, 4rem);
+	grid-template-rows: repeat(4, 4rem);
+	grid-row-gap: 5px;
+	grid-column-gap: 20px;
 
-  @media (${screenWidth.mediumWidth}) {
-    grid-template-columns: repeat(3, 5rem);
-    grid-template-rows: repeat(4, 5rem);
-    grid-row-gap: 15px;
-    grid-column-gap: 20px;
-  }
+	@media (${screenWidth.mediumWidth}) {
+		grid-template-columns: repeat(3, 5rem);
+		grid-template-rows: repeat(4, 5rem);
+		grid-row-gap: 15px;
+		grid-column-gap: 20px;
+	}
 `
+
 
 const Keypad = ({numberKeyOnClick, deleteKeyOnClick, cancelKeyOnClick, unlockKeyOnClick}: KeypadProps) => {
 
@@ -48,6 +49,7 @@ const Keypad = ({numberKeyOnClick, deleteKeyOnClick, cancelKeyOnClick, unlockKey
         }
         return keys
     }
+	
 
     return (
         <StyledKeypad>

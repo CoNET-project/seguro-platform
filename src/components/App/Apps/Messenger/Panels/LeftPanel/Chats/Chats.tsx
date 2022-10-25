@@ -8,15 +8,16 @@ import {usePageNavigator} from "../../../../../../../contexts/pageNavigator/Page
 import React from 'react'
 
 const StyledChats = styled.div`
-  height: 100%;
-  width: 100%;
+	height: 100%;
+	width: 100%;
 `
 
 const StyledChatsContent = styled.div`
-  height: calc(100% - 50px);
-  width: 100%;
-  overflow: auto;
+	height: calc(100% - 50px);
+	width: 100%;
+	overflow: auto;
 `
+
 
 const Chats = () => {
     const {currentChat, contacts, setCurrentChat, setSelectedContact} = useMessengerContext()

@@ -27,11 +27,10 @@ type StyledLogoSVGProps = {
     logoColor?: string
 } & StyledLogoTextProps
 
-
 const StyledLogoSVG = styled.svg<StyledLogoSVGProps>`
-  width: ${props => props.size};
-  height: ${props => props.size};
-  fill: ${props => props.logoColor || props.theme.ui.colors.text.primary}
+	width: ${props => props.size};
+	height: ${props => props.size};
+	fill: ${props => props.logoColor || props.theme.ui.colors.text.primary}
 `
 
 const StyledStopD18E37 = styled.stop`
@@ -98,7 +97,10 @@ const StylePolygonFillSVGID_000002999733976075411_ = styled.polygon`
 const StylePathFillSVGID_00000083050990530597124390000015432129798643442071_ = styled.path`
 	fill:url(#SVGID_00000083050990530597124390000015432129798643442071_);
 `
+
+
 export const CNTCashLogoIcon = ({color, size}: LogoImageProps) => {
+
 	return (
 		<StyledLogoContainer>
 			<StyledLogoSVG width="558.7" height="558.8" viewBox="0 0 558.7 558.8" xmlns="http://www.w3.org/2000/svg"

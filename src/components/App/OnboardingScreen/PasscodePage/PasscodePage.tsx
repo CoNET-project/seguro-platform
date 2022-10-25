@@ -18,55 +18,58 @@ type PasscodeProps = {
 }
 
 const StyledContainer = styled.div`
-  width: 100%;
-  //padding: 50px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+	width: 100%;
+	//padding: 50px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
 `
 
 const StyledContents = styled.div`
-  height: 100%;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+	height: 100%;
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
 `
 
 
 const StyledPageHeader = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  margin-bottom: 30px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	margin-bottom: 30px;
 `
 
 const StyledPageTitle = styled.h1`
-  font-size: ${props => props.theme.ui.fontSizes.narrow.xl};
+	font-size: ${props => props.theme.ui.fontSizes.narrow.xl};
 
-  @media (${screenWidth.mediumWidth}) {
-    margin-bottom: 30px;
-    font-size: 30px;
-  }
+	@media (${screenWidth.mediumWidth}) {
+		margin-bottom: 30px;
+		font-size: 30px;
+	}
 `
 
 const StyledPageError = styled.p`
-  font-size: ${props => props.theme.ui.fontSizes.narrow.sm};
-  margin-bottom: 15px;
-  min-height: calc(${props => props.theme.ui.fontSizes.narrow.sm} + 1px);
+	font-size: ${props => props.theme.ui.fontSizes.narrow.sm};
+	margin-bottom: 15px;
+	min-height: calc(${props => props.theme.ui.fontSizes.narrow.sm} + 1px);
 `
+	
 
-const PasscodePage = ({
-                          title,
-                          passcode,
-                          setPasscode,
-						  nextPageHandler,
-                          error
-                      }: PasscodeProps) => {
-
+const PasscodePage = 
+	({
+		title,
+		passcode,
+		setPasscode,
+		nextPageHandler,
+		error
+	}: PasscodeProps) => {
+	
+	  
     const {state, dispatch} = useOnboardingPageNavigator()
 
     const keypadClickHandlers = {

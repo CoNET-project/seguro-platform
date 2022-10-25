@@ -12,48 +12,49 @@ import AlertDialog, {AlertDialogActions} from "../../UI/Common/AlertDialog/Alert
 import LargeInput from "../../UI/Inputs/LargeInput/LargeInput"
 
 const StyledContainer = styled.div`
-  height: 100%;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  background-color: ${props => props.theme.ui.colors.background.foundation};
+	height: 70%;
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	background-color: ${props => props.theme.ui.colors.background.foundation};
 `
 
 const StyledIcon = styled.div`
-  color: ${props => props.theme.ui.colors.text.primary};
+	color: ${props => props.theme.ui.colors.text.primary};
 `
 
 const StyledContent = styled.div`
-  max-width: 30rem;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+	max-width: 30rem;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
 `
 
 const StyledFlexContainer = styled.div`
-  flex: 1;
+	flex: 1;
 `
 
 const StyledTitle = styled.p`
-  margin: 40px 0 20px 0;
-  color: ${props => props.theme.ui.colors.text.primary};
+	margin: 40px 0 20px 0;
+	color: ${props => props.theme.ui.colors.text.primary};
 `
 
 const StyledForgotText = styled.a`
-  margin-top: 20px;
-  font-size: calc(${props => props.theme.ui.fontSizes.narrow.sm} - 1px);
-  color: ${props => props.theme.ui.colors.primary};
-  text-decoration: underline;
-  cursor: pointer;
+	margin-top: 20px;
+	font-size: calc(${props => props.theme.ui.fontSizes.narrow.sm} - 1px);
+	color: ${props => props.theme.ui.colors.primary};
+	text-decoration: underline;
+	cursor: pointer;
 `
 
 const StyledUnlockButton = styled(Button)`
-  margin-top: 40px;
+	margin-top: 40px;
 `
 
 const UnlockScreen = () => {
+	
 	const [error, setError] = useState<ReactNode | null>(null)
     const {setIsUnlocked, isTouchDevice} = useAppState()
     const [passcode, setPasscode] = useState("")
@@ -155,9 +156,9 @@ const UnlockScreen = () => {
             {
                 showDeleteModal && (
                     <AlertDialog message={<FormattedMessage id='platform.dialog.delete.message'/>}
-                                 icon={<Warning color="black"/>}
-                                 dialogActions={deleteConfirmationActions}/>
-                )
+						icon={<Warning color="black"/>}
+						dialogActions={deleteConfirmationActions}/>
+				)
             }
         </StyledContainer>
     )
