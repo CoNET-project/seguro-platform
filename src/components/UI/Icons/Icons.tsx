@@ -111,46 +111,45 @@ const getSize = (size: Sizes) => {
     }
 }
 
-const StyledIcon = styled.p`
-  color: ${props => props.theme.ui.colors.text.primary};
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-`
 
 type StyledThemeIconProps = { isPlaceholder?: boolean }
 
+type StyledValidityIconProps = { valid: boolean }
+
+const StyledIcon = styled.p`
+	color: ${props => props.theme.ui.colors.text.primary};
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	position: relative;
+`	
 const StyledThemeIcon = styled.div<StyledThemeIconProps>`
-  color: ${props => props.isPlaceholder ? props.theme.ui.input.placeholderColor : props.theme.ui.input.color};
-  display: flex;
-  align-items: center;
-  justify-content: center;
+	color: ${props => props.isPlaceholder ? props.theme.ui.input.placeholderColor : props.theme.ui.input.color};
+	display: flex;
+	align-items: center;
+	justify-content: center;
+`
+const StyledNoColorIcon = styled(StyledIcon)`
+	color: unset;
+	transition: unset;
 `
 
 const StyledIconNotifDot = styled.div`
-  position: absolute;
-  right: 0;
-  top: 0;
-  width: 6px;
-  height: 6px;
-  content: '';
-  background-color: red;
-  border-radius: 50%;
+	position: absolute;
+	right: 0;
+	top: 0;
+	width: 6px;
+	height: 6px;
+	content: '';
+	background-color: red;
+	border-radius: 50%;
 `
-
-const StyledNoColorIcon = styled(StyledIcon)`
-  color: unset;
-  transition: unset;
-`
-
-type StyledValidityIconProps = { valid: boolean }
-
 const StyledValidityIcon = styled(StyledIcon)<StyledValidityIconProps>`
-  color: ${props => props.valid ? props.theme.ui.colors.icon.active : props.theme.ui.colors.icon.inactive}
+	color: ${props => props.valid ? props.theme.ui.colors.icon.active : props.theme.ui.colors.icon.inactive}
 `
 
 export const ChevronLeft = ({size, color}: IconProps) => {
+	
     return (
         <StyledIcon>
             <FaChevronLeft size={getSize(size)} color={color || undefined}/>
@@ -159,6 +158,7 @@ export const ChevronLeft = ({size, color}: IconProps) => {
 }
 
 export const ChevronRight = ({size, color}: IconProps) => {
+
     return (
         <StyledIcon>
             <FaChevronRight size={getSize(size)} color={color || undefined}/>
@@ -167,6 +167,7 @@ export const ChevronRight = ({size, color}: IconProps) => {
 }
 
 export const LanguageIcon = ({size, color}: IconProps) => {
+
     return (
         <StyledIcon>
             <IoLanguage size={getSize(size)} color={color || undefined}/>
@@ -175,6 +176,7 @@ export const LanguageIcon = ({size, color}: IconProps) => {
 }
 
 export const Passcode = ({size, color}: IconProps) => {
+
     return (
         <StyledIcon>
             <RiShieldKeyholeLine size={getSize(size)} color={color || undefined}/>
@@ -183,6 +185,8 @@ export const Passcode = ({size, color}: IconProps) => {
 }
 
 export const PasscodeDot = ({size, color, isPlaceholder}: IconProps & { isPlaceholder?: boolean }) => {
+
+
     return (
         <StyledThemeIcon isPlaceholder={isPlaceholder}>
             <GoPrimitiveDot size={getSize(size)} color={color || undefined}/>
@@ -191,6 +195,7 @@ export const PasscodeDot = ({size, color, isPlaceholder}: IconProps & { isPlaceh
 }
 
 export const Warning = ({size, color}: IconProps) => {
+
     return (
         <StyledIcon>
             <IoIosWarning size={getSize(size)} color={color || undefined}/>
@@ -199,6 +204,7 @@ export const Warning = ({size, color}: IconProps) => {
 }
 
 export const CircleCheck = ({size, color, valid}: IconProps & { valid: boolean }) => {
+
     return (
         <StyledValidityIcon valid={valid}>
             <FaCheckCircle size={getSize(size)} color={color || undefined}/>
@@ -207,6 +213,7 @@ export const CircleCheck = ({size, color, valid}: IconProps & { valid: boolean }
 }
 
 export const Grid3X3 = React.forwardRef(({size, color}: IconProps, ref: ForwardedRef<HTMLParagraphElement>) => {
+
     return (
         <StyledIcon ref={ref}>
             <BsGrid3X3Gap size={getSize(size)} color={color || undefined}/>
@@ -215,6 +222,7 @@ export const Grid3X3 = React.forwardRef(({size, color}: IconProps, ref: Forwarde
 })
 
 export const SettingGear = ({size, color}: IconProps) => {
+
     return (
         <StyledIcon>
             <FiSettings size={getSize(size)} color={color || undefined}/>
@@ -223,6 +231,7 @@ export const SettingGear = ({size, color}: IconProps) => {
 }
 
 export const Plug = ({size, color}: IconProps) => {
+
     return (
         <StyledIcon>
             <FaPlug size={getSize(size)} color={color || undefined}/>
@@ -231,6 +240,7 @@ export const Plug = ({size, color}: IconProps) => {
 }
 
 export const Close = ({size, color}: IconProps) => {
+
     return (
         <StyledIcon>
             <IoClose size={getSize(size)} color={color || undefined}/>
@@ -239,6 +249,7 @@ export const Close = ({size, color}: IconProps) => {
 }
 
 export const CloseCircle = ({size, color}: IconProps) => {
+
     return (
         <StyledIcon>
             <IoIosCloseCircle size={getSize(size)} color={color || undefined}/>
@@ -247,6 +258,7 @@ export const CloseCircle = ({size, color}: IconProps) => {
 }
 
 export const Copy = ({size, color}: IconProps) => {
+
     return (
         <StyledIcon>
             <MdContentCopy size={getSize(size)} color={color || undefined}/>
@@ -255,6 +267,7 @@ export const Copy = ({size, color}: IconProps) => {
 }
 
 export const Update = ({size, color}: IconProps) => {
+
     return (
         <StyledIcon>
             <ImDownload size={getSize(size)} color={color || undefined}/>
@@ -264,6 +277,7 @@ export const Update = ({size, color}: IconProps) => {
 }
 
 export const Gear = ({size, color}: IconProps) => {
+
     return (
         <StyledNoColorIcon>
             <IoSettingsOutline size={getSize(size)} color={color || undefined}/>
@@ -272,6 +286,7 @@ export const Gear = ({size, color}: IconProps) => {
 }
 
 export const ChatBubble = ({size, color}: IconProps) => {
+
     return (
         <StyledNoColorIcon>
             <BsChatSquareDots size={getSize(size)} color={color || undefined}/>
@@ -280,6 +295,7 @@ export const ChatBubble = ({size, color}: IconProps) => {
 }
 
 export const Contacts = ({size, color}: IconProps) => {
+
     return (
         <StyledNoColorIcon>
             <IoMdContacts size={getSize(size)} color={color || undefined}/>
@@ -288,6 +304,7 @@ export const Contacts = ({size, color}: IconProps) => {
 }
 
 export const Delete = ({size, color}: IconProps) => {
+
     return (
         <StyledIcon>
             <TiDelete size={getSize(size)} color={color || undefined}/>
@@ -296,6 +313,7 @@ export const Delete = ({size, color}: IconProps) => {
 }
 
 export const Mobile = ({size, color}: IconProps) => {
+
     return (
         <StyledIcon>
             <FaMobileAlt size={getSize(size)} color={color || undefined}/>
@@ -304,6 +322,7 @@ export const Mobile = ({size, color}: IconProps) => {
 }
 
 export const Tablet = ({size, color}: IconProps) => {
+
     return (
         <StyledIcon>
             <FaTabletAlt size={getSize(size)} color={color || undefined}/>
@@ -313,6 +332,7 @@ export const Tablet = ({size, color}: IconProps) => {
 
 
 export const Desktop = ({size, color}: IconProps) => {
+
     return (
         <StyledIcon>
             <FaDesktop size={getSize(size)} color={color || undefined}/>
@@ -321,6 +341,7 @@ export const Desktop = ({size, color}: IconProps) => {
 }
 
 export const CheckmarkCircle = ({size, color}: IconProps) => {
+
     return (
         <StyledIcon>
             <IoIosCheckmarkCircle size={getSize(size)} color={color || undefined}/>
@@ -329,6 +350,7 @@ export const CheckmarkCircle = ({size, color}: IconProps) => {
 }
 
 export const Checkmark = ({size, color}: IconProps) => {
+
     return (
         <StyledIcon>
             <IoCheckmarkSharp size={getSize(size)} color={color || undefined}/>
@@ -337,6 +359,7 @@ export const Checkmark = ({size, color}: IconProps) => {
 }
 
 export const VerticalOptions = ({size, color}: IconProps) => {
+
     return (
         <StyledIcon>
             <BsThreeDotsVertical size={getSize(size)} color={color || undefined}/>
@@ -345,6 +368,7 @@ export const VerticalOptions = ({size, color}: IconProps) => {
 }
 
 export const VerticalOptions_ArrowDownloadCircleFill = ({size, color}: IconProps) => {
+
     return (
         <StyledIcon>
             <BsPatchPlusFill size={getSize(size)} color={color || undefined}/>
@@ -353,6 +377,7 @@ export const VerticalOptions_ArrowDownloadCircleFill = ({size, color}: IconProps
 }
 
 export const VerticalOptions_ArrowUpRightCircleFill = ({size, color}: IconProps) => {
+
     return (
         <StyledIcon>
             <BsCashCoin size={getSize(size)} color={color || undefined}/>
@@ -361,6 +386,7 @@ export const VerticalOptions_ArrowUpRightCircleFill = ({size, color}: IconProps)
 }
 
 export const AddProfile = ({size, color}: IconProps) => {
+
     return (
         <StyledIcon>
             <AiOutlineUserAdd size={getSize(size)} color={color || undefined}/>
@@ -369,6 +395,7 @@ export const AddProfile = ({size, color}: IconProps) => {
 }
 
 export const ProfileIcon = ({size, color}: IconProps) => {
+
     return (
         <StyledIcon>
             <CgProfile size={getSize(size)} color={color || undefined}/>
@@ -377,6 +404,7 @@ export const ProfileIcon = ({size, color}: IconProps) => {
 }
 
 export const ManageAccount = ({size, color}: IconProps) => {
+
     return (
         <StyledIcon>
             <MdManageAccounts size={getSize(size)} color={color || undefined}/>
@@ -385,6 +413,7 @@ export const ManageAccount = ({size, color}: IconProps) => {
 }
 
 export const Camera = ({size, color}: IconProps) => {
+
     return (
         <StyledIcon>
             <BsCamera size={getSize(size)} color={color || undefined}/>
@@ -393,6 +422,7 @@ export const Camera = ({size, color}: IconProps) => {
 }
 
 export const Password = ({size, color}: IconProps) => {
+
     return (
         <StyledIcon>
             <MdPassword size={getSize(size)} color={color || undefined}/>
@@ -401,6 +431,7 @@ export const Password = ({size, color}: IconProps) => {
 }
 
 export const NotificationBell = ({size, color}: IconProps) => {
+
     return (
         <StyledIcon>
             <BiBell size={getSize(size)} color={color || undefined}/>
@@ -409,6 +440,7 @@ export const NotificationBell = ({size, color}: IconProps) => {
 }
 
 export const PlatformLock = ({size, color}: IconProps) => {
+
     return (
         <StyledIcon>
             <IoIosLock size={getSize(size)} color={color || undefined}/>
@@ -417,6 +449,7 @@ export const PlatformLock = ({size, color}: IconProps) => {
 }
 
 export const CreateChat = ({size, color}: IconProps) => {
+
     return (
         <StyledIcon>
             <BiMessageAdd size={getSize(size)} color={color || undefined}/>
@@ -425,6 +458,7 @@ export const CreateChat = ({size, color}: IconProps) => {
 }
 
 export const AddContact = ({size, color}: IconProps) => {
+
     return (
         <StyledIcon>
             <MdPersonAddAlt1 size={getSize(size)} color={color || undefined}/>
@@ -433,6 +467,7 @@ export const AddContact = ({size, color}: IconProps) => {
 }
 
 export const EditPencilIcon = ({size, color}: IconProps) => {
+
     return (
         <StyledIcon>
             <MdEdit size={getSize(size)} color={color || undefined}/>
@@ -442,6 +477,7 @@ export const EditPencilIcon = ({size, color}: IconProps) => {
 
 
 export const SendIcon = ({size, color}: IconProps) => {
+
     return (
         <StyledIcon>
             <FiSend size={getSize(size)} color={color || undefined}/>
@@ -450,6 +486,7 @@ export const SendIcon = ({size, color}: IconProps) => {
 }
 
 export const CloseIcon = ({size, color}: IconProps) => {
+
     return (
         <StyledIcon>
             <BsX size={getSize(size)} color={color || undefined}/>
@@ -458,6 +495,7 @@ export const CloseIcon = ({size, color}: IconProps) => {
 }
 
 export const CloseHome = ({size, color}: IconProps) => {
+
     return (
         <StyledIcon>
             <BsFillHouseFill size={getSize(size)} color={color || undefined}/>

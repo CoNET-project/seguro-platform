@@ -8,12 +8,14 @@ export type ProgressDotsProps = {
 }
 
 const StyledProgressDots = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 `
 
+
 const ProgressDots = ({numberOfDots, current}: ProgressDotsProps) => {
+
 
     const getDots = (): Array<ReactNode> => {
         const dots: Array<ReactNode> = []

@@ -6,25 +6,28 @@ import ProfileImage from '../Profile/Image/Image'
 import styled from 'styled-components'
 import {BsThreeDotsVertical} from "react-icons/bs"
 
-const Wrapper = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`
 
-const Container = styled.div`
-  max-width: 40rem;
-  width: 40rem;
-`
 
 export default {
     component: HeaderBar,
     title: 'Header/Bar'
 }
 
+const Wrapper = styled.div`
+	display: flex;
+	justify-content: center;
+	align-items: center;
+`
+
+const Container = styled.div`
+	max-width: 40rem;
+	width: 40rem;
+`
+
 const Template: React.Story<HeaderBarProps> = (
     args
 ) => {
+
     return (
         <Wrapper>
             <Container>

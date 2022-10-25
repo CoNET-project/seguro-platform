@@ -24,63 +24,64 @@ type StyledInputProps = {
 type StyledInputContainerProps = {
     shiftContainer: boolean
 }
-
 const StyledInputContainer = styled.div`
-  min-width: 100%;
+	min-width: 100%;
 `
 
 const StyledInputWrapper = styled.div`
-  position: relative;
+	position: relative;
 `
 
 
 const StyledInput = styled.input<StyledInputProps>`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  height: 4rem;
-  font-size: ${props => props.fontSize === 'lg' ? props.theme.ui.fontSizes.narrow.lg : props.theme.ui.fontSizes.narrow.md};
-  overflow: hidden;
-  text-align: center;
-  border: ${props => props.error ? '2px' : '1px'} solid ${props => props.error ? props.theme.ui.colors.dangerous : props.theme.ui.colors.border.light};
-  padding: 10px 15px;
-  border-radius: 5px;
-  color: ${props => props.theme.ui.colors.text.primary};
-  background-color: rgba(200, 200, 200, 0.1);
-  margin: 20px 0;
-  min-width: 300px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
+	height: 4rem;
+	font-size: ${props => props.fontSize === 'lg' ? props.theme.ui.fontSizes.narrow.lg : props.theme.ui.fontSizes.narrow.md};
+	overflow: hidden;
+	text-align: center;
+	border: ${props => props.error ? '2px' : '1px'} solid ${props => props.error ? props.theme.ui.colors.dangerous : props.theme.ui.colors.border.light};
+	padding: 10px 15px;
+	border-radius: 5px;
+	color: ${props => props.theme.ui.colors.text.primary};
+	background-color: rgba(200, 200, 200, 0.1);
+	margin: 20px 0;
+	min-width: 300px;
 
-  &:focus {
-    outline: none;
-    border: ${props => !props.error && '2px solid rgba(0, 0, 0, 0.5)'}
-  }
+	&:focus {
+		outline: none;
+		border: ${props => !props.error && '2px solid rgba(0, 0, 0, 0.5)'}
+	}
 `
 
 const StyledInputLabel = styled.label`
-  display: inline-block;
+	display: inline-block;
 `
 
 const StyledInputError = styled.div<{ show: boolean }>`
-  height: 16px;
-  min-height: 16px;
-  width: 100%;
-  content: '';
-  margin-top: 10px;
-  transition: opacity 100ms ease-in-out;
-  opacity: ${props => props.show ? 1 : 0};
-  display: flex;
-  align-items: center;
-  justify-content: center;
+	height: 16px;
+	min-height: 16px;
+	width: 100%;
+	content: '';
+	margin-top: 10px;
+	transition: opacity 100ms ease-in-out;
+	opacity: ${props => props.show ? 1 : 0};
+	display: flex;
+	align-items: center;
+	justify-content: center;
 `
 
 const StyledInputErrorText = styled.p`
-  margin-left: 5px;
+	margin-left: 5px;
 `
 
-const LargeInput = ({value, setValue, nextStepHandler, previousStepHandler, error, inputOptions}: InputProps) => {
 
+
+const LargeInput = ({value, setValue, nextStepHandler, previousStepHandler, error, inputOptions}: InputProps) => {
+	
     useEffect(() => {
         setTimeout(() => {
             inputRef?.current?.focus()

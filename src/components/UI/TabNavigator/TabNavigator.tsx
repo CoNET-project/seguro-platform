@@ -21,26 +21,28 @@ type TabNavigatorProps = {
     className?: string
 }
 
-const StyledTabNavigator = styled.div`
-  height: 100%;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  position: relative;
-`
+
 
 const StyledTabNavigatorContent = styled(motion.div)`
-  height: calc(100% - 51px);
+	height: calc(100% - 51px);
 `
-
+const StyledTabNavigator = styled.div`
+	height: 100%;
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	position: relative;
+`
 const TabNavigatorContent = ({screens}: TabNavigatorProps) => {
+
+
     const {state} = usePageNavigator()
 
     const content = screens[state.current[0]]?.screen
 
     return (
-        <AnimatePresence custom={state.current[1]} exitBeforeEnter>
+        <AnimatePresence custom={state.current[1]} >
             <StyledTabNavigatorContent
                 key={state.current[0]}
                 custom={state.current[1]}

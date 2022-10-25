@@ -9,18 +9,19 @@ type MainPanelProps = {
 }
 
 const StyledMainPanel = styled(StyledPanel)`
-  display: flex;
-  width: 100%;
-  flex: 1;
-  content: '';
+	display: flex;
+	width: 100%;
+	flex: 1;
+	content: '';
 `
 
 const StyledMainContents = styled(motion.div)`
-  width: 100%;
-  flex: 1;
+	width: 100%;
+	flex: 1;
 `
 
 const MainPanel = ({children, rightPanel}: MainPanelProps) => {
+
     return (
         <StyledMainPanel>
             <StyledMainContents>

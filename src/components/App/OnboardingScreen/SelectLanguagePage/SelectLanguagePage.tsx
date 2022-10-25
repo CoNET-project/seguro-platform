@@ -7,43 +7,7 @@ import {FormattedMessage} from "react-intl";
 import {screenHeight, screenWidth} from '../../../UI/screenSizes'
 import React from 'react'
 
-const StyledContainer = styled.div`
-  width: 100%;
-  //padding: 50px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-`
 
-const StyledPageHeader = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  margin-bottom: 30px;
-`
-
-const StyledPageContents = styled.div`
-  width: 100%;
-  background-color: ${props => props.theme.ui.colors.background.elevationOne};
-  border-radius: 5px;
-
-  @media (${screenHeight.tallHeight}) {
-    height: 20rem;
-  }
-`
-
-
-const StyledPageTitle = styled.h1`
-  font-size: ${props => props.theme.ui.fontSizes.narrow.xl};
-  margin-bottom: 10px;
-
-  @media (${screenWidth.mediumWidth}) {
-    margin-bottom: 30px;
-    font-size: 30px;
-  }
-`
 
 export type Languages = {
     name: string,
@@ -55,8 +19,45 @@ type SelectLanguageProps = {
     selectLocale: (locale: Locale) => void,
     locale: Locale
 }
+const StyledContainer = styled.div`
+	width: 100%;
+	//padding: 50px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+`
 
+const StyledPageHeader = styled.div`
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	margin-bottom: 30px;
+`
+
+const StyledPageContents = styled.div`
+	width: 100%;
+	background-color: ${props => props.theme.ui.colors.background.elevationOne};
+	border-radius: 5px;
+
+	@media (${screenHeight.tallHeight}) {
+		height: 20rem;
+	}
+`
+
+
+const StyledPageTitle = styled.h1`
+	font-size: ${props => props.theme.ui.fontSizes.narrow.xl};
+	margin-bottom: 10px;
+
+	@media (${screenWidth.mediumWidth}) {
+		margin-bottom: 30px;
+		font-size: 30px;
+	}
+`
 const SelectLanguagePage = ({selectLocale, locale}: SelectLanguageProps) => {
+	
     const {state, dispatch} = useOnboardingPageNavigator()
     const languages: Array<Languages> = [
         {

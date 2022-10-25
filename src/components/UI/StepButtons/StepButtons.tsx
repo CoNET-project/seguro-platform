@@ -24,14 +24,15 @@ export type StepButtonsProps = {
 }
 
 const StyledStepButtons = styled.div`
-  width: 100%;
-  min-width: 15rem;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+	width: 100%;
+	min-width: 15rem;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
 `
 
 const StepButtons = ({actionHandler}: StepButtonsProps) => {
+
     return (
         <StyledStepButtons>
             {

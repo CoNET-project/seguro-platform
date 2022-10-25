@@ -22,66 +22,68 @@ import DeviceDelete from "./Pages/DeviceDelete"
 import React, {useState} from "react"
 
 const StyledSettingsContainer = styled.div`
-  height: 100%;
-  min-width: 100%;
-  @media (${screenWidth.narrowWidth}) {
-    min-width: 35rem;
-  }
+	height: 100%;
+	min-width: 100%;
+	@media (${screenWidth.narrowWidth}) {
+		min-width: 35rem;
+	}
 
-  @media (${screenWidth.wideWidth}) {
-    min-width: 50rem;
-  }
+	@media (${screenWidth.wideWidth}) {
+		min-width: 50rem;
+	}
 
-  @media (${screenHeight.shortHeight}) and (${screenWidth.narrowWidth}) {
-    height: 35rem;
-  }
+	@media (${screenHeight.shortHeight}) and (${screenWidth.narrowWidth}) {
+		height: 35rem;
+	}
 `
 
 const StyledSettingsContentSection = styled.div`
-  margin: 0 2.5px;
-  border: 1px solid ${props => props.theme.ui.colors.border.light};
-  @media (${screenWidth.mediumWidth}) {
-    margin: 0 30px 30px 30px;
-  }
+	margin: 0 2.5px;
+	border: 1px solid ${props => props.theme.ui.colors.border.light};
+	@media (${screenWidth.mediumWidth}) {
+		margin: 0 30px 30px 30px;
+	}
 `
 
 const CustomizedHeaderBar = styled(HeaderBar)`
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-  background-color: ${props => props.theme.ui.colors.background.foundation};
+	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+	background-color: ${props => props.theme.ui.colors.background.foundation};
 
-  & > * #headerTitle {
-    font-size: ${props => props.theme.ui.fontSizes.narrow.md};
-    font-weight: 700;
-  }
+	& > * #headerTitle {
+		font-size: ${props => props.theme.ui.fontSizes.narrow.md};
+		font-weight: 700;
+	}
 `
 
 const StyledNumberBox = styled.span`
-  background-color: ${props => props.theme.ui.colors.background.foundation};
-  padding: 2px 6px;
-  border-radius: 5px;
-  content: '';
-  border: 1px solid ${props => props.theme.ui.colors.border.light};
-  margin-right: 2.5px;
+	background-color: ${props => props.theme.ui.colors.background.foundation};
+	padding: 2px 6px;
+	border-radius: 5px;
+	content: '';
+	border: 1px solid ${props => props.theme.ui.colors.border.light};
+	margin-right: 2.5px;
 `
 
 const StyledActivateDevice = styled.p`
-  font-size: ${props => props.theme.ui.fontSizes.narrow.sm}
+	font-size: ${props => props.theme.ui.fontSizes.narrow.sm}
 `
 
 const StyledButton = styled.button`
-  background-color: transparent;
-  border: none;
-  color: ${props => props.theme.ui.colors.text.primary};
-  border-radius: 5px;
-  display: flex;
-  align-items: center;
+	background-color: transparent;
+	border: none;
+	color: ${props => props.theme.ui.colors.text.primary};
+	border-radius: 5px;
+	display: flex;
+	align-items: center;
 
-  & > *:last-child {
-    margin-left: 10px;
-  }
+	& > *:last-child {
+		margin-left: 10px;
+	}
 `
 
+
 const SettingsContent = () => {
+	
     const {setIsModalOpen, clientDevices, deleteClientDevice} = useAppState()
     const {state, dispatch} = usePageNavigator()
     const [deviceToDeleteId, setDeviceToDeleteId] = useState<string | null>(null)

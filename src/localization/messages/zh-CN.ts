@@ -125,6 +125,7 @@ const zh_CN: Messages = {
     'platform.contextMenu.edit': '编辑',
 
     'platform.profile.changePicture': '更换图片',
+	'platform.profile.walletAddr': '钱包地址',
 
     'globalBar.profile.dropdown.manageProfiles': '管理个人资料',
     'globalBar.profile.dropdown.addProfile': '添加配置文件',
@@ -140,6 +141,7 @@ const zh_CN: Messages = {
     'platform.manageProfiles.deleteProfile.confirmationSubtext': '删除个人资料是永久性的!',
     'platform.manageProfiles.deleteProfile.cancelButton': '取消',
     'platform.manageProfiles.deleteProfile.confirmButton': '确认',
+
 
 
     'platform.manageProfiles.deleteProfile.onlyProfileError': '你需要至少 1 个关于 Seguro 的个人资料！',

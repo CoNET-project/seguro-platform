@@ -10,31 +10,31 @@ import React, {useEffect, useState} from "react"
 import {SearchResults} from "../../../../../../../UI/SearchBar/SearchResult/SearchResult"
 import Image from "../../../../../../../UI/Common/Profile/Image/Image"
 
-const StyledContactList = styled.div`
-  height: 100%;
-  width: 100%;
-  overflow: auto;
-  position: relative;
-`
-
-const StyledSectionTitle = styled.p`
-  width: 100%;
-  text-align: left;
-  padding: 7.5px 15px;
-  font-size: calc(${props => props.theme.ui.fontSizes.narrow.sm} - 2px);
-  opacity: 0.5;
-  border-bottom: 1px solid ${props => props.theme.ui.colors.border.light};
-  font-family: 'Lato Bold', sans-serif;
-`
-
-const CustomOverlay = styled(Overlay)`
-  background-color: transparent;
-  z-index: ${props => props.show ? 197 : -1}
-`
 
 type ContactListProps = {
     onClick?: (contact: Contact) => void
 }
+const StyledContactList = styled.div`
+	height: 100%;
+	width: 100%;
+	overflow: auto;
+	position: relative;
+`
+
+const StyledSectionTitle = styled.p`
+	width: 100%;
+	text-align: left;
+	padding: 7.5px 15px;
+	font-size: calc(${props => props.theme.ui.fontSizes.narrow.sm} - 2px);
+	opacity: 0.5;
+	border-bottom: 1px solid ${props => props.theme.ui.colors.border.light};
+	font-family: 'Lato Bold', sans-serif;
+`
+
+const CustomOverlay = styled(Overlay)`
+	background-color: transparent;
+	z-index: ${props => props.show ? 197 : -1}
+`
 
 const ContactList = ({onClick}: ContactListProps) => {
     const {contacts} = useMessengerContext()
@@ -50,6 +50,8 @@ const ContactList = ({onClick}: ContactListProps) => {
             setResults({})
         }
     }, [showOverlay])
+
+
 
     const renderList = () => {
         const componentList: JSX.Element[] = []

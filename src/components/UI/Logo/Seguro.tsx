@@ -21,25 +21,25 @@ type StyledLogoSVGProps = {
     logoColor?: string
 } & StyledLogoTextProps
 
-
 const StyledLogoContainer = styled.div`
-  &:not(:first-child) {
-    margin-left: 5px;
-  }
-`
-
-const StyledLogoSVG = styled.svg<StyledLogoSVGProps>`
-  width: ${props => props.size};
-  height: ${props => props.size};
-  fill: ${props => props.logoColor || props.theme.ui.colors.text.primary}
+	&:not(:first-child) {
+		margin-left: 5px;
+	}
 `
 
 const StyledLogoText = styled.h1<StyledLogoTextProps>`
-  font-family: 'Montserrat Bold', sans-serif;
-  font-size: ${props => props.size || 'initial'};
+	font-family: 'Montserrat Bold', sans-serif;
+	font-size: ${props => props.size || 'initial'};
+`
+
+const StyledLogoSVG = styled.svg<StyledLogoSVGProps>`
+	width: ${props => props.size};
+	height: ${props => props.size};
+	fill: ${props => props.logoColor || props.theme.ui.colors.text.primary}
 `
 
 export const LogoText = ({size}: LogoTextProps) => {
+	
     return (
         <StyledLogoContainer>
             <StyledLogoText size={getPixelSize(size)}>SEGURO</StyledLogoText>
@@ -48,6 +48,7 @@ export const LogoText = ({size}: LogoTextProps) => {
 }
 
 export const SeguroLogoImage = ({color, size}: LogoImageProps) => {
+
     return (
         <StyledLogoContainer>
             <StyledLogoSVG width="100%" height="100%" viewBox="0 0 316 327" xmlns="http://www.w3.org/2000/svg"
@@ -79,6 +80,7 @@ export const SeguroLogoImage = ({color, size}: LogoImageProps) => {
 }
 
 export const SeguroLogoIcon = ({color, size}: LogoImageProps) => {
+
     return (
         <StyledLogoContainer>
             <StyledLogoSVG width="20" height="30" viewBox="0 0 20 30" xmlns="http://www.w3.org/2000/svg"

@@ -11,26 +11,27 @@ import GuildShow from '../Apps/GuideShow/GuildShow'
 import AppStore from '../Apps/appStore/AppStore'
 import {getWorkerService} from '../../../services/workerService/workerService'
 import {ClientProfiles} from '../../../store/appState/appStateReducer'
-import {useEffect} from 'react'
-import React from 'react'
+import React,{useEffect} from 'react'
+
 
 const StyledMainScreen = styled(motion.div)`
-  width: 100%;
+	width: 100%;
 `
 
 const StyledContents = styled(motion.div)`
-  background-color: ${props => props.theme.ui.colors.background.foundation};
-  content: '';
-  height: calc(100% - calc(50px + env(safe-area-inset-top)));
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-items: center;
-  text-align: center;
-  position: relative;
+	background-color: ${props => props.theme.ui.colors.background.foundation};
+	content: '';
+	height: calc(100% - calc(50px + env(safe-area-inset-top)));
+	width: 100%;
+	display: flex;
+	align-items: center;
+	justify-items: center;
+	text-align: center;
+	position: relative;
 `
-
 const MainScreen = () => {
+
+
     const {
         windowInnerSize: {width},
         setIsDrawerOpen,
@@ -39,7 +40,8 @@ const MainScreen = () => {
         isModalOpen,
 		showGuide,
         setClientProfiles,
-		showAppStore
+		showAppStore,
+		setIsModalOpen
     } = useAppState()
 
     const drawerWidth = width * 0.80
@@ -88,9 +90,9 @@ const MainScreen = () => {
     return (
         <>
             {
-                isModalOpen && (
-                    <PlatformModal/>
-                )
+               
+				<PlatformModal/>
+				
             }
             <Drawer
                 {...dragOptions()}

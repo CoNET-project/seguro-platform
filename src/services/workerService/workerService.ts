@@ -230,12 +230,12 @@ export const createProfile = (profile: ProfileData): Promise<WorkerServiceResolv
 export const saveProfiles = (): Promise<WorkerServiceResolve> => (
     new Promise<WorkerServiceResolve>((resolve) => {
         if (workerService.method.storeProfile) {
-            // workerService.profiles.storeProfile().then(([status]) => {
-            //     if (status === "SUCCESS") {
-            //         return resolve(status)
-            //     }
-            //     return resolve('FAILURE')
-            // })
+            workerService.method.storeProfile().then(([status]) => {
+                if (status === "SUCCESS") {
+                    return resolve(status)
+                }
+                return resolve('FAILURE')
+            })
         }
     })
 )

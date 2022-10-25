@@ -13,53 +13,51 @@ import React, {useState} from "react"
 type StyledWallpaperBoxProps = {
     imageSrc?: string
 }
-
 const StyledContainer = styled.div`
-  height: 100%;
-  width: 100%;
+	height: 100%;
+	width: 100%;
 `
 
 const StyledContent = styled.div`
-  height: calc(100% - 50px);
-  width: 100%;
-  padding: 30px 10px;
-  display: flex;
-  justify-content: center;
+	height: calc(100% - 50px);
+	width: 100%;
+	padding: 30px 10px;
+	display: flex;
+	justify-content: center;
 `
 
 const StyledWallpaperGrid = styled.div`
-  display: grid;
-  grid-template-columns: repeat(2, 125px);
-  grid-template-rows: repeat(2, 125px);
-  grid-gap: 10px;
+	display: grid;
+	grid-template-columns: repeat(2, 125px);
+	grid-template-rows: repeat(2, 125px);
+	grid-gap: 10px;
 `
 
 const StyledWallpaperSelection = styled.div`
-  width: 100%;
-  height: 100%;
-  content: '';
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+	width: 100%;
+	height: 100%;
+	content: '';
+	display: flex;
+	flex-direction: column;
+	align-items: center;
 `
 
 const StyledWallpaperBox = styled.label<StyledWallpaperBoxProps>`
-  background-image: ${props => props.imageSrc ? `url("${props.imageSrc}")` : null};
-  background-position: center top;
-  width: 100px;
-  height: 100px;
-  content: '';
-  display: flex;
+	background-image: ${props => props.imageSrc ? `url("${props.imageSrc}")` : null};
+	background-position: center top;
+	width: 100px;
+	height: 100px;
+	content: '';
+	display: flex;
 `
 
 const StyledWallpaperRadio = styled.input`
-  margin-top: 10px;
+	margin-top: 10px;
 `
 
 const Wallpaper = () => {
 
     const [selected, setSelected] = useState(1)
-
 
     return (
         <StyledContainer>

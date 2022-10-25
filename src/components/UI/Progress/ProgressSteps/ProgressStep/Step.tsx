@@ -10,18 +10,19 @@ type StyledStepProps = {
 }
 
 const StyledStep = styled.div<StyledStepProps>`
-  height: 6px;
-  width: 100%;
-  content: '';
-  background-color: ${props => props.stepReached ? props.theme.ui.colors.primary : props.theme.ui.colors.background.elevationOne};
-  transition: background-color 150ms ease-in-out;
+	height: 6px;
+	width: 100%;
+	content: '';
+	background-color: ${props => props.stepReached ? props.theme.ui.colors.primary : props.theme.ui.colors.background.elevationOne};
+	transition: background-color 150ms ease-in-out;
 
-  &:last-of-type {
-    border: none;
-  }
+	&:last-of-type {
+		border: none;
+	}
 `
 
 const Step = ({stepReached}: StepProps) => {
+
     return <StyledStep stepReached={stepReached}/>
 }
 

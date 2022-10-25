@@ -7,30 +7,10 @@ type StyledTabProps = {
     active: boolean
 }
 
-const StyledTab = styled.div<StyledTabProps>`
-  width: 50px;
-  height: 50px;
-  padding: 5px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  overflow: hidden;
-  cursor: pointer;
-  box-shadow: ${props => props.active && 'inset 0 0 5px rgba(0, 0, 0, 0.25)'};
-  border-radius: 3px
-`
 
 type StyledTabIconProps = {
     active: boolean
 }
-
-const StyledTabIcon = styled.div<StyledTabIconProps>`
-  padding: 0;
-  opacity: ${props => props.active ? 1 : 0.3};
-  transition: opacity 150ms ease-in-out;
-  font-size: 18px;
-`
 
 export type TabActiveStyles = {
     borderColor?: string,
@@ -44,11 +24,31 @@ export type TabProps = {
     activeStyles?: TabActiveStyles
 }
 
+const StyledTab = styled.div<StyledTabProps>`
+	width: 50px;
+	height: 50px;
+	padding: 5px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	overflow: hidden;
+	cursor: pointer;
+	box-shadow: ${props => props.active && 'inset 0 0 5px rgba(0, 0, 0, 0.25)'};
+	border-radius: 3px
+`
+
+const StyledTabIcon = styled.div<StyledTabIconProps>`
+	padding: 0;
+	opacity: ${props => props.active ? 1 : 0.3};
+	transition: opacity 150ms ease-in-out;
+	font-size: 18px;
+`
 const Tab = ({icon, id}: TabProps) => {
     const {state, dispatch} = usePageNavigator()
 
     const rootPageId = state.current[0].split('/')[0]
-
+	
     return (
         <StyledTab
             active={rootPageId === id}

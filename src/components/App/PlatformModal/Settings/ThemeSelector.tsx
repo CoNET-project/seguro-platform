@@ -5,21 +5,21 @@ import {FormattedMessage} from "react-intl"
 import {savePreferences} from "../../../../services/workerService/workerService"
 
 const StyledThemeSelector = styled.form`
-  display: flex;
-  align-items: center;
+	display: flex;
+	align-items: center;
 `
 
 const StyledThemeItem = styled.div`
-  &:not(:last-child) {
-    margin-right: 15px;
-  }
+	&:not(:last-child) {
+	margin-right: 15px;
+	}
 `
 
 const StyledThemeLabel = styled.label`
-  margin-left: 5px;
+	margin-left: 5px;
 `
 const input = styled.input`
-  	lables: ''
+		lables: ''
 `
 
 
@@ -34,6 +34,7 @@ const ThemeSelector = () => {
         })
     }
 
+	
     return (
         <StyledThemeSelector>
             <StyledThemeItem>

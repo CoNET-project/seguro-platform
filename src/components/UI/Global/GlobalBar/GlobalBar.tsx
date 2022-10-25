@@ -10,83 +10,85 @@ import AppsDropdown from "../../Dropdowns/AppsDropdown/AppsDropdown"
 import React, {useEffect, useState} from "react"
 import NotificationDropdown from "../../Dropdowns/NotificationDropdown/NotificationDropdown"
 
-const StyledGlobalBar = styled.div`
-  height: calc(50px + env(safe-area-inset-top));
-  width: 100%;
-  border-bottom: 1px solid ${props => props.theme.ui.colors.border.light};
-  display: flex;
-  align-items: center;
-  background-color: ${props => props.theme.ui.colors.globalBar.background};
-  padding: calc(env(safe-area-inset-top)) 10px 0 10px;
-
-  @media (${screenWidth.mediumWidth}) {
-    padding: calc(env(safe-area-inset-top)) 20px 0 20px;
-  }
-`
-
-const StyledBarSection = styled.div`
-  display: flex;
-  align-items: center;
-  height: 100%;
-  content: '';
-`
-
-const StyledBarSectionFullWidth = styled(StyledBarSection)`
-  width: 100%;
-`
-
-const StyledBarSectionOptional = styled.div`
-  display: none;
-  @media (${screenWidth.mediumWidth}) {
-    display: flex;
-    align-items: center;
-  }
-`
-
-const StyledGlobalButton = styled.button`
-  height: 46px;
-  width: 46px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border: none;
-  background-color: transparent;
-  cursor: pointer;
-  padding: 10px;
-  position: relative;
-  border-radius: 5px;
-  margin: 10px 0;
-  transition: background-color 100ms ease-in-out;
-
-  &:hover {
-    background-color: ${props => props.theme.ui.colors.hover};
-  }
-`
-
-const StyledGlobalButton_NoHover = styled(StyledGlobalButton)`
-  &:hover {
-    background-color: initial;
-  }
-`
-
-const StyledGlobalItem = styled(StyledGlobalButton)`
-`
-
-const StyledNotificationDot = styled.div`
-  height: 12.5px;
-  width: 12.5px;
-  content: '';
-  background-color: ${props => props.theme.ui.colors.dangerous};
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  border-radius: 50%;
-  border: 2px solid ${props => props.theme.ui.colors.background.foundation}
-`
 
 type Dropdowns = 'applications' | 'profiles' | 'notifications' | 'network' | null
 
+const StyledGlobalBar = styled.div`
+		height: calc(50px + env(safe-area-inset-top));
+		width: 100%;
+		border-bottom: 1px solid ${props => props.theme.ui.colors.border.light};
+		display: flex;
+		align-items: center;
+		background-color: ${props => props.theme.ui.colors.globalBar.background};
+		padding: calc(env(safe-area-inset-top)) 10px 0 10px;
+
+		@media (${screenWidth.mediumWidth}) {
+			padding: calc(env(safe-area-inset-top)) 20px 0 20px;
+		}
+	`
+
+	const StyledBarSection = styled.div`
+		display: flex;
+		align-items: center;
+		height: 100%;
+		content: '';
+	`
+
+	const StyledBarSectionFullWidth = styled(StyledBarSection)`
+		width: 100%;
+	`
+
+	const StyledBarSectionOptional = styled.div`
+		display: none;
+		@media (${screenWidth.mediumWidth}) {
+			display: flex;
+			align-items: center;
+		}
+	`
+
+	const StyledGlobalButton = styled.button`
+		height: 46px;
+		width: 46px;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		border: none;
+		background-color: transparent;
+		cursor: pointer;
+		padding: 10px;
+		position: relative;
+		border-radius: 5px;
+		margin: 10px 0;
+		transition: background-color 100ms ease-in-out;
+
+		&:hover {
+			background-color: ${props => props.theme.ui.colors.hover};
+		}
+	`
+
+	const StyledGlobalButton_NoHover = styled(StyledGlobalButton)`
+		&:hover {
+			background-color: initial;
+		}
+	`
+
+	const StyledGlobalItem = styled(StyledGlobalButton)`
+	`
+
+	const StyledNotificationDot = styled.div`
+		height: 12.5px;
+		width: 12.5px;
+		content: '';
+		background-color: ${props => props.theme.ui.colors.dangerous};
+		position: absolute;
+		top: 10px;
+		right: 10px;
+		border-radius: 50%;
+		border: 2px solid ${props => props.theme.ui.colors.background.foundation}
+	`
+
 const GlobalBar = () => {
+	
     const {
         hasUpdateAvailable,
         networkStrength,
@@ -216,7 +218,7 @@ const GlobalBar = () => {
 					<TippyDropdown
 						content={
 						<ProfileDropdown 
-							closeDropdown={()=> closeDropdown('')}
+							closeDropdown={closeDropdown}
 						/>}
 						visible={currentDropdown === 'profiles'}
 						verticalOffset={2}

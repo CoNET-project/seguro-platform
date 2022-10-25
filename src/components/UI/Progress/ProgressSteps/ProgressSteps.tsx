@@ -16,41 +16,41 @@ type StyledProgressStepsProps = {
 }
 
 const StyledProgressContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
 `
 
 const StyledProgressSteps = styled.div<StyledProgressStepsProps>`
-  display: grid;
-  grid-template-columns: repeat(${props => props.steps}, minmax(50px, 200px));
-  grid-gap: 2px;
-  align-items: center;
-  box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.15);
-  border-radius: 4px;
-  overflow: hidden;
+	display: grid;
+	grid-template-columns: repeat(${props => props.steps}, minmax(50px, 200px));
+	grid-gap: 2px;
+	align-items: center;
+	box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.15);
+	border-radius: 4px;
+	overflow: hidden;
 `
 
 const StyleProgressTextContent = styled.div`
-  position: relative;
-  width: 100%;
-  height: 24px;
+	position: relative;
+	width: 100%;
+	height: 24px;
 `
 
 const StyledProgressText = styled(motion.p)`
-  width: 100%;
-  top: 10px;
-  content: '';
-  text-align: center;
-  font-size: ${props => props.theme.ui.fontSizes.narrow.sm || '12px'};
-  color: ${props => props.theme.ui.colors.text.primary};
-  bottom: 0;
-  position: absolute;
+	width: 100%;
+	top: 10px;
+	content: '';
+	text-align: center;
+	font-size: ${props => props.theme.ui.fontSizes.narrow.sm || '12px'};
+	color: ${props => props.theme.ui.colors.text.primary};
+	bottom: 0;
+	position: absolute;
 
-  @media (${screenWidth.mediumWidth}) {
-    top: 15px;
-    font-size: ${props => props.theme.ui.fontSizes.narrow.md || '12px'};
-  }
+	@media (${screenWidth.mediumWidth}) {
+		top: 15px;
+		font-size: ${props => props.theme.ui.fontSizes.narrow.md || '12px'};
+	}
 `
 
 const ProgressSteps = ({currentStage, numberOfSteps, stepTexts}: ProgressStepsProps) => {

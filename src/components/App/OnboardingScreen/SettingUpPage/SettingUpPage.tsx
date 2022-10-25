@@ -22,76 +22,78 @@ import {
 } from "../../../../services/workerService/workerService"
 
 const StyledContainer = styled.div`
-  width: 100%;
-  height: 70%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+	width: 100%;
+	height: 70%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
 `
 
 const StyledPageUpper = styled.div`
-  flex: 1;
-  width: 100%;
-  max-width: 50rem;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+	flex: 1;
+	width: 100%;
+	max-width: 50rem;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
 `
 
 const StyledPageVisual = styled.div`
-  flex: 0.8;
-  min-height: 100%;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding: 10px;
+	flex: 0.8;
+	min-height: 100%;
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	padding: 10px;
 `
 
 const StyledPageLower = styled.div`
-  flex: 0.1;
-  width: 100%;
-  content: '';
-  max-width: 50rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding: 0 20px;
+	flex: 0.1;
+	width: 100%;
+	content: '';
+	max-width: 50rem;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	padding: 0 20px;
 `
 
 const StyledCarouselItemDetails = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
 `
 
 const StyledCarouselItemTitle = styled.p`
-  margin: 10px;
-  font-size: ${props => props.theme.ui.fontSizes.narrow.lg};
-  font-weight: 700;
+	margin: 10px;
+	font-size: ${props => props.theme.ui.fontSizes.narrow.lg};
+	font-weight: 700;
 
-  @media (${screenWidth.mediumWidth}) {
-    font-size: ${props => props.theme.ui.fontSizes.narrow.xl};
-  }
+	@media (${screenWidth.mediumWidth}) {
+		font-size: ${props => props.theme.ui.fontSizes.narrow.xl};
+	}
 `
 
 const StyledCarouselItemDescription = styled.p`
-  font-size: ${props => props.theme.ui.fontSizes.narrow.md};
-  max-width: 30rem;
-  text-align: center;
+	font-size: ${props => props.theme.ui.fontSizes.narrow.md};
+	max-width: 30rem;
+	text-align: center;
 
-  @media (${screenWidth.mediumWidth}) {
-    font-size: ${props => props.theme.ui.fontSizes.narrow.lg};
-  }
+	@media (${screenWidth.mediumWidth}) {
+		font-size: ${props => props.theme.ui.fontSizes.narrow.lg};
+	}
 `
 
 type CarouselState = [number, -1 | 1]
 
 const SettingUpPage = () => {
+
+	
     const {
         isTouchDevice,
         setClientProfiles,

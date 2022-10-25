@@ -127,6 +127,7 @@ const en_US: Messages = {
     'platform.contextMenu.edit': 'Edit',
 
     'platform.profile.changePicture': 'Change Picture',
+	'platform.profile.walletAddr': 'Wallet Address',
 
     'globalBar.profile.dropdown.manageProfiles': 'Manage Profiles',
     'globalBar.profile.dropdown.addProfile': 'Add Profile',

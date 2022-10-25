@@ -8,13 +8,15 @@ export default {
 }
 
 const Wrapper = styled.div`
-  width: 70px;
-  height: 70px;
+	width: 70px;
+	height: 70px;
 `
 
 const Template: Story<NetworkIconProps> = (
     args
 ) => {
+
+
     return (
         <Wrapper>
             <NetworkIcon {...args}/>

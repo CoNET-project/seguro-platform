@@ -12,63 +12,64 @@ import {ThreeCircles} from "react-loader-spinner"
 import {OverlayDarker} from "../../../UI/Common/Overlay/Overlay"
 
 const StyledVerificationModal = styled.div`
-  width: 360px;
-  height: 640px;
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  margin: auto;
-  background-color: ${props => props.theme.ui.colors.background.elevationOne};
-  z-index: 999;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 40px;
-  border-radius: 5px;
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+	width: 360px;
+	height: 640px;
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	margin: auto;
+	background-color: ${props => props.theme.ui.colors.background.elevationOne};
+	z-index: 999;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	padding: 40px;
+	border-radius: 5px;
+	box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
 
-  @media (${screenWidth.narrowWidth}) {
-    height: 500px;
-    width: 400px;
-  }
+	@media (${screenWidth.narrowWidth}) {
+		height: 500px;
+		width: 400px;
+	}
 `
 
 const StyledSection = styled.div`
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+	flex: 1;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
 `
 
 const StyledVisual = styled.div`
-  max-height: 150px;
-  max-width: 150px;
+	max-height: 150px;
+	max-width: 150px;
 `
 
 const StyledErrorMessage = styled.p`
-  font-size: ${props => props.theme.ui.fontSizes.narrow.sm};
-  color: ${props => props.theme.ui.colors.dangerous};
-  margin-bottom: 20px;
+	font-size: ${props => props.theme.ui.fontSizes.narrow.sm};
+	color: ${props => props.theme.ui.colors.dangerous};
+	margin-bottom: 20px;
 `
 
 const StyledModalTitle = styled.p`
-  font-size: ${props => props.theme.ui.fontSizes.narrow.xl};
-  font-weight: 700;
-  margin: 20px 0;
-  color: ${props => props.theme.ui.colors.text.primary}
+	font-size: ${props => props.theme.ui.fontSizes.narrow.xl};
+	font-weight: 700;
+	margin: 20px 0;
+	color: ${props => props.theme.ui.colors.text.primary}
 `
 
 const StyledModalSubtitle = styled.p`
-  font-size: ${props => props.theme.ui.fontSizes.narrow.md};
-  text-align: center;
-  color: ${props => props.theme.ui.colors.text.primary};
+	font-size: ${props => props.theme.ui.fontSizes.narrow.md};
+	text-align: center;
+	color: ${props => props.theme.ui.colors.text.primary};
 `
 
 const VerificationModal = () => {
+	
     const {setIsShowOverlay, setIsUnlocked} = useAppState()
     const [verificationCode, setVerificationCode] = useState("")
     const [isVerifying, setIsVerifying] = useState(false)

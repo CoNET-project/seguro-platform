@@ -16,27 +16,6 @@ const StyledSearchResult = styled.li`
   }
 `
 
-const StyledResultColumn = styled.div`
-  display: flex;
-`
-
-const StyledResultText = styled.p`
-  font-size: calc(${props => props.theme.ui.fontSizes.narrow.sm} - 1px);
-  color: ${props => props.theme.ui.colors.text.primary};
-  margin-left: 5px;
-
-  ${StyledSearchResult}:hover & {
-    color: whitesmoke;
-  }
-
-`
-
-const StyledResultLeft = styled(StyledResultColumn)`
-  width: 45px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-`
 
 export type SearchResults = SearchResultProps
 
@@ -45,8 +24,30 @@ type SearchResultProps = {
     rightText: ReactNode | string,
     onClick?: () => void
 }
+const StyledResultColumn = styled.div`
+	display: flex;
+`
 
+const StyledResultText = styled.p`
+	font-size: calc(${props => props.theme.ui.fontSizes.narrow.sm} - 1px);
+	color: ${props => props.theme.ui.colors.text.primary};
+	margin-left: 5px;
+
+	${StyledSearchResult}:hover & {
+		color: whitesmoke;
+	}
+
+`
+
+const StyledResultLeft = styled(StyledResultColumn)`
+	width: 45px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+`
 const SearchResult = ({leftComponent, rightText, onClick}: SearchResultProps) => {
+	
+
     return (
         <StyledSearchResult onClick={onClick}>
             {

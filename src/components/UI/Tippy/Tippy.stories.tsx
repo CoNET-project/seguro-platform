@@ -8,15 +8,14 @@ export default {
     title: 'Tippy/TippyDropdown'
 }
 
-const StyledTippyWrapper = styled.div`
-`
-
 const TippyContent = () => {
+
+	const StyledTippyWrapper = styled.div`
+	`
+
     return (
         <StyledTippyWrapper>
             TIPPY CONTENT!
-
-
         </StyledTippyWrapper>
     )
 }

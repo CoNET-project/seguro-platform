@@ -17,79 +17,81 @@ type ProfileItemProps = {
 }
 
 const StyledProfileItem = styled.div`
-  display: flex;
-  align-items: center;
+	display: flex;
+	align-items: center;
 
-  &:not(:first-of-type) {
-    margin-top: 15px;
-  }
+	&:not(:first-of-type) {
+		margin-top: 15px;
+	}
 `
 
 const StyledProfileItemSection = styled.div`
-  &:first-of-type {
-    margin-right: 20px;
-  }
+	&:first-of-type {
+		margin-right: 20px;
+	}
 
-  &:nth-child(2) {
-    width: 100%;
-  }
+	&:nth-child(2) {
+		width: 100%;
+	}
 
-  &:last-of-type {
-    min-width: 100px;
-    display: flex;
-    justify-content: flex-end;
-  }
+	&:last-of-type {
+		min-width: 100px;
+		display: flex;
+		justify-content: flex-end;
+	}
 `
 
 const StyledProfileItemNickname = styled.p`
-  font-weight: 700;
-  font-size: ${props => props.theme.ui.fontSizes.narrow.sm}
+	font-weight: 700;
+	font-size: ${props => props.theme.ui.fontSizes.narrow.sm}
 `
 
 const StyledProfileItemKeyId = styled.p`
-  color: ${props => props.theme.ui.colors.text.secondary};
-  margin-top: 5px;
-  font-size: ${props => props.theme.ui.fontSizes.narrow.sm}
+	color: ${props => props.theme.ui.colors.text.secondary};
+	margin-top: 5px;
+	font-size: ${props => props.theme.ui.fontSizes.narrow.sm}
 `
 
 const StyledProfileItemPrimary = styled.p`
-  font-weight: 700;
-  color: ${props => props.theme.ui.colors.text.secondary};
-  font-size: ${props => props.theme.ui.fontSizes.narrow.sm};
+	font-weight: 700;
+	color: ${props => props.theme.ui.colors.text.secondary};
+	font-size: ${props => props.theme.ui.fontSizes.narrow.sm};
 `
 
 const StyledProfileItemSetPrimary = styled.a`
-  color: ${props => props.theme.ui.colors.text.primary};
-  cursor: pointer;
-  text-decoration: underline;
-  font-size: ${props => props.theme.ui.fontSizes.narrow.sm};
+	color: ${props => props.theme.ui.colors.text.primary};
+	cursor: pointer;
+	text-decoration: underline;
+	font-size: ${props => props.theme.ui.fontSizes.narrow.sm};
 `
 
-const ProfileItem = ({profileImageSrc, nickname, keyId, isPrimary, setPrimary}: ProfileItemProps) => {
-    return (
-        <StyledProfileItem>
-            <StyledProfileItemSection><Image src={profileImageSrc || AnonymousAvatar}
-                                             size={50}/></StyledProfileItemSection>
-            <StyledProfileItemSection>
-                <StyledProfileItemNickname>{nickname}</StyledProfileItemNickname>
-                <StyledProfileItemKeyId>{keyId}</StyledProfileItemKeyId>
-            </StyledProfileItemSection>
-            <StyledProfileItemSection>
-                {isPrimary ?
-                    (<StyledProfileItemPrimary>Primary</StyledProfileItemPrimary>) :
-                    <StyledProfileItemSetPrimary>Set Primary</StyledProfileItemSetPrimary>
-                }
-            </StyledProfileItemSection>
-        </StyledProfileItem>
-    )
-}
-
 const StyledProfileList = styled.div`
-  width: 100%;
-  margin-top: 15px;
+	width: 100%;
+	margin-top: 15px;
 `
 
 const ProfileList = () => {
+	
+
+	const ProfileItem = ({profileImageSrc, nickname, keyId, isPrimary, setPrimary}: ProfileItemProps) => {
+		return (
+			<StyledProfileItem>
+				<StyledProfileItemSection><Image src={profileImageSrc || AnonymousAvatar}
+												size={50}/></StyledProfileItemSection>
+				<StyledProfileItemSection>
+					<StyledProfileItemNickname>{nickname}</StyledProfileItemNickname>
+					<StyledProfileItemKeyId>{keyId}</StyledProfileItemKeyId>
+				</StyledProfileItemSection>
+				<StyledProfileItemSection>
+					{isPrimary ?
+						(<StyledProfileItemPrimary>Primary</StyledProfileItemPrimary>) :
+						<StyledProfileItemSetPrimary>Set Primary</StyledProfileItemSetPrimary>
+					}
+				</StyledProfileItemSection>
+			</StyledProfileItem>
+		)
+	}
+
     return (
         <StyledProfileList>
             <ProfileItem profileImageSrc={ExampleProfile1} nickname='Jennifer K' keyId='4E1F799AA4FF2279'

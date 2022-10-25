@@ -128,6 +128,7 @@ const zh_CN: Messages = {
     'platform.contextMenu.edit': '編輯',
 
     'platform.profile.changePicture': '更換圖片',
+	'platform.profile.walletAddr': '錢包地址',
 
     // 'globalBar.profile.dropdown.manageProfiles': 'Manage Profiles',
     // 'globalBar.profile.dropdown.addProfile': 'Add Profile',

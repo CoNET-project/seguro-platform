@@ -1,43 +1,43 @@
 import styled from "styled-components"
 import React from 'react'
 
+
 const StyledSubscriptionPlan = styled.div`
-  width: 100%;
-  margin-top: 15px;
+	width: 100%;
+	margin-top: 15px;
 `
 
 const StyledPlanRow = styled.div`
+	&:nth-of-type(2) {
+		margin-bottom: 10px;
+	}
 
-  &:nth-of-type(2) {
-    margin-bottom: 10px;
-  }
-
-  &:nth-of-type(n+2) {
-    margin-top: 15px;
-  }
+	&:nth-of-type(n+2) {
+		margin-top: 15px;
+	}
 `
 
 const StyledInnerRow = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
 `
 
 const StyledPlanName = styled.p`
-  font-weight: 900;
-  color: ${props => props.theme.ui.colors.text.primary}
+	font-weight: 900;
+	color: ${props => props.theme.ui.colors.text.primary}
 `
 
-const StyledPlanPrice = styled(StyledPlanName)`
-`
+const StyledPlanPrice = styled(StyledPlanName)``
 
 const StyledPlanDescription = styled.p`
-  margin-top: 5px;
-  color: ${props => props.theme.ui.colors.text.secondary};
+	margin-top: 5px;
+	color: ${props => props.theme.ui.colors.text.secondary};
 `
 
-
 const SubscriptionPlan = () => {
+	
+
     return (
         <StyledSubscriptionPlan>
             <StyledPlanRow>

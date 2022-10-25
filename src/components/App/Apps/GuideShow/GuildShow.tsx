@@ -3,7 +3,7 @@ import LeftPanel from "./Panels/LeftPanel"
 import RightPanel from "./Panels/RightPanel"
 import MainPanel from "./Panels/MainPanel"
 import {MessengerContext} from "../../../../contexts/messenger/MessengerContext"
-import React, {useEffect} from "react";
+import React, {useEffect} from "react"
 import {messengerReducer, MessengerState} from "../../../../contexts/messenger/messengerReducer"
 import {messengerActions} from "../../../../contexts/messenger/messengerActions"
 
@@ -23,16 +23,12 @@ const GuildShow = () => {
 
     const [state, dispatch] = React.useReducer(messengerReducer, defaultMessengerState)
 
-    useEffect(() => {
-        
-    }, [])
-
     return (
-        <>
-            <MessengerContext.Provider value={{state, dispatch}}>
-                <ThreePanels components={contents} currentPanel={state.currentFocusPanel}/>
-            </MessengerContext.Provider>
-        </>
+
+		<MessengerContext.Provider value={{state, dispatch}}>
+			<ThreePanels components={contents} currentPanel={state.currentFocusPanel}/>
+		</MessengerContext.Provider>
+
     )
 }
 

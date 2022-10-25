@@ -5,7 +5,6 @@ type AppRouterProps = {
     children: ReactNode
 }
 
-
 const AppRouter = ({children}: AppRouterProps) => {
     return (
         <Router>

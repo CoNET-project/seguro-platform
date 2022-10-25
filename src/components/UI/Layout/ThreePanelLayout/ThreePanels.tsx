@@ -14,12 +14,11 @@ type ThreePanelProps = {
     components: ThreePanelComponents,
     currentPanel: 'left' | 'main' | 'right'
 }
-
 const StyledThreePanels = styled.div`
-  height: 100%;
-  width: 100%;
-  display: flex;
-  align-items: center;
+	height: 100%;
+	width: 100%;
+	display: flex;
+	align-items: center;
 `
 
 const ThreePanels = ({components, currentPanel}: ThreePanelProps) => {

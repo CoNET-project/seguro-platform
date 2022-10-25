@@ -10,15 +10,16 @@ const IconArea = styled.div`
 `
 
 const StyledProfileDropdownOptionsText = styled.p`
-  	margin-left: 16px;
+	margin-left: 16px;
 `
 
 
 const StyledProfileDropdownOptions = styled.div`
-  width: 100%;
+	width: 100%;
 `
-
 const FundWallet = () => {
+	
+
 	const theme = useTheme()
 	return (
 		<StyledProfileDropdownOptions>

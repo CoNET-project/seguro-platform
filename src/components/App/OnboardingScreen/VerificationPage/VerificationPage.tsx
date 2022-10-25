@@ -9,61 +9,62 @@ import VerificationAnimation from '../../../../assets/lottie/verification.json'
 import {screenWidth} from "../../../UI/screenSizes"
 import React from 'react'
 
+
 const StyledContainer = styled.div`
-  width: 100%;
-  //padding: 50px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+	width: 100%;
+	//padding: 50px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
 `
 
 const StyledPageHeader = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  margin-bottom: 30px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	margin-bottom: 30px;
 `
 
 const StyledPageContents = styled.div`
-  width: 100%;
+	width: 100%;
 `
 
 
 const StyledPageTitle = styled.h1`
-  font-size: ${props => props.theme.ui.fontSizes.narrow.xl};
-  margin-bottom: 10px;
+	font-size: ${props => props.theme.ui.fontSizes.narrow.xl};
+	margin-bottom: 10px;
 
-  @media (${screenWidth.mediumWidth}) {
-    margin-bottom: 30px;
-    font-size: 36px;
-  }
+	@media (${screenWidth.mediumWidth}) {
+		margin-bottom: 30px;
+		font-size: 36px;
+	}
 `
 
 const StyledVerificationText = styled.p`
-  width: 100%;
-  line-height: 24px;
-  color: ${props => props.theme.ui.colors.text.primary};
-  font-size: ${props => props.theme.ui.fontSizes.narrow.sm};
+	width: 100%;
+	line-height: 24px;
+	color: ${props => props.theme.ui.colors.text.primary};
+	font-size: ${props => props.theme.ui.fontSizes.narrow.sm};
 
-  @media (${screenWidth.mediumWidth}) {
-    font-size: ${props => props.theme.ui.fontSizes.narrow.md};
-  }
+	@media (${screenWidth.mediumWidth}) {
+		font-size: ${props => props.theme.ui.fontSizes.narrow.md};
+	}
 `
 
 const StyledVerificationInputLabel = styled(StyledVerificationText)``
 
 const StyledLottieWrapper = styled.div`
-  width: 150px;
+	width: 150px;
 
-  @media (${screenWidth.mediumWidth}) {
-    width: 200px;
-  }
+	@media (${screenWidth.mediumWidth}) {
+		width: 200px;
+	}
 `
 
-
 const VerificationPage = () => {
+	
     const {state, dispatch} = useOnboardingPageNavigator()
 
     const verificationInputHandler = (value: string) => {

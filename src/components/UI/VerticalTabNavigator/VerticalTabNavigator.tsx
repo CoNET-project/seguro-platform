@@ -3,18 +3,6 @@ import VerticalNavigatorTabs from "./VerticalNavigatorTabs/VerticalNavigatorTabs
 import React, {ReactNode} from "react"
 import {usePageNavigator} from "../../../contexts/pageNavigator/PageNavigatorContext"
 
-const StyledVerticalTabNavigator = styled.div`
-  width: 100%;
-  height: 100%;
-  content: '';
-  display: flex;
-`
-
-const StyledVerticalTabNavigatorContent = styled.div`
-  width: 100%;
-  height: 100%;
-`
-
 export type VerticalTabNavigatorPages = {
     [id: string]: {
         text?: ReactNode | string,
@@ -29,10 +17,16 @@ type VerticalTabNavigatorProps = {
     className?: string
 }
 
+const StyledVerticalTabNavigatorContent = styled.div`
+	width: 100%;
+	height: 100%;
+`
 const VerticalTabNavigatorContent = ({screens}: VerticalTabNavigatorProps) => {
     const {state} = usePageNavigator()
 
     const screen = screens[state.current[0]]?.screen
+
+
 
     return (
         <StyledVerticalTabNavigatorContent>
@@ -40,8 +34,14 @@ const VerticalTabNavigatorContent = ({screens}: VerticalTabNavigatorProps) => {
         </StyledVerticalTabNavigatorContent>
     )
 }
-
+const StyledVerticalTabNavigator = styled.div`
+	width: 100%;
+	height: 100%;
+	content: '';
+	display: flex;
+`
 const VerticalTabNavigator = ({screens, className}: VerticalTabNavigatorProps) => {
+
     return (
         <StyledVerticalTabNavigator className={className}>
             <VerticalNavigatorTabs screens={screens}/>

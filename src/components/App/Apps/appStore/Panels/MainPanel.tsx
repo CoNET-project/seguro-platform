@@ -9,20 +9,20 @@ import BottomBar from "./MainPanel/BottomBar/BottomBar";
 import React from "react"
 
 const StyledMainPanel = styled.div`
-  height: 100%;
-  width: 100%;
-  content: '';
+	height: 100%;
+	width: 100%;
+	content: '';
 
 `
 
 const StyledMainContent = styled.div`
-  width: 100%;
-  height: calc(100% - 50px);
-  content: '';
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+	width: 100%;
+	height: calc(100% - 50px);
+	content: '';
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
 `
 
 const MainPanel = () => {

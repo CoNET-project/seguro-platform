@@ -3,20 +3,22 @@ import Tab from "../Tab/Tab"
 import {VerticalTabNavigatorPages} from "../VerticalTabNavigator"
 import React from 'react'
 
-const StyledVerticalNavigatorTabs = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 50px;
-  height: 100%;
-  border-right: 1px solid ${props => props.theme.ui.colors.border.light};
-`
+
 
 type VerticalNavigatorTabsProps = {
     screens: VerticalTabNavigatorPages
 }
+const StyledVerticalNavigatorTabs = styled.div`
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	width: 50px;
+	height: 100%;
+	border-right: 1px solid ${props => props.theme.ui.colors.border.light};
+`
 
 const VerticalNavigatorTabs = ({screens}: VerticalNavigatorTabsProps) => {
+
     return (
         <StyledVerticalNavigatorTabs>
             {
