@@ -66,7 +66,7 @@ const RowWrapper = styled.div`
 	justify-content: space-between;
 	align-items: center;
 `
-const ListItem = ({profileImg, keyID, nickname, active, onSwitchProfile}: ListItemProps) => {
+const ListItem = ({profileImg, keyID, nickName, active, onSwitchProfile}: ListItemProps) => {
 
 	
     const copyDeviceCode = (event: React.MouseEvent<HTMLButtonElement>, code: string) => {
@@ -87,7 +87,7 @@ const ListItem = ({profileImg, keyID, nickname, active, onSwitchProfile}: ListIt
 			isActive={ active }>
             <ProfileImage src={profileImg || AnonymousProfile} size={45}/>
             <StyledProfileDetails>
-                <StyledProfileName>{nickname || 'Anonymous User'}</StyledProfileName>
+                <StyledProfileName>{nickName || 'Anonymous User'}</StyledProfileName>
                 <RowWrapper>
                     <StyledProfileKeyId>{keyID}</StyledProfileKeyId>
                     <StyledProfileKeyIdCopy onClick={

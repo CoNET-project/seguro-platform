@@ -126,13 +126,16 @@ const zh_CN: Messages = {
 
     'platform.profile.changePicture': '更换图片',
 	'platform.profile.walletAddr': '钱包地址',
+	'platform.profile.nickName': '设置昵称',
+	'platform.profile.privateKey': '导出私钥',
+	'platform.profile.privateKeyWarning': '警告：切勿泄露此密钥给任何人。拥有此私钥，就可以任意支配，账户中所有的资产。',
 
     'globalBar.profile.dropdown.manageProfiles': '管理个人资料',
     'globalBar.profile.dropdown.addProfile': '添加配置文件',
     'globalBar.profile.dropdown.lockPlatform': '锁定平台',
 
     'platform.manageProfile': '管理个人资料',
-    'platform.manageProfile.setAsPrimary': '设置为主',
+    'platform.manageProfile.setAsPrimary': '设置为当前账户',
     'platform.manageProfile.saveButton': '保存',
 
     'platform.manageProfiles': '管理个人资料',

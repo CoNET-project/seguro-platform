@@ -32,6 +32,7 @@ import {getPreferredLocale} from '../../localization/localization'
 import {detectWindowInnerSize} from "../../utilities/utilities";
 import {WindowInnerSize} from './useAppState'
 import {getWorkerService} from "../../services/workerService/workerService";
+import { profile } from '@conet.project/seguro-worker-lib/build/workerBridge'
 
 export type ModalNames = 'settings' | 'manageProfile' | 'addProfile' | 'profilesList' | null
 
@@ -64,7 +65,7 @@ export type CryptoAsset = {
 
 export type ProfileData = {
     bio: string
-    nickname: string
+    nickName: string
     keyID: string
     tags: string[]
 	profileImg: string
@@ -72,6 +73,9 @@ export type ProfileData = {
     isPrimary: boolean
 	assets?: CryptoAsset[]
 	shortID: string
+	changed?: boolean
+	publicKeyArmor?: string
+	privateKeyArmor?: string
 }
 
 export type Devices = {
@@ -136,6 +140,7 @@ const initialState: AppStateReducerState = {
     activeProfile: null,
     clientDevices: {},
     networkState: 'disconnected'
+	
 }
 
 const appStateReducer = createReducer(initialState, builder => {
@@ -214,7 +219,7 @@ const appStateReducer = createReducer(initialState, builder => {
 
         .addCase(createClientProfile, (state, action) => {
             const profiles = [
-                ...getWorkerService().data.profile
+                ...getWorkerService().data.profiles
             ]
             state.clientProfiles = profiles.reduce((clientProfiles: ClientProfiles, profile) => {
                 if (profile.keyID) {

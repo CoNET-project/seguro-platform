@@ -130,6 +130,9 @@ export type Messages = {
 
     'platform.profile.changePicture': string
 	'platform.profile.walletAddr': string,
+	'platform.profile.nickName': string,
+	'platform.profile.privateKey': string,
+	'platform.profile.privateKeyWarning': string,
 
     'globalBar.profile.dropdown.manageProfiles': string
     'globalBar.profile.dropdown.addProfile': string

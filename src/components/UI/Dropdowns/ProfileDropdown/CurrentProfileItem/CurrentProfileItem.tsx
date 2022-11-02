@@ -100,7 +100,7 @@ const CurrentProfileItem = ({closeDropdown}: ProfileDropdownProps ) => {
 				</Margin1rem>
 				
 				<StyledProfileDetails>
-					<StyledProfileName>{currentProfile.nickname || <FormattedMessage id='platform.ProfileDropdown.CurrentProfileItem.AnonymousUser'/>}</StyledProfileName>
+					<StyledProfileName>{currentProfile.nickName || <FormattedMessage id='platform.ProfileDropdown.CurrentProfileItem.AnonymousUser'/>}</StyledProfileName>
 					<RowWrapper>
 						<StyledProfileKeyId>{shortID}</StyledProfileKeyId>
 						<StyledProfileKeyIdCopy onClick={

@@ -73,7 +73,7 @@ const AddProfile = ({}: AddProfileProps) => {
         alias: "", bio: "", tags: [],
         profileImg: '',
         keyID: '',
-        nickname: '',
+        nickName: '',
         isPrimary: false,
 		shortID: ''
     })

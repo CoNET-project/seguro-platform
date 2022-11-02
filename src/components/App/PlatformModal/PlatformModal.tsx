@@ -8,15 +8,39 @@ import React , {useState}from 'react'
 import {FormattedMessage} from "react-intl"
 import Dialog from '@mui/material/Dialog'
 import DialogTitle from '@mui/material/DialogTitle'
+import DialogContent from '@mui/material/DialogContent'
 import IconButton from '@mui/material/IconButton'
 import CloseIcon from '@mui/icons-material/Close'
-
+import { styled } from '@mui/material/styles'
+import CheckIcon from '@mui/icons-material/Check'
+import AddIcon from '@mui/icons-material/Add'
 const PlatformModal = () => {
-    const {isModalOpen, setIsModalOpen, windowInnerSize:{width}} = useAppState()
+    const {isModalOpen, setIsModalOpen, windowInnerSize:{width}, updateClientProfiles} = useAppState()
 	const onClose = () => {
 		setIsModalOpen (null)
 	}
+
+	let newProfile: any = null
+	
+	const BootstrapDialog = styled(Dialog)(({ theme }) => ({
+		overflow: 'hidden'
+	}))
+
+	const profileChanged = ( profile: any ) => {
+		newProfile = profile
+	}
+
+	const onChange = () => {
+		if ( isModalOpen === 'manageProfile' ) {
+			if (newProfile) {
+				updateClientProfiles(newProfile)
+			}
+		}
+		setIsModalOpen (null)
+	}
+
 	const [currectProfile, setCurrectProfile]= useState (null)
+
 	const getHeaderBarTitle = () => {
         switch (isModalOpen) {
             case 'profilesList': {
@@ -32,29 +56,72 @@ const PlatformModal = () => {
                 break
         }
     }
+
 	return (
-		<Dialog open={isModalOpen? true : false} onClose = {onClose} fullScreen={width < 800 ? true: false }
-			sx={{width:'100%'}}
+		<BootstrapDialog open={isModalOpen? true : false} onClose = {onClose} fullScreen={ width < 800 ? true: false }
 		>
-			<DialogTitle >
+			<DialogTitle 
+
+				sx={{
+					minWidth: '30rem',
+				}}
+			>
 				{getHeaderBarTitle()}
-				<IconButton onClick={onClose} sx={{position: 'absolute',right: 14,top: 14}}>
+				{
+					isModalOpen === 'manageProfile' && 
+					<IconButton onClick={onChange} sx={{
+						position: 'absolute',
+						right: 80,top: 14,
+						color: 'green'
+						}}>
+						<CheckIcon/>
+					</IconButton>
+				}
+
+				{
+					isModalOpen === 'profilesList' && 
+					<IconButton onClick={onChange} sx={{
+						position: 'absolute',
+						right: 80,top: 14,
+						color: 'green'
+						}}>
+						<AddIcon/>
+					</IconButton>
+				}
+				
+				<IconButton onClick={onClose} sx={{
+					position: 'absolute',
+					right: 14,
+					top: 14}}>
 					<CloseIcon/>
 				</IconButton>
 			</DialogTitle>
-			{
-				isModalOpen === 'settings' && <Settings/>
-			}
-			{
-				isModalOpen === 'profilesList' && <ManageProfiles setCurrectProfile={setCurrectProfile}/>
-			}
-			{
-				isModalOpen === 'addProfile' && <AddProfile/>
-			}
-			{
-				isModalOpen === 'manageProfile' && <Profile profile= {currectProfile} />
-			}
-		</Dialog>
+
+			<DialogContent>
+				{
+					isModalOpen === 'settings' && 
+					<Settings/>
+				}
+				{
+					isModalOpen === 'profilesList' && 
+					<ManageProfiles
+						setCurrectProfile={setCurrectProfile}
+					/>
+				}
+				{
+					isModalOpen === 'addProfile' && 
+					<AddProfile/>
+				}
+				{
+					isModalOpen === 'manageProfile' && 
+					<Profile
+						profile= {currectProfile}
+						profileChanged = {profileChanged}
+					/>
+				}
+			</DialogContent>
+
+		</BootstrapDialog>
 	)
 }
 

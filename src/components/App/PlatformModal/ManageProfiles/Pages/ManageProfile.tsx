@@ -57,7 +57,7 @@ const ManageProfile = ({profile}: ManageProfileProps) => {
     }, [])
 
     const [currentProfile, setCurrentProfile] = useState<ProfileData>({
-        alias: "", bio: "", nickname: "", profileImg: "", tags: [],
+        alias: "", bio: "", nickName: "", profileImg: "", tags: [],
         keyID: '',
         isPrimary: false,
 		shortID: ''
@@ -80,7 +80,7 @@ const ManageProfile = ({profile}: ManageProfileProps) => {
     }
 
     const saveIsDisabled = () => {
-        return (profile?.nickname === currentProfile?.nickname) && (profile?.profileImg === currentProfile?.profileImg) && ((profile?.isPrimary === currentProfile?.isPrimary))
+        return (profile?.nickName === currentProfile?.nickName) && (profile?.profileImg === currentProfile?.profileImg) && ((profile?.isPrimary === currentProfile?.isPrimary))
     }
 
     return (

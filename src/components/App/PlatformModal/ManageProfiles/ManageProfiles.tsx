@@ -14,7 +14,6 @@ import {AnimatePresence} from "framer-motion"
 import MotionWrapper from "../../../UI/Motion/MotionWrapper"
 import {pageTransitionVariants} from "../../../UI/Motion/Variants/Variants"
 import ManageProfile from "./Pages/ManageProfile"
-import DeleteProfile from "./Pages/DeleteProfile"
 import {pageNavigator} from "../../../../contexts/pageNavigator/pageNavigatorActions"
 import {FormattedMessage} from "react-intl"
 import ContextMenu, {ContextMenuActions} from "../../../UI/Common/ContextMenu/ContextMenu"
@@ -88,7 +87,7 @@ const ManageProfilesContent = () => {
 	const ProfileItem =
 	 	({
 			profileImg,
-			nickname,
+			nickName,
 			keyID,
 			current,
 			primary
@@ -97,7 +96,7 @@ const ManageProfilesContent = () => {
 			<StyledProfileItem>
 				<Image src={profileImg || AnonymousAvatar} size={50}/>
 				<StyledProfileItemDetail>
-					<StyledProfileItemName>{nickname || 'Anonymous User'}</StyledProfileItemName>
+					<StyledProfileItemName>{nickName || 'Anonymous User'}</StyledProfileItemName>
 					<StyledProfileItemKeyId>{keyID}</StyledProfileItemKeyId>
 				</StyledProfileItemDetail>
 			</StyledProfileItem>
@@ -231,14 +230,6 @@ const ManageProfilesContent = () => {
                     )
                 }
 
-                {
-                    currentPage === 'Delete Profile' && (
-                        <DeleteProfile custom={direction}
-							profile={Object.values(clientProfiles)[currentDropdownIndex || 0]}
-							onDelete={onDeleteProfile} onBack={onBack}/>
-                    )
-                }
-
             </AnimatePresence>
         </StyledManagesProfileContainer>
     )
@@ -281,7 +272,7 @@ const ManageProfiles = ({setCurrectProfile}: ProfileDropdownProps) => {
 							<ListItemAvatar>
 								<Avatar src= {profile.profileImg||AnonymousAvatar}/>
 							</ListItemAvatar>
-							<ListItemText sx={{paddingRight:'1rem'}} primary={profile.nickname|| <FormattedMessage id='platform.ProfileDropdown.CurrentProfileItem.AnonymousUser'/>} secondary={currentID}/>
+							<ListItemText sx={{paddingRight:'1rem'}} primary={profile.nickName|| <FormattedMessage id='platform.ProfileDropdown.CurrentProfileItem.AnonymousUser'/>} secondary={currentID}/>
 							<IconButton sx={{paddingLeft: 6}} onClick={e => {
 								setcurrectAsset(e, profile)
 							}}>
