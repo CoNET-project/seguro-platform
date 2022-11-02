@@ -20,6 +20,7 @@ type InputProps = {
     required?: boolean,
     className?: string
 }
+
 const StyledInput = styled.input<StyledInputProps>`
 	width: 100%;
 	min-height: 40px;

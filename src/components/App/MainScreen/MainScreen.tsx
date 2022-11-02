@@ -13,6 +13,7 @@ import {getWorkerService} from '../../../services/workerService/workerService'
 import {ClientProfiles} from '../../../store/appState/appStateReducer'
 import React,{useEffect} from 'react'
 
+import Box from '@mui/material/Box'
 
 const StyledMainScreen = styled(motion.div)`
 	width: 100%;
@@ -106,9 +107,12 @@ const MainScreen = () => {
             <StyledMainScreen onTouchStart={startDrag} onPointerDown={startDrag}>
                 <Toaster/>
                 <GlobalBar/>
+
                 <LayoutGroup id="a">
+					{ showGuide && <GuildShow/>}
+					{ showAppStore && <AppStore/>}
                     <StyledContents>
-                        {showGuide?<GuildShow/>:(showAppStore ? <AppStore/>:<Messenger/>)}
+                        {!showGuide && !showAppStore && <Messenger/>}
                     </StyledContents>
                 </LayoutGroup>
             </StyledMainScreen>

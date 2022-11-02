@@ -128,6 +128,10 @@ const en_US: Messages = {
 
     'platform.profile.changePicture': 'Change Picture',
 	'platform.profile.walletAddr': 'Wallet Address',
+	'platform.profile.nickName': 'Nikename',
+	'platform.profile.privateKey': 'Export Private key',
+	'platform.profile.privateKeyWarning': 'Warning: Never disclose this key. Anyone with your private keys can steal any assets held in your account.',
+
 
     'globalBar.profile.dropdown.manageProfiles': 'Manage Profiles',
     'globalBar.profile.dropdown.addProfile': 'Add Profile',

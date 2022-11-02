@@ -122,15 +122,15 @@ export const unlockPasscode = ({passcode, progress}: PasscodeFunctionParams): Pr
 
             switch (status) {
                 case 'SUCCESS':
-					if (container ) {
+					if ( container ) {
 						workerService = container
 					}
-					
+					console.log (workerService)
                     resolve(status)
-                    break;
+                    break
                 case 'FAILURE':
                     resolve(status)
-                    break;
+                    break
             }
         }
         store.dispatch(setIsPlatformLoading(null))

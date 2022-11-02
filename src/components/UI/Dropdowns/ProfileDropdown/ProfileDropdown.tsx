@@ -36,12 +36,10 @@ type ProfileDropdownProps = {
 
 
 interface TabPanelProps {
-	children?: React.ReactNode;
-	index: number;
-	value: number;
+	children?: React.ReactNode
+	index: number
+	value: number
 }
-
-
 
 const ProfileDropdown = ({closeDropdown}: ProfileDropdownProps) => {
 
@@ -56,9 +54,9 @@ const ProfileDropdown = ({closeDropdown}: ProfileDropdownProps) => {
 	const usdc = currentProfile.tokens.usdc
 	const [buttonNavigationCurrent, setButtonNavigationCurrent] = useState(-1)
 	
-	const [currectAsset, setcurrectAsset] = React.useState(0)
+	const [currectAsset, setcurrectAsset] = useState(0)
 	
-	const [valueTab, setValueTab] = React.useState(0)
+	const [valueTab, setValueTab] = useState(0)
 
 
 	const handleTabChange = (event: React.SyntheticEvent, newValue: number) => {

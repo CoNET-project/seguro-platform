@@ -129,6 +129,9 @@ const zh_CN: Messages = {
 
     'platform.profile.changePicture': '更換圖片',
 	'platform.profile.walletAddr': '錢包地址',
+	'platform.profile.nickName': '設置暱稱',
+	'platform.profile.privateKey': '導出私鑰',
+	'platform.profile.privateKeyWarning': '警告：切勿洩露此密鑰給任何人。擁有此私鑰，就可以任意支配，賬戶中所有的資產。',
 
     // 'globalBar.profile.dropdown.manageProfiles': 'Manage Profiles',
     // 'globalBar.profile.dropdown.addProfile': 'Add Profile',
@@ -151,7 +154,7 @@ const zh_CN: Messages = {
     'globalBar.profile.dropdown.lockPlatform': '鎖定平台',
 
     'platform.manageProfile': '管理個人資料',
-    'platform.manageProfile.setAsPrimary': '設置為主',
+    'platform.manageProfile.setAsPrimary': '設置為當前帳戶',
     'platform.manageProfile.saveButton': '保存',
 
     'platform.manageProfiles': '管理個人資料',
@@ -164,7 +167,7 @@ const zh_CN: Messages = {
     'platform.manageProfiles.deleteProfile.onlyProfileError': '你需要至少 1 個關於 Seguro 的個人資料！',
     'platform.manageProfiles.deleteProfile.returnButton': '返回個人資料',
 
-    'platform.addProfile.setAsPrimary': '設置為主',
+    'platform.addProfile.setAsPrimary': '設置為當前帳戶',
     'platform.addProfile.createButton': '創建',
 
 	'platform.ProfileDropdown.CurrentProfileItem.actionFondWallet': '水龍頭',

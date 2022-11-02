@@ -130,7 +130,7 @@ const useAppState = () => {
                 isPrimary: false
             }
         })
-        getWorkerService().data.profile = profiles
+        getWorkerService().data.profiles = profiles
         return saveProfiles()
     }
 
@@ -203,9 +203,10 @@ const useAppState = () => {
             currentClientProfiles[updatedProfile.keyID] = updatedProfile
             updatedClientProfiles = Object.values(currentClientProfiles)
         }
-        getWorkerService().data.profile = updatedClientProfiles
+		console.log (getWorkerService().data)
+        getWorkerService().data.profiles = updatedClientProfiles
         saveProfiles().then((status) => {
-            console.log(getWorkerService().data.profile)
+            console.log(getWorkerService().data.profiles)
             if (status === 'SUCCESS') {
                 dispatch(updateClientProfileActionCreator(updatedProfile))
             }
@@ -214,7 +215,7 @@ const useAppState = () => {
     }
 
     const deleteClientProfile = (keyId: string) => {
-        const profiles = getWorkerService().data.profile
+        const profiles = getWorkerService().data.profiles
         profiles.shift()
         saveProfiles().then((status) => {
             console.log('SAVED WORKER SERVICE', getWorkerService())
@@ -311,8 +312,6 @@ const useAppState = () => {
     const setHasUpdateAvailable = (hasUpdateAvailable: boolean) => {
         dispatch(setHasUpdateAvailableActionCreator(hasUpdateAvailable))
     }
-
-
 
     return {
 		showGuide,
