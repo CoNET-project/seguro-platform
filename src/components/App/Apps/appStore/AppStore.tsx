@@ -100,9 +100,10 @@ const ShowAppStore = () => {
 				</StyleSpan>
 			</Grid>
 			
-			<Grid item xs={12} sx={{}}>
+			<Grid item xs={12} sx={{ paddingBottom: '1rem'}}>
 				<Divider/>
 			</Grid>
+			
 			<Grid item xs={3} sx={{ textAlign: 'center'}}>
 				<Typography variant="subtitle1" gutterBottom sx={{ color: grey[500]}}>
 					18 RETINGS

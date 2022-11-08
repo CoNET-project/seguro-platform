@@ -159,10 +159,21 @@ export type Messages = {
 
     'platform.addProfile.setAsPrimary': string
     'platform.addProfile.createButton': string
+	'platform.ProfileDropdown.send.confirm': string,
+	'platform.ProfileDropdown.send.next': string,
 
 	'platform.ProfileDropdown.CurrentProfileItem.actionFondWallet': string
 	'platform.ProfileDropdown.CurrentProfileItem.actionSend': string
 	'platform.ProfileDropdown.CurrentProfileItem.buy': string
+	'platform.ProfileDropdown.send.receiver': string
+	'platform.ProfileDropdown.send.max': string
+	'platform.ProfileDropdown.send.total': string
+	'platform.ProfileDropdown.faucet.limited': string
+	'platform.ProfileDropdown.faucet.success': string
+	'platform.ProfileDropdown.faucet.error': string
+	'platform.ProfileDropdown.send.error': string
+	'platform.ProfileDropdown.send.amount': string
+	'platform.ProfileDropdown.send.estimatedGas': string
 	'platform.ProfileDropdown.Tablable.Assets': string
 	'platform.ProfileDropdown.Tablable.Activity': string
 

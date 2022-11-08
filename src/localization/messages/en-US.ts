@@ -163,6 +163,18 @@ const en_US: Messages = {
 	'platform.ProfileDropdown.Tablable.Assets': 'Assets',
 	'platform.ProfileDropdown.Tablable.Activity': 'Activity',
 
+	'platform.ProfileDropdown.send.receiver': 'Receiver Address',
+	'platform.ProfileDropdown.send.confirm': 'Confirm send',
+	'platform.ProfileDropdown.send.next': 'Next',
+	'platform.ProfileDropdown.faucet.limited': 'Drops are limited to1 request in 24 hours.',
+	'platform.ProfileDropdown.send.max': 'Max',
+	'platform.ProfileDropdown.send.estimatedGas': 'Estimated gas fee',
+	'platform.ProfileDropdown.send.amount': 'Amount',
+	'platform.ProfileDropdown.send.total': 'Total',
+	'platform.ProfileDropdown.faucet.success': 'Request send success!',
+	'platform.ProfileDropdown.faucet.error': 'CoNET did not accept your request. Please send the request again after 24 hours.',
+	'platform.ProfileDropdown.send.error': 'Network Error, Please try again later.',
+
 	'tabnavigator.guide.title': 'Welcome to CoNET Platform',
 	'globalBar.application.SeguroMessage': 'Seguro Messenger',
 	'globalBar.application.home': 'CoNET Platform',
