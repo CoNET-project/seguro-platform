@@ -176,6 +176,18 @@ const zh_CN: Messages = {
 	'platform.ProfileDropdown.Tablable.Assets': '加密資產',
 	'platform.ProfileDropdown.Tablable.Activity': '歷史記錄',
 
+	'platform.ProfileDropdown.send.receiver': '收款人錢包地址',
+	'platform.ProfileDropdown.send.confirm': '確認轉帳',
+	'platform.ProfileDropdown.send.amount': '轉帳數量',
+	'platform.ProfileDropdown.send.estimatedGas': '預估轉帳Gas費',
+	'platform.ProfileDropdown.send.next': '下一步',
+	'platform.ProfileDropdown.send.max': '最大值',
+	'platform.ProfileDropdown.send.total': '合計',
+	'platform.ProfileDropdown.faucet.limited': '24小時內僅限1次請求。',
+	'platform.ProfileDropdown.faucet.success': '已成功發送請求！',
+	'platform.ProfileDropdown.faucet.error': 'CoNET已拒絕您的請求，請過24小時後再次發送請求',
+	'platform.ProfileDropdown.send.error': '網絡錯誤，請稍後重試',
+
 	'platform.ProfileDropdown.CurrentProfileItem.AnonymousUser': '匿名用戶',
 	'tabnavigator.guide.title': '歡迎使用CoNET平台',
 	'globalBar.application.home': 'CoNET 平台',

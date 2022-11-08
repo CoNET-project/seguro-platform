@@ -128,18 +128,7 @@ const SettingsContent = () => {
 
     return (
         <StyledSettingsContainer>
-            <CustomizedHeaderBar headerContent={{title: getHeaderBarTitle()}}
-                                 closeAction={{
-                                     action: () => {
-                                         if (currentPage !== 'Platform Settings') {
-                                             return dispatch(pageNavigator.navigateToPage('Platform Settings'))
-                                         }
-                                         return setIsModalOpen(null)
-                                     },
-                                     alignRight: currentPage === 'Platform Settings',
-                                     icon: currentPage !== 'Platform Settings' ? <ChevronLeft/> : undefined,
-                                     alwaysVisible: true
-                                 }}/>
+            
             <AnimatePresence custom={direction}>
                 {
                     currentPage === 'Platform Settings' && (

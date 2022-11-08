@@ -10,13 +10,17 @@ import {CopyToClipboard} from "../../../../../utilities/utilities"
 
 import {VerticalOptions} from "../../../Icons/Icons"
 import {getWorkerService} from '../../../../../services/workerService/workerService'
+import SyncIcon from '@mui/icons-material/Sync';
+import { blue } from "@mui/material/colors"
+import CircularProgress from '@mui/material/CircularProgress'
 
 type StyledProfileItemProps = {
     isActive?: boolean
 }
 
 type ProfileDropdownProps = {
-    closeDropdown: (app:string) => void
+    closeDropdown: (app:string) => void,
+	syncAsset: () => void
 } & HTMLAttributes<HTMLDivElement>
 
 const RowWrapper = styled.div`
@@ -27,6 +31,7 @@ const RowWrapper = styled.div`
 
 const Margin1rem = styled.div`
 	margin-right: 1rem;
+	cursor: pointer;
 `
 
 const StyledProfileDetails = styled.div`
@@ -73,11 +78,12 @@ const RightToolIcon = styled.div`
 	margin-left: 1rem;
 `
 
-const CurrentProfileItem = ({closeDropdown}: ProfileDropdownProps ) => {
+const CurrentProfileItem = ({closeDropdown, syncAsset}: ProfileDropdownProps ) => {
 
 	const {data} = getWorkerService()
 	const currentProfile = data.profiles.filter((n:any)=> n.isPrimary)[0]
 	const keyID = currentProfile.keyID
+
 	const shortID = keyID.substring(0,2) + keyID.substring(2,6).toUpperCase() + '....' + keyID.substring(keyID.length-4,keyID.length).toUpperCase()
 	const copyDeviceCode = (event: React.MouseEvent<HTMLButtonElement>, code: string) => {
         event.stopPropagation()
@@ -89,13 +95,17 @@ const CurrentProfileItem = ({closeDropdown}: ProfileDropdownProps ) => {
         })
         CopyToClipboard(code)
     }
+	const [loading, setLoading] = useState(false)
 
 	const theme = useTheme()
 	const {setIsModalOpen, clientProfiles, setActiveProfile, activeProfile} = useAppState()
 	return (
 		<StyledProfileDropdownOptions>
 			{ currentProfile ? <StyledProfileItem id='CurrentProfileItem'>
-				<Margin1rem >
+				<Margin1rem onClick={()=> {
+						setIsModalOpen('profilesList')
+						closeDropdown('')
+					}}>
 					<ProfileImage src={currentProfile.profileImg || AnonymousProfile} size={45}/>
 				</Margin1rem>
 				
@@ -111,12 +121,19 @@ const CurrentProfileItem = ({closeDropdown}: ProfileDropdownProps ) => {
 						</StyledProfileKeyIdCopy>
 					</RowWrapper>
 				</StyledProfileDetails>
-				<RightToolIcon onClick={()=> {
-						setIsModalOpen('profilesList')
-						closeDropdown('')
-					}}>
-					<VerticalOptions size={30} color={theme.ui.colors.text.secondary}/>
-				</RightToolIcon>
+				{
+					loading && <CircularProgress size='1.5rem' />
+				}
+				
+				<SyncIcon sx={{ cursor: 'pointer', color: blue[300], display: loading ? 'none' : 'unset'}}
+					onClick={ async()=> {
+							setLoading (true);
+							await syncAsset ();
+							setLoading (false);
+						}}
+					>
+						
+				</SyncIcon>
 			</StyledProfileItem> : null }
 
 		</StyledProfileDropdownOptions>
