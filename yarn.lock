@@ -1192,10 +1192,10 @@
   resolved "https://registry.npmjs.org/@colors/colors/-/colors-1.5.0.tgz"
   integrity sha512-ooWCrlZP11i8GImSjTHYHLkvFDP48nS4+204nGb1RiX/WXYHmJA2III9/e2DWVabCESdW7hBAEzHRqUn9OUVvQ==
 
-"@conet.project/seguro-gateway@^0.15.8":
-  version "0.15.8"
-  resolved "https://registry.yarnpkg.com/@conet.project/seguro-gateway/-/seguro-gateway-0.15.8.tgz#0dadd0cf195ff263b457b110b030964cc35791e7"
-  integrity sha512-MjvWISDCbgu1btvJ7fnM0ukTOKAfwVjRQp/ezdNy2HTDgTPV3IsudyBDq4Esh2csV1Vmv2gmEgAx95LUGTpKwQ==
+"@conet.project/seguro-gateway@^0.16.0":
+  version "0.16.0"
+  resolved "https://registry.yarnpkg.com/@conet.project/seguro-gateway/-/seguro-gateway-0.16.0.tgz#4e3cc6786e07885fc63ef10a7a8ca1b4f18170ed"
+  integrity sha512-8V2WdG/T60kKg43/Zszu3b4rUxOmwThGJfARD+ZTKiIb8c+LwUddGK9knpwk7cRKyXPm3b1i1Yh8EG70C/udIg==
   dependencies:
     async "^3.2.4"
     colors "^1.4.0"
@@ -1205,10 +1205,10 @@
     uuid "^9.0.0"
     yargs "^17.6.2"
 
-"@conet.project/seguro-worker-lib@^0.10.26":
-  version "0.10.26"
-  resolved "https://registry.yarnpkg.com/@conet.project/seguro-worker-lib/-/seguro-worker-lib-0.10.26.tgz#b80f37bd7713e287581b9d90c4a2eba9b0793612"
-  integrity sha512-EQL9tV1Vo4N8R0cYeRHCFP+fgfBOMl+kq4WzjiS04kGj+/RippQ3bDsUwt2JhYwyOrzX4nbwZxApEu2mMWDRlw==
+"@conet.project/seguro-worker-lib@^0.11.0":
+  version "0.11.0"
+  resolved "https://registry.yarnpkg.com/@conet.project/seguro-worker-lib/-/seguro-worker-lib-0.11.0.tgz#feeb99538c54acdbfbd2a265a25a49689b56bf06"
+  integrity sha512-o97vR4crg9EvEl1v1tCyIg0ZcKZkBCf2fhFM+AL0RqM8Kq5+L1cuba922XTI1wfNL/g0K3b23GXUMpqbW6ocSw==
   dependencies:
     async "^3.2.4"
     uuid "^9.0.0"
