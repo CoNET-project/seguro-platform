@@ -1,5 +1,22 @@
 # `seguro-platform` CHANGELOG
 
+## `0.58.0`
+
+### Additions
+
+- buyUSDC, getUSDCPrice, sendAsset, getFaucet
+
+### Changes
+
+- None.
+
+### Fixes
+
+- None.
+
+---
+
+
 ## `0.56.0`
 
 ### Additions

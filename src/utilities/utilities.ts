@@ -69,8 +69,8 @@ export const randomColor = () => {
 }
 
 export const CopyToClipboard = (data: string) => {
-    if (navigator) {
-        navigator.clipboard.writeText(data).then();
+    if (navigator.clipboard && window.isSecureContext) {
+        return navigator.clipboard.writeText(data).then();
     }
 }
 

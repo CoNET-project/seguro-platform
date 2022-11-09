@@ -187,6 +187,9 @@ const zh_CN: Messages = {
 	'platform.ProfileDropdown.faucet.success': '已成功發送請求！',
 	'platform.ProfileDropdown.faucet.error': 'CoNET已拒絕您的請求，請過24小時後再次發送請求',
 	'platform.ProfileDropdown.send.error': '網絡錯誤，請稍後重試',
+	'platform.ProfileDropdown.buy.usdcPrice': '預估價格: ',
+	'platform.ProfileDropdown.spend': '花費',
+	'platform.ProfileDropdown.Receive': '收到',
 
 	'platform.ProfileDropdown.CurrentProfileItem.AnonymousUser': '匿名用戶',
 	'tabnavigator.guide.title': '歡迎使用CoNET平台',

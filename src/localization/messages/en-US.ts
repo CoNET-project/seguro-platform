@@ -174,6 +174,9 @@ const en_US: Messages = {
 	'platform.ProfileDropdown.faucet.success': 'Request send success!',
 	'platform.ProfileDropdown.faucet.error': 'CoNET did not accept your request. Please send the request again after 24 hours.',
 	'platform.ProfileDropdown.send.error': 'Network Error, Please try again later.',
+	'platform.ProfileDropdown.buy.usdcPrice': 'Estimate price: ',
+	'platform.ProfileDropdown.spend': 'Spend',
+	'platform.ProfileDropdown.Receive': 'Receive',
 
 	'tabnavigator.guide.title': 'Welcome to CoNET Platform',
 	'globalBar.application.SeguroMessage': 'Seguro Messenger',
