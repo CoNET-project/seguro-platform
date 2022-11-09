@@ -168,6 +168,9 @@ export type Messages = {
 	'platform.ProfileDropdown.send.receiver': string
 	'platform.ProfileDropdown.send.max': string
 	'platform.ProfileDropdown.send.total': string
+	'platform.ProfileDropdown.buy.usdcPrice': string
+	'platform.ProfileDropdown.spend': string
+	'platform.ProfileDropdown.Receive': string
 	'platform.ProfileDropdown.faucet.limited': string
 	'platform.ProfileDropdown.faucet.success': string
 	'platform.ProfileDropdown.faucet.error': string

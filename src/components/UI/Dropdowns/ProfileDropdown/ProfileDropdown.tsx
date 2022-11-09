@@ -33,7 +33,7 @@ import PersonIcon from '@mui/icons-material/Person'
 import Grid from '@mui/material/Grid'
 import CircularProgress from '@mui/material/CircularProgress'
 import { red } from '@mui/material/colors'
-
+import InputAdornment from '@mui/material/InputAdornment'
 export type Profiles = Array<ProfileData>
 import {VerticalOptions_ArrowUpRightCircleFill, VerticalOptions_ArrowDownloadCircleFill, VerticalOptions} from "../../Icons/Icons"
 
@@ -81,6 +81,9 @@ const ProfileDropdown = ({closeDropdown}: ProfileDropdownProps) => {
 	const [loading, setLoading] = useState(false)
 	const [resultError, setResultError] = useState(false)
 	const [resultSuccess, setResultSuccess ]  = useState(false)
+	const [showUSDCBuyFrom, setsShowUSDCBuyFrom] = useState(false)
+	const [usdcPrice, setUsdcPrice]= useState(0.0)
+	const [receiveVal, setReceiveVal] = useState('')
 
 	const [showAssetBalance_balance, setshowAssetBalance_balanc] = useState(conetToken.balance)
 
@@ -217,14 +220,29 @@ const ProfileDropdown = ({closeDropdown}: ProfileDropdownProps) => {
 		return setAmountVal(0)
 	}
 
+	const maxCoNETClick = () => {
+		assetList = reflashAssetList()
+		const balance = assetList[0].balance
+		const ret = balance - fees
+		setAmountTextFieldID('standard-basic')
+		if ( ret > 0) {
+
+			setAmountVal(ret)
+			return setReceiveVal ((ret*usdcPrice).toFixed(2))
+
+		}
+		return setAmountVal(0)
+	}
+
 	const resetWindow = () => {
-		setSendStep (0);
-		setButtonNavigationCurrent(-1);
-		closeDropdown('');
-		setShowAssetBalance(true);
-		setWalletTextFieldID ('standard-basic');
+		setSendStep (0)
+		setButtonNavigationCurrent(-1)
+		closeDropdown('')
+		setShowAssetBalance(true)
+		setWalletTextFieldID ('standard-basic')
 		setResultError(false)
 		setResultSuccess (false)
+		setsShowUSDCBuyFrom (false)
 	}
 
 	const sendAsset = () => {
@@ -278,6 +296,65 @@ const ProfileDropdown = ({closeDropdown}: ProfileDropdownProps) => {
 					</ListItem>
 				</List>
 		)
+	}
+
+	const BottomNavigationChanged = (event: any, newValue: number) => {
+		setButtonNavigationCurrent(newValue)
+		const current = assetList[currectAsset]
+
+		if ( current.primary === 'USDC') {
+			if ( newValue === 2) {					//			buy USDC
+				if (!workerService.method.getUSDCPrice) {
+					return
+				}
+				setLoading (true)
+				return workerService.method.getUSDCPrice ()
+				.then ((val:any) => {
+					setLoading (false)
+					const [status, prices] = val
+					if ( status !== 'SUCCESS') {
+						return setResultError (true)
+					}
+					setUsdcPrice(prices[0].price.toFixed (2))
+					setsShowUSDCBuyFrom (true)
+
+				})
+			}
+			//			send USDC
+		}
+	}
+
+	const nextClick = () => {
+
+		switch (buttonNavigationCurrent) {
+			case 0: {
+				return getFaucet ()
+			}
+			case 1: {
+				if (sendStep < 2) {
+					setSendStep (2)
+					return setShowAssetBalance(false)
+				}
+				return sendAsset ()
+			}
+			case 2: {
+				if ( !workerService.method?.buyUSDC) {
+					return
+				}
+				setLoading (true)
+				setAmountTextFieldID ('standard-read-only-input')
+				return workerService.method?.buyUSDC(amountVal, currentProfile().keyID)
+					.then(val => {
+						const [status] = val 
+						if (status!== 'SUCCESS') {
+							return 
+						}
+					})
+			}
+			default: {
+				return
+			}
+		}
 	}
 
     return (
@@ -494,6 +571,69 @@ const ProfileDropdown = ({closeDropdown}: ProfileDropdownProps) => {
 			}
 
 			{
+				showUSDCBuyFrom && 
+				<>
+					<ListItem sx={{ width: '100%', paddingLeft: '2rem', paddingRight: '2rem', paddingBottom: '0px'}} id="USDC_Price">
+						<Typography variant="body1" gutterBottom sx={{textAlign: 'center'}}>
+							{<FormattedMessage id='platform.ProfileDropdown.buy.usdcPrice'/>}
+						</Typography>
+					</ListItem>
+					<ListItem sx={{ width: '100%', paddingLeft: '2rem', paddingRight: '2rem', paddingTop: '0px'}}>
+						<Typography variant="body1" gutterBottom sx={{textAlign: 'center', color: 'grey'}}>
+							1 CoNET ≈ {usdcPrice} USDC
+						</Typography>
+					</ListItem>
+					<ListItem >
+						<Stack direction="row" spacing={2} >	
+							<TextField id={amountTextFieldID}
+								size="small"
+								variant="standard"
+								color='secondary'
+								error={/error/.test(amountTextFieldID)? true: false}
+								label={<FormattedMessage id='platform.ProfileDropdown.spend'/>}
+								type='number'
+								value={amountVal}
+								onChange={ e => {
+									let val = 0
+									try {
+										val = parseFloat(e.target.value)
+									} catch (ex) {
+										return setAmountVal(0)
+									}
+									if ( val < 0) {
+										return setAmountVal(0)
+									}
+									
+									setAmountVal(val)
+									if ( val + fees > assetList[0].balance) {
+										return setAmountTextFieldID('standard-error')
+									}
+									setAmountTextFieldID('standard-basic')
+									setReceiveVal((val *usdcPrice).toFixed(2))
+								}}
+								InputProps={{endAdornment: <InputAdornment position="end">CoNET</InputAdornment>}}
+							/>
+							<Button variant="text"
+								onClick={() => {
+									maxCoNETClick()
+								}}
+							>
+								{<FormattedMessage id='platform.ProfileDropdown.send.max'/>}
+							</Button>
+						</Stack>
+					</ListItem>
+					<ListItem >
+						<TextField id='outlined-read-only-input'
+							label={<FormattedMessage id='platform.ProfileDropdown.Receive'/>}
+							value={receiveVal}
+							InputProps={{endAdornment: <InputAdornment position="end">USDC</InputAdornment>}}
+							sx={{ width: '100%'}}
+						/>
+					</ListItem>
+				</>
+			}
+
+			{
 				loading &&
 				<ListItem  sx={{ textAlign: 'center',  display: 'block', width: '100%'}}>
 					<CircularProgress />
@@ -509,20 +649,7 @@ const ProfileDropdown = ({closeDropdown}: ProfileDropdownProps) => {
 								resetWindow ()
 							}}>
 								{<FormattedMessage id='platform.dialog.delete.button.cancel'/>}</Button>
-							<Button onClick={() => {
-								if ( buttonNavigationCurrent === 0 ) {
-									return getFaucet ();
-								}
-								if ( buttonNavigationCurrent === 1) {
-									if (sendStep < 2) {
-										setSendStep (2);
-										return setShowAssetBalance(false);
-									}
-									return sendAsset ()
-								}
-
-								
-							}}
+							<Button onClick={nextClick}
 							variant="contained"
 							disabled={(buttonNavigationCurrent === 1 && (amountVal<=0||!toAddr||/error/.test(walletTextFieldID)||/error/.test(amountTextFieldID)))}
 							>
@@ -538,9 +665,7 @@ const ProfileDropdown = ({closeDropdown}: ProfileDropdownProps) => {
 					<BottomNavigation
 						showLabels={true}
 						value={buttonNavigationCurrent}
-						onChange={(event, newValue) => {
-							setButtonNavigationCurrent(newValue)
-						}}
+						onChange={BottomNavigationChanged}
 						sx={{ width: '100%'}}>
 						{
 							currectAsset === 0 &&			//		Faucet		buttonNavigationCurrent = 0

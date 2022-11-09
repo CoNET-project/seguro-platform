@@ -1,6 +1,6 @@
 {
   "name": "@conet-project/seguro-platform",
-  "version": "0.57.1",
+  "version": "0.58.0",
   "author": "Kloak Information Technologies",
   "description": "The Seguro Platform application.",
   "license": "UNLICENSED",
@@ -22,12 +22,12 @@
     "build-storybook": "build-storybook -s public"
   },
   "dependencies": {
-    "@conet.project/seguro-gateway": "^0.15.8",
-    "@conet.project/seguro-worker-lib": "^0.10.26",
+    "@conet.project/seguro-gateway": "^0.16.0",
+    "@conet.project/seguro-worker-lib": "^0.11.0",
     "@emotion/react": "^11.10.5",
     "@emotion/styled": "^11.10.5",
     "@mui/icons-material": "^5.10.9",
-    "@mui/material": "^5.10.12",
+    "@mui/material": "^5.10.13",
     "@react-icons/all-files": "^4.1.0",
     "@tippyjs/react": "^4.2.6",
     "dayjs": "^1.11.6",
