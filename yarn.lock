@@ -1205,10 +1205,10 @@
     uuid "^9.0.0"
     yargs "^17.6.2"
 
-"@conet.project/seguro-worker-lib@^0.11.0":
-  version "0.11.0"
-  resolved "https://registry.yarnpkg.com/@conet.project/seguro-worker-lib/-/seguro-worker-lib-0.11.0.tgz#feeb99538c54acdbfbd2a265a25a49689b56bf06"
-  integrity sha512-o97vR4crg9EvEl1v1tCyIg0ZcKZkBCf2fhFM+AL0RqM8Kq5+L1cuba922XTI1wfNL/g0K3b23GXUMpqbW6ocSw==
+"@conet.project/seguro-worker-lib@^0.11.2":
+  version "0.11.2"
+  resolved "https://registry.yarnpkg.com/@conet.project/seguro-worker-lib/-/seguro-worker-lib-0.11.2.tgz#7412eaaf2bb4fddaa5041dcb3724f372985ce7f6"
+  integrity sha512-NiMScAkAiYKT5y3DDVJ5fiCVwb2bTBf3MTu2GrZWI0Moc72jWgGpvinBq3gNhpoGyzxFHhLhthBbGBbMZ1vIlQ==
   dependencies:
     async "^3.2.4"
     uuid "^9.0.0"
