@@ -1,5 +1,21 @@
 # `seguro-platform` CHANGELOG
 
+## `0.58.1`
+
+### Additions
+
+- None.
+
+### Changes
+
+- None.
+
+### Fixes
+
+- bug fixed.
+
+---
+
 ## `0.58.0`
 
 ### Additions

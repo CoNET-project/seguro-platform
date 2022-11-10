@@ -122,10 +122,6 @@ const ProfileDropdown = ({closeDropdown}: ProfileDropdownProps) => {
 		)
 	}
 
-
-
-	const theme = useTheme()
-
 	const reflashAssetList = () => {
 		
 		const ret = [
@@ -160,11 +156,12 @@ const ProfileDropdown = ({closeDropdown}: ProfileDropdownProps) => {
 		}
 		setLoading (true)
 		return workerService.method.getFaucet (currentProfile().keyID)
-			.then (n => {
+			.then (async n => {
 				const [status, check] = n
 				setLoading(false)
 
 				if (status === 'SUCCESS') {
+					await syncAsset ()
 					setResultSuccess (true)
 					return setSendStep (1)
 				}
@@ -267,10 +264,11 @@ const ProfileDropdown = ({closeDropdown}: ProfileDropdownProps) => {
 			}
 		}
 		return workerService.method?.sendAsset(currentProfile().keyID, amountVal, toAddr, asset)
-		.then (n => {
+		.then (async n => {
 			const [status, check] = n
 			setLoading(false)
 			if (status === 'SUCCESS') {
+				await syncAsset ()
 				return setResultSuccess (true)
 				
 			}
@@ -309,12 +307,14 @@ const ProfileDropdown = ({closeDropdown}: ProfileDropdownProps) => {
 				}
 				setLoading (true)
 				return workerService.method.getUSDCPrice ()
-				.then ((val:any) => {
+				.then (async (val:any) => {
 					setLoading (false)
 					const [status, prices] = val
 					if ( status !== 'SUCCESS') {
+						
 						return setResultError (true)
 					}
+					
 					setUsdcPrice(prices[0].price.toFixed (2))
 					setsShowUSDCBuyFrom (true)
 
@@ -344,11 +344,15 @@ const ProfileDropdown = ({closeDropdown}: ProfileDropdownProps) => {
 				setLoading (true)
 				setAmountTextFieldID ('standard-read-only-input')
 				return workerService.method?.buyUSDC(amountVal, currentProfile().keyID)
-					.then(val => {
+					.then( async val => {
 						const [status] = val 
 						if (status!== 'SUCCESS') {
 							return 
 						}
+						setsShowUSDCBuyFrom (false)
+						await syncAsset ()
+						setLoading (false)
+						return setResultSuccess (true)
 					})
 			}
 			default: {
