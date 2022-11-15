@@ -73,7 +73,7 @@ const Drawer = (props: DrawerProps) => {
 	const divProps = Object.assign({}, props)
 	
 
-    const {windowInnerSize: {width}, setIsDrawerOpen, isDrawerOpen, setIsModalOpen, setShowGuide} = useAppState()
+    const {windowInnerSize: {width}, setIsDrawerOpen, isDrawerOpen, setIsModalOpen, setShowGuide, setShowAppStore} = useAppState()
 
     const drawerRef = useRef<HTMLDivElement>(null)
 
@@ -150,12 +150,13 @@ const Drawer = (props: DrawerProps) => {
                 <StyledSection>
                     <Item text={<FormattedMessage id = 'globalBar.application.home'/>} icon={<LogoIcon/>}
 						onClick={() => {
+							setShowAppStore (false)
 							setShowGuide(true)
 						}}
 					/>
 					<Item text={<FormattedMessage id = 'globalBar.application.AppStore'/>} icon={<LogoIcon/>}
 						onClick={() => {
-							
+							setShowAppStore (true)
 							setShowGuide(false)
 						}}
 					/>

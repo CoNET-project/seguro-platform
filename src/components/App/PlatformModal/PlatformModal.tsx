@@ -121,6 +121,8 @@ const PlatformModal = () => {
 				}
 			</DialogContent>
 
+			
+
 		</BootstrapDialog>
 	)
 }
