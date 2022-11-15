@@ -176,9 +176,18 @@ const zh_CN: Messages = {
 	'platform.ProfileDropdown.Tablable.Assets': '加密資產',
 	'platform.ProfileDropdown.Tablable.Activity': '歷史記錄',
 
-	'platform.ProfileDropdown.send.receiver': '收款人錢包地址',
+	'platform.ProfileDropdown.send.receiver': '收款人地址',
 	'platform.ProfileDropdown.send.confirm': '確認轉帳',
 	'platform.ProfileDropdown.send.amount': '轉帳數量',
+	'platform.ProfileDropdown.CoNETCash.amountError': 'CoNETCash只能在10～100USDC之間',
+
+	'platform.ProfileDropdown.history.type.send': '轉出',
+	'platform.ProfileDropdown.history.type.receive': '接收',
+	'platform.ProfileDropdown.history.gas.total': 'Gas費合計',
+	'platform.ProfileDropdown.history.timestamp': '時間戳', 
+	'platform.ProfileDropdown.history.sender': '付款人地址',
+	'platform.ProfileDropdown.history.CoNETCash.mint': '铸造',
+
 	'platform.ProfileDropdown.send.estimatedGas': '預估轉帳Gas費',
 	'platform.ProfileDropdown.send.next': '下一步',
 	'platform.ProfileDropdown.send.max': '最大值',

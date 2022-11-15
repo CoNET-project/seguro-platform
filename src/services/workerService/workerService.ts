@@ -49,7 +49,7 @@ export const initializeWorkerService = async () => {
     const [status, container] = await startWorker()
 
     if (status === 'NOT_READY' || !container) {
-        return
+        return logger.log (`workerService.ts`,'initializeWorkerService',`status === 'NOT_READY' || !container` )
     }
 
     if (status === 'SUCCESS') {

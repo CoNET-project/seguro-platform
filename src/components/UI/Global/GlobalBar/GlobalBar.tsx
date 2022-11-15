@@ -130,6 +130,7 @@ const GlobalBar = () => {
 			}
 			if (app == 'showAppStore') {
 				setShowGuide(false)
+
 				return setShowAppStore (true)
 			}
 			setShowAppStore (false)

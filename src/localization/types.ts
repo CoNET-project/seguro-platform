@@ -176,6 +176,15 @@ export type Messages = {
 	'platform.ProfileDropdown.faucet.error': string
 	'platform.ProfileDropdown.send.error': string
 	'platform.ProfileDropdown.send.amount': string
+	'platform.ProfileDropdown.CoNETCash.amountError': string
+
+	'platform.ProfileDropdown.history.type.send': string
+	'platform.ProfileDropdown.history.type.receive': string
+	'platform.ProfileDropdown.history.gas.total': string
+	'platform.ProfileDropdown.history.timestamp': string
+	'platform.ProfileDropdown.history.sender': string
+	'platform.ProfileDropdown.history.CoNETCash.mint': string
+
 	'platform.ProfileDropdown.send.estimatedGas': string
 	'platform.ProfileDropdown.Tablable.Assets': string
 	'platform.ProfileDropdown.Tablable.Activity': string

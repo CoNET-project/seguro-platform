@@ -170,6 +170,15 @@ const en_US: Messages = {
 	'platform.ProfileDropdown.send.max': 'Max',
 	'platform.ProfileDropdown.send.estimatedGas': 'Estimated gas fee',
 	'platform.ProfileDropdown.send.amount': 'Amount',
+	'platform.ProfileDropdown.CoNETCash.amountError': 'CoNETCash value can only be between 10 and 100 USDC',
+
+	'platform.ProfileDropdown.history.type.send': 'Send',
+	'platform.ProfileDropdown.history.type.receive': 'Receive',
+	'platform.ProfileDropdown.history.gas.total': 'Total gas fee',
+	'platform.ProfileDropdown.history.timestamp': 'Timestamp',
+	'platform.ProfileDropdown.history.sender': 'Sender Address',
+	'platform.ProfileDropdown.history.CoNETCash.mint': 'Mint',
+
 	'platform.ProfileDropdown.send.total': 'Total',
 	'platform.ProfileDropdown.faucet.success': 'Request send success!',
 	'platform.ProfileDropdown.faucet.error': 'CoNET did not accept your request. Please send the request again after 24 hours.',
