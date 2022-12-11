@@ -48,34 +48,34 @@ export const setUserPreferences = () => {
 export const initializeWorkerService = async () => {
     const [status, container] = await startWorker()
 
-    if (status === 'NOT_READY' || !container) {
+	//return store.dispatch(setWorkerServiceIsInitialized(false))
+
+    if (status === 'NOT_READY' || !container || status ==='TIME_OUT') {
+		store.dispatch(setWorkerServiceIsInitialized(false))
         return logger.log (`workerService.ts`,'initializeWorkerService',`status === 'NOT_READY' || !container` )
     }
 
-    if (status === 'SUCCESS') {
-        logger.log('workerService.ts', 'container:', container)
-        workerService = container
-        switch (true) {
-            case container.status === 'NOT_SET':
-                store.dispatch(setHasContainer(false))
-                store.dispatch(setIsUnlocked(false))
-                break;
-            case container.status === 'LOCKED':
-                store.dispatch(setHasContainer(true))
-                store.dispatch(setIsUnlocked(false))
-                break;
-            case container.status === 'UNLOCKED':
-                store.dispatch(setHasContainer(true))
-                store.dispatch(setIsUnlocked(true))
-                break
-            default:
-                break
-        }
-        setUserPreferences()
-        setTimeout(() => {
-            store.dispatch(setWorkerServiceIsInitialized(true))
-        }, 1000)
-    }
+
+	logger.log('workerService.ts', 'container:', container)
+	workerService = container
+	switch (true) {
+		case container.status === 'NOT_SET':
+			store.dispatch(setHasContainer(false))
+			store.dispatch(setIsUnlocked(false))
+			break;
+		case container.status === 'LOCKED':
+			store.dispatch(setHasContainer(true))
+			store.dispatch(setIsUnlocked(false))
+			break;
+		case container.status === 'UNLOCKED':
+			store.dispatch(setHasContainer(true))
+			store.dispatch(setIsUnlocked(true))
+			break
+		default:
+			break
+	}
+	setUserPreferences()
+	store.dispatch(setWorkerServiceIsInitialized(true))
 }
 
 export const lockPlatform = () => {

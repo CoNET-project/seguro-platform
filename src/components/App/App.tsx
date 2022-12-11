@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react'
+import React, {useEffect, useState} from 'react'
 import styled from 'styled-components'
 import useAppState from '../../store/appState/useAppState'
 import {detectTouchDevice, detectWindowInnerSize} from "../../utilities/utilities"
@@ -40,11 +40,17 @@ const App = () => {
         setWindowInnerSize(detectWindowInnerSize())
     }
 
+	const [reload, setReload] = useState(false)
     useEffect(() => {
 
 		
         dAPPInitialize().then(() => {
-			const kkk = true
+			if (!isInitializing) {
+				setReload (true)
+			}
+			
+			
+
         })
 
         const randomDeviceIds = Array.from({length: 3}, (_, i) => (Date.now() + Math.round(Math.random() * 100)).toString())
@@ -82,15 +88,11 @@ const App = () => {
     }, [])
 
     const getContent = () => {
-
-        // return (
-        //     <MainScreen/>
-        // )
-
+		
         switch (true) {
             case isInitializing:
                 return (
-                    <LaunchScreen/>
+                    <LaunchScreen reload = {reload}/>
                 )
             case hasContainer && isUnlocked:
                 return (
@@ -109,7 +111,8 @@ const App = () => {
                 )
             default:
                 return (
-                    <MainScreen/>
+					
+                   <MainScreen/>
                 )
         }
         // let content = <MainScreen/>

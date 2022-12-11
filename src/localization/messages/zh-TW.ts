@@ -2,6 +2,7 @@ import {Messages} from '../types'
 
 const zh_CN: Messages = {
     'main.greeting': '你好世界!',
+	'LaunchScreen.loadFail': 'CoNET 平台加載失敗！ 請點擊重新加載。',
     'onboarding.selectLanguageTitle': '選擇您的語言',
     'onboarding.selectLanguageSubtitle': '選擇您的語言...',
     'onboarding.setPasscodeTitle': '設定密碼',
@@ -200,12 +201,59 @@ const zh_CN: Messages = {
 	'platform.ProfileDropdown.spend': '花費',
 	'platform.ProfileDropdown.Receive': '收到',
 
+	'platform.ProfileDropdown.SI.network.title': 'CoNET"隱形互聯網"設定',
+	'platform.ProfileDropdown.SI.network.loading': '正在獲得CoNET-SI"隱形互聯網"挖礦節點伺服器信息...',
+	'platform.ProfileDropdown.SI.network.listError': '獲取CoNET-SI"隱形互聯網"節點伺服器信息失敗,請稍後再試！',
+
 	'platform.ProfileDropdown.CurrentProfileItem.AnonymousUser': '匿名用戶',
 	'tabnavigator.guide.title': '歡迎使用CoNET平台',
 	'globalBar.application.home': 'CoNET 平台',
 	'globalBar.application.SeguroMessage': 'Seguro 聊天',
 	'globalBar.application.AppStore': 'CoNET 應用商店',
-	'tabnavigator.appStore.title': '歡迎使用CoNET應用商店'
+	'tabnavigator.appStore.title': '歡迎使用CoNET應用商店',
+
+	'platform.ProfileDropdown.nodelist.title': '正在獲取CoNET-SI節點伺服器列表...',
+	'platform.ProfileDropdown.conet_si.nodes.title': '關於CoNET-SI "隱形互聯網"節點伺服器',
+	'platform.ProfileDropdown.conet_si.nodes.detail': 'CoNET-SI的節點伺服器由分佈在全球的CoNET-SI礦工組成。 他們向用戶提供網絡設備，以獲得用戶支付的匿名美元穩定幣 CoNETCash 作為收入。 用戶可以購買雲計算存儲和網絡服務',
+	'platform.ProfileDropdown.conet_si.nodes.mining': 'CoNET-SI歡迎任何人，提供多餘的電腦設備，作為參與者挖礦，獲取以美金為基準的加密穩定幣回報。請訪問CoNET項目網站以獲取更詳細的信息。',
+	'platform.ProfileDropdown.CoNET.website': '點擊這裡訪問CoNET項目網站',
+	'platform.ProfileDropdown.nodelist.ipAddress': '節點伺服器IP地址',
+
+	'platform.ProfileDropdown.nodelist.registersRecipientDetail': '請選擇一個節點伺服器，作為您的錢包接收方，以使用CoNET-SI來進行通信',
+	'platform.ProfileDropdown.nodelist.registersRecipientTitle': '接收結點設定',
+	'platform.ProfileDropdown.nodelist.registersRecipientInfo1': '客戶端將匿名賬號的錢包地址，註冊到CoNET-SI網絡中的一個節點，該錢包地址就可開始接收其他客戶端發送的消息，節點會在客戶端離線時，暫時保留收到的消息，客戶端再次上線時，離線消息會被傳送到客戶端。客戶需要通過CoNETCash-USDC，支付存儲費和出庫費。',
+	'platform.ProfileDropdown.nodelist.registersRecipientInfo2': `CoNET-SI 的節點都是中繼節點伺服器。客戶端通過入口節點發送的密文被路由到接收節點伺服器。由於加密只包含收件人註冊的節點地址，因此入口節點伺服器不知道客戶端正在與誰通信。接收節點伺服器接收到的加密消息，只包含收件人地址，不知道消息的發送者是誰。`,
+	'platform.ProfileDropdown.nodelist.registersPayment.setupTitile': '支付設定',
+	'platform.ProfileDropdown.nodelist.registersPayment.detail1': '請確認支付授權',
+	'platform.ProfileDropdown.nodelist.registersPayment.detail2': '最小授權金額為 1 CoNETCash-USDC',
+	'platform.ProfileDropdown.nodelist.registersPayment.authorizationAmount': '授權金額',
+	'platform.ProfileDropdown.nodelist.registersPayment.registersRecipientloading': '正在註冊您通訊錢包地址',
+	'platform.ProfileDropdown.nodelist.registersPayment.CoNETCashBalance': 'CoNETCash-USDC 餘額',
+	'platform.ProfileDropdown.nodelist.registersPayment.authorizationInformation': '這僅驗證您的CoNETCash是否有效以及您的CoNETCash是否有足夠的可用資金。該交易將在CoNETCash歷史記錄中標記為“保留”。 CoNETCash上的資金將被擱置（待處理交易）。被授權方有權在你授權金額內，扣除你所購買的服務或產品。',
+	'platform.ProfileDropdown.nodelist.registersPayment.registersfinished1': '登記完畢，其他人可通過地址: ',
+	'platform.ProfileDropdown.nodelist.registersPayment.registersfinished2': '使用Seguro即時信息，與您進行通訊。您也可通過該地址，在CONET-SI網絡部署您的匿名服務器。',
+
+	'platform.ProfileDropdown.nodelist.CoNET.SI': 'CoNET-SI "隱形互聯網"',
+	'platform.ProfileDropdown.nodelist.selectEntryNode': '請選擇一個或多个結點，作為進入CoNET-SI的入口',
+	'platform.ProfileDropdown.nodelist.entryNodeTitle': `入口結點設定`,
+	'platform.ProfileDropdown.nodelist.entryNodeditail': 'CoNET-SI入口結點是，用戶設備通過互聯網，無IP地址，隱身連結到CoNET-SI網絡的橋樑。',
+	'platform.ProfileDropdown.conet_si.nodes.maxConfirm': '確認(已達最大值)',
+
+	'platform.ProfileDropdown.nodelist.country': '結點所在地',
+	'platform.ProfileDropdown.nodelist.registersDate': '上線日期',
+	'platform.ProfileDropdown.nodelist.keep': '連續服務時間 分鐘',
+	
+	'platform.ProfileDropdown.nodelist.storagePrice': '存儲 USDC 1GB/月',
+	'platform.ProfileDropdown.nodelist.outboundPrice': '網絡 USDC 1GB',
+
+	'platform.ProfileDropdown.nodelist.about': 'CoNET-SI为用户提供零元数据的私密互联网通信',
+	'platform.ProfileDropdown.nodelist.about1':'傳統互聯網傳輸的數據包，包含發送方和接收方的IP地址和未經加密的內容。',
+	'platform.ProfileDropdown.nodelist.about2': 'CoNET-IS 與 Internet 完全不同，它不使用具有包含個人信息和地理位置的豐富元數據的 IP 地址。 雙方使用一次性錢包地址作為保持通信匿名的一種方式。 CoNET-SI 的數據包不包含發件人地址，內容必須加密，才會被認可傳輸並送達收件人錢包地址。',
+
+	'platform.country.de': '德國',
+	'platform.country.us': '美國',
+	'platform.country.gb': '英國',
+	'platform.country.es': '西班牙',
 }
 
 export default zh_CN

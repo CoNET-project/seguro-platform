@@ -5,7 +5,8 @@ export type Locale = (
     )
 
 export type Messages = {
-    'main.greeting': string,
+    'main.greeting': string
+	'LaunchScreen.loadFail': string
     'onboarding.selectLanguageTitle': string
     'onboarding.selectLanguageSubtitle': string
     'onboarding.setPasscodeTitle': string
@@ -172,6 +173,9 @@ export type Messages = {
 	'platform.ProfileDropdown.spend': string
 	'platform.ProfileDropdown.Receive': string
 	'platform.ProfileDropdown.faucet.limited': string
+	'platform.ProfileDropdown.SI.network.title': string
+	'platform.ProfileDropdown.SI.network.listError': string
+	'platform.ProfileDropdown.SI.network.loading': string
 	'platform.ProfileDropdown.faucet.success': string
 	'platform.ProfileDropdown.faucet.error': string
 	'platform.ProfileDropdown.send.error': string
@@ -188,6 +192,49 @@ export type Messages = {
 	'platform.ProfileDropdown.send.estimatedGas': string
 	'platform.ProfileDropdown.Tablable.Assets': string
 	'platform.ProfileDropdown.Tablable.Activity': string
+
+	'platform.ProfileDropdown.nodelist.title': string
+	'platform.ProfileDropdown.conet_si.nodes.title': string
+	'platform.ProfileDropdown.conet_si.nodes.detail': string
+	'platform.ProfileDropdown.conet_si.nodes.mining': string
+	'platform.ProfileDropdown.conet_si.nodes.maxConfirm': string
+	'platform.ProfileDropdown.CoNET.website': string
+	
+
+	'platform.ProfileDropdown.nodelist.selectEntryNode': string
+	'platform.ProfileDropdown.nodelist.entryNodeTitle': string
+	'platform.ProfileDropdown.nodelist.entryNodeditail': string
+	'platform.ProfileDropdown.nodelist.registersRecipientDetail': string
+	'platform.ProfileDropdown.nodelist.registersRecipientInfo1': string
+	'platform.ProfileDropdown.nodelist.registersRecipientInfo2': string
+	'platform.ProfileDropdown.nodelist.registersRecipientTitle': string
+	'platform.ProfileDropdown.nodelist.registersPayment.setupTitile': string
+	'platform.ProfileDropdown.nodelist.registersPayment.detail1': string
+	'platform.ProfileDropdown.nodelist.registersPayment.detail2': string
+	'platform.ProfileDropdown.nodelist.registersPayment.authorizationAmount': string
+	'platform.ProfileDropdown.nodelist.registersPayment.authorizationInformation': string
+	'platform.ProfileDropdown.nodelist.registersPayment.CoNETCashBalance': string
+	'platform.ProfileDropdown.nodelist.registersPayment.registersRecipientloading': string
+	'platform.ProfileDropdown.nodelist.registersPayment.registersfinished1': string
+	'platform.ProfileDropdown.nodelist.registersPayment.registersfinished2': string
+
+	'platform.ProfileDropdown.nodelist.CoNET.SI': string
+	'platform.ProfileDropdown.nodelist.registersDate': string
+	'platform.ProfileDropdown.nodelist.keep': string
+	'platform.ProfileDropdown.nodelist.storagePrice': string
+	'platform.ProfileDropdown.nodelist.outboundPrice': string
+	'platform.ProfileDropdown.nodelist.country': string
+	'platform.ProfileDropdown.nodelist.ipAddress': string
+
+	'platform.ProfileDropdown.nodelist.about': string
+	'platform.ProfileDropdown.nodelist.about1': string
+	'platform.ProfileDropdown.nodelist.about2': string
+
+
+	'platform.country.de': string
+	'platform.country.us': string
+	'platform.country.gb': string
+	'platform.country.es': string
 
 	'platform.ProfileDropdown.CurrentProfileItem.AnonymousUser': string
 

@@ -63,6 +63,33 @@ export type CryptoAsset = {
 	blockExplorerURL: string
 }
 
+export type nodes_info = {
+	country: string
+	customs_review_total: number
+	ip_addr: string
+	last_online: string
+	lat: number
+	lon: number 
+	nft_tokenid: string
+	outbound_fee: number
+	outbound_total: number
+	pgp_publickey_id: string
+	region: string
+	registration_date: string
+	storage_fee: number
+	storage_total: number
+	total_online: number
+	wallet_addr: string
+	entryChecked?: boolean
+	recipientChecked?: boolean
+	disable?: boolean
+}
+export type paymentAuthorization = {
+	amount: number
+	balance: number
+	history: any []
+	
+}
 export type ProfileData = {
     bio: string
     nickName: string
@@ -76,6 +103,12 @@ export type ProfileData = {
 	changed?: boolean
 	publicKeyArmor?: string
 	privateKeyArmor?: string
+	si_nodes?: nodes_info[]
+	network?: {
+		entrys: nodes_info[]
+		recipients: nodes_info[]
+		payment: paymentAuthorization[]
+	}
 }
 
 export type Devices = {

@@ -6,9 +6,9 @@ const getLogger = (
     appName: string
 ) => {
     const getDescription = (level: string) => {
-        const timestamp = dayjs().format('HH:MM:ss');
+        const timestamp = dayjs().format('HH:MM:ss')
 
-        return `[${appName} ${level} ${timestamp}]`;
+        return `[${appName} ${level} ${timestamp}]`
     };
 
     const logger = {
@@ -22,16 +22,16 @@ const getLogger = (
                 logger.log(...args, ...args2)
             )
         )
-    };
+    }
 
     if (process.env.NODE_ENV === 'production' || process.env.KLOAK_APP_ENABLE_PRODUCTION_LOGGING === 'true') {
         logger.log = () => {
-        };
+        }
         logger.getLogger = () => () => {
-        };
+        }
     }
 
-    return logger;
-};
+    return logger
+}
 
-export default getLogger('seguro-platform');
+export default getLogger('seguro-platform')
