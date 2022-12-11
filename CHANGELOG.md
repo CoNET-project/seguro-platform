@@ -1,5 +1,22 @@
 # `seguro-platform` CHANGELOG
 
+## `0.59.0`
+
+### Additions
+
+- CoNET-SI 
+
+### Changes
+
+- None.
+
+### Fixes
+
+- bug fixed.
+
+---
+
+
 ## `0.58.1`
 
 ### Additions

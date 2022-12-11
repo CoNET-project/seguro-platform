@@ -3,7 +3,7 @@ import LeftPanel from "./Panels/LeftPanel"
 import RightPanel from "./Panels/RightPanel"
 import MainPanel from "./Panels/MainPanel"
 import {MessengerContext} from "../../../../contexts/messenger/MessengerContext"
-import React, {useEffect} from "react";
+import React, {useEffect} from "react"
 import {messengerReducer, MessengerState} from "../../../../contexts/messenger/messengerReducer"
 import {messengerActions} from "../../../../contexts/messenger/messengerActions"
 import mainVideo from '../../../../assets/appStore/appStore.gif'

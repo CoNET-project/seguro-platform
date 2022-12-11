@@ -1,17 +1,13 @@
-import styled, {useTheme} from 'styled-components'
-import React, {HTMLAttributes, useState} from "react"
+import styled from 'styled-components'
+import React, {HTMLAttributes, useState, useEffect} from "react"
 import useAppState from "../../../../store/appState/useAppState"
-import {AddProfile, ManageAccount, PlatformLock} from "../../Icons/Icons"
 import {FormattedMessage} from "react-intl"
-import {lockPlatform} from '../../../../services/workerService/workerService'
 import {ProfileData} from "../../../../store/appState/appStateReducer"
 import CurrentProfileItem from './CurrentProfileItem/CurrentProfileItem'
 import AssetView from'./CurrentProfileItem/AssetView'
 import List from '@mui/material/List'
 import Box from '@mui/material/Box'
 import ListItem from '@mui/material/ListItem'
-import ListItemText from '@mui/material/ListItemText'
-import ListItemIcon from '@mui/material/ListItemIcon'
 import ListItemButton from '@mui/material/ListItemButton'
 import BottomNavigation from '@mui/material/BottomNavigation/BottomNavigation'
 import BottomNavigationAction from '@mui/material/BottomNavigationAction'
@@ -32,7 +28,7 @@ import Stack from '@mui/material/Stack'
 import PersonIcon from '@mui/icons-material/Person'
 import Grid from '@mui/material/Grid'
 import CircularProgress from '@mui/material/CircularProgress'
-import { red, blueGrey, blue, green } from '@mui/material/colors'
+import { red, blueGrey, blue, green, grey } from '@mui/material/colors'
 import InputAdornment from '@mui/material/InputAdornment'
 import Avatar from '@mui/material/Avatar'
 import NorthEastRoundedIcon from '@mui/icons-material/NorthEastRounded'
@@ -42,16 +38,18 @@ import CallReceivedIcon from '@mui/icons-material/CallReceived'
 import ContentCopyIcon from '@mui/icons-material/ContentCopy'
 import {CopyToClipboard} from "../../../../utilities/utilities"
 
-import AccountBalanceIcon from '@mui/icons-material/AccountBalance'
+import CoNETSINodeSetup from './conet-si/CoNET_SI_SETUP'
+
+import ListItemIcon from '@mui/material/ListItemIcon'
+import VpnLockIcon from '@mui/icons-material/VpnLock'
+import ListItemText from '@mui/material/ListItemText'
+import Badge from '@mui/material/Badge'
+
 export type Profiles = Array<ProfileData>
-import {VerticalOptions_ArrowUpRightCircleFill, VerticalOptions_ArrowDownloadCircleFill, VerticalOptions} from "../../Icons/Icons"
-import { profile } from '@conet.project/seguro-worker-lib/build/workerBridge'
-import SaveAltRoundedIcon from '@mui/icons-material/SaveAltRounded'
 
 type ProfileDropdownProps = {
     closeDropdown: (app:string) => void
 } & HTMLAttributes<HTMLDivElement>
-
 
 
 interface TabPanelProps {
@@ -102,6 +100,7 @@ const ProfileDropdown = ({closeDropdown}: ProfileDropdownProps) => {
 	const {
         windowInnerSize: {width}
     } = useAppState()
+
 	const fees = 0.0003045
 	const maxFees = 0.0003591
 	const GasToEth = 0.00000001
@@ -117,7 +116,6 @@ const ProfileDropdown = ({closeDropdown}: ProfileDropdownProps) => {
 	}
 
 	const conetToken = currentProfile().tokens.conet
-	const usdc = currentProfile().tokens.usdc
 	
 	const [buttonNavigationCurrent, setButtonNavigationCurrent] = useState(-1)
 	const [walletTextFieldID, setWalletTextFieldID] = useState('standard-basic')
@@ -138,9 +136,16 @@ const ProfileDropdown = ({closeDropdown}: ProfileDropdownProps) => {
 	const [currentAssetHistorys, setCurrentAssetHistorys] = useState([])
 	const [receiveVal, setReceiveVal] = useState('')
 	const [showHistoryDetail, setShowHistoryDetail] = useState<CryptoAssetHistory|null>(null)
-
+	const [conet_si_open, setConet_si_open] = React.useState(false)
 	const [showAssetBalance_balance, setshowAssetBalance_balanc] = useState(conetToken.balance)
+	const [showCoNET_SI_setup_Badge, setShowCoNET_SI_setup_Badge] = React.useState(0)
 
+	const init = () => {
+		const current = currentProfile()
+		if (!current?.network) {
+			setShowCoNET_SI_setup_Badge (1)
+		}
+	}
 	const shortToAddr = (addr: string|undefined) => {
 		if (!addr) {
 			return ''
@@ -348,6 +353,8 @@ const ProfileDropdown = ({closeDropdown}: ProfileDropdownProps) => {
 		setShowCoNETCashsendFrom(false)
 		setShowHistoryDetail (null)
 		setCurrentAssetHistorys([])
+		setLoading (false)
+		setResultError(false)
 	}
 
 	const sendAsset = () => {
@@ -407,7 +414,6 @@ const ProfileDropdown = ({closeDropdown}: ProfileDropdownProps) => {
 				</List>
 		)
 	}
-
 
 
 	const assetHistory = (index: number, v: CryptoAssetHistory) => {
@@ -576,6 +582,19 @@ const ProfileDropdown = ({closeDropdown}: ProfileDropdownProps) => {
 		}
 	}
 
+	const openConet_SI_Cliek = () => {
+		setConet_si_open(true)
+		resetWindow ()
+	}
+
+	const closeConet_SI_Cliek = () => {
+		setConet_si_open(false)
+	}
+
+
+	useEffect(() => {
+        init()
+    }, [])
     return (
 
 		<List sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper', paddingBottom: '2rem'}}>
@@ -585,7 +604,35 @@ const ProfileDropdown = ({closeDropdown}: ProfileDropdownProps) => {
 			</ListItem>
 
 			<Divider/>
-
+			
+				<ListItem sx={{ width: '100%', padding: '0px'}} >
+																	
+						<ListItemButton sx={{ width: '100%', padding: '1rem'}}
+						onClick = {openConet_SI_Cliek}>
+							<ListItemIcon sx={{minWidth: '0'}}>
+								<VpnLockIcon color="primary"/>
+							</ListItemIcon>
+							
+								<ListItemText sx={{ paddingLeft: '1rem', color: blue[600]}}>
+									<Badge
+										color='warning'
+										badgeContent={ showCoNET_SI_setup_Badge }
+										anchorOrigin={{
+											vertical: 'top',
+											horizontal: 'left',
+										}}
+									>	
+										<FormattedMessage id='platform.ProfileDropdown.SI.network.title'/>
+									</Badge>
+								</ListItemText>
+							
+						</ListItemButton>
+					
+				</ListItem>
+			
+			
+			
+			<Divider/>
 			{
 				showAssetBalance && 		//		Asset balance
 
@@ -699,13 +746,11 @@ const ProfileDropdown = ({closeDropdown}: ProfileDropdownProps) => {
 								type='number'
 								value={amountVal}
 								onChange={e=> {
+									setAmountTextFieldID('standard-basic')
 									let val = 0
-									try {
-										val = parseFloat(e.target.value)
-									} catch (ex) {
-										return setAmountVal(0)
-									}
-									if ( val < 0) {
+									val = parseFloat(e.target.value)
+									
+									if ( isNaN(val) || val < 0) {
 										return setAmountVal(0)
 									}
 									
@@ -713,7 +758,7 @@ const ProfileDropdown = ({closeDropdown}: ProfileDropdownProps) => {
 									if ( val + fees > assetList[currectAsset].balance) {
 										return setAmountTextFieldID('standard-error')
 									}
-									setAmountTextFieldID('standard-basic')
+									
 									
 								}}
 							/>
@@ -754,7 +799,7 @@ const ProfileDropdown = ({closeDropdown}: ProfileDropdownProps) => {
 
 							<Grid item xs={6}>
 								<Typography variant="h5" gutterBottom width={'30%'} align='right'>
-									{amountVal}
+									{amountVal.toFixed(6)}
 								</Typography>
 							</Grid>
 							<Grid item xs={6}>
@@ -816,13 +861,9 @@ const ProfileDropdown = ({closeDropdown}: ProfileDropdownProps) => {
 								type='number'
 								value={amountVal}
 								onChange={ e => {
-									let val = 0
-									try {
-										val = parseFloat(e.target.value)
-									} catch (ex) {
-										return setAmountVal(0)
-									}
-									if ( val < 0) {
+									let val = parseFloat(e.target.value)
+									setAmountTextFieldID('standard-basic')
+									if ( isNaN(val) || val < 0) {
 										return setAmountVal(0)
 									}
 									
@@ -830,7 +871,7 @@ const ProfileDropdown = ({closeDropdown}: ProfileDropdownProps) => {
 									if ( val + fees > assetList[0].balance) {
 										return setAmountTextFieldID('standard-error')
 									}
-									setAmountTextFieldID('standard-basic')
+									
 									setReceiveVal((val *usdcPrice).toFixed(2))
 								}}
 								InputProps={{endAdornment: <InputAdornment position="end">CoNET</InputAdornment>}}
@@ -878,13 +919,9 @@ const ProfileDropdown = ({closeDropdown}: ProfileDropdownProps) => {
 								type='number'
 								value={amountVal}
 								onChange={e=> {
-									let val = 0
-									try {
-										val = parseFloat(e.target.value)
-									} catch (ex) {
-										return setAmountVal(0)
-									}
-									if ( val < 0) {
+									let val = parseFloat(e.target.value)
+									setAmountTextFieldID('standard-basic')
+									if ( isNaN(val) || val < 0 ) {
 										return setAmountVal(0)
 									}
 									
@@ -892,7 +929,7 @@ const ProfileDropdown = ({closeDropdown}: ProfileDropdownProps) => {
 									if ( val + fees > assetList[2].balance|| val > 100|| val < 10) {
 										return setAmountTextFieldID('standard-error')
 									}
-									setAmountTextFieldID('standard-basic')
+									
 									
 								}}
 							/>
@@ -1072,8 +1109,6 @@ const ProfileDropdown = ({closeDropdown}: ProfileDropdownProps) => {
 								icon={<DownloadForOfflineIcon />}
 							/>
 						}
-						
-						
 					</BottomNavigation>
 				</ListItem>
 
@@ -1108,6 +1143,14 @@ const ProfileDropdown = ({closeDropdown}: ProfileDropdownProps) => {
 					</Box>
 					
 				</ListItem>
+			}
+			{
+				conet_si_open &&
+				<CoNETSINodeSetup
+					closeWindow = { closeConet_SI_Cliek }
+					winOpen = {conet_si_open}
+					currentProfile = {currentProfile()}
+				/>
 			}
 			
 		</List>

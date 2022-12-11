@@ -1,6 +1,12 @@
 import styled from 'styled-components'
 import {LogoImage} from "../../UI/Logo/Logo"
 import React from "react"
+import LinearProgress from '@mui/material/LinearProgress'
+import Box from '@mui/material/Box'
+import Container from '@mui/material/Container'
+import Button from '@mui/material/Button'
+import Typography from '@mui/material/Typography'
+import {FormattedMessage} from "react-intl"
 
 const StyledContainer = styled.div`
 	height: 100%;
@@ -12,12 +18,73 @@ const StyledContainer = styled.div`
 	align-items: center;
 	justify-content: center;
 `
+type CoNETSINodeProps = {
+	reload: boolean
+} & React.HTMLAttributes<HTMLDivElement>
 
-const LaunchScreen = () => {
+const getNewNumber = ( oldProgress: number ) => {
+	if (oldProgress === 100) {
+		return 0
+	}
+	const diff = Math.random() * 10
+	return Math.min( oldProgress + diff, 100 )	
+}
+const LaunchScreen = ({reload}: CoNETSINodeProps) => {
+
+	const [progress, setProgress] = React.useState(0)
+	let countN = 0
+
+	React.useEffect(() => {
+
+		const processRun = () => {
+			countN = getNewNumber(countN)
+			setProgress(countN)
+
+			setTimeout (() => {
+				return processRun()
+			}, 500)
+		}
+		processRun ()
+
+	}, [])
+
+	const buttom = () => {
+		return (
+			<Button
+				variant="contained"
+				color="error"
+				size="large"
+				onClick={() => {
+					location.reload()
+					return false
+				}}
+			>
+				<Typography variant="subtitle1" sx={{ color: 'error' }}>
+					<FormattedMessage id='LaunchScreen.loadFail'/>
+				</Typography>
+			</Button>
+		)
+	}
 
     return (
         <StyledContainer>
+			
             <LogoImage color='white'/>
+
+			{
+				reload && 
+					<Container maxWidth="md"  sx={{paddingTop: '2rem', textAlign:"center"}} >
+						{ buttom() }
+					</Container>
+			}
+			{
+				!reload && 
+					<Container maxWidth="md" sx={{paddingTop: '2rem'}}>
+						<LinearProgress color="inherit" variant="determinate" value={progress} sx={{ color: 'white'}}/>
+					</Container>
+			}
+			
+			
         </StyledContainer>
     )
 }
