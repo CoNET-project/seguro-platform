@@ -22,8 +22,8 @@
     "build-storybook": "build-storybook -s public"
   },
   "dependencies": {
-    "@conet.project/seguro-gateway": "^0.17.1",
-    "@conet.project/seguro-worker-lib": "^0.12.1",
+    "@conet.project/seguro-gateway": "^0.18.0",
+    "@conet.project/seguro-worker-lib": "^0.13.1",
     "@emotion/react": "^11.10.5",
     "@emotion/styled": "^11.10.5",
     "@mui/icons-material": "^5.10.16",

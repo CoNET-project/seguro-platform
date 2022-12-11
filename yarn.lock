@@ -1192,25 +1192,24 @@
   resolved "https://registry.npmjs.org/@colors/colors/-/colors-1.5.0.tgz"
   integrity sha512-ooWCrlZP11i8GImSjTHYHLkvFDP48nS4+204nGb1RiX/WXYHmJA2III9/e2DWVabCESdW7hBAEzHRqUn9OUVvQ==
 
-"@conet.project/seguro-gateway@^0.17.1":
-  version "0.17.1"
-  resolved "https://registry.npmjs.org/@conet.project/seguro-gateway/-/seguro-gateway-0.17.1.tgz"
-  integrity sha512-YCmuMQiUKGXKrdYwCjO4is33/2yG88nXZXulcv9CLDqhy57UqMxUgbPT34fe7hCSKHcmwz1GCS07bNBXtGmZqw==
+"@conet.project/seguro-gateway@^0.18.0":
+  version "0.18.0"
+  resolved "https://registry.yarnpkg.com/@conet.project/seguro-gateway/-/seguro-gateway-0.18.0.tgz#c815fcb5a0c61304ea2179dd78562bba9730debf"
+  integrity sha512-gtXBv+DZaB64MBqvrOoMHNyGlPg/hY7/dZrzLn4FImJ8mGn/gXDkWdjJx/j9UM8jD75kEAUc5yz51NkhLf+RFA==
   dependencies:
     async "^3.2.4"
     colors "^1.4.0"
     cors "^2.8.5"
     express "^4.18.2"
-    fs-extra "^10.1.0"
+    fs-extra "^11.1.0"
     uuid "^9.0.0"
     yargs "^17.6.2"
 
-"@conet.project/seguro-worker-lib@^0.12.1":
-  version "0.12.1"
-  resolved "https://registry.npmjs.org/@conet.project/seguro-worker-lib/-/seguro-worker-lib-0.12.1.tgz"
-  integrity sha512-OHtxvvKDc/VMFNKMNOCt9SX1jfP/9kDOe0yjzinOtTzqZMhfbt2PIFQfeshUUWd5S/PgLVJWCL45z7qmerMkSQ==
+"@conet.project/seguro-worker-lib@^0.13.1":
+  version "0.13.1"
+  resolved "https://registry.yarnpkg.com/@conet.project/seguro-worker-lib/-/seguro-worker-lib-0.13.1.tgz#5d648195c42ec638120b41e30be22808a56ef086"
+  integrity sha512-I6hoaZJrTaq5L4xtWdCyrB4lqdDa0vc+vXC9OAtBMiYYZ/MTYTG/9Uy+d2f8sGmYuTCViSgSVO8aDnWquJhOkg==
   dependencies:
-    async "^3.2.4"
     uuid "^9.0.0"
 
 "@csstools/normalize.css@*":
@@ -7788,6 +7787,15 @@ fs-extra@^10.0.0, fs-extra@^10.1.0:
   version "10.1.0"
   resolved "https://registry.npmjs.org/fs-extra/-/fs-extra-10.1.0.tgz"
   integrity sha512-oRXApq54ETRj4eMiFzGnHWGy+zo5raudjuxN0b8H7s/RU2oW0Wvsx9O0ACRN/kRq9E8Vu/ReskGB5o3ji+FzHQ==
+  dependencies:
+    graceful-fs "^4.2.0"
+    jsonfile "^6.0.1"
+    universalify "^2.0.0"
+
+fs-extra@^11.1.0:
+  version "11.1.0"
+  resolved "https://registry.yarnpkg.com/fs-extra/-/fs-extra-11.1.0.tgz#5784b102104433bb0e090f48bfc4a30742c357ed"
+  integrity sha512-0rcTq621PD5jM/e0a3EJoGC/1TC5ZBCERW82LQuwfGnCa1V8w7dpYH1yNu+SLb6E5dkeCBzKEyLGlFrnr+dUyw==
   dependencies:
     graceful-fs "^4.2.0"
     jsonfile "^6.0.1"
