@@ -31,18 +31,18 @@ const zh_CN: Messages = {
     'onboarding.verification.modal.button.newCode': '輸入新的驗證碼',
 
 
-    'onboarding.setup.create.container': '正在創建帳戶...',
-    'onboarding.setup.verify.code': '驗證邀請碼...',
-    'onboarding.setup.enter.button': '進入 Seguro',
+    'onboarding.setup.create.container': '正在創建匿名帳戶...',
+    'onboarding.setup.verify.code': '正在創建加密通訊用密匙...',
+    'onboarding.setup.enter.button': '進入CoNET 平台',
 
     'onboarding.carousel.title.seguro-platform': 'CoNET 平台',
-    'onboarding.carousel.title.no-ip-tracking': '無 IP 追踪',
+    'onboarding.carousel.title.no-ip-tracking': '匿名網絡',
     'onboarding.carousel.title.decentralized': '去中心化',
     'onboarding.carousel.title.anonymity': '匿名',
     'onboarding.carousel.content.seguro-platform': 'Seguro 通過創新技術解決數據洩露和信息不安全的問題',
     'onboarding.carousel.content.no-ip-tracking': '使用創新的電子郵件隧道技術，您可以從任何地方訪問 Seguro，而無需擔心 IP 跟踪或防火牆',
-    'onboarding.carousel.content.decentralized': 'Seguro 在分散系統上運行，這意味著即使我們也無法訪問您的信息',
-    'onboarding.carousel.content.anonymity': '使用 Seguro 隨心所欲地公開或匿名，無需個人信息',
+    'onboarding.carousel.content.decentralized': 'CoNET運行在去中心化的基礎設施上，這意味著沒有人可以偷窺您的信息',
+    'onboarding.carousel.content.anonymity': '使用CoNET讓您自己来完全控制，您的個人信息',
 
     'passcodeInput.incorrect.error': '密碼錯誤，請再試一次',
     'passcodeInput.confirm.error': '密碼不對，請再輸入一次',
@@ -226,6 +226,7 @@ const zh_CN: Messages = {
 	'platform.ProfileDropdown.nodelist.registersPayment.setupTitile': '支付設定',
 	'platform.ProfileDropdown.nodelist.registersPayment.detail1': '請確認支付授權',
 	'platform.ProfileDropdown.nodelist.registersPayment.detail2': '最小授權金額為 1 CoNETCash-USDC',
+	'platform.ProfileDropdown.nodelist.registersPayment.insufficient_conetcash_balance': 'CoNETCash餘額不足',
 	'platform.ProfileDropdown.nodelist.registersPayment.authorizationAmount': '授權金額',
 	'platform.ProfileDropdown.nodelist.registersPayment.registersRecipientloading': '正在註冊您通訊錢包地址',
 	'platform.ProfileDropdown.nodelist.registersPayment.CoNETCashBalance': 'CoNETCash-USDC 餘額',

@@ -1,7 +1,8 @@
 export type Locale = (
     'en-US' |
     'zh-CN' |
-    'zh-TW'
+    'zh-TW' |
+	'ja-JP'
     )
 
 export type Messages = {
@@ -211,6 +212,7 @@ export type Messages = {
 	'platform.ProfileDropdown.nodelist.registersPayment.setupTitile': string
 	'platform.ProfileDropdown.nodelist.registersPayment.detail1': string
 	'platform.ProfileDropdown.nodelist.registersPayment.detail2': string
+	'platform.ProfileDropdown.nodelist.registersPayment.insufficient_conetcash_balance': string
 	'platform.ProfileDropdown.nodelist.registersPayment.authorizationAmount': string
 	'platform.ProfileDropdown.nodelist.registersPayment.authorizationInformation': string
 	'platform.ProfileDropdown.nodelist.registersPayment.CoNETCashBalance': string

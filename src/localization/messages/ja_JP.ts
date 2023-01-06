@@ -1,14 +1,14 @@
 import {Messages} from '../types'
 
-const en_US: Messages = {
-    'main.greeting': 'Hello world!',
-	'LaunchScreen.loadFail': 'CoNET Platform Loading Failed! Click to reload please.',
-    'onboarding.selectLanguageTitle': 'Select your language',
-    'onboarding.selectLanguageSubtitle': 'Please select your language for Seguro Platform. ' +
-        'You will be able to change this later in settings.',
-    'onboarding.setPasscodeTitle': 'Create Passcode',
-    'onboarding.setPasscodeSubtitle': 'Enter a minimum 6 character passcode',
-    'onboarding.confirmPasscodeTitle': 'Confirm Passcode',
+const ja_JP: Messages = {
+    'main.greeting': 'ようこそ',
+	'LaunchScreen.loadFail': 'CoNET プラットフォームを読み込みに失敗しました! クリックしてリロードしてください',
+    'onboarding.selectLanguageTitle': '使う言語を選んでください',
+    'onboarding.selectLanguageSubtitle': '言語を選択してください。' +
+        '言語は後での設定変更ができます.',
+    'onboarding.setPasscodeTitle': 'パスコードを作成',
+    'onboarding.setPasscodeSubtitle': '6文字以上のパスコードを入力してください',
+    'onboarding.confirmPasscodeTitle': 'パスコードの確認',
 
     'onboarding.verificationTitle': 'Verify Account',
     'onboarding.verificationInputLabel': 'Enter your invitation code',
@@ -26,38 +26,38 @@ const en_US: Messages = {
     'onboarding.verification.error.email': 'Seguro cannot connect to email servers, please try again!',
     'onboarding.verification.error.localserver': 'Seguro cannot connect to local server, please restart Seguro!',
     'onboarding.verification.error.timeout': 'Seguro timed out waiting for response, please try again!',
-    'onboarding.verification.error.authError': 'Please update your CoNET Platform software!',
+    'onboarding.verification.error.authError': 'CoNET プラットフォームソフトウェアを更新してください。',
 
-    'onboarding.verification.modal.button.retry': 'Retry',
-    'onboarding.verification.modal.button.update': 'Update',
+    'onboarding.verification.modal.button.retry': 'リトライ',
+    'onboarding.verification.modal.button.update': 'アップデート',
     'onboarding.verification.modal.button.newCode': 'Enter new verification code',
 
-    'onboarding.setup.create.container': 'Creating anonymous profile...',
-    'onboarding.setup.verify.code': 'Initializing encryption keys...',
-    'onboarding.setup.enter.button': 'Enter CoNET Platform',
+    'onboarding.setup.create.container': '匿名アカウントを作成しています...',
+    'onboarding.setup.verify.code': '暗号化通信用鍵の初期化...',
+    'onboarding.setup.enter.button': 'CoNETプラットフォームに入ります',
 
-    'onboarding.carousel.title.seguro-platform': 'CoNET Platform',
-    'onboarding.carousel.title.no-ip-tracking': 'Anonymous Network',
-    'onboarding.carousel.title.decentralized': 'Decentralized',
-    'onboarding.carousel.title.anonymity': 'Anonymity',
-    'onboarding.carousel.content.seguro-platform': 'CoNET solves the problem of data leaks and unsecured information through innovative technology.',
-    'onboarding.carousel.content.no-ip-tracking': 'You can enter CoNET from anywhere without worrying about IP tracking or Firewalls.',
-    'onboarding.carousel.content.decentralized': 'CoNET runs on a decentralized system, meaning nobody can access to your information.',
-    'onboarding.carousel.content.anonymity': 'You can full control of your personal information with CoNET.',
+    'onboarding.carousel.title.seguro-platform': 'CoNETプラットフォーム',
+    'onboarding.carousel.title.no-ip-tracking': '匿名ネットワーク',
+    'onboarding.carousel.title.decentralized': 'ブロックチェーンベースの分散型ネットワーク',
+    'onboarding.carousel.title.anonymity': '匿名',
+    'onboarding.carousel.content.seguro-platform': 'CoNETプラットフォームは、革新的な技術でデータ侵害と情報のセキュリティに対処します',
+    'onboarding.carousel.content.no-ip-tracking': '革新的なIPアドレスのない暗号化通信インフラを使用して、データの追跡やファイアウォールからブロックする心配がなく、どこからもCoNETネットワークにアクセスできます。',
+    'onboarding.carousel.content.decentralized': 'CoNETは分散型インフラで実行されるため、誰もあなたの情報を盗撮することはできません',
+    'onboarding.carousel.content.anonymity': 'CoNETにより、あなたの個人情報をご自分で完全にコントロールができます',
 
-    'passcodeInput.incorrect.error': 'Incorrect passcode, please try again!',
-    'passcodeInput.confirm.error': 'Passcode not correct!',
-    'passcodeInput.invalidLength': 'Passcode requires minimum 6 numbers',
+    'passcodeInput.incorrect.error': 'パスコードが正しくありません。もう一度お試しください。',
+    'passcodeInput.confirm.error': 'パスコードが正しくありません',
+    'passcodeInput.invalidLength': 'パスコードには最低6つの数字が必要です',
 
-    'button.next': 'Next',
-    'button.back': 'Back',
-    'button.unlock': 'Unlock',
+    'button.next': '次へ',
+    'button.back': '戻る',
+    'button.unlock': 'アンロック',
 
-    'unlock.title': 'Enter your CoNET Platform passcode',
+    'unlock.title': 'パスコードを入力してください',
 
-    'platform.unlock.button.forgot': 'Forgot your passcode?',
-    'platform.dialog.delete.message': 'Deleting your container is a permanent action, all your data in CoNET Platform will be lost..',
-    'platform.dialog.delete.button.cancel': 'Cancel',
+    'platform.unlock.button.forgot': 'パスコードをお忘れですか？',
+    'platform.dialog.delete.message': '削除はCoNET Platform 内のすべてのデータが失われます。',
+    'platform.dialog.delete.button.cancel': 'キャンセル',
     'platform.dialog.delete.button.confirm': 'Delete',
 
     'keypad.cancel': 'Cancel',
@@ -210,7 +210,7 @@ const en_US: Messages = {
 	'platform.ProfileDropdown.nodelist.registersPayment.setupTitile': 'Payment setup',
 	'platform.ProfileDropdown.nodelist.registersPayment.detail1': 'Please confirm the payment authorization.',
 	'platform.ProfileDropdown.nodelist.registersPayment.detail2': 'The minimum amount is 1 CoNETCash-USDC.',
-	'platform.ProfileDropdown.nodelist.registersPayment.insufficient_conetcash_balance': 'Insufficient CoNETCash balance',
+	'platform.ProfileDropdown.nodelist.registersPayment.insufficient_conetcash_balance': 'CoNETCashは残高が不足しています',
 	'platform.ProfileDropdown.nodelist.registersPayment.authorizationAmount': 'Authorization Amount',
 	'platform.ProfileDropdown.nodelist.registersPayment.CoNETCashBalance': 'CoNETCash-USDC Balance',
 	'platform.ProfileDropdown.nodelist.registersPayment.registersRecipientloading': 'Registering recipient your communication wallet address.',
@@ -248,4 +248,4 @@ const en_US: Messages = {
 
 }
 
-export default en_US
+export default ja_JP

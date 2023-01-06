@@ -222,7 +222,7 @@ const CoNETSINodeSetup = ({closeWindow, winOpen, currentProfile }: CoNETSINodePr
 				}
 				setEntryNodeAccordionTitle(<FormattedMessage id='platform.ProfileDropdown.nodelist.entryNodeTitle'/>)
 				setRecipientNodeAccordionTitle(<FormattedMessage id='platform.ProfileDropdown.nodelist.registersRecipientTitle'/>)
-				const uu: nodes_info[] = _data.rows
+				const uu: nodes_info[] = _data
 				if ( !uu ) {
 					return setResultError (true)
 				}
@@ -818,25 +818,25 @@ const CoNETSINodeSetup = ({closeWindow, winOpen, currentProfile }: CoNETSINodePr
 										}
 									</Grid>
 									{
-										!showFinishedRecipientRegisters &&
+										!showFinishedRecipientRegisters && coNETCashbalance >= 0 &&
 											<Grid item xs={12}>
 												<TextField
-														size="small"
-														InputProps={{
-															readOnly: true,
-														}}
-														label={<FormattedMessage id='platform.ProfileDropdown.nodelist.registersPayment.CoNETCashBalance'/>} 
-														fullWidth
-														color='primary'
-														value={coNETCashbalance}
-														type="number"
-														
-													/>
+													size="small"
+													InputProps={{
+														readOnly: true,
+													}}
+													label={<FormattedMessage id='platform.ProfileDropdown.nodelist.registersPayment.CoNETCashBalance'/>} 
+													fullWidth
+													color='primary'
+													value={coNETCashbalance}
+													type="number"
+													
+												/>
 											</Grid>
 									}
 									
 									{
-										!showFinishedRecipientRegisters &&
+										!showFinishedRecipientRegisters && coNETCashbalance >= 0 &&
 											<Grid item xs={12}>
 											
 												<TextField
@@ -876,7 +876,16 @@ const CoNETSINodeSetup = ({closeWindow, winOpen, currentProfile }: CoNETSINodePr
 											</Grid>
 									}
 									{
-										!showFinishedRecipientRegisters &&
+										!showFinishedRecipientRegisters && coNETCashbalance < 0 &&
+											<Grid item xs={12}>
+												<Typography variant="subtitle1" sx={{ color: red[500] }}>
+													<FormattedMessage id='platform.ProfileDropdown.nodelist.registersPayment.insufficient_conetcash_balance'/>
+												</Typography>
+											</Grid>
+
+									}
+									{
+										!showFinishedRecipientRegisters &&　coNETCashbalance >= 0 &&
 											<Grid item xs={12} >
 												<Button variant="contained" onClick={registersConfirmButtonClick} disabled = {loading}>
 													<FormattedMessage id='platform.manageProfiles.deleteProfile.confirmButton'/>
@@ -885,21 +894,21 @@ const CoNETSINodeSetup = ({closeWindow, winOpen, currentProfile }: CoNETSINodePr
 									}
 									
 									{
-											showFinishedRecipientRegisters &&
-												<ListItem sx={{ display: 'block', width: '100%', padding: '2rem'}}>
-													<Typography variant="subtitle1" sx={{ color: 'text.secondary' }}>
-														<FormattedMessage id='platform.ProfileDropdown.nodelist.registersPayment.registersfinished1'/>
-													</Typography>
-													<Typography variant="subtitle1" sx={{ color: '#1976d2' }}>
-														{currentProfile.keyID.toLowerCase()}
-													</Typography>
-													<Typography variant="subtitle1" sx={{ color: 'text.secondary' }}>
-														<FormattedMessage id='platform.ProfileDropdown.nodelist.registersPayment.registersfinished2'/>
-													</Typography>
-														 
-													
-												</ListItem>
-										}
+										showFinishedRecipientRegisters &&
+											<ListItem sx={{ display: 'block', width: '100%', padding: '2rem'}}>
+												<Typography variant="subtitle1" sx={{ color: 'text.secondary' }}>
+													<FormattedMessage id='platform.ProfileDropdown.nodelist.registersPayment.registersfinished1'/>
+												</Typography>
+												<Typography variant="subtitle1" sx={{ color: '#1976d2' }}>
+													{currentProfile.keyID.toLowerCase()}
+												</Typography>
+												<Typography variant="subtitle1" sx={{ color: 'text.secondary' }}>
+													<FormattedMessage id='platform.ProfileDropdown.nodelist.registersPayment.registersfinished2'/>
+												</Typography>
+														
+												
+											</ListItem>
+									}
 									{
 										!showFinishedRecipientRegisters && loading && 				//			show Loading
 											<>
