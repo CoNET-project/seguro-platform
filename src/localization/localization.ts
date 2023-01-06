@@ -2,11 +2,13 @@ import {MessagesByLocale} from './types'
 import en_US from './messages/en-US'
 import zh_CN from './messages/zh-CN'
 import zh_TW from './messages/zh-TW'
+import ja_JP from './messages/ja_JP'
 
 export const messagesByLocale: MessagesByLocale = {
     'en-US': en_US,
     'zh-CN': zh_CN,
-    'zh-TW': zh_TW
+    'zh-TW': zh_TW,
+	'ja-JP': ja_JP
 }
 
 export const getLocaleGuess = (
@@ -23,6 +25,9 @@ export const getLocaleGuess = (
         }
         return 'zh-CN'
     }
+	if (string.startsWith('ja')) {
+		return 'ja-JP'
+	}
 }
 
 export const getPreferredLocale = (

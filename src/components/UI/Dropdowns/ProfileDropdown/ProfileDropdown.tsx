@@ -101,8 +101,7 @@ const ProfileDropdown = ({closeDropdown}: ProfileDropdownProps) => {
         windowInnerSize: {width}
     } = useAppState()
 
-	const fees = 0.0003045
-	const maxFees = 0.0003591
+	const fees = 0.0008500
 	const GasToEth = 0.00000001
 
 	const {setIsModalOpen, clientProfiles, setActiveProfile, activeProfile} = useAppState()
