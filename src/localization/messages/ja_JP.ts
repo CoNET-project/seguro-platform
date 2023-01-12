@@ -244,8 +244,11 @@ const ja_JP: Messages = {
 
 	'globalBar.application.AppStore': 'CoNET APP Store',
 
-	'tabnavigator.appStore.title': 'Welcome to CoNET App Store'
+	'tabnavigator.appStore.title': 'Welcome to CoNET App Store',
 
+
+	'platform.app.seguro.messenger.panels.addContact.info': 'ウォレットアドレスで連絡先を追加できます',
+	'platform.app.seguro.messenger.panels.addContact.firstMessage': 'Additionally, you may set a nickname for this contact. Send them a custom greeting to let them know who you are!'
 }
 
 export default ja_JP

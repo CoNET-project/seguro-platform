@@ -233,6 +233,9 @@ export type Messages = {
 	'platform.ProfileDropdown.nodelist.about2': string
 
 
+	'platform.app.seguro.messenger.panels.addContact.info': string
+	'platform.app.seguro.messenger.panels.addContact.firstMessage': string
+
 	'platform.country.de': string
 	'platform.country.us': string
 	'platform.country.gb': string

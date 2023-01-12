@@ -8,7 +8,7 @@ import {Contact} from "../../../../../../../contexts/messenger/messengerActions"
 import {useMessengerContext} from "../../../../../../../contexts/messenger/MessengerContext"
 import {usePageNavigator} from "../../../../../../../contexts/pageNavigator/PageNavigatorContext"
 import {pageNavigator} from "../../../../../../../contexts/pageNavigator/pageNavigatorActions"
-
+import {FormattedMessage} from "react-intl"
 
 const StyledAddContact = styled.div`
 	width: 100%;
@@ -48,7 +48,7 @@ const AddContact = () => {
     }
 
     const onChangeMessage = (value: string) => {
-        onChangeMessage(value)
+        setMessage (value)
     }
 
     const addContact = () => {
@@ -76,12 +76,11 @@ const AddContact = () => {
             <Header/>
             <StyledAddContactContent>
                 <StyledAddContactDesc>
-                    You can add a contact by their ID below, their ID is not case-sensitive.
+					<FormattedMessage id='platform.app.seguro.messenger.panels.addContact.info'/>
                 </StyledAddContactDesc>
-                <Input id="keyId" labelText="Contact Key ID" onChange={onChangeId} required/>
+                <Input id="keyId" labelText="Wallet Address" onChange={onChangeId} required/>
                 <StyledAddContactDesc>
-                    Additionally, you may set a nickname for this contact. Send them a custom greeting to let them know
-                    who you are!
+					<FormattedMessage id='platform.app.seguro.messenger.panels.addContact.firstMessage'/>
                 </StyledAddContactDesc>
                 <Input id="nickname" labelText="Nickname" onChange={onChangeNickname}/>
                 <Textarea id="greetingMessage" labelText="Greeting Message" onChange={onChangeMessage}/>
