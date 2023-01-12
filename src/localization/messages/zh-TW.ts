@@ -255,6 +255,9 @@ const zh_CN: Messages = {
 	'platform.country.us': '美國',
 	'platform.country.gb': '英國',
 	'platform.country.es': '西班牙',
+
+	'platform.app.seguro.messenger.panels.addContact.info': '您可以在下方通過他們的錢包地址添加聯繫人',
+	'platform.app.seguro.messenger.panels.addContact.firstMessage': 'Additionally, you may set a nickname for this contact. Send them a custom greeting to let them know who you are!'
 }
 
 export default zh_CN

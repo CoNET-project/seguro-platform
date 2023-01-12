@@ -237,7 +237,9 @@ const zh_CN: Messages = {
 	'platform.country.gb': '英国',
 	'platform.country.es': '西班牙',
 
-	'tabnavigator.appStore.title': '欢迎來到CoNET应用商店'
+	'tabnavigator.appStore.title': '欢迎來到CoNET应用商店',
+	'platform.app.seguro.messenger.panels.addContact.info': '您可以在下方，通过他们的钱包地址添加联系人',
+	'platform.app.seguro.messenger.panels.addContact.firstMessage': 'Additionally, you may set a nickname for this contact. Send them a custom greeting to let them know who you are!'
 }
 
 export default zh_CN

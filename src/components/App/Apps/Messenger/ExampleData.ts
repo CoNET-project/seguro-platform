@@ -1,6 +1,6 @@
-import {Contact} from "../../../../contexts/messenger/messengerActions";
-import {getUUIDv4} from "../../../../utilities/utilities";
-import {Chats} from "../../../../contexts/messenger/messengerReducer";
+import {Contact} from "../../../../contexts/messenger/messengerActions"
+import {getUUIDv4} from "../../../../utilities/utilities"
+import {Chats} from "../../../../contexts/messenger/messengerReducer"
 
 export const exampleData: Contact[] = [
     {
