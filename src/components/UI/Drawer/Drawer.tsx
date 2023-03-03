@@ -163,6 +163,7 @@ const Drawer = (props: DrawerProps) => {
                     <Item text={<FormattedMessage id = 'globalBar.application.SeguroMessage'/>} icon={<SeguroLogoIcon/>}
 						onClick={() => {
 							setShowGuide(false)
+							setShowAppStore (false)
 						}}
 					/>
                 </StyledSection>

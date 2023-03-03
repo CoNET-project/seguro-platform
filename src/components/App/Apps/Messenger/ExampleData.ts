@@ -2,7 +2,8 @@ import {Contact} from "../../../../contexts/messenger/messengerActions"
 import {getUUIDv4} from "../../../../utilities/utilities"
 import {Chats} from "../../../../contexts/messenger/messengerReducer"
 
-export const exampleData: Contact[] = [
+export const exampleData: Contact[] = []
+export const exampleData1: Contact[] = [
     {
         keyId: '724D251493EC83D4',
         alias: '',

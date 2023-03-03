@@ -11,6 +11,13 @@ const StyledMainIMG = styled.img`
 
 const GuildShow = () => {
 
+	const conetSearch = (
+
+		<Grid container justifyContent="center" alignItems="center" sx={{ height: '100%', paddingBottom: '5rem'}}>
+			
+
+		</Grid>
+	)
 	const normail = 
 	(<Grid container justifyContent="center" alignItems="center" sx={{ height: '100%', overflowY: 'scroll', paddingBottom: '5rem'}}>
 		<Grid item xs={12} sx={{ padding:'2rem'}}>

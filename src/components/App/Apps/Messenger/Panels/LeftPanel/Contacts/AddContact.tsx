@@ -9,6 +9,8 @@ import {useMessengerContext} from "../../../../../../../contexts/messenger/Messe
 import {usePageNavigator} from "../../../../../../../contexts/pageNavigator/PageNavigatorContext"
 import {pageNavigator} from "../../../../../../../contexts/pageNavigator/pageNavigatorActions"
 import {FormattedMessage} from "react-intl"
+import {getWorkerService} from '../../../../../../../services/workerService/workerService'
+import TextField from '@mui/material/TextField'
 
 const StyledAddContact = styled.div`
 	width: 100%;
@@ -29,22 +31,41 @@ const StyledAddContactContent = styled.div`
 const StyledAddContactDesc = styled.p`
 	font-size: calc(${props => props.theme.ui.fontSizes.narrow.sm});
 	margin-bottom: 15px;
+	margin-top: 15px;
 `
 
 const AddContact = () => {
     const {dispatch} = usePageNavigator()
     const {setNewContact} = useMessengerContext()
     const [contactID, setContactID] = useState('')
+	const [isChanged, setIsChanged]= useState(false)
     const [nickname, setNickname] = useState('')
     const [message, setMessage] = useState('')
     const [error, setError] = useState('')
 
-    const onChangeId = (value: string) => {
-        setContactID(value)
+    const onChangeId = () => {
+        
+		if (!isChanged) {
+			return
+		}
+		setIsChanged(false)
+		if ( !workerService.method.getUserProfile ) {
+			return
+		}
+		return workerService.method.getUserProfile (contactID)
+			.then ((val: any) => {
+				const [status, check] = val
+				if (status === 'SUCCESS') {
+					
+				}
+			})
     }
 
+	const workerService = getWorkerService()
+
     const onChangeNickname = (value: string) => {
-        setNickname(value)
+		
+		setNickname (value)
     }
 
     const onChangeMessage = (value: string) => {
@@ -78,12 +99,26 @@ const AddContact = () => {
                 <StyledAddContactDesc>
 					<FormattedMessage id='platform.app.seguro.messenger.panels.addContact.info'/>
                 </StyledAddContactDesc>
-                <Input id="keyId" labelText="Wallet Address" onChange={onChangeId} required/>
+				<TextField
+					id="id-input"
+					size="small"
+					label="Wallet Address"
+					fullWidth
+					required
+					autoFocus
+					value={contactID}
+					onBlur={()=> onChangeId()}
+					onChange={e=> {
+						setContactID(e.target.value)
+						setIsChanged (true)
+					}}
+					
+				/>
+
                 <StyledAddContactDesc>
 					<FormattedMessage id='platform.app.seguro.messenger.panels.addContact.firstMessage'/>
                 </StyledAddContactDesc>
                 <Input id="nickname" labelText="Nickname" onChange={onChangeNickname}/>
-                <Textarea id="greetingMessage" labelText="Greeting Message" onChange={onChangeMessage}/>
                 <Button onClick={addContact}>Add Contact</Button>
             </StyledAddContactContent>
         </StyledAddContact>

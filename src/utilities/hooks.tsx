@@ -39,11 +39,11 @@ export const useCategorizeContact = (contacts: Contacts) => {
         const categories: CategorizedContacts = createNewCategoryObject()
         for (let key in contacts) {
             let firstChar
-
-            if (contacts[key].nickname) {
-                firstChar = contacts[key].nickname[0].toUpperCase()
-            } else if (contacts[key].alias) {
-                firstChar = contacts[key].alias[0].toUpperCase()
+			const _contacts = contacts[key]
+            if (_contacts.nickname) {
+                firstChar = _contacts.nickname.toUpperCase()
+            } else if (_contacts) {
+                firstChar = _contacts.alias.toUpperCase()
             } else {
                 firstChar = "#"
             }
