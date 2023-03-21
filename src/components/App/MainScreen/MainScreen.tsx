@@ -7,7 +7,8 @@ import PlatformModal from "../PlatformModal/PlatformModal"
 import {Toaster} from '../../UI/Toaster/Toaster'
 import GlobalBar from '../../UI/Global/GlobalBar/GlobalBar'
 import Messenger from '../Apps/Messenger/Messenger'
-import GuildShow from '../Apps/GuideShow/GuildShow'
+import Browser from '../Apps/Browse/Browser'
+
 import AppStore from '../Apps/appStore/AppStore'
 import {getWorkerService} from '../../../services/workerService/workerService'
 import {ClientProfiles} from '../../../store/appState/appStateReducer'
@@ -109,7 +110,7 @@ const MainScreen = () => {
                 <GlobalBar/>
 
                 <LayoutGroup id="a">
-					{ showGuide && <GuildShow/>}
+					{ showGuide && <Browser/>}
 					{ showAppStore && <AppStore/>}
                     <StyledContents>
                         {!showGuide && !showAppStore && <Messenger/>}

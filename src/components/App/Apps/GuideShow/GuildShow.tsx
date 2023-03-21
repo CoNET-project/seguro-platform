@@ -1,7 +1,6 @@
 import mainImage from '../../../../assets/guide/conet.png'
 import styled from "styled-components"
 import Grid from '@mui/material/Grid'
-
 import Typography from '@mui/material/Typography'
 const StyledMainIMG = styled.img`
 	width:100%;
