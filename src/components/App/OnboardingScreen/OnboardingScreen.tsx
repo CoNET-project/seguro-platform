@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import {AnimatePresence} from "framer-motion"
+import {AnimatePresence, motion} from "framer-motion"
 import useAppState from "../../../store/appState/useAppState"
 import {useOnboardingPageNavigator} from "../../../contexts/onboarding/OnboardingContext"
 import {LogoIcon, LogoText} from "../../UI/Logo/Logo"
@@ -168,43 +168,77 @@ const OnboardingScreen = () => {
                         <StyledOnboardingContent>
                             <AnimatePresence custom={currentPage[1]}>
                                 {currentPage[0] === 'language' &&
-                                    <SelectLanguagePage
-                                        key={currentPage[0]}
-                                        locale={locale}
-                                        selectLocale={setLocale}
-                                    />
+								(
+									<motion.div
+										initial={{ opacity: 0 }}
+										animate={{ opacity: 1 }}
+										exit={{ opacity: 0 }}
+									>
+										<SelectLanguagePage
+											key={currentPage[0]}
+											locale={locale}
+											selectLocale={setLocale}
+										/>
+									</motion.div>
+								)
+                                    
                                 }
 
                                 {currentPage[0] === 'setPasscode' &&
-                                    <PasscodePage
-                                        key={currentPage[0]}
-                                        title={<FormattedMessage id='onboarding.setPasscodeTitle'/>}
-                                        passcode={onboardingPageData?.passcode || ''}
-                                        setPasscode={(passcode: string) => {
-                                            setError(null)
-                                            dispatch(onboardingActions.setPasscode(passcode))
-                                        }}
-										nextPageHandler={nextPageHandler}
-                                        error={error}
-                                    />}
+									(
+										<motion.div
+											initial={{ opacity: 0 }}
+											animate={{ opacity: 1 }}
+											exit={{ opacity: 0 }}
+										>
+											 <PasscodePage
+												key={currentPage[0]}
+												title={<FormattedMessage id='onboarding.setPasscodeTitle'/>}
+												passcode={onboardingPageData?.passcode || ''}
+												setPasscode={(passcode: string) => {
+													setError(null)
+													dispatch(onboardingActions.setPasscode(passcode))
+												}}
+												nextPageHandler={nextPageHandler}
+												error={error}
+											/>
+										</motion.div>
+									)}
 
                                 {currentPage[0] === 'confirmPasscode' &&
-                                    <PasscodePage
-                                        key={currentPage[0]}
-                                        title={<FormattedMessage id='onboarding.confirmPasscodeTitle'/>}
-                                        passcode={onboardingPageData?.confirmPasscode || ''}
-                                        setPasscode={(passcode: string) => {
-                                            setError(null)
-                                            dispatch(onboardingActions.setConfirmPasscode(passcode))
-                                        }}
-										nextPageHandler={nextPageHandler}
-                                        error={error}
-                                    />}
+								(
+									<motion.div
+										initial={{ opacity: 0 }}
+										animate={{ opacity: 1 }}
+										exit={{ opacity: 0 }}
+									>
+										<PasscodePage
+											key={currentPage[0]}
+											title={<FormattedMessage id='onboarding.confirmPasscodeTitle'/>}
+											passcode={onboardingPageData?.confirmPasscode || ''}
+											setPasscode={(passcode: string) => {
+												setError(null)
+												dispatch(onboardingActions.setConfirmPasscode(passcode))
+											}}
+											nextPageHandler={nextPageHandler}
+											error={error}
+										/>
+									</motion.div>
+								)}
 
                                 {currentPage[0] === 'verification' &&
-                                    <VerificationPage
-                                        key={currentPage[0]}
-                                    />}
+									(
+										<motion.div
+											initial={{ opacity: 0 }}
+											animate={{ opacity: 1 }}
+											exit={{ opacity: 0 }}
+										>
+											
+											<VerificationPage
+												key={currentPage[0]}
+											/>
+										</motion.div>
+									)}
                             </AnimatePresence>
                         </StyledOnboardingContent>
                         <CustomProgressNumberSteps steps={pages.length} currentActiveStep={currentStep}/>

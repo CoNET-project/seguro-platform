@@ -123,7 +123,7 @@ const MainPanel = () => {
 			return
 		}
 		return workerService.method.sendMessage (selectedContact?.keyId, input)
-			.then (async n => {
+			.then (async (n: any) => {
 				const [status, check] = n
 				
 			})

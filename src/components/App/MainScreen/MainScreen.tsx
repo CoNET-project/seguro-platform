@@ -7,7 +7,7 @@ import PlatformModal from "../PlatformModal/PlatformModal"
 import {Toaster} from '../../UI/Toaster/Toaster'
 import GlobalBar from '../../UI/Global/GlobalBar/GlobalBar'
 import Messenger from '../Apps/Messenger/Messenger'
-import Browser from '../Apps/Browse/Browser'
+import TodoMain from '../Apps/Browse/index'
 
 import AppStore from '../Apps/appStore/AppStore'
 import {getWorkerService} from '../../../services/workerService/workerService'
@@ -106,11 +106,11 @@ const MainScreen = () => {
                 style={{opacity}}
             />}
             <StyledMainScreen onTouchStart={startDrag} onPointerDown={startDrag}>
-                <Toaster/>
-                <GlobalBar/>
+                {/* <Toaster/>
+                <GlobalBar/> */}
 
                 <LayoutGroup id="a">
-					{ showGuide && <Browser/>}
+					{ showGuide && <TodoMain/>}
 					{ showAppStore && <AppStore/>}
                     <StyledContents>
                         {!showGuide && !showAppStore && <Messenger/>}

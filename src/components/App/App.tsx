@@ -111,7 +111,6 @@ const App = () => {
                 )
             default:
                 return (
-					
                    <MainScreen/>
                 )
         }
@@ -159,7 +158,7 @@ const App = () => {
 							setIsModalOpen(null)
 							setIsShowOverlay(false)
 						}}/>
-                <OverlayWithLoaderText show={isPlatformLoading !== null} type={isPlatformLoading}/>
+                {/* <OverlayWithLoaderText show={isPlatformLoading !== null} type={isPlatformLoading}/> */}
                 {getContent()}
             </StyledContainer>
         </>

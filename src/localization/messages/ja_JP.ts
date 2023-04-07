@@ -1,6 +1,9 @@
 import {Messages} from '../types'
 
 const ja_JP: Messages = {
+	'platform.app.browser.search.placeholder': 'サイト名または検索を入力してください',
+	'platform.app.browser.tab.newTabName': '新しいタブ',
+	
     'main.greeting': 'ようこそ',
 	'LaunchScreen.loadFail': 'CoNET プラットフォームを読み込みに失敗しました! クリックしてリロードしてください',
     'onboarding.selectLanguageTitle': '使う言語を選んでください',
@@ -249,7 +252,7 @@ const ja_JP: Messages = {
 
 
 	'platform.app.seguro.messenger.panels.addContact.info': 'ウォレットアドレスで連絡先を追加できます',
-	'platform.app.seguro.messenger.panels.addContact.firstMessage': 'Additionally, you may set a nickname for this contact. Send them a custom greeting to let them know who you are!'
+	'platform.app.seguro.messenger.panels.addContact.firstMessage': 'この連絡先にニックネームを設定することもできます。 カスタムの挨拶を送って、あなたが誰であるかを知らせましょう'
 
 }
 

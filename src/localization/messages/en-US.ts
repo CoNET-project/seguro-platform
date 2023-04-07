@@ -1,6 +1,10 @@
 import {Messages} from '../types'
 
 const en_US: Messages = {
+
+	'platform.app.browser.search.placeholder': 'Search or entry website name',
+	'platform.app.browser.tab.newTabName': 'New Tab',
+
     'main.greeting': 'Hello world!',
 	'LaunchScreen.loadFail': 'CoNET Platform Loading Failed! Click to reload please.',
     'onboarding.selectLanguageTitle': 'Select your language',
