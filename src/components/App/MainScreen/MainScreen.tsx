@@ -2,7 +2,7 @@ import { LayoutGroup, motion, useAnimation, useDragControls, useMotionValue, use
 import styled from 'styled-components'
 import useAppState from "../../../store/appState/useAppState"
 import Drawer from "../../UI/Drawer/Drawer"
-import {DragOverlay} from "../../UI/Common/Overlay/Overlay"
+//import {DragOverlay} from "../../UI/Common/Overlay/Overlay"
 import PlatformModal from "../PlatformModal/PlatformModal"
 import {Toaster} from '../../UI/Toaster/Toaster'
 import GlobalBar from '../../UI/Global/GlobalBar/GlobalBar'
@@ -96,15 +96,15 @@ const MainScreen = () => {
 				<PlatformModal/>
 				
             }
-            <Drawer
+            {/* <Drawer
                 {...dragOptions()}
                 style={{x: currentDrawerX}}
                 CoNETanimationControls={animationControls}
-            />
-            {<DragOverlay
+            /> */}
+            {/* {<DragOverlay
                 acceptPointerEvents={isDrawerOpen}
                 style={{opacity}}
-            />}
+            />} */}
             <StyledMainScreen onTouchStart={startDrag} onPointerDown={startDrag}>
                 {/* <Toaster/>
                 <GlobalBar/> */}

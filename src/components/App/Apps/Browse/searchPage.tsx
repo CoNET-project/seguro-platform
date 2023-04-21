@@ -1,5 +1,5 @@
 import ToDoContext, {Todo} from './TodoContext'
-import {useState, useContext, useCallback, useEffect} from 'react'
+import { useContext, useRef } from 'react'
 import { Box} from '@mui/system'
 import Typography from '@mui/material/Typography'
 import Grid from '@mui/material/Grid'
@@ -7,13 +7,14 @@ import SearchInput from './SearchInput'
 import styled from "styled-components"
 import Paper from '@mui/material/Paper'
 import mainImage from '../../../../assets/logo/conetBrowser.svg'
-
-
+import useAppState from '../../../../store/appState/useAppState'
+import {v4} from 'uuid'
 interface TabPanelProps {
 	children?: React.ReactNode;
 	index: number;
 	value: number;
 }
+
 
 const StyledMainIMG = styled.img`
 	width:100%;
@@ -23,7 +24,7 @@ const StyledMainIMG = styled.img`
 const IFRAME = styled.iframe`
     border: none;
 	width: 100%;
-	min-height: 99vh;
+	min-height: 95vh;
 	margin: 0; 
 	padding: 0;
 `
@@ -52,28 +53,72 @@ const Item = styled(Paper)(({ theme }) => ({
 	textAlign: 'center'
 	
 }))
+
+
+
 const SearchPage = (todo: Todo, index: number, currentTab: number, setCurrentTodo: React.Dispatch<React.SetStateAction<Todo>>) => {
 
 	const todoContext = useContext(ToDoContext)
+	const {isTouchDevice} = useAppState()
+	const iFrameRef = useRef<HTMLIFrameElement> (null)
 
 	const onUpdate = ( text: string ) => {
-		const remote = new URL(text)
-		if (!remote.origin ) {
-			return
-		}
-		const __url = location.origin + remote.pathname + '/_/CoNET_proxyUrl/' + text
-		// const _url = new URL(__url)
-		// const remoteUrl = new URL(text)
-		// const uu = remoteUrl.href.replace(remoteUrl.origin, _url.origin)
-		// const newUrl = new URL(uu)
-		// newUrl.searchParams.set('CoNET_proxyUrl', text)
 
-		setCurrentTodo(oldValue => {
+		//		Search input
+		if (!/^http/.test(text)) {
+			text = `https://search.brave.com/search?q=${text}&source=${isTouchDevice ? 'mobile': 'desktop'}`
+		}
+
+		let remote = new URL(text)
+		if (remote.origin === location.origin && todo.searchText) {
+			const _remote = new URL(todo.searchText)
+			text = text.replace(location.origin, _remote.origin)
+		}
+		const remotePath = /\/$/.test(remote.pathname) ? remote.pathname : remote.pathname + '/'
+		const __url = location.origin + remotePath + '_/CoNET_proxyUrl/' + text
+
+		setCurrentTodo( oldValue => {
 			oldValue.searchText = text
 			oldValue.proxyEntryUrl = __url
 			return oldValue
 		})
+		if (iFrameRef.current) {
+			iFrameRef.current.src = __url
+		}
+		
 		todoContext.addOrChangTodo (todo)
+		
+	}
+
+	const iframeURLChange = (e: React.SyntheticEvent<HTMLIFrameElement, Event>, callback: (str: string) => void) => {
+
+		const ifrm = e.currentTarget.contentWindow || e.currentTarget.contentDocument || 
+			//	@ts-ignore
+			e.currentTarget.contentDocument.document 
+	
+		var unloadHandler = () => {
+			// Timeout needed because the URL changes immediately after
+			// the `unload` event is dispatched.
+			
+				
+				if (ifrm.location.href === todo.proxyEntryUrl) {
+					return
+				}
+				const remote = new URL(ifrm.location.href)
+				ifrm.removeEventListener("unload", unloadHandler)
+				if (remote.origin === location.origin) {
+					console.log (` ############################## beforeunload STOP location ##############################`)
+					console.log (ifrm.location.href)
+					console.log (` ############################## beforeunload STOP location ##############################`)
+					callback(ifrm.location.href)
+				}
+			
+		   
+		}
+		//ifrm.addEventListener("beforeunload", unloadHandler)
+		ifrm.addEventListener("unload", () => {setTimeout (unloadHandler, 0)})
+		console.log (` ############################## addEventListener beforeunload  ##############################`)
+		
 	}
 
 	return (
@@ -87,17 +132,21 @@ const SearchPage = (todo: Todo, index: number, currentTab: number, setCurrentTod
 						})
 					}}/>
 				</Grid>
-				<Grid item xs justifyContent="center" alignItems="center">
+				<Grid item xs justifyContent="center" alignItems="center" >
 					<Grid container justifyContent="center" alignItems="center" sx={{ minHeight: '90vh'}}>
 						{
-							!todo?.proxyEntryUrl &&
+							!todo.proxyEntryUrl &&
 							<Item elevation={0} >
 								<StyledMainIMG src={mainImage} />
 							</Item>
 						}
 						{
-							todo?.proxyEntryUrl &&
-							<IFRAME src={todo?.proxyEntryUrl} />
+							todo.proxyEntryUrl &&
+							<IFRAME id={todo.keyID} src={todo.proxyEntryUrl}
+								onLoad={
+									e=> iframeURLChange(e, onUpdate)
+								}
+							/>
 						}
 					</Grid>
 				</Grid>

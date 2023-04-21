@@ -31,13 +31,13 @@ const ShowSearchTextInput = () => {
 		console.log (todoContext.todos)
 	}, [todoContext.todos])
 
-	const addContent = useCallback( () => {
+	const addContent = () => {
 		const _todo = todo()
 		todoContext.addOrChangTodo(_todo)
 		setCurrentTodo (_todo)
-	}, [todoContext.todos])
+	}
 
-	const handleChange = useCallback(
+	const handleChange = 
 		(event: React.SyntheticEvent, newValue: number) => {
 
 		//		check current change
@@ -53,7 +53,7 @@ const ShowSearchTextInput = () => {
 		}
 		setCurrentTab(newValue)
 		setCurrentTodo (todoContext.todos[newValue])
-	}, [todoContext.todos]) 
+	}
 
 	const plusTab = () => {
 
@@ -86,9 +86,9 @@ const ShowSearchTextInput = () => {
 								TabArea (todo, index, currectTodo)
 							)
 						}
-						{
+						{/* {
 							plusTab()
-						}
+						} */}
 					</Tabs>
 
 				</Box>
