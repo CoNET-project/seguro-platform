@@ -88,10 +88,11 @@
 		"react-icons": "^4.8.0",
 		"react-intl": "^6.4.1",
 		"react-redux": "^8.0.5",
-		"react-scripts": "^5.0.1",
+		"react-scripts": "5.1.0-next.14",
 		"styled-components": "^5.3.9",
 		"typescript": "^5.0.4",
-		"wait-on": "^7.0.1"
+		"wait-on": "^7.0.1",
+		"caniuse-lite": "^1.0.30001480"
 	},
 	"browserslist": {
 		"production": [
