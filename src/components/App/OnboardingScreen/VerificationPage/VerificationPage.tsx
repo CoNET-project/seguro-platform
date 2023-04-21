@@ -92,8 +92,7 @@ const VerificationPage = () => {
                             error={state.onboardingPageData.verificationCodeError}
                             inputOptions={{
                                 inputLabel: (
-                                    <StyledVerificationInputLabel><FormattedMessage
-                                        id='onboarding.verificationInputLabel'/></StyledVerificationInputLabel>)
+                                    <StyledVerificationInputLabel><FormattedMessage id='onboarding.verificationInputLabel'/></StyledVerificationInputLabel>)
                             }}
                 />
                 <StyledVerificationText>

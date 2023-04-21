@@ -236,6 +236,9 @@ export type Messages = {
 	'platform.app.seguro.messenger.panels.addContact.info': string
 	'platform.app.seguro.messenger.panels.addContact.firstMessage': string
 
+	'platform.app.browser.search.placeholder': string
+	'platform.app.browser.tab.newTabName': string
+
 	'platform.country.de': string
 	'platform.country.us': string
 	'platform.country.gb': string

@@ -1,6 +1,7 @@
 const express = require('express')
 const path = require('path')
 const seguroGateway = require('@conet-project/seguro-gateway')
+const cors = require('cors')
 // const getPort = require('get-port')
 
 const staticFilePath = path.join(__dirname, '../../build')
@@ -10,8 +11,9 @@ const isDevelopmentMode = process.env.NODE_ENV === 'development'
 const createClientServer = () => {
     return new Promise(async resolve => {
         const app = express()
-        app.use(express.static(staticFilePath))
 
+        app.use(express.static(staticFilePath))
+		app.use(cors())
         const port = 3000
         console.log(`attempting to listen on port ${port}`)
 

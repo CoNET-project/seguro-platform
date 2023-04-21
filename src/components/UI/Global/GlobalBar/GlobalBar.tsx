@@ -6,7 +6,7 @@ import {LogoIcon} from "../../Logo/Logo"
 import ProfileDropdown from "../../Dropdowns/ProfileDropdown/ProfileDropdown"
 import useAppState from "../../../../store/appState/useAppState"
 import {TippyDropdown} from "../../Tippy/Tippy"
-import AppsDropdown from "../../Dropdowns/AppsDropdown/AppsDropdown"
+// import AppsDropdown from "../../Dropdowns/AppsDropdown/AppsDropdown"
 import React, {useEffect, useState} from "react"
 import NotificationDropdown from "../../Dropdowns/NotificationDropdown/NotificationDropdown"
 
@@ -192,7 +192,7 @@ const GlobalBar = () => {
                         <SettingGear size={18} color="white"/>
                     </StyledGlobalButton>
 
-					{
+					{/* {
 
 						<TippyDropdown
 							content={<AppsDropdown closeDropdown={closeDropdown}/>}
@@ -209,7 +209,7 @@ const GlobalBar = () => {
 							</StyledGlobalItem>
 						</TippyDropdown>
 
-					}
+					} */}
                     
 
                 </StyledBarSectionOptional>

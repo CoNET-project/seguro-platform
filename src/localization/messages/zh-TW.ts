@@ -1,6 +1,9 @@
 import {Messages} from '../types'
 
 const zh_CN: Messages = {
+	'platform.app.browser.search.placeholder': '請輸入檢索關鍵字或網站',
+	'platform.app.browser.tab.newTabName': '新標籤',
+
     'main.greeting': '你好世界!',
 	'LaunchScreen.loadFail': 'CoNET 平台加載失敗！ 請點擊重新加載。',
     'onboarding.selectLanguageTitle': '選擇您的語言',
@@ -257,7 +260,7 @@ const zh_CN: Messages = {
 	'platform.country.es': '西班牙',
 
 	'platform.app.seguro.messenger.panels.addContact.info': '您可以在下方通過他們的錢包地址添加聯繫人',
-	'platform.app.seguro.messenger.panels.addContact.firstMessage': 'Additionally, you may set a nickname for this contact. Send them a custom greeting to let them know who you are!'
+	'platform.app.seguro.messenger.panels.addContact.firstMessage': '您可以為此聯繫人設置暱稱。 向他們發送自定義問候語，讓他們知道您是誰！'
 }
 
 export default zh_CN

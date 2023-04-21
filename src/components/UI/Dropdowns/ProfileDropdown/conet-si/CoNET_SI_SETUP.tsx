@@ -484,7 +484,11 @@ const CoNETSINodeSetup = ({closeWindow, winOpen, currentProfile }: CoNETSINodePr
 		setLoading (true)
 		setShowFinishedRecipientRegisters(false)
 
-		return workerService.method.getRecipientCoNETCashAddress (coNETCashInput)
+		return workerService.method.getRecipientCoNETCashAddress (coNETCashInput, (data: any) => {
+			if ( typeof workerService.method.listening ==='function') {
+				return workerService.method.listening (data)
+			}
+		})
 			.then ((ret: any ) => {
 			const [status, _data] = ret
 			setLoading (false)

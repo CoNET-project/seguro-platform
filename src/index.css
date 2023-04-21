@@ -31,3 +31,10 @@ body {
 ::-webkit-scrollbar-track {
     background: transparent;
 }
+
+.MuiTabs-scrollButtons.Mui-disabled {
+	opacity: 0.3;
+}
+.MuiTabs-indicator{
+	opacity: 0.05
+}

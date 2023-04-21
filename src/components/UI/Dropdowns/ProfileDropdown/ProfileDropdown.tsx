@@ -108,6 +108,9 @@ const ProfileDropdown = ({closeDropdown}: ProfileDropdownProps) => {
 	const workerService = getWorkerService()
 
 	const currentProfile = () => {
+		if (workerService.data.passcode.status === 'LOCKED') {
+			return null
+		}
 		const index = workerService.data.profiles.findIndex((n:any) => {
 			return n.isPrimary
 		})
