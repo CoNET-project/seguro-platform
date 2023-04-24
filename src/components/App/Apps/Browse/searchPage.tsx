@@ -1,5 +1,5 @@
 import ToDoContext, {Todo} from './TodoContext'
-import { useContext, useRef } from 'react'
+import { useContext, useRef, useEffect, useState, useCallback } from 'react'
 import { Box} from '@mui/system'
 import Typography from '@mui/material/Typography'
 import Grid from '@mui/material/Grid'
@@ -51,17 +51,13 @@ const TabPanel = (props: TabPanelProps) => {
 
 const Item = styled(Paper)(({ theme }) => ({
 	textAlign: 'center'
-	
 }))
 
 
-
 const SearchPage = (todo: Todo, index: number, currentTab: number, setCurrentTodo: React.Dispatch<React.SetStateAction<Todo>>) => {
-
+	const [currectUrl, setCurrectUrl] = useState('')
 	const todoContext = useContext(ToDoContext)
 	const {isTouchDevice} = useAppState()
-	const iFrameRef = useRef<HTMLIFrameElement> (null)
-
 	const onUpdate = ( text: string ) => {
 
 		//		Search input
@@ -82,12 +78,9 @@ const SearchPage = (todo: Todo, index: number, currentTab: number, setCurrentTod
 			oldValue.proxyEntryUrl = __url
 			return oldValue
 		})
-		if (iFrameRef.current) {
-			iFrameRef.current.src = __url
-		}
-		
+
 		todoContext.addOrChangTodo (todo)
-		
+		setCurrectUrl (__url)
 	}
 
 	const iframeURLChange = (e: React.SyntheticEvent<HTMLIFrameElement, Event>, callback: (str: string) => void) => {
@@ -104,8 +97,10 @@ const SearchPage = (todo: Todo, index: number, currentTab: number, setCurrentTod
 				if (ifrm.location.href === todo.proxyEntryUrl) {
 					return
 				}
+
 				const remote = new URL(ifrm.location.href)
 				ifrm.removeEventListener("unload", unloadHandler)
+
 				if (remote.origin === location.origin) {
 					console.log (` ############################## beforeunload STOP location ##############################`)
 					console.log (ifrm.location.href)
@@ -135,18 +130,19 @@ const SearchPage = (todo: Todo, index: number, currentTab: number, setCurrentTod
 				<Grid item xs justifyContent="center" alignItems="center" >
 					<Grid container justifyContent="center" alignItems="center" sx={{ minHeight: '90vh'}}>
 						{
-							!todo.proxyEntryUrl &&
+							!currectUrl &&
 							<Item elevation={0} >
 								<StyledMainIMG src={mainImage} />
 							</Item>
 						}
 						{
-							todo.proxyEntryUrl &&
-							<IFRAME id={todo.keyID} src={todo.proxyEntryUrl}
-								onLoad={
-									e=> iframeURLChange(e, onUpdate)
-								}
+							currectUrl &&
+							<IFRAME id={todo.keyID} src={currectUrl} no-referrer
+								onLoad={ e => {
+									iframeURLChange (e, onUpdate)
+								}}
 							/>
+
 						}
 					</Grid>
 				</Grid>
