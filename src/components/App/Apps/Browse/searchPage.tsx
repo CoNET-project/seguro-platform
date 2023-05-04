@@ -8,7 +8,11 @@ import styled from "styled-components"
 import Paper from '@mui/material/Paper'
 import mainImage from '../../../../assets/logo/conetBrowser.svg'
 import useAppState from '../../../../store/appState/useAppState'
+import CustomIframe from './customsIframe'
+import {logger} from '../../logger'
 import {v4} from 'uuid'
+
+
 interface TabPanelProps {
 	children?: React.ReactNode;
 	index: number;
@@ -21,13 +25,7 @@ const StyledMainIMG = styled.img`
 	height: auto;
 `
 
-const IFRAME = styled.iframe`
-    border: none;
-	width: 100%;
-	min-height: 95vh;
-	margin: 0; 
-	padding: 0;
-`
+
 
 const TabPanel = (props: TabPanelProps) => {
 	const { children, value, index, ...other } = props
@@ -53,6 +51,13 @@ const Item = styled(Paper)(({ theme }) => ({
 	textAlign: 'center'
 }))
 
+const InjetDom = () => {
+    return (
+        <div>
+            <p style={{color: 'red'}}>Testing to see if my component renders!</p>
+        </div>
+    )
+}
 
 const SearchPage = (todo: Todo, index: number, currentTab: number, setCurrentTodo: React.Dispatch<React.SetStateAction<Todo>>) => {
 	const [currectUrl, setCurrectUrl] = useState('')
@@ -66,12 +71,13 @@ const SearchPage = (todo: Todo, index: number, currentTab: number, setCurrentTod
 		}
 
 		let remote = new URL(text)
+		
 		if (remote.origin === location.origin && todo.searchText) {
 			const _remote = new URL(todo.searchText)
 			text = text.replace(location.origin, _remote.origin)
 		}
 		const remotePath = /\/$/.test(remote.pathname) ? remote.pathname : remote.pathname + '/'
-		const __url = location.origin + remotePath + '_/CoNET_proxyUrl/' + text
+		const __url = location.origin + '/api' + remotePath + '_/CoNET_proxyUrl/' + text
 
 		setCurrentTodo( oldValue => {
 			oldValue.searchText = text
@@ -137,10 +143,8 @@ const SearchPage = (todo: Todo, index: number, currentTab: number, setCurrentTod
 						}
 						{
 							currectUrl &&
-							<IFRAME id={todo.keyID} src={currectUrl} no-referrer
-								onLoad={ e => {
-									iframeURLChange (e, onUpdate)
-								}}
+							<CustomIframe id={todo.keyID} src={currectUrl} no-referrer
+								
 							/>
 
 						}

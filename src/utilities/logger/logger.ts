@@ -1,6 +1,6 @@
 /* eslint-disable no-console */
 
-import dayjs from 'dayjs';
+import dayjs from 'dayjs'
 
 const getLogger = (
     appName: string
