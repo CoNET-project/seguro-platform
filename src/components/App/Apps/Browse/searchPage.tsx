@@ -51,6 +51,7 @@ const Item = styled(Paper)(({ theme }) => ({
 	textAlign: 'center'
 }))
 
+
 const InjetDom = () => {
     return (
         <div>
@@ -58,6 +59,8 @@ const InjetDom = () => {
         </div>
     )
 }
+
+
 
 const SearchPage = (todo: Todo, index: number, currentTab: number, setCurrentTodo: React.Dispatch<React.SetStateAction<Todo>>) => {
 	const [currectUrl, setCurrectUrl] = useState('')
@@ -143,8 +146,10 @@ const SearchPage = (todo: Todo, index: number, currentTab: number, setCurrentTod
 						}
 						{
 							currectUrl &&
+
 							<CustomIframe id={todo.keyID} src={currectUrl} no-referrer
 								
+
 							/>
 
 						}
