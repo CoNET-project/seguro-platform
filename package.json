@@ -16,7 +16,7 @@
 		"__start:web": "BROWSER=none NODE_ENV=development node src/electron/start.js ",
 		"_start:desktop": "electron ./src/electron/electron.js",
 		"build": "CI=false BROWSERSLIST_IGNORE_OLD_DATA=true react-scripts build",
-		"build:web": "CI=false react-scripts build ; cp src/manifest.json build",
+		"build:web": "CI=false react-scripts build",
 		"lint": "echo 'no linter available'",
 		"test": "react-scripts test",
 		"clean": "rm -rf ./node_modules ./build ./dist",
