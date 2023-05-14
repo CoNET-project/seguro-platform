@@ -7,10 +7,12 @@ import RootProvider from './components/Providers/RootProvider'
 import GlobalStyle from './components/UI/Global/Styles'
 import './index.css'
 import '../src/font/font.css'
-
+import {register} from './serviceWorkerRegistration'
 const rootElement = document.getElementById('root')
 
+
 if (rootElement) {
+	
 	const root = createRoot(rootElement)
 	root.render(
 		
@@ -20,8 +22,8 @@ if (rootElement) {
 		</RootProvider>
 		
 	)
-
-
+	register()
+	
 } else {
 	console.log (`CoNET Platform Loader Error: can't find rootElement`)
 }

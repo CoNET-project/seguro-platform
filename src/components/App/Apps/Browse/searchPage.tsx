@@ -9,8 +9,7 @@ import Paper from '@mui/material/Paper'
 import mainImage from '../../../../assets/logo/conetBrowser.svg'
 import useAppState from '../../../../store/appState/useAppState'
 import CustomIframe from './customsIframe'
-import {logger} from '../../logger'
-import {v4} from 'uuid'
+
 
 
 interface TabPanelProps {
@@ -24,7 +23,6 @@ const StyledMainIMG = styled.img`
 	width:100%;
 	height: auto;
 `
-
 
 
 const TabPanel = (props: TabPanelProps) => {
@@ -51,13 +49,6 @@ const Item = styled(Paper)(({ theme }) => ({
 	textAlign: 'center'
 }))
 
-const InjetDom = () => {
-    return (
-        <div>
-            <p style={{color: 'red'}}>Testing to see if my component renders!</p>
-        </div>
-    )
-}
 
 const SearchPage = (todo: Todo, index: number, currentTab: number, setCurrentTodo: React.Dispatch<React.SetStateAction<Todo>>) => {
 	const [currectUrl, setCurrectUrl] = useState('')
@@ -89,38 +80,38 @@ const SearchPage = (todo: Todo, index: number, currentTab: number, setCurrentTod
 		setCurrectUrl (__url)
 	}
 
-	const iframeURLChange = (e: React.SyntheticEvent<HTMLIFrameElement, Event>, callback: (str: string) => void) => {
+	// const iframeURLChange = (e: React.SyntheticEvent<HTMLIFrameElement, Event>, callback: (str: string) => void) => {
 
-		const ifrm = e.currentTarget.contentWindow || e.currentTarget.contentDocument || 
-			//	@ts-ignore
-			e.currentTarget.contentDocument.document 
+	// 	const ifrm = e.currentTarget.contentWindow || e.currentTarget.contentDocument || 
+	// 		//	@ts-ignore
+	// 		e.currentTarget.contentDocument.document 
 	
-		var unloadHandler = () => {
-			// Timeout needed because the URL changes immediately after
-			// the `unload` event is dispatched.
+	// 	var unloadHandler = () => {
+	// 		// Timeout needed because the URL changes immediately after
+	// 		// the `unload` event is dispatched.
 			
 				
-				if (ifrm.location.href === todo.proxyEntryUrl) {
-					return
-				}
+	// 			if (ifrm.location.href === todo.proxyEntryUrl) {
+	// 				return
+	// 			}
 
-				const remote = new URL(ifrm.location.href)
-				ifrm.removeEventListener("unload", unloadHandler)
+	// 			const remote = new URL(ifrm.location.href)
+	// 			ifrm.removeEventListener("unload", unloadHandler)
 
-				if (remote.origin === location.origin) {
-					console.log (` ############################## beforeunload STOP location ##############################`)
-					console.log (ifrm.location.href)
-					console.log (` ############################## beforeunload STOP location ##############################`)
-					callback(ifrm.location.href)
-				}
+	// 			if (remote.origin === location.origin) {
+	// 				console.log (` ############################## beforeunload STOP location ##############################`)
+	// 				console.log (ifrm.location.href)
+	// 				console.log (` ############################## beforeunload STOP location ##############################`)
+	// 				callback(ifrm.location.href)
+	// 			}
 			
 		   
-		}
-		//ifrm.addEventListener("beforeunload", unloadHandler)
-		ifrm.addEventListener("unload", () => {setTimeout (unloadHandler, 0)})
-		console.log (` ############################## addEventListener beforeunload  ##############################`)
+	// 	}
+	// 	//ifrm.addEventListener("beforeunload", unloadHandler)
+	// 	ifrm.addEventListener("unload", () => {setTimeout (unloadHandler, 0)})
+	// 	console.log (` ############################## addEventListener beforeunload  ##############################`)
 		
-	}
+	// }
 
 	return (
 		<TabPanel value={currentTab} index={index} key={`TabPanel-item-${index}`}>				

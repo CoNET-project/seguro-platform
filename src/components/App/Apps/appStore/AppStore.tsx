@@ -1,5 +1,5 @@
 
-import mainVideo from '../../../../assets/appStore/appStore.gif'
+
 import screen1 from '../../../../assets/appStore/screen1.png'
 import screen2 from '../../../../assets/appStore/screen2.png'
 
@@ -50,9 +50,7 @@ const ShowAppStore = () => {
 					CoNET Decentralized App Store provides developers with simple and censorship-free delivery of applications to end users. 
 				</Typography>
 			</Grid>
-			<Grid item xs={12} sx={{ textAlign: 'center'}}>
-				<StyleIMG1 src = {mainVideo}/>
-			</Grid>
+
 			<Grid item xs={12} sx={{ textAlign: 'center', paddingTop: '2rem'}}>
 				<Typography gutterBottom variant="h5" component="div">
 					What's New in CoNET APP Store

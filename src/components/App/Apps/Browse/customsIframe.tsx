@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react'
 import { createPortal } from 'react-dom'
 import styled from "styled-components"
 import {logger} from '../../logger'
+import InjectDom from './injectSubdom'
 
 type pref = (children: any, props: any ) => ReactJSXElement
 
@@ -41,28 +42,28 @@ const checkLinkedUrl = (e: React.SyntheticEvent<HTMLIFrameElement, Event>) => {
 
 	for (var _aTag of aTag) {
 		_aTag.target = '_self'
-		if (/^http/.test(_aTag.href)) {
-			const aTagUrl = new URL(_aTag.href)
-			if (aTagUrl.origin !== location.origin) {
-				//	location.origin + '/api' + remotePath + '_/CoNET_proxyUrl/' + text
-				let remotepath = aTagUrl.pathname
-				if ( /\.\w+$/.test(aTagUrl.pathname)) {
-					const kk = remotepath.split('/')
-					kk.pop()
-					remotepath = kk.join('/')
-				}
+		// if (/^http/.test(_aTag.href)) {
+		// 	const aTagUrl = new URL(_aTag.href)
+		// 	if (aTagUrl.origin !== location.origin) {
+		// 		//	location.origin + '/api' + remotePath + '_/CoNET_proxyUrl/' + text
+		// 		let remotepath = aTagUrl.pathname
+		// 		if ( /\.\w+$/.test(aTagUrl.pathname)) {
+		// 			const kk = remotepath.split('/')
+		// 			kk.pop()
+		// 			remotepath = kk.join('/')
+		// 		}
 				 
-				_aTag.href = location.origin + '/api' + remotepath + '_/CoNET_proxyUrl/' + _aTag.href
-			}
-		} else {
-			let remotepath = _aTag.href
-			if ( /\.\w+$/.test(remotepath.pathname)) {
-				const kk = remotepath.split('/')
-				kk.pop()
-				remotepath = kk.join('/')
-			}
-			_aTag.href = location.origin + '/api' + remotepath + '_/CoNET_proxyUrl/' + remoteSite.origin + _aTag.href
-		}
+		// 		_aTag.href = location.origin + '/api' + remotepath + '_/CoNET_proxyUrl/' + _aTag.href
+		// 	}
+		// } else {
+		// 	let remotepath = _aTag.href
+		// 	if ( /\.\w+$/.test(remotepath.pathname)) {
+		// 		const kk = remotepath.split('/')
+		// 		kk.pop()
+		// 		remotepath = kk.join('/')
+		// 	}
+		// 	_aTag.href = location.origin + '/api' + remotepath + '_/CoNET_proxyUrl/' + remoteSite.origin + _aTag.href
+		// }
 		
 		// if (aTagUrl.origin !== location.origin) {
 		// 	_aTag.href = replaceUrl(_aTag.href, remoteSite)
@@ -73,7 +74,6 @@ const checkLinkedUrl = (e: React.SyntheticEvent<HTMLIFrameElement, Event>) => {
 }
 
 const CustomIframe: pref = ({
-	children,
 	...props
 }) => {
 	const [contentRef, setContentRef] = useState<HTMLIFrameElement|null>(null)
@@ -89,7 +89,7 @@ const CustomIframe: pref = ({
 		<IFRAME {...props} ref={setContentRef}
 			onLoad={ checkLinkedUrl }
 		>
-			{mountNode && createPortal(children, mountNode)}
+			{mountNode && createPortal((<InjectDom />), mountNode)}
 		</IFRAME>
 	)
 }
