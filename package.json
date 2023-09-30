@@ -1,12 +1,13 @@
 {
-	"name": "@conet-project/seguro-platform",
-	"version": "0.60.2",
+	"name": "@conet-project/conet-platform",
+	"version": "0.60.3",
 	"author": "CoNET technology Inc.",
-	"description": "The CoNET Platform",
-	"license": "UNLICENSED",
+	"description": "The CONET project provides Innate in digital privacy from the network layer to the application layer.",
+	"license": "MIT",
 	"files": [
 		"./build"
 	],
+	"homepage": "https://conet.network",
 	"main": "./src/electron/electron.js",
 	"scripts": {
 		"start": "concurrently --kill-others --success=first 'yarn start:gateway' 'yarn _start:web' 'wait-on tcp:3000 && NODE_ENV=development yarn _start:desktop'",
@@ -17,7 +18,7 @@
 		"__start:web": "BROWSER=none NODE_ENV=development node src/electron/start.js ",
 		"_start:desktop": "electron ./src/electron/electron.js",
 		"build": "CI=false react-scripts build",
-		"build:web": "CI=false react-scripts build",
+		"build:web": "CI=false react-scripts build && cp -r build/* ../seguro-gateway/build/localServer/workers/",
 		"lint": "echo 'no linter available'",
 		"test": "react-scripts test",
 		"clean": "rm -rf ./node_modules ./build ./dist",
