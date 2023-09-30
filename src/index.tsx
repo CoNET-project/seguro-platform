@@ -11,7 +11,9 @@ import '../src/font/font.css'
 const rootElement = document.getElementById('root')
 
 if (rootElement && 'serviceWorker' in navigator) {
+	
 	const root = createRoot(rootElement)
+
 	root.render(
 		
 		<RootProvider>
