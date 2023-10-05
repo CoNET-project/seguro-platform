@@ -223,16 +223,16 @@ const ProfileDropdown = ({closeDropdown}: ProfileDropdownProps) => {
 				balance: currentProfile().tokens.conet.balance,
 				icon: <LogoIcon size={30} color='grey'/>
 			},
-			{
-				primary: 'CoNETCash',
-				balance: workerService.data?.CoNETCash ? workerService.data.CoNETCash.Total : 0, 
-				icon: <CNTCashLogoIcon size={30}/>,
-			},
-			{
-				primary: 'USDC',
-				balance: currentProfile().tokens.usdc.balance,
-				icon: <USDCLogoIcon size={30} color='grey'/>,
-			}
+			// {
+			// 	primary: 'CoNETCash',
+			// 	balance: workerService.data?.CoNETCash ? workerService.data.CoNETCash.Total : 0, 
+			// 	icon: <CNTCashLogoIcon size={30}/>,
+			// },
+			// {
+			// 	primary: 'USDC',
+			// 	balance: currentProfile().tokens.usdc.balance,
+			// 	icon: <USDCLogoIcon size={30} color='grey'/>,
+			// }
 		]
 		return ret
 	}

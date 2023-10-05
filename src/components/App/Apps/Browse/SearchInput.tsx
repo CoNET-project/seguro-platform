@@ -17,6 +17,9 @@ type SearchInputProps = {
 	onChanged: (updateText: string) => void
 } & HTMLAttributes<ReactNode>
 
+const top100Films = [
+	{ label: 'The Shawshank Redemption', year: 1994 }
+]
 const SearchInput = ({defaultTodo, onUpdate, onChanged}: SearchInputProps) => {
 	const [searchText, setSearchText] = useState(defaultTodo.searchText)
 	const intl = useIntl()
@@ -38,18 +41,21 @@ const SearchInput = ({defaultTodo, onUpdate, onChanged}: SearchInputProps) => {
 				</IconButton>
 			</Grid>
 			<Grid item xs>
+
 				<FormControl size="small" fullWidth variant="outlined">
 					<OutlinedInput sx={{ borderRadius: '20px',fontSize:'small' }}
 					fullWidth={true}
 					//placeholder={ defaultTodo.keyID }
 					placeholder={ intl.formatMessage({id:'platform.app.browser.search.placeholder'})}
-					startAdornment={
-						<InputAdornment position="start">
-							<IconButton>
-								<SearchIcon/>
-							</IconButton>
-						</InputAdornment>
+
+					startAdornment= {
+								<InputAdornment position="start">
+									<IconButton>
+										<SearchIcon/>
+									</IconButton>
+								</InputAdornment>
 					}
+
 					value={
 						searchText
 					}

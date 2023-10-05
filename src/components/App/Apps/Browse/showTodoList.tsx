@@ -14,7 +14,6 @@ function a11yProps(index: number) {
 	  key: `simple-tab-${index}`
 	}
 }
-
 const ShowSearchTextInput = () => {
 	const todoContext = useContext(ToDoContext)
 	const [currectTodo, setCurrentTodo] = useState<Todo>(todoContext.todos[0])

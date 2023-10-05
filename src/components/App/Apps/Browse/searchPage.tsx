@@ -60,7 +60,9 @@ const InjetDom = () => {
     )
 }
 
-
+const urlRegExp = /^(?!.*?_.*?)(?!(?:[\d\w]+?\.)?\-[\w\d\.\-]*?)(?![\w\d]+?\-\.(?:[\d\w\.\-]+?))(?=[\w\d])(?=[\w\d\.\-]*?\.+[\w\d\.\-]*?)(?![\w\d\.\-]{254})(?!(?:\.?[\w\d\-\.]*?[\w\d\-]{64,}\.)+?)[\w\d\.\-]+?(?<![\w\d\-\.]*?\.[\d]+?)(?<=[\w\d\-]{2,})(?<![\w\d\-]{25})$/
+const localIpAddress = /^(?:127\.|0?10\.|172\.0?1[6-9]\.|172\.0?2[0-9]\.|172\.0?3[01]\.|192\.168\.|169\.254\.|::1|[fF][cCdD][0-9a-fA-F]{2}:|[fF][eE][89aAbB][0-9a-fA-F]:)/
+const ipV6Check = /^(?=\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}$)(?:(?:25[0-5]|[12][0-4][0-9]|1[5-9][0-9]|[1-9]?[0-9])\.?){4}$|(?=^(?:[0-9a-f]{0,4}:){2,7}[0-9a-f]{0,4}$)(?![^:]*::.+::[^:]*$)(?:(?=.*::.*)|(?=\w+:\w+:\w+:\w+:\w+:\w+:\w+:\w+))(?:(?:^|:)(?:[0-9a-f]{4}|[1-9a-f][0-9a-f]{0,3})){0,8}(?:::(?:[0-9a-f]{1,4}(?:$|:)){0,6})?$/
 
 const SearchPage = (todo: Todo, index: number, currentTab: number, setCurrentTodo: React.Dispatch<React.SetStateAction<Todo>>) => {
 	const [currectUrl, setCurrectUrl] = useState('')
@@ -69,8 +71,18 @@ const SearchPage = (todo: Todo, index: number, currentTab: number, setCurrentTod
 	const onUpdate = ( text: string ) => {
 
 		//		Search input
-		if (!/^http/.test(text)) {
-			text = `https://search.brave.com/search?q=${text}&source=${isTouchDevice ? 'mobile': 'desktop'}`
+		const spaceSplit = text.split(/ /)
+		const dotSplit = text.split(/\./)
+		if (spaceSplit.length < 2 || dotSplit.length > 1) {
+			logger(`urlRegExp.test(text) = [${urlRegExp.test(text)}]`)
+			logger(`!localIpAddress.test(text) = [${!localIpAddress.test(text)}]`)
+			logger(`!ipV6Check.test(text) = [${!ipV6Check.test(text)}]`)
+			if (urlRegExp.test(text) || !localIpAddress.test(text) || !ipV6Check.test(text)) {
+				
+				if (!/^https?\:\/\//.test(text)) {
+					text = `https://${text}`
+				}
+			}
 		}
 
 		let remote = new URL(text)

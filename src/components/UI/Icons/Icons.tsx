@@ -39,7 +39,7 @@ import {
 } from 'react-icons/fi'
 
 import {
-	GoPrimitiveDot
+	GoPasskeyFill
 } from 'react-icons/go'
 
 import {
@@ -189,7 +189,7 @@ export const PasscodeDot = ({size, color, isPlaceholder}: IconProps & { isPlaceh
 
     return (
         <StyledThemeIcon isPlaceholder={isPlaceholder}>
-            <GoPrimitiveDot size={getSize(size)} color={color || undefined}/>
+            <GoPasskeyFill size={getSize(size)} color={color || undefined}/>
         </StyledThemeIcon>
     )
 }
