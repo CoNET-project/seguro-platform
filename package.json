@@ -18,7 +18,8 @@
 		"__start:web": "BROWSER=none NODE_ENV=development node src/electron/start.js ",
 		"_start:desktop": "electron ./src/electron/electron.js",
 		"build": "CI=false react-scripts build",
-		"build:web": "CI=false react-scripts build && cp -r build/* ../seguro-gateway/build/localServer/workers/",
+		"build:web": "CI=false react-scripts build",
+		"copy": "cp -r build/* ../seguro-gateway/build/localServer/workers/",
 		"lint": "echo 'no linter available'",
 		"test": "react-scripts test",
 		"clean": "rm -rf ./node_modules ./build ./dist",
@@ -106,4 +107,5 @@
 			}
 		]
 	}
+	
 }

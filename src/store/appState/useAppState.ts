@@ -61,11 +61,14 @@ const useAppState = () => {
     }
 
 	const showGuide = useTypedSelector(state => state.appState.showGuide)
+
+
 	const setShowGuide = (showguide: boolean ) => {
 		dispatch (_setShowGuide(showguide))
 	}
 
 	const showAppStore = useTypedSelector(state => state.appState.showAppStore)
+    
 	const setShowAppStore = (showAppStore: boolean ) => {
 		dispatch (_setShowAppStore(showAppStore))
 	}

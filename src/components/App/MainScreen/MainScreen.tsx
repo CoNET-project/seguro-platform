@@ -7,9 +7,9 @@ import PlatformModal from "../PlatformModal/PlatformModal"
 import {Toaster} from '../../UI/Toaster/Toaster'
 import GlobalBar from '../../UI/Global/GlobalBar/GlobalBar'
 import Messenger from '../Apps/Messenger/Messenger'
-import TodoMain from '../Apps/Browse/index'
-
+import LaunchPage from '../Apps/launchPage/index'
 import AppStore from '../Apps/appStore/AppStore'
+import CONETProxy from '../Apps/CONET-Proxy/index'
 import {getWorkerService} from '../../../services/workerService/workerService'
 import {ClientProfiles} from '../../../store/appState/appStateReducer'
 import React,{useEffect} from 'react'
@@ -32,7 +32,6 @@ const StyledContents = styled(motion.div)`
 	position: relative;
 `
 const MainScreen = () => {
-
 
     const {
         windowInnerSize: {width},
@@ -110,8 +109,8 @@ const MainScreen = () => {
                 <GlobalBar/> */}
 
                 <LayoutGroup id="a">
-					{ showGuide && <TodoMain/>}
-					{ showAppStore && <AppStore/>}
+					{ showGuide && <LaunchPage/>}
+					{ showAppStore && <CONETProxy/>}
                     <StyledContents>
                         {!showGuide && !showAppStore && <Messenger/>}
                     </StyledContents>
