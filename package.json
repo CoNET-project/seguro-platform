@@ -29,8 +29,8 @@
 		"@conet.project/seguro-worker-lib": "0.13.8",
 		"@emotion/react": "^11.11.1",
 		"@emotion/styled": "^11.11.0",
-		"@mui/icons-material": "^5.14.12",
-		"@mui/material": "^5.14.12",
+		"@mui/icons-material": "^5.14.13",
+		"@mui/material": "^5.14.13",
 		"@react-icons/all-files": "^4.1.0",
 		"@tippyjs/react": "^4.2.6",
 		"buffer": "^6.0.3",
@@ -43,7 +43,10 @@
 		"react-lottie-player": "^1.5.5",
 		"react-router-dom": "^6.16.0",
 		"uuid": "^9.0.1",
-		"web-vitals": "^3.5.0"
+		"web-vitals": "^3.5.0",
+		"country-flag-icons": "^1.5.7",
+		"react-terminal-ui": "^1.0.5"
+
 	},
 	"devDependencies": {
 		"@reduxjs/toolkit": "^1.9.7",

@@ -2,6 +2,7 @@ import {createAction} from '@reduxjs/toolkit'
 import {Theme} from '../../theme/types'
 import {Locale} from '../../localization/types'
 import {WindowInnerSize} from './useAppState'
+
 import {
     ClientProfiles,
     DeviceData,
@@ -67,6 +68,16 @@ export const setShowAppStore= createAction(
     }
 )
 
+export const setShowBlockScan= createAction(
+    'appState/showBlockScan',
+    (showBlockScan: boolean) => {
+        return {
+            payload: {
+                showBlockScan
+            }
+        }
+    }
+)
 
 
 export const setHasContainer = createAction(

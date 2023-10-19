@@ -24,4 +24,3 @@ const TodoContext = createContext<TodosContextProps> ({
 })
 
 export default TodoContext
-

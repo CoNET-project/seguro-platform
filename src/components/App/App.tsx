@@ -8,7 +8,6 @@ import {OnboardingPageProvider} from '../Providers/OnboardingPageProvider'
 import OnboardingScreen from "./OnboardingScreen/OnboardingScreen"
 import UnlockScreen from "./UnlockScreen/UnlockScreen"
 import LaunchScreen from "./LaunchScreen/LaunchScreen"
-import {Overlay, OverlayWithLoaderText} from '../UI/Common/Overlay/Overlay'
 
 const StyledContainer = styled.div`
 	height: 100vh;
@@ -18,7 +17,6 @@ const StyledContainer = styled.div`
 	justify-content: center;
 	color: black;
 `
-
 
 const App = () => {
     const {
@@ -114,38 +112,9 @@ const App = () => {
                    <MainScreen/>
                 )
         }
-        // let content = <MainScreen/>
-        // // launch screen
-        // if (appState.isInitializing) {
-        //     content = (
-        //         <LaunchScreen/>
-        //     )
-        // } else if (appState.isInitialized && appState.noContainer) {
-        //     content = (
-        //         <OnboardingPageProvider
-        //             existingPages={['language', 'setPasscode', 'confirmPasscode', 'verification', 'verificationProcess']}>
-        //             <OnboardingScreen/>
-        //         </OnboardingPageProvider>
-        //     )
-        // } else if (appState.isInitialized && appState.hasContainer && appState.isLocked) {
-        //     content = (
-        //         <UnlockScreen/>
-        //     )
-        // }
+        
     }
 
-    // // unlock screen
-    // else if (appState.isInitialized && appState.isLocked) {
-    //     content = (
-    //         <UnlockScreen />
-    //     )
-    // }
-    // // main screen
-    // else if (appState.isInitialized && appState.isUnlocked) {
-    //     content = (
-    //         <MainScreen />
-    //     )
-    // }
 
     return (
         <>

@@ -13,6 +13,7 @@ import CONETProxy from '../Apps/CONET-Proxy/index'
 import {getWorkerService} from '../../../services/workerService/workerService'
 import {ClientProfiles} from '../../../store/appState/appStateReducer'
 import React,{useEffect} from 'react'
+import BlockScan from '../Apps/blockscan'
 
 import Box from '@mui/material/Box'
 
@@ -42,6 +43,7 @@ const MainScreen = () => {
 		showGuide,
         setClientProfiles,
 		showAppStore,
+        showBlockScan,
 		setIsModalOpen
     } = useAppState()
 
@@ -111,9 +113,10 @@ const MainScreen = () => {
                 <LayoutGroup id="a">
 					{ showGuide && <LaunchPage/>}
 					{ showAppStore && <CONETProxy/>}
-                    <StyledContents>
+                    { showBlockScan && <BlockScan />}
+                    {/* <StyledContents>
                         {!showGuide && !showAppStore && <Messenger/>}
-                    </StyledContents>
+                    </StyledContents> */}
                 </LayoutGroup>
             </StyledMainScreen>
         </>

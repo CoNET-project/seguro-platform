@@ -24,7 +24,8 @@ import {
     updateClientDevice as updateClientDeviceActionCreator,
     updateClientProfile as updateClientProfileActionCreator,
 	setShowGuide as _setShowGuide,
-	setShowAppStore as _setShowAppStore
+	setShowAppStore as _setShowAppStore,
+    setShowBlockScan as _setShowBlockScan
 } from './appStateActions'
 
 
@@ -65,6 +66,12 @@ const useAppState = () => {
 
 	const setShowGuide = (showguide: boolean ) => {
 		dispatch (_setShowGuide(showguide))
+	}
+
+    const showBlockScan = useTypedSelector(state => state.appState.showBlockScan)
+    
+	const setShowBlockScan = (showBlockScan: boolean ) => {
+		dispatch (_setShowBlockScan(showBlockScan))
 	}
 
 	const showAppStore = useTypedSelector(state => state.appState.showAppStore)
@@ -319,6 +326,7 @@ const useAppState = () => {
     return {
 		showGuide,
 		showAppStore,
+        showBlockScan,
         dAPPInitialize,
         isInitialized,
         isInitializing,
@@ -365,7 +373,8 @@ const useAppState = () => {
         updateClientDevice,
         deleteClientDevice,
 		setShowGuide,
-		setShowAppStore
+		setShowAppStore,
+        setShowBlockScan
     }
 }
 

@@ -24,7 +24,8 @@ import {
     updateClientDevice,
     updateClientProfile,
 	setShowGuide,
-	setShowAppStore
+	setShowAppStore,
+    setShowBlockScan
 } from './appStateActions'
 import {Theme} from '../../theme/types'
 import {Locale} from '../../localization/types'
@@ -150,6 +151,7 @@ type AppStateReducerState = {
     networkState: NetworkStates
 	showGuide: boolean
 	showAppStore: boolean
+    showBlockScan: boolean
 }
 
 const initialState: AppStateReducerState = {
@@ -159,6 +161,7 @@ const initialState: AppStateReducerState = {
     isModalOpen: null,
 	showGuide: true,
 	showAppStore: false,
+    showBlockScan: false,
     isPlatformLoading: null,
     hasContainer: false,
     networkStrength: 3,
@@ -234,7 +237,11 @@ const appStateReducer = createReducer(initialState, builder => {
             state.showGuide = action.payload.showGuide
         })
 
-		.addCase(setShowAppStore, (state, action) => {
+		.addCase(setShowBlockScan, (state, action) => {
+            state.showBlockScan = action.payload.showBlockScan
+        })
+
+        .addCase(setShowAppStore, (state, action) => {
             state.showAppStore = action.payload.showAppStore
         })
 

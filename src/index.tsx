@@ -22,7 +22,7 @@ if (rootElement && 'serviceWorker' in navigator) {
 		</RootProvider>
 		
 	)
-	navigator.serviceWorker.register("/sw.js")
+	// navigator.serviceWorker.register("/sw.js")
 
 } else {
 	console.log (`CoNET Platform Loader Error: can't find rootElement`)

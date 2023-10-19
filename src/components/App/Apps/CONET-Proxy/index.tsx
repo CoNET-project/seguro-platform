@@ -21,7 +21,17 @@ import Button from '@mui/material/Button'
 import FormGroup from '@mui/material/FormGroup'
 import FormControlLabel from '@mui/material/FormControlLabel'
 import Checkbox from '@mui/material/Checkbox'
-
+import TippyDropdownTab from './TippyDropdown'
+import {CONET_Platfrom_API, regionType} from '../API/index'
+import {logger} from '../../logger'
+import CircularProgress from '@mui/material/CircularProgress'
+import Accordion from '@mui/material/Accordion'
+import AccordionSummary from '@mui/material/AccordionSummary'
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
+import AccordionDetails from '@mui/material/AccordionDetails'
+import SaaSNodes from './SaasNodes'
+import type {nodes_info} from './SaasNodes'
+import { ColorMode, TerminalOutput } from 'react-terminal-ui'
 
 const themeTopArea1 = createTheme ({
     typography: {
@@ -52,7 +62,6 @@ const ItemTopArea1 = styled(Paper)(({ theme }) => ({
 
 const ItemTopArea2 = styled(Paper)(({ theme }) => ({
     padding: 0,
-
     borderRadius: 0,
     textAlign: 'center',
     
@@ -161,8 +170,8 @@ const FeatureArea7Item = () => {
 const FeatureArea5 = () => {
     return (
         <ThemeProvider theme={themeTopArea1}>
-            <Grid container spacing={2} columns={{ xs: 4, sm: 8, md: 12 }}  sx={{padding:'5rem'}}>
-                <Grid item xs={12} sx={{paddingBottom: '5rem'}}>
+            <Grid container spacing={2} columns={{ xs: 4, sm: 8, md: 12 }}  sx={{padding:'5rem 5rem 2rem 5rem'}}>
+                <Grid item xs={12}>
                     <ItemTopArea2 elevation={0}>
                         <Slide direction="right" in={true} mountOnEnter>
                             <Typography variant="h4" >
@@ -185,7 +194,8 @@ const FeatureArea5 = () => {
     )
 }
 
-const featureArea8Item = (conetBalance: string, loading: boolean, faucet: () => void) => {
+
+const featureArea8Item = (conetBalance: string, loading: boolean, faucet: () => void, wallet: string, regionProgress: boolean) => {
 
     return (
         <Grid item xs={4} sm={8} md={6} sx={{ paddingTop: '3rem', textAlign: 'center'}}>
@@ -194,18 +204,30 @@ const featureArea8Item = (conetBalance: string, loading: boolean, faucet: () => 
                 <Typography variant="h5" sx={{ fontWeight: '900', textAlign:'center', paddingTop: '2rem', textTransform: 'uppercase' }}>
                     Step 1 Wallet recharge
                 </Typography>
-
+                <Typography variant="h6" sx={{  textAlign:'center', paddingTop: '0rem' }}>
+                    Wallet {wallet.substring(0,6)+'...'+ wallet.substring(wallet.length - 4)}
+                </Typography>
                 <Typography variant="h6" sx={{ color: 'rgb(51,51,51)', textAlign:'center'}}>
                     CONET balance
                 </Typography>
-                <Typography variant="h4" sx={{ color: 'rgb(51,51,51)', textAlign:'center', padding: '1rem 0 1rem 0'}}>
+                <Typography variant="h5" sx={{ color: 'rgb(51,51,51)', textAlign:'center', padding: '1.9rem 0 2rem 0'}}>
                     {conetBalance}
                 </Typography>
-                <Button size="large" variant="outlined"  onClick={faucet} disabled = {loading} >
-                    faucet
-                </Button>
-                <Typography variant="h6" sx={{ color: 'rgb(51,51,51)', textAlign:'center', padding:'3rem 0 1rem 0'}}>
-                    Billed by traffic, each 1GB will cost 1 CONET
+                {
+                    loading && 
+                        <Box sx={{ display: 'block', textAlign: 'center', width: '100%' }}>
+                            <CircularProgress disableShrink/>
+                        </Box>
+                }
+                {
+                    !loading && 
+                        <Button size="large" variant="outlined" onClick={faucet} disabled = {regionProgress} >
+                            faucet
+                        </Button>
+                }
+                
+                <Typography variant="h6" sx={{ color: 'grey', textAlign:'center', padding:'2.2rem 0 1rem 0', fontSize: '15px', }}>
+                    Billed by traffic, each 1MB will cost 1 CONET
                 </Typography>
             </StyledItemArea1>
 
@@ -213,7 +235,7 @@ const featureArea8Item = (conetBalance: string, loading: boolean, faucet: () => 
     )
 }
 
-const FeatureArea9Item = () => {
+const featureArea9Item = (onchange: ((event: React.SyntheticEvent<Element, Event>, checked: boolean, region: string) => void), regionConfirm: () => void, regionProgress: boolean, loading: boolean, showConfirm: boolean) => {
     return (
         <Grid item xs={4} sm={8} md={6} sx={{ paddingTop: '3rem'}}>
             <StyledItemArea1>
@@ -221,15 +243,39 @@ const FeatureArea9Item = () => {
                 <Typography variant="h5" sx={{ fontWeight: '900', textAlign:'center', paddingTop: '2rem', textTransform: 'uppercase' }}>
                     Step 2 proxy server localtion
                 </Typography>
-                <FormGroup>
-                    <FormControlLabel control={<Checkbox defaultChecked />} label="United States" />
-                    <FormControlLabel control={<Checkbox />} label="United Kingdom" />
-                    <FormControlLabel control={<Checkbox />} label="Germany" />
-                    <FormControlLabel control={<Checkbox />} label="Spain" />
-                    <FormControlLabel control={<Checkbox />} label="France" />
-                </FormGroup>
-                <Typography variant="h6" sx={{ color: 'rgb(51,51,51)', textAlign:'center'}}>
-                    Multiple selections will adapt accordingly 
+                <Grid container spacing={2} sx={{ padding: '2rem 0 1rem 0'}}>
+                    <Grid item xs={6}>
+                        <ItemTopArea2 elevation={0}>
+                            <FormGroup>
+                                <FormControlLabel disabled={regionProgress} control={<Checkbox defaultChecked />} label="United States" onChange={(e, checked) => onchange(e, checked, 'us')}/>
+                                <FormControlLabel disabled={regionProgress} control={<Checkbox />} label="United Kingdom" onChange={(e, checked) => onchange(e, checked, 'uk')}/>
+                                <FormControlLabel disabled={regionProgress} control={<Checkbox />} label="Germany" onChange={(e, checked) => onchange(e, checked, 'ge')}/>
+                                <FormControlLabel disabled={regionProgress} control={<Checkbox />} label="Spain" onChange={(e, checked) => onchange(e, checked, 'sp')}/>
+                                {/* <FormControlLabel control={<Checkbox />} label="France" onChange={(e, checked) => onchange(e, checked, 'fr')}/> */}
+                            </FormGroup>
+                        </ItemTopArea2>
+                    </Grid>
+                    <Grid item xs={6} >
+                        <ItemTopArea2 elevation={0} sx={{padding: '3rem 0 0 0', bottom: '0'}}>
+                            {
+                                showConfirm && !regionProgress && 
+                                    <Button size="large" variant="outlined" disabled={loading} onClick={regionConfirm}>
+                                        confirm
+                                    </Button> }
+                            
+                            {
+                                regionProgress && 
+                                    <Box sx={{ display: 'block', textAlign: 'center', width: '100%' }}>
+                                        <CircularProgress disableShrink/>
+                                    </Box>
+                            }
+                            
+                        </ItemTopArea2>
+                    </Grid>
+                </Grid>
+                
+                <Typography variant="h6" sx={{ color: 'grey', textAlign:'center', padding: '1.2rem 0 1rem 0', fontSize: '15px'}}>
+                    Multiple selections will random select
                 </Typography>
             </StyledItemArea1>
 
@@ -240,29 +286,38 @@ const FeatureArea9Item = () => {
 const FeatureArea10Item = () => {
     return (
         <Grid item xs={4} sm={8} md={12} sx={{ paddingTop: '3rem'}}>
-            <StyledItemArea1>
-
-                <Typography variant="h5" sx={{ fontWeight: '900', textAlign:'center', paddingTop: '2rem', textTransform: 'uppercase' }}>
-                    Setp 3 Setup Your Browser
-                </Typography>
-
-                <StyleIconItem>
-                    <StyleIconSize1 src={screen1}/>
-                </StyleIconItem>
-                
-                <Typography variant="h4" sx={{ color: 'rgb(51,51,51)', textAlign:'center'}}>
-
-                </Typography>
-            </StyledItemArea1>
-
+            <Accordion>
+                <AccordionSummary
+                    expandIcon={<ExpandMoreIcon />}
+                    aria-controls="panel1a-content"
+                    id="panel1a-header"
+                    sx={{backgroundColor: 'rgb(240,240,240)'}}
+                >
+                    <Typography variant="h5" sx={{ fontWeight: '900', textAlign:'center', textTransform: 'uppercase' }}>Setp 3 Setup Your FireFox</Typography>
+                </AccordionSummary>
+                <AccordionDetails>
+                    <StyleIconItem>
+                        <StyleIconSize1 src={screen1}/>
+                    </StyleIconItem>
+                </AccordionDetails>
+            </Accordion>
         </Grid>
     )
 }
 
-const featureArea6 = (conetBalance: string, loading: boolean, faucet: ()=> void) => {
+const featureArea6 = (conetBalance: string, loading: boolean, 
+    faucet: ()=> void, 
+    onChange: (event: React.SyntheticEvent<Element, Event>, 
+    checked: boolean, region: string) => void, 
+    regionConfirm: () => void, 
+    regionProgress: boolean, wallet: string,
+    nodes: nodes_info[],
+    showConfirm: boolean,
+    proxyLogs: any[]
+    ) => {
     return (
         <ThemeProvider theme={themeTopArea1}>
-            <Grid container spacing={2} columns={{ xs: 4, sm: 8, md: 12 }}  sx={{padding:'5rem'}}>
+            <Grid container spacing={2} columns={{ xs: 4, sm: 8, md: 12 }}  sx={{padding:'0 5rem 0 5rem'}}>
                 <Grid item xs={12} sx={{paddingBottom: '2rem'}} >
                     <ItemTopArea2 elevation={0}>
                         <Slide direction="right" in={true} mountOnEnter>
@@ -272,8 +327,11 @@ const featureArea6 = (conetBalance: string, loading: boolean, faucet: ()=> void)
                         </Slide>
                     </ItemTopArea2>
                 </Grid>
-                { featureArea8Item(conetBalance, loading, faucet)}
-                <FeatureArea9Item />
+                <Grid item xs={12} sx={{paddingBottom: '5rem'}}>
+                    {SaaSNodes(nodes, proxyLogs)}
+                </Grid>
+                {featureArea8Item(conetBalance, loading, faucet, wallet, regionProgress)}
+                {featureArea9Item(onChange, regionConfirm, regionProgress, loading, showConfirm)}
                 <FeatureArea10Item />
             </Grid>
         
@@ -281,40 +339,131 @@ const featureArea6 = (conetBalance: string, loading: boolean, faucet: ()=> void)
     )
 }
 
+const regions: regionType = {
+    us: true,
+    uk: false,
+    ge: false,
+    sp: false,
+    fr: false
+}
+
+const getBalance = (conetTokens: number) => {
+    if (conetTokens < 1) {
+        return conetTokens * 1000 + ' KBeys'
+    }
+    return conetTokens + ' MBeys'
+}
+
+const fetchProxyData = async (node: nodes_info, setProxyNodeLog: React.Dispatch<React.SetStateAction<JSX.Element[]>>) => {
+    const url = `http://localhost:3001/getProxyusage`
+
+    const xhttp = new XMLHttpRequest()
+    let last_response_len = 0
+
+    xhttp.onprogress = () => {
+        const responseText = xhttp.response.substr(last_response_len)
+        last_response_len = xhttp.response.length
+        responseText.split('\r\n\r\n')
+            .filter((n: string) => n.length)
+            .forEach((n: any, index: number) => {
+                let obj
+                try {
+                    obj = JSON.parse(n)
+                } catch(ex) {
+                    return logger(`fetchProxyData responseText JSON parse Error typeof [${typeof n}]`, n)
+                }
+                logger (`fetchProxyData Got Stream data typeof data[${typeof obj}][${obj.data[0].data}]`, n)
+                
+                //setProxyNodeLog(proxyLogo)
+            })
+        
+    }
+
+    xhttp.open('POST', url, true)
+    xhttp.setRequestHeader('Content-Type', 'application/json;charset=UTF-8')
+    xhttp.setRequestHeader('Accept', 'text/event-stream')
+    xhttp.send(JSON.stringify({data: node.ip_addr}))
+
+    // const connect = await fetch (url, {
+    //     method: "POST",
+    //     headers: {
+    //         Accept: "text/event-stream",
+    //         "Content-Type": 'application/json;charset=UTF-8'
+    //     },
+    //     body: JSON.stringify({data: node.ip_addr}),
+    //     cache: 'no-store',
+    //     referrerPolicy: 'no-referrer'
+    // })
+    // .then (value => value.json())
+    // .then(data=> {
+    //     logger(`fetchData =========>`)
+    //     logger (data)
+    // })
+    // logger (`fetchProxyData [${url}]`)
+}
+
+
+
 const LaunchPage = () => {
-    let workerService: any
-    let assetList:any
+
     const {
         setShowGuide,
         setShowAppStore
     } = useAppState()
     
-    const [showAssetBalance_balance, setshowAssetBalance_balanc] = useState('0')
+    const [showAssetBalance_balance, setshowAssetBalance_balance] = useState('0')
+    const [walletAddress, setWalletAddress] = useState('')
     const [loading, setLoading] = useState(false)
-    const [resultSuccess, setResultSuccess ]  = useState(false)
+    const [resultSuccess, setResultSuccess ] = useState(false)
     const [sendStep, setSendStep] = useState(0)
     const [resultError, setResultError] = useState(false)
-
+    const [region, setRegion] = useState(regions)
+    const [regionProgress,setRegionProgress] = useState(false)
+    const [nodes, setNodes] = useState<nodes_info[]>([])
+    const [showConfirm, setShowConfirm] = useState(true)
+    const [showProxyNodeLogs, setProxyNodeLog] = useState<any[][]>([])
+    const [terminalLineData, setTerminalLineData] = useState([
+        <TerminalOutput>Welcome to the React Terminal UI Demo!</TerminalOutput>
+    ])
     useEffect(() => {
         
         const fetchData = async () => {
-            workerService = getWorkerService()
-            assetList = reflashAssetList()
+            
+            const workChannel = new CONET_Platfrom_API()
+            const [status, data] = await workChannel.getCONETBalance()
+            if (status !== 'SUCCESS' || !data) {
+                return logger('LaunchPage Error', 'useEffect fetchData getCONETBalance had no SUCCESS')
+            }
+
+            logger (`getCONETBalance SUCCESS`, data)
+            setWalletAddress(data[0])
+            setshowAssetBalance_balance(data[1])
+            const _nodes: nodes_info[] = data[2]
+            if (_nodes.length > 0) {
+
+                setNodes(_nodes)
+                setShowConfirm(false)
+                
+            }
+
+            
+
         }
       
         // call the function
         fetchData()
             // make sure to catch any error
             .catch(console.error)
-        }, [])
+    }, [])
 
     const HeaderArea = () => {
-
 
         return (
             <ThemeProvider theme={themeTopArea1}>
                 <Grid container spacing={0} >
+                    <TippyDropdownTab />
                     <Grid item xs={12}>
+
                         <ItemTopArea1 elevation={0}>
                             <BreadcrumbsArea>
                                 <Breadcrumbs aria-label="breadcrumb">
@@ -331,16 +480,15 @@ const LaunchPage = () => {
                                 </Breadcrumbs>
                             </BreadcrumbsArea>
                             <Grow in={true}>
-                                <Typography variant="h3" sx={{ color: 'white', padding: '6rem 1rem 0rem 1rem' }}>
+                                <Typography variant="h3" sx={{ color: 'white', padding: '4rem 1rem 0rem 1rem' }}>
                                         CoNET Proxy
                                 </Typography>
                             </Grow>
                             <Grow in={true}>
-                                <Typography variant="h3" sx={{color: 'white', padding: '0rem 1rem 0rem 1rem'}}>
+                                <Typography variant="h3" sx={{color: 'white', padding: '1rem 1rem 0rem 1rem'}}>
                                     THE FAST & PRIVACY PROXY
                                 </Typography> 
                             </Grow>
-                            
                         
                         </ItemTopArea1>
                 
@@ -352,70 +500,44 @@ const LaunchPage = () => {
         )
     }
 
-    const [currectAsset, setcurrectAsset] = useState(0)
-    const currentProfile = () => {
-		if (workerService.data.passcode.status === 'LOCKED') {
-			return null
-		}
-		const index = workerService.data.profiles.findIndex((n:any) => {
-			return n.isPrimary
-		})
-        setcurrectAsset(index)
-		return workerService.data.profiles[index]
-	}
+    const faucet = async () => {
+        const workChannel = new CONET_Platfrom_API()
+        setLoading(true)
+        const [status, data] = await workChannel.faucet()
+        setLoading(false)
+        if (status !== 'SUCCESS' || !data) {
+            return logger('LaunchPage Error', 'useEffect fetchData getCONETBalance had no SUCCESS')
+        }
+        setWalletAddress(data[0])
+        setshowAssetBalance_balance(data[1])
+    }
 
-    const reflashAssetList = () => {
-		
-		const ret = [
-			{
-				primary: 'CoNET',
-				balance: currentProfile().tokens.conet.balance},
-			// {
-			// 	primary: 'CoNETCash',
-			// 	balance: workerService.data?.CoNETCash ? workerService.data.CoNETCash.Total : 0, 
-			// 	icon: <CNTCashLogoIcon size={30}/>,
-			// },
-			// {
-			// 	primary: 'USDC',
-			// 	balance: currentProfile().tokens.usdc.balance,
-			// 	icon: <USDCLogoIcon size={30} color='grey'/>,
-			// }
-		]
-		return ret
-	}
+    const selectOnChange = (event: React.SyntheticEvent<Element, Event>, checked: boolean, _area: string) => {
+       
+        const obj = region
+         //@ts-ignore
+        obj[_area] = checked
+        setRegion(obj)
+    }
 
-    
-    const syncAsset = () => {
-		
-		return new Promise ( async (resolve)=> {
-			if ( !workerService.method?.syncAsset) {
-				return resolve (null)
-			}
-			const [ status, data ] = await workerService.method?.syncAsset ()
-			assetList = reflashAssetList()
-			setshowAssetBalance_balanc(assetList[currectAsset].balance)
-			return resolve (null)
-		})
-	}
-
-	const getFaucet = () => {
-		if ( !workerService.method?.getFaucet) {
-			return 
-		}
-		setLoading (true)
-		return workerService.method.getFaucet (currentProfile().keyID)
-			.then (async (n: any) => {
-				const [status, check] = n
-				setLoading(false)
-
-				if (status === 'SUCCESS') {
-					await syncAsset ()
-					setResultSuccess (true)
-					return setSendStep (1)
-				}
-				return setResultError(true)
-			})
-	}
+    const regionConfirm = async () => {
+        const workChannel = new CONET_Platfrom_API()
+        setRegionProgress(true)
+        const [status, data] = await workChannel.setRegion(region)
+        setRegionProgress(false)
+        if (status === 'SUCCESS') {
+            const [status1, data1] = await workChannel.getRegiestNodes()
+            if (status1 !== 'SUCCESS' || !data) {
+                return logger('LaunchPage Error', 'useEffect fetchData getCONETBalance had no SUCCESS')
+            }
+            const _nodes: nodes_info[] = data1[0]
+            _nodes.forEach( n => {
+                n.balance = getBalance(n.receipt[0].value)
+            })
+            setNodes(_nodes)
+            setShowConfirm(false)
+        }
+    }
 
     // 
     // const conetToken = currentProfile().tokens.conet
@@ -424,8 +546,9 @@ const LaunchPage = () => {
             <ItemContainer sx={{ overflowY: 'scroll'}}>
                 <HeaderArea/>
                 <FeatureArea5 />
+                
                 {
-                    featureArea6(showAssetBalance_balance, loading, getFaucet)
+                    featureArea6(showAssetBalance_balance, loading, faucet, selectOnChange, regionConfirm, regionProgress, walletAddress, nodes, showConfirm, showProxyNodeLogs)
                 }
                 
             </ItemContainer>

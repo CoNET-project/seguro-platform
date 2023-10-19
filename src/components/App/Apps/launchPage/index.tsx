@@ -388,8 +388,8 @@ const FeatureArea6 = () => {
 const LaunchPage = () => {
     const {
         setShowGuide,
-        setShowAppStore
-
+        setShowAppStore,
+        setShowBlockScan
     } = useAppState()
     const HeaderArea = () => {
 
