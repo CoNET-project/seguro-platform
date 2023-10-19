@@ -31,7 +31,7 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
 import AccordionDetails from '@mui/material/AccordionDetails'
 import SaaSNodes from './SaasNodes'
 import type {nodes_info} from './SaasNodes'
-import { ColorMode, TerminalOutput } from 'react-terminal-ui'
+//import { ColorMode, TerminalOutput } from 'react-terminal-ui'
 
 const themeTopArea1 = createTheme ({
     typography: {
