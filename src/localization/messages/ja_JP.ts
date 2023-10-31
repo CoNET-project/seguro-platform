@@ -252,8 +252,11 @@ const ja_JP: Messages = {
 
 
 	'platform.app.seguro.messenger.panels.addContact.info': 'ウォレットアドレスで連絡先を追加できます',
-	'platform.app.seguro.messenger.panels.addContact.firstMessage': 'この連絡先にニックネームを設定することもできます。 カスタムの挨拶を送って、あなたが誰であるかを知らせましょう'
+	'platform.app.seguro.messenger.panels.addContact.firstMessage': 'この連絡先にニックネームを設定することもできます。 カスタムの挨拶を送って、あなたが誰であるかを知らせましょう',
 
+    'launchPage.HeaderArea.title1-1': 'CONET - 新しいインターネット',
+    'launchPage.HeaderArea.title1-2': '',
+    'launchPage.HeaderArea.button': 'Try DEMO'
 }
 
 export default ja_JP

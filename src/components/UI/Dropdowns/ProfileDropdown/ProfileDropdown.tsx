@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 import React, {HTMLAttributes, useState, useEffect} from "react"
 import useAppState from "../../../../store/appState/useAppState"
-import {FormattedMessage} from "react-intl"
+import {FormattedMessage, useIntl} from "react-intl"
 import {ProfileData} from "../../../../store/appState/appStateReducer"
 import CurrentProfileItem from './CurrentProfileItem/CurrentProfileItem'
 import AssetView from'./CurrentProfileItem/AssetView'
@@ -116,7 +116,7 @@ const ProfileDropdown = ({closeDropdown}: ProfileDropdownProps) => {
 		})
 		return workerService.data.profiles[index]
 	}
-
+	const intl = useIntl()
 	const conetToken = currentProfile().tokens.conet
 	
 	const [buttonNavigationCurrent, setButtonNavigationCurrent] = useState(-1)
@@ -429,7 +429,7 @@ const ProfileDropdown = ({closeDropdown}: ProfileDropdownProps) => {
 		const timeString = `${ time.getMonth()+1 }/${ time.getDate() }/${time.getFullYear().toString().replace(/^20/, '')} ${time.toLocaleTimeString()}`
 		let address = type ? (v?.to ? v.to: '') : (v.from ? v.from : '')
 		address = shortToAddr (address)
-
+		
 		return (
 			<List component="nav" sx={{ width: '100%', padding: '0px'}} key={index}>
 				<ListItem sx={{ width: '100%', padding: '0px' }}>
@@ -447,7 +447,8 @@ const ProfileDropdown = ({closeDropdown}: ProfileDropdownProps) => {
 									<Grid item xs={6}>
 										<AssetHistoryItem>
 											<Typography variant="body1" gutterBottom sx={ type ? {color: red[900]}: {color: blueGrey[400]}}>
-												{type ? <FormattedMessage id='platform.ProfileDropdown.history.type.send' /> : <FormattedMessage id='platform.ProfileDropdown.history.type.receive'/>}
+												{intl.formatMessage({id: type ? 'platform.ProfileDropdown.history.type.send': 'platform.ProfileDropdown.history.type.receive'})}
+											
 											</Typography>
 										</AssetHistoryItem>
 									</Grid>
@@ -597,6 +598,8 @@ const ProfileDropdown = ({closeDropdown}: ProfileDropdownProps) => {
 	useEffect(() => {
         init()
     }, [])
+
+
     return (
 
 		<List sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper', paddingBottom: '2rem'}}>
@@ -623,8 +626,8 @@ const ProfileDropdown = ({closeDropdown}: ProfileDropdownProps) => {
 											vertical: 'top',
 											horizontal: 'left',
 										}}
-									>	
-										<FormattedMessage id='platform.ProfileDropdown.SI.network.title'/>
+									>
+										{intl.formatMessage({id: 'platform.ProfileDropdown.SI.network.title'})}
 									</Badge>
 								</ListItemText>
 							
@@ -648,7 +651,7 @@ const ProfileDropdown = ({closeDropdown}: ProfileDropdownProps) => {
 				buttonNavigationCurrent === 0 && sendStep < 1 && 						//			Faucet Information before send
 					<ListItem sx={{ textAlign: 'center', padding: '2rem'}}>
 						<Typography variant="body1" gutterBottom>
-							{<FormattedMessage id='platform.ProfileDropdown.faucet.limited'/>}
+							{intl.formatMessage({id: 'platform.ProfileDropdown.faucet.limited'})}
 						</Typography>
 					</ListItem>
 			}
@@ -658,7 +661,7 @@ const ProfileDropdown = ({closeDropdown}: ProfileDropdownProps) => {
 				<>
 					<ListItem sx={{ textAlign: 'center', padding: '2rem'}}>
 						<Typography variant="body1" gutterBottom>
-							{<FormattedMessage id='platform.ProfileDropdown.faucet.success'/>}
+							{intl.formatMessage({id: 'platform.ProfileDropdown.faucet.success'})}
 						</Typography>
 					</ListItem>
 					<ListItem sx={{ textAlign: 'center', padding: '2rem'}}>
@@ -668,7 +671,7 @@ const ProfileDropdown = ({closeDropdown}: ProfileDropdownProps) => {
 								resetWindow()
 							}}
 						>
-							{<FormattedMessage id='platform.manageProfiles.deleteProfile.confirmButton'/>}
+							{intl.formatMessage({id: 'platform.manageProfiles.deleteProfile.confirmButton'})}
 						</Button>
 							
 					</ListItem>
@@ -682,7 +685,7 @@ const ProfileDropdown = ({closeDropdown}: ProfileDropdownProps) => {
 				<>
 					<ListItem sx={{ textAlign: 'center', padding: '2rem'}}>
 						<Typography variant="body1" gutterBottom sx={{ color: red[700]}}>
-							{<FormattedMessage id='platform.ProfileDropdown.faucet.error'/>}
+							{intl.formatMessage({id: 'platform.ProfileDropdown.faucet.error'})}
 						</Typography>
 					</ListItem>
 					<ListItem sx={{ textAlign: 'center', padding: '2rem'}}>
@@ -692,7 +695,7 @@ const ProfileDropdown = ({closeDropdown}: ProfileDropdownProps) => {
 								resetWindow ()
 							}}
 						>
-							{<FormattedMessage id='platform.manageProfiles.deleteProfile.confirmButton'/>}
+							{intl.formatMessage({id: 'platform.manageProfiles.deleteProfile.confirmButton'})}
 						</Button>
 					</ListItem>
 				</>
@@ -703,7 +706,8 @@ const ProfileDropdown = ({closeDropdown}: ProfileDropdownProps) => {
 				<>
 					<ListItem sx={{ textAlign: 'center', padding: '2rem'}}>
 						<Typography variant="body1" gutterBottom sx={{ color: red[700]}}>
-							{<FormattedMessage id='platform.ProfileDropdown.send.error'/>}
+							{intl.formatMessage({id: 'platform.ProfileDropdown.send.error'})}
+							
 						</Typography>
 					</ListItem>
 					<ListItem sx={{ textAlign: 'center', padding: '2rem'}}>
@@ -713,7 +717,7 @@ const ProfileDropdown = ({closeDropdown}: ProfileDropdownProps) => {
 								resetWindow ()
 							}}
 						>
-							{<FormattedMessage id='platform.manageProfiles.deleteProfile.confirmButton'/>}
+							{intl.formatMessage({id: 'platform.manageProfiles.deleteProfile.confirmButton'})}
 						</Button>
 					</ListItem>
 				</>
@@ -728,7 +732,9 @@ const ProfileDropdown = ({closeDropdown}: ProfileDropdownProps) => {
 							size="small"
 							variant="standard" 
 							error={/error/.test(walletTextFieldID)?true:false}
-							label={<FormattedMessage id='platform.ProfileDropdown.send.receiver'/>} 
+							label={
+								intl.formatMessage({id:'platform.ProfileDropdown.send.receiver'})
+							} 
 							fullWidth
 							color='primary'
 							value={toAddr}
@@ -744,7 +750,9 @@ const ProfileDropdown = ({closeDropdown}: ProfileDropdownProps) => {
 								variant="standard"
 								color='secondary'
 								error={/error/.test(amountTextFieldID)? true: false}
-								label={<FormattedMessage id='platform.ProfileDropdown.send.amount'/>}
+								label={
+									intl.formatMessage({id:'platform.ProfileDropdown.send.amount'})
+								}
 								type='number'
 								value={amountVal}
 								onChange={e=> {
@@ -769,7 +777,7 @@ const ProfileDropdown = ({closeDropdown}: ProfileDropdownProps) => {
 								maxClick()
 							}}
 							>
-								{<FormattedMessage id='platform.ProfileDropdown.send.max'/>}
+								{intl.formatMessage({id:'platform.ProfileDropdown.send.max'})}
 							</Button>
 						</Stack>
 						
@@ -786,7 +794,7 @@ const ProfileDropdown = ({closeDropdown}: ProfileDropdownProps) => {
 						<Grid container spacing={2} sx={{ padding: '1.5rem'}} width='100%' justifyContent="center">
 							<Grid item xs={7}>
 								<Typography variant="subtitle2" gutterBottom color='grey' width={'30%'}>
-									{<FormattedMessage id='platform.ProfileDropdown.send.receiver'/>}
+								{intl.formatMessage({id:'platform.ProfileDropdown.send.receiver'})}
 									
 								</Typography>
 							</Grid>
@@ -811,7 +819,7 @@ const ProfileDropdown = ({closeDropdown}: ProfileDropdownProps) => {
 							</Grid>
 							<Grid item xs={8}>
 								<Typography variant="subtitle2" gutterBottom color={'grey'} >
-									{<FormattedMessage id='platform.ProfileDropdown.send.estimatedGas'/>}
+									{intl.formatMessage({id:'platform.ProfileDropdown.send.estimatedGas'})}
 								</Typography>
 							</Grid>
 							<Grid item xs={4}>
@@ -825,7 +833,7 @@ const ProfileDropdown = ({closeDropdown}: ProfileDropdownProps) => {
 							
 							<Grid item xs={6}>
 								<Typography variant="subtitle2" gutterBottom color='grey' width={'30%'}>
-									{<FormattedMessage id='platform.ProfileDropdown.send.total'/>}
+									{intl.formatMessage({id:'platform.ProfileDropdown.send.total'})}
 								</Typography>
 							</Grid>
 							<Grid item xs={6}>
@@ -844,7 +852,7 @@ const ProfileDropdown = ({closeDropdown}: ProfileDropdownProps) => {
 				<>
 					<ListItem sx={{ width: '100%', paddingLeft: '2rem', paddingRight: '2rem', paddingBottom: '0px'}} id="USDC_Price">
 						<Typography variant="body1" gutterBottom sx={{textAlign: 'center'}}>
-							{<FormattedMessage id='platform.ProfileDropdown.buy.usdcPrice'/>}
+							{intl.formatMessage({id:'platform.ProfileDropdown.buy.usdcPrice'})}
 						</Typography>
 					</ListItem>
 					<ListItem sx={{ width: '100%', paddingLeft: '2rem', paddingRight: '2rem', paddingTop: '0px'}}>
@@ -859,7 +867,9 @@ const ProfileDropdown = ({closeDropdown}: ProfileDropdownProps) => {
 								variant="standard"
 								color='secondary'
 								error={/error/.test(amountTextFieldID)? true: false}
-								label={<FormattedMessage id='platform.ProfileDropdown.spend'/>}
+								label={
+									intl.formatMessage({id:'platform.ProfileDropdown.spend'})
+								}
 								type='number'
 								value={amountVal}
 								onChange={ e => {
@@ -883,13 +893,13 @@ const ProfileDropdown = ({closeDropdown}: ProfileDropdownProps) => {
 									maxCoNETClick()
 								}}
 							>
-								{<FormattedMessage id='platform.ProfileDropdown.send.max'/>}
+								{intl.formatMessage({id:'platform.ProfileDropdown.send.max'})}
 							</Button>
 						</Stack>
 					</ListItem>
 					<ListItem >
 						<TextField id='outlined-read-only-input'
-							label={<FormattedMessage id='platform.ProfileDropdown.Receive'/>}
+							label={intl.formatMessage({id:'platform.ProfileDropdown.Receive'})}
 							value={receiveVal}
 							InputProps={{endAdornment: <InputAdornment position="end">USDC</InputAdornment>}}
 							sx={{ width: '100%'}}
@@ -905,7 +915,7 @@ const ProfileDropdown = ({closeDropdown}: ProfileDropdownProps) => {
 						/error/.test(amountTextFieldID) &&
 						<ListItem >
 							<Typography variant="body1" gutterBottom sx={{textAlign: 'center', color: '#d50000'}}>
-								{<FormattedMessage id='platform.ProfileDropdown.CoNETCash.amountError'/>}
+								{intl.formatMessage({id:'platform.ProfileDropdown.CoNETCash.amountError'})}
 							</Typography>
 						</ListItem>
 					}
@@ -917,7 +927,9 @@ const ProfileDropdown = ({closeDropdown}: ProfileDropdownProps) => {
 								variant="standard"
 								color='secondary'
 								error={/error/.test(amountTextFieldID)? true: false}
-								label={<FormattedMessage id='platform.ProfileDropdown.send.amount'/>}
+								label={
+									intl.formatMessage({id:'platform.ProfileDropdown.send.amount'})
+								}
 								type='number'
 								value={amountVal}
 								onChange={e=> {
@@ -940,7 +952,7 @@ const ProfileDropdown = ({closeDropdown}: ProfileDropdownProps) => {
 								maxBuyCoNETCashClick()
 							}}
 							>
-								{<FormattedMessage id='platform.ProfileDropdown.send.max'/>}
+								{intl.formatMessage({id:'platform.ProfileDropdown.send.max'})}
 							</Button>
 						</Stack>
 					</ListItem>
@@ -956,7 +968,8 @@ const ProfileDropdown = ({closeDropdown}: ProfileDropdownProps) => {
 							
 						<Grid item xs={6} sx={{textAlign: 'left', paddingTop: '5px!important'}}>
 							<Typography variant="body1" gutterBottom sx={ showHistoryDetail.isSend ? {color: red[900]}: {color: blue[400]}}>
-								{showHistoryDetail.isSend ? <FormattedMessage id='platform.ProfileDropdown.history.type.send' /> : <FormattedMessage id='platform.ProfileDropdown.history.type.receive'/>}
+								{intl.formatMessage({id:showHistoryDetail.isSend ? 'platform.ProfileDropdown.history.type.send' : 'platform.ProfileDropdown.history.type.receive'})}
+								
 							</Typography>
 						</Grid>
 						<Grid item xs={6} sx={{ textAlign: 'right', paddingTop: '0px!important', marginRight: '-1rem'}}>
@@ -967,7 +980,7 @@ const ProfileDropdown = ({closeDropdown}: ProfileDropdownProps) => {
 
 						<Grid item xs={3} sx={{textAlign: 'left', paddingTop: '2rem!important'}}>
 							<Typography variant="caption" gutterBottom sx={{}}>
-								<FormattedMessage id='platform.ProfileDropdown.history.timestamp' />
+								{intl.formatMessage({id:'platform.ProfileDropdown.history.timestamp'})}
 							</Typography>
 						</Grid>
 						<Grid item xs={9} sx={{ textAlign: 'right', paddingTop: '2rem!important'}}>
@@ -978,7 +991,7 @@ const ProfileDropdown = ({closeDropdown}: ProfileDropdownProps) => {
 
 						<Grid item xs={7} sx={{textAlign: 'left'}}>
 							<Typography variant="caption" gutterBottom sx={{}}>
-								<FormattedMessage id={ showHistoryDetail?.isSend ? 'platform.ProfileDropdown.send.receiver': 'platform.ProfileDropdown.history.sender'} /> 
+								{intl.formatMessage({id:showHistoryDetail?.isSend ? 'platform.ProfileDropdown.send.receiver': 'platform.ProfileDropdown.history.sender'})}
 							</Typography>
 						</Grid>
 						{
@@ -986,7 +999,7 @@ const ProfileDropdown = ({closeDropdown}: ProfileDropdownProps) => {
 							<Grid item xs={5}
 								sx={{ textAlign: 'right'}} zeroMinWidth >
 								<Typography variant="caption" gutterBottom sx={{color: blueGrey[600]}} noWrap>
-									{ showHistoryDetail?.isSend ? shortToAddr(showHistoryDetail?.to) : showHistoryDetail.from ? shortToAddr(showHistoryDetail.from) : <FormattedMessage id='platform.ProfileDropdown.history.CoNETCash.mint' />} 
+									{ showHistoryDetail?.isSend ? shortToAddr(showHistoryDetail?.to) : showHistoryDetail.from ? shortToAddr(showHistoryDetail.from) : intl.formatMessage({id:'platform.ProfileDropdown.history.CoNETCash.mint'})}
 								</Typography>
 							</Grid>
 						}
@@ -1016,7 +1029,7 @@ const ProfileDropdown = ({closeDropdown}: ProfileDropdownProps) => {
 
 						<Grid item xs={6} sx={{textAlign: 'left'}}>
 							<Typography variant="caption" gutterBottom sx={{}}>
-								<FormattedMessage id='platform.ProfileDropdown.send.amount' /> 
+								{intl.formatMessage({id:'platform.ProfileDropdown.send.amount'})}
 							</Typography>
 						</Grid>
 						<Grid item xs={6} sx={{ textAlign: 'right'}}>
@@ -1027,7 +1040,7 @@ const ProfileDropdown = ({closeDropdown}: ProfileDropdownProps) => {
 						
 						<Grid item xs={6} sx={{textAlign: 'left'}}>
 							<Typography variant="caption" gutterBottom sx={{}}>
-								<FormattedMessage id='platform.ProfileDropdown.history.gas.total' /> 
+								{intl.formatMessage({id:'platform.ProfileDropdown.history.gas.total'})}
 							</Typography>
 						</Grid>
 						<Grid item xs={6} sx={{ textAlign: 'right'}}>
@@ -1038,7 +1051,7 @@ const ProfileDropdown = ({closeDropdown}: ProfileDropdownProps) => {
 
 						<Grid item xs={6} sx={{textAlign: 'left'}}>
 							<Typography variant="caption" gutterBottom sx={{}}>
-								<FormattedMessage id='platform.ProfileDropdown.send.total' /> 
+								{intl.formatMessage({id:'platform.ProfileDropdown.send.total'})}
 							</Typography>
 						</Grid>
 						<Grid item xs={6} sx={{ textAlign: 'right'}}>
@@ -1071,13 +1084,13 @@ const ProfileDropdown = ({closeDropdown}: ProfileDropdownProps) => {
 							<Button variant="outlined" onClick={() => {
 								resetWindow ()
 							}}>
-								{<FormattedMessage id='platform.dialog.delete.button.cancel'/>}
+								{intl.formatMessage({id:'platform.dialog.delete.button.cancel'})}
 							</Button>
 							<Button onClick={nextClick}
 							variant="contained"
 							disabled={(buttonNavigationCurrent === 1 && (amountVal<=0||!toAddr||/error/.test(walletTextFieldID)||/error/.test(amountTextFieldID)))}
 							>
-								{<FormattedMessage id='platform.ProfileDropdown.send.next'/>}
+								{intl.formatMessage({id:'platform.ProfileDropdown.send.next'})}
 							</Button>
 						</Stack>
 					</ListItem>
@@ -1094,20 +1107,21 @@ const ProfileDropdown = ({closeDropdown}: ProfileDropdownProps) => {
 						{
 							currectAsset === 0 &&			//		Faucet		buttonNavigationCurrent = 0
 							<BottomNavigationAction
-								label={<FormattedMessage id='platform.ProfileDropdown.CurrentProfileItem.actionFondWallet'/>}
+								label={intl.formatMessage({id:'platform.ProfileDropdown.CurrentProfileItem.actionFondWallet'})}
+								
 								icon={<Opacity />}
 							/>
 						}
 						
 						<BottomNavigationAction				//		Send asset	buttonNavigationCurrent = 1
-							label={<FormattedMessage id='platform.ProfileDropdown.CurrentProfileItem.actionSend'/>}
+							label={intl.formatMessage({id:'platform.ProfileDropdown.CurrentProfileItem.actionSend'})}
 							icon={<Outbound />}
 						/>
 
 						{
 							currectAsset !== 0 &&			//		buy assetbuttonNavigationCurrent = 2
 							<BottomNavigationAction
-								label={<FormattedMessage id='platform.ProfileDropdown.CurrentProfileItem.buy'/>}
+								label={intl.formatMessage({id:'platform.ProfileDropdown.CurrentProfileItem.buy'})}
 								icon={<DownloadForOfflineIcon />}
 							/>
 						}
@@ -1122,8 +1136,8 @@ const ProfileDropdown = ({closeDropdown}: ProfileDropdownProps) => {
 					<Box sx={{ width: '100%'}}>
 						<Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
 							<Tabs value={valueTab} onChange={handleTabChange}>
-								<Tab {...a11yProps(0)} label={<FormattedMessage id='platform.ProfileDropdown.Tablable.Assets'/>} sx={{ width: '50%'}}/>
-								<Tab {...a11yProps(1)} label={<FormattedMessage id='platform.ProfileDropdown.Tablable.Activity'/> } sx={{ width: '50%'}}/>
+								<Tab {...a11yProps(0)} label={intl.formatMessage({id:'platform.ProfileDropdown.Tablable.Assets'})} sx={{ width: '50%'}}/>
+								<Tab {...a11yProps(1)} label={intl.formatMessage({id:'platform.ProfileDropdown.Tablable.Activity'})} sx={{ width: '50%'}}/>
 							</Tabs>
 							
 						</Box>

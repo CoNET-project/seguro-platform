@@ -40,14 +40,11 @@ const App = () => {
 
 	const [reload, setReload] = useState(false)
     useEffect(() => {
-
 		
         dAPPInitialize().then(() => {
 			if (!isInitializing) {
 				setReload (true)
 			}
-			
-			
 
         })
 

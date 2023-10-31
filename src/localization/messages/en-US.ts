@@ -235,24 +235,75 @@ const en_US: Messages = {
 	'platform.ProfileDropdown.nodelist.outboundPrice': 'Network USDC 1GB',
 
 
-	'platform.ProfileDropdown.nodelist.about': 'The CoNET "Stealth Internet" provide user zero metadata privacy internet communication.',
+	'platform.ProfileDropdown.nodelist.about': 'The CONET "Stealth Internet" provide user zero metadata privacy internet communication.',
 	'platform.ProfileDropdown.nodelist.about1': 'The data packets transmitted on the Internet contain the IP addresses and unencrypted content of the sender and the recipient.',
-	'platform.ProfileDropdown.nodelist.about2': `The CoNET-IS is completely different from the Internet, it does not use IP addresses which has rich metadata containing personal information and geographic location. The two parties use a one-time wallet address as a means of keeping the communication anonymous. The data in packets of CoNET-SI does not contain sender address. The package content in CoNET-SI must be encrypted to be identified, transmitted and delivered to receiver's wallet address.`,
+	'platform.ProfileDropdown.nodelist.about2': `The CONET-IS is completely different from the Internet, it does not use IP addresses which has rich metadata containing personal information and geographic location. The two parties use a one-time wallet address as a means of keeping the communication anonymous. The data in packets of CoNET-SI does not contain sender address. The package content in CoNET-SI must be encrypted to be identified, transmitted and delivered to receiver's wallet address.`,
 
-	'platform.ProfileDropdown.CoNET.website': 'Click here to visit CoNET Project website.',
+	'platform.ProfileDropdown.CoNET.website': 'Click here to visit CONET Project website.',
 
 	'platform.country.de': 'Germany',
 	'platform.country.us': 'United States',
 	'platform.country.gb': 'United Kingdom',
 	'platform.country.es': 'Spain',
 
-	'globalBar.application.AppStore': 'CoNET APP Store',
+	'globalBar.application.AppStore': 'CONET APP Store',
 
-	'tabnavigator.appStore.title': 'Welcome to CoNET App Store',
+	'tabnavigator.appStore.title': 'Welcome to CONET App Store',
 
 	'platform.app.seguro.messenger.panels.addContact.info': 'You can add a contact by their wallet address below.',
-	'platform.app.seguro.messenger.panels.addContact.firstMessage': 'Additionally, you may set a nickname for this contact. Send them a custom greeting to let them know who you are!'
+	'platform.app.seguro.messenger.panels.addContact.firstMessage': 'Additionally, you may set a nickname for this contact. Send them a custom greeting to let them know who you are!',
 
+    'launchPage.HeaderArea.title1-1': 'CONET - COMPLETE PRIVACY FOR',
+    'launchPage.HeaderArea.title1-2': 'THE NEW INTERNET',
+    'launchPage.HeaderArea.title2': `We've Invented A Way to Actually Anonymize The Internet`,
+    'launchPage.HeaderArea.button': 'Try DEMO',
+    'launchPage.HeaderArea.secondPart.1': 'We Rebuilt the Entire Internet… to Be',
+    'launchPage.HeaderArea.secondPart.2': 'Censorship Resistant',
+    'launchPage.HeaderArea.secondPart.3': 'CONET has reinvented the Internet by coming up with a censorship-resistant method of data',
+    'launchPage.HeaderArea.secondPart.4': 'exchange using wallet addresses instead of IP addresses.',
+    
+    'launchPage.FeatureArea1.1': 'USE WALLET ADDRESSES INSTEAD OF IP ADDRESSES',
+    'launchPage.FeatureArea1.2': 'CONET presents a brand new network layer for the Internet that does not use IP addresses or contain any metadata. This is the only routing method that enables total anonymity, privacy, and universal access.',
+    'launchPage.FeatureArea2.1': 'EASY FOR USERS TO UNDERSTAND AND USE',
+    'launchPage.FeatureArea2.2': 'CONET helps users avoid ubiquitous surveillance, communication filters, and big data collection, all without creating technical barriers. The interface is intuitive and aesthetically pleasing, removing any trade-offs of previous solutions.',
+    'launchPage.FeatureArea3.1': 'ANONYMITY MINER PoS LAYER 1',
+    'launchPage.FeatureArea3.2': 'CONET is open source project and it is Permitless, Trustless. Users are able to pay gas, earn rewards, delegate tokens, run nodes, and vote on governance initiatives with the CONET token. The quality of service is decided by users and service providers themselves, and CONET is no longer involved.',
+
+    'launchPage.FeatureArea4.1': 'CONET Surpasses Everything Else Out There',
+    'launchPage.FeatureArea4.2': `This is a solution that can do something that TOR, NYM, dVPN, and all other solutions you've heard of cannot.`,
+
+    'launchPage.FeatureArea5.1': 'TRUE PRIVACY',
+    'launchPage.FeatureArea5.2': 'Privacy from government and corporate surveillance is becoming increasingly important to users. By abandoning cumbersome Web2 communication protocols, an innovative Web3 protocol with true privacy becomes possible.',
+
+    'launchPage.FeatureArea6.1': 'SIMPLE USER ADOPTION',
+    'launchPage.FeatureArea6.2': 'Onboarding is easy since the platform runs in various browsers. There’s no need to install any app to get the benefit of CONET. All incoming and outgoing data will still be encrypted, making user history invisible.',
+
+    'launchPage.FeatureArea7.1': 'EASY DEVELOPMENT',
+    'launchPage.FeatureArea7.2': 'CONET has a built-in development package that allows developers to build apps for Web3. The single code base and universal device capability streamline development for non-Web3 coders.',
+
+    'launchPage.FeatureArea.1': 'CONET is A Ground-Up Revamp of the',
+    'launchPage.FeatureArea.2': 'Entire Privacy Market',
+    'launchPage.FeatureArea.3': 'CONET’s Unique Design',
+
+    'platform.home': 'CONET Home',
+    'platform.proxy': 'CoNET Proxy',
+    'platform.proxy.title': 'THE FAST & PRIVACY PROXY',
+    'platform.proxy.FeatureArea.title.1': 'CONET is A Ground-Up Revamp of the',
+    'platform.proxy.FeatureArea.title.2': 'Entire Privacy VPN Market',
+    'platform.proxy.FeatureArea5.1': 'TRUE PRIVACY',
+    'platform.proxy.FeatureArea5.2': 'CONET-Proxy rewrites the definition of VPN privacy. Fragmented communication allows data to be perfectly hidden in the data ocean. Using wallet address network to make customers completely anonymous to decentralized VPN service providers',
+    'platform.proxy.FeatureArea6.1': 'Traffic Obfuscation',
+    'platform.proxy.FeatureArea6.2': `The biggest feature of CONET's data communication is that it has no special protocol and focuses on hiding data traffic.`,
+    'platform.proxy.FeatureArea7.1': 'Parallel multi-channel',
+    'platform.proxy.FeatureArea7.2': `CONET proxy is the first in the industry that can use multiple proxy servers concurrent communication technology at the same time`,
+    'platform.proxy.FeatureArea.start': 'Ready To Start',
+    'platform.proxy.step1.title': 'Free User',
+    'platform.proxy.featureArea8Item.step1': 'Step 1 Wallet recharge',
+    'platform.proxy.featureArea8Item.step1.CONETbalance': 'CONET balance',
+    'platform.proxy.featureArea8Item.step1.transferQuote': 'Billed by traffic, 1MB/1$CONET',
+    'platform.proxy.featureArea8Item.step2': 'Step 2 select proxy server localtion',
+    'platform.proxy.featureArea8Item.step2.random': 'Multiple selections will use randomly by fragmented data packets',
+    'platform.proxy.featureArea8Item.step3': 'Setp 3 Setup Your FireFox'
 }
 
 export default en_US

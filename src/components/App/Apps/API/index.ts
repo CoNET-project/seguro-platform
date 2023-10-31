@@ -1,6 +1,7 @@
 
 import {v4} from 'uuid'
 import {logger} from '../../../../components/App/logger'
+import useAppState from "../../../../store/appState/useAppState"
 
 type WorkerCommandErrorType = 'NOT_READY'|'INVALID_DATA'|
 'NO_UUID'|'INVALID_COMMAND'|'OPENPGP_RUNNING_ERROR'|
@@ -104,7 +105,6 @@ const channelWrokerListenName = 'toMainWroker'
 
 
 export class CONET_Platfrom_API {
-     
     private postMessage = (cmd: WorkerCommand, resolve:  (value: StartWorkerResolveForAPI | PromiseLike<StartWorkerResolveForAPI>) => void) => {
         
         const channel = new BroadcastChannel(channelWrokerListenName)
@@ -179,6 +179,18 @@ export class CONET_Platfrom_API {
                 cmd: 'getRegiestNodes',
                 uuid: v4(),
                 data: []
+            }
+            return this.postMessage (cmd, resolve)
+        })
+    }
+
+    public createPasscode(passcord: string, local: string): Promise < StartWorkerResolveForAPI > {
+        return new Promise( resolve => {
+            
+            const cmd: WorkerCommand = {
+                cmd: 'encrypt_createPasscode',
+                uuid: v4(),
+                data: [passcord, local]
             }
             return this.postMessage (cmd, resolve)
         })

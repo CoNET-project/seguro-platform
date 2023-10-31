@@ -32,8 +32,8 @@ export const getWorkerService = () => {
 }
 
 export const setUserPreferences = () => {
-    if ( workerService?.preferences?.preferences) {
-        const {theme, language}: Preferences = workerService.preferences.preferences
+    if ( workerService?.preferences) {
+        const {theme, language}: Preferences = workerService.preferences
 
         if (theme) {
             store.dispatch(setTheme(theme))
@@ -58,6 +58,7 @@ export const initializeWorkerService = async () => {
 
 	logger.log('workerService.ts', 'container:', container)
 	workerService = container
+
 	switch (true) {
 		case container.status === 'NOT_SET':
 			store.dispatch(setHasContainer(false))

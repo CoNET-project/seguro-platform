@@ -249,6 +249,56 @@ export type Messages = {
 	'tabnavigator.guide.title': string
 
 	'tabnavigator.appStore.title': string
-}
 
+    'launchPage.HeaderArea.title1-1': string
+    'launchPage.HeaderArea.title1-2': string
+    'launchPage.HeaderArea.title2': string
+    'launchPage.HeaderArea.button': string
+    'launchPage.HeaderArea.secondPart.1': string
+    'launchPage.HeaderArea.secondPart.2': string
+    'launchPage.HeaderArea.secondPart.3': string
+    'launchPage.HeaderArea.secondPart.4': string
+
+    'launchPage.FeatureArea1.1': string
+    'launchPage.FeatureArea1.2': string
+    'launchPage.FeatureArea2.1': string
+    'launchPage.FeatureArea2.2': string
+    'launchPage.FeatureArea3.1': string
+    'launchPage.FeatureArea3.2': string
+    'launchPage.FeatureArea4.1': string
+    'launchPage.FeatureArea4.2': string
+    'launchPage.FeatureArea5.1': string
+    'launchPage.FeatureArea5.2': string
+    'launchPage.FeatureArea6.1': string
+    'launchPage.FeatureArea6.2': string
+    'launchPage.FeatureArea7.1': string
+    'launchPage.FeatureArea7.2': string
+    'launchPage.FeatureArea.1': string
+    'launchPage.FeatureArea.2': string
+    'launchPage.FeatureArea.3': string
+
+    'platform.home': string
+    'platform.proxy': string
+    'platform.proxy.title': string
+    'platform.proxy.FeatureArea.title.1': string
+    'platform.proxy.FeatureArea.title.2': string
+    'platform.proxy.FeatureArea5.1': string
+    'platform.proxy.FeatureArea5.2': string
+    'platform.proxy.FeatureArea6.1': string
+    'platform.proxy.FeatureArea6.2': string
+    'platform.proxy.FeatureArea7.1': string
+    'platform.proxy.FeatureArea7.2': string
+
+    'platform.proxy.FeatureArea.start': string
+    'platform.proxy.step1.title': string
+
+    'platform.proxy.featureArea8Item.step1': string
+    'platform.proxy.featureArea8Item.step1.CONETbalance': string
+    'platform.proxy.featureArea8Item.step1.transferQuote': string
+    'platform.proxy.featureArea8Item.step2': string
+    'platform.proxy.featureArea8Item.step2.random': string
+    'platform.proxy.featureArea8Item.step3': string
+
+    
+}
 export type MessagesByLocale = Record<Locale, Messages>

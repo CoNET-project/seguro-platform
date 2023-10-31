@@ -151,7 +151,7 @@ const receiptDetail = (receipt: CryptoAssetHistory,openBlockScan: (data: CryptoA
                     <Grid item xs={3} sx={{textAlign: 'left', fontWeight: '600', color: grey[700], fontFamily: '', fontSize: '14px'}}>
                         Address:
                     </Grid>
-                    <Grid item xs={9} sx={{textAlign: 'left', fontSize: '14px'}}>
+                    <Grid item xs={9} sx={{textAlign: 'left', fontSize: '14px'}} onClick = {() => window. open(`https://scan.conet.network/address/${receipt.to}`, '_blank', 'noreferrer') }>
                         <Link underline="hover" href="#">
                             {receipt.to}
                         </Link>
@@ -173,8 +173,8 @@ const receiptDetail = (receipt: CryptoAssetHistory,openBlockScan: (data: CryptoA
                     <Grid item xs={3} sx={{textAlign: 'left', fontFamily: '', color: grey[700], fontSize: '14px'}}>
                         Transaction Hash:
                     </Grid>
-                    <Grid item xs={9} sx={{textAlign: 'left', fontSize: '14px'}} onClick = {() => openBlockScan(receipt)}>
-                        <Link underline="hover" href="#" >
+                    <Grid item xs={9} sx={{textAlign: 'left', fontSize: '14px'}} onClick = {() => window. open(`https://scan.conet.network/tx/${receipt.transactionHash}`, '_blank', 'noreferrer') }>
+                        <Link underline="hover" href="#"  >
                             {receipt.transactionHash}
                         </Link>
                     </Grid>

@@ -242,7 +242,57 @@ const zh_CN: Messages = {
 
 	'tabnavigator.appStore.title': '欢迎來到CoNET应用商店',
 	'platform.app.seguro.messenger.panels.addContact.info': '您可以在下方，通过他们的钱包地址添加联系人',
-	'platform.app.seguro.messenger.panels.addContact.firstMessage': '您可以为此联系人设置昵称。 向他们发送自定义问候语，让他们知道您是谁！'
+	'platform.app.seguro.messenger.panels.addContact.firstMessage': '您可以为此联系人设置昵称。 向他们发送自定义问候语，让他们知道您是谁！',
+    'launchPage.HeaderArea.title1-1': 'CONET - 为隐私而生',
+    'launchPage.HeaderArea.title1-2': '新互联网',
+    'launchPage.HeaderArea.title2': `CONET是真正匿名的互联网`,
+    'launchPage.HeaderArea.button': '现在就尝试',
+    'launchPage.HeaderArea.secondPart.1': '用户无需再去信任一个承諾',
+    'launchPage.HeaderArea.secondPart.2': 'CONET通过技术革命实现了真正的隐私',
+    'launchPage.HeaderArea.secondPart.3': 'CONET使用钱包地址, 取代有着丰富个人信息的IP地址',
+    'launchPage.HeaderArea.secondPart.4': '来进行数据信息交换',
+
+    'launchPage.FeatureArea1.1': '上网设备使用钱包地址来区分彼此',
+    'launchPage.FeatureArea1.2': '无需许可，用户可按需随时任意创建的钱包地址，使用它来实现完全匿名、隐私和普遍访问的路由及信息交換',
+
+    'launchPage.FeatureArea2.1': '简单明了和高效',
+    'launchPage.FeatureArea2.2': 'CoNET帮助用户逃避无处不在的监控、通信过滤及大数据收集。CONET在技术上永不妥协',
+    'launchPage.FeatureArea3.1': '世界首个匿名挖矿的公链项目',
+    'launchPage.FeatureArea3.2': 'CONET是一个無需許可、無需信任、由社区驱动共同建设的開源项目。区块链技术上首次实现了匿名挖矿。用戶可以使用CONET代幣支付Gas费、賺取獎勵、委託代幣、運行節點以及對治理計劃進行投票。',
+
+    'launchPage.FeatureArea4.1': '傲立群雄',
+    'launchPage.FeatureArea4.2': `CONET可以完成包括VPN、TOR、NYM、dVPN等，您所知的所有其他解决方案，无法完成的任务。`,
+    'launchPage.FeatureArea5.1': '真正的私密',
+    'launchPage.FeatureArea5.2': '中本聪解决了钱包地址的资产转移，CONET解决了钱包地址的信息高速高吞吐交换。CONET是实现Web3远景所不可缺的网路基础设施',
+    'launchPage.FeatureArea6.1': '简单及军用级安全标准',
+    'launchPage.FeatureArea6.2': 'CONET平台运行在各种浏览器中，无需安装和获得系统授权。CONET在客户端创建了一个安全沙盒，进出沙盒所有数据均被加密。本地文件存储碎片化后加密保存，无元数据的碎片，即便电脑有监控程序，都无法进行拼图复原，客户记录不再可见',
+    'launchPage.FeatureArea7.1': '轻松dAPP开发',
+    'launchPage.FeatureArea7.2': 'CONET的去中心化域名解释系统，解决了根服务器对互联网的控制。CONET平台允许开发者使用PWA技术开发Web3的dAPP，一套代码对应所有设备，低成本开发成为可能。去中心化的应用分发系统，解决了中心化应用商店的审查机制，保障了技术创新和投资回报',
+    'launchPage.FeatureArea.1': 'CONET 是对整个隐私市场的彻底改造',
+    'launchPage.FeatureArea.2': ' ',
+    'launchPage.FeatureArea.3': '独创设计',
+
+    'platform.home': 'CONET平台',
+    'platform.proxy': 'CONET代理',
+    'platform.proxy.title': '最隐私的高速代理',
+    'platform.proxy.FeatureArea.title.1': 'CONET代理，重新定義隐私VPN市场',
+    'platform.proxy.FeatureArea.title.2': ' ',
+    'platform.proxy.FeatureArea5.1': '实现真正的隐私',
+    'platform.proxy.FeatureArea5.2': 'CONET代理技术重写了VPN隐私定义。碎片化通信让数据完美地隐藏在数据海洋中。钱包地址通讯路由网络，让客户在去中心化代理服务商面前完全匿名',
+    'platform.proxy.FeatureArea6.1': '流量混淆技术',
+    'platform.proxy.FeatureArea6.2': `CONET代理最大特点是没有特殊协议，碎片化通讯让流量隐身不可见`,
+    'platform.proxy.FeatureArea7.1': '并发流量的威力',
+    'platform.proxy.FeatureArea7.2': `CONET代理業界首創可同時使用多個代理伺服器並發通訊技術`,
+    'platform.proxy.FeatureArea.start': '开始使用',
+    'platform.proxy.step1.title': '免费用户',
+    'platform.proxy.featureArea8Item.step1': '第一步：帐户充值',
+    'platform.proxy.featureArea8Item.step1.CONETbalance': 'CONET余额',
+    'platform.proxy.featureArea8Item.step1.transferQuote': '计费 1MB/1$CONET',
+    'platform.proxy.featureArea8Item.step2': '第二步：选择代理服务器位置(可多选)',
+    'platform.proxy.featureArea8Item.step2.random': '多重选择，通讯数据将碎片化随机使用',
+    'platform.proxy.featureArea8Item.step3': '第三步：设置火狐浏览器来使用代理'
+
+
 }
 
 export default zh_CN

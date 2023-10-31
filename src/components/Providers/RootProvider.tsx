@@ -22,7 +22,7 @@ const RootProvider = ({
 }: ProviderProps) => {
     return (
         <StoreProvider>
-			< DocumentMeta {...meta}/>
+			<DocumentMeta {...meta}/>
             <ThemeProvider>
                 <LocalizationProvider>
                     {children}

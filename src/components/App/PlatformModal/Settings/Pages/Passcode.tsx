@@ -8,7 +8,7 @@ import {usePageNavigator} from "../../../../../contexts/pageNavigator/PageNaviga
 import {pageNavigator} from "../../../../../contexts/pageNavigator/pageNavigatorActions"
 import {pageTransitionVariants} from "../../../../UI/Motion/Variants/Variants"
 import MotionWrapper from "../../../../UI/Motion/MotionWrapper"
-import {FormattedMessage} from "react-intl"
+import {FormattedMessage, useIntl} from "react-intl"
 import {toast} from "../../../../UI/Toaster/Toaster"
 import {Password} from "../../../../UI/Icons/Icons"
 
@@ -51,7 +51,7 @@ const Passcode = ({custom}: PasscodeProps) => {
     const [newPasscode, setNewPasscode] = useState<[string, string]>(['', ''])
     const [currentStep, setCurrentStep] = useState<'passcode' | 'confirm'>('passcode')
     const [inputError, setInputError] = useState<ReactNode | string>('')
-
+    const intl = useIntl()
     const onKeypadClick = (val: number) => {
         setInputError('')
         if (currentStep === 'passcode') {
@@ -97,7 +97,7 @@ const Passcode = ({custom}: PasscodeProps) => {
         // Navigate back to settings
         toast({
             toastIcon: <Password/>,
-            event: <FormattedMessage id='toaster.action.passcodeChange'/>
+            event: intl.formatMessage({id: 'toaster.action.passcodeChange'})
         })
 
         return dispatch(pageNavigator.navigateToPage('Platform Settings'))
@@ -113,11 +113,11 @@ const Passcode = ({custom}: PasscodeProps) => {
 
     const stepButtonClickActions: StepButtonsClickActions = {
         previousButton: {
-            text: <FormattedMessage id='platform.settings.passcode.button.back'/>,
+            text: intl.formatMessage({id: 'platform.settings.passcode.button.back'}),
             action: onBackStepClick
         },
         nextButton: {
-            text: <FormattedMessage id='platform.settings.passcode.button.next'/>,
+            text: intl.formatMessage({id: 'platform.settings.passcode.button.next'}),
             action: onNextStepClick
         }
     }
@@ -128,8 +128,8 @@ const Passcode = ({custom}: PasscodeProps) => {
             <StyledPasscode>
                 <StyledPasscodeContent>
                     <StyledPasscodeTitle>
-                        <FormattedMessage
-                            id={currentStep === 'passcode' ? 'platform.settings.passcode.title.newPasscode' : 'platform.settings.passcode.title.confirmPasscode'}/>
+                        {intl.formatMessage({id: currentStep === 'passcode' ? 'platform.settings.passcode.title.newPasscode' : 'platform.settings.passcode.title.confirmPasscode'})}
+                        
                     </StyledPasscodeTitle>
                     <StyledPasscodeInputWrapper>
                         <PasscodeInput value={currentStep === 'passcode' ? newPasscode[0] : newPasscode[1]}/>

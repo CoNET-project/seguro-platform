@@ -1,6 +1,7 @@
 
 import Grid from '@mui/material/Grid'
 import Typography, {TypographyProps} from '@mui/material/Typography'
+import { useIntl } from "react-intl"
 import { createTheme, ThemeProvider, makeStyles, rgbToHex } from '@mui/material/styles';
 import { styled } from '@mui/material/styles'
 import Paper from '@mui/material/Paper'
@@ -115,6 +116,7 @@ const ColorButton = styled(Button)<ButtonProps>(({ theme }) => ({
 
 
 const FeatureArea1 = () => {
+    const intl = useIntl()
     return (
         <Box sx={{ flexGrow: 1, px: 3, paddingTop:'5rem' }}>
             <StyledFeatureArea elevation={0} sx={{my: 1, mx: 'auto', p: 2}}>
@@ -125,12 +127,13 @@ const FeatureArea1 = () => {
                         <Item3Left elevation={0}>
                             <Slide direction="right" in={true} mountOnEnter>
                                 <Typography variant="h5" sx={{ padding: '0rem 1rem 0rem 1rem', fontWeight: '600' }}>
-                                    USE WALLET ADDRESSES INSTEAD OF IP ADDRESSES
+                                    {intl.formatMessage({id:'launchPage.FeatureArea1.1'})}
                                 </Typography>
                             </Slide>
                             <Slide direction="right" in={true} mountOnEnter>
                                 <Typography variant="h6" sx={{ padding: '0rem 1rem 1rem 1rem' }}>
-                                    CoNET presents a brand new network layer for the Internet that does not use IP addresses or contain any metadata. This is the only routing method that enables total anonymity, privacy, and universal access.
+                                {intl.formatMessage({id:'launchPage.FeatureArea1.2'})}
+                                    
                                 </Typography>
                             </Slide>
                         </Item3Left>
@@ -149,6 +152,7 @@ const FeatureArea1 = () => {
 }
 
 const FeatureArea2 = () => {
+    const intl = useIntl()
     return (
         <Box sx={{ flexGrow: 1, px: 3, paddingTop:'0rem' }}>
             <StyledFeatureArea elevation={0} sx={{my: 1, mx: 'auto', p: 2}}>
@@ -167,12 +171,13 @@ const FeatureArea2 = () => {
                         <Item3Left elevation={0}>
                             <Slide direction="left" in={true} mountOnEnter>
                                 <Typography variant="h5" sx={{ padding: '0rem 1rem 0rem 1rem', fontWeight: '600' }}>
-                                    EASY FOR USERS TO UNDERSTAND AND USE
+                                {intl.formatMessage({id:'launchPage.FeatureArea2.1'})}
                                 </Typography>
                             </Slide>
                             <Slide direction="left" in={true} mountOnEnter>
                                 <Typography variant="h6" sx={{ padding: '0rem 1rem 1rem 1rem' }}>
-                                    CoNET helps users avoid ubiquitous surveillance, communication filters, and big data collection, all without creating technical barriers. The interface is intuitive and aesthetically pleasing, removing any trade-offs of previous solutions.
+                                    {intl.formatMessage({id:'launchPage.FeatureArea2.2'})}
+                                    
                                 </Typography>
                             </Slide>
                             
@@ -185,6 +190,7 @@ const FeatureArea2 = () => {
 }
 
 const FeatureArea3 = () => {
+    const intl = useIntl()
     return (
         <Box sx={{ flexGrow: 1, px: 3, paddingTop:'0rem' }}>
             <StyledFeatureArea elevation={0} sx={{my: 1, mx: 'auto', p: 2}}>
@@ -195,12 +201,12 @@ const FeatureArea3 = () => {
                         <Item3Left elevation={0}>
                             <Slide direction="right" in={true} mountOnEnter>
                                 <Typography variant="h5" sx={{ padding: '0rem 1rem 0rem 1rem', fontWeight: '600' }}>
-                                    GOOD BEHAVIOR INCENTIVIZED BY TOKEN USAGE
+                                    {intl.formatMessage({id:'launchPage.FeatureArea3.1'})}
                                 </Typography>
                             </Slide>
                             <Slide direction="right" in={true} mountOnEnter>
                                 <Typography variant="h6" sx={{ padding: '0rem 1rem 1rem 1rem' }}>
-                                    Users are able to pay gas, earn rewards, delegate tokens, run nodes, and vote on governance initiatives with the CoNET token. The quality of service is decided by users and service providers themselves, and CoNET is no longer involved.
+                                    {intl.formatMessage({id:'launchPage.FeatureArea3.2'})}
                                 </Typography>
                             </Slide>
                         </Item3Left>
@@ -219,6 +225,7 @@ const FeatureArea3 = () => {
 }
 
 const FeatureArea4 = () => {
+    const intl = useIntl()
     return (
         <ThemeProvider theme={themeTopArea1}>
             <Grid container spacing={0} >
@@ -226,11 +233,11 @@ const FeatureArea4 = () => {
                     <ItemTopArea2 elevation={0}>
                         <Slide direction="right" in={true} mountOnEnter>
                             <Typography variant="h4" sx={{ padding: '5rem 5rem 1rem 5rem' }}>
-                                CoNET Surpasses Everything Else Out There
+                            {intl.formatMessage({id:'launchPage.FeatureArea4.1'})}
                             </Typography>
                         </Slide>
                         <Typography variant="h6" sx={{ padding: '5rem 5rem 0rem 5rem', color: 'rgb(51,51,51'}}>
-                            This is a solution that can do something that TOR, NYM, dVPN, and all other solutions you've heard of cannot.
+                            {intl.formatMessage({id:'launchPage.FeatureArea4.2'})}
                         </Typography>
                     </ItemTopArea2>
                     
@@ -258,6 +265,7 @@ const StyleIconItem = styledCom.div`
 `
 
 const FeatureArea5Item = () => {
+    const intl = useIntl()
     return (
         <Grid item xs={4} sm={8} md={4} sx={{ paddingTop: '3rem'}}>
             <StyledItemArea elevation={0}>
@@ -267,10 +275,11 @@ const FeatureArea5Item = () => {
 
                 
                 <Typography variant="h5" sx={{ fontWeight: '900', textAlign:'center', paddingTop: '2rem' }}>
-                    TRUE PRIVACY 
+                    {intl.formatMessage({id:'launchPage.FeatureArea5.1'})}
                 </Typography>
                 <Typography variant="h6" sx={{ color: 'rgb(51,51,51)', textAlign:'center'}}>
-                    Privacy from government and corporate surveillance is becoming increasingly important to users. By abandoning cumbersome Web2 communication protocols, an innovative Web3 protocol with true privacy becomes possible.
+                    {intl.formatMessage({id:'launchPage.FeatureArea5.2'})}
+                    
                 </Typography>
             </StyledItemArea>
 
@@ -279,6 +288,7 @@ const FeatureArea5Item = () => {
 }
 
 const FeatureArea6Item = () => {
+    const intl = useIntl()
     return (
         <Grid item xs={4} sm={8} md={4} sx={{ paddingTop: '3rem'}}>
             <StyledItemArea elevation={0}>
@@ -288,10 +298,10 @@ const FeatureArea6Item = () => {
 
                 
                 <Typography variant="h5" sx={{ fontWeight: '900', textAlign:'center', paddingTop: '2rem' }}>
-                    SIMPLE USER ADOPTION
+                    {intl.formatMessage({id:'launchPage.FeatureArea6.1'})}
                 </Typography>
                 <Typography variant="h6" sx={{ color: 'rgb(51,51,51)', textAlign:'center'}}>
-                    Onboarding is easy since the platform runs in various browsers. There’s no need to install any app to get the benefit of CoNET. All incoming and outgoing data will still be encrypted, making user history invisible.
+                    {intl.formatMessage({id:'launchPage.FeatureArea6.2'})}
                 </Typography>
             </StyledItemArea>
 
@@ -301,6 +311,7 @@ const FeatureArea6Item = () => {
 
 
 const FeatureArea7Item = () => {
+    const intl = useIntl()
     return (
         <Grid item xs={4} sm={8} md={4} sx={{ paddingTop: '3rem'}}>
             <StyledItemArea elevation={0}>
@@ -310,10 +321,10 @@ const FeatureArea7Item = () => {
 
                 
                 <Typography variant="h5" sx={{ fontWeight: '900', textAlign:'center', paddingTop: '2rem' }}>
-                    EASY DEVELOPMENT
+                    {intl.formatMessage({id:'launchPage.FeatureArea7.1'})}
                 </Typography>
                 <Typography variant="h6" sx={{ color: 'rgb(51,51,51)', textAlign:'center'}}>
-                    CoNET has a built-in development package that allows developers to build apps for Web3. The single code base and universal device capability streamline development for non-Web3 coders.
+                    {intl.formatMessage({id:'launchPage.FeatureArea7.2'})}
                 </Typography>
             </StyledItemArea>
 
@@ -323,19 +334,20 @@ const FeatureArea7Item = () => {
 
 
 const FeatureArea5 = () => {
+    const intl = useIntl()
     return (
         <ThemeProvider theme={themeTopArea1}>
-            <Grid container spacing={0} columns={{ xs: 4, sm: 8, md: 12 }} sx={{padding:'5rem'}}>
+            <Grid container spacing={2} columns={{ xs: 4, sm: 8, md: 12 }} sx={{padding:'5rem'}}>
                 <Grid item xs={12}>
                     <ItemTopArea2 elevation={0}>
                         <Slide direction="right" in={true} mountOnEnter>
                             <Typography variant="h4" >
-                                CoNET is A Ground-Up Revamp of the 
+                                {intl.formatMessage({id:'launchPage.FeatureArea.1'})} 
                             </Typography>
                         </Slide>
                         <Slide direction="right" in={true} mountOnEnter>
                             <Typography variant="h4" >
-                                Entire Privacy Market 
+                                {intl.formatMessage({id:'launchPage.FeatureArea.2'})}
                             </Typography>
                         </Slide>
                     </ItemTopArea2>
@@ -359,6 +371,7 @@ const ItemContainer = styled(Box)(({ theme }) => ({
 
 
 const FeatureArea6 = () => {
+    const intl = useIntl()
     return (
         <ThemeProvider theme={themeTopArea1}>
             <Grid container spacing={0} >
@@ -366,7 +379,7 @@ const FeatureArea6 = () => {
                     <ItemTopArea2 elevation={0}>
                         <Slide direction="right" in={true} mountOnEnter>
                             <Typography variant="h4" sx={{ padding: '5rem 5rem 1rem 5rem' }}>
-                                CoNET’s Unique Design
+                                {intl.formatMessage({id:'launchPage.FeatureArea.3'})}
                             </Typography>
                         </Slide>
                     </ItemTopArea2>
@@ -391,8 +404,9 @@ const LaunchPage = () => {
         setShowAppStore,
         setShowBlockScan
     } = useAppState()
+    
     const HeaderArea = () => {
-
+        const intl = useIntl()
 
         return (
             <ThemeProvider theme={themeTopArea1}>
@@ -401,17 +415,18 @@ const LaunchPage = () => {
                         <ItemTopArea1 elevation={0}>
                             <Grow in={true}>
                                 <Typography variant="h3" sx={{ color: 'white', padding: '8rem 1rem 0rem 1rem' }}>
-                                        CoNET - COMPLETE PRIVACY FOR
+                                    {intl.formatMessage({id: 'launchPage.HeaderArea.title1-1'})}
                                 </Typography>
                             </Grow>
                             <Grow in={true}>
                                 <Typography variant="h3" sx={{color: 'white', padding: '0rem 1rem 0rem 1rem'}}>
-                                    THE NEW INTERNET
+                                    {intl.formatMessage({id: 'launchPage.HeaderArea.title1-2'})}
+                                    
                                 </Typography> 
                             </Grow>
                             <Grow in={true}>
                                 <Typography variant="h5" sx={{color: 'white', padding: '1rem 1rem 2rem 1rem'}}>
-                                    We've Invented A Way to Actually Anonymize The Internet
+                                    {intl.formatMessage({id: 'launchPage.HeaderArea.title2'})}
                                 </Typography>  
                             </Grow>
     
@@ -419,7 +434,9 @@ const LaunchPage = () => {
                                 setShowGuide(false)
                                 setShowAppStore(true)
     
-                            }}>Try DEMO</ColorButton>
+                            }}>
+                                {intl.formatMessage({id: 'launchPage.HeaderArea.button'})}
+                            </ColorButton>
                         
                         </ItemTopArea1>
                 
@@ -428,19 +445,19 @@ const LaunchPage = () => {
                         <ItemTopArea2 elevation={0}>
                             <Slide direction="right" in={true} mountOnEnter>
                                 <Typography variant="h4" sx={{ padding: '5rem 1rem 0rem 1rem' }}>
-                                    We Rebuilt the Entire Internet… to Be
+                                {intl.formatMessage({id: 'launchPage.HeaderArea.secondPart.1'})}
                                 </Typography>
                             </Slide>
                             <Slide direction="right" in={true} mountOnEnter>
                                 <Typography variant="h4" sx={{ padding: '0rem 1rem 1rem 1rem' }}>
-                                    Censorship Resistant
+                                    {intl.formatMessage({id: 'launchPage.HeaderArea.secondPart.2'})}
                                 </Typography>
                             </Slide>
                                 <Typography variant="h6" sx={{ padding: '0rem 5rem 0rem 5rem', color: 'rgb(51,51,51'}}>
-                                    CoNET has reinvented the Internet by coming up with a censorship-resistant method of data 
+                                    {intl.formatMessage({id: 'launchPage.HeaderArea.secondPart.3'})}
                                 </Typography>
                                 <Typography variant="h6" sx={{ padding: '0rem 5rem 1rem 5rem'}}>
-                                    exchange using wallet addresses instead of IP addresses.
+                                    {intl.formatMessage({id: 'launchPage.HeaderArea.secondPart.4'})}
                                 </Typography>
                         </ItemTopArea2>
                     </Grid>

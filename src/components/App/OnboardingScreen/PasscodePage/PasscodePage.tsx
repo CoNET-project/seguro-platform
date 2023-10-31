@@ -105,27 +105,28 @@ const PasscodePage =
                 </StyledPageHeader>
                 <StyledContents>
                     {
-                        useAppState().isTouchDevice ? (
-                            <>
-                                <PasscodeTouchInput value={passcode}/>
-                                <StyledPageError>
-                                    {error}
-                                </StyledPageError>
-                                <Keypad {...keypadClickHandlers}/>
-                            </>
-                        ) : (
-                            (
+                        // useAppState().isTouchDevice ? (
+                        //     <>
+                        //         <PasscodeTouchInput value={passcode}/>
+                        //         <StyledPageError>
+                        //             {error}
+                        //         </StyledPageError>
+                        //         <Keypad {...keypadClickHandlers}/>
+                        //     </>
+                        // ) : 
+                        (
+                            
                                 <LargeInput value={passcode}
-                                            inputOptions={{
-                                                inputType: 'password'
-                                            }
-                                            }
-											nextStepHandler={nextPageHandler}
-                                            error={error}
-                                            setValue={(val) => {
-                                                setPasscode(val)
-                                            }}/>
-                            )
+                                    inputOptions={{
+                                        inputType: 'password'
+                                    }
+                                    }
+                                    nextStepHandler={nextPageHandler}
+                                    error={error}
+                                    setValue={(val) => {
+                                        setPasscode(val)
+                                }}/>
+                            
                         )
                     }
                 </StyledContents>
