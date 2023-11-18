@@ -14,7 +14,6 @@ import React, {ReactNode, useState} from "react"
 import VerificationPage from "./VerificationPage/VerificationPage"
 import SettingUpPage from "./SettingUpPage/SettingUpPage"
 
-
 const StyledOnboardingContainer = styled.div`
 	height: 100%;
 	width: 100%;
@@ -98,7 +97,7 @@ const OnboardingScreen = () => {
 	
     const {locale, isTouchDevice, setLocale, setIsUnlocked, setHasContainer, hasContainer} = useAppState()
 
-    const pages = ['language', 'setPasscode', 'confirmPasscode', 'verification']
+    const pages = ['setPasscode', 'confirmPasscode', 'verification']
 
     const {state, dispatch} = useOnboardingPageNavigator()
 
@@ -176,7 +175,7 @@ const OnboardingScreen = () => {
                     <>
                         <StyledOnboardingContent>
                             <AnimatePresence custom={currentPage[1]}>
-                                {currentPage[0] === 'language' &&
+                                {/* {currentPage[0] === 'language' &&
 								(
 									<motion.div
 										initial={{ opacity: 0 }}
@@ -191,7 +190,7 @@ const OnboardingScreen = () => {
 									</motion.div>
 								)
                                     
-                                }
+                                } */}
 
                                 {currentPage[0] === 'setPasscode' &&
 									(
@@ -201,6 +200,7 @@ const OnboardingScreen = () => {
 											exit={{ opacity: 0 }}
 										>
 											 <PasscodePage
+                                                info=''
 												key={currentPage[0]}
 												title={intl.formatMessage({id: 'onboarding.setPasscodeTitle'})}
 												passcode={onboardingPageData?.passcode || ''}
@@ -222,6 +222,7 @@ const OnboardingScreen = () => {
 										exit={{ opacity: 0 }}
 									>
 										<PasscodePage
+                                            info=''
 											key={currentPage[0]}
 											title={intl.formatMessage({id: 'onboarding.confirmPasscodeTitle'})}
 											passcode={onboardingPageData?.confirmPasscode || ''}
@@ -235,7 +236,7 @@ const OnboardingScreen = () => {
 									</motion.div>
 								)}
 
-                                {currentPage[0] === 'verification' &&
+                                {/* {currentPage[0] === 'verification' &&
 									(
 										<motion.div
 											initial={{ opacity: 0 }}
@@ -247,7 +248,7 @@ const OnboardingScreen = () => {
 												key={currentPage[0]}
 											/>
 										</motion.div>
-									)}
+									)} */}
                             </AnimatePresence>
                         </StyledOnboardingContent>
                         <CustomProgressNumberSteps steps={pages.length} currentActiveStep={currentStep}/>

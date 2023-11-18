@@ -1,131 +1,168 @@
-import React, {useEffect, useState} from 'react'
+import React, {useEffect, useRef} from 'react'
+import GlobalStyle from '../UI/Global/Styles'
 import styled from 'styled-components'
 import useAppState from '../../store/appState/useAppState'
-import {detectTouchDevice, detectWindowInnerSize} from "../../utilities/utilities"
-import GlobalStyle from '../UI/Global/Styles'
 import MainScreen from './MainScreen/MainScreen'
-import {OnboardingPageProvider} from '../Providers/OnboardingPageProvider'
-import OnboardingScreen from "./OnboardingScreen/OnboardingScreen"
-import UnlockScreen from "./UnlockScreen/UnlockScreen"
-import LaunchScreen from "./LaunchScreen/LaunchScreen"
+import { LayoutGroup, motion, useAnimation, useDragControls, useMotionValue, useTransform} from 'framer-motion'
+import LaunchPage from './Apps/launchPage'
+import JoinUS from './Apps/joinUS'
+import Box from '@mui/material/Box'
+import SpeedDial, { SpeedDialProps } from '@mui/material/SpeedDial'
+import FileCopyIcon from '@mui/icons-material/FileCopyOutlined';
+import SaveIcon from '@mui/icons-material/Save'
+import PrintIcon from '@mui/icons-material/Print'
+import ShareIcon from '@mui/icons-material/Share'
+import SpeedDialIcon from '@mui/material/SpeedDialIcon'
+import SpeedDialAction from '@mui/material/SpeedDialAction'
+import {US, CN,JP, TW } from 'country-flag-icons/react/3x2'
+import SvgIcon from '@mui/material/SvgIcon'
+import {Locale} from "../../localization/types"
+import Proxy from './Apps/CONET-Proxy/index'
+import ConetAPP from './LaunchAPP'
+import {testLocalServer} from '../../API/index'
+import Miner from './Apps/miner'
 
+import NoDeamon from './NoDaemon'
 const StyledContainer = styled.div`
 	height: 100vh;
 	width: 100%;
-	background-color: white;
 	display: flex;
 	justify-content: center;
-	color: black;
+	color: white;
 `
+const StyledMainScreen = styled(motion.div)`
+	width: 100%;
+`
+
+type action = {
+    icon: JSX.Element
+    name: Locale
+}
+const actions: action[] = [
+    { icon: <SvgIcon component={JP} inheritViewBox/>, name: 'ja-JP' },
+    { icon: <SvgIcon component={CN} inheritViewBox/>, name: 'zh-CN' },
+    { icon: <SvgIcon component={TW} inheritViewBox/>, name: 'zh-TW' },
+    { icon: <SvgIcon component={US} inheritViewBox/>, name: 'en-US' }
+]
 
 const App = () => {
     const {
-        dAPPInitialize,
         isInitializing,
         isPlatformLoading,
         setNetworkStrength,
         setWindowInnerSize,
         setClientDevices,
         setIsTouchDevice,
+        showJoinUS,
+        setShowAppStore,
         setIsModalOpen,
         setIsShowOverlay,
         showOverlay,
         hasContainer,
-        isUnlocked
+        isUnlocked,
+        locale, 
+        setLocale,
+        showGuide,
+        showAppStore,
+        localDaemon,
+        setlocalDaemon,
+        showMiner
     } = useAppState()
-	
-    const windowResizeHandler = () => {
-        setWindowInnerSize(detectWindowInnerSize())
+    const drawerDragControls = useDragControls()
+    
+    const startDrag = (event: any) => {
+        drawerDragControls.start(event)
     }
 
-	const [reload, setReload] = useState(false)
+    const showLocationIcon = () => {
+        switch(locale) {
+            default:
+            case 'en-US': {
+                return (
+                    <SvgIcon component={US} inheritViewBox/>
+                )
+            }
+            case 'ja-JP': {
+                return (
+                    <SvgIcon component={JP} inheritViewBox/>
+                )
+            }
+            case 'zh-CN': {
+                return (
+                    <SvgIcon component={CN} inheritViewBox/>
+                )
+            }
+            case 'zh-TW': {
+                return (
+                    <SvgIcon component={TW} inheritViewBox/>
+                )
+            }
+        }
+    }
+
     useEffect(() => {
 		
-        dAPPInitialize().then(() => {
-			if (!isInitializing) {
-				setReload (true)
-			}
-
-        })
-
-        const randomDeviceIds = Array.from({length: 3}, (_, i) => (Date.now() + Math.round(Math.random() * 100)).toString())
-
-        setClientDevices({
-            [randomDeviceIds[0]]: {
-                id: randomDeviceIds[0],
-                type: 'mobile',
-                name: 'iPhone-S4GD0S'
-            },
-            [randomDeviceIds[1]]: {
-                id: randomDeviceIds[1],
-                type: 'desktop',
-                name: 'Mac Mini-C0S3M8VN'
-            },
-            [randomDeviceIds[2]]: {
-                id: randomDeviceIds[2],
-                type: 'tablet',
-                name: 'Samsung TAB-LX30SMA'
-            },
-        })
-
-        setIsTouchDevice(detectTouchDevice())
-
-        // Test network connection icon
-        const rndInt = Math.floor(Math.random() * 4) + 1;
-        // @ts-ignore
-        setNetworkStrength(rndInt)
-
-        window.addEventListener('resize', windowResizeHandler)
-        return () => {
-            window.removeEventListener('resize', windowResizeHandler)
+        const testDeamon = async() => {
+            const test = await testLocalServer ()
+            if (test === null) {
+                setlocalDaemon(true)
+            }
         }
+        testDeamon().catch((ex) => {
+            console.log(`APP useEffect testDeamon error`, ex)
+        })
 
     }, [])
 
-    const getContent = () => {
-		
-        switch (true) {
-            case isInitializing:
-                return (
-                    <LaunchScreen reload = {reload}/>
-                )
-            case hasContainer && isUnlocked:
-                return (
-                    <MainScreen/>
-                )
-            case hasContainer && !isUnlocked:
-                return (
-                    <UnlockScreen/>
-                )
-            case !hasContainer && !isUnlocked:
-                return (
-                    <OnboardingPageProvider
-                        existingPages={['language', 'setPasscode', 'confirmPasscode', 'settingUp']}>
-                        <OnboardingScreen/>
-                    </OnboardingPageProvider>
-                )
-            default:
-                return (
-                   <MainScreen/>
-                )
-        }
-        
+    const ShowApp = () => {
+        return (
+            <>
+                {localDaemon && <NoDeamon />}
+                {!localDaemon && <ConetAPP />}
+            </>
+            
+        )
     }
 
+    const switchShow = () => {
+        return (
+            <>
+                { !(showMiner || showAppStore) && <JoinUS/>}
+                {(showMiner || showAppStore) && <ShowApp />}
+            </>
+        )
+    }
 
     return (
         <>
             <GlobalStyle/>
             <StyledContainer>
-                {/* <Overlay 
-					show={ showOverlay } 
-					onClick={
-						() => {
-							setIsModalOpen(null)
-							setIsShowOverlay(false)
-						}}/> */}
-                {/* <OverlayWithLoaderText show={isPlatformLoading !== null} type={isPlatformLoading}/> */}
-                {getContent()}
+                <StyledMainScreen onTouchStart={startDrag} onPointerDown={startDrag}>
+                    <Box sx={{ position: 'absolute', mt: 0, top: '18rem', right: '1rem'}}>
+                        <SpeedDial
+                            ariaLabel="Language"
+                            sx={{ position: 'absolute', bottom: 16, right: 16 , backgroundColor: 'rgba(0,0,0,0)'}}
+                            icon={showLocationIcon()}
+                            direction='down'
+                            
+                        >
+                            {actions.map(action => (
+                                
+                                locale !== action.name &&
+                                    <SpeedDialAction
+                                        sx={{backgroundColor: 'rgba(0,0,0,0)'}}
+                                        key={action.name}
+                                        icon={action.icon}
+                                        onClick={(n) => setLocale (action.name)}
+                                        tooltipTitle={action.name}/>
+                                        
+                            ))}
+                        </SpeedDial>
+                    </Box>
+                    {switchShow()}
+                    
+                </StyledMainScreen>
+                
             </StyledContainer>
         </>
     )

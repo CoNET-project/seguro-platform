@@ -277,6 +277,8 @@ export type Messages = {
     'launchPage.FeatureArea.2': string
     'launchPage.FeatureArea.3': string
 
+    'launchPage.FeatureArea9.title': string
+
     'platform.home': string
     'platform.proxy': string
     'platform.proxy.title': string
@@ -298,6 +300,55 @@ export type Messages = {
     'platform.proxy.featureArea8Item.step2': string
     'platform.proxy.featureArea8Item.step2.random': string
     'platform.proxy.featureArea8Item.step3': string
+
+    'platform.proxy.featureArea8Item.minerSetup.title': string
+    'platform.proxy.featureArea8Item.minerSetup.saas': string
+    'platform.proxy.featureArea8Item.minerSetup.bandwidth': string
+
+    'platform.joinUS.header.title.1': string
+    'platform.joinUS.header.title.2': string
+    'platform.joinUS.header.detail': string
+    'platform.joinUS.header.whatConet': string
+
+    'platform.joinUS.miner.title': string
+    'platform.joinUS.miner.detail': string
+    'platform.joinUS.miner.Bandwidth': string
+    'platform.joinUS.miner.BandwidthDetail': string
+    'platform.joinUS.miner.SaaS': string
+    'platform.joinUS.miner.SaaSDetail': string
+    'platform.joinUS.miner.storage': string
+    'platform.joinUS.miner.storageDetail': string
+
+    'platform.joinUS.joinMiner.button': string
+
+    'platform.joinUS.forUser.Title1': string
+    'platform.joinUS.forUser.Title2': string
+    'platform.joinUS.forUser.detail': string
+
+    'platform.joinUS.forDeveloper.Title1': string
+    'platform.joinUS.forDeveloper.Title2': string
+    'platform.joinUS.forDeveloper.detail': string
+
+    'platform.joinUS.forDeveloper.button': string
+
+    'platform.api.daemon.title': string
+    'platform.api.daemon.detail': string
+    'platform.api.daemon.testButton': string
+
+    'platform.miner.header.title': string
+    'platform.miner.register.title': string
+    'platform.miner.register.button': string
+    'platform.miner.register.boost': string
+    'platform.miner.register.boost.detail': string
+
+    'platform.miner.register.MinerAni.reward': string
+    'platform.miner.register.MinerAni.pause': string
+    'platform.miner.register.MinerAni.resume': string
+    'platform.miner.register.MinerAni.claim': string
+    'platform.miner.register.totalRewards': string
+    'platform.miner.register.pendingRewards': string
+    'platform.miner.register.previouslyClaimed': string
+    'platform.miner.register.MinerAni.stop': string
 
     
 }

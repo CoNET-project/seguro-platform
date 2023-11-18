@@ -8,7 +8,7 @@ const zh_CN: Messages = {
 	'LaunchScreen.loadFail': 'CoNET 平台加載失敗！ 請點擊重新加載。',
     'onboarding.selectLanguageTitle': '选择您的语言',
     'onboarding.selectLanguageSubtitle': '选择您的语言...',
-    'onboarding.setPasscodeTitle': '设置密码',
+    'onboarding.setPasscodeTitle': '设置密码来保护您的CONET钱包',
     'onboarding.setPasscodeSubtitle': '输入最少 6 个字符的密码',
     'onboarding.confirmPasscodeTitle': '确认密码',
 
@@ -245,18 +245,18 @@ const zh_CN: Messages = {
 	'platform.app.seguro.messenger.panels.addContact.firstMessage': '您可以为此联系人设置昵称。 向他们发送自定义问候语，让他们知道您是谁！',
     'launchPage.HeaderArea.title1-1': 'CONET - 为隐私而生',
     'launchPage.HeaderArea.title1-2': '新互联网',
-    'launchPage.HeaderArea.title2': `CONET是真正匿名的互联网`,
-    'launchPage.HeaderArea.button': '现在就尝试',
-    'launchPage.HeaderArea.secondPart.1': '用户无需再去信任一个承諾',
+    'launchPage.HeaderArea.title2': `我们重建了整个互联网以抵抗审查`,
+    'launchPage.HeaderArea.button': '加入CONET',
+    'launchPage.HeaderArea.secondPart.1': 'CONET使用钱包地址而不是IP地址进行数据交换的抗审查方法，从而彻底改造了互联网',
     'launchPage.HeaderArea.secondPart.2': 'CONET通过技术革命实现了真正的隐私',
     'launchPage.HeaderArea.secondPart.3': 'CONET使用钱包地址, 取代有着丰富个人信息的IP地址',
     'launchPage.HeaderArea.secondPart.4': '来进行数据信息交换',
 
     'launchPage.FeatureArea1.1': '上网设备使用钱包地址来区分彼此',
-    'launchPage.FeatureArea1.2': '无需许可，用户可按需随时任意创建的钱包地址，使用它来实现完全匿名、隐私和普遍访问的路由及信息交換',
+    'launchPage.FeatureArea1.2': 'CONET区块链代表了互联网的全新网络层，不使用IP地址或无任何元数据。这是唯一能够实现完全匿名、隐私和普遍访问的路由方法。',
 
     'launchPage.FeatureArea2.1': '简单明了和高效',
-    'launchPage.FeatureArea2.2': 'CoNET帮助用户逃避无处不在的监控、通信过滤及大数据收集。CONET在技术上永不妥协',
+    'launchPage.FeatureArea2.2': 'CONET帮助用户逃避无处不在的监控、通信过滤及大数据收集。CONET在技术上永不妥协',
     'launchPage.FeatureArea3.1': '世界首个匿名挖矿的公链项目',
     'launchPage.FeatureArea3.2': 'CONET是一个無需許可、無需信任、由社区驱动共同建设的開源项目。区块链技术上首次实现了匿名挖矿。用戶可以使用CONET代幣支付Gas费、賺取獎勵、委託代幣、運行節點以及對治理計劃進行投票。',
 
@@ -289,10 +289,56 @@ const zh_CN: Messages = {
     'platform.proxy.featureArea8Item.step1.CONETbalance': 'CONET余额',
     'platform.proxy.featureArea8Item.step1.transferQuote': '计费 1MB/1$CONET',
     'platform.proxy.featureArea8Item.step2': '第二步：选择代理服务器位置(可多选)',
-    'platform.proxy.featureArea8Item.step2.random': '多重选择，通讯数据将碎片化随机使用',
-    'platform.proxy.featureArea8Item.step3': '第三步：设置火狐浏览器来使用代理'
+    'platform.proxy.featureArea8Item.step2.random': ' ',//'多重选择，通讯数据将碎片化随机使用',
+    'platform.proxy.featureArea8Item.step3': '第三步：设置火狐浏览器来使用代理',
 
+    'platform.proxy.featureArea8Item.minerSetup.title': '请选择挖矿类型',
+    'platform.proxy.featureArea8Item.minerSetup.saas':'SaaS算力挖矿',
+    'platform.proxy.featureArea8Item.minerSetup.bandwidth': '带宽挖矿',
 
+    'platform.joinUS.miner.title': '安全优先的挖矿设计',
+    'platform.joinUS.miner.detail': '基于非信任前提下，最大限保护网络资源提供者的安全，是CONET网络设计的最优先考虑：安全沙盒内独立空间，独创的无IP地址隐私矿工，是CONET傲立群雄的技术优势。',
+    'launchPage.FeatureArea9.title': 'CONET测试网正式运行',
+    'platform.joinUS.header.title.1': '空余计算机资源',
+    'platform.joinUS.header.title.2': '公平交易市场',
+    'platform.joinUS.header.detail': 'CONET正在为Web3构建一套隐私网络层基础设施',
+    'platform.joinUS.header.whatConet': `CONET是什么`,
+    'platform.joinUS.miner.Bandwidth': '带宽挖矿',
+    'platform.joinUS.miner.BandwidthDetail': '通过分享未使用网络资源来获取奖励。',
+    'platform.joinUS.miner.SaaS': '算力挖矿',
+    'platform.joinUS.miner.SaaSDetail': '通过分享未使用计算机算力资源来获取奖励。',
+    'platform.joinUS.miner.storage': '存储空间挖矿',
+    'platform.joinUS.miner.storageDetail': '通过分享未使用硬盘空间来获取奖励。',
+
+    'platform.joinUS.joinMiner.button': '加入CONET挖矿',
+    'platform.joinUS.forUser.Title1': 'Web3应用程序',//'去中心化隐私增强',
+    'platform.joinUS.forUser.Title2': '无需信任Web3应用程序',
+    'platform.joinUS.forUser.detail': '用户驱动的验证模型，消除了中心化中介机构，增强了生态系统安全性和信任度',
+
+    'platform.joinUS.forDeveloper.Title1': '使用CONET基础设施',
+    'platform.joinUS.forDeveloper.Title2': '开发去中心化应用',
+    'platform.joinUS.forDeveloper.detail': '让您的dAPP拥有天然隐私增强功能',
+    'platform.joinUS.forDeveloper.button': '即将推出',
+
+    'platform.api.daemon.title': '未检测到CONET守护程序',
+    'platform.api.daemon.detail': '请启动CONET，或下载启动它',
+    'platform.api.daemon.testButton': '测试守护进程',
+
+    'platform.miner.header.title': '欢迎您CONET DePIN参与者',
+
+    'platform.miner.register.title': '注册节点',
+    'platform.miner.register.button': '注册',
+    'platform.miner.register.boost': '加码',
+    'platform.miner.register.boost.detail': '1000 $COENT 锁定期180天',
+
+    'platform.miner.register.MinerAni.reward': '当前获得的奖励',
+    'platform.miner.register.MinerAni.pause': '暂停',
+    'platform.miner.register.MinerAni.resume': '开始',
+    'platform.miner.register.MinerAni.claim': '转帐奖励到钱包',
+    'platform.miner.register.totalRewards': '获得总奖励',
+    'platform.miner.register.pendingRewards': '等待转帐的奖励',
+    'platform.miner.register.previouslyClaimed': '上一次转帐成功的奖励',
+    'platform.miner.register.MinerAni.stop': '停止DePIN'
 }
 
 export default zh_CN

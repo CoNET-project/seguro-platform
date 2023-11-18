@@ -65,6 +65,7 @@ const StyledDialogIcon = styled.div`
 
 const StyledDialogText = styled.p`
 	font-size: 16px;
+    color: black;
 `
 
 const StyledDialogButtons = styled.div`

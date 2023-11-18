@@ -117,7 +117,7 @@ export const createPasscode = ({passcode, locale, progress}: PasscodeFunctionPar
 
 export const unlockPasscode = ({passcode, progress}: PasscodeFunctionParams): Promise<PasscodeResolves> => (
     new Promise<PasscodeResolves>(async (resolve) => {
-        store.dispatch(setIsPlatformLoading('unlockPasscode'))
+        //store.dispatch(setIsPlatformLoading('unlockPasscode'))
         if (workerService.method.testPasscode) {
             const [status, container] = await workerService.method.testPasscode(passcode, progress)
 

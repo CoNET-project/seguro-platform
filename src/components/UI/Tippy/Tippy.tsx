@@ -33,7 +33,7 @@ const TippyDropdown = ({children, content, onClickOutside, visible, verticalOffs
             theme="custom"
             arrow={false}
             placement="bottom-end"
-            zIndex={200}
+            zIndex={9000}
             offset={[horizontalOffset || 0, verticalOffset || 0]}
         >
             {children}

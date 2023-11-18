@@ -2,7 +2,7 @@ import React from 'react'
 
 import { createRoot } from "react-dom/client"
 import 'modern-normalize'
-import App from './components/App/App'
+import App from './components/App/APP'
 import RootProvider from './components/Providers/RootProvider'
 import GlobalStyle from './components/UI/Global/Styles'
 import './index.css'

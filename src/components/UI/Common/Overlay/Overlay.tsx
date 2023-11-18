@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import React from "react"
 import {ThreeCircles} from 'react-loader-spinner'
 import {PlatformLoadingTypes} from "../../../../store/appState/appStateReducer"
-import {FormattedMessage} from "react-intl"
+import {FormattedMessage, useIntl} from "react-intl"
 import useAppState from "../../../../store/appState/useAppState"
 import logger from "../../../../utilities/logger/logger"
 
@@ -55,14 +55,15 @@ export const OverlayDarker = ({show, onClick}: OverlayProps) => {
 }
 
 const getOverlayText = (type: PlatformLoadingTypes) => {
+    const intl = useIntl()
     switch (type) {
         case 'unlockPasscode':
             return (
-                <FormattedMessage id='platform.overlay.unlocking'/>
+                intl.formatMessage({id:'platform.overlay.unlocking'})
             )
         case 'createProfile':
             return (
-                <FormattedMessage id='platform.overlay.createProfile'/>
+                intl.formatMessage({id:'platform.overlay.createProfile'})
             )
 
     }

@@ -15,10 +15,9 @@ import Button from "../../../UI/Common/Button/Button"
 import onboardingActions from "../../../../contexts/onboarding/onboardingActions"
 import AlertDialog, {AlertDialogActions} from "../../../UI/Common/AlertDialog/AlertDialog"
 import {Warning} from "../../../UI/Icons/Icons"
-import {CONET_Platfrom_API} from '../../Apps/API/index'
+import {createPasscode} from '../../../../API/index'
 
 import {
-    createPasscode,
     hasPasscode,
     savePreferences,
 } from "../../../../services/workerService/workerService"
@@ -100,6 +99,7 @@ const SettingUpPage = () => {
         isTouchDevice,
         setClientProfiles,
         setIsUnlocked,
+        setShowAppStore,
         setHasContainer,
         theme,
         locale,
@@ -165,11 +165,10 @@ const SettingUpPage = () => {
     useEffect(() => {
         const fetchData = async () => {
             if (!hasPasscode()) {
-                const Api = new CONET_Platfrom_API()
-                const [status, data] = await Api.createPasscode(state.onboardingPageData.passcode, locale)
-               
-                dispatch(onboardingActions.setVerificationStatus('SUCCESS'))
-                location.reload()
+                const [status, data] = await createPasscode(state.onboardingPageData.passcode, locale)
+                await dispatch(onboardingActions.setVerificationStatus('SUCCESS'))
+                await setHasContainer(true)
+                //location.reload()
             
             } else {
                 setSetupState(prevState => prevState + 1)
@@ -185,6 +184,7 @@ const SettingUpPage = () => {
     const onSetupComplete = () => {
         setHasContainer(true)
         setIsUnlocked(true)
+        setShowAppStore(true)
     }
 
     const [carouselState, setCarouselState] = useState<CarouselState>([1, 1])

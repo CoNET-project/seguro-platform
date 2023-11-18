@@ -8,7 +8,7 @@ const zh_CN: Messages = {
 	'LaunchScreen.loadFail': 'CoNET 平台加載失敗！ 請點擊重新加載。',
     'onboarding.selectLanguageTitle': '選擇您的語言',
     'onboarding.selectLanguageSubtitle': '選擇您的語言...',
-    'onboarding.setPasscodeTitle': '設定密碼',
+    'onboarding.setPasscodeTitle': '設定密碼來保護您的CONET錢包',
     'onboarding.setPasscodeSubtitle': '輸入最少 6 個字符的密碼',
     'onboarding.confirmPasscodeTitle': '確認密碼',
 
@@ -263,15 +263,15 @@ const zh_CN: Messages = {
 	'platform.app.seguro.messenger.panels.addContact.firstMessage': '您可以為此聯繫人設置暱稱。 向他們發送自定義問候語，讓他們知道您是誰！',
     'launchPage.HeaderArea.title1-1': 'CONET - 為隱私而生',
     'launchPage.HeaderArea.title1-2': '新互聯網',
-    'launchPage.HeaderArea.title2': `CONET是真正匿名互聯網`,
-    'launchPage.HeaderArea.button': '現在就嘗試',
-    'launchPage.HeaderArea.secondPart.1': '用戶無需再去信任一個承諾',
+    'launchPage.HeaderArea.title2': `我們重建了整個互聯網以抵抗審查`,
+    'launchPage.HeaderArea.button': '加入CONET',
+    'launchPage.HeaderArea.secondPart.1': 'CONET使用錢包位址而不是IP位址，進行資料交換的抗審查方法，從而徹底改造了互聯網',
     'launchPage.HeaderArea.secondPart.2': 'CONET通過技術革命實現了真正的隱私',
     'launchPage.HeaderArea.secondPart.3': 'CONET使用錢包位址, 取代有著豐富個人資訊的IP位址',
     'launchPage.HeaderArea.secondPart.4': '來進行資料資訊交換',
 
     'launchPage.FeatureArea1.1': '上網設備使用錢包位址來區分彼此',
-    'launchPage.FeatureArea1.2': '無需許可，用戶可按需隨時任意創建的錢包地址，使用它來實現完全匿名、隱私和普遍訪問的路由及信息交換',
+    'launchPage.FeatureArea1.2': 'CONET區塊鏈代表了互聯網的全新網路層，不使用IP位址或無任何元資料。這是唯一能夠實現完全匿名、隱私和普遍訪問的路由方法。',
 
     'launchPage.FeatureArea2.1': '簡單明了和高效',
     'launchPage.FeatureArea2.2': 'CONET幫助使用者逃避無所不在的監控、通訊過濾及大數據收集。CONET在技術上永不妥協',
@@ -306,8 +306,58 @@ const zh_CN: Messages = {
     'platform.proxy.featureArea8Item.step1.CONETbalance': 'CONET餘額',
     'platform.proxy.featureArea8Item.step1.transferQuote': '計費 1MB/1$CONET',
     'platform.proxy.featureArea8Item.step2': '第二步：選擇代理伺服器位置(可多選)',
-    'platform.proxy.featureArea8Item.step2.random': '多重選擇，通訊資料將碎片化隨機使用',
-    'platform.proxy.featureArea8Item.step3': '第三步：設定火狐瀏覽器來使用代理'
+    'platform.proxy.featureArea8Item.step2.random': ' ',//'多重選擇，通訊資料將碎片化隨機使用',
+    'platform.proxy.featureArea8Item.step3': '第三步：設定火狐瀏覽器來使用代理',
+
+    'platform.proxy.featureArea8Item.minerSetup.title': '請選擇挖礦類型',
+    'platform.proxy.featureArea8Item.minerSetup.saas':'SaaS算力挖礦',
+    'platform.proxy.featureArea8Item.minerSetup.bandwidth': '網路頻寬挖礦',
+
+    'platform.joinUS.miner.title': '安全優先的挖礦設計',
+    'platform.joinUS.miner.detail': '基於非信任前提下，最大限保護網絡資源提供者的安全，是CONET網絡設計的最優先考慮：安全沙盒內獨立空間，獨創的無IP地址隱私礦工，是CONET傲立群雄的技術優勢。',
+    'launchPage.FeatureArea9.title': 'CONET測試網正式運行',
+    'platform.joinUS.header.title.1': '空餘電腦資源',
+    'platform.joinUS.header.title.2': '公平交易市場',
+    'platform.joinUS.header.detail': 'CONET正在為Web3建置一套隱私網路層基礎設施',
+    'platform.joinUS.header.whatConet': `CONET是什麼`,
+    'platform.joinUS.miner.Bandwidth': '頻寬挖礦',
+    'platform.joinUS.miner.BandwidthDetail': '透過分享未使用網路資源來獲取獎勵。',
+    'platform.joinUS.miner.SaaS': '算力挖礦',
+    'platform.joinUS.miner.SaaSDetail': '透過分享未使用電腦算力資源來獲取獎勵',
+    'platform.joinUS.miner.storage': '儲存空間挖礦',
+    'platform.joinUS.miner.storageDetail': '透過分享未使用硬碟空間來獲取獎勵',
+
+    'platform.joinUS.joinMiner.button': '加入CONET挖礦',
+
+    'platform.joinUS.forUser.Title1': '去中心化隱私增強',
+    'platform.joinUS.forUser.Title2': '无信任Web3應用程序',
+    'platform.joinUS.forUser.detail': '使用者驅動驗證模型,消除了對中心化中介依賴，增強了生態系統安全性和信任度',
+
+    'platform.joinUS.forDeveloper.Title1': '使用CONET基礎設施',
+    'platform.joinUS.forDeveloper.Title2': '開發去中心化應用',
+    'platform.joinUS.forDeveloper.detail': '讓您的dapp擁有天然隱私增強功能',
+    'platform.joinUS.forDeveloper.button': '即將推出',
+
+    'platform.api.daemon.title': '未偵測到CONET守護程序',
+    'platform.api.daemon.detail': '請啟動CONET，或下載啟動它',
+    'platform.api.daemon.testButton': '測試守護程序',
+
+    'platform.miner.header.title': '欢迎您CONE DePIN参与者',
+    'platform.miner.register.title': '節點註冊',
+    'platform.miner.register.button': '註冊',
+    'platform.miner.register.boost': '加碼 ',
+    'platform.miner.register.boost.detail': '1000 $COENT 鎖定期180天',
+
+    'platform.miner.register.MinerAni.reward': '當前獲得的獎勵',
+    'platform.miner.register.MinerAni.pause': '暫停',
+    'platform.miner.register.MinerAni.resume': '開始',
+    'platform.miner.register.MinerAni.claim': '轉帳獎勵到錢包',
+    'platform.miner.register.totalRewards': '獲得總獎勵',
+    'platform.miner.register.pendingRewards': '等待轉帳的獎勵',
+    'platform.miner.register.previouslyClaimed': '上一次轉帳成功的獎勵',
+    'platform.miner.register.MinerAni.stop': '停止DePIN'
+
+
 }
 
 export default zh_CN

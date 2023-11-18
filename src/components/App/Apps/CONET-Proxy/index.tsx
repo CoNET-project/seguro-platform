@@ -1,4 +1,4 @@
-import { createTheme, ThemeProvider, makeStyles, rgbToHex } from '@mui/material/styles';
+import { createTheme, ThemeProvider, makeStyles, rgbToHex } from '@mui/material/styles'
 import { styled } from '@mui/material/styles'
 import Paper from '@mui/material/Paper'
 import Grid from '@mui/material/Grid'
@@ -22,7 +22,7 @@ import FormGroup from '@mui/material/FormGroup'
 import FormControlLabel from '@mui/material/FormControlLabel'
 import Checkbox from '@mui/material/Checkbox'
 import TippyDropdownTab from './TippyDropdown'
-import {CONET_Platfrom_API, regionType} from '../API/index'
+import { getCONETBalance, regionType, faucet as faucetAPI, setRegion as setRegionAPI, getRegiestNodes as getRegiestNodesAPI} from '../../../../API/index'
 import {logger} from '../../logger'
 import CircularProgress from '@mui/material/CircularProgress'
 import Accordion from '@mui/material/Accordion'
@@ -32,6 +32,8 @@ import AccordionDetails from '@mui/material/AccordionDetails'
 import SaaSNodes from './SaasNodes'
 import type {nodes_info} from './SaasNodes'
 import { useIntl } from "react-intl"
+import miner2 from '../../../../assets/miner/FancyNyan.webp'
+
 //import { ColorMode, TerminalOutput } from 'react-terminal-ui'
 
 const themeTopArea1 = createTheme ({
@@ -200,14 +202,77 @@ const FeatureArea5 = () => {
     )
 }
 
+//              Start Proxy
 
-const featureArea8Item = (conetBalance: string, loading: boolean, faucet: () => void, wallet: string, regionProgress: boolean, onchange: ((event: React.SyntheticEvent<Element, Event>, checked: boolean, region: string) => void), regionConfirm: () => void, showConfirm: Boolean, nodes: nodes_info[]) => {
+const featureArea8Item = (conetBalance: string, loading: boolean, faucet: () => void, wallet: string, 
+    regionProgress: boolean, onchange: ((event: React.SyntheticEvent<Element, Event>, checked: boolean, 
+    region: string) => void), regionConfirm: () => void, showConfirm: Boolean, 
+    nodes: nodes_info[],
+    showMiner: boolean, 
+    setShowMiner: React.Dispatch<React.SetStateAction<boolean>>
+    ) => {
     const intl = useIntl()
-    const [expanded, setExpanded] = React.useState<string | false>(false);
-
+    const [expanded, setExpanded] = React.useState<string | false>(false)
+    const [showMinerStart, setShowMinerStart] = useState(false)
+    const [minerSetup, setMinerSetup] =  useState(0)
+    const [minerReward, setMinerReward] =  useState(0)
+    const [minerConnecting, setMinerConnecting] =  useState(0)
+    const [minerSaaSCalls, setMinerSaaSCalls] =  useState(0)
+    const [minerProcess, setMinerProcess] =  useState(false)
     const handleChange =
         (panel: string) => (event: React.SyntheticEvent, isExpanded: boolean) => {
         setExpanded(isExpanded ? panel : false);
+    }
+
+    const faucetClick = () => {
+        faucet()
+    }
+
+    const minerCheck = (checkedItem: boolean, item: string) => {
+        switch(item) {
+            case 'saas': {
+                const itemNumber = minerSetup + (checkedItem? 1: -1)
+                return setMinerSetup(itemNumber)
+            }
+            default :{
+                const itemNumber = minerSetup + (checkedItem? 2: -2)
+                return setMinerSetup(itemNumber)
+            }
+        }
+    }
+
+    const setStatus = () => {
+        
+        const connecting = Math.round(100 * Math.random())
+        setMinerConnecting (connecting)
+        const saasCalls = Math.round(1000 * Math.random())
+        setMinerSaaSCalls (saasCalls)
+        const randomTime =  Math.round(1000 * Math.random())
+        setTimeout (() => {
+
+            setStatus()
+        }, randomTime)
+    }
+
+    const setMinerReword = () => {
+
+        const reword = 0.1 *Math.random()
+        setMinerReward (minerReward => minerReward + reword)
+        const randomTime =  Math.round(5000 * Math.random())
+        setTimeout (() => {
+
+            setMinerReword()
+        }, randomTime)
+    }
+
+    const minerStartup = () => {
+        setMinerConnecting(0)
+        setMinerSaaSCalls(0)
+        setMinerReward(0)
+        setShowMinerStart (true)
+        setStatus()
+        setMinerReword()
+
     }
     return (
         <>
@@ -224,13 +289,14 @@ const featureArea8Item = (conetBalance: string, loading: boolean, faucet: () => 
                 </AccordionSummary>
                 <AccordionDetails>
                     <Grid container spacing={2} columns={{ xs: 4, sm: 8, md: 12 }}>
-                        <Grid item xs={4} sm={8} md={6} sx={{ paddingTop: '3rem', textAlign: 'center'}}>
+                        <Grid item xs={4} sm={8} md={6} sx={{ paddingTop: '3rem', textAlign: 'center'}}> 
+                        {
+                            !showMiner && 
                             <StyledItemArea1>
                                 <Typography variant="h5" sx={{ fontWeight: '900', textAlign:'center', paddingTop: '2rem', textTransform: 'uppercase' }}>
                                     {intl.formatMessage({id: 'platform.proxy.featureArea8Item.step1'})}
                                 </Typography>
                                 <Typography variant="h6" sx={{  textAlign:'center', paddingTop: '0rem' }}>
-
                                     {intl.formatMessage({id: 'platform.profile.walletAddr'})} {wallet.substring(0,6)+'...'+ wallet.substring(wallet.length - 4)}
                                 </Typography>
                                 <Typography variant="h6" sx={{ color: 'rgb(51,51,51)', textAlign:'center'}}>
@@ -247,7 +313,7 @@ const featureArea8Item = (conetBalance: string, loading: boolean, faucet: () => 
                                 }
                                 {
                                     !loading && 
-                                        <Button size="large" variant="outlined" onClick={faucet} disabled = {regionProgress} >
+                                        <Button size="large" variant="outlined" onClick={faucetClick} disabled = {regionProgress} >
                                             {intl.formatMessage({id: 'platform.ProfileDropdown.CurrentProfileItem.actionFondWallet'})}
                                         </Button>
                                 }
@@ -256,6 +322,26 @@ const featureArea8Item = (conetBalance: string, loading: boolean, faucet: () => 
                                     {intl.formatMessage({id: 'platform.proxy.featureArea8Item.step1.transferQuote'})}
                                 </Typography>
                             </StyledItemArea1>
+                        }
+                        {
+                            showMiner && !showMinerStart &&
+                            <StyledItemArea1>
+                                <Typography variant="h5" sx={{ fontWeight: '900', textAlign:'center', paddingTop: '2rem', textTransform: 'uppercase' }}>
+                                    {intl.formatMessage({id: 'platform.proxy.featureArea8Item.minerSetup.title'})}
+                                </Typography>
+                                <ItemTopArea2 elevation={0}>
+                                    <FormGroup>
+                                        <FormControlLabel control={<Checkbox defaultChecked />} label={intl.formatMessage({id: 'platform.proxy.featureArea8Item.minerSetup.saas'})} onChange={(e, checked) => minerCheck( checked, 'saas')}/>
+                                        <FormControlLabel control={<Checkbox />} label={intl.formatMessage({id: 'platform.proxy.featureArea8Item.minerSetup.bandwidth'})} onChange={(e, checked) => minerCheck(checked, 'bandwidth')}/>
+                                        {/* <FormControlLabel control={<Checkbox />} label="France" onChange={(e, checked) => onchange(e, checked, 'fr')}/> */}
+                                    </FormGroup>
+                                </ItemTopArea2>
+                                
+                                <Button size="large" variant="outlined" disabled={loading} onClick={minerStartup}>
+                                    {intl.formatMessage({id: 'platform.settings.device.delete.confirmButton'})}
+                                </Button>
+                            </StyledItemArea1>
+                        }
 
                         </Grid>
                        
@@ -298,14 +384,12 @@ const featureArea8Item = (conetBalance: string, loading: boolean, faucet: () => 
                                     </Grid>
                                 </Grid>
                                 
-                                <Typography variant="h6" sx={{ color: 'grey', textAlign:'center', padding: '1.2rem 0 1rem 0', fontSize: '15px'}}>
+                                {/* <Typography variant="h6" sx={{ color: 'grey', textAlign:'center', padding: '1.2rem 0 1rem 0', fontSize: '15px'}}>
                                     {intl.formatMessage({id: 'platform.proxy.featureArea8Item.step2.random'})}
-                                </Typography>
+                                </Typography> */}
                             </StyledItemArea1>
         
                         </Grid>
-                        
-
                         
                     </Grid>
                         
@@ -341,7 +425,10 @@ const featureArea6 = (conetBalance: string, loading: boolean,
     regionProgress: boolean, wallet: string,
     nodes: nodes_info[],
     showConfirm: boolean,
-    proxyLogs: any[]
+    proxyLogs: any[],
+    showMiner: boolean, 
+    setShowMiner: React.Dispatch<React.SetStateAction<boolean>>
+
     ) => {
     const intl = useIntl()
     return (
@@ -363,7 +450,7 @@ const featureArea6 = (conetBalance: string, loading: boolean,
                 
                 
                 <Grid item xs={12} sx={{paddingBottom: '5rem'}}>
-                    {featureArea8Item(conetBalance, loading, faucet, wallet, regionProgress, onChange, regionConfirm, showConfirm, nodes)}
+                    {featureArea8Item(conetBalance, loading, faucet, wallet, regionProgress, onChange, regionConfirm, showConfirm, nodes, showMiner, setShowMiner)}
                 </Grid>
                 
                 
@@ -380,6 +467,8 @@ const regions: regionType = {
     sp: false,
     fr: false
 }
+
+type kk = 0
 
 const getBalance = (conetTokens: number) => {
     if (conetTokens < 1) {
@@ -436,15 +525,13 @@ const fetchProxyData = async (node: nodes_info, setProxyNodeLog: React.Dispatch<
     // logger (`fetchProxyData [${url}]`)
 }
 
-
-
 const LaunchPage = () => {
 
     const {
         setShowGuide,
         setShowAppStore
     } = useAppState()
-    const data = getWorkerService()
+
     const [showAssetBalance_balance, setshowAssetBalance_balance] = useState('0')
     const [walletAddress, setWalletAddress] = useState('')
     const [loading, setLoading] = useState(false)
@@ -456,13 +543,14 @@ const LaunchPage = () => {
     const [nodes, setNodes] = useState<nodes_info[]>([])
     const [showConfirm, setShowConfirm] = useState(true)
     const [showProxyNodeLogs, setProxyNodeLog] = useState<any[][]>([])
+    const [showMiner, setShowMiner] = useState(false)
+    
 
     useEffect(() => {
         
         const fetchData = async () => {
-            
-            const workChannel = new CONET_Platfrom_API()
-            const [status, data] = await workChannel.getCONETBalance()
+
+            const [status, data] = await getCONETBalance()
             if (status !== 'SUCCESS' || !data) {
                 return logger('LaunchPage Error', 'useEffect fetchData getCONETBalance had no SUCCESS')
             }
@@ -472,13 +560,8 @@ const LaunchPage = () => {
             setshowAssetBalance_balance(data[1])
             const _nodes: nodes_info[] = data[2]
             if (_nodes.length > 0) {
-
                 setNodes(_nodes)
-                setShowConfirm(false)
-                
             }
-
-            
 
         }
       
@@ -500,10 +583,9 @@ const LaunchPage = () => {
                             <BreadcrumbsArea>
                                 <Breadcrumbs aria-label="breadcrumb">
     
-                                    <Link underline="hover" color="inherit" href="#" sx={{color: 'white'}}
+                                    <Link underline="hover" color="inherit" sx={{color: 'white', cursor: 'pointer'}}
                                         onClick={() => {
                                             setShowAppStore (false)
-                                            setShowGuide (true)
                                         }}
                                     >
                                         <HomeIcon sx={{ mr: 0.5 }} fontSize="inherit" />
@@ -533,9 +615,8 @@ const LaunchPage = () => {
     }
 
     const faucet = async () => {
-        const workChannel = new CONET_Platfrom_API()
         setLoading(true)
-        const [status, data] = await workChannel.faucet()
+        const [status, data] = await faucetAPI()
         setLoading(false)
         if (status !== 'SUCCESS' || !data) {
             return logger('LaunchPage Error', 'useEffect fetchData getCONETBalance had no SUCCESS')
@@ -553,12 +634,11 @@ const LaunchPage = () => {
     }
 
     const regionConfirm = async () => {
-        const workChannel = new CONET_Platfrom_API()
         setRegionProgress(true)
-        const [status, data] = await workChannel.setRegion(region)
+        const [status, data] = await setRegionAPI(region)
         setRegionProgress(false)
         if (status === 'SUCCESS') {
-            const [status1, data1] = await workChannel.getRegiestNodes()
+            const [status1, data1] = await getRegiestNodesAPI()
             if (status1 !== 'SUCCESS' || !data) {
                 return logger('LaunchPage Error', 'useEffect fetchData getCONETBalance had no SUCCESS')
             }
@@ -578,9 +658,8 @@ const LaunchPage = () => {
             <ItemContainer sx={{ overflowY: 'scroll'}}>
                 <HeaderArea/>
                 <FeatureArea5 />
-                
                 {
-                    featureArea6(showAssetBalance_balance, loading, faucet, selectOnChange, regionConfirm, regionProgress, walletAddress, nodes, showConfirm, showProxyNodeLogs)
+                    featureArea6(showAssetBalance_balance, loading, faucet, selectOnChange, regionConfirm, regionProgress, walletAddress, nodes, showConfirm, showProxyNodeLogs, showMiner, setShowMiner)
                 }
                 
             </ItemContainer>

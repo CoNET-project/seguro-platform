@@ -19,7 +19,7 @@ type StyledLogoTextProps = {
 
 type StyledLogoSVGProps = {
     size?: string,
-    logoColor?: string
+    logo_color?: string
 } & StyledLogoTextProps
 
 const StyledLogoContainer = styled.div`
@@ -178,7 +178,7 @@ export const LogoImage = ({color}: LogoImageProps) => {
 const StyledLogoSVG = styled.svg<StyledLogoSVGProps>`
 	width: ${props => props.size};
 	height: ${props => props.size};
-	fill: ${props => props.logoColor || props.theme.ui.colors.text.primary};
+	fill: ${props => props.logo_color || props.theme.ui.colors.text.primary};
 `
 
 const StyledLogoPATH0 = styled.path<StyledLogoSVGProps>`
@@ -199,7 +199,7 @@ export const LogoIcon = ({color, size}: LogoImageProps) => {
     return (
         <StyledLogoContainer>
             <StyledLogoSVG width="548" height="548" viewBox="0 0 548 548" xmlns="http://www.w3.org/2000/svg"
-                           logoColor={color} size={ getPixelSize (size || 'sm')}>
+                           logo_color={color} size={ getPixelSize (size || 'sm')}>
 				<StyledLogoPATH0
 					fill={color}
 					d="M329.8,124.2l0.2-0.1c53.7,34.6,80,96.9,70.7,157l-0.1,0.7c-2.8,18.8-9.1,37.3-19.2,54.7l-4.2,6.4

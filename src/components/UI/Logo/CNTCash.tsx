@@ -24,13 +24,13 @@ type StyledLogoTextProps = {
 
 type StyledLogoSVGProps = {
     size?: string,
-    logoColor?: string
+    logo_color?: string
 } & StyledLogoTextProps
 
 const StyledLogoSVG = styled.svg<StyledLogoSVGProps>`
 	width: ${props => props.size};
 	height: ${props => props.size};
-	fill: ${props => props.logoColor || props.theme.ui.colors.text.primary}
+	fill: ${props => props.logo_color || props.theme.ui.colors.text.primary}
 `
 
 const StyledStopD18E37 = styled.stop`

@@ -7,7 +7,7 @@ import MuiAccordionSummary, {
 } from '@mui/material/AccordionSummary'
 import MuiAccordionDetails from '@mui/material/AccordionDetails'
 import Typography from '@mui/material/Typography'
-import {CONET_Platfrom_API} from '../API/index'
+import {CONET_Platfrom_API} from '../../../../API/index'
 import {logger} from '../../logger'
 import Chip from '@mui/material/Chip'
 import { US } from 'country-flag-icons/react/3x2'

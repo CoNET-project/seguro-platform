@@ -15,7 +15,7 @@ import { blue } from "@mui/material/colors"
 import CircularProgress from '@mui/material/CircularProgress'
 
 type StyledProfileItemProps = {
-    isActive?: boolean
+    isactive?: boolean
 }
 
 type ProfileDropdownProps = {
@@ -49,7 +49,7 @@ const StyledProfileItem = styled.div<StyledProfileItemProps>`
 	display: flex;
 	align-items: center;
 	padding: 0px 24px 0 24px;
-	background-color: ${props => props.isActive && props.theme.ui.colors.border.light};
+	background-color: ${props => props.isactive && props.theme.ui.colors.border.light};
 	min-height: 70px;
 	
 `

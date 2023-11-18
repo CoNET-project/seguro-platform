@@ -17,6 +17,7 @@ const meta = {
 
     }
 }
+
 const RootProvider = ({
     children
 }: ProviderProps) => {

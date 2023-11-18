@@ -14,11 +14,12 @@ import {getWorkerService} from '../../../services/workerService/workerService'
 import {ClientProfiles} from '../../../store/appState/appStateReducer'
 import React,{useEffect} from 'react'
 import BlockScan from '../Apps/blockscan'
-
+import JoinUS from '../Apps/joinUS/index'
 import Box from '@mui/material/Box'
-
+import Miner from '../Apps/miner'
 const StyledMainScreen = styled(motion.div)`
 	width: 100%;
+    overflow-y: auto;
 `
 
 const StyledContents = styled(motion.div)`
@@ -44,7 +45,9 @@ const MainScreen = () => {
         setClientProfiles,
 		showAppStore,
         showBlockScan,
-		setIsModalOpen
+        showJoinUS,
+		setIsModalOpen,
+        showMiner
     } = useAppState()
 
     const drawerWidth = width * 0.80
@@ -114,6 +117,7 @@ const MainScreen = () => {
 					{ showGuide && <LaunchPage/>}
 					{ showAppStore && <CONETProxy/>}
                     { showBlockScan && <BlockScan />}
+                    { showMiner && <Miner />}
                     {/* <StyledContents>
                         {!showGuide && !showAppStore && <Messenger/>}
                     </StyledContents> */}

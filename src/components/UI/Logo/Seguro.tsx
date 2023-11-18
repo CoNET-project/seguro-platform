@@ -18,7 +18,7 @@ type StyledLogoTextProps = {
 
 type StyledLogoSVGProps = {
     size?: string,
-    logoColor?: string
+    logo_color?: string
 } & StyledLogoTextProps
 
 const StyledLogoContainer = styled.div`
@@ -35,7 +35,7 @@ const StyledLogoText = styled.h1<StyledLogoTextProps>`
 const StyledLogoSVG = styled.svg<StyledLogoSVGProps>`
 	width: ${props => props.size};
 	height: ${props => props.size};
-	fill: ${props => props.logoColor || props.theme.ui.colors.text.primary}
+	fill: ${props => props.logo_color || props.theme.ui.colors.text.primary}
 `
 
 export const LogoText = ({size}: LogoTextProps) => {
@@ -52,7 +52,7 @@ export const SeguroLogoImage = ({color, size}: LogoImageProps) => {
     return (
         <StyledLogoContainer>
             <StyledLogoSVG width="100%" height="100%" viewBox="0 0 316 327" xmlns="http://www.w3.org/2000/svg"
-                           logoColor={color} size='100%'>
+                           logo_color={color} size='100%'>
                 <path
                     d="M200.587 64.9811C197.426 49.3474 185.143 38.2413 166.631 36.2851C161.714 35.7645 156.814 35.4805 151.976 35.4805H150.79H149.605C144.767 35.4805 139.882 35.7645 134.95 36.2851C116.469 38.2413 104.171 49.3316 101.009 64.9811C99.0957 74.4781 99.1436 84.0701 99.0014 93.6616C98.9534 96.706 100.171 97.7632 103.886 97.5423H135.392C137.242 97.5423 138.729 96.0913 138.696 94.3085L139.282 82.3502L139.471 78.6589C139.471 64.9811 162.963 64.9811 162.963 78.6589L162.932 87.3196L162.899 94.3085C162.868 96.0913 164.354 97.5423 166.204 97.5423H197.71C201.41 97.7632 202.643 96.706 202.595 93.6616C202.453 84.0701 202.517 74.4624 200.587 64.9811Z"/>
                 <path
@@ -84,7 +84,7 @@ export const SeguroLogoIcon = ({color, size}: LogoImageProps) => {
     return (
         <StyledLogoContainer>
             <StyledLogoSVG width="20" height="30" viewBox="0 0 20 30" xmlns="http://www.w3.org/2000/svg"
-                           logoColor={color} size={getPixelSize(size || 'sm')}>
+                           logo_color={color} size={getPixelSize(size || 'sm')}>
                 <path
                     d="M18.1452 4.54332C17.6583 2.13561 15.7666 0.425182 12.9156 0.123916C12.1584 0.0437386 11.4037 0 10.6587 0H10.476H10.2935C9.54846 0 8.79619 0.0437386 8.03654 0.123916C5.19041 0.425182 3.2963 2.13317 2.8094 4.54332C2.51474 6.00592 2.52212 7.48315 2.50021 8.9603C2.49282 9.42916 2.68035 9.59199 3.25248 9.55797H8.1047C8.38955 9.55797 8.61848 9.3345 8.61351 9.05994L8.7037 7.21827L8.73288 6.64978C8.73288 4.54331 12.3508 4.54331 12.3508 6.64978L12.3459 7.98361L12.341 9.05994C12.3361 9.3345 12.565 9.55797 12.8499 9.55797H17.7021C18.2718 9.59199 18.4618 9.42916 18.4544 8.9603C18.4325 7.48315 18.4423 6.0035 18.1452 4.54332Z"/>
                 <path

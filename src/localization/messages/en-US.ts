@@ -10,7 +10,7 @@ const en_US: Messages = {
     'onboarding.selectLanguageTitle': 'Select your language',
     'onboarding.selectLanguageSubtitle': 'Please select your language for Seguro Platform. ' +
         'You will be able to change this later in settings.',
-    'onboarding.setPasscodeTitle': 'Create Passcode',
+    'onboarding.setPasscodeTitle': 'Create Passcode to Protect your CONET Wallet',
     'onboarding.setPasscodeSubtitle': 'Enter a minimum 6 character passcode',
     'onboarding.confirmPasscodeTitle': 'Confirm Passcode',
 
@@ -255,37 +255,37 @@ const en_US: Messages = {
 
     'launchPage.HeaderArea.title1-1': 'CONET - COMPLETE PRIVACY FOR',
     'launchPage.HeaderArea.title1-2': 'THE NEW INTERNET',
-    'launchPage.HeaderArea.title2': `We've Invented A Way to Actually Anonymize The Internet`,
-    'launchPage.HeaderArea.button': 'Try DEMO',
-    'launchPage.HeaderArea.secondPart.1': 'We Rebuilt the Entire Internet… to Be',
+    'launchPage.HeaderArea.title2': `WE rebuilt the entire internet to be censorship resistant`,
+    'launchPage.HeaderArea.button': 'Join CONET',
+    'launchPage.HeaderArea.secondPart.1': 'CoNET has reinvented the Internet by coming up with a censorship-resistant method of data  exchange using wallet addresses instead of IP addresses.',
     'launchPage.HeaderArea.secondPart.2': 'Censorship Resistant',
     'launchPage.HeaderArea.secondPart.3': 'CONET has reinvented the Internet by coming up with a censorship-resistant method of data',
     'launchPage.HeaderArea.secondPart.4': 'exchange using wallet addresses instead of IP addresses.',
     
     'launchPage.FeatureArea1.1': 'USE WALLET ADDRESSES INSTEAD OF IP ADDRESSES',
-    'launchPage.FeatureArea1.2': 'CONET presents a brand new network layer for the Internet that does not use IP addresses or contain any metadata. This is the only routing method that enables total anonymity, privacy, and universal access.',
+    'launchPage.FeatureArea1.2': 'The CONET blockchain represents a brand new network layer for the Internet that does not use IP addresses or contain any metadata. This is the only routing method that enables total anonymity, privacy, and universal access.',
     'launchPage.FeatureArea2.1': 'EASY FOR USERS TO UNDERSTAND AND USE',
     'launchPage.FeatureArea2.2': 'CONET helps users avoid ubiquitous surveillance, communication filters, and big data collection, all without creating technical barriers. The interface is intuitive and aesthetically pleasing, removing any trade-offs of previous solutions.',
-    'launchPage.FeatureArea3.1': 'ANONYMITY MINER PoS LAYER 1',
-    'launchPage.FeatureArea3.2': 'CONET is open source project and it is Permitless, Trustless. Users are able to pay gas, earn rewards, delegate tokens, run nodes, and vote on governance initiatives with the CONET token. The quality of service is decided by users and service providers themselves, and CONET is no longer involved.',
+    'launchPage.FeatureArea3.1': 'GOOD BEHAVIOR INCENTIVIZED BY TOKEN USAGE',
+    'launchPage.FeatureArea3.2': 'On the CoNET blockchain, users are able to pay gas, earn rewards, delegate tokens, run nodes, and vote on governance initiatives with the CoNET token. The quality of service is decided by users and service providers themselves, and CoNET is no longer involved.',
 
     'launchPage.FeatureArea4.1': 'CONET Surpasses Everything Else Out There',
-    'launchPage.FeatureArea4.2': `This is a solution that can do something that TOR, NYM, dVPN, and all other solutions you've heard of cannot.`,
+    'launchPage.FeatureArea4.2': `This is a solution that can do something that TOR, NYM, dVPN, and all other solutions you’ve heard of cannot.`,
 
     'launchPage.FeatureArea5.1': 'TRUE PRIVACY',
-    'launchPage.FeatureArea5.2': 'Privacy from government and corporate surveillance is becoming increasingly important to users. By abandoning cumbersome Web2 communication protocols, an innovative Web3 protocol with true privacy becomes possible.',
+    'launchPage.FeatureArea5.2': 'Privacy from government and corporate surveillance is becoming increasingly important to users. By replacing cumbersome Web2 communication protocols with an innovative Web3 protocol, true privacy becomes possible.',
 
     'launchPage.FeatureArea6.1': 'SIMPLE USER ADOPTION',
-    'launchPage.FeatureArea6.2': 'Onboarding is easy since the platform runs in various browsers. There’s no need to install any app to get the benefit of CONET. All incoming and outgoing data will still be encrypted, making user history invisible.',
+    'launchPage.FeatureArea6.2': 'Onboarding is easy since the platform runs in various browsers. There’s no need to install any app to get the benefit of CoNET. All incoming and outgoing data will still be encrypted, making user history invisible.',
 
     'launchPage.FeatureArea7.1': 'EASY DEVELOPMENT',
-    'launchPage.FeatureArea7.2': 'CONET has a built-in development package that allows developers to build apps for Web3. The single code base and universal device capability streamline development for non-Web3 coders.',
+    'launchPage.FeatureArea7.2': 'CoNET has a built-in development package that allows developers to build apps for Web3. The single code base and universal device capability streamline development for non-Web3 coders.',
 
     'launchPage.FeatureArea.1': 'CONET is A Ground-Up Revamp of the',
     'launchPage.FeatureArea.2': 'Entire Privacy Market',
     'launchPage.FeatureArea.3': 'CONET’s Unique Design',
 
-    'platform.home': 'CONET Home',
+    'platform.home': 'CONET Platform',
     'platform.proxy': 'CoNET Proxy',
     'platform.proxy.title': 'THE FAST & PRIVACY PROXY',
     'platform.proxy.FeatureArea.title.1': 'CONET is A Ground-Up Revamp of the',
@@ -302,8 +302,58 @@ const en_US: Messages = {
     'platform.proxy.featureArea8Item.step1.CONETbalance': 'CONET balance',
     'platform.proxy.featureArea8Item.step1.transferQuote': 'Billed by traffic, 1MB/1$CONET',
     'platform.proxy.featureArea8Item.step2': 'Step 2 select proxy server localtion',
-    'platform.proxy.featureArea8Item.step2.random': 'Multiple selections will use randomly by fragmented data packets',
-    'platform.proxy.featureArea8Item.step3': 'Setp 3 Setup Your FireFox'
+    'platform.proxy.featureArea8Item.step2.random': '',//'Multiple selections will use randomly by fragmented data packets',
+    'platform.proxy.featureArea8Item.step3': 'Setp 3 Setup Your FireFox',
+
+    'platform.proxy.featureArea8Item.minerSetup.title': 'Select Option',
+    'platform.proxy.featureArea8Item.minerSetup.saas':'SaaS',
+    'platform.proxy.featureArea8Item.minerSetup.bandwidth': 'Bandwidth',
+
+    'platform.joinUS.miner.title': 'Safety-first mining design',
+    'platform.joinUS.miner.detail': `CONET is a trustless, permissionless, decentralized network. maximizing the security for resource providers is the top priority of CONET network design, an independent space in the security sandbox and the miner without IP address are CONETs technical advantages that stand out among the others.`,
+    'launchPage.FeatureArea9.title': 'CONET testnet is live',
+    'platform.joinUS.header.title.1': 'DePEN Idle Computer Resources',
+    'platform.joinUS.header.title.2': 'Fair Free Market',
+    'platform.joinUS.header.detail': 'CONET is building a suite of privacy network layer infrastructure for Web3.',
+    'platform.joinUS.header.whatConet': `What's CONET`,
+    'platform.joinUS.miner.Bandwidth': 'Bandwidth Provider',
+    'platform.joinUS.miner.BandwidthDetail': 'Get rewards by sharing your unused network resources.',
+    'platform.joinUS.miner.SaaS': 'SaaS Provider',
+    'platform.joinUS.miner.SaaSDetail': 'Get rewards by sharing your computer resources.',
+    'platform.joinUS.miner.storage': 'Storage Provider',
+    'platform.joinUS.miner.storageDetail': 'Get rewards by sharing your storage resources.',
+
+    'platform.joinUS.joinMiner.button': 'Join Miner Now',
+
+    'platform.joinUS.forUser.Title1': 'Web3 Application',
+    'platform.joinUS.forUser.Title2': 'Open Trustless Web3 Application',
+    'platform.joinUS.forUser.detail': 'User-driven validation model eliminates the need for centralized intermediaries, enhancing security and trust in the ecosystem',
+
+    'platform.joinUS.forDeveloper.Title1': 'Web3 dAPP Development',
+    'platform.joinUS.forDeveloper.Title2': 'with CONET',
+    'platform.joinUS.forDeveloper.detail': 'dAPP has naturally privacy-enhancing features',
+    'platform.joinUS.forDeveloper.button': 'Coming Soon',
+
+    'platform.api.daemon.title': 'No CONET Daemon Activity Detected',
+    'platform.api.daemon.detail': 'Please start CONET Daemon, or download and start it',
+    'platform.api.daemon.testButton': 'test daemon',
+
+    'platform.miner.header.title': 'Welcome to CONET DePIN',
+    'platform.miner.register.title': 'Node Register',
+    'platform.miner.register.button': 'Register',
+    'platform.miner.register.boost': 'Boost',
+    'platform.miner.register.boost.detail': '1000 $CONET with 180 days locked',
+
+    'platform.miner.register.MinerAni.reward': 'Rewards currently received',
+    'platform.miner.register.MinerAni.pause': 'Pause',
+    'platform.miner.register.MinerAni.resume': 'Start',
+    'platform.miner.register.MinerAni.claim': 'Claim reward',
+    'platform.miner.register.totalRewards': 'My Lifetime Rewards',
+    'platform.miner.register.pendingRewards': 'My Pending Rewards',
+    'platform.miner.register.previouslyClaimed': 'Previously Claimed',
+    'platform.miner.register.MinerAni.stop': 'Stop DePIN'
+
+    
 }
 
 export default en_US

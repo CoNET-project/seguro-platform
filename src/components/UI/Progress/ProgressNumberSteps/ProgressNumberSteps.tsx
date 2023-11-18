@@ -3,7 +3,7 @@ import styled from "styled-components"
 import React, {Fragment} from "react"
 
 type StyledProgressNumberBlockProps = {
-    isActive: boolean
+    isactive: boolean
 }
 
 
@@ -22,7 +22,7 @@ const StyledProgressNumberBlock = styled.div<StyledProgressNumberBlockProps>`
 	height: 3px;
 	margin: 0 6px;
 	content: '';
-	background-color: ${props => props.isActive ? props.theme.ui.colors.primary : props.theme.ui.colors.background.elevationOne};
+	background-color: ${props => props.isactive ? props.theme.ui.colors.primary : props.theme.ui.colors.background.elevationOne};
 	transition: background-color 300ms ease-in-out;
 	border: 1px solid ${props => props.theme.ui.colors.border.light}
 `
@@ -35,8 +35,8 @@ const ProgressNumberSteps = ({currentActiveStep, steps, className}: ProgressNumb
         return (
             <Fragment key={nthElement}>
                 {!start &&
-                <StyledProgressNumberBlock isActive={currentActiveStep >= nthElement}/>}
-                <ProgressNumber number={number} isActive={currentActiveStep >= nthElement}/>
+                <StyledProgressNumberBlock isactive={currentActiveStep >= nthElement}/>}
+                <ProgressNumber number={number} isactive={currentActiveStep >= nthElement}/>
             </Fragment>
         )
     }
