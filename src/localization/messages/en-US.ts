@@ -337,6 +337,7 @@ const en_US: Messages = {
     'platform.api.daemon.title': 'No CONET Daemon Activity Detected',
     'platform.api.daemon.detail': 'Please start CONET Daemon, or download and start it',
     'platform.api.daemon.testButton': 'test daemon',
+    'platform.api.daemon.openSource': 'CONET is Open Source',
 
     'platform.miner.header.title': 'Welcome to CONET DePIN',
     'platform.miner.register.title': 'Node Register',

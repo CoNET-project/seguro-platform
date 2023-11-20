@@ -66,7 +66,8 @@ const App = () => {
         showAppStore,
         localDaemon,
         setlocalDaemon,
-        showMiner
+        showMiner,
+        dAPPInitialize
     } = useAppState()
     const drawerDragControls = useDragControls()
     
@@ -104,10 +105,14 @@ const App = () => {
 		
         const testDeamon = async() => {
             const test = await testLocalServer ()
-            if (test === null) {
+            if (test === true) {
                 setlocalDaemon(true)
+                dAPPInitialize().then(() => {
+                    
+                })
             }
         }
+
         testDeamon().catch((ex) => {
             console.log(`APP useEffect testDeamon error`, ex)
         })
@@ -117,8 +122,8 @@ const App = () => {
     const ShowApp = () => {
         return (
             <>
-                {localDaemon && <NoDeamon />}
-                {!localDaemon && <ConetAPP />}
+                {!localDaemon && <NoDeamon />}
+                {localDaemon && <ConetAPP />}
             </>
             
         )

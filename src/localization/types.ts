@@ -334,6 +334,7 @@ export type Messages = {
     'platform.api.daemon.title': string
     'platform.api.daemon.detail': string
     'platform.api.daemon.testButton': string
+    'platform.api.daemon.openSource': string
 
     'platform.miner.header.title': string
     'platform.miner.register.title': string

@@ -97,13 +97,10 @@ const StyledDialogButton = styled.button<StyledDialogButtonProps>`
 
 const AlertDialog = ({icon, message, dialogActions}: AlertDialogProps) => {
 
-    const appState = useAppState()
+    const {setIsShowOverlay} = useAppState()
 
     useEffect(() => {
-        appState.setIsShowOverlay(true)
-        return () => {
-            appState.setIsShowOverlay(false)
-        }
+        
     }, [])
     return (
         <StyledDialog>

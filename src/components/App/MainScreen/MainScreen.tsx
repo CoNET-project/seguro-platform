@@ -37,15 +37,8 @@ const MainScreen = () => {
 
     const {
         windowInnerSize: {width},
-        setIsDrawerOpen,
-        isDrawerOpen,
-        isTouchDevice,
-        isModalOpen,
-		showGuide,
         setClientProfiles,
 		showAppStore,
-        showBlockScan,
-        showJoinUS,
 		setIsModalOpen,
         showMiner
     } = useAppState()
@@ -75,9 +68,9 @@ const MainScreen = () => {
         }
     }
 
-    useEffect(() => {
-        setInitialProfiles()
-    }, [])
+    // useEffect(() => {
+    //     setInitialProfiles()
+    // }, [])
 
     const startDrag = (event: any) => {
         drawerDragControls.start(event)
@@ -114,9 +107,8 @@ const MainScreen = () => {
                 <GlobalBar/> */}
 
                 <LayoutGroup id="a">
-					{ showGuide && <LaunchPage/>}
+
 					{ showAppStore && <CONETProxy/>}
-                    { showBlockScan && <BlockScan />}
                     { showMiner && <Miner />}
                     {/* <StyledContents>
                         {!showGuide && !showAppStore && <Messenger/>}

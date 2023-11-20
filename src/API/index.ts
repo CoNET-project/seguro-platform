@@ -103,37 +103,44 @@ type StartWorkerResolveForAPI = [WorkerCallStatus, any []]
 const channelWrokerListenName = 'toMainWroker'
 
 
-const postUrl: (url: string, data: string) => Promise<null|boolean> = (url, data) => {
+export const postUrl: (url: string, data: string, post?: boolean) => Promise<any> = (url, data, post = true) => {
     return new Promise( async (resolve, reject )=> {
         const timeout = 1000
         const controller = new AbortController()
         const id = setTimeout(() => controller.abort(), timeout)
         let status:null|boolean  = null
-        await fetch (url, {
-            method: "POST",
+
+        const opt: RequestInit = {
+            method: post ? "POST" : 'GET',
             headers: {
                 Accept: "text/event-stream",
                 "Content-Type": 'application/json;charset=UTF-8'
             },
-            body: data,
             cache: 'no-store',
             referrerPolicy: 'no-referrer',
             signal: controller.signal
-        })
+        }
+        if (post) {
+            opt.body = data
+        }
+        await fetch (url, opt)
         .then ( async res => {
             
             if (!res.ok) {
-                
                 console.log (`postUrl return resolve (false) res.status = [${res.status}]`)
                 return res.status
             }
             
             status = true
-            const returnData = await res.json()
+            let returnData = res.text.length ? await res.text(): ''
+            if (res.headers.get('content-type')?.includes('application/json')) {
+                returnData = await res.json()
             
-            if (!returnData) {
-                return true
+                if (!returnData) {
+                    return true
+                }
             }
+            
             console.log (`postUrl status = [${res.status}] returnData = `, returnData)
             console.log (`postUrl return JSON data`, returnData)
             return returnData
@@ -142,7 +149,7 @@ const postUrl: (url: string, data: string) => Promise<null|boolean> = (url, data
         .then(_data => {
             return resolve (_data)
         })
-        .catch (ex => {
+        .catch ((ex) => {
             return resolve (status)
         })
 
@@ -150,12 +157,23 @@ const postUrl: (url: string, data: string) => Promise<null|boolean> = (url, data
     })
 }
 
-export const testLocalServer = () => {
-    return postUrl(`http://localhost:3001/loginRequest`, '')
+
+export const postPasscode: (passcode: string) => Promise<null|boolean|WorkerCommand> = async (passcode) => {
+    return await postUrl(`http://localhost:3001/loginRequest`, JSON.stringify({data:passcode}))
 }
 
-export const postPasscode: (passcode: string) => Promise<null|boolean|WorkerCommand> = (passcode) => {
-    return postUrl(`http://localhost:3001/loginRequest`, JSON.stringify({data:passcode}))
+export const testLocalServer = async () => {
+    const ver = '0.0.6'
+    const result = await postUrl(`http://localhost:3001/ver`, '', false)
+    if (result) {
+        if (result.ver === ver) {
+            return true
+        }
+        return false
+    }
+    console.log (`[${!result}]`)
+    console.log (result? 'result true ': 'result false')
+    return null
 }
 
 const postMessage = (cmd: WorkerCommand, resolve:  (value: StartWorkerResolveForAPI | PromiseLike<StartWorkerResolveForAPI>) => void) => {

@@ -58,9 +58,9 @@ const zh_CN: Messages = {
     'unlock.title': '輸入您的 Platform 平台密碼',
     
     'platform.unlock.button.forgot': '忘記密碼了？',
-    'platform.dialog.delete.message': '刪除容器是一項永久性操作，您需要使用新的邀請碼創建新密碼',
+    'platform.dialog.delete.message': '刪除密碼，將失去您在CONET内的所有信息！',
     'platform.dialog.delete.button.cancel': '取消',
-    'platform.dialog.delete.button.confirm': '刪除',
+    'platform.dialog.delete.button.confirm': '刪除密碼',
 
     'keypad.cancel': '取消',
     'keypad.unlock': '解鎖',
@@ -341,6 +341,7 @@ const zh_CN: Messages = {
     'platform.api.daemon.title': '未偵測到CONET守護程序',
     'platform.api.daemon.detail': '請啟動CONET，或下載啟動它',
     'platform.api.daemon.testButton': '測試守護程序',
+    'platform.api.daemon.openSource': 'CONET是開源程式碼',
 
     'platform.miner.header.title': '欢迎您CONE DePIN参与者',
     'platform.miner.register.title': '節點註冊',

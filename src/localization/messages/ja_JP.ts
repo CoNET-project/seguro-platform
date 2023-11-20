@@ -59,9 +59,9 @@ const ja_JP: Messages = {
     'unlock.title': 'パスコードを入力してください',
 
     'platform.unlock.button.forgot': 'パスコードをお忘れですか？',
-    'platform.dialog.delete.message': '削除はCoNET Platform 内のすべてのデータが失われます。',
+    'platform.dialog.delete.message': '削除はCoNET Platform 内のすべてデータが失われます！',
     'platform.dialog.delete.button.cancel': 'キャンセル',
-    'platform.dialog.delete.button.confirm': 'Delete',
+    'platform.dialog.delete.button.confirm': 'パスコードを削除',
 
     'keypad.cancel': 'Cancel',
     'keypad.unlock': 'Unlock',
@@ -334,6 +334,7 @@ const ja_JP: Messages = {
     'platform.api.daemon.title': 'CONETデーモンが検出されませんでした',
     'platform.api.daemon.detail': 'CONETを起動、又ダウンロードして起動してください',
     'platform.api.daemon.testButton': 'テストデーモン',
+    'platform.api.daemon.openSource': 'CONETはオープンソースコードです',
 
     'platform.miner.header.title': 'ようこそCONET DePIN参加者の皆様',
     'platform.miner.register.title': 'ノードの登録',
