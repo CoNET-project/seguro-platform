@@ -286,6 +286,8 @@ export type Messages = {
     'platform.proxy.FeatureArea.title.2': string
     'platform.proxy.FeatureArea5.1': string
     'platform.proxy.FeatureArea5.2': string
+    'platform.proxy.FeatureArea5.moreDetail': string
+
     'platform.proxy.FeatureArea6.1': string
     'platform.proxy.FeatureArea6.2': string
     'platform.proxy.FeatureArea7.1': string
@@ -300,10 +302,14 @@ export type Messages = {
     'platform.proxy.featureArea8Item.step2': string
     'platform.proxy.featureArea8Item.step2.random': string
     'platform.proxy.featureArea8Item.step3': string
+    'platform.proxy.featureArea8Item.chrome': string
+    'platform.proxy.featureArea8Item.chrome.extensions': string
 
     'platform.proxy.featureArea8Item.minerSetup.title': string
     'platform.proxy.featureArea8Item.minerSetup.saas': string
     'platform.proxy.featureArea8Item.minerSetup.bandwidth': string
+
+
 
     'platform.joinUS.header.title.1': string
     'platform.joinUS.header.title.2': string

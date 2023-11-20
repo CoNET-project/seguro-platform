@@ -279,6 +279,8 @@ const zh_CN: Messages = {
     'platform.proxy.FeatureArea.title.2': ' ',
     'platform.proxy.FeatureArea5.1': '实现真正的隐私',
     'platform.proxy.FeatureArea5.2': 'CONET代理技术重写了VPN隐私定义。碎片化通信让数据完美地隐藏在数据海洋中。钱包地址通讯路由网络，让客户在去中心化代理服务商面前完全匿名',
+    'platform.proxy.FeatureArea5.moreDetail': '更多信息',
+
     'platform.proxy.FeatureArea6.1': '流量混淆技术',
     'platform.proxy.FeatureArea6.2': `CONET代理最大特点是没有特殊协议，碎片化通讯让流量隐身不可见`,
     'platform.proxy.FeatureArea7.1': '并发流量的威力',
@@ -290,7 +292,9 @@ const zh_CN: Messages = {
     'platform.proxy.featureArea8Item.step1.transferQuote': '计费 1MB/1$CONET',
     'platform.proxy.featureArea8Item.step2': '第二步：选择代理服务器位置(可多选)',
     'platform.proxy.featureArea8Item.step2.random': ' ',//'多重选择，通讯数据将碎片化随机使用',
-    'platform.proxy.featureArea8Item.step3': '第三步：设置火狐浏览器来使用代理',
+    'platform.proxy.featureArea8Item.step3': '火狐浏览器设置',
+    'platform.proxy.featureArea8Item.chrome': 'Chromium内核类浏览器设置',
+    'platform.proxy.featureArea8Item.chrome.extensions': '谷歌应用商店下载',
 
     'platform.proxy.featureArea8Item.minerSetup.title': '请选择挖矿类型',
     'platform.proxy.featureArea8Item.minerSetup.saas':'SaaS算力挖矿',
@@ -301,7 +305,7 @@ const zh_CN: Messages = {
     'launchPage.FeatureArea9.title': 'CONET测试网正式运行',
     'platform.joinUS.header.title.1': '空余计算机资源',
     'platform.joinUS.header.title.2': '公平交易市场',
-    'platform.joinUS.header.detail': 'CONET正在为Web3构建一套隐私网络层基础设施',
+    'platform.joinUS.header.detail': 'CONET是Layer Minus隐私基础设施',
     'platform.joinUS.header.whatConet': `CONET是什么`,
     'platform.joinUS.miner.Bandwidth': '带宽挖矿',
     'platform.joinUS.miner.BandwidthDetail': '通过分享未使用网络资源来获取奖励。',

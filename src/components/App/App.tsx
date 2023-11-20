@@ -107,10 +107,9 @@ const App = () => {
             const test = await testLocalServer ()
             if (test === true) {
                 setlocalDaemon(true)
-                dAPPInitialize().then(() => {
-                    
-                })
             }
+            dAPPInitialize().then(() => {
+            })
         }
 
         testDeamon().catch((ex) => {

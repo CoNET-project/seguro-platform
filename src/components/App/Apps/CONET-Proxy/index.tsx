@@ -32,6 +32,8 @@ import AccordionDetails from '@mui/material/AccordionDetails'
 import SaaSNodes from './SaasNodes'
 import type {nodes_info} from './SaasNodes'
 import { useIntl } from "react-intl"
+import chromeImg from './assets/images/chrome.gif'
+import Stack from '@mui/material/Stack'
 import miner2 from '../../../../assets/miner/FancyNyan.webp'
 
 //import { ColorMode, TerminalOutput } from 'react-terminal-ui'
@@ -87,7 +89,7 @@ const StyleIconSize = styledCom.img`
 `
 
 const StyleIconSize1 = styledCom.img`
-width:700px;
+width:400px;
 
 `
 
@@ -172,15 +174,30 @@ const FeatureArea7Item = () => {
     )
 }
 
-const FeatureArea5 = () => {
+const showMoreDetail = (locale: string) => {
+   
+    switch(locale) {
+        default:
+        case 'ja-JP':
+        case 'en-US': {
+            return window.open(`https://doc.conet.network/conet-white-paper/introduction/wallet-address-routing-network-infrastructure/conet-proxy-service`)
+        }
+        case 'zh-TW':
+        case'zh-CN': {
+            return window.open(`https://doc.conet.network/conet-bai-pi-shu/jie-shao/qian-bao-di-zhi-lu-you-wang-lao-ji-chu-she-shi/conet-dai-li-fu-wu`)
+        }
+    }
+}
+
+const FeatureArea5 = (locale: string) => {
     const intl = useIntl()
     return (
         <ThemeProvider theme={themeTopArea1}>
-            <Grid container spacing={2} columns={{ xs: 4, sm: 8, md: 12 }}  sx={{padding:'5rem 5rem 2rem 5rem'}}>
+            <Grid container spacing={2} columns={{ xs: 4, sm: 8, md: 12 }}  sx={{padding:'5rem 5rem 5rem 5rem'}}>
                 <Grid item xs={12}>
                     <ItemTopArea2 elevation={0}>
                         <Slide direction="right" in={true} mountOnEnter>
-                            <Typography variant="h4" >
+                            <Typography variant="h4" sx={{color:' #448aff'}} >
                                 { intl.formatMessage({id:'platform.proxy.FeatureArea.title.1'})}
 
                             </Typography>
@@ -193,9 +210,18 @@ const FeatureArea5 = () => {
                         </Slide>
                     </ItemTopArea2>
                 </Grid>
+                
                 < FeatureArea5Item />
                 < FeatureArea6Item />
                 < FeatureArea7Item />
+                <Grid item xs={12} sx={{textAlign: 'center' }}>
+                    <Button 
+                        variant="outlined" size="large"
+                        onClick={() => showMoreDetail(locale)}
+                        sx={{backgroundColor:'white', textTransform: 'none', fontSize: '1.5rem' }}>
+                        { intl.formatMessage({id: 'platform.proxy.FeatureArea5.moreDetail'})}
+                    </Button>
+                </Grid>
             </Grid>
         
         </ThemeProvider>
@@ -283,9 +309,9 @@ const featureArea8Item = (conetBalance: string, loading: boolean, faucet: () => 
                     id="panel1a-header"
                     sx={{backgroundColor: 'rgb(240,240,240)'}}
                 >
-                    <Typography variant="h5" sx={{ fontWeight: '900', textAlign:'center', textTransform: 'uppercase' }}>
-                        {intl.formatMessage({id: 'platform.proxy.step1.title'})}
-                    </Typography>
+                    
+                    {intl.formatMessage({id: 'platform.proxy.step1.title'})}
+                    
                 </AccordionSummary>
                 <AccordionDetails>
                     <Grid container spacing={2} columns={{ xs: 4, sm: 8, md: 12 }}>
@@ -397,7 +423,31 @@ const featureArea8Item = (conetBalance: string, loading: boolean, faucet: () => 
             </Accordion>
             {
                 //  Firefox setup       ***************************************************
-            }              
+            }
+            <Accordion expanded={expanded === 'panel3'} onChange={handleChange('panel3')}>
+                <AccordionSummary
+                    expandIcon={<ExpandMoreIcon />}
+                    aria-controls="panel1a-content"
+                    id="panel1a-header"
+                    sx={{backgroundColor: 'rgb(240,240,240)'}}
+                >
+                    {intl.formatMessage({id: 'platform.proxy.featureArea8Item.chrome'})}
+                </AccordionSummary>
+                <AccordionDetails>
+                    <StyleIconItem>
+                        <Stack>
+                            <StyleIconSize1 src={chromeImg}/>
+                            <Button
+                                variant="outlined" size="large"
+                                onClick={() =>window.open(`https://chromewebstore.google.com/detail/conet-platform/pkhkeliikkihkaolfcogfcbjmbehockd`)}
+                                sx={{backgroundColor:'white', textTransform: 'none', fontSize: '1.5rem' }}>
+                                { intl.formatMessage({id: 'platform.proxy.featureArea8Item.chrome.extensions'})}
+                            </Button>
+                        </Stack>
+                        
+                    </StyleIconItem>
+                </AccordionDetails>
+            </Accordion>           
             <Accordion expanded={expanded === 'panel2'} onChange={handleChange('panel2')}>
                 <AccordionSummary
                     expandIcon={<ExpandMoreIcon />}
@@ -405,7 +455,7 @@ const featureArea8Item = (conetBalance: string, loading: boolean, faucet: () => 
                     id="panel1a-header"
                     sx={{backgroundColor: 'rgb(240,240,240)'}}
                 >
-                    <Typography variant="h5" sx={{ fontWeight: '900', textAlign:'center', textTransform: 'uppercase' }}>{intl.formatMessage({id: 'platform.proxy.featureArea8Item.step3'})}</Typography>
+                    {intl.formatMessage({id: 'platform.proxy.featureArea8Item.step3'})}
                 </AccordionSummary>
                 <AccordionDetails>
                     <StyleIconItem>
@@ -433,11 +483,11 @@ const featureArea6 = (conetBalance: string, loading: boolean,
     const intl = useIntl()
     return (
         <ThemeProvider theme={themeTopArea1}>
-            <Grid container spacing={2} columns={{ xs: 4, sm: 8, md: 12 }}  sx={{padding:'0 5rem 0 5rem'}}>
+            <Grid container spacing={2} columns={{ xs: 4, sm: 8, md: 12 }}  sx={{padding:'3rem 5rem 0 5rem'}}>
                 <Grid item xs={12} sx={{paddingBottom: '2rem'}} >
                     <ItemTopArea2 elevation={0}>
                         <Slide direction="right" in={true} mountOnEnter>
-                            <Typography variant="h4" >
+                            <Typography variant="h4" sx={{color:' #448aff'}}>
                                 { intl.formatMessage({id:'platform.proxy.FeatureArea.start'})}
                             </Typography>
                         </Slide>
@@ -528,6 +578,7 @@ const fetchProxyData = async (node: nodes_info, setProxyNodeLog: React.Dispatch<
 const LaunchPage = () => {
 
     const {
+        locale,
         setShowGuide,
         setShowAppStore
     } = useAppState()
@@ -657,7 +708,7 @@ const LaunchPage = () => {
         <ThemeProvider theme={themeTopArea1} >
             <ItemContainer sx={{ overflowY: 'scroll'}}>
                 <HeaderArea/>
-                <FeatureArea5 />
+                {FeatureArea5( locale )}
                 {
                     featureArea6(showAssetBalance_balance, loading, faucet, selectOnChange, regionConfirm, regionProgress, walletAddress, nodes, showConfirm, showProxyNodeLogs, showMiner, setShowMiner)
                 }

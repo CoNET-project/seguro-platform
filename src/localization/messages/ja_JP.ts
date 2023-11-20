@@ -277,6 +277,7 @@ const ja_JP: Messages = {
 
     'platform.proxy.FeatureArea5.1': '真のプライバシー保護へ',
     'platform.proxy.FeatureArea5.2': 'CONETプロキシテクノロジは、VPNプライバシーの定義を書き換えます。 分散型で断片化された通信により、データはデータの海に完全に隠蔽されます。ウォレットアドレス通信ルーティングのネットワークにより、ユーザーは監視から消えます。',
+    'platform.proxy.FeatureArea5.moreDetail': 'もっと詳しく',
     'platform.proxy.FeatureArea6.1': 'トラフィックの難読化テクノロジ',
     'platform.proxy.FeatureArea6.2': `CONETプロキシの最大の特徴は、独自なプロトコルを使われていない事`,
     'platform.proxy.FeatureArea7.1': '同時トラフィックのパワー',
@@ -288,7 +289,9 @@ const ja_JP: Messages = {
     'platform.proxy.featureArea8Item.step1.transferQuote': 'お見積 1MB/1$CONET',
     'platform.proxy.featureArea8Item.step2': 'ステップ 2: プロキシサーバーの場所を選択(複数選択肢が可能)',
     'platform.proxy.featureArea8Item.step2.random': ' ',
-    'platform.proxy.featureArea8Item.step3': 'ステップ 3: Firefoxをセットアップ',
+    'platform.proxy.featureArea8Item.step3': 'Firefoxをセットアップ',
+    'platform.proxy.featureArea8Item.chrome': 'Chromium類ブラウザをセットアップ',
+    'platform.proxy.featureArea8Item.chrome.extensions': 'Googleアプリストアからダウンロード',
 
     'platform.proxy.featureArea8Item.minerSetup.title': 'マイニングタイプを選択してください',
     'platform.proxy.featureArea8Item.minerSetup.saas':'SaaS コンピューティングパワーマイニング',
@@ -297,7 +300,7 @@ const ja_JP: Messages = {
     'launchPage.FeatureArea9.title': 'CONETテストネットが正式に開始',
     'platform.joinUS.header.title.1': '余ったコンピューターリソースで',
     'platform.joinUS.header.title.2': 'フェアトレード市場',
-    'platform.joinUS.header.detail': 'CONETはWeb3のためにプライバシーネットワーク層インフラストラクチャを構築',
+    'platform.joinUS.header.detail': 'CONETはLayer Minusプライバシーインフラです',
     'platform.joinUS.header.whatConet': `CONETとは`,
     'launchPage.FeatureArea3.2': 'CONETはパーミッションレス、トラストレスのコミュニティ主導の相互作用を促進する、オープンソースプロジェクトです。ブロックチェーン技術で初めて匿名マイニングが実現しました。 ユーザーはCONETトークンを使用して、ガス料を支払い、報酬の獲得、トークンの委任、ノードの実行、ガバナンス計画への投票を行うことができます。',
     'launchPage.FeatureArea4.1': 'CONETは業界のトップに',

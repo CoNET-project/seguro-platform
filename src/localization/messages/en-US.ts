@@ -275,6 +275,7 @@ const en_US: Messages = {
     'launchPage.FeatureArea5.1': 'TRUE PRIVACY',
     'launchPage.FeatureArea5.2': 'Privacy from government and corporate surveillance is becoming increasingly important to users. By replacing cumbersome Web2 communication protocols with an innovative Web3 protocol, true privacy becomes possible.',
 
+    'platform.proxy.FeatureArea5.moreDetail': 'More Information',
     'launchPage.FeatureArea6.1': 'SIMPLE USER ADOPTION',
     'launchPage.FeatureArea6.2': 'Onboarding is easy since the platform runs in various browsers. There’s no need to install any app to get the benefit of CoNET. All incoming and outgoing data will still be encrypted, making user history invisible.',
 
@@ -303,7 +304,9 @@ const en_US: Messages = {
     'platform.proxy.featureArea8Item.step1.transferQuote': 'Billed by traffic, 1MB/1$CONET',
     'platform.proxy.featureArea8Item.step2': 'Step 2 select proxy server localtion',
     'platform.proxy.featureArea8Item.step2.random': '',//'Multiple selections will use randomly by fragmented data packets',
-    'platform.proxy.featureArea8Item.step3': 'Setp 3 Setup Your FireFox',
+    'platform.proxy.featureArea8Item.step3': 'Setup FireFox',
+    'platform.proxy.featureArea8Item.chrome': 'Setup Chromium',
+    'platform.proxy.featureArea8Item.chrome.extensions': 'Download from Chrome Store',
 
     'platform.proxy.featureArea8Item.minerSetup.title': 'Select Option',
     'platform.proxy.featureArea8Item.minerSetup.saas':'SaaS',
@@ -314,7 +317,7 @@ const en_US: Messages = {
     'launchPage.FeatureArea9.title': 'CONET testnet is live',
     'platform.joinUS.header.title.1': 'DePEN Idle Computer Resources',
     'platform.joinUS.header.title.2': 'Fair Free Market',
-    'platform.joinUS.header.detail': 'CONET is building a suite of privacy network layer infrastructure for Web3.',
+    'platform.joinUS.header.detail': 'CONET is a infrastructure for privacy in layer minus',
     'platform.joinUS.header.whatConet': `What's CONET`,
     'platform.joinUS.miner.Bandwidth': 'Bandwidth Provider',
     'platform.joinUS.miner.BandwidthDetail': 'Get rewards by sharing your unused network resources.',

@@ -99,7 +99,7 @@ const deamon = () => {
         setLoading (true)
         const test = await testLocalServer()
         setLoading(false)
-        if (test === false) {
+        if (test !== true) {
             setError (true)
             return setTimeout(() => setError(false), 1000)
         }
