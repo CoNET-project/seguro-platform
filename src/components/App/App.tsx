@@ -2,26 +2,17 @@ import React, {useEffect, useRef} from 'react'
 import GlobalStyle from '../UI/Global/Styles'
 import styled from 'styled-components'
 import useAppState from '../../store/appState/useAppState'
-import MainScreen from './MainScreen/MainScreen'
 import { LayoutGroup, motion, useAnimation, useDragControls, useMotionValue, useTransform} from 'framer-motion'
-import LaunchPage from './Apps/launchPage'
 import JoinUS from './Apps/joinUS'
 import Box from '@mui/material/Box'
 import SpeedDial, { SpeedDialProps } from '@mui/material/SpeedDial'
-import FileCopyIcon from '@mui/icons-material/FileCopyOutlined';
-import SaveIcon from '@mui/icons-material/Save'
-import PrintIcon from '@mui/icons-material/Print'
-import ShareIcon from '@mui/icons-material/Share'
-import SpeedDialIcon from '@mui/material/SpeedDialIcon'
 import SpeedDialAction from '@mui/material/SpeedDialAction'
 import {US, CN,JP, TW } from 'country-flag-icons/react/3x2'
 import SvgIcon from '@mui/material/SvgIcon'
 import {Locale} from "../../localization/types"
-import Proxy from './Apps/CONET-Proxy/index'
 import ConetAPP from './LaunchAPP'
 import {testLocalServer} from '../../API/index'
-import Miner from './Apps/miner'
-
+import DashBoard from './Apps/dashboard'
 import NoDeamon from './NoDaemon'
 const StyledContainer = styled.div`
 	height: 100vh;
@@ -38,6 +29,7 @@ type action = {
     icon: JSX.Element
     name: Locale
 }
+
 const actions: action[] = [
     { icon: <SvgIcon component={JP} inheritViewBox/>, name: 'ja-JP' },
     { icon: <SvgIcon component={CN} inheritViewBox/>, name: 'zh-CN' },
@@ -47,22 +39,8 @@ const actions: action[] = [
 
 const App = () => {
     const {
-        isInitializing,
-        isPlatformLoading,
-        setNetworkStrength,
-        setWindowInnerSize,
-        setClientDevices,
-        setIsTouchDevice,
-        showJoinUS,
-        setShowAppStore,
-        setIsModalOpen,
-        setIsShowOverlay,
-        showOverlay,
-        hasContainer,
-        isUnlocked,
         locale, 
         setLocale,
-        showGuide,
         showAppStore,
         localDaemon,
         setlocalDaemon,
@@ -131,12 +109,12 @@ const App = () => {
     const switchShow = () => {
         return (
             <>
+                
                 { !(showMiner || showAppStore) && <JoinUS/>}
                 {(showMiner || showAppStore) && <ShowApp />}
             </>
         )
     }
-
     return (
         <>
             <GlobalStyle/>

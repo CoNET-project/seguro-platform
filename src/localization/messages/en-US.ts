@@ -315,7 +315,7 @@ const en_US: Messages = {
     'platform.joinUS.miner.title': 'Safety-first mining design',
     'platform.joinUS.miner.detail': `CONET is a trustless, permissionless, decentralized network. maximizing the security for resource providers is the top priority of CONET network design, an independent space in the security sandbox and the miner without IP address are CONETs technical advantages that stand out among the others.`,
     'launchPage.FeatureArea9.title': 'CONET testnet is live',
-    'platform.joinUS.header.title.1': 'DePEN Idle Computer Resources',
+    'platform.joinUS.header.title.1': 'DePIN Idle Computer Resources',
     'platform.joinUS.header.title.2': 'Fair Free Market',
     'platform.joinUS.header.detail': 'CONET is a infrastructure for privacy in layer minus',
     'platform.joinUS.header.whatConet': `What's CONET`,
