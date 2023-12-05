@@ -2,7 +2,7 @@ import { CssVarsProvider, useColorScheme, extendTheme, styled, useTheme } from "
 
 import {HTMLAttributes, useState, useEffect, SyntheticEvent, ReactNode, useMemo, useRef} from "react"
 import Stack from "@mui/material/Stack"
-import {Tabs, Tab} from '@mui/material-next'
+import {Tabs, Tab, } from '@mui/material-next'
 import AppBar from '@mui/material/AppBar'
 import type {SxProps, Theme, createTheme} from '@mui/material/'
 import Toolbar from '@mui/material/Toolbar'
@@ -46,6 +46,7 @@ interface StyledTabProps {
     label?: string
     icon?: string | React.ReactElement<any, string | React.JSXElementConstructor<any>>
     sx?:SxProps<Theme>
+    id?: string
 }
 
 const StyledTabs = styled((props: StyledTabsProps) => (
@@ -123,6 +124,23 @@ const showLocationIcon = (locale: Locale) => {
     }
 }
 
+const languageMenuClick = (e:React.MouseEvent<HTMLButtonElement, MouseEvent>, setAnchorEl: React.Dispatch<React.SetStateAction<HTMLElement | Element | null | undefined>>) => {
+    const kk = e.currentTarget.children[0]
+    setAnchorEl(kk)           
+}
+
+const LanguageFireButton = (setAnchorEl: React.Dispatch<React.SetStateAction<HTMLElement | Element | null | undefined>>, locale: Locale) => {
+    return (
+        <IconButton
+            onClick={e => languageMenuClick(e, setAnchorEl)}
+            size='large' 
+            sx={{ width: '3.5rem', height: '3.5rem' }} 
+        >
+            {showLocationIcon(locale)}
+        </IconButton>
+    )
+}
+
 const DashBoard = () => {
     const {
         hasContainer,
@@ -142,7 +160,78 @@ const DashBoard = () => {
     const openMenu = Boolean(anchorEl)
     const { mode, setMode } = useColorScheme()
     const [showProfileDropdown, setShowProfileDropdown] = useState(false)
-
+    const StyledTabsMobile = () => {
+        const [ready, setReady] = useState(false)
+        const [scrollDir, setScrollDir] = useState(1)
+        const theme = useTheme()
+    
+        return (
+            
+                <AppBar position="fixed" enableColorOnDark id='conet_AppBar'
+                    
+                    sx={{
+                        top: 'auto', bottom: 0, color: mode === 'light' ? '#48473a': '#e5e2d9',
+                        display: {xs: 'flex', sm: 'none', md: 'none', xm: 'none', lg: 'none', xl: 'none'},
+                        opacity: scrollDir,
+                        backgroundColor: mode === 'light' ? '#f0eddd': '#2d2d1e'
+                    }}>
+    
+                    <Toolbar>
+                        {
+                            isUnlocked && 
+                            <>
+                                <IconButton onClick={()=>{
+                                    setShowMiner(true)
+                                    setShowAppStore(false)
+                                }} sx={{ opacity: showMiner ? '1': '0.5'}} >
+                                    <SvgIcon component={LocalLaundryServiceIcon} inheritViewBox sx={{ fontSize: 40 }}/>
+                                </IconButton>
+    
+                                <IconButton  onClick={()=>{
+                                    setShowAppStore(true)
+                                    setShowMiner(false)
+                                }} sx={{ opacity: showAppStore ? '1': '0.5'}}>
+                                    <SvgIcon component={VpnLockIcon} inheritViewBox sx={{ fontSize: 40 }}/>
+                                </IconButton>
+                            </>
+                        }
+                        
+                        <Box
+                            sx={{ position: 'fixed', right: '120px'}} >
+                            <IconButton onClick={
+                                e => {
+                                        const kk = e.currentTarget
+                                        setAnchorEl(kk)
+                                    
+                                }}>
+                                {showLocationIcon(locale)}
+                            </IconButton>
+                            <LanguageMenu />
+                        </Box>
+                            
+                        <IconButton onClick={()=>{
+                                if (mode === 'light') {
+                                    return setMode('dark')
+                                }
+                                setMode('light')
+                            }}
+                            sx={{ position: 'fixed', right: '60px', opacity: menuValue === 3 ? '1': '0.5'}} >
+                            <SvgIcon component={mode === 'light' ? DarkIcon: LightIcon} inheritViewBox sx={{ fontSize: 40 }}/>
+                        </IconButton>
+    
+                        <IconButton onClick={()=>{
+                            if (isUnlocked) {
+                                setShowProfileDropdown(true)
+                            }}} sx={{ width: '55px', position: 'fixed', right: '0px', opacity: menuValue === 0 ? '1': '0.5'}} >
+                            <SvgIcon component={animeCONET} inheritViewBox sx={{ fontSize: 40 }}/>
+                        </IconButton>
+                        
+                    </Toolbar>
+                </AppBar>
+            
+            
+        )
+    }
     const ShowApp = () => {
         
         switch (true) {
@@ -179,230 +268,141 @@ const DashBoard = () => {
 
     }
 
+
+
+
+
+    const ProforeIcon = () => {
+        return (
+            <IconButton  sx={{ width: '3.5rem' }}>
+                <SvgIcon component={animeCONET} inheritViewBox />
+            </IconButton>
+        )
+    }
+
+    const LanguageMenu = () => {
+        
+        return (
+            <Menu 
+                id="menu-language"
+                keepMounted
+                open={openMenu}
+                anchorEl={anchorEl}
+                anchorOrigin={{
+                    vertical: 'top',
+                    horizontal: 'right',
+                }}
+                onClick={() => setAnchorEl(null)}
+                transformOrigin={{
+                    vertical: 'top',
+                    horizontal: 'right',
+                }}
+            >
+                {actions.map(action => (
+                            
+                    locale !== action.name &&
+                        <MenuItem key={action.name} 
+                            onClick={(e) => {
+                                setLocale (action.name)
+                                setAnchorEl(null)
+                            }}>
+                            <ListItemIcon>{action.icon}</ListItemIcon>
+                        </MenuItem>
+                            
+                ))}
+            </Menu>
+        )
+    }
+
+    const animeCONET = () => {
+        return (
+            <LogoImage color={mode === 'light' ? '#48473a': '#e5e2d9'}/>
+        )
+    }
+
     const MenuSideBar = () => {
-  
-    
-        const animeCONET = () => {
-            return (
-                <LogoImage color={mode === 'light' ? '#48473a': '#e5e2d9'}/>
-            )
-        }
-    
-        useEffect(() => {
-            if (isUnlocked) {
-                if (showAppStore) {
-                    setMenuValue(1)
-                } else {
-                    setMenuValue(0)
-                }
-            }
-            
-        },[])
+
     
         const handleChange = (event: SyntheticEvent|null, newValue: number) => {
-            
-            if (event !== null ) {
-                if (newValue ===0 ) {
-                    if (showMiner) {
-                        return
-                    }
-                    setMenuValue(newValue)
-                    setShowAppStore(false)
-                    return setShowMiner (true)
-                }
-                if (newValue ===1) {
-                    if (showAppStore) {
-                        return
-                    }
-                    setMenuValue(newValue)
-                    setShowAppStore(true)
-                    return setShowMiner (false)
-                }
-    
-            }
-            
-        }
-    
-        const StyledTabsMobile = () => {
-            const [ready, setReady] = useState(false)
-            const [scrollDir, setScrollDir] = useState(1)
-            const theme = useTheme()
-    
-            return (
-                
-                    <AppBar position="fixed" enableColorOnDark id='conet_AppBar'
-                        
-                        sx={{
-                            top: 'auto', bottom: 0, color: mode === 'light' ? '#48473a': '#e5e2d9',
-                            display: {xs: 'flex', sm: 'none', md: 'none', xm: 'none', lg: 'none', xl: 'none'},
-                            opacity: scrollDir,
-                            backgroundColor: mode === 'light' ? '#f0eddd': '#2d2d1e'
-                        }}>
-    
-                        <Toolbar>
-                            {
-                                isUnlocked && 
-                                <>
-                                    <IconButton onClick={()=>{
-                                        setShowMiner(true)
-                                        setShowAppStore(false)
-                                    }} sx={{ opacity: showMiner ? '1': '0.5'}} >
-                                        <SvgIcon component={LocalLaundryServiceIcon} inheritViewBox sx={{ fontSize: 40 }}/>
-                                    </IconButton>
-    
-                                    <IconButton  onClick={()=>{
-                                        setShowAppStore(true)
-                                        setShowMiner(false)
-                                    }} sx={{ opacity: showAppStore ? '1': '0.5'}}>
-                                        <SvgIcon component={VpnLockIcon} inheritViewBox sx={{ fontSize: 40 }}/>
-                                    </IconButton>
-                                </>
-                            }
-                            
-                            <Box
-                                sx={{ position: 'fixed', right: '120px'}} >
-                                <IconButton onClick={
-                                    e => {
-                                            const kk = e.currentTarget
-                                            setAnchorEl(kk)
-                                        
-                                    }}>
-                                    {showLocationIcon(locale)}
-                                </IconButton>
-                                <LanguageMenu />
-                            </Box>
-                                
-                            <IconButton onClick={()=>{
-                                    if (mode === 'light') {
-                                        return setMode('dark')
-                                    }
-                                    setMode('light')
-                                }}
-                                sx={{ position: 'fixed', right: '60px', opacity: menuValue === 3 ? '1': '0.5'}} >
-                                <SvgIcon component={mode === 'light' ? DarkIcon: LightIcon} inheritViewBox sx={{ fontSize: 40 }}/>
-                            </IconButton>
-    
-                            <IconButton onClick={()=>{
-                                if (isUnlocked) {
-                                    setShowProfileDropdown(true)
-                                }}} sx={{ width: '55px', position: 'fixed', right: '0px', opacity: menuValue === 0 ? '1': '0.5'}} >
-                                <SvgIcon component={animeCONET} inheritViewBox sx={{ fontSize: 40 }}/>
-                            </IconButton>
-                            
-                        </Toolbar>
-                    </AppBar>
-                
-                
-            )
-        }
+            setMenuValue(newValue)
+            const uu = document.querySelector('#dos-111')
 
-        const languageMenuClick = (e:React.MouseEvent<HTMLDivElement, MouseEvent>) => {
-            const kk = e.currentTarget.children[0]
-            setAnchorEl(kk)
-                            
-        }
-      
+            if (!isUnlocked) {
+                if ( newValue ===0 ){               //      language
+                    setTimeout(() => {
+                        return setAnchorEl(uu)
+                    }, 100)
+                    
+                }
+            }
+            // if (event !== null ) {
+            //     if (newValue ===0 ) {
+            //         if (showMiner) {
+            //             return
+            //         }
+            //         setMenuValue(newValue)
+            //         setShowAppStore(false)
+            //         return setShowMiner (true)
+            //     }
+            //     if (newValue ===1) {
+            //         if (showAppStore) {
+            //             return
+            //         }
+            //         setMenuValue(newValue)
+            //         setShowAppStore(true)
+            //         return setShowMiner (false)
+            //     }
     
-        const LanguageMenu = () => {
-        
-            return (
-                <Menu 
-                    id="menu-language"
-                    keepMounted
-                    open={openMenu}
-                    anchorEl={anchorEl}
-                    anchorOrigin={{
-                        vertical: 'top',
-                        horizontal: 'right',
-                    }}
-                    onClick={() => setAnchorEl(null)}
-                    transformOrigin={{
-                        vertical: 'top',
-                        horizontal: 'right',
-                    }}
-                >
-                    {actions.map(action => (
-                                
-                        locale !== action.name &&
-                            <MenuItem key={action.name} 
-                                onClick={(e) => {
-                                    setLocale (action.name)
-                                    setAnchorEl(null)
-                                }}>
-                                <ListItemIcon>{action.icon}</ListItemIcon>
-                            </MenuItem>
-                                
-                    ))}
-                </Menu>
-            )
+            // }
+            
         }
     
         return (
-            <>
-                <StyledTabs
-                    value={menuValue}
-                    onChange={handleChange}
-                    sx={{
-                        backgroundColor: mode === 'light' ? '#f0eddd': '#2d2d1e',
-                        minWidth: '5.5rem',
-                        display:{xs: 'none', sm: 'flex', md: 'flex', xm: 'flex', lg: 'flex', xl: 'flex'},
-                        paddingTop: '2rem'
+            <Stack 
+                direction='column'
+                alignItems="center"
+                spacing={3}
+                justifyContent="flex-end"
+                sx={{
+                    height: '100vh',
+                    width: '5rem',
+                    backgroundColor: mode === 'light' ? '#f0eddd': '#2d2d1e'
                     }}
-                >
+            >
+                {LanguageFireButton(setAnchorEl, locale)}
+                <ProforeIcon />
+            </Stack>
+        
+                // <Tabs orientation="vertical"
+                //     value={menuValue}
+                //     onChange={handleChange}
+                //     sx={{
+                //         backgroundColor: mode === 'light' ? '#f0eddd': '#2d2d1e',
+                //         minWidth: '5.5rem',
+                //         display:{xs: 'none', sm: 'flex', md: 'flex', xm: 'flex', lg: 'flex', xl: 'flex'},
+                //         paddingTop: '2rem'
+                //     }}
+                // >
                     
-                    {
-                        isUnlocked &&
-                        <>
-                            <StyledTab {...a11yProps(0)} icon={<SvgIcon component={LocalLaundryServiceIcon} inheritViewBox sx={{ fontSize: 40 }}/>} sx={{paddingBottom: '2rem'}} />
-                            <StyledTab {...a11yProps(1)} icon={<SvgIcon component={VpnLockIcon} inheritViewBox sx={{ fontSize: 40 }}/>} sx={{paddingBottom: '2rem'}}/>
+                //     {
+                //         isUnlocked &&
+                //         <>
+                //             <StyledTab {...a11yProps(0)} icon={<SvgIcon component={LocalLaundryServiceIcon} inheritViewBox sx={{ fontSize: 40 }}/>} sx={{paddingBottom: '2rem'}} />
+                //             <StyledTab {...a11yProps(1)} icon={<SvgIcon component={VpnLockIcon} inheritViewBox sx={{ fontSize: 40 }}/>} sx={{paddingBottom: '2rem'}}/>
     
-                        </>
-                    }
-    
-                    <Box {...a11yProps(2)} 
-                        onClick={languageMenuClick}
-                    >
-                        <Tab icon={showLocationIcon(locale)} sx={{ position: 'fixed', bottom: '10rem'}} />
-                        <LanguageMenu />
-                    </Box>
-    
-                    <Box {...a11yProps(3)} onClick={
-                        e => {
-                            if (mode === 'light') {
-                                return setMode('dark')
-                            }
-                            setMode('light')
-                        }
-                    }>
-                        <StyledTab icon={<SvgIcon component={mode === 'light' ? DarkIcon: LightIcon} inheritViewBox sx={{ fontSize: 40 }}/>} sx ={{ position: 'fixed', bottom: '5.5rem'}} />
-                    </Box>
-    
-                    <Box {...a11yProps(4)} onClick={
-                        e => {
-                            // if (isUnlocked) {
-                            //     setShowProfileDropdown(true)
-                            // }
-                            
-                        }
-                    }>
-                        <Tab icon={<SvgIcon component={animeCONET} inheritViewBox />} sx={{ position: 'fixed', bottom: '0px', width: '1rem', fontSize: '30px'}}/>
-    
-                    </Box>
+                //         </>
+                //     }
+
                     
+
+                //     {/* <StyledTab {...a11yProps(2)} id='dos-111' icon={showLocationIcon(locale)} sx={{ position: 'fixed', bottom: '10rem'}} /> */}
+                        
+                //     <StyledTab {...a11yProps(3)} icon={<SvgIcon component={mode === 'light' ? DarkIcon: LightIcon} inheritViewBox sx={{ fontSize: 40 }}/>} sx ={{ position: 'fixed', bottom: '5.5rem'}} />
+
                     
-                </StyledTabs>
-                <StyledTabsMobile />
-                <Dialog
-                    open={showProfileDropdown}
-                    onClose={() => setShowProfileDropdown(false)}
-                >
-                    <ProfileDropdown 
-                        closeDropdown={()=> {
-                            setShowProfileDropdown(false)
-                        }}
-                    />
-                </Dialog>
-            </>
+                // </Tabs>
+                
+            
             
         )
     }
@@ -429,10 +429,29 @@ const DashBoard = () => {
     }
 
     return (
-        <StackContainer direction={{ xs: 'column', sm: 'row'}} sx={{ minHeight: '25rem'}}>
-            <MenuSideBar />
-            <AppStart/>
-        </StackContainer>
+        <>
+            <StackContainer direction={{ xs: 'column', sm: 'row'}} sx={{ minHeight: '25rem'}}>
+                
+                <MenuSideBar />
+                <AppStart/>
+                
+            </StackContainer>
+            
+            <LanguageMenu/>
+            <StyledTabsMobile />
+            <ProforeIcon/>
+            <Dialog
+                open={showProfileDropdown}
+                onClose={() => setShowProfileDropdown(false)}
+            >
+                <ProfileDropdown 
+                    closeDropdown={()=> {
+                        setShowProfileDropdown(false)
+                    }}
+                />
+            </Dialog>
+        </>
+        
     )
 }
 
