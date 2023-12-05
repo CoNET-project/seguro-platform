@@ -52,6 +52,7 @@ const TippyDropdownTab = () => {
 			setShowGuide(false)
 		}
     }
+
 	const setDropdownToggle = (dropdown: Dropdowns) => {
         if (currentDropdown === dropdown) {
             return setCurrentDropdown(null)
@@ -73,8 +74,7 @@ const TippyDropdownTab = () => {
 			>
 			<StyledGlobalItem onClick={() => {
 				setDropdownToggle('profiles')
-			}}>
-							
+			}}>		
 				<IconButton size="small">
 					<SvgIcon component={StarIcon} inheritViewBox/>
 				</IconButton>

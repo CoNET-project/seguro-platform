@@ -264,6 +264,18 @@ export const createPasscode : (passcord: string, local: string) => Promise < Sta
     })
 }
 
+export const encrypt_deletePasscode : () => Promise < StartWorkerResolveForAPI > = () => {
+    return new Promise( resolve => {
+        
+        const cmd: WorkerCommand = {
+            cmd: 'encrypt_deletePasscode',
+            uuid: v4(),
+            data: []
+        }
+        return postMessage (cmd, resolve)
+    })
+}
+
 
 export const checkLocaldemond: () => Promise < StartWorkerResolveForAPI > = () => {
     return new Promise(resolve => {

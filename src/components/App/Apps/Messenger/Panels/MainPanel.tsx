@@ -9,6 +9,7 @@ import {getWorkerService} from '../../../../../services/workerService/workerServ
 import {FormattedMessage} from "react-intl"
 import {Contact} from "../../../../../contexts/messenger/messengerActions"
 import TextField from '@mui/material/TextField'
+
 const StyledMainPanel = styled.div`
 	height: 100%;
 	width: 100%;

@@ -167,7 +167,7 @@ type AppStateReducerState = {
 }
 
 const initialState: AppStateReducerState = {
-    showMiner: false,
+    showMiner: true,
     isTouchDevice: false,
     isUnlocked: false,
     isDrawerOpen: false,

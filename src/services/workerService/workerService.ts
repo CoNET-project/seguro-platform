@@ -128,6 +128,8 @@ export const unlockPasscode = ({passcode, progress}: PasscodeFunctionParams): Pr
 					}
 					console.log (workerService)
                     resolve(status)
+                    store.dispatch(setIsUnlocked(true))
+                    store.dispatch(setHasContainer(true))
                     break
                 case 'FAILURE':
                     resolve(status)

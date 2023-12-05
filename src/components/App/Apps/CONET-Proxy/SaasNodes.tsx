@@ -7,7 +7,6 @@ import MuiAccordionSummary, {
 } from '@mui/material/AccordionSummary'
 import MuiAccordionDetails from '@mui/material/AccordionDetails'
 import Typography from '@mui/material/Typography'
-import {CONET_Platfrom_API} from '../../../../API/index'
 import {logger} from '../../logger'
 import Chip from '@mui/material/Chip'
 import { US } from 'country-flag-icons/react/3x2'
@@ -30,7 +29,6 @@ import styledCom from "styled-components"
 import useAppState from "../../../../store/appState/useAppState"
 import {BlockScanBody} from '../blockscan/index'
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
-import ProxyLogs from './proxyLogs'
 
 export type CryptoAssetHistory = {
 	status: string
@@ -277,10 +275,7 @@ const nodeItem = (expanded: string|false, handleChange: (panel: string) => (even
                                             primary === 5 &&
                                                 BlockScanBody(blockScanData)
                                         }
-                                        {
-                                            primary === 3 && 
-                                                ProxyLogs(node, proxyLogs[index])
-                                        }
+                                        
                                         
                                     </ItemTopArea2>
                                 </Box>

@@ -116,8 +116,9 @@ const ProfileDropdown = ({closeDropdown}: ProfileDropdownProps) => {
 		})
 		return workerService.data.profiles[index]
 	}
+
 	const intl = useIntl()
-	const conetToken = currentProfile().tokens.conet
+	let conetToken
 	
 	const [buttonNavigationCurrent, setButtonNavigationCurrent] = useState(-1)
 	const [walletTextFieldID, setWalletTextFieldID] = useState('standard-basic')
@@ -138,15 +139,21 @@ const ProfileDropdown = ({closeDropdown}: ProfileDropdownProps) => {
 	const [currentAssetHistorys, setCurrentAssetHistorys] = useState([])
 	const [receiveVal, setReceiveVal] = useState('')
 	const [showHistoryDetail, setShowHistoryDetail] = useState<CryptoAssetHistory|null>(null)
-	const [conet_si_open, setConet_si_open] = React.useState(false)
-	const [showAssetBalance_balance, setshowAssetBalance_balanc] = useState(conetToken.balance)
-	const [showCoNET_SI_setup_Badge, setShowCoNET_SI_setup_Badge] = React.useState(0)
-
+	const [conet_si_open, setConet_si_open] = useState(false)
+	const [showAssetBalance_balance, setshowAssetBalance_balanc] = useState(0)
+	const [showCoNET_SI_setup_Badge, setShowCoNET_SI_setup_Badge] = useState(0)
+	const [showPage, setShowPage] = useState(false)
 	const init = () => {
 		const current = currentProfile()
+		if (!current) {
+			return
+		}
+		setShowPage(true)
 		if (!current?.network) {
 			setShowCoNET_SI_setup_Badge (1)
 		}
+		conetToken = current.tokens.conet
+		setshowAssetBalance_balanc(conetToken.balance)
 	}
 	const shortToAddr = (addr: string|undefined) => {
 		if (!addr) {
@@ -158,7 +165,7 @@ const ProfileDropdown = ({closeDropdown}: ProfileDropdownProps) => {
 	const handleTabChange = (event: React.SyntheticEvent, newValue: number) => {
 		setValueTab(newValue)
 		const currentProfile1 = currentProfile()
-		const currentAsset = assetList[currectAsset]
+		const currentAsset = reflashAssetList()[currectAsset]
 		switch (currentAsset.primary) {
 			case 'CoNET': {
 				return setCurrentAssetHistorys (currentProfile1.tokens.conet.history)
@@ -237,7 +244,6 @@ const ProfileDropdown = ({closeDropdown}: ProfileDropdownProps) => {
 		return ret
 	}
 
-	let assetList = reflashAssetList()
 
 	const totalToken = () => {
 		return amountVal + fees
@@ -269,14 +275,14 @@ const ProfileDropdown = ({closeDropdown}: ProfileDropdownProps) => {
 				return resolve (null)
 			}
 			const [ status, data ] = await workerService.method?.syncAsset ()
-			assetList = reflashAssetList()
+			const assetList = reflashAssetList()
 			setshowAssetBalance_balanc(assetList[currectAsset].balance)
 			return resolve (null)
 		})
 	}
 
 	const maxBuyCoNETCashClick = () => {
-		assetList = reflashAssetList()
+		const assetList = reflashAssetList()
 		const USDCbalance = assetList[2].balance
 		let ret = USDCbalance - fees
 		setAmountTextFieldID('standard-basic')
@@ -314,7 +320,7 @@ const ProfileDropdown = ({closeDropdown}: ProfileDropdownProps) => {
 	}
 
 	const maxClick = () => {
-		assetList = reflashAssetList()
+		const assetList = reflashAssetList()
 		const balance = assetList[currectAsset].balance
 		const ret = balance - fees
 		setAmountTextFieldID('standard-basic')
@@ -325,7 +331,7 @@ const ProfileDropdown = ({closeDropdown}: ProfileDropdownProps) => {
 	}
 
 	const maxCoNETClick = () => {
-		assetList = reflashAssetList()
+		const assetList = reflashAssetList()
 		const balance = assetList[0].balance
 		const ret = balance - fees
 		setAmountTextFieldID('standard-basic')
@@ -403,7 +409,7 @@ const ProfileDropdown = ({closeDropdown}: ProfileDropdownProps) => {
 				<List component="nav" sx={{ width: '100%', padding: '0px'}} key={index}>
 					<ListItem sx={{ width: '100%', padding: '0px' }}>
 						<ListItemButton onClick={() => {
-							assetList = reflashAssetList()
+							const assetList = reflashAssetList()
 							setcurrectAsset(index)
 							setshowAssetBalance_balanc(assetList[index].balance)
 						}} >
@@ -482,7 +488,7 @@ const ProfileDropdown = ({closeDropdown}: ProfileDropdownProps) => {
 
 	const BottomNavigationChanged = (event: any, newValue: number) => {
 		setButtonNavigationCurrent(newValue)
-		const current = assetList[currectAsset]
+		const current = reflashAssetList()[currectAsset]
 		switch (current.primary) {
 			case 'USDC' : {
 				if ( newValue === 2) {					//			buy USDC
@@ -536,7 +542,7 @@ const ProfileDropdown = ({closeDropdown}: ProfileDropdownProps) => {
 				return sendAsset ()
 			}
 			case 2: {								//		buy Asset
-				const asset = assetList[currectAsset]
+				const asset = reflashAssetList()[currectAsset]
 
 				if ( asset.primary === 'USDC') {
 					if ( !workerService.method?.buyUSDC) {
@@ -599,6 +605,11 @@ const ProfileDropdown = ({closeDropdown}: ProfileDropdownProps) => {
         init()
     }, [])
 
+	if (!showPage) {
+		return (
+			<></>
+		)
+	}
 
     return (
 
@@ -610,7 +621,7 @@ const ProfileDropdown = ({closeDropdown}: ProfileDropdownProps) => {
 
 			<Divider/>
 			
-				<ListItem sx={{ width: '100%', padding: '0px'}} >
+				{/* <ListItem sx={{ width: '100%', padding: '0px'}} >
 																	
 						<ListItemButton sx={{ width: '100%', padding: '1rem'}}
 						onClick = {openConet_SI_Cliek}>
@@ -633,7 +644,7 @@ const ProfileDropdown = ({closeDropdown}: ProfileDropdownProps) => {
 							
 						</ListItemButton>
 					
-				</ListItem>
+				</ListItem> */}
 			
 			
 			
@@ -642,7 +653,7 @@ const ProfileDropdown = ({closeDropdown}: ProfileDropdownProps) => {
 				showAssetBalance && 		//		Asset balance
 
 					<ListItem>
-						<AssetView balance={showAssetBalance_balance.toFixed(4)} icon={assetList[currectAsset].icon} labelText = {assetList[currectAsset].primary} />
+						<AssetView balance={showAssetBalance_balance.toFixed(4)} icon={reflashAssetList()[currectAsset].icon} labelText = {reflashAssetList()[currectAsset].primary} />
 					</ListItem>
 
 			}
@@ -765,7 +776,7 @@ const ProfileDropdown = ({closeDropdown}: ProfileDropdownProps) => {
 									}
 									
 									setAmountVal(val)
-									if ( val + fees > assetList[currectAsset].balance) {
+									if ( val + fees > reflashAssetList()[currectAsset].balance) {
 										return setAmountTextFieldID('standard-error')
 									}
 									
@@ -814,7 +825,7 @@ const ProfileDropdown = ({closeDropdown}: ProfileDropdownProps) => {
 							</Grid>
 							<Grid item xs={6}>
 								<Typography variant="subtitle2" gutterBottom align='right' width={'100%'} color={'grey'}> 
-									{assetList[currectAsset].primary}
+									{reflashAssetList()[currectAsset].primary}
 								</Typography>
 							</Grid>
 							<Grid item xs={8}>
@@ -838,7 +849,7 @@ const ProfileDropdown = ({closeDropdown}: ProfileDropdownProps) => {
 							</Grid>
 							<Grid item xs={6}>
 								<Typography variant="subtitle2" gutterBottom color='grey' align='right'>
-									{totalToken() + ' ' + assetList[currectAsset].primary}
+									{totalToken() + ' ' + reflashAssetList()[currectAsset].primary}
 								</Typography>
 							</Grid>
 						</Grid>
@@ -880,7 +891,7 @@ const ProfileDropdown = ({closeDropdown}: ProfileDropdownProps) => {
 									}
 									
 									setAmountVal(val)
-									if ( val + fees > assetList[0].balance) {
+									if ( val + fees > reflashAssetList()[0].balance) {
 										return setAmountTextFieldID('standard-error')
 									}
 									
@@ -940,7 +951,7 @@ const ProfileDropdown = ({closeDropdown}: ProfileDropdownProps) => {
 									}
 									
 									setAmountVal(val)
-									if ( val + fees > assetList[2].balance|| val > 100|| val < 10) {
+									if ( val + fees > reflashAssetList()[2].balance|| val > 100|| val < 10) {
 										return setAmountTextFieldID('standard-error')
 									}
 									
@@ -1143,7 +1154,7 @@ const ProfileDropdown = ({closeDropdown}: ProfileDropdownProps) => {
 						</Box>
 						<TabPanel value={valueTab} index={0} >
 							{
-								assetList.map((v, index) => {
+								reflashAssetList().map((v, index) => {
 									return assetListItem(index, v.primary, v.balance, v.icon);
 								})
 							}

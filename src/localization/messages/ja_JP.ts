@@ -9,8 +9,8 @@ const ja_JP: Messages = {
     'onboarding.selectLanguageTitle': '使う言語を選んでください',
     'onboarding.selectLanguageSubtitle': '言語を選択してください。' +
         '言語は後での設定変更ができます.',
-    'onboarding.setPasscodeTitle': 'CONETワレットを保護するパスコードを作成',
-    'onboarding.setPasscodeSubtitle': '6文字以上のパスコードを入力してください',
+    'onboarding.setPasscodeTitle': 'CONETワレットを保護するパスコードを入力してください',
+    'onboarding.setPasscodeSubtitle': '6文字以上',
     'onboarding.confirmPasscodeTitle': 'パスコードの確認',
 
     'onboarding.verificationTitle': 'Verify Account',
@@ -59,7 +59,7 @@ const ja_JP: Messages = {
     'unlock.title': 'パスコードを入力してください',
 
     'platform.unlock.button.forgot': 'パスコードをお忘れですか？',
-    'platform.dialog.delete.message': '削除はCoNET Platform 内のすべてデータが失われます！',
+    'platform.dialog.delete.message': '削除はCONET Platform内のデータがすべて失われます！',
     'platform.dialog.delete.button.cancel': 'キャンセル',
     'platform.dialog.delete.button.confirm': 'パスコードを削除',
 
@@ -74,7 +74,7 @@ const ja_JP: Messages = {
     'drawer.updates': 'Updates',
     'drawer.support': 'Support',
 
-    'platform.overlay.unlocking': 'Unlocking platform...',
+    'platform.overlay.unlocking': 'ワレットのロックを解除',
     'platform.overlay.createProfile': 'Creating profile...',
 
     'platform.modal.verification.title': 'Verification Required',
@@ -196,7 +196,8 @@ const ja_JP: Messages = {
 	'platform.ProfileDropdown.SI.network.loading': 'Loading CoNET Stealth Internet supplier miner nodes list...',
 	'platform.ProfileDropdown.SI.network.listError': 'Failed to get CoNET Stealth Internet nodes information, please try again later',
 
-	'tabnavigator.guide.title': 'Welcome to CoNET Platform',
+	'tabnavigator.guide.title': 'CONETへようこそ',
+    'tabnavigator.guide.createWallet': 'ワレット作成',
 	'globalBar.application.SeguroMessage': 'Seguro Messenger',
 	'globalBar.application.home': 'CoNET Platform',
 
@@ -270,7 +271,8 @@ const ja_JP: Messages = {
     'launchPage.FeatureArea3.1': '世界首个匿名挖矿的公链项目',
 
     'platform.home': 'CONET Platform',
-    'platform.proxy': 'CONETプロキシ',
+    'platform.proxy': 'Web2とWeb3にまたがるデータのハイウェイブリッジ',
+    'platform.proxy-1': 'ウォレットアドレスを使ってIPアドレスサーバーにアクセスする',
     'platform.proxy.title': '最もプライベートな高速プロキシ',
     'platform.proxy.FeatureArea.title.1': 'CONETプロキシ、プライバシーVPNマーケットを再定義',
     'platform.proxy.FeatureArea.title.2': ' ',
@@ -336,6 +338,7 @@ const ja_JP: Messages = {
 
     'platform.api.daemon.title': 'CONETデーモンが検出されませんでした',
     'platform.api.daemon.detail': 'CONETを起動、又ダウンロードして起動してください',
+    'platform.api.daemon.mobileNotSupport': '現時点ではデスクトップしか対応していません',
     'platform.api.daemon.testButton': 'テストデーモン',
     'platform.api.daemon.openSource': 'CONETはオープンソースコードです',
 
@@ -349,10 +352,11 @@ const ja_JP: Messages = {
     'platform.miner.register.MinerAni.pause': 'マイニングを暫停',
     'platform.miner.register.MinerAni.resume': 'スタート',
     'platform.miner.register.MinerAni.claim': 'Rewardsを請求',
-    'platform.miner.register.totalRewards': '獲得するRewardsの合計',
+    'platform.miner.register.totalRewards': '獲得Rewards合計',
     'platform.miner.register.pendingRewards': '請求待ちRewards',
-    'platform.miner.register.previouslyClaimed': 'ラスト転送したRewards',
-    'platform.miner.register.MinerAni.stop': 'DePINを中止'
+    'platform.miner.register.previouslyClaimed': 'ラストRewards',
+    'platform.miner.register.MinerAni.stop': 'DePINを中止',
+    'platform.miner.register.referrals': 'リファラル'
 }
 
 export default ja_JP

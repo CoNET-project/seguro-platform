@@ -4,7 +4,7 @@ import {todo} from './index'
 import Grid from '@mui/material/Grid'
 import TabArea, {StyledTab} from './TabArea'
 import Tabs from '@mui/material/Tabs'
-import { Box} from '@mui/system'
+import Box from '@mui/material/Box'
 import SearchPage from './searchPage'
 
 function a11yProps(index: number) {

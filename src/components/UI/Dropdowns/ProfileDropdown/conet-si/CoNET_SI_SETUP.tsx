@@ -863,7 +863,6 @@ const CoNETSINodeSetup = ({closeWindow, winOpen, currentProfile }: CoNETSINodePr
 													color='primary'
 													value={coNETCashbalance}
 													type="number"
-													
 												/>
 											</Grid>
 									}

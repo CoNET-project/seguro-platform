@@ -17,32 +17,8 @@ import AppleIcon from '@mui/icons-material/Apple'
 import Paper from '@mui/material/Paper'
 import Link from '@mui/material/Link'
 import GitHubIcon from '@mui/icons-material/GitHub'
-const themeTopArea1 = createTheme ({
-    typography: {
-        h3: {
-            'fontWeight': '600'
-        },
-        h4: {
-            'fontWeight': '600'
-        },
-        h6: {
-            color: 'rgba(0,0,0,0.6)'
-        },
-        fontFamily: [
-            'Inter',
-            '"Inter Placeholder"',
-            'sans-serif',
-        ].join(','),
-    },
-})
+import Grid from '@mui/material/Grid'
 
-const StackContainer = styled(Stack)(() => ({
-    height: '100vh'
-}))
-
-const RootContainer = styled(Container)(() => ({
-    height: '100vh'
-}))
 
 const downloadConet = ((event: React.SyntheticEvent<Element, Event>, newValue: any) =>{
 
@@ -65,24 +41,20 @@ const downloadConet = ((event: React.SyntheticEvent<Element, Event>, newValue: a
 const DownloadArea = () => {
     const intl = useIntl()
     return (
-        <Paper sx={{ borderRadius: '20px', textAlign: 'center', width: '30rem' }} elevation={10} >
-            <Link underline="hover" component="button" onClick={() => window.open(`https://github.com/CoNET-project/CONET-Proxy`)} >
-                <Typography variant="h6" sx={{color: '#448aff', textAlign: 'center'}}>
-                    { intl.formatMessage({id: 'platform.api.daemon.openSource'})}
-                </Typography>
-            </Link>
-            
-            <BottomNavigation
-            showLabels
-            onChange = {downloadConet}
-            >
-                <BottomNavigationAction label="Windows" icon={<WindowSharpIcon />} />
-                <BottomNavigationAction label="Apple M" icon={<AppleIcon />} />
-                <BottomNavigationAction label="Apple" icon={<AppleIcon />} />
-                <BottomNavigationAction label="More" icon={<GitHubIcon/>} />
-            </BottomNavigation>
-
-        </Paper>
+        <Grid container spacing={1} columns={{ xs: 4, sm: 8, md: 12}}>
+            <Grid item  md={12} sm={8} xs={4} sx={{textAlign: 'center'}}>
+                <BottomNavigation
+                showLabels
+                onChange = {downloadConet}
+                sx={{borderRadius: '2rem', padding: '2rem'}}
+                >
+                    <BottomNavigationAction label="Windows" icon={<WindowSharpIcon />} />
+                    <BottomNavigationAction label="Apple M" icon={<AppleIcon />} />
+                    <BottomNavigationAction label="Apple" icon={<AppleIcon />} />
+                    <BottomNavigationAction label="More" icon={<GitHubIcon/>} />
+                </BottomNavigation>
+            </Grid>
+        </Grid>
     )
     
 }
@@ -95,49 +67,61 @@ const deamon = () => {
         setlocalDaemon
     } = useAppState()
 
-    const testClisk = async () => {
+    const testClisk = () => {
         setLoading (true)
-        const test = await testLocalServer()
-        setLoading(false)
-        if (test !== true) {
-            setError (true)
-            return setTimeout(() => setError(false), 1000)
-        }
-        setlocalDaemon(true)
+        setTimeout(async() => {
+            const test = await testLocalServer()
+            setLoading (false)
+            if (test !== true) {
+                setError (true)
+                return setTimeout(() => setError(false), 3000)
+            }
+            setlocalDaemon(true)
+        }, 1000)
+        
     }
 
 
     return (
-        <ThemeProvider theme={themeTopArea1}>
-            <RootContainer maxWidth="md">
-                <StackContainer direction="column" justifyContent="center" alignItems="center">
-                    
-                    <Typography variant="h4" sx={{color: '#448aff', textAlign: 'center'}}>
+        <Stack direction="row" justifyContent="center" alignItems="center" sx={{width: '100%', height: '100vh'}}>
+
+            <Grid container spacing={2} columns={{ xs: 4, sm: 8, md: 12}} sx={{margin: {xs: '-5rem 0 0 0'}}}>
+                <Grid item md={12} sm={8} xs={4} sx={{textAlign: 'center'}}>
+                    <Typography variant="h5" sx={{textAlign: 'center'}}>
                         { intl.formatMessage({id: 'platform.api.daemon.title'})}
                     </Typography> 
-                    <Typography variant="h6" sx={{textAlign: 'center'}}>
+                </Grid>
+                <Grid item md={12} sm={8} xs={4} sx={{textAlign: 'center'}}>
+                    <Typography variant="h6" sx={{textAlign: 'center', fontSize: '0.8rem'}}>
                         { intl.formatMessage({id: 'platform.api.daemon.detail'})}
                     </Typography>
-
-                    <Box sx={{padding: '2rem 0 4rem 0'}}>
-                        
-                        <LoadingButton onClick={testClisk}
-                            variant="outlined" size="large" 
-                            sx={{fontSize: '1.5rem'}}
-                            loading={loading}
-                            color={error ? "error": 'info'}
-                            >
-                            
-                            { intl.formatMessage({id: 'platform.api.daemon.testButton'})}
-                        </LoadingButton>
-                        
-                    </Box>
-
-                    <DownloadArea />
+                </Grid>
+                <Grid item md={12} sm={8} xs={4} sx={{textAlign: 'center'}}>
+                    <Typography variant="h6" sx={{textAlign: 'center', fontSize: '0.8rem'}}>
+                        { intl.formatMessage({id: 'platform.api.daemon.mobileNotSupport'})}
+                    </Typography>
+                </Grid>
                     
-                </StackContainer>
-            </RootContainer>
-        </ThemeProvider>
+                <Grid item md={12} sm={8} xs={4} sx={{textAlign: 'center'}}>
+                    <LoadingButton onClick={testClisk}
+                        variant="outlined" size="large" 
+                        sx={{fontSize: '1.5rem', borderRadius: '2rem'}}
+                        loading={loading}
+                        color={error ? "error": 'success'}
+                    >
+                        
+                        { intl.formatMessage ({id: 'platform.api.daemon.testButton'})}
+                    </LoadingButton>
+                </Grid>
+                    
+                <Grid item md={12} sm={8} xs={4} sx={{textAlign: 'center'}}>
+                    <DownloadArea />
+                </Grid>
+                    
+                
+            </Grid>
+        </Stack>
+
     )
 }
 

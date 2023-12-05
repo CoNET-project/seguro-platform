@@ -9,10 +9,11 @@ import IconButton from '@mui/material/IconButton'
 import {ReactComponent as StarIcon} from '../../../../assets/logo/CoNET_logo_white.svg'
 import Fab from '@mui/material/Fab'
 type Dropdowns = 'applications' | 'profiles' | 'notifications' | 'network' | null
-
+import {getWorkerService} from '../../../../services/workerService/workerService'
+import AccountCircleIcon from '@mui/icons-material/AccountCircle'
 const StyledGlobalButton = styled.div`
 	position: absolute;
-	right:6rem;
+	right:1rem;
 	zIndex:9999;
 	top:2rem;
 `
@@ -22,19 +23,14 @@ const StyledGlobalItem = styled(StyledGlobalButton)`
 const TippyDropdownTab = () => {
 	const [currentDropdown, setCurrentDropdown] = useState<Dropdowns>(null)
 	const {
-        hasUpdateAvailable,
-        networkStrength,
-        setIsDrawerOpen,
-        isDrawerOpen,
-        setIsShowOverlay,
         windowInnerSize: {width},
-        activeProfile,
-        setIsModalOpen,
-        hasNotification,
 		setShowGuide,
 		setShowAppStore
     } = useAppState()
-
+	const {data} = getWorkerService()
+    const currentProfile = data.profiles.filter((n:any)=> n.isPrimary)[0]
+    const keyID = currentProfile.keyID
+    const img = currentProfile.profileImg
 	
     const closeDropdown = (app: string ) => {
         setCurrentDropdown(null)
@@ -74,8 +70,12 @@ const TippyDropdownTab = () => {
 			<StyledGlobalItem onClick={() => {
 				setDropdownToggle('profiles')
 			}}>
-				<Fab color="primary">
-                    <SvgIcon component={StarIcon} inheritViewBox htmlColor='white'/>
+				<Fab color="success">
+					{
+						!img &&
+							<AccountCircleIcon fontSize='large' color='inherit' />
+					}
+                    
                 </Fab>		
 				{/* <IconButton size='large'>
 					<SvgIcon component={StarIcon} inheritViewBox/>

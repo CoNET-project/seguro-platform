@@ -20,7 +20,7 @@ import Fab from '@mui/material/Fab'
 import CallMissedOutgoingIcon from '@mui/icons-material/CallMissedOutgoing'
 import DriveFolderUploadIcon from '@mui/icons-material/DriveFolderUpload'
 import DnsIcon from '@mui/icons-material/Dns'
-import Button from '@mui/material/Button'
+
 import Checkbox from '@mui/material/Checkbox'
 import React, {HTMLAttributes, useState, useEffect} from "react"
 import {getCONETBalance} from '../../../../API/index'
@@ -28,73 +28,42 @@ import {logger} from '../../logger'
 import TextField from '@mui/material/TextField'
 import { grey } from '@mui/material/colors'
 import boostImg from './assets/boost.gif'
-const themeTopArea1 = createTheme ({
-    typography: {
-        h3: {
-            'fontWeight': '600'
-        },
-        h4: {
-            'fontWeight': '600'
-        },
-        h6: {
-            color: 'rgba(0,0,0,0.6)'
-        },
-        fontFamily: [
-            'Inter',
-            '"Inter Placeholder"',
-            'sans-serif',
-        ].join(','),
-    },
-})
-const RootContainer = styled(Container)(() => ({
-    height: '100vh',
-    overflowY: 'scroll'
-}))
-
-const BreadcrumbsArea = styledCom.div`
-    padding: 2rem;
-    
-`
-const StackContainer = styled(Stack)(() => ({
-    height: '100vh',
-}))
+import Account from '../dashboard/Accound/index'
+import { useTheme } from '@mui/material/styles'
+import { lightGreen} from '@mui/material/colors'
+import {Tabs, Tab, Button} from '@mui/material-next'
 
 const BoostImg = styledCom.img`
     width: 7rem;
 `
-const StackForImg = styled(Stack)(() => ({
-
-}))
-const ItemTopArea1 = styled(Paper)(({ theme }) => ({
-    padding: 0,
-    borderRadius: 0,
-    textAlign: 'center',
-    background: 'linear-gradient(180deg,#080213 0%,hsl(253,79%,15%))',
-    paddingBottom: '7rem'
-}))
-
-const label = { inputProps: { 'aria-label': 'Checkbox demo' } }
 
 const ItemStyle = styled(Paper)(() => ({
     textAlign: 'center',
     borderRadius: '1rem',
-    padding: '1rem'
+    padding: '1rem',
+}))
+
+const ItemStyle2 = styled(Paper)(() => ({
+    textAlign: 'center',
+    borderRadius: '1rem',
+    padding: '1rem',
+    color: grey[500]
 }))
 
 
 const FeatureArea5Item1 = ( check: boolean, setcheck: React.Dispatch<React.SetStateAction<boolean>>) => {
     const intl = useIntl()
+    
     return (
         
-        <Grid item xs={4} sm={8} md={4}>
-            <ItemStyle>
+        <Grid item>
+            <ItemStyle2>
                 <Fab
                     size='large'
-                    color='primary'
+                    color='success'
                     sx={{
                         fontSize: '3rem',
-                        top: (theme) => theme.spacing(-5),
-                        bottom: (theme) => theme.spacing(1),
+                        top: (theme) => theme.spacing(-5)
                     }}
                     >
                     <CallMissedOutgoingIcon fontSize='large' />
@@ -107,24 +76,26 @@ const FeatureArea5Item1 = ( check: boolean, setcheck: React.Dispatch<React.SetSt
                     {intl.formatMessage({id:'platform.joinUS.miner.BandwidthDetail'})}
                 </Typography>
                 
-                <Checkbox checked={check}
-                    onChange={(e, checked) => setcheck(checked)}
-                    sx={{ '& .MuiSvgIcon-root': { fontSize: 35 } }}
-                />
-            </ItemStyle>
-
+                <Button
+                    variant="filledTonal" size="large"
+                    disabled
+                    sx={{fontSize: '1.5rem', fontFamily:'inherit', margin: '2rem' }}>
+                        { intl.formatMessage({id: 'platform.joinUS.forDeveloper.button'})}
+                </Button>
+            </ItemStyle2>
         </Grid>
         
     )
 }
+
 const FeatureArea5Item2 = (check: boolean,setcheck: React.Dispatch<React.SetStateAction<boolean>>) => {
     const intl = useIntl()
     return (
-        <Grid item xs={4} sm={8} md={4} >
-            <ItemStyle>
+        <Grid item>
+            <ItemStyle2>
                 <Fab
                     size='large'
-                    color='primary'
+                    color='success'
                     sx={{
                         fontSize: '3rem',
                         top: (theme) => theme.spacing(-5),
@@ -134,35 +105,38 @@ const FeatureArea5Item2 = (check: boolean,setcheck: React.Dispatch<React.SetStat
                     <DnsIcon fontSize='large' />
                 </Fab>
 
-                
-                <Typography variant="h5" sx={{ fontWeight: '900', textAlign:'center' }}>
+                <Typography variant="h5" sx={{ fontWeight: '900', textAlign:'center', color: grey[500] }}>
                     {intl.formatMessage({id:'platform.joinUS.miner.SaaS'})}
                 </Typography>
-                <Typography variant="h6" sx={{  textAlign:'center'}}>
+                <Typography variant="h6" sx={{  textAlign:'center', color: grey[500]}}>
                     {intl.formatMessage({id:'platform.joinUS.miner.SaaSDetail'})}
                     
                 </Typography>
-                <Checkbox checked={check}
-                    onChange={(e, checked) => setcheck(checked)}
-                    sx={{ '& .MuiSvgIcon-root': { fontSize: 35 } }}
-                />
-            </ItemStyle>
+                <Button
+                    variant="filledTonal" size="large"
+                    disabled
+                    sx={{fontSize: '1.5rem', fontFamily:'inherit', margin: '2rem' }}>
+                        { intl.formatMessage({id: 'platform.joinUS.forDeveloper.button'})}
+                </Button>
+            </ItemStyle2>
 
         </Grid>
     )
 }
+
 const FeatureArea5Item3 = (check: boolean,setcheck: React.Dispatch<React.SetStateAction<boolean>>) => {
     const intl = useIntl()
+
     return (
-        <Grid item xs={4} sm={8} md={4} >
-            <ItemStyle>
+        <Grid item>
+            <ItemStyle2>
                 <Fab
                     size='large'
-                    color='primary'
+                    color='success'
                     sx={{
                         fontSize: '3rem',
                         top: (theme) => theme.spacing(-5),
-                        bottom: (theme) => theme.spacing(2),
+                        bottom: (theme) => theme.spacing(2)
                     }}
                     >
                     <DriveFolderUploadIcon fontSize='large' />
@@ -176,26 +150,96 @@ const FeatureArea5Item3 = (check: boolean,setcheck: React.Dispatch<React.SetStat
                     {intl.formatMessage({id:'platform.joinUS.miner.storageDetail'})}
                     
                 </Typography>
-                <Checkbox disabled
-                    onChange={(e, checked) => setcheck(checked)}
-                    sx={{ '& .MuiSvgIcon-root': { fontSize: 35 } }}
-                />
-            </ItemStyle>
+                <Button
+                    variant="filledTonal" size="large"
+                    disabled
+                    sx={{fontSize: '1.5rem', fontFamily:'inherit', margin: '2rem' }}>
+                        { intl.formatMessage({id: 'platform.joinUS.forDeveloper.button'})}
+                </Button>
+            </ItemStyle2>
 
         </Grid>
     )
 }
 
+const Boost = (CONET_balance: number, setBoost: React.Dispatch<React.SetStateAction<boolean>>) => {
+    const intl = useIntl()
+    return (
+        <Grid item>
+            <Box sx={{paddingTop: '2rem'}}>
+                
+                <Paper sx={{ borderRadius: '1rem'}}>
+                    
+                    <Grid container spacing={4} >
+                        <Grid item xs={4} sx={{ textAlign: 'center'}}>
+                            <BoostImg src={boostImg}/>
+                        </Grid>
+                        <Grid item xs={8} sx={{ textAlign: 'left'}}>
+                            <Typography variant="h5" sx={{ fontWeight: '900', color: CONET_balance > 1000 ? 'black': grey[400] }}>
+                                {intl.formatMessage({id: 'platform.miner.register.boost'})}
+                            </Typography>
+                            <Typography variant="h6" sx={{paddingBottom: '1rem', color: CONET_balance > 1000 ? 'black': grey[400] }}>
+                                {intl.formatMessage({id: 'platform.miner.register.boost.detail'})}
+                            </Typography>
+                            <Button
+                                variant="filledTonal" size="large"
+                                disabled
+                                sx={{fontSize: '1.5rem', fontFamily:'inherit', margin: '2rem' }}>
+                                    { intl.formatMessage({id: 'platform.joinUS.forDeveloper.button'})}
+                            </Button>
+                            
+                        </Grid>
+                    </Grid>
+                </Paper>
+                
+            </Box>
+        </Grid>
+    )
+}
+
+const a11yProps = (index: number) => {
+    return {
+      id: `simple-tab-${index}`,
+      'aria-controls': `simple-tabpanel-${index}`,
+    }
+}
+
+interface TabPanelProps {
+    children?: React.ReactNode
+    index: number
+    value: number
+}
+
+const CustomTabPanel = (props: TabPanelProps) => {
+    const { children, value, index, ...other } = props
+  
+    return (
+        <div
+            role="tabpanel"
+            hidden={value !== index}
+            id={`simple-tabpanel-${index}`}
+            aria-labelledby={`simple-tab-${index}`}
+            {...other}
+        >
+            {value === index && 
+                children
+            }
+        </div>
+    )
+}
+
 const ShowStart = (
-    CONET_balance: number
+    CONET_balance: number,
+    
     ) => {
+    const [value, setValue] = React.useState(0)
     const intl = useIntl()
     const [check1, setcheck1] = useState(false)
     const [check2, setcheck2] = useState(false)
     const [check3, setcheck3] = useState(false)
-    const [minting, setMinting] = useState(false)
+    
     const [boost, setBoost]= useState(false)
-    const [minerReward, setMinerReward] = useState(0)
+    
     const {
         setShowDePINing,
         showDePINing,
@@ -203,127 +247,46 @@ const ShowStart = (
         setPendingRewards
     } = useAppState()
     
-    const MinerAni = () => {
-        
-        const startMinting= async() => {
-            if (!minting) {
-                return
-            }
-            const r = Math.random()
-            await setMinerReward(s => {
-                const kkk = s+r
-                return kkk
-            })
-            const kk = minerReward
-            await setPendingRewards(kk)
-            const k = pendingRewards
-            setTimeout(()=> startMinting(), 3000)
-        }
-        return (
-            <>
-    
-                {minting? <img src={miner2} style={{ width: '8rem'}} />: <img src={minerPause} style={{ width: '8rem'}} />}
-                
-                <Grid container spacing={0} columns={{ xs: 4, sm: 8, md: 12 }} sx={{ paddingTop: '1rem'}}>
-                    <Grid item xs={4} sm={8} md={12}>
-                        <Typography variant="h6" sx={{fontWeight: '600'}}>
-                            {intl.formatMessage({id: 'platform.miner.register.MinerAni.reward'})}
-                        </Typography>
-                    </Grid>
-                    <Grid item xs={4} sm={8} md={12}>
-                        <Typography variant="h4" sx={{fontWeight: '600', paddingBottom: '1rem'}}>
-                            {minerReward}
-                        </Typography>
-                    </Grid>
-                    
-                    <Grid item xs={4} sm={8} md={12} >
-                        <Stack spacing={2} direction="row" justifyContent="center">
-                            <Button size="large" variant="outlined"  onClick={() => {
-                                setMinting(!minting)
-                                if (minting) {
-                                    startMinting()
-                                }
-                            }}>
-                                {minting? intl.formatMessage({id: 'platform.miner.register.MinerAni.pause'}): intl.formatMessage({id: 'platform.miner.register.MinerAni.resume'})}
-                            </Button>
-                            {
-                                !minting &&
-                                <Button size="large" variant="outlined"  onClick={() => {
-                                    setShowDePINing(false)
-                                    setMinting(true)
-                                    setPendingRewards(minerReward)
-                                }}>
-                                    {minting? intl.formatMessage({id: 'platform.miner.register.MinerAni.pause'}): intl.formatMessage({id: 'platform.miner.register.MinerAni.stop'})}
-                                </Button>
-                            }
-                        </Stack>
-                    </Grid>
-                </Grid>
-            </>
-            
-        )
+
+
+    const handleChange = (event: React.SyntheticEvent, newValue: number) => {
+        setValue(newValue);
     }
 
-
     return (
-        <>
-            {
-                !showDePINing && 
-                <Grid container spacing={5} columns={{ xs: 4, sm: 8, md: 12}} sx={{textAlign: 'center'}}>
-                    
-                    
-                    <Grid item xs={12} sx={{textAlign: 'center'}}>
-                        <Typography variant="h4" sx={{ fontWeight: '900', textAlign:'center', paddingTop: '2rem'}}>
-                            {intl.formatMessage({id: 'platform.miner.register.title'})}
-                        </Typography>
-                    </Grid>
-                    {FeatureArea5Item1(check1,setcheck1)}
-                    {FeatureArea5Item2(check2, setcheck2)}
-                    {FeatureArea5Item3(check3, setcheck3)}
-                    <Grid item xs={12} sx={{textAlign: 'center'}}>
-                        <Box sx={{paddingTop: '3rem'}}>
-                            
-                            <Paper sx={{ borderRadius: '1rem'}}>
-                                
-                                <Grid container spacing={4} >
-                                    <Grid item xs={4} sx={{ textAlign: 'center'}}>
-                                        <BoostImg src={boostImg}/>
-                                    </Grid>
-                                    <Grid item xs={8} sx={{ textAlign: 'left'}}>
-                                        <Typography variant="h4" sx={{ fontWeight: '900', color: CONET_balance > 1000 ? 'black': grey[400] }}>
-                                            {intl.formatMessage({id: 'platform.miner.register.boost'})}
-                                        </Typography>
-                                        <Typography variant="h5" sx={{paddingBottom: '1rem', color: CONET_balance > 1000 ? 'black': grey[400] }}>
-                                            {intl.formatMessage({id: 'platform.miner.register.boost.detail'})}
-                                        </Typography>
-                                        <Checkbox disabled={CONET_balance < 1000 ? true: false }
-                                            onChange={(e, checked) => setBoost(checked)}
-                                            sx={{ '& .MuiSvgIcon-root': { fontSize: 35 }}}
-                                        />
-                                        
-                                    </Grid>
-                                </Grid>
-                            </Paper>
-                            
-                        </Box>
-                    </Grid>
-                    
-                    
-                    <Grid item xs={12} sx={{padding:'0rem 0 0 0rem', textAlign: 'center'}}>
-                        <Button 
-                            variant="outlined" size="large"
-                            onClick={() => setShowDePINing(true)}
-                            sx={{backgroundColor:'white', textTransform: 'uppercase', fontSize: '1.5rem' }}>
-                            { intl.formatMessage({id: 'platform.miner.register.button'})}
-                        </Button>
-                    </Grid>
-                </Grid>
-            }
-            {
-                showDePINing && <MinerAni />
-            }
+        <Grid container columns={{ xs: 4, sm: 8, md: 12}} sx={{ textAlign: 'center', width: '100%'}}>
             
-        </>
+            <Grid item xs={12} sx={{textAlign: 'center', width: '100%'}}>
+                <Typography variant="h6" sx={{ fontWeight: '700', textAlign:'center', paddingTop: '2rem'}}>
+                    {intl.formatMessage({id: 'platform.miner.register.title'})}
+                </Typography>
+            </Grid>
+            <Grid item xs={12} sx={{textAlign: 'center', width: '100%'}}>
+                <Box sx={{ borderBottom: 1, borderColor: 'divider', marginBottom: '3rem' }}>
+                    <Tabs value={value} onChange={handleChange} 
+                        variant="scrollable"
+                        scrollButtons
+                        allowScrollButtonsMobile>
+                        <Tab label={intl.formatMessage({id: 'platform.joinUS.miner.Bandwidth'})} {...a11yProps(0)} />
+                        <Tab label={intl.formatMessage({id: 'platform.joinUS.miner.SaaS'})} {...a11yProps(1)} />
+                        <Tab label={intl.formatMessage({id: 'platform.joinUS.miner.storage'})} {...a11yProps(2)} />
+                        <Tab label={intl.formatMessage({id: 'platform.miner.register.boost'})} {...a11yProps(3)} />
+                    </Tabs>
+                </Box>
+                <CustomTabPanel value={value} index={0}>
+                    {FeatureArea5Item1(check1,setcheck1)}
+                </CustomTabPanel>
+                <CustomTabPanel value={value} index={1}>
+                    {FeatureArea5Item2(check2, setcheck2)}
+                </CustomTabPanel>
+                <CustomTabPanel value={value} index={2}>
+                    {FeatureArea5Item3(check3, setcheck3)}
+                </CustomTabPanel>
+                <CustomTabPanel value={value} index={3}>
+                    {Boost(CONET_balance, setBoost)}
+                </CustomTabPanel>
+            </Grid>
+        </Grid>
     )
 }
 
@@ -331,15 +294,22 @@ const ShowStart = (
 
 const Miner = () => {
     const {
+        showDePINing,
         setShowMiner,
+        setPendingRewards,
+        setShowDePINing,
         pendingRewards,
     } = useAppState()
 
+    const [minerReward, setMinerReward] = useState(0)
+    const [minting, setMinting] = useState(false)
     const intl = useIntl()
     const [CONET_balance, setCONET_balance] = useState(0)
     const [walletAddress, setWalletAddress] = useState('')
     const [totalRewards, setTotalRewards]= useState(0)
     const [previouslyClaimed, setPreviouslyClaimed]= useState(0)
+    const [referrals, setReferrals]= useState(0)
+    const Theme = useTheme()
     useEffect(() => {
         
         const fetchData = async () => {
@@ -360,103 +330,114 @@ const Miner = () => {
             // make sure to catch any error
             .catch(console.error)
     }, [])
-
-    
-    const HeaderArea = () => {
+    const MinerAni = () => {
         
+        const startMinting= async() => {
+            if (!minting) {
+                return
+            }
+            const r = Math.random()
+            await setMinerReward(s => {
+                const kkk = s+r
+                return kkk
+            })
+            const kk = minerReward
+            await setPendingRewards(kk)
+            const k = pendingRewards
+            setTimeout(()=> startMinting(), 3000)
+        }
         return (
-            <ThemeProvider theme={themeTopArea1}>
-                <Grid container spacing={0} >
-                    <TippyDropdownTab />
-                    <Grid item xs={12}>
-    
-                        <ItemTopArea1 elevation={0}>
-                            <BreadcrumbsArea>
-                                <Breadcrumbs aria-label="breadcrumb">
-    
-                                    <Link underline="hover" color="inherit" sx={{color: 'white', cursor: 'pointer'}}
-                                        onClick={() => {
-                                            setShowMiner(false)
-                                        }}
-                                    >
-                                        <HomeIcon sx={{ mr: 0.5 }} fontSize="inherit" />
-                                        { intl.formatMessage({id: 'platform.home'})}
-                                    </Link>
-                                </Breadcrumbs>
-                            </BreadcrumbsArea>
-                            
-                            <Typography variant="h3" sx={{ color: 'white', padding: '4rem 1rem 0rem 1rem' }}>
-                                { intl.formatMessage({id: 'platform.miner.header.title'})}
+                <>
+        
+                    {minting? <img src={miner2} style={{ width: '8rem'}} />: <img src={minerPause} style={{ width: '8rem'}} />}
+                    
+                    <Grid container spacing={0} columns={{ xs: 4, sm: 8, md: 12 }} sx={{ paddingTop: '1rem'}}>
+                        <Grid item xs={4} sm={8} md={12}>
+                            <Typography variant="h6" sx={{fontWeight: '600'}}>
+                                {intl.formatMessage({id: 'platform.miner.register.MinerAni.reward'})}
                             </Typography>
-                            
-                        
-                        </ItemTopArea1>
-                
-                    </Grid>
-    
-                </Grid>
-            
-            </ThemeProvider>
-        )
-    }
-
-    return (
-        <ThemeProvider theme={themeTopArea1}>
-            <HeaderArea/>
-            <RootContainer>
-                <StackContainer sx={{paddingTop: '3rem'}}>
-                    <Paper sx={{padding: '2rem', borderRadius: '1rem'}} elevation={8}>
-                        <Grid container spacing={3} columns={{ xs: 4, sm: 8, md: 12}}>
-                            {/* <Grid item xs={12} sx={{padding:'3rem 0 0rem 0rem', textAlign: 'center'}}>
-                                <Typography variant="h6" sx={{  textAlign: 'center', paddingTop: '0rem' }}>
-                                    {intl.formatMessage({id: 'platform.profile.walletAddr'})}: {walletAddress}
-                                </Typography>
-                            </Grid>
-                            <Grid item xs={12} sx={{textAlign: 'center'}}>
-                                <Typography variant="h6" sx={{ color: 'rgb(51,51,51)', textAlign:'center'}}>
-                                    {intl.formatMessage({id: 'platform.proxy.featureArea8Item.step1.CONETbalance'})}: {CONET_balance}
-                                </Typography>
-                            </Grid> */}
-                            <Grid item xs={12} sx={{padding:'0rem 0 3rem 0rem', textAlign: 'center'}}>
-                                <ItemStyle>
-                                    <Stack spacing={4} direction="row" justifyContent="center">
-                                        <Stack spacing={2}>
-                                            <Typography variant="h5" sx={{ fontWeight: '900'}}>
-                                                {intl.formatMessage({id: 'platform.miner.register.totalRewards'})}
-                                            </Typography>
-                                            <Typography variant="h5" sx={{ fontWeight: '500'}}>
-                                                {totalRewards}
-                                            </Typography>
-                                        </Stack>
-                                        <Stack spacing={2}>
-                                            <Typography variant="h5" sx={{ fontWeight: '900'}}>
-                                                {intl.formatMessage({id: 'platform.miner.register.pendingRewards'})}
-                                            </Typography>
-                                            <Typography variant="h5" sx={{ fontWeight: '500'}}>
-                                                {pendingRewards}
-                                            </Typography>
-                                        </Stack>
-                                        <Stack spacing={2}>
-                                            <Typography variant="h5" sx={{ fontWeight: '900'}}>
-                                                {intl.formatMessage({id: 'platform.miner.register.previouslyClaimed'})}
-                                            </Typography>
-                                            <Typography variant="h5" sx={{ fontWeight: '500'}}>
-                                                {previouslyClaimed}
-                                            </Typography>
-                                        </Stack>
-                                    </Stack>
-                                </ItemStyle>
-                            </Grid>
-                            <Grid item xs={12} sx={{textAlign: 'center'}}>
-                                {ShowStart(CONET_balance)}
-                            </Grid>
+                        </Grid>
+                        <Grid item xs={4} sm={8} md={12}>
+                            <Typography variant="h4" sx={{fontWeight: '600', paddingBottom: '1rem'}}>
+                                {minerReward}
+                            </Typography>
                         </Grid>
                         
-                    </Paper>
-                </StackContainer>
+                        <Grid item xs={4} sm={8} md={12} >
+                            <Stack spacing={2} direction="row" justifyContent="center">
+                                <Button size="large" variant="outlined"  onClick={() => {
+                                    setMinting(!minting)
+                                    if (minting) {
+                                        startMinting()
+                                    }
+                                }}>
+                                    {minting? intl.formatMessage({id: 'platform.miner.register.MinerAni.pause'}): intl.formatMessage({id: 'platform.miner.register.MinerAni.resume'})}
+                                </Button>
+                                {
+                                    !minting &&
+                                    <Button size="large" variant="outlined"  onClick={() => {
+                                        setShowDePINing(false)
+                                        setMinting(true)
+                                        setPendingRewards(minerReward)
+                                    }}>
+                                        {minting? intl.formatMessage({id: 'platform.miner.register.MinerAni.pause'}): intl.formatMessage({id: 'platform.miner.register.MinerAni.stop'})}
+                                    </Button>
+                                }
+                            </Stack>
+                        </Grid>
+                    </Grid>
+                </>
                 
-            </RootContainer>
-        </ThemeProvider>
+            )
+        }
+    return (
+        
+        
+            <Grid container spacing={2} columns={{ xs: 4, sm: 8, md: 12}} sx={{padding: '1rem 0 10rem 0'}}>
+                <Grid item md={4} sm={8} xs={4} sx={{textAlign: 'center'}}>
+                    <ItemStyle>
+                        <Stack spacing={1}>
+                            <Typography variant="h6" sx={{ fontWeight: '600'}}>
+                                {intl.formatMessage({id: 'platform.miner.register.totalRewards'})}
+                            </Typography>
+                            <Typography variant="h5" sx={{ fontWeight: '500'}}>
+                                {totalRewards}
+                            </Typography>
+                        </Stack>
+                    </ItemStyle>
+                </Grid>
+                <Grid item md={4} sm={8} xs={4} sx={{textAlign: 'center'}}>
+                    <ItemStyle>
+                        <Stack spacing={1}>
+                            <Typography variant="h6" sx={{ fontWeight: '600'}}>
+                                {intl.formatMessage({id: 'platform.miner.register.previouslyClaimed'})}
+                            </Typography>
+                            <Typography variant="h5" sx={{ fontWeight: '500'}}>
+                                {previouslyClaimed}
+                            </Typography>
+                        </Stack>
+                    </ItemStyle>
+                </Grid>
+                <Grid item md={4} sm={8} xs={4} sx={{textAlign: 'center'}}>
+                    <ItemStyle>
+                        <Stack spacing={1}>
+                            <Typography variant="h6" sx={{ fontWeight: '600'}}>
+                                {intl.formatMessage({id: 'platform.miner.register.referrals'})}
+                            </Typography>
+                            <Typography variant="h5" sx={{ fontWeight: '500'}}>
+                                {referrals}
+                            </Typography>
+                        </Stack>
+                    </ItemStyle>
+                </Grid>
+                <Grid item md={12} sm={8} xs={4} sx={{textAlign: 'center', width: '100%'}}>
+                    {ShowStart(CONET_balance)}
+                </Grid>
+                {
+                    showDePINing && <MinerAni />
+                }
+            </Grid>
+
     )
 }
 

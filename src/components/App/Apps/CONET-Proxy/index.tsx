@@ -482,8 +482,8 @@ const featureArea6 = (conetBalance: string, loading: boolean,
     ) => {
     const intl = useIntl()
     return (
-        <ThemeProvider theme={themeTopArea1}>
-            <Grid container spacing={2} columns={{ xs: 4, sm: 8, md: 12 }}  sx={{padding:'3rem 5rem 0 5rem'}}>
+
+            <Grid container spacing={2} columns={{ xs: 4, sm: 8, md: 12}} sx={{padding: '1rem 0 10rem 0'}}>
                 <Grid item xs={12} sx={{paddingBottom: '2rem'}} >
                     <ItemTopArea2 elevation={0}>
                         <Slide direction="right" in={true} mountOnEnter>
@@ -505,8 +505,6 @@ const featureArea6 = (conetBalance: string, loading: boolean,
                 
                 
             </Grid>
-        
-        </ThemeProvider>
     )
 }
 
@@ -622,49 +620,7 @@ const LaunchPage = () => {
             .catch(console.error)
     }, [])
 
-    const HeaderArea = () => {
-        const intl = useIntl()
-        return (
-            <ThemeProvider theme={themeTopArea1}>
-                <Grid container spacing={0} >
-                    <TippyDropdownTab />
-                    <Grid item xs={12}>
-
-                        <ItemTopArea1 elevation={0}>
-                            <BreadcrumbsArea>
-                                <Breadcrumbs aria-label="breadcrumb">
-    
-                                    <Link underline="hover" color="inherit" sx={{color: 'white', cursor: 'pointer'}}
-                                        onClick={() => {
-                                            setShowAppStore (false)
-                                        }}
-                                    >
-                                        <HomeIcon sx={{ mr: 0.5 }} fontSize="inherit" />
-                                        { intl.formatMessage({id: 'platform.home'})}
-                                    </Link>
-                                </Breadcrumbs>
-                            </BreadcrumbsArea>
-                            <Grow in={true}>
-                                <Typography variant="h3" sx={{ color: 'white', padding: '4rem 1rem 0rem 1rem' }}>
-                                    { intl.formatMessage({id: 'platform.proxy'})}
-                                </Typography>
-                            </Grow>
-                            <Grow in={true}>
-                                <Typography variant="h3" sx={{color: 'white', padding: '1rem 1rem 0rem 1rem'}}>
-                                    { intl.formatMessage({id: 'platform.proxy.title'})}
-                                </Typography> 
-                            </Grow>
-                        
-                        </ItemTopArea1>
-                
-                    </Grid>
-    
-                </Grid>
-            
-            </ThemeProvider>
-        )
-    }
-
+    const intl = useIntl()
     const faucet = async () => {
         setLoading(true)
         const [status, data] = await faucetAPI()
@@ -705,18 +661,37 @@ const LaunchPage = () => {
     // 
     // const conetToken = currentProfile().tokens.conet
     return (
-        <ThemeProvider theme={themeTopArea1} >
-            <ItemContainer sx={{ overflowY: 'scroll'}}>
-                <HeaderArea/>
-                {FeatureArea5( locale )}
-                {
-                    featureArea6(showAssetBalance_balance, loading, faucet, selectOnChange, regionConfirm, regionProgress, walletAddress, nodes, showConfirm, showProxyNodeLogs, showMiner, setShowMiner)
-                }
                 
-            </ItemContainer>
+        <Grid container spacing={2} columns={{ xs: 4, sm: 8, md: 12}} sx={{padding: '1rem 0 10rem 0'}}>
+            <Grid item xs={12} sx={{}} >
+                <Slide direction="right" in={true} mountOnEnter>
+                    <Typography variant="h4" sx={{fontWeight: '600'}}>
+                        { intl.formatMessage({id:'platform.proxy'})}
+                    </Typography>
+                </Slide>
+            </Grid>
+            <Grid item xs={12} sx={{}} >
+                <Slide direction="right" in={true} mountOnEnter>
+                    <Typography variant="h6" sx={{}}>
+                        { intl.formatMessage({id:'platform.proxy-1'})}
+                    </Typography>
+                </Slide>
+            </Grid>
+            <Grid item xs={12} sx={{paddingBottom: '2rem'}} >
+                <Link href={(locale==='zh-CN'||locale ==='zh-TW') ? 'https://doc.conet.network/web2-qiao-jie': 'https://doceng.conet.network/welcome-to-conet/web2-bridging'}>
+                    <Typography variant="subtitle1" sx={{}}>
+                        { intl.formatMessage({id:'platform.proxy.FeatureArea5.moreDetail'})}
+                    </Typography>
+                </Link>
+            </Grid>
             
+            <Grid item xs={12} sx={{paddingBottom: '5rem'}}>
+                {featureArea8Item(showAssetBalance_balance, loading, faucet, walletAddress, regionProgress, selectOnChange, regionConfirm, showConfirm, nodes, showMiner, setShowMiner)}
+            </Grid>
+            
+            
+        </Grid>
 
-        </ThemeProvider>
     )
 }
 

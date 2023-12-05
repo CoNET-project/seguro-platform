@@ -29,6 +29,7 @@ const getNewNumber = ( oldProgress: number ) => {
 	const diff = Math.random() * 10
 	return Math.min( oldProgress + diff, 100 )	
 }
+
 const LaunchScreen = ({reload}: CoNETSINodeProps) => {
 
 	const [progress, setProgress] = React.useState(0)
@@ -84,7 +85,6 @@ const LaunchScreen = ({reload}: CoNETSINodeProps) => {
 						<LinearProgress color="inherit" variant="determinate" value={progress} sx={{ color: 'white'}}/>
 					</Container>
 			}
-			
 			
         </StyledContainer>
     )

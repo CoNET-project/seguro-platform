@@ -11,7 +11,7 @@ const en_US: Messages = {
     'onboarding.selectLanguageSubtitle': 'Please select your language for Seguro Platform. ' +
         'You will be able to change this later in settings.',
     'onboarding.setPasscodeTitle': 'Create Passcode to Protect your CONET Wallet',
-    'onboarding.setPasscodeSubtitle': 'Enter a minimum 6 character passcode',
+    'onboarding.setPasscodeSubtitle': 'Minimum 6 character',
     'onboarding.confirmPasscodeTitle': 'Confirm Passcode',
 
     'onboarding.verificationTitle': 'Verify Account',
@@ -75,7 +75,7 @@ const en_US: Messages = {
     'drawer.updates': 'Updates',
     'drawer.support': 'Support',
 
-    'platform.overlay.unlocking': 'Unlocking platform...',
+    'platform.overlay.unlocking': 'Unlocking CONET Wallet',
     'platform.overlay.createProfile': 'Creating profile...',
 
     'platform.modal.verification.title': 'Verification Required',
@@ -197,7 +197,8 @@ const en_US: Messages = {
 	'platform.ProfileDropdown.SI.network.loading': 'Loading CoNET Stealth Internet supplier miner nodes list...',
 	'platform.ProfileDropdown.SI.network.listError': 'Failed to get CoNET Stealth Internet nodes information, please try again later',
 
-	'tabnavigator.guide.title': 'Welcome to CoNET Platform',
+	'tabnavigator.guide.title': 'Welcome to CONET',
+    'tabnavigator.guide.createWallet': 'Create Wallet',
 	'globalBar.application.SeguroMessage': 'Seguro Messenger',
 	'globalBar.application.home': 'CoNET Platform',
 
@@ -287,7 +288,8 @@ const en_US: Messages = {
     'launchPage.FeatureArea.3': 'CONET’s Unique Design',
 
     'platform.home': 'CONET Platform',
-    'platform.proxy': 'CoNET Proxy',
+    'platform.proxy': 'The data highway bridge spanning Web2 and Web3',
+    'platform.proxy-1': 'Help user visit IP address server with wallet address',
     'platform.proxy.title': 'THE FAST & PRIVACY PROXY',
     'platform.proxy.FeatureArea.title.1': 'CONET is A Ground-Up Revamp of the',
     'platform.proxy.FeatureArea.title.2': 'Entire Privacy VPN Market',
@@ -319,11 +321,11 @@ const en_US: Messages = {
     'platform.joinUS.header.title.2': 'Fair Free Market',
     'platform.joinUS.header.detail': 'CONET is a infrastructure for privacy in layer minus',
     'platform.joinUS.header.whatConet': `What's CONET`,
-    'platform.joinUS.miner.Bandwidth': 'Bandwidth Provider',
-    'platform.joinUS.miner.BandwidthDetail': 'Get rewards by sharing your unused network resources.',
-    'platform.joinUS.miner.SaaS': 'SaaS Provider',
+    'platform.joinUS.miner.Bandwidth': 'Bandwidth',
+    'platform.joinUS.miner.BandwidthDetail': 'Get rewards by sharing unused network resources.',
+    'platform.joinUS.miner.SaaS': 'SaaS',
     'platform.joinUS.miner.SaaSDetail': 'Get rewards by sharing your computer resources.',
-    'platform.joinUS.miner.storage': 'Storage Provider',
+    'platform.joinUS.miner.storage': 'Storage',
     'platform.joinUS.miner.storageDetail': 'Get rewards by sharing your storage resources.',
 
     'platform.joinUS.joinMiner.button': 'Join Miner Now',
@@ -339,6 +341,7 @@ const en_US: Messages = {
 
     'platform.api.daemon.title': 'No CONET Daemon Activity Detected',
     'platform.api.daemon.detail': 'Please start CONET Daemon, or download and start it',
+    'platform.api.daemon.mobileNotSupport': 'Currently only support with desktop computers',
     'platform.api.daemon.testButton': 'test daemon',
     'platform.api.daemon.openSource': 'CONET is Open Source',
 
@@ -352,10 +355,11 @@ const en_US: Messages = {
     'platform.miner.register.MinerAni.pause': 'Pause',
     'platform.miner.register.MinerAni.resume': 'Start',
     'platform.miner.register.MinerAni.claim': 'Claim reward',
-    'platform.miner.register.totalRewards': 'My Lifetime Rewards',
-    'platform.miner.register.pendingRewards': 'My Pending Rewards',
+    'platform.miner.register.totalRewards': 'Lifetime Rewards',
+    'platform.miner.register.pendingRewards': 'Pending Rewards',
     'platform.miner.register.previouslyClaimed': 'Previously Claimed',
-    'platform.miner.register.MinerAni.stop': 'Stop DePIN'
+    'platform.miner.register.MinerAni.stop': 'Stop DePIN',
+    'platform.miner.register.referrals': 'Referrals'
 
     
 }

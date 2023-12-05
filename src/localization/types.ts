@@ -247,6 +247,7 @@ export type Messages = {
 	'platform.ProfileDropdown.CurrentProfileItem.AnonymousUser': string
 
 	'tabnavigator.guide.title': string
+    'tabnavigator.guide.createWallet': string,
 
 	'tabnavigator.appStore.title': string
 
@@ -281,6 +282,7 @@ export type Messages = {
 
     'platform.home': string
     'platform.proxy': string
+    'platform.proxy-1': string
     'platform.proxy.title': string
     'platform.proxy.FeatureArea.title.1': string
     'platform.proxy.FeatureArea.title.2': string
@@ -339,6 +341,7 @@ export type Messages = {
 
     'platform.api.daemon.title': string
     'platform.api.daemon.detail': string
+    'platform.api.daemon.mobileNotSupport': string
     'platform.api.daemon.testButton': string
     'platform.api.daemon.openSource': string
 
@@ -356,6 +359,7 @@ export type Messages = {
     'platform.miner.register.pendingRewards': string
     'platform.miner.register.previouslyClaimed': string
     'platform.miner.register.MinerAni.stop': string
+    'platform.miner.register.referrals': string
 
     
 }

@@ -3,7 +3,7 @@ import React, {ReactNode} from 'react'
 
 interface TabPanelProps {
 	labelText?: React.ReactNode
-	balance?: number
+	balance?: string
 	icon?: React.ReactNode
 }
 
@@ -28,7 +28,6 @@ const StyledTokenBalance = styled.p`
 	text-align: center;
 	width: 100%;
 	font-size: ${props => props.theme.ui.fontSizes.narrow.xl};
-	color: ${props => props.theme.ui.colors.border.medium};
 	margin-top: 0.1rem;
 	margin-bottom: 0.1rem;
 	font-family: 'Lato Bold';

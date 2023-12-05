@@ -8,8 +8,8 @@ const zh_CN: Messages = {
 	'LaunchScreen.loadFail': 'CoNET 平台加載失敗！ 請點擊重新加載。',
     'onboarding.selectLanguageTitle': '选择您的语言',
     'onboarding.selectLanguageSubtitle': '选择您的语言...',
-    'onboarding.setPasscodeTitle': '设置密码来保护您的CONET钱包',
-    'onboarding.setPasscodeSubtitle': '输入最少 6 个字符的密码',
+    'onboarding.setPasscodeTitle': '请设置密码保护您的CONET钱包',
+    'onboarding.setPasscodeSubtitle': '最少6个字符',
     'onboarding.confirmPasscodeTitle': '确认密码',
 
     'onboarding.verificationTitle': '验证邀请码',
@@ -72,7 +72,7 @@ const zh_CN: Messages = {
     'drawer.updates': '更新',
     'drawer.support': '支持',
 
-    'platform.overlay.unlocking': '解锁平台...',
+    'platform.overlay.unlocking': '请解锁钱包',
     'platform.overlay.createProfile': '创建配置文件...',
 
     'platform.modal.verification.title': '需要验证',
@@ -193,7 +193,8 @@ const zh_CN: Messages = {
 
 	'platform.ProfileDropdown.CurrentProfileItem.AnonymousUser': '匿名用户',
 
-	'tabnavigator.guide.title': '欢迎使用CoNET平台 ',
+	'tabnavigator.guide.title': '欢迎使用CONET',
+    'tabnavigator.guide.createWallet': '创建钱包',
 	'globalBar.application.home': 'CoNET 平台',
 	'globalBar.application.SeguroMessage': 'Seguro 聊天',
 	'globalBar.application.AppStore': 'CoNET 应用商店',
@@ -273,7 +274,8 @@ const zh_CN: Messages = {
     'launchPage.FeatureArea.3': '独创设计',
 
     'platform.home': 'CONET平台',
-    'platform.proxy': 'CONET代理',
+    'platform.proxy': '连结Web2和Web3的数据高速桥梁',
+    'platform.proxy-1': '通过钱包地址访问IP地址服务器',
     'platform.proxy.title': '最隐私的高速代理',
     'platform.proxy.FeatureArea.title.1': 'CONET代理，重新定義隐私VPN市场',
     'platform.proxy.FeatureArea.title.2': ' ',
@@ -308,11 +310,11 @@ const zh_CN: Messages = {
     'platform.joinUS.header.detail': 'CONET是Layer Minus隐私基础设施',
     'platform.joinUS.header.whatConet': `CONET是什么`,
     'platform.joinUS.miner.Bandwidth': '带宽挖矿',
-    'platform.joinUS.miner.BandwidthDetail': '通过分享未使用网络资源来获取奖励。',
+    'platform.joinUS.miner.BandwidthDetail': '分享未使用网络资源获取奖励。',
     'platform.joinUS.miner.SaaS': '算力挖矿',
-    'platform.joinUS.miner.SaaSDetail': '通过分享未使用计算机算力资源来获取奖励。',
+    'platform.joinUS.miner.SaaSDetail': '分享未使用算力资源获取奖励。',
     'platform.joinUS.miner.storage': '存储空间挖矿',
-    'platform.joinUS.miner.storageDetail': '通过分享未使用硬盘空间来获取奖励。',
+    'platform.joinUS.miner.storageDetail': '分享未使用硬盘空间获取奖励。',
 
     'platform.joinUS.joinMiner.button': '加入CONET挖矿',
     'platform.joinUS.forUser.Title1': 'Web3应用程序',//'去中心化隐私增强',
@@ -326,6 +328,7 @@ const zh_CN: Messages = {
 
     'platform.api.daemon.title': '未检测到CONET守护程序',
     'platform.api.daemon.detail': '请启动CONET，或下载启动它',
+    'platform.api.daemon.mobileNotSupport': '目前只支持电脑',
     'platform.api.daemon.testButton': '测试守护进程',
     'platform.api.daemon.openSource': 'CONET是开源代码',
 
@@ -342,8 +345,9 @@ const zh_CN: Messages = {
     'platform.miner.register.MinerAni.claim': '转帐奖励到钱包',
     'platform.miner.register.totalRewards': '获得总奖励',
     'platform.miner.register.pendingRewards': '等待转帐的奖励',
-    'platform.miner.register.previouslyClaimed': '上一次转帐成功的奖励',
-    'platform.miner.register.MinerAni.stop': '停止DePIN'
+    'platform.miner.register.previouslyClaimed': '上一次奖励',
+    'platform.miner.register.MinerAni.stop': '停止DePIN',
+    'platform.miner.register.referrals': '推荐'
 }
 
 export default zh_CN

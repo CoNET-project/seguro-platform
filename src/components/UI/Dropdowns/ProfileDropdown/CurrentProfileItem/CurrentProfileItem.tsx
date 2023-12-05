@@ -96,6 +96,7 @@ const CurrentProfileItem = ({closeDropdown, syncAsset}: ProfileDropdownProps ) =
         })
         CopyToClipboard(code)
     }
+	
 	const [loading, setLoading] = useState(false)
 
 	const theme = useTheme()
