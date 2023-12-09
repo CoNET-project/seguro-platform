@@ -1,21 +1,15 @@
 import { createTheme, ThemeProvider, makeStyles, rgbToHex } from '@mui/material/styles'
-import { styled } from '@mui/material/styles'
-import Box from '@mui/material/Box'
 import Typography, {TypographyProps} from '@mui/material/Typography'
 import { useIntl } from "react-intl"
-import Container from '@mui/material/Container'
 import Stack from '@mui/material/Stack'
-import Button from '@mui/material/Button'
 import React, {HTMLAttributes, useState, useEffect} from "react"
-import BottomNavigationAction from '@mui/material/BottomNavigationAction'
+import {BottomNavigationAction, colors} from '@mui/material'
 import LoadingButton from '@mui/lab/LoadingButton'
-import {testLocalServer} from '../../../API/index'
+import {testLocalServer, startProxy} from '../../../API/index'
 import useAppState from '../../../store/appState/useAppState'
 import BottomNavigation from '@mui/material/BottomNavigation'
 import WindowSharpIcon from '@mui/icons-material/WindowSharp'
 import AppleIcon from '@mui/icons-material/Apple'
-import Paper from '@mui/material/Paper'
-import Link from '@mui/material/Link'
 import GitHubIcon from '@mui/icons-material/GitHub'
 import Grid from '@mui/material/Grid'
 
@@ -63,21 +57,36 @@ const deamon = () => {
     const intl = useIntl()
     const [loading, setLoading] = useState(false)
     const [error, setError] = useState(false)
+	const [verLow, setVerLow] = useState(false)
     const {
         setlocalDaemon
     } = useAppState()
 
-    const testClisk = () => {
+	useEffect(() => {
+		
+        const testDeamon = async() => {
+            testClisk()
+        }
+
+        testDeamon().catch((ex) => {
+            console.log(`APP useEffect testDeamon error`, ex)
+        })
+
+    }, [])
+
+    const testClisk = async () => {
         setLoading (true)
-        setTimeout(async() => {
-            const test = await testLocalServer()
-            setLoading (false)
-            if (test !== true) {
-                setError (true)
-                return setTimeout(() => setError(false), 3000)
-            }
-            setlocalDaemon(true)
-        }, 1000)
+        
+        const test = await testLocalServer()
+        setLoading (false)
+        if (test !== true) {
+            setError (true)
+			if (test === false) {
+				setVerLow (true)
+			}
+            return setTimeout(() => setError(false), 3000)
+        }
+        setlocalDaemon(true)
         
     }
 
@@ -91,11 +100,23 @@ const deamon = () => {
                         { intl.formatMessage({id: 'platform.api.daemon.title'})}
                     </Typography> 
                 </Grid>
-                <Grid item md={12} sm={8} xs={4} sx={{textAlign: 'center'}}>
-                    <Typography variant="h6" sx={{textAlign: 'center', fontSize: '0.8rem'}}>
-                        { intl.formatMessage({id: 'platform.api.daemon.detail'})}
-                    </Typography>
-                </Grid>
+				{
+					!verLow && 
+					<Grid item md={12} sm={8} xs={4} sx={{textAlign: 'center'}}>
+						<Typography variant="h6" sx={{textAlign: 'center', fontSize: '0.8rem'}}>
+							{ intl.formatMessage({id: 'platform.api.daemon.detail'})}
+						</Typography>
+					</Grid>
+				}
+				{
+					verLow && 
+					<Grid item md={12} sm={8} xs={4} sx={{textAlign: 'center'}}>
+						<Typography variant="h6" sx={{color:colors.red[900], textAlign: 'center', fontSize: '1rem'}}>
+							{ intl.formatMessage({id: 'platform.api.daemon.verLow'})}
+						</Typography>
+					</Grid>
+				}
+                
                 <Grid item md={12} sm={8} xs={4} sx={{textAlign: 'center'}}>
                     <Typography variant="h6" sx={{textAlign: 'center', fontSize: '0.8rem'}}>
                         { intl.formatMessage({id: 'platform.api.daemon.mobileNotSupport'})}

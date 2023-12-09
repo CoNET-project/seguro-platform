@@ -1,16 +1,13 @@
-import { createTheme, ThemeProvider, makeStyles, rgbToHex } from '@mui/material/styles'
+
 import { styled } from '@mui/material/styles'
-import Container from '@mui/material/Container'
 import { useIntl } from "react-intl"
 import Grid from '@mui/material/Grid'
-import TippyDropdownTab from '../CONET-Proxy/TippyDropdown'
+
 import styledCom from "styled-components"
 import Paper from '@mui/material/Paper'
 import Box from '@mui/material/Box'
-import Breadcrumbs from '@mui/material/Breadcrumbs'
-import Link from '@mui/material/Link'
-import HomeIcon from '@mui/icons-material/Home'
-import Grow from '@mui/material/Grow'
+
+import Slide from '@mui/material/Slide'
 import Typography, {TypographyProps} from '@mui/material/Typography'
 import useAppState from "../../../../store/appState/useAppState"
 import miner2 from '../../../../assets/miner/FancyNyan.webp'
@@ -20,17 +17,12 @@ import Fab from '@mui/material/Fab'
 import CallMissedOutgoingIcon from '@mui/icons-material/CallMissedOutgoing'
 import DriveFolderUploadIcon from '@mui/icons-material/DriveFolderUpload'
 import DnsIcon from '@mui/icons-material/Dns'
-
-import Checkbox from '@mui/material/Checkbox'
 import React, {HTMLAttributes, useState, useEffect} from "react"
 import {getCONETBalance} from '../../../../API/index'
 import {logger} from '../../logger'
-import TextField from '@mui/material/TextField'
 import { grey } from '@mui/material/colors'
 import boostImg from './assets/boost.gif'
-import Account from '../dashboard/Accound/index'
 import { useTheme } from '@mui/material/styles'
-import { lightGreen} from '@mui/material/colors'
 import {Tabs, Tab, Button} from '@mui/material-next'
 
 const BoostImg = styledCom.img`
@@ -239,6 +231,7 @@ const ShowStart = (
     const [check3, setcheck3] = useState(false)
     
     const [boost, setBoost]= useState(false)
+    const [animei, setAnimei]= useState<'left'|'right'>('left')
     
     const {
         setShowDePINing,
@@ -250,7 +243,12 @@ const ShowStart = (
 
 
     const handleChange = (event: React.SyntheticEvent, newValue: number) => {
-        setValue(newValue);
+        const old = value
+        setValue(newValue)
+        if (newValue > old) {
+            return setAnimei('right') 
+        }
+        setAnimei('left')
     }
 
     return (
@@ -274,16 +272,29 @@ const ShowStart = (
                     </Tabs>
                 </Box>
                 <CustomTabPanel value={value} index={0}>
-                    {FeatureArea5Item1(check1,setcheck1)}
+                    <Slide direction={animei} in={value===0} mountOnEnter unmountOnExit>
+                        {FeatureArea5Item1(check1,setcheck1)}
+                    </Slide>
+                    
                 </CustomTabPanel>
                 <CustomTabPanel value={value} index={1}>
-                    {FeatureArea5Item2(check2, setcheck2)}
+                    <Slide direction={animei} in={value===1} mountOnEnter unmountOnExit>
+                        {FeatureArea5Item2(check2, setcheck2)}
+                    </Slide>
+                    
                 </CustomTabPanel>
                 <CustomTabPanel value={value} index={2}>
-                    {FeatureArea5Item3(check3, setcheck3)}
+                    <Slide direction={animei} in={value===2} mountOnEnter unmountOnExit>
+                        {FeatureArea5Item3(check3, setcheck3)}
+                    </Slide>
+                    
                 </CustomTabPanel>
                 <CustomTabPanel value={value} index={3}>
+                <Slide direction={animei} in={value===3} mountOnEnter unmountOnExit>
                     {Boost(CONET_balance, setBoost)}
+                </Slide>
+                    
+                    
                 </CustomTabPanel>
             </Grid>
         </Grid>

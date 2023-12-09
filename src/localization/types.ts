@@ -289,6 +289,7 @@ export type Messages = {
     'platform.proxy.FeatureArea5.1': string
     'platform.proxy.FeatureArea5.2': string
     'platform.proxy.FeatureArea5.moreDetail': string
+	'platform.proxy.issueReport': string
 
     'platform.proxy.FeatureArea6.1': string
     'platform.proxy.FeatureArea6.2': string
@@ -297,19 +298,32 @@ export type Messages = {
 
     'platform.proxy.FeatureArea.start': string
     'platform.proxy.step1.title': string
+    'platform.proxy.subscription.user': string
 
     'platform.proxy.featureArea8Item.step1': string
     'platform.proxy.featureArea8Item.step1.CONETbalance': string
     'platform.proxy.featureArea8Item.step1.transferQuote': string
     'platform.proxy.featureArea8Item.step2': string
     'platform.proxy.featureArea8Item.step2.random': string
+    'platform.proxy.featureArea8Item.step2.cant': string
     'platform.proxy.featureArea8Item.step3': string
     'platform.proxy.featureArea8Item.chrome': string
     'platform.proxy.featureArea8Item.chrome.extensions': string
+	'platform.proxy.chrome.detail': string
+	'platform.proxy.firefox.detail': string
 
     'platform.proxy.featureArea8Item.minerSetup.title': string
     'platform.proxy.featureArea8Item.minerSetup.saas': string
     'platform.proxy.featureArea8Item.minerSetup.bandwidth': string
+	'platform.proxy.setup.allOther': string
+	'platform.proxy.setup.iOS': string
+	'platform.proxy.setup.iOSOther': string
+	'platform.proxy.setup.android': string
+	'platform.proxy.setup.andOther': string
+	'platform.proxy.setup.macos': string
+	'platform.proxy.setup.macosOther': string
+	'platform.proxy.setup.win': string
+	'platform.proxy.setup.winOther': string
 
 
 
@@ -341,6 +355,7 @@ export type Messages = {
 
     'platform.api.daemon.title': string
     'platform.api.daemon.detail': string
+	'platform.api.daemon.verLow': string
     'platform.api.daemon.mobileNotSupport': string
     'platform.api.daemon.testButton': string
     'platform.api.daemon.openSource': string

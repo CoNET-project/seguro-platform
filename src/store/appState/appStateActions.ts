@@ -24,6 +24,28 @@ export const setPendingRewards = createAction(
     }
 )
 
+export const setProxyUploadSpeed = createAction(
+    'appState/proxyUploadSpeed',
+    (proxyUploadSpeed: number) => {
+        return {
+            payload: {
+                proxyUploadSpeed
+            }
+        }
+    }
+)
+
+export const setIsProxyStart = createAction(
+    'appState/isProxyStart',
+    (isProxyStart: boolean) => {
+        return {
+            payload: {
+                isProxyStart
+            }
+        }
+    }
+)
+
 export const setShowDePINing = createAction(
     'appState/showDePINing',
     (showDePINing: boolean) => {

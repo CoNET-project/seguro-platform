@@ -30,7 +30,9 @@ import {
     setLocalDaemon,
     setShowMiner,
     setShowDePINing,
-    setPendingRewards
+    setPendingRewards,
+    setIsProxyStart,
+    setProxyUploadSpeed
 
 } from './appStateActions'
 import {Theme} from '../../theme/types'
@@ -159,15 +161,18 @@ type AppStateReducerState = {
 	showGuide: boolean
 	showAppStore: boolean
     showBlockScan: boolean
+    isProxyStart: boolean
     showJoinUS: boolean
     localDaemon: boolean
     showMiner: boolean
     showDePINing: boolean
     pendingRewards: number
+    proxyUploadSpeed: number
 }
 
 const initialState: AppStateReducerState = {
     showMiner: true,
+    isProxyStart: false,
     isTouchDevice: false,
     isUnlocked: false,
     isDrawerOpen: false,
@@ -192,7 +197,8 @@ const initialState: AppStateReducerState = {
     networkState: 'disconnected',
     localDaemon: false,
 	showDePINing: false,
-    pendingRewards: 0
+    pendingRewards: 0,
+    proxyUploadSpeed: 0
 }
 
 const appStateReducer = createReducer(initialState, builder => {
@@ -200,6 +206,10 @@ const appStateReducer = createReducer(initialState, builder => {
 
         .addCase(setShowDePINing, (state, action) => {
             state.showDePINing = action.payload.showDePINing
+        })
+
+        .addCase(setProxyUploadSpeed, (state, action) => {
+            state.proxyUploadSpeed = action.payload.proxyUploadSpeed
         })
 
         .addCase(setLocalDaemon, (state, action) => {
@@ -236,6 +246,10 @@ const appStateReducer = createReducer(initialState, builder => {
 
         .addCase(setLocale, (state, action) => {
             state.locale = action.payload.locale
+        })
+
+        .addCase(setIsProxyStart, (state, action) => {
+            state.isProxyStart = action.payload.isProxyStart
         })
 
         .addCase(setIsTouchDevice, (state, action) => {

@@ -9,10 +9,10 @@ type WorkerCommandErrorType = 'NOT_READY'|'INVALID_DATA'|
 
 type WorkerCommandType = 'READY'|'encrypt_TestPasscode'|'getCONETBalance'|'getRegiestNodes'|
 'encrypt_createPasscode'|'encrypt_lock'|'encrypt_deletePasscode'|'storePreferences'|
-'newProfile'|'storeProfile'|'invitation'|'WORKER_MESSAGE'|
+'newProfile'|'storeProfile'|'invitation'|'WORKER_MESSAGE'|'startProxy'|
 'isAddress'|'getFaucet'|'syncAsset'|'sendAsset'|'getUSDCPrice'|
 'buyUSDC'|'mintCoNETCash'|'getSINodes'|'getRecipientCoNETCashAddress'|
-'getUserProfile'|'sendMessage'|'setRegion'
+'getUserProfile'|'sendMessage'|'setRegion'|'ipaddress'
 
 export type WorkerCallStatus = 'SUCCESS' | 'NOT_READY' | 'UNKNOWN_COMMAND' |
 'TIME_OUT' | 'SYSTEM_ERROR'
@@ -26,6 +26,13 @@ export type SeguroNetworkStatus = WorkerCallStatus |
 'CONNECTING_SEGURO_NETWORK'|'INIT'|'NOT_STRIPE'|
 'LOCAL_SERVER_ERROR'|'INVITATION_CODE_ERROR'|
 'SEGURO_ERROR'|'UNKNOW_ERROR'|'SEGURO_DATA_FORMAT_ERROR'
+
+
+
+const ver = '0.0.12'
+
+
+
 
 /*eslint-disable */
 export interface profile {
@@ -163,7 +170,7 @@ export const postPasscode: (passcode: string) => Promise<null|boolean|WorkerComm
 }
 
 export const testLocalServer = async () => {
-    const ver = '0.0.6'
+
     const result = await postUrl(`http://localhost:3001/ver`, '', false)
     if (result) {
         if (result.ver === ver) {
@@ -241,6 +248,17 @@ export const setRegion: (region: regionType) => Promise < StartWorkerResolveForA
     })
 }
 
+export const startProxy: () => Promise < StartWorkerResolveForAPI > = () => {
+    return new Promise( resolve => {
+        const cmd: WorkerCommand = {
+            cmd: 'startProxy',
+            uuid: v4(),
+            data: []
+        }
+        return postMessage (cmd, resolve)
+    })
+}
+
 export const getRegiestNodes : () => Promise < StartWorkerResolveForAPI > = () => {
     return new Promise( resolve => {
         const cmd: WorkerCommand = {
@@ -262,6 +280,17 @@ export const createPasscode : (passcord: string, local: string) => Promise < Sta
         }
         return postMessage (cmd, resolve)
     })
+}
+
+export const getIPaddress: () => Promise < StartWorkerResolveForAPI > = () => {
+	return new Promise(resolve => {
+		const cmd: WorkerCommand = {
+            cmd: 'ipaddress',
+            uuid: v4(),
+            data: []
+        }
+        return postMessage (cmd, resolve)
+	})
 }
 
 export const encrypt_deletePasscode : () => Promise < StartWorkerResolveForAPI > = () => {

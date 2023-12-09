@@ -37,8 +37,6 @@ interface StyledTabsProps {
 
 const StackContainer = styled(Stack)(() => ({
     height: '100vh',
-    overflowY: 'auto',
-    overflowX: 'hidden',
     width: '100%'
 }))
 
@@ -359,12 +357,12 @@ const DashBoard = () => {
                         </>
                     }
     
-                    <Box {...a11yProps(2)} 
+                    {/* <Box {...a11yProps(2)} 
                         onClick={languageMenuClick}
                     >
                         <Tab icon={showLocationIcon(locale)} sx={{ position: 'fixed', bottom: '10rem'}} />
                         <LanguageMenu />
-                    </Box>
+                    </Box> */}
     
                     <Box {...a11yProps(3)} onClick={
                         e => {
@@ -379,9 +377,9 @@ const DashBoard = () => {
     
                     <Box {...a11yProps(4)} onClick={
                         e => {
-                            // if (isUnlocked) {
-                            //     setShowProfileDropdown(true)
-                            // }
+                            if (isUnlocked) {
+                                setShowProfileDropdown(true)
+                            }
                             
                         }
                     }>
@@ -411,20 +409,23 @@ const DashBoard = () => {
 
     
         return (
-            <Container maxWidth='lg' sx={{height: '100vh', width: '100%', overflowX: 'hidden', overflowY: 'auto'}}>
-                {
-                    !isInitializing &&
-                    <Stack sx={{width: '100%', height: '100%', paddingTop: {xs: '5rem'}}} alignItems="center">
-                        <ShowApp/>
-                    </Stack>
-                }
-                {
-                    isInitializing &&
-                        <Stack sx={{width: '100%', height: '100vh', padding: '2rem', margin: '-3rem 0 0 0'}} alignItems="center" justifyContent="center">
-                            <LogoImage color='grey'/>
-                        </Stack>
-                }
-            </Container>
+			<StackContainer>
+				<Container maxWidth='lg' sx={{height: '100%', width: '100%', overflowX: 'auto'}}>
+					{
+						!isInitializing &&
+						<Stack sx={{width: '100%', height: '100%', paddingTop: {xs: '5rem'}}} alignItems="center">
+							<ShowApp/>
+						</Stack>
+					}
+					{
+						isInitializing &&
+							<Stack sx={{width: '100%', height: '100vh', padding: '2rem', margin: '-3rem 0 0 0'}} alignItems="center" justifyContent="center">
+								<LogoImage color='grey'/>
+							</Stack>
+					}
+				</Container>
+			</StackContainer>
+            
         )
     }
 

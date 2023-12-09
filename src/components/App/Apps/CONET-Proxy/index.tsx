@@ -1,513 +1,32 @@
-import { createTheme, ThemeProvider, makeStyles, rgbToHex } from '@mui/material/styles'
-import { styled } from '@mui/material/styles'
-import Paper from '@mui/material/Paper'
+
 import Grid from '@mui/material/Grid'
-import Grow from '@mui/material/Grow'
-import Typography, {TypographyProps} from '@mui/material/Typography'
+import {Divider, colors, Container, Paper, } from '@mui/material'
+import Typography from '@mui/material/Typography'
 import Box from '@mui/material/Box'
 import Slide from '@mui/material/Slide'
-import Breadcrumbs from '@mui/material/Breadcrumbs'
-import styledCom from "styled-components"
+import styled from 'styled-components'
 import Link from '@mui/material/Link'
-import HomeIcon from '@mui/icons-material/Home'
 import useAppState from "../../../../store/appState/useAppState"
-import React, {HTMLAttributes, useState, useEffect} from "react"
-import featureIcon1 from './assets/images/feature5Icon1.png'
-import featureIcon2 from './assets/images/feature5Icon2.png'
-import featureIcon3 from './assets/images/feature5Icon3.png'
-import screen1 from './assets/images/screen1.png'
-import {getWorkerService} from '../../../../services/workerService/workerService'
-import Button from '@mui/material/Button'
-import FormGroup from '@mui/material/FormGroup'
-import FormControlLabel from '@mui/material/FormControlLabel'
-import Checkbox from '@mui/material/Checkbox'
-import TippyDropdownTab from './TippyDropdown'
-import { getCONETBalance, regionType, faucet as faucetAPI, setRegion as setRegionAPI, getRegiestNodes as getRegiestNodesAPI} from '../../../../API/index'
+import React, {HTMLAttributes, useState, useEffect, useMemo} from "react"
+import { getCONETBalance, regionType, faucet as faucetAPI, setRegion as setRegionAPI, getRegiestNodes as getRegiestNodesAPI, startProxy, testLocalServer, getIPaddress} from '../../../../API/index'
 import {logger} from '../../logger'
 import CircularProgress from '@mui/material/CircularProgress'
-import Accordion from '@mui/material/Accordion'
-import AccordionSummary from '@mui/material/AccordionSummary'
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
-import AccordionDetails from '@mui/material/AccordionDetails'
-import SaaSNodes from './SaasNodes'
 import type {nodes_info} from './SaasNodes'
 import { useIntl } from "react-intl"
-import chromeImg from './assets/images/chrome.gif'
 import Stack from '@mui/material/Stack'
-import miner2 from '../../../../assets/miner/FancyNyan.webp'
-
-//import { ColorMode, TerminalOutput } from 'react-terminal-ui'
-
-const themeTopArea1 = createTheme ({
-    typography: {
-        h3: {
-            'fontWeight': '600'
-        },
-        h4: {
-            'fontWeight': '600'
-        },
-        h6: {
-            color: 'rgba(0,0,0,0.6)'
-        },
-        fontFamily: [
-            'Inter',
-            '"Inter Placeholder"',
-            'sans-serif',
-        ].join(','),
-    },
-})
-
-const ItemTopArea1 = styled(Paper)(({ theme }) => ({
-    padding: 0,
-    borderRadius: 0,
-    textAlign: 'center',
-    background: 'linear-gradient(180deg,#080213 0%,hsl(253,79%,15%))',
-    paddingBottom: '7rem'
-}))
-
-const ItemTopArea2 = styled(Paper)(({ theme }) => ({
-    padding: 0,
-    borderRadius: 0,
-    textAlign: 'center',
-    
-}))
-
-const ItemContainer = styled(Box)(({ theme }) => ({
-    paddingBottom: '10rem',
-    overflow: "auto",
-    maxHeight: '100%'
-    
-}))
-
-const BreadcrumbsArea = styledCom.div`
-    padding: 2rem;
-
-`
-
-const StyleIconSize = styledCom.img`
-    width:150px;
-`
-
-const StyleIconSize1 = styledCom.img`
-width:400px;
-
-`
-
-const StyleIconItem = styledCom.div`
-    display: flex;
-    justify-content: center;
-`
-
-const StyledItemArea = styled(Paper)(({ theme }) => ({
-    ...theme.typography.body2,
-    borderRadius: 0,
-    width: '100%'
-}))
-
-const StyledItemArea1 = styled(Paper)(({ theme }) => ({
-    ...theme.typography.body2,
-    width: '100%',
-    padding: '1rem'
-}))
-
-const FeatureArea5Item = () => {
-    const intl = useIntl()
-    return (
-        <Grid item xs={4} sm={8} md={4} sx={{ paddingTop: '3rem'}}>
-            <StyledItemArea elevation={0}>
-                <StyleIconItem>
-                    <StyleIconSize src={featureIcon1}/>
-                </StyleIconItem>
-
-                <Typography variant="h5" sx={{ fontWeight: '900', textAlign:'center', paddingTop: '2rem' }}>
-                    { intl.formatMessage({id: 'platform.proxy.FeatureArea5.1'})}
-                </Typography>
-                <Typography variant="h6" sx={{ color: 'rgb(51,51,51)', textAlign:'center'}}>
-                    { intl.formatMessage({id: 'platform.proxy.FeatureArea5.2'})}
-                </Typography>
-            </StyledItemArea>
-
-        </Grid>
-    )
-}
-
-const FeatureArea6Item = () => {
-    const intl = useIntl()
-    return (
-        <Grid item xs={4} sm={8} md={4} sx={{ paddingTop: '3rem'}}>
-            <StyledItemArea elevation={0}>
-                <StyleIconItem>
-                    <StyleIconSize src={featureIcon2}/>
-                </StyleIconItem>
-
-                <Typography variant="h5" sx={{ fontWeight: '900', textAlign:'center', paddingTop: '2rem', textTransform: 'uppercase' }}>
-                    { intl.formatMessage({id: 'platform.proxy.FeatureArea6.1'})}
-                </Typography>
-                <Typography variant="h6" sx={{ color: 'rgb(51,51,51)', textAlign:'center'}}>
-                    { intl.formatMessage({id: 'platform.proxy.FeatureArea6.2'})}
-                </Typography>
-            </StyledItemArea>
-        </Grid>
-    )
-}
-
-
-const FeatureArea7Item = () => {
-    const intl = useIntl()
-    return (
-        <Grid item xs={4} sm={8} md={4} sx={{ paddingTop: '3rem'}}>
-            <StyledItemArea elevation={0}>
-                <StyleIconItem>
-                    <StyleIconSize src={featureIcon3}/>
-                </StyleIconItem>
-
-                
-                <Typography variant="h5" sx={{ fontWeight: '900', textAlign:'center', paddingTop: '2rem', textTransform: 'uppercase'}}>
-                { intl.formatMessage({id: 'platform.proxy.FeatureArea7.1'})}
-                </Typography>
-                <Typography variant="h6" sx={{ color: 'rgb(51,51,51)', textAlign:'center'}}>
-                { intl.formatMessage({id: 'platform.proxy.FeatureArea7.2'})}
-                </Typography>
-            </StyledItemArea>
-
-        </Grid>
-    )
-}
-
-const showMoreDetail = (locale: string) => {
-   
-    switch(locale) {
-        default:
-        case 'ja-JP':
-        case 'en-US': {
-            return window.open(`https://doc.conet.network/conet-white-paper/introduction/wallet-address-routing-network-infrastructure/conet-proxy-service`)
-        }
-        case 'zh-TW':
-        case'zh-CN': {
-            return window.open(`https://doc.conet.network/conet-bai-pi-shu/jie-shao/qian-bao-di-zhi-lu-you-wang-lao-ji-chu-she-shi/conet-dai-li-fu-wu`)
-        }
-    }
-}
-
-const FeatureArea5 = (locale: string) => {
-    const intl = useIntl()
-    return (
-        <ThemeProvider theme={themeTopArea1}>
-            <Grid container spacing={2} columns={{ xs: 4, sm: 8, md: 12 }}  sx={{padding:'5rem 5rem 5rem 5rem'}}>
-                <Grid item xs={12}>
-                    <ItemTopArea2 elevation={0}>
-                        <Slide direction="right" in={true} mountOnEnter>
-                            <Typography variant="h4" sx={{color:' #448aff'}} >
-                                { intl.formatMessage({id:'platform.proxy.FeatureArea.title.1'})}
-
-                            </Typography>
-                        </Slide>
-                        <Slide direction="right" in={true} mountOnEnter>
-                            <Typography variant="h4" >
-                                { intl.formatMessage({id:'platform.proxy.FeatureArea.title.2'})}
-
-                            </Typography>
-                        </Slide>
-                    </ItemTopArea2>
-                </Grid>
-                
-                < FeatureArea5Item />
-                < FeatureArea6Item />
-                < FeatureArea7Item />
-                <Grid item xs={12} sx={{textAlign: 'center' }}>
-                    <Button 
-                        variant="outlined" size="large"
-                        onClick={() => showMoreDetail(locale)}
-                        sx={{backgroundColor:'white', textTransform: 'none', fontSize: '1.5rem' }}>
-                        { intl.formatMessage({id: 'platform.proxy.FeatureArea5.moreDetail'})}
-                    </Button>
-                </Grid>
-            </Grid>
-        
-        </ThemeProvider>
-    )
-}
-
-//              Start Proxy
-
-const featureArea8Item = (conetBalance: string, loading: boolean, faucet: () => void, wallet: string, 
-    regionProgress: boolean, onchange: ((event: React.SyntheticEvent<Element, Event>, checked: boolean, 
-    region: string) => void), regionConfirm: () => void, showConfirm: Boolean, 
-    nodes: nodes_info[],
-    showMiner: boolean, 
-    setShowMiner: React.Dispatch<React.SetStateAction<boolean>>
-    ) => {
-    const intl = useIntl()
-    const [expanded, setExpanded] = React.useState<string | false>(false)
-    const [showMinerStart, setShowMinerStart] = useState(false)
-    const [minerSetup, setMinerSetup] =  useState(0)
-    const [minerReward, setMinerReward] =  useState(0)
-    const [minerConnecting, setMinerConnecting] =  useState(0)
-    const [minerSaaSCalls, setMinerSaaSCalls] =  useState(0)
-    const [minerProcess, setMinerProcess] =  useState(false)
-    const handleChange =
-        (panel: string) => (event: React.SyntheticEvent, isExpanded: boolean) => {
-        setExpanded(isExpanded ? panel : false);
-    }
-
-    const faucetClick = () => {
-        faucet()
-    }
-
-    const minerCheck = (checkedItem: boolean, item: string) => {
-        switch(item) {
-            case 'saas': {
-                const itemNumber = minerSetup + (checkedItem? 1: -1)
-                return setMinerSetup(itemNumber)
-            }
-            default :{
-                const itemNumber = minerSetup + (checkedItem? 2: -2)
-                return setMinerSetup(itemNumber)
-            }
-        }
-    }
-
-    const setStatus = () => {
-        
-        const connecting = Math.round(100 * Math.random())
-        setMinerConnecting (connecting)
-        const saasCalls = Math.round(1000 * Math.random())
-        setMinerSaaSCalls (saasCalls)
-        const randomTime =  Math.round(1000 * Math.random())
-        setTimeout (() => {
-
-            setStatus()
-        }, randomTime)
-    }
-
-    const setMinerReword = () => {
-
-        const reword = 0.1 *Math.random()
-        setMinerReward (minerReward => minerReward + reword)
-        const randomTime =  Math.round(5000 * Math.random())
-        setTimeout (() => {
-
-            setMinerReword()
-        }, randomTime)
-    }
-
-    const minerStartup = () => {
-        setMinerConnecting(0)
-        setMinerSaaSCalls(0)
-        setMinerReward(0)
-        setShowMinerStart (true)
-        setStatus()
-        setMinerReword()
-
-    }
-    return (
-        <>
-            <Accordion expanded={expanded === 'panel1'} onChange={handleChange('panel1')}>
-                <AccordionSummary
-                    expandIcon={<ExpandMoreIcon />}
-                    aria-controls="panel1a-content"
-                    id="panel1a-header"
-                    sx={{backgroundColor: 'rgb(240,240,240)'}}
-                >
-                    
-                    {intl.formatMessage({id: 'platform.proxy.step1.title'})}
-                    
-                </AccordionSummary>
-                <AccordionDetails>
-                    <Grid container spacing={2} columns={{ xs: 4, sm: 8, md: 12 }}>
-                        <Grid item xs={4} sm={8} md={6} sx={{ paddingTop: '3rem', textAlign: 'center'}}> 
-                        {
-                            !showMiner && 
-                            <StyledItemArea1>
-                                <Typography variant="h5" sx={{ fontWeight: '900', textAlign:'center', paddingTop: '2rem', textTransform: 'uppercase' }}>
-                                    {intl.formatMessage({id: 'platform.proxy.featureArea8Item.step1'})}
-                                </Typography>
-                                <Typography variant="h6" sx={{  textAlign:'center', paddingTop: '0rem' }}>
-                                    {intl.formatMessage({id: 'platform.profile.walletAddr'})} {wallet.substring(0,6)+'...'+ wallet.substring(wallet.length - 4)}
-                                </Typography>
-                                <Typography variant="h6" sx={{ color: 'rgb(51,51,51)', textAlign:'center'}}>
-                                    {intl.formatMessage({id: 'platform.proxy.featureArea8Item.step1.CONETbalance'})}
-                                </Typography>
-                                <Typography variant="h5" sx={{ color: 'rgb(51,51,51)', textAlign:'center', padding: '1.9rem 0 2rem 0'}}>
-                                    {conetBalance}
-                                </Typography>
-                                {
-                                    loading && 
-                                        <Box sx={{ display: 'block', textAlign: 'center', width: '100%' }}>
-                                            <CircularProgress disableShrink/>
-                                        </Box>
-                                }
-                                {
-                                    !loading && 
-                                        <Button size="large" variant="outlined" onClick={faucetClick} disabled = {regionProgress} >
-                                            {intl.formatMessage({id: 'platform.ProfileDropdown.CurrentProfileItem.actionFondWallet'})}
-                                        </Button>
-                                }
-                                
-                                <Typography variant="h6" sx={{ color: 'grey', textAlign:'center', padding:'2.2rem 0 1rem 0', fontSize: '15px', }}>
-                                    {intl.formatMessage({id: 'platform.proxy.featureArea8Item.step1.transferQuote'})}
-                                </Typography>
-                            </StyledItemArea1>
-                        }
-                        {
-                            showMiner && !showMinerStart &&
-                            <StyledItemArea1>
-                                <Typography variant="h5" sx={{ fontWeight: '900', textAlign:'center', paddingTop: '2rem', textTransform: 'uppercase' }}>
-                                    {intl.formatMessage({id: 'platform.proxy.featureArea8Item.minerSetup.title'})}
-                                </Typography>
-                                <ItemTopArea2 elevation={0}>
-                                    <FormGroup>
-                                        <FormControlLabel control={<Checkbox defaultChecked />} label={intl.formatMessage({id: 'platform.proxy.featureArea8Item.minerSetup.saas'})} onChange={(e, checked) => minerCheck( checked, 'saas')}/>
-                                        <FormControlLabel control={<Checkbox />} label={intl.formatMessage({id: 'platform.proxy.featureArea8Item.minerSetup.bandwidth'})} onChange={(e, checked) => minerCheck(checked, 'bandwidth')}/>
-                                        {/* <FormControlLabel control={<Checkbox />} label="France" onChange={(e, checked) => onchange(e, checked, 'fr')}/> */}
-                                    </FormGroup>
-                                </ItemTopArea2>
-                                
-                                <Button size="large" variant="outlined" disabled={loading} onClick={minerStartup}>
-                                    {intl.formatMessage({id: 'platform.settings.device.delete.confirmButton'})}
-                                </Button>
-                            </StyledItemArea1>
-                        }
-
-                        </Grid>
-                       
-                            
-                        <Grid item xs={4} sm={8} md={6} sx={{ paddingTop: '3rem'}}>
-
-                            <StyledItemArea1>
-                            
-                                <Typography variant="h5" sx={{ fontWeight: '900', textAlign:'center', paddingTop: '2rem', textTransform: 'uppercase' }}>
-                                    {intl.formatMessage({id: 'platform.proxy.featureArea8Item.step2'})}
-                                </Typography>
-                                <Grid container spacing={2} sx={{ padding: '2rem 0 1rem 0'}}>
-                                    <Grid item xs={6}>
-                                        <ItemTopArea2 elevation={0}>
-                                            <FormGroup>
-                                                <FormControlLabel disabled={regionProgress} control={<Checkbox defaultChecked />} label="United States" onChange={(e, checked) => onchange(e, checked, 'us')}/>
-                                                <FormControlLabel disabled={regionProgress} control={<Checkbox />} label="United Kingdom" onChange={(e, checked) => onchange(e, checked, 'uk')}/>
-                                                <FormControlLabel disabled={regionProgress} control={<Checkbox />} label="Germany" onChange={(e, checked) => onchange(e, checked, 'ge')}/>
-                                                <FormControlLabel disabled={regionProgress} control={<Checkbox />} label="Spain" onChange={(e, checked) => onchange(e, checked, 'sp')}/>
-                                                {/* <FormControlLabel control={<Checkbox />} label="France" onChange={(e, checked) => onchange(e, checked, 'fr')}/> */}
-                                            </FormGroup>
-                                        </ItemTopArea2>
-                                    </Grid>
-                                    <Grid item xs={6} >
-                                        <ItemTopArea2 elevation={0} sx={{padding: '3rem 0 0 0', bottom: '0'}}>
-                                            {
-                                                showConfirm && !regionProgress && 
-                                                    <Button size="large" variant="outlined" disabled={loading} onClick={regionConfirm}>
-                                                        {intl.formatMessage({id: 'platform.settings.device.delete.confirmButton'})}
-                                                    </Button> }
-                                            
-                                            {
-                                                regionProgress && 
-                                                    <Box sx={{ display: 'block', textAlign: 'center', width: '100%' }}>
-                                                        <CircularProgress disableShrink/>
-                                                    </Box>
-                                            }
-                                            
-                                        </ItemTopArea2>
-                                    </Grid>
-                                </Grid>
-                                
-                                {/* <Typography variant="h6" sx={{ color: 'grey', textAlign:'center', padding: '1.2rem 0 1rem 0', fontSize: '15px'}}>
-                                    {intl.formatMessage({id: 'platform.proxy.featureArea8Item.step2.random'})}
-                                </Typography> */}
-                            </StyledItemArea1>
-        
-                        </Grid>
-                        
-                    </Grid>
-                        
-                </AccordionDetails>
-            </Accordion>
-            {
-                //  Firefox setup       ***************************************************
-            }
-            <Accordion expanded={expanded === 'panel3'} onChange={handleChange('panel3')}>
-                <AccordionSummary
-                    expandIcon={<ExpandMoreIcon />}
-                    aria-controls="panel1a-content"
-                    id="panel1a-header"
-                    sx={{backgroundColor: 'rgb(240,240,240)'}}
-                >
-                    {intl.formatMessage({id: 'platform.proxy.featureArea8Item.chrome'})}
-                </AccordionSummary>
-                <AccordionDetails>
-                    <StyleIconItem>
-                        <Stack>
-                            <StyleIconSize1 src={chromeImg}/>
-                            <Button
-                                variant="outlined" size="large"
-                                onClick={() =>window.open(`https://chromewebstore.google.com/detail/conet-platform/pkhkeliikkihkaolfcogfcbjmbehockd`)}
-                                sx={{backgroundColor:'white', textTransform: 'none', fontSize: '1.5rem' }}>
-                                { intl.formatMessage({id: 'platform.proxy.featureArea8Item.chrome.extensions'})}
-                            </Button>
-                        </Stack>
-                        
-                    </StyleIconItem>
-                </AccordionDetails>
-            </Accordion>           
-            <Accordion expanded={expanded === 'panel2'} onChange={handleChange('panel2')}>
-                <AccordionSummary
-                    expandIcon={<ExpandMoreIcon />}
-                    aria-controls="panel1a-content"
-                    id="panel1a-header"
-                    sx={{backgroundColor: 'rgb(240,240,240)'}}
-                >
-                    {intl.formatMessage({id: 'platform.proxy.featureArea8Item.step3'})}
-                </AccordionSummary>
-                <AccordionDetails>
-                    <StyleIconItem>
-                        <StyleIconSize1 src={screen1}/>
-                    </StyleIconItem>
-                </AccordionDetails>
-            </Accordion>
-        </>
-    )
-}
-
-const featureArea6 = (conetBalance: string, loading: boolean, 
-    faucet: ()=> void, 
-    onChange: (event: React.SyntheticEvent<Element, Event>, 
-    checked: boolean, region: string) => void, 
-    regionConfirm: () => void, 
-    regionProgress: boolean, wallet: string,
-    nodes: nodes_info[],
-    showConfirm: boolean,
-    proxyLogs: any[],
-    showMiner: boolean, 
-    setShowMiner: React.Dispatch<React.SetStateAction<boolean>>
-
-    ) => {
-    const intl = useIntl()
-    return (
-
-            <Grid container spacing={2} columns={{ xs: 4, sm: 8, md: 12}} sx={{padding: '1rem 0 10rem 0'}}>
-                <Grid item xs={12} sx={{paddingBottom: '2rem'}} >
-                    <ItemTopArea2 elevation={0}>
-                        <Slide direction="right" in={true} mountOnEnter>
-                            <Typography variant="h4" sx={{color:' #448aff'}}>
-                                { intl.formatMessage({id:'platform.proxy.FeatureArea.start'})}
-                            </Typography>
-                        </Slide>
-                    </ItemTopArea2>
-                </Grid>
-
-                <Grid item xs={12} sx={{paddingBottom: '2rem'}}>
-                    { SaaSNodes(nodes, proxyLogs)}
-                </Grid>
-                
-                
-                <Grid item xs={12} sx={{paddingBottom: '5rem'}}>
-                    {featureArea8Item(conetBalance, loading, faucet, wallet, regionProgress, onChange, regionConfirm, showConfirm, nodes, showMiner, setShowMiner)}
-                </Grid>
-                
-                
-            </Grid>
-    )
-}
-
+import {Tabs, Tab, Button} from '@mui/material-next'
+import AccelDial from './speedMater'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faChrome, faFirefoxBrowser} from '@fortawesome/free-brands-svg-icons'
+import chromeIng from './assets/images/chrome-setup.png'
+import fireFox from './assets/images/screen1.png'
+import iOSSetup from './assets/images/iOS.png'
+import androidSetup from './assets/images/android-setup.png'
+import AppleIcon from '@mui/icons-material/Apple'
+import AndroidIcon from '@mui/icons-material/Android'
+import macOSSetup from './assets/images/MacOS.png'
+import winSetupImg from './assets/images/winSetup.png'
+import WindowSharpIcon from '@mui/icons-material/WindowSharp'
 const regions: regionType = {
     us: true,
     uk: false,
@@ -516,133 +35,321 @@ const regions: regionType = {
     fr: false
 }
 
-type kk = 0
+const ChromeImg = styled.img`
+	width: 80%;
+`
 
-const getBalance = (conetTokens: number) => {
-    if (conetTokens < 1) {
-        return conetTokens * 1000 + ' KBeys'
-    }
-    return conetTokens + ' MBeys'
+const IOSImg = styled.img`
+	width: 100%;
+`
+
+const OneLineText = styled.span`
+`
+interface TabPanelProps {
+    children?: React.ReactNode
+    index: number
+    value: number
 }
 
-const fetchProxyData = async (node: nodes_info, setProxyNodeLog: React.Dispatch<React.SetStateAction<JSX.Element[]>>) => {
-    const url = `http://localhost:3001/getProxyusage`
+const CustomTabPanel = (props: TabPanelProps) => {
+    const { children, value, index, ...other } = props
+  
+    return (
+        <Grid item xs={12}
+            role="tabpanel"
+            hidden={value !== index}
+            id={`simple-tabpanel-${index}`}
+            aria-labelledby={`simple-tab-${index}`}
+            {...other}
+        >
+            {value === index && 
+                children
+            }
+        </Grid>
+    )
+}
 
-    const xhttp = new XMLHttpRequest()
-    let last_response_len = 0
+const a11yProps = (index: number) => {
+    return {
+      id: `simple-tab-${index}`,
+      'aria-controls': `simple-tabpanel-${index}`,
+    }
+}
 
-    xhttp.onprogress = () => {
-        const responseText = xhttp.response.substr(last_response_len)
-        last_response_len = xhttp.response.length
-        responseText.split('\r\n\r\n')
-            .filter((n: string) => n.length)
-            .forEach((n: any, index: number) => {
-                let obj
-                try {
-                    obj = JSON.parse(n)
-                } catch(ex) {
-                    return logger(`fetchProxyData responseText JSON parse Error typeof [${typeof n}]`, n)
-                }
-                logger (`fetchProxyData Got Stream data typeof data[${typeof obj}][${obj.data[0].data}]`, n)
-                
-                //setProxyNodeLog(proxyLogo)
-            })
+const ChromeSetup = () => {
+	const intl = useIntl()
+	return (
+		<>
+			<Typography variant="body1" sx={{ fontWeight: '900', textAlign:'center', color:colors.lightGreen[400], paddingRight: '0.5rem'}}>
+				{intl.formatMessage({id: 'platform.proxy.chrome.detail'})}
+			</Typography>
+			<Button size="large" variant="outlined" sx={{fontFamily: 'inherit'}}
+			onClick={() => window.open(`https://chromewebstore.google.com/detail/conet-platform/pkhkeliikkihkaolfcogfcbjmbehockd`)}
+			>
+				<Typography variant="h6" sx={{ fontWeight: '500', textAlign:'center'}}>
+					{intl.formatMessage({id: 'platform.proxy.featureArea8Item.chrome.extensions'})}
+				</Typography>
+			</Button>
+			<ChromeImg src={chromeIng}/>
+		</>
+	)
+}
+
+const FireFoxSetup = () => {
+	const intl = useIntl()
+	return (
+		<Stack spacing={2} justifyContent="center" alignItems="center" sx={{width: '100%', padding:'2rem 0 0 0'}}>
+			<Typography variant="body1" sx={{ fontWeight: '900', textAlign:'center', color:colors.lightGreen[400], paddingRight: '0.5rem'}}>
+				{intl.formatMessage({id: 'platform.proxy.firefox.detail'})}
+			</Typography>
+			<ChromeImg src={fireFox}/>
+		</Stack>
+	)
+}
+
+const AndroidSetup = () => {
+
+	const [myLocalIpaddress, setMyLocalIpaddress] = useState('')
+	const intl = useIntl()
+    useEffect(() => {
         
-    }
-
-    xhttp.open('POST', url, true)
-    xhttp.setRequestHeader('Content-Type', 'application/json;charset=UTF-8')
-    xhttp.setRequestHeader('Accept', 'text/event-stream')
-    xhttp.send(JSON.stringify({data: node.ip_addr}))
-
-    // const connect = await fetch (url, {
-    //     method: "POST",
-    //     headers: {
-    //         Accept: "text/event-stream",
-    //         "Content-Type": 'application/json;charset=UTF-8'
-    //     },
-    //     body: JSON.stringify({data: node.ip_addr}),
-    //     cache: 'no-store',
-    //     referrerPolicy: 'no-referrer'
-    // })
-    // .then (value => value.json())
-    // .then(data=> {
-    //     logger(`fetchData =========>`)
-    //     logger (data)
-    // })
-    // logger (`fetchProxyData [${url}]`)
+        const fetchData = async () => {
+            if (!active) { return }
+			const [, ip] = await getIPaddress()
+			const _ip = ip[0].ip
+			setMyLocalIpaddress(_ip)
+        }
+      
+        let active = true
+        fetchData()
+        return () => { active = false }
+    }, [])
+	return (
+		<Stack spacing={2} justifyContent="center" alignItems="center" sx={{width: '100%', padding:'2rem 0 0 0'}}>
+			<Typography variant="body1" sx={{ fontWeight: '900', textAlign:'center', color:colors.lightGreen[400], paddingRight: '0.5rem'}} component="span">
+				
+				{intl.formatMessage({id: 'platform.proxy.setup.andOther'})}
+			
+			</Typography>
+			<IOSImg src={androidSetup}/>
+			<OneLineText>
+				<Typography variant="body1" sx={{ fontWeight: '900', textAlign:'center', color:colors.lightGreen[400], paddingRight: '0.5rem'}} component="span">
+					PAC web address: 
+				</Typography>
+				<Typography variant="body1" sx={{ textAlign:'center'}} component="span">
+					http://{myLocalIpaddress}:3003/pac
+				</Typography>
+			</OneLineText>
+		</Stack>
+	)
 }
 
-const LaunchPage = () => {
+const MacOSSetup = () => {
 
+	const [myLocalIpaddress, setMyLocalIpaddress] = useState('')
+	const intl = useIntl()
+    useEffect(() => {
+        
+        const fetchData = async () => {
+            if (!active) { return }
+			const [, ip] = await getIPaddress()
+			const _ip = ip[0].ip
+			setMyLocalIpaddress(_ip)
+        }
+      
+        let active = true
+        fetchData()
+        return () => { active = false }
+    }, [])
+	return (
+		<Stack spacing={2} justifyContent="center" alignItems="center" sx={{width: '100%', padding:'2rem 0 0 0'}}>
+			<Typography variant="body1" sx={{ fontWeight: '900', textAlign:'center', color:colors.lightGreen[400], paddingRight: '0.5rem'}} component="span">
+				
+				{intl.formatMessage({id: 'platform.proxy.setup.macosOther'})}
+			
+			</Typography>
+			<IOSImg src={macOSSetup}/>
+			
+				<Typography variant="body1" sx={{ fontWeight: '900', textAlign:'center', color:colors.lightGreen[400], paddingRight: '0.5rem'}} component="span">
+					Automatic proxy configuration URL: 
+				</Typography>
+				<Typography variant="body1" sx={{ textAlign:'center'}} component="span">
+					http://{myLocalIpaddress}:3003/pac
+				</Typography>
+			
+		</Stack>
+	)
+}
+
+const WinSetup = () => {
+
+	const [myLocalIpaddress, setMyLocalIpaddress] = useState('')
+	const intl = useIntl()
+    useEffect(() => {
+        
+        const fetchData = async () => {
+            if (!active) { return }
+			const [, ip] = await getIPaddress()
+			const _ip = ip[0].ip
+			setMyLocalIpaddress(_ip)
+        }
+      
+        let active = true
+        fetchData()
+        return () => { active = false }
+    }, [])
+	return (
+		<Stack spacing={2} justifyContent="center" alignItems="center" sx={{width: '100%', padding:'2rem 0 0 0'}}>
+			<Typography variant="body1" sx={{ fontWeight: '900', textAlign:'center', color:colors.lightGreen[400], paddingRight: '0.5rem'}} component="span">
+				
+				{intl.formatMessage({id: 'platform.proxy.setup.winOther'})}
+			
+			</Typography>
+			<IOSImg src={winSetupImg}/>
+			
+				<Typography variant="body1" sx={{ fontWeight: '900', textAlign:'center', color:colors.lightGreen[400], paddingRight: '0.5rem'}} component="span">
+					Script address: 
+				</Typography>
+				<Typography variant="body1" sx={{ textAlign:'center'}} component="span">
+					http://{myLocalIpaddress}:3003/pac
+				</Typography>
+			
+		</Stack>
+	)
+}
+
+const IOS = () => {
+	const [myLocalIpaddress, setMyLocalIpaddress] = useState('')
+	const intl = useIntl()
+    useEffect(() => {
+        
+        const fetchData = async () => {
+            if (!active) { return }
+			const [, ip] = await getIPaddress()
+			const _ip = ip[0].ip
+			setMyLocalIpaddress(_ip)
+        }
+      
+        let active = true
+        fetchData()
+        return () => { active = false }
+    }, [])
+
+	return (
+		<Stack spacing={2} justifyContent="center" alignItems="center" sx={{width: '100%', padding:'2rem 0 0 0'}}>
+			<Typography variant="body1" sx={{ fontWeight: '900', textAlign:'center', color:colors.lightGreen[400], paddingRight: '0.5rem'}} component="span">
+				
+					{intl.formatMessage({id: 'platform.proxy.setup.iOSOther'})}
+				
+			</Typography>
+			<IOSImg src={iOSSetup}/>
+			<OneLineText>
+				<Typography variant="body1" sx={{ fontWeight: '900', textAlign:'center', color:colors.lightGreen[400], paddingRight: '0.5rem'}} component="span">
+					URL: 
+				</Typography>
+				<Typography variant="body1" sx={{ textAlign:'center'}} component="span">
+					http://{myLocalIpaddress}:3003/pac
+				</Typography>
+			</OneLineText>
+				
+			
+			
+		</Stack>
+	)
+}
+
+const ItemStyle2 = styled(Paper)(() => ({
+    textAlign: 'center',
+    borderRadius: '1rem',
+    padding: '1rem',
+    color: colors.grey[500]
+}))
+
+const FeatureArea8ItemNew = () => {
     const {
-        locale,
-        setShowGuide,
-        setShowAppStore
+        isProxyStart,
+        setIsProxyStart
     } = useAppState()
 
-    const [showAssetBalance_balance, setshowAssetBalance_balance] = useState('0')
-    const [walletAddress, setWalletAddress] = useState('')
-    const [loading, setLoading] = useState(false)
-    const [resultSuccess, setResultSuccess ] = useState(false)
-    const [sendStep, setSendStep] = useState(0)
-    const [resultError, setResultError] = useState(false)
-    const [region, setRegion] = useState(regions)
-    const [regionProgress,setRegionProgress] = useState(false)
+    const [CONET_Balance, setCONET_Balance] = useState('0')
     const [nodes, setNodes] = useState<nodes_info[]>([])
+    const [value, setValue] = React.useState(0)
+	const [value1, setValue1] = React.useState(0)
+    const [animei, setAnimei]= useState<'left'|'right'>('left')
+	const [animei1, setAnimei1]= useState<'left'|'right'>('left')
+    const [faucetProcess, setFaucetProcess] =  useState(false)
+    const [faucetError, setFaucetError] =  useState(false)
+    const [regionProgress,setRegionProgress] = useState(false)
     const [showConfirm, setShowConfirm] = useState(true)
-    const [showProxyNodeLogs, setProxyNodeLog] = useState<any[][]>([])
-    const [showMiner, setShowMiner] = useState(false)
-    
+    const [startProxyError, setStartProxyError] =  useState(false)
+
+
+    const showStartProxy = () => (parseFloat(CONET_Balance) > 0 || nodes.length > 0)&& !isProxyStart
 
     useEffect(() => {
         
         const fetchData = async () => {
-
+            if (!active) { return }
             const [status, data] = await getCONETBalance()
             if (status !== 'SUCCESS' || !data) {
                 return logger('LaunchPage Error', 'useEffect fetchData getCONETBalance had no SUCCESS')
             }
 
             logger (`getCONETBalance SUCCESS`, data)
-            setWalletAddress(data[0])
-            setshowAssetBalance_balance(data[1])
+            
+            setCONET_Balance(data[1].toString())
             const _nodes: nodes_info[] = data[2]
             if (_nodes.length > 0) {
                 setNodes(_nodes)
+                _startProxy()
             }
-
         }
       
-        // call the function
+        let active = true
         fetchData()
-            // make sure to catch any error
-            .catch(console.error)
+        return () => { active = false }
     }, [])
 
-    const intl = useIntl()
-    const faucet = async () => {
-        setLoading(true)
-        const [status, data] = await faucetAPI()
-        setLoading(false)
-        if (status !== 'SUCCESS' || !data) {
-            return logger('LaunchPage Error', 'useEffect fetchData getCONETBalance had no SUCCESS')
+
+
+	const _startProxy = async () => {
+		if (!isProxyStart) {
+			const [status] = await startProxy()
+            setRegionProgress(false)
+            if (status!=='SUCCESS') {
+                return setStartProxyError (true)
+            }
+			
+            return setIsProxyStart (true)
+		}
+		
+	}
+
+
+    const handleChange = (event: React.SyntheticEvent, newValue: number) => {
+        const old = value
+        setValue(newValue)
+        if (newValue > old) {
+            return setAnimei('right') 
         }
-        setWalletAddress(data[0])
-        setshowAssetBalance_balance(data[1])
+        setAnimei('left')
     }
 
-    const selectOnChange = (event: React.SyntheticEvent<Element, Event>, checked: boolean, _area: string) => {
-       
-        const obj = region
-         //@ts-ignore
-        obj[_area] = checked
-        setRegion(obj)
+	const handleChange1 = (event: React.SyntheticEvent, newValue: number) => {
+        const old = value1
+        setValue1(newValue)
+        if (newValue > old) {
+            return setAnimei1('right') 
+        }
+        setAnimei1('left')
     }
 
     const regionConfirm = async () => {
         setRegionProgress(true)
-        const [status, data] = await setRegionAPI(region)
+        if (nodes.length > 0) {
+            return _startProxy()
+        }
+        const [status, data] = await setRegionAPI(regions)
         setRegionProgress(false)
         if (status === 'SUCCESS') {
             const [status1, data1] = await getRegiestNodesAPI()
@@ -654,41 +361,289 @@ const LaunchPage = () => {
                 n.balance = getBalance(n.receipt[0].value)
             })
             setNodes(_nodes)
-            setShowConfirm(false)
+            return _startProxy()
         }
     }
 
+    const faucetClick = async () => {
+        
+        setFaucetProcess(true)
+        setFaucetError(false)
+        const [status, data] = await faucetAPI()
+        setFaucetProcess(false)
+        if (status !== 'SUCCESS' || !data) {
+            setFaucetError(true)
+            setTimeout(() => {
+                setFaucetError(false)
+            }, 5000)
+            return logger('LaunchPage Error', 'useEffect fetchData getCONETBalance had no SUCCESS')
+        }
+        
+        setCONET_Balance(data[1])
+        
+    }
+
+    const intl = useIntl()
+
+
+    const GetFaucet = () => {
+        return (
+            <Grid container sx={{ textAlign: 'center', width: '100%'}} spacing={5}>
+
+                <Grid item xs={12} sx={{textAlign: 'center', width: '100%'}}>
+
+                    <Stack direction="column" alignItems="center" spacing={2} sx={{}}>
+                        <Typography variant="h5" sx={{ fontWeight: '700', textAlign:'center'}}>
+                            {intl.formatMessage({id: 'platform.proxy.featureArea8Item.step1'})}
+                        </Typography>
+                        <Typography variant="h6" sx={{ textAlign:'center'}}>
+                            {intl.formatMessage({id: 'platform.proxy.featureArea8Item.step1.CONETbalance'})}
+                        </Typography>
+                        <Typography variant="h5" sx={{ textAlign:'center', fontWeight: '600'}}>
+                            {CONET_Balance}
+                        </Typography>
+                        {
+                            faucetProcess && 
+                                <Box sx={{ display: 'block', textAlign: 'center', width: '100%' }}>
+                                    <CircularProgress color='success' disableShrink/>
+                                </Box>
+                        }
+                        {
+                            faucetError &&
+                            <Typography variant="h6" sx={{ textAlign:'center', color: '#ba1a1a'}}>
+                                {intl.formatMessage({id: 'platform.ProfileDropdown.faucet.error'})}
+                            </Typography>
+                        }
+                        {
+                            !faucetProcess && 
+                                <Button size="large" variant="outlined" onClick={faucetClick} sx={{fontFamily: 'inherit', width: '10rem'}}>
+                                    {intl.formatMessage({id: 'platform.ProfileDropdown.CurrentProfileItem.actionFondWallet'})}
+                                </Button>
+                        }
+                    </Stack>
+                </Grid>
+                <Grid item xs={12} sx={{textAlign: 'center', width: '100%'}}>
+                    <Divider sx={{ width: '50%', margin: 'auto'}}/>
+                </Grid>
+                <Grid item xs={12} sx={{textAlign: 'center', width: '100%'}}>
+            <Stack direction="column" alignItems="center" spacing={2} sx={{}}>
+                {
+                     !isProxyStart && parseFloat(CONET_Balance) === 0 &&
+                        <Typography variant="h5" sx={{ fontWeight: '700', textAlign:'center'}}>
+                            {intl.formatMessage({id: 'platform.proxy.featureArea8Item.step2.cant'})}
+                        </Typography>
+                }
+                {
+                    showStartProxy() &&
+                        <>
+                            <Typography variant="h5" sx={{ fontWeight: '700', textAlign:'center'}}>
+                                {intl.formatMessage({id: 'platform.proxy.featureArea8Item.step2'})}
+                            </Typography>
+                            {
+                                regionProgress &&
+                                    <Box sx={{ display: 'block', textAlign: 'center', width: '100%' }}>
+                                        <CircularProgress color='success' disableShrink/>
+                                    </Box>
+                            }
+                            {
+                                !regionProgress &&
+                                <Button size="large" variant="outlined" onClick={regionConfirm} sx={{fontFamily: 'inherit', width: '10rem'}}>
+                                    {intl.formatMessage({id: 'platform.proxy.FeatureArea.start'})}
+                                </Button>
+                            }
+                        </>
+                }
+                
+                
+                </Stack>
+                </Grid>
+            </Grid>
+        )
+    }
+
+    return (
+        <Grid container direction="column" sx={{ textAlign: 'center', width: '100%'}}>
+			{
+				isProxyStart &&
+				<Grid item sx={{ textAlign: 'center', width: '100%'}}>
+					
+					<Box sx={{ borderBottom: 1, borderColor: 'divider', width: '100%'}}>
+						<Tabs value={value1} onChange={handleChange1} 
+							variant="scrollable"
+							scrollButtons="auto"
+							allowScrollButtonsMobile>
+								<Tab label="Chrome" iconPosition="end" icon={<FontAwesomeIcon icon={faChrome} color="#E15241"/>}/>
+								<Tab label="FireFox" iconPosition="end" icon={<FontAwesomeIcon icon={faFirefoxBrowser} color={colors.orange[900]} />}/>
+								<Tab label={<AppleIcon />} iconPosition="end" icon={intl.formatMessage({id: 'platform.proxy.setup.iOS'})}/>
+								<Tab label={<AndroidIcon sx={{color:'#67AD5B'}}/>} iconPosition="end" icon={intl.formatMessage({id: 'platform.proxy.setup.android'})}/>
+								<Tab label={<AppleIcon />} iconPosition="end" icon={intl.formatMessage({id: 'platform.proxy.setup.macos'})}/>
+								<Tab label={<WindowSharpIcon sx={{color: '#3375D4'}} />} iconPosition="end" icon={intl.formatMessage({id: 'platform.proxy.setup.win'})}/>
+						</Tabs>
+					</Box>
+						
+						
+					<CustomTabPanel value={value1} index={0}>
+						<Slide direction={animei1} in={value1===0} mountOnEnter unmountOnExit>
+							<Stack spacing={2} justifyContent="center" alignItems="center" sx={{width: '100%', padding:'2rem 0 0 0'}}>
+								<ChromeSetup />
+							</Stack>
+						</Slide>
+				
+					</CustomTabPanel>
+						
+					<CustomTabPanel value={value1} index={1}>
+						<Slide direction={animei1} in={value1===1} mountOnEnter unmountOnExit>
+							<Container>
+								<FireFoxSetup />
+							</Container>
+						</Slide>
+					</CustomTabPanel>
+					<CustomTabPanel value={value1} index={2}>
+						<Slide direction={animei1} in={value1===2} mountOnEnter unmountOnExit>
+							<Container >
+								<IOS />
+							</Container>
+						</Slide>
+					</CustomTabPanel>
+					<CustomTabPanel value={value1} index={3}>
+						<Slide direction={animei1} in={value1===3} mountOnEnter unmountOnExit>
+							<Container sx={{width: '100%'}}>
+								<AndroidSetup />
+							</Container>
+						</Slide>
+					</CustomTabPanel>
+					<CustomTabPanel value={value1} index={4}>
+						<Slide direction={animei1} in={value1===4} mountOnEnter unmountOnExit>
+							<Container sx={{width: '100%'}}>
+								<MacOSSetup />
+							</Container>
+						</Slide>
+					</CustomTabPanel>
+					<CustomTabPanel value={value1} index={5}>
+						<Slide direction={animei1} in={value1===5} mountOnEnter unmountOnExit>
+							<Container  sx={{width: '100%'}}>
+								<WinSetup />
+							</Container>
+						</Slide>
+					</CustomTabPanel>
+				</Grid>
+			}
+			<Grid item  sx={{textAlign: 'center', width: '100%', alignItems:"center", padding: '2rem 0 2rem 0'}}>
+                <Stack direction="row" justifyContent="center" spacing={1} sx={{width: '100%'}}>
+                    {
+                        isProxyStart &&
+                        <AccelDial />
+                        
+                    }
+                    {
+                        isProxyStart &&
+                        <AccelDial />
+                        
+                    }
+                </Stack>
+            </Grid>
+            <Grid item  sx={{textAlign: 'center', width: '100%'}}>
+                <Box sx={{ borderBottom: 1, borderColor: 'divider', marginBottom: '3rem' }}>
+                    <Tabs value={value} onChange={handleChange} 
+                        variant="scrollable"
+                        scrollButtons
+                        allowScrollButtonsMobile>
+                        <Tab label={intl.formatMessage({id: 'platform.proxy.step1.title'})} {...a11yProps(0)} />
+                        <Tab label={intl.formatMessage({id: 'platform.proxy.subscription.user'})} {...a11yProps(1)} />
+                    </Tabs>
+                </Box>
+                <CustomTabPanel value={value} index={0}>
+                    <Slide direction={animei} in={value===0} mountOnEnter unmountOnExit>
+                        {GetFaucet()}
+                    </Slide>
+                    
+                </CustomTabPanel>
+                <CustomTabPanel value={value} index={1}>
+                    <Slide direction={animei} in={value===1} mountOnEnter unmountOnExit>
+                        <Typography variant="h5" sx={{ fontWeight: '900', textAlign:'center', paddingTop: '2rem', textTransform: 'uppercase' }}>
+                            {intl.formatMessage({id: 'platform.joinUS.forDeveloper.button'})}
+                        </Typography>
+                    </Slide>
+                </CustomTabPanel>
+                
+            </Grid>
+        </Grid>
+    )
+}
+
+const getBalance = (conetTokens: number) => {
+    if (conetTokens < 1) {
+        return conetTokens * 1000 + ' KBeys'
+    }
+    return conetTokens + ' MBeys'
+}
+
+
+const LaunchPage = () => {
+
+    const {
+        locale,
+        isProxyStart,
+		setlocalDaemon
+    } = useAppState()
+
+    const intl = useIntl()
+
+    useEffect(() => {
+		
+        const testDeamon = async() => {
+            
+            const test = await testLocalServer ()
+
+            if (test !== true) {
+                setlocalDaemon(false)
+            }
+
+        }
+
+        testDeamon().catch((ex) => {
+            console.log(`APP useEffect testDeamon error`, ex)
+        })
+
+    }, [])
     // 
     // const conetToken = currentProfile().tokens.conet
     return (
                 
-        <Grid container spacing={2} columns={{ xs: 4, sm: 8, md: 12}} sx={{padding: '1rem 0 10rem 0'}}>
-            <Grid item xs={12} sx={{}} >
+        <Grid container spacing={2}  direction="column"  sx={{padding: '1rem 0 10rem 0'}}>
+            <Grid item sx={{}} >
                 <Slide direction="right" in={true} mountOnEnter>
                     <Typography variant="h4" sx={{fontWeight: '600'}}>
                         { intl.formatMessage({id:'platform.proxy'})}
                     </Typography>
                 </Slide>
             </Grid>
-            <Grid item xs={12} sx={{}} >
+            <Grid item sx={{}} >
                 <Slide direction="right" in={true} mountOnEnter>
                     <Typography variant="h6" sx={{}}>
                         { intl.formatMessage({id:'platform.proxy-1'})}
                     </Typography>
                 </Slide>
             </Grid>
-            <Grid item xs={12} sx={{paddingBottom: '2rem'}} >
-                <Link href={(locale==='zh-CN'||locale ==='zh-TW') ? 'https://doc.conet.network/web2-qiao-jie': 'https://doceng.conet.network/welcome-to-conet/web2-bridging'}>
-                    <Typography variant="subtitle1" sx={{}}>
+            <Grid item sx={{paddingBottom: '2rem'}}>
+			<Stack direction="row" spacing={2}>
+				<Link target="_blank" href={(locale==='zh-CN' || locale ==='zh-TW') ? 'https://doc.conet.network/web2-qiao-jie': 'https://doceng.conet.network/welcome-to-conet/web2-bridging'}>
+                    <Typography variant="subtitle1" sx={{ color: '#2e7d32'}}>
                         { intl.formatMessage({id:'platform.proxy.FeatureArea5.moreDetail'})}
                     </Typography>
                 </Link>
+				<Link target="_blank" href={'https://github.com/CoNET-project/CONET-Proxy/issues'}>
+                    <Typography variant="subtitle1" sx={{ color: '#2e7d32'}}>
+                        { intl.formatMessage({id:'platform.proxy.issueReport'})}
+                    </Typography>
+                </Link>
+			</Stack>
+                
             </Grid>
             
-            <Grid item xs={12} sx={{paddingBottom: '5rem'}}>
-                {featureArea8Item(showAssetBalance_balance, loading, faucet, walletAddress, regionProgress, selectOnChange, regionConfirm, showConfirm, nodes, showMiner, setShowMiner)}
+            <Grid item sx={{textAlign: 'center', width: '100%'}}>
+                <FeatureArea8ItemNew/>
             </Grid>
-            
             
         </Grid>
 

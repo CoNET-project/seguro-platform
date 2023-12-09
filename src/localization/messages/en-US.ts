@@ -186,7 +186,7 @@ const en_US: Messages = {
 
 	'platform.ProfileDropdown.send.total': 'Total',
 	'platform.ProfileDropdown.faucet.success': 'Request send success!',
-	'platform.ProfileDropdown.faucet.error': 'CoNET did not accept your request. Please send the request again after 24 hours.',
+	'platform.ProfileDropdown.faucet.error': 'CONET did not accept your request. Every once in a day.',
 	'platform.ProfileDropdown.send.error': 'Network Error, Please try again later.',
 	'platform.ProfileDropdown.buy.usdcPrice': 'Estimate price: ',
 	'platform.ProfileDropdown.spend': 'Spend',
@@ -277,6 +277,7 @@ const en_US: Messages = {
     'launchPage.FeatureArea5.2': 'Privacy from government and corporate surveillance is becoming increasingly important to users. By replacing cumbersome Web2 communication protocols with an innovative Web3 protocol, true privacy becomes possible.',
 
     'platform.proxy.FeatureArea5.moreDetail': 'More Information',
+	'platform.proxy.issueReport': 'Report Issue',
     'launchPage.FeatureArea6.1': 'SIMPLE USER ADOPTION',
     'launchPage.FeatureArea6.2': 'Onboarding is easy since the platform runs in various browsers. There’s no need to install any app to get the benefit of CoNET. All incoming and outgoing data will still be encrypted, making user history invisible.',
 
@@ -301,18 +302,32 @@ const en_US: Messages = {
     'platform.proxy.FeatureArea7.2': `CONET proxy is the first in the industry that can use multiple proxy servers concurrent communication technology at the same time`,
     'platform.proxy.FeatureArea.start': 'Ready To Start',
     'platform.proxy.step1.title': 'Free User',
+    'platform.proxy.subscription.user': 'Subscription',
     'platform.proxy.featureArea8Item.step1': 'Step 1 Wallet recharge',
     'platform.proxy.featureArea8Item.step1.CONETbalance': 'CONET balance',
     'platform.proxy.featureArea8Item.step1.transferQuote': 'Billed by traffic, 1MB/1$CONET',
-    'platform.proxy.featureArea8Item.step2': 'Step 2 select proxy server localtion',
+    'platform.proxy.featureArea8Item.step2': 'Step 2 start to use',
+    'platform.proxy.featureArea8Item.step2.cant': 'Insufficient balance',
     'platform.proxy.featureArea8Item.step2.random': '',//'Multiple selections will use randomly by fragmented data packets',
     'platform.proxy.featureArea8Item.step3': 'Setup FireFox',
     'platform.proxy.featureArea8Item.chrome': 'Setup Chromium',
     'platform.proxy.featureArea8Item.chrome.extensions': 'Download from Chrome Store',
+	'platform.proxy.chrome.detail': 'Uses CONET proxy through Chrome in this laptop.',
+	'platform.proxy.firefox.detail': 'Uses CONET proxy through Firefox in this laptop.',
 
     'platform.proxy.featureArea8Item.minerSetup.title': 'Select Option',
     'platform.proxy.featureArea8Item.minerSetup.saas':'SaaS',
     'platform.proxy.featureArea8Item.minerSetup.bandwidth': 'Bandwidth',
+	'platform.proxy.setup.allOther': 'Other Setup',
+	'platform.proxy.setup.iOS': 'iOS',
+	'platform.proxy.setup.iOSOther': 'Other iOS devices can use the proxy through this computer',
+	'platform.proxy.setup.android': 'Android',
+	'platform.proxy.setup.andOther': 'Other Android devices can use the proxy through this computer',
+	'platform.proxy.setup.macos': 'Mac OS',
+	'platform.proxy.setup.macosOther': 'Other Mac OS devices can use the proxy through this computer',
+	'platform.proxy.setup.win': 'Windows',
+	'platform.proxy.setup.winOther': 'Other Windows devices can use the proxy through this computer',
+
 
     'platform.joinUS.miner.title': 'Safety-first mining design',
     'platform.joinUS.miner.detail': `CONET is a trustless, permissionless, decentralized network. maximizing the security for resource providers is the top priority of CONET network design, an independent space in the security sandbox and the miner without IP address are CONETs technical advantages that stand out among the others.`,
@@ -322,11 +337,11 @@ const en_US: Messages = {
     'platform.joinUS.header.detail': 'CONET is a infrastructure for privacy in layer minus',
     'platform.joinUS.header.whatConet': `What's CONET`,
     'platform.joinUS.miner.Bandwidth': 'Bandwidth',
-    'platform.joinUS.miner.BandwidthDetail': 'Get rewards by sharing unused network resources.',
+    'platform.joinUS.miner.BandwidthDetail': 'Get rewards by sharing IP Address, unused network bandwidth resources.',
     'platform.joinUS.miner.SaaS': 'SaaS',
-    'platform.joinUS.miner.SaaSDetail': 'Get rewards by sharing your computer resources.',
+    'platform.joinUS.miner.SaaSDetail': 'Get rewards by sharing your computer CPU power resources.',
     'platform.joinUS.miner.storage': 'Storage',
-    'platform.joinUS.miner.storageDetail': 'Get rewards by sharing your storage resources.',
+    'platform.joinUS.miner.storageDetail': 'Get rewards by sharing your hard disk storage resources.',
 
     'platform.joinUS.joinMiner.button': 'Join Miner Now',
 
@@ -341,6 +356,7 @@ const en_US: Messages = {
 
     'platform.api.daemon.title': 'No CONET Daemon Activity Detected',
     'platform.api.daemon.detail': 'Please start CONET Daemon, or download and start it',
+	'platform.api.daemon.verLow': 'Your CONET Daemon is out of date. Please download the latest.',
     'platform.api.daemon.mobileNotSupport': 'Currently only support with desktop computers',
     'platform.api.daemon.testButton': 'test daemon',
     'platform.api.daemon.openSource': 'CONET is Open Source',
@@ -357,7 +373,7 @@ const en_US: Messages = {
     'platform.miner.register.MinerAni.claim': 'Claim reward',
     'platform.miner.register.totalRewards': 'Lifetime Rewards',
     'platform.miner.register.pendingRewards': 'Pending Rewards',
-    'platform.miner.register.previouslyClaimed': 'Previously Claimed',
+    'platform.miner.register.previouslyClaimed': `Today's Claimed`,
     'platform.miner.register.MinerAni.stop': 'Stop DePIN',
     'platform.miner.register.referrals': 'Referrals'
 

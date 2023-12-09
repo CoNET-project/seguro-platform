@@ -30,7 +30,9 @@ import {
     setLocalDaemon as _setLocalDaemon,
     setShowMiner as _setShowMiner,
     setShowDePINing as _setShowDePINing,
-    setPendingRewards as _setPendingRewards
+    setPendingRewards as _setPendingRewards,
+    setIsProxyStart as _setIsProxyStart,
+    setProxyUploadSpeed as _setProxyUploadSpeed
 
 } from './appStateActions'
 
@@ -96,6 +98,18 @@ const useAppState = () => {
 
 	const setShowGuide = (showguide: boolean ) => {
 		dispatch (_setShowGuide(showguide))
+	}
+
+    const isProxyStart = useTypedSelector(state => state.appState.isProxyStart)
+    
+    const proxyUploadSpeed = useTypedSelector(state => state.appState.proxyUploadSpeed)
+
+    const setProxyUploadSpeed = (proxyUploadSpeed: number ) => {
+		dispatch (_setProxyUploadSpeed(proxyUploadSpeed))
+	}
+
+	const setIsProxyStart = (isProxyStart: boolean ) => {
+		dispatch (_setIsProxyStart(isProxyStart))
 	}
 
     const showBlockScan = useTypedSelector(state => state.appState.showBlockScan)
@@ -420,7 +434,11 @@ const useAppState = () => {
         showDePINing,
         setShowDePINing,
         setPendingRewards,
-        pendingRewards
+        pendingRewards,
+        setIsProxyStart,
+        isProxyStart,
+        proxyUploadSpeed,
+        setProxyUploadSpeed
     }
 }
 
