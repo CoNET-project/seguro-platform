@@ -7,11 +7,11 @@ export type ButtonProps = {
     children: string | ReactNode,
     disabled?: boolean,
     onClick: () => void,
-    isHidden?: boolean,
+    is_hidden?: boolean,
     className?: string
 }
 
-const StyledButton = styled.button<{ isHidden: boolean }>`
+const StyledButton = styled.button<{ is_hidden: boolean }>`
 	border-radius: 5px;
 	border: none;
 	padding: 15px 0;
@@ -19,7 +19,7 @@ const StyledButton = styled.button<{ isHidden: boolean }>`
 	width: 100%;
 	cursor: pointer;
 	transition: transform 100ms ease-in-out;
-	visibility: ${props => props.isHidden ? 'hidden' : 'visible'};
+	visibility: ${props => props.is_hidden ? 'hidden' : 'visible'};
 	color: whitesmoke;
 	background-color: ${props => props.theme.ui.colors.primary};
 	font-size: ${props => props.theme.ui.fontSizes.narrow.sm};
@@ -35,7 +35,7 @@ const StyledButton = styled.button<{ isHidden: boolean }>`
 const Button = 
 	({
 		children,
-		isHidden,
+		is_hidden,
 		disabled,
 		onClick,
 		className
@@ -45,7 +45,7 @@ const Button =
     return (
         <StyledButton
             disabled={disabled}
-            isHidden={isHidden || false}
+            is_hidden={is_hidden || false}
             onClick={onClick}
             className={className}
         >

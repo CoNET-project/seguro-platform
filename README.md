@@ -1,6 +1,6 @@
-# `seguro-platform` README
+# `CONET-Proxy` README
 
-The Seguro Platform application.
+The CONET Platform Application.
 
 ## Install
 

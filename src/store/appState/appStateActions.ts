@@ -11,7 +11,52 @@ import {
     NetworkStrength,
     PlatformLoadingTypes,
     ProfileData
-} from "./appStateReducer";
+} from "./appStateReducer"
+
+export const setPendingRewards = createAction(
+    'appState/pendingRewards',
+    (pendingRewards: number) => {
+        return {
+            payload: {
+                pendingRewards
+            }
+        }
+    }
+)
+
+export const setProxyUploadSpeed = createAction(
+    'appState/proxyUploadSpeed',
+    (proxyUploadSpeed: number) => {
+        return {
+            payload: {
+                proxyUploadSpeed
+            }
+        }
+    }
+)
+
+export const setIsProxyStart = createAction(
+    'appState/isProxyStart',
+    (isProxyStart: boolean) => {
+        return {
+            payload: {
+                isProxyStart
+            }
+        }
+    }
+)
+
+export const setShowDePINing = createAction(
+    'appState/showDePINing',
+    (showDePINing: boolean) => {
+        return {
+            payload: {
+                showDePINing
+            }
+        }
+    }
+)
+
 
 export const setWorkerServiceIsInitialized = createAction(
     'appState/workerServiceIsInitialized',
@@ -19,6 +64,28 @@ export const setWorkerServiceIsInitialized = createAction(
         return {
             payload: {
                 workerServiceIsInitialized
+            }
+        }
+    }
+)
+
+export const setLocalDaemon = createAction(
+    'appState/localDaemon',
+    (localDaemon: boolean) => {
+        return {
+            payload: {
+                localDaemon
+            }
+        }
+    }
+)
+
+export const setShowMiner = createAction(
+    'appState/showMiner',
+    (showMiner: boolean) => {
+        return {
+            payload: {
+                showMiner
             }
         }
     }
@@ -63,6 +130,17 @@ export const setShowAppStore= createAction(
         return {
             payload: {
                 showAppStore
+            }
+        }
+    }
+)
+
+export const setShowJoinUS= createAction(
+    'appState/showJoinUS',
+    (showJoinUS: boolean) => {
+        return {
+            payload: {
+                showJoinUS
             }
         }
     }

@@ -1,136 +1,95 @@
-import React, {useEffect, useState} from 'react'
-import styled from 'styled-components'
+import {useEffect, useState} from 'react'
 import useAppState from '../../store/appState/useAppState'
-import {detectTouchDevice, detectWindowInnerSize} from "../../utilities/utilities"
-import GlobalStyle from '../UI/Global/Styles'
-import MainScreen from './MainScreen/MainScreen'
-import {OnboardingPageProvider} from '../Providers/OnboardingPageProvider'
-import OnboardingScreen from "./OnboardingScreen/OnboardingScreen"
-import UnlockScreen from "./UnlockScreen/UnlockScreen"
-import LaunchScreen from "./LaunchScreen/LaunchScreen"
+import {testLocalServer} from '../../API/index'
+import CssBaseline from "@mui/material/CssBaseline"
+import { CssVarsProvider, useColorScheme, extendTheme, useTheme } from "@mui/material-next/styles"
+import {argbFromHex,hexFromArgb,themeFromSourceColor} from "@material/material-color-utilities"
+import Dashboard from './Apps/dashboard/index-next'
 
-const StyledContainer = styled.div`
-	height: 100vh;
-	width: 100%;
-	background-color: white;
-	display: flex;
-	justify-content: center;
-	color: black;
-`
+const createCssVarsTheme = (palette: any) => {
+    const theme = extendTheme({
+        colorSchemes: {
+            light: {
+                ref: {
+                    palette
+                },
+                palette: {
+                    background: {
+                        default: '#fdfdf6',
+                        paper: '#f0f3e8'
+                    }
+                }
+                
+            },
+            dark: {
+                ref: {
+                    palette
+                },
+                palette: {
+                    background: {
+                        default: '#1a1c18',
+                        paper: '#232820'
+                    }
+                }
+            }
+        }
+    })
+    return theme
+}
+
+const generateThemeScheme = async () => {
+    const theme = themeFromSourceColor(argbFromHex('#386a20'))
+    const palette = {}
+  
+    for (const [key, tonalPalette] of Object.entries(theme.palettes)) {
+        const tones = {}
+        for (const tone of [0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 95, 99, 100]) {
+            const color = hexFromArgb(tonalPalette.tone(tone))
+            //@ts-ignore
+            tones[tone] = color
+        }
+        //@ts-ignore
+        palette[key] = tones
+    }
+  
+    return palette
+}
 
 const App = () => {
     const {
-        dAPPInitialize,
-        isInitializing,
-        isPlatformLoading,
-        setNetworkStrength,
-        setWindowInnerSize,
-        setClientDevices,
-        setIsTouchDevice,
-        setIsModalOpen,
-        setIsShowOverlay,
-        showOverlay,
-        hasContainer,
-        isUnlocked
+        setlocalDaemon,
+        dAPPInitialize
     } = useAppState()
-	
-    const windowResizeHandler = () => {
-        setWindowInnerSize(detectWindowInnerSize())
-    }
 
-	const [reload, setReload] = useState(false)
+    const [palette, setPalette] = useState<any>(null)
+
+
     useEffect(() => {
-
 		
-        dAPPInitialize().then(() => {
-			if (!isInitializing) {
-				setReload (true)
-			}
-			
-			
+        const testDeamon = async() => {
+            const _palette = await generateThemeScheme()
+            setPalette(_palette)
+            const test = await testLocalServer ()
 
-        })
+            if (test === true) {
+                setlocalDaemon(true)
+            }
+            await dAPPInitialize()
 
-        const randomDeviceIds = Array.from({length: 3}, (_, i) => (Date.now() + Math.round(Math.random() * 100)).toString())
-
-        setClientDevices({
-            [randomDeviceIds[0]]: {
-                id: randomDeviceIds[0],
-                type: 'mobile',
-                name: 'iPhone-S4GD0S'
-            },
-            [randomDeviceIds[1]]: {
-                id: randomDeviceIds[1],
-                type: 'desktop',
-                name: 'Mac Mini-C0S3M8VN'
-            },
-            [randomDeviceIds[2]]: {
-                id: randomDeviceIds[2],
-                type: 'tablet',
-                name: 'Samsung TAB-LX30SMA'
-            },
-        })
-
-        setIsTouchDevice(detectTouchDevice())
-
-        // Test network connection icon
-        const rndInt = Math.floor(Math.random() * 4) + 1;
-        // @ts-ignore
-        setNetworkStrength(rndInt)
-
-        window.addEventListener('resize', windowResizeHandler)
-        return () => {
-            window.removeEventListener('resize', windowResizeHandler)
         }
+
+        testDeamon().catch((ex) => {
+            console.log(`APP useEffect testDeamon error`, ex)
+        })
 
     }, [])
 
-    const getContent = () => {
-		
-        switch (true) {
-            case isInitializing:
-                return (
-                    <LaunchScreen reload = {reload}/>
-                )
-            case hasContainer && isUnlocked:
-                return (
-                    <MainScreen/>
-                )
-            case hasContainer && !isUnlocked:
-                return (
-                    <UnlockScreen/>
-                )
-            case !hasContainer && !isUnlocked:
-                return (
-                    <OnboardingPageProvider
-                        existingPages={['language', 'setPasscode', 'confirmPasscode', 'settingUp']}>
-                        <OnboardingScreen/>
-                    </OnboardingPageProvider>
-                )
-            default:
-                return (
-                   <MainScreen/>
-                )
-        }
-        
-    }
-
 
     return (
-        <>
-            <GlobalStyle/>
-            <StyledContainer>
-                {/* <Overlay 
-					show={ showOverlay } 
-					onClick={
-						() => {
-							setIsModalOpen(null)
-							setIsShowOverlay(false)
-						}}/> */}
-                {/* <OverlayWithLoaderText show={isPlatformLoading !== null} type={isPlatformLoading}/> */}
-                {getContent()}
-            </StyledContainer>
-        </>
+        <CssVarsProvider theme={createCssVarsTheme(palette)}>
+            <CssBaseline />
+            <Dashboard/>
+        </CssVarsProvider>
     )
 }
 

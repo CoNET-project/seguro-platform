@@ -2,15 +2,19 @@ import React from 'react'
 
 import { createRoot } from "react-dom/client"
 import 'modern-normalize'
-import App from './components/App/App'
 import RootProvider from './components/Providers/RootProvider'
 import GlobalStyle from './components/UI/Global/Styles'
 import './index.css'
 import '../src/font/font.css'
+import APP from './components/App/App'
+import Dashboard from './components/App/Apps/dashboard/index-next'
+
 
 const rootElement = document.getElementById('root')
 
-if (rootElement && 'serviceWorker' in navigator) {
+
+
+if (rootElement) {
 	
 	const root = createRoot(rootElement)
 
@@ -18,7 +22,7 @@ if (rootElement && 'serviceWorker' in navigator) {
 		
 		<RootProvider>
 			<GlobalStyle/>
-			<App/>
+			<APP/>
 		</RootProvider>
 		
 	)

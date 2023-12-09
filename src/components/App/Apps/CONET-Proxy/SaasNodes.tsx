@@ -7,7 +7,6 @@ import MuiAccordionSummary, {
 } from '@mui/material/AccordionSummary'
 import MuiAccordionDetails from '@mui/material/AccordionDetails'
 import Typography from '@mui/material/Typography'
-import {CONET_Platfrom_API} from '../API/index'
 import {logger} from '../../logger'
 import Chip from '@mui/material/Chip'
 import { US } from 'country-flag-icons/react/3x2'
@@ -30,7 +29,6 @@ import styledCom from "styled-components"
 import useAppState from "../../../../store/appState/useAppState"
 import {BlockScanBody} from '../blockscan/index'
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
-import ProxyLogs from './proxyLogs'
 
 export type CryptoAssetHistory = {
 	status: string
@@ -151,7 +149,7 @@ const receiptDetail = (receipt: CryptoAssetHistory,openBlockScan: (data: CryptoA
                     <Grid item xs={3} sx={{textAlign: 'left', fontWeight: '600', color: grey[700], fontFamily: '', fontSize: '14px'}}>
                         Address:
                     </Grid>
-                    <Grid item xs={9} sx={{textAlign: 'left', fontSize: '14px'}}>
+                    <Grid item xs={9} sx={{textAlign: 'left', fontSize: '14px'}} onClick = {() => window. open(`https://scan.conet.network/address/${receipt.to}`, '_blank', 'noreferrer') }>
                         <Link underline="hover" href="#">
                             {receipt.to}
                         </Link>
@@ -173,8 +171,8 @@ const receiptDetail = (receipt: CryptoAssetHistory,openBlockScan: (data: CryptoA
                     <Grid item xs={3} sx={{textAlign: 'left', fontFamily: '', color: grey[700], fontSize: '14px'}}>
                         Transaction Hash:
                     </Grid>
-                    <Grid item xs={9} sx={{textAlign: 'left', fontSize: '14px'}} onClick = {() => openBlockScan(receipt)}>
-                        <Link underline="hover" href="#" >
+                    <Grid item xs={9} sx={{textAlign: 'left', fontSize: '14px'}} onClick = {() => window. open(`https://scan.conet.network/tx/${receipt.transactionHash}`, '_blank', 'noreferrer') }>
+                        <Link underline="hover" href="#"  >
                             {receipt.transactionHash}
                         </Link>
                     </Grid>
@@ -277,10 +275,7 @@ const nodeItem = (expanded: string|false, handleChange: (panel: string) => (even
                                             primary === 5 &&
                                                 BlockScanBody(blockScanData)
                                         }
-                                        {
-                                            primary === 3 && 
-                                                ProxyLogs(node, proxyLogs[index])
-                                        }
+                                        
                                         
                                     </ItemTopArea2>
                                 </Box>

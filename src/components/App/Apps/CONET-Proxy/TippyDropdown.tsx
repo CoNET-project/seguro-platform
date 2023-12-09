@@ -3,17 +3,19 @@ import ProfileDropdown from '../../../UI/Dropdowns/ProfileDropdown/ProfileDropdo
 import { useState} from "react"
 import useAppState from "../../../../store/appState/useAppState"
 import styled from 'styled-components'
+import AddIcon from '@mui/icons-material/Add'
 import SvgIcon from '@mui/material/SvgIcon'
 import IconButton from '@mui/material/IconButton'
 import {ReactComponent as StarIcon} from '../../../../assets/logo/CoNET_logo_white.svg'
-
+import Fab from '@mui/material/Fab'
 type Dropdowns = 'applications' | 'profiles' | 'notifications' | 'network' | null
-
+import {getWorkerService} from '../../../../services/workerService/workerService'
+import AccountCircleIcon from '@mui/icons-material/AccountCircle'
 const StyledGlobalButton = styled.div`
 	position: absolute;
-	right:1.3rem;
+	right:1rem;
 	zIndex:9999;
-	top:1.3rem;
+	top:2rem;
 `
 
 const StyledGlobalItem = styled(StyledGlobalButton)`
@@ -21,19 +23,14 @@ const StyledGlobalItem = styled(StyledGlobalButton)`
 const TippyDropdownTab = () => {
 	const [currentDropdown, setCurrentDropdown] = useState<Dropdowns>(null)
 	const {
-        hasUpdateAvailable,
-        networkStrength,
-        setIsDrawerOpen,
-        isDrawerOpen,
-        setIsShowOverlay,
         windowInnerSize: {width},
-        activeProfile,
-        setIsModalOpen,
-        hasNotification,
 		setShowGuide,
 		setShowAppStore
     } = useAppState()
-
+	const {data} = getWorkerService()
+    const currentProfile = data.profiles.filter((n:any)=> n.isPrimary)[0]
+    const keyID = currentProfile.keyID
+    const img = currentProfile.profileImg
 	
     const closeDropdown = (app: string ) => {
         setCurrentDropdown(null)
@@ -66,7 +63,6 @@ const TippyDropdownTab = () => {
 					closeDropdown={closeDropdown}
 				/>}
 			visible={currentDropdown === 'profiles'}
-			verticalOffset={2}
 			onClickOutside={()=>{
 				closeDropdown('')
 			}}
@@ -74,11 +70,16 @@ const TippyDropdownTab = () => {
 			<StyledGlobalItem onClick={() => {
 				setDropdownToggle('profiles')
 			}}>
-							
-				<IconButton size='large'>
-					
+				<Fab color="success">
+					{
+						!img &&
+							<AccountCircleIcon fontSize='large' color='inherit' />
+					}
+                    
+                </Fab>		
+				{/* <IconButton size='large'>
 					<SvgIcon component={StarIcon} inheritViewBox/>
-				</IconButton>
+				</IconButton> */}
 			</StyledGlobalItem>
 		</TippyDropdown>
 	)

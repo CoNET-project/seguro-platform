@@ -24,8 +24,16 @@ import {
     updateClientDevice as updateClientDeviceActionCreator,
     updateClientProfile as updateClientProfileActionCreator,
 	setShowGuide as _setShowGuide,
+    setShowJoinUS as _setShowJoinUS,
 	setShowAppStore as _setShowAppStore,
-    setShowBlockScan as _setShowBlockScan
+    setShowBlockScan as _setShowBlockScan,
+    setLocalDaemon as _setLocalDaemon,
+    setShowMiner as _setShowMiner,
+    setShowDePINing as _setShowDePINing,
+    setPendingRewards as _setPendingRewards,
+    setIsProxyStart as _setIsProxyStart,
+    setProxyUploadSpeed as _setProxyUploadSpeed
+
 } from './appStateActions'
 
 
@@ -57,15 +65,51 @@ export type WindowInnerSize = {
 const useAppState = () => {
     const dispatch = useDispatch()
 
+    const showDePINing =  useTypedSelector(state => state.appState.showDePINing)
+
+    const pendingRewards = useTypedSelector(state => state.appState.pendingRewards)
+
+    const setPendingRewards = (pendingRewards: number ) => {
+        dispatch (_setPendingRewards(pendingRewards))
+    }
+
+    const setShowDePINing = (showDePINing: boolean ) => {
+        dispatch (_setShowDePINing(showDePINing))
+    }
+
     const dAPPInitialize = async () => {
         await initializeWorkerService()
     }
+
+    const localDaemon = useTypedSelector(state => state.appState.localDaemon)
+
+    const setlocalDaemon = (localDaemon: boolean ) => {
+		dispatch (_setLocalDaemon(localDaemon))
+	}
+
+    const showMiner = useTypedSelector(state => state.appState.showMiner)
+
+    const setShowMiner = (showMiner: boolean ) => {
+		dispatch (_setShowMiner(showMiner))
+	}
 
 	const showGuide = useTypedSelector(state => state.appState.showGuide)
 
 
 	const setShowGuide = (showguide: boolean ) => {
 		dispatch (_setShowGuide(showguide))
+	}
+
+    const isProxyStart = useTypedSelector(state => state.appState.isProxyStart)
+    
+    const proxyUploadSpeed = useTypedSelector(state => state.appState.proxyUploadSpeed)
+
+    const setProxyUploadSpeed = (proxyUploadSpeed: number ) => {
+		dispatch (_setProxyUploadSpeed(proxyUploadSpeed))
+	}
+
+	const setIsProxyStart = (isProxyStart: boolean ) => {
+		dispatch (_setIsProxyStart(isProxyStart))
 	}
 
     const showBlockScan = useTypedSelector(state => state.appState.showBlockScan)
@@ -78,6 +122,12 @@ const useAppState = () => {
     
 	const setShowAppStore = (showAppStore: boolean ) => {
 		dispatch (_setShowAppStore(showAppStore))
+	}
+
+    const showJoinUS = useTypedSelector(state => state.appState.showJoinUS)
+    
+	const setShowJoinUS = (showJoinUS: boolean ) => {
+		dispatch (_setShowJoinUS(showJoinUS))
 	}
 
     const isInitialized = useTypedSelector(state => state.appState.workerServiceIsInitialized)
@@ -326,8 +376,8 @@ const useAppState = () => {
     return {
 		showGuide,
 		showAppStore,
+        showJoinUS,
         showBlockScan,
-        dAPPInitialize,
         isInitialized,
         isInitializing,
         isPlatformLoading,
@@ -374,7 +424,21 @@ const useAppState = () => {
         deleteClientDevice,
 		setShowGuide,
 		setShowAppStore,
-        setShowBlockScan
+        setShowBlockScan,
+        setShowJoinUS,
+        dAPPInitialize,
+        localDaemon,
+        setlocalDaemon,
+        setShowMiner,
+        showMiner,
+        showDePINing,
+        setShowDePINing,
+        setPendingRewards,
+        pendingRewards,
+        setIsProxyStart,
+        isProxyStart,
+        proxyUploadSpeed,
+        setProxyUploadSpeed
     }
 }
 

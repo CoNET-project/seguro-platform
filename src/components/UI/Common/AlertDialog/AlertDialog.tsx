@@ -65,6 +65,7 @@ const StyledDialogIcon = styled.div`
 
 const StyledDialogText = styled.p`
 	font-size: 16px;
+    color: black;
 `
 
 const StyledDialogButtons = styled.div`
@@ -96,13 +97,10 @@ const StyledDialogButton = styled.button<StyledDialogButtonProps>`
 
 const AlertDialog = ({icon, message, dialogActions}: AlertDialogProps) => {
 
-    const appState = useAppState()
+    const {setIsShowOverlay} = useAppState()
 
     useEffect(() => {
-        appState.setIsShowOverlay(true)
-        return () => {
-            appState.setIsShowOverlay(false)
-        }
+        
     }, [])
     return (
         <StyledDialog>

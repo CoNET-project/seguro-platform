@@ -10,7 +10,7 @@ import Toolbar from '@mui/material/Toolbar'
 import IconButton from '@mui/material/IconButton'
 import CloseIcon from '@mui/icons-material/Close'
 import Typography from '@mui/material/Typography'
-import {FormattedMessage} from "react-intl"
+import {FormattedMessage, useIntl} from "react-intl"
 import DialogContent from '@mui/material/DialogContent'
 import MuiAccordion, { AccordionProps } from '@mui/material/Accordion'
 import { red, blueGrey, blue, green, grey } from '@mui/material/colors'
@@ -130,9 +130,10 @@ const CoNET_SI_Recipient_node_MaxSelectd = 1
 
 const CoNETSINodeSetup = ({closeWindow, winOpen, currentProfile }: CoNETSINodeProps) => {
 	const { updateClientProfiles } = useAppState()
+	const intl = useIntl()
 	const [nodeListAccordionOpen, setNodeListAccordionOpen] = useState<siListAccordion> ('aboutSI')
-	const [nodeEntryNodeAccordionTitle, setEntryNodeAccordionTitle] = useState(<FormattedMessage id='platform.ProfileDropdown.nodelist.title'/>)
-	const [nodeRecipientNodeAccordionTitle, setRecipientNodeAccordionTitle] = useState(<FormattedMessage id='platform.ProfileDropdown.nodelist.title'/>)
+	const [nodeEntryNodeAccordionTitle, setEntryNodeAccordionTitle] = useState(intl.formatMessage({id: 'platform.ProfileDropdown.nodelist.title'}))
+	const [nodeRecipientNodeAccordionTitle, setRecipientNodeAccordionTitle] = useState(intl.formatMessage({id: 'platform.ProfileDropdown.nodelist.title'}))
 	const [loading, setLoading] = useState(false)
 	const [resultError, setResultError] = useState(false)
 	const [showCoNET_SI_entry_FAB, setShowCoNET_SI_entry_FAB] = useState(false)
@@ -220,8 +221,8 @@ const CoNETSINodeSetup = ({closeWindow, winOpen, currentProfile }: CoNETSINodePr
 				if (status!=='SUCCESS') {
 					return setResultError (true)
 				}
-				setEntryNodeAccordionTitle(<FormattedMessage id='platform.ProfileDropdown.nodelist.entryNodeTitle'/>)
-				setRecipientNodeAccordionTitle(<FormattedMessage id='platform.ProfileDropdown.nodelist.registersRecipientTitle'/>)
+				setEntryNodeAccordionTitle(intl.formatMessage({id: 'platform.ProfileDropdown.nodelist.entryNodeTitle'}))
+				setRecipientNodeAccordionTitle(intl.formatMessage({id: 'platform.ProfileDropdown.nodelist.registersRecipientTitle'}))
 				const uu: nodes_info[] = _data
 				if ( !uu ) {
 					return setResultError (true)
@@ -237,23 +238,23 @@ const CoNETSINodeSetup = ({closeWindow, winOpen, currentProfile }: CoNETSINodePr
 		switch (country) {
 			case 'DE': {
 				return (
-					<FormattedMessage id='platform.country.de'/>
+					intl.formatMessage({id: 'platform.country.de'})
 				)
 			}
 			case 'GB': {
 				return (
-					<FormattedMessage id='platform.country.gb'/>
+					intl.formatMessage({id: 'platform.country.gb'})
 				)
 			}
 			case 'ES': {
 				return (
-					<FormattedMessage id='platform.country.es'/>
+					intl.formatMessage({id: 'platform.country.es'})
 				)
 			}
 			case 'US':
 			default: {
 				return (
-					<FormattedMessage id='platform.country.us'/>
+					intl.formatMessage({id: 'platform.country.us'})
 				)
 			}
 		}
@@ -341,11 +342,13 @@ const CoNETSINodeSetup = ({closeWindow, winOpen, currentProfile }: CoNETSINodePr
 		k.toUpperCase
 		if (length >= max) {
 			return(
-				<FormattedMessage id='platform.ProfileDropdown.conet_si.nodes.maxConfirm'/>
+				intl.formatMessage({id: 'platform.ProfileDropdown.conet_si.nodes.maxConfirm'})
+				
 			)
 		}
 		return (
-			<FormattedMessage id='platform.manageProfiles.deleteProfile.confirmButton'/>
+			intl.formatMessage({id: 'platform.manageProfiles.deleteProfile.confirmButton'})
+		
 		)
 	}
 
@@ -387,7 +390,8 @@ const CoNETSINodeSetup = ({closeWindow, winOpen, currentProfile }: CoNETSINodePr
 							</Grid>
 							<Grid item xs={9}>
 								<Typography variant="caption" sx={{ color: 'text.secondary' }}>
-									<FormattedMessage id='platform.ProfileDropdown.nodelist.country'/>
+									{intl.formatMessage({id: 'platform.ProfileDropdown.nodelist.country'})}
+									
 								</Typography>
 							</Grid>
 							<Grid item xs={3}>
@@ -397,7 +401,8 @@ const CoNETSINodeSetup = ({closeWindow, winOpen, currentProfile }: CoNETSINodePr
 							</Grid>
 							<Grid item xs={9}>
 								<Typography variant="caption" sx={{ color: 'text.secondary' }}>
-									<FormattedMessage id='platform.ProfileDropdown.nodelist.ipAddress'/>
+									{intl.formatMessage({id: 'platform.ProfileDropdown.nodelist.ipAddress'})}
+									
 								</Typography>
 							</Grid>
 							<Grid item xs={3}>
@@ -407,7 +412,8 @@ const CoNETSINodeSetup = ({closeWindow, winOpen, currentProfile }: CoNETSINodePr
 							</Grid>
 							<Grid item xs={9}>
 								<Typography variant="caption" sx={{ color: 'text.secondary' }}>
-									<FormattedMessage id='platform.ProfileDropdown.nodelist.registersDate' />
+									{intl.formatMessage({id: 'platform.ProfileDropdown.nodelist.registersDate'})}
+									
 								</Typography>
 							</Grid>
 							<Grid item xs={3}>
@@ -417,7 +423,8 @@ const CoNETSINodeSetup = ({closeWindow, winOpen, currentProfile }: CoNETSINodePr
 							</Grid>
 							<Grid item xs={9}>
 								<Typography variant="caption" sx={{ color: 'text.secondary' }}>
-									<FormattedMessage id='platform.ProfileDropdown.nodelist.keep' />
+									{intl.formatMessage({id: 'platform.ProfileDropdown.nodelist.keep'})}
+									
 								</Typography>
 							</Grid>
 							<Grid item xs={3}>
@@ -427,7 +434,8 @@ const CoNETSINodeSetup = ({closeWindow, winOpen, currentProfile }: CoNETSINodePr
 							</Grid>
 							<Grid item xs={9}>
 								<Typography variant="caption" sx={{ color: 'text.secondary' }}>
-									<FormattedMessage id='platform.ProfileDropdown.nodelist.storagePrice' />
+									{intl.formatMessage({id: 'platform.ProfileDropdown.nodelist.storagePrice'})}
+									
 								</Typography>
 							</Grid>
 							<Grid item xs={3}>
@@ -437,7 +445,8 @@ const CoNETSINodeSetup = ({closeWindow, winOpen, currentProfile }: CoNETSINodePr
 							</Grid>
 							<Grid item xs={9}>
 								<Typography variant="caption" sx={{ color: 'text.secondary' }}>
-									<FormattedMessage id='platform.ProfileDropdown.nodelist.outboundPrice' />
+									{intl.formatMessage({id: 'platform.ProfileDropdown.nodelist.outboundPrice'})}
+									
 								</Typography>
 							</Grid>
 							<Grid item xs={3}>
@@ -521,7 +530,8 @@ const CoNETSINodeSetup = ({closeWindow, winOpen, currentProfile }: CoNETSINodePr
 				</IconButton>
 
 				<Typography sx={{ ml: 2, flex: 1, color: blue[600] }} variant="subtitle1" component="div">
-					<FormattedMessage id='platform.ProfileDropdown.SI.network.title'/>
+					{intl.formatMessage({id: 'platform.ProfileDropdown.SI.network.title'})}
+					
 				</Typography>
 			</Toolbar>
 			<DialogContent>
@@ -530,7 +540,8 @@ const CoNETSINodeSetup = ({closeWindow, winOpen, currentProfile }: CoNETSINodePr
 						id="aboutSI"
 					>
 						<Typography variant="subtitle1" sx={{ color: 'text.secondary' }}>
-							<FormattedMessage id='platform.ProfileDropdown.nodelist.CoNET.SI'/>
+							{intl.formatMessage({id: 'platform.ProfileDropdown.nodelist.CoNET.SI'})}
+							
 						</Typography>
 					</AccordionSummary1>
 					<AccordionDetails>
@@ -538,7 +549,8 @@ const CoNETSINodeSetup = ({closeWindow, winOpen, currentProfile }: CoNETSINodePr
 							<Grid container spacing={2} justifyContent="center" alignItems="center">
 								<Grid item xs={12}>
 									<Typography variant="body1" sx={{ color: 'text.secondary' }}>
-										<FormattedMessage id='platform.ProfileDropdown.nodelist.about'/>
+										{intl.formatMessage({id: 'platform.ProfileDropdown.nodelist.about'})}
+										
 									</Typography>
 								</Grid>
 
@@ -554,12 +566,14 @@ const CoNETSINodeSetup = ({closeWindow, winOpen, currentProfile }: CoNETSINodePr
 								</Grid>
 								<Grid item xs={12}>
 									<Typography variant="body1" sx={{ color: 'text.secondary' }}>
-										<FormattedMessage id='platform.ProfileDropdown.nodelist.about1'/>
+										{intl.formatMessage({id: 'platform.ProfileDropdown.nodelist.about1'})}
+										
 									</Typography>
 								</Grid>
 								<Grid item xs={12}>
 									<Typography variant="body1" sx={{ color: 'text.secondary' }}>
-										<FormattedMessage id='platform.ProfileDropdown.nodelist.about2'/>
+										{intl.formatMessage({id: 'platform.ProfileDropdown.nodelist.about2'})}
+										
 									</Typography>
 								</Grid>
 							</Grid>
@@ -573,7 +587,8 @@ const CoNETSINodeSetup = ({closeWindow, winOpen, currentProfile }: CoNETSINodePr
 						id="aboutSINode"
 					>
 						<Typography variant="subtitle1" sx={{ color: 'text.secondary' }}>
-							<FormattedMessage id='platform.ProfileDropdown.conet_si.nodes.title'/>
+							{intl.formatMessage({id: 'platform.ProfileDropdown.conet_si.nodes.title'})}
+							
 						</Typography>
 					</AccordionSummary1>
 					<AccordionDetails>
@@ -584,18 +599,21 @@ const CoNETSINodeSetup = ({closeWindow, winOpen, currentProfile }: CoNETSINodePr
 								</Grid>
 								<Grid item xs={12}>
 									<Typography variant="subtitle1" sx={{ color: 'text.secondary' }}>
-										<FormattedMessage id='platform.ProfileDropdown.conet_si.nodes.detail'/>
+										{intl.formatMessage({id: 'platform.ProfileDropdown.conet_si.nodes.detail'})}
+										
 									</Typography>
 								</Grid>
 								<Grid item xs={12}>
 									<Typography variant="subtitle1" sx={{ color: 'text.secondary' }}>
-										<FormattedMessage id='platform.ProfileDropdown.conet_si.nodes.mining'/>
+										{intl.formatMessage({id: 'platform.ProfileDropdown.conet_si.nodes.mining'})}
+										
 									</Typography>
 								</Grid>
 								<Grid item xs={12}>
 									<Link href="https://www.CoNETTech.ca" underline="always" target="_blank">
 										<Typography variant="subtitle1" sx={{ color: 'text.secondary' }}>
-											<FormattedMessage id='platform.ProfileDropdown.CoNET.website'/>
+											{intl.formatMessage({id: 'platform.ProfileDropdown.CoNET.website'})}
+											
 										</Typography>
 									</Link>
 									
@@ -630,19 +648,22 @@ const CoNETSINodeSetup = ({closeWindow, winOpen, currentProfile }: CoNETSINodePr
 							<List sx={{ width: '100%'}}>
 								<ListItem sx={{ textAlign: 'center',  display: 'block', width: '100%'}}>
 									<DialogContentText>
-										<FormattedMessage id='platform.ProfileDropdown.nodelist.entryNodeditail'/>
+										{intl.formatMessage({id: 'platform.ProfileDropdown.nodelist.entryNodeditail'})}
+										
 									</DialogContentText>
 								</ListItem>
 								<ListItem sx={{ textAlign: 'center',  display: 'block', width: '100%'}}>
 									<DialogContentText>
-										<FormattedMessage id='platform.ProfileDropdown.nodelist.selectEntryNode'/>
+										{intl.formatMessage({id: 'platform.ProfileDropdown.nodelist.selectEntryNode'})}
+										
 									</DialogContentText>
 								</ListItem>
 								{
 									resultError &&			//			show Error
 										<ListItem sx={{ textAlign: 'center',  display: 'block', width: '100%', padding: '2rem'}}>
 											<DialogContentText sx={{ ml: 2, flex: 1, color: red[700] }}>
-												<FormattedMessage id='platform.ProfileDropdown.SI.network.listError'/>
+												{intl.formatMessage({id: 'platform.ProfileDropdown.SI.network.listError'})}
+												
 											</DialogContentText>
 										</ListItem>
 								}
@@ -651,7 +672,8 @@ const CoNETSINodeSetup = ({closeWindow, winOpen, currentProfile }: CoNETSINodePr
 										<>
 											<ListItem sx={{ textAlign: 'center',  display: 'block', width: '100%'}}>
 												<DialogContentText>
-													<FormattedMessage id='platform.ProfileDropdown.SI.network.loading'/>
+													{intl.formatMessage({id: 'platform.ProfileDropdown.SI.network.loading'})}
+													
 												</DialogContentText>
 											</ListItem>
 											<ListItem sx={{ textAlign: 'center',  display: 'block', width: '100%'}}>
@@ -712,12 +734,14 @@ const CoNETSINodeSetup = ({closeWindow, winOpen, currentProfile }: CoNETSINodePr
 										</Grid>
 										<Grid item xs={12}>
 											<Typography variant="subtitle1" sx={{ color: 'text.secondary' }}>
-												<FormattedMessage id='platform.ProfileDropdown.nodelist.registersRecipientInfo1'/>
+											{intl.formatMessage({id: 'platform.ProfileDropdown.nodelist.registersRecipientInfo1'})}
+											
 											</Typography>
 										</Grid>
 										<Grid item xs={12}>
 											<Typography variant="subtitle1" sx={{ color: 'text.secondary' }}>
-												<FormattedMessage id='platform.ProfileDropdown.nodelist.registersRecipientInfo2'/>
+												{intl.formatMessage({id: 'platform.ProfileDropdown.nodelist.registersRecipientInfo2'})}
+												
 											</Typography>
 										</Grid>
 									</Grid>
@@ -727,7 +751,8 @@ const CoNETSINodeSetup = ({closeWindow, winOpen, currentProfile }: CoNETSINodePr
 											resultError &&			//			show Error
 												<ListItem sx={{ textAlign: 'center',  display: 'block', width: '100%', padding: '2rem'}}>
 													<DialogContentText sx={{ ml: 2, flex: 1, color: red[700] }}>
-														<FormattedMessage id='platform.ProfileDropdown.SI.network.listError'/>
+														{intl.formatMessage({id: 'platform.ProfileDropdown.SI.network.listError'})}
+														
 													</DialogContentText>
 												</ListItem>
 										}
@@ -736,7 +761,8 @@ const CoNETSINodeSetup = ({closeWindow, winOpen, currentProfile }: CoNETSINodePr
 												<>
 													<ListItem sx={{ textAlign: 'center',  display: 'block', width: '100%'}}>
 														<DialogContentText>
-															<FormattedMessage id='platform.ProfileDropdown.SI.network.loading'/>
+															{intl.formatMessage({id: 'platform.ProfileDropdown.SI.network.loading'})}
+															
 														</DialogContentText>
 													</ListItem>
 													<ListItem sx={{ textAlign: 'center',  display: 'block', width: '100%'}}>
@@ -791,7 +817,8 @@ const CoNETSINodeSetup = ({closeWindow, winOpen, currentProfile }: CoNETSINodePr
 											horizontal: 'left',
 										}}
 									>
-										<FormattedMessage id='platform.ProfileDropdown.nodelist.registersPayment.setupTitile'/>
+										{intl.formatMessage({id: 'platform.ProfileDropdown.nodelist.registersPayment.setupTitile'})}
+										
 									</Badge>
 							</Typography>
 						</AccordionSummary1>
@@ -800,20 +827,22 @@ const CoNETSINodeSetup = ({closeWindow, winOpen, currentProfile }: CoNETSINodePr
 								<Grid container spacing={1}>
 									<Grid item xs={12}>
 										<Typography variant="subtitle1" sx={{ color: 'text.secondary' }}>
-											<FormattedMessage id='platform.ProfileDropdown.nodelist.registersPayment.detail1'/>
+											{intl.formatMessage({id: 'platform.ProfileDropdown.nodelist.registersPayment.detail1'})}
 										</Typography>
 									</Grid>
 									
 									
 									<Grid item xs={12}>
 										<Typography variant="subtitle1" sx={{ color: 'text.secondary' }}>
-											<FormattedMessage id='platform.ProfileDropdown.nodelist.registersPayment.authorizationInformation'/>
+											{intl.formatMessage({id: 'platform.ProfileDropdown.nodelist.registersPayment.authorizationInformation'})}
+											
 										</Typography>
 									</Grid>
 
 									<Grid item xs={12}>
 										<Typography variant="subtitle1" sx={{ color: 'text.secondary' }}>
-											<FormattedMessage id='platform.ProfileDropdown.nodelist.registersPayment.detail2'/>
+											{intl.formatMessage({id: 'platform.ProfileDropdown.nodelist.registersPayment.detail2'})}
+											
 										</Typography>
 									</Grid>
 									<Grid item xs={12}>
@@ -829,12 +858,11 @@ const CoNETSINodeSetup = ({closeWindow, winOpen, currentProfile }: CoNETSINodePr
 													InputProps={{
 														readOnly: true,
 													}}
-													label={<FormattedMessage id='platform.ProfileDropdown.nodelist.registersPayment.CoNETCashBalance'/>} 
+													label={intl.formatMessage({id: 'platform.ProfileDropdown.nodelist.registersPayment.CoNETCashBalance'})}
 													fullWidth
 													color='primary'
 													value={coNETCashbalance}
 													type="number"
-													
 												/>
 											</Grid>
 									}
@@ -847,7 +875,7 @@ const CoNETSINodeSetup = ({closeWindow, winOpen, currentProfile }: CoNETSINodePr
 													size="small"
 													variant="standard" 
 													error={showCoNETCashInputError}
-													label={<FormattedMessage id='platform.ProfileDropdown.send.receiver'/>} 
+													label={intl.formatMessage({id: 'platform.ProfileDropdown.send.receiver'})} 
 													fullWidth
 													color='primary'
 													value={coNETCashInput}
@@ -883,7 +911,8 @@ const CoNETSINodeSetup = ({closeWindow, winOpen, currentProfile }: CoNETSINodePr
 										!showFinishedRecipientRegisters && coNETCashbalance < 0 &&
 											<Grid item xs={12}>
 												<Typography variant="subtitle1" sx={{ color: red[500] }}>
-													<FormattedMessage id='platform.ProfileDropdown.nodelist.registersPayment.insufficient_conetcash_balance'/>
+													{intl.formatMessage({id: 'platform.ProfileDropdown.nodelist.registersPayment.insufficient_conetcash_balance'})}
+													
 												</Typography>
 											</Grid>
 
@@ -892,7 +921,8 @@ const CoNETSINodeSetup = ({closeWindow, winOpen, currentProfile }: CoNETSINodePr
 										!showFinishedRecipientRegisters &&　coNETCashbalance >= 0 &&
 											<Grid item xs={12} >
 												<Button variant="contained" onClick={registersConfirmButtonClick} disabled = {loading}>
-													<FormattedMessage id='platform.manageProfiles.deleteProfile.confirmButton'/>
+													{intl.formatMessage({id: 'platform.manageProfiles.deleteProfile.confirmButton'})}
+													
 												</Button>
 											</Grid>
 									}
@@ -901,13 +931,15 @@ const CoNETSINodeSetup = ({closeWindow, winOpen, currentProfile }: CoNETSINodePr
 										showFinishedRecipientRegisters &&
 											<ListItem sx={{ display: 'block', width: '100%', padding: '2rem'}}>
 												<Typography variant="subtitle1" sx={{ color: 'text.secondary' }}>
-													<FormattedMessage id='platform.ProfileDropdown.nodelist.registersPayment.registersfinished1'/>
+													{intl.formatMessage({id: 'platform.ProfileDropdown.nodelist.registersPayment.registersfinished1'})}
+													
 												</Typography>
 												<Typography variant="subtitle1" sx={{ color: '#1976d2' }}>
 													{currentProfile.keyID.toLowerCase()}
 												</Typography>
 												<Typography variant="subtitle1" sx={{ color: 'text.secondary' }}>
-													<FormattedMessage id='platform.ProfileDropdown.nodelist.registersPayment.registersfinished2'/>
+													{intl.formatMessage({id: 'platform.ProfileDropdown.nodelist.registersPayment.registersfinished2'})}
+													
 												</Typography>
 														
 												
@@ -918,7 +950,8 @@ const CoNETSINodeSetup = ({closeWindow, winOpen, currentProfile }: CoNETSINodePr
 											<>
 												<ListItem sx={{ textAlign: 'center',  display: 'block', width: '100%'}}>
 													<DialogContentText>
-														<FormattedMessage id='platform.ProfileDropdown.nodelist.registersPayment.registersRecipientloading'/>
+														{intl.formatMessage({id: 'platform.ProfileDropdown.nodelist.registersPayment.registersRecipientloading'})}
+														
 													</DialogContentText>
 												</ListItem>
 												<ListItem sx={{ textAlign: 'center',  display: 'block', width: '100%'}}>
@@ -930,7 +963,8 @@ const CoNETSINodeSetup = ({closeWindow, winOpen, currentProfile }: CoNETSINodePr
 										!showFinishedRecipientRegisters && resultError &&			//			show Error
 											<ListItem sx={{ textAlign: 'center',  display: 'block', width: '100%', padding: '2rem'}}>
 												<DialogContentText sx={{ ml: 2, flex: 1, color: red[700] }}>
-													<FormattedMessage id='platform.ProfileDropdown.SI.network.listError'/>
+													{intl.formatMessage({id: 'platform.ProfileDropdown.SI.network.listError'})}
+													
 												</DialogContentText>
 											</ListItem>
 									}

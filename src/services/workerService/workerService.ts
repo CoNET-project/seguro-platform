@@ -32,8 +32,8 @@ export const getWorkerService = () => {
 }
 
 export const setUserPreferences = () => {
-    if ( workerService?.preferences?.preferences) {
-        const {theme, language}: Preferences = workerService.preferences.preferences
+    if ( workerService?.preferences) {
+        const {theme, language}: Preferences = workerService.preferences
 
         if (theme) {
             store.dispatch(setTheme(theme))
@@ -58,6 +58,7 @@ export const initializeWorkerService = async () => {
 
 	logger.log('workerService.ts', 'container:', container)
 	workerService = container
+
 	switch (true) {
 		case container.status === 'NOT_SET':
 			store.dispatch(setHasContainer(false))
@@ -116,7 +117,7 @@ export const createPasscode = ({passcode, locale, progress}: PasscodeFunctionPar
 
 export const unlockPasscode = ({passcode, progress}: PasscodeFunctionParams): Promise<PasscodeResolves> => (
     new Promise<PasscodeResolves>(async (resolve) => {
-        store.dispatch(setIsPlatformLoading('unlockPasscode'))
+        //store.dispatch(setIsPlatformLoading('unlockPasscode'))
         if (workerService.method.testPasscode) {
             const [status, container] = await workerService.method.testPasscode(passcode, progress)
 
@@ -127,6 +128,8 @@ export const unlockPasscode = ({passcode, progress}: PasscodeFunctionParams): Pr
 					}
 					console.log (workerService)
                     resolve(status)
+                    store.dispatch(setIsUnlocked(true))
+                    store.dispatch(setHasContainer(true))
                     break
                 case 'FAILURE':
                     resolve(status)

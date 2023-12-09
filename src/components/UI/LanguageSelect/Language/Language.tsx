@@ -51,8 +51,15 @@ const StyledParenthesisText = styled.p`
 const Language = (props: LanguageProps) => {
 	
     return (
-        <StyledItem onClick={() => props.selectLocale(props.locale)} selected={props.locale === props.selectedLocale}
-                    tabIndex={props.index}>
+        <StyledItem onClick={
+			() => {
+				props.selectLocale(props.locale)
+			}
+		}
+		selected={
+			props.locale === props.selectedLocale
+		}
+        tabIndex={props.index}>
             <StyledText>{props.languageName}</StyledText>
             <StyledParenthesisText>({props.englishName})</StyledParenthesisText>
         </StyledItem>

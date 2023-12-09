@@ -3,7 +3,7 @@ import LanguageSelect from "../../../UI/LanguageSelect/LanguageSelect"
 import {Locale} from "../../../../localization/types"
 import Page from '../../../UI/Layout/Page/Page'
 import {useOnboardingPageNavigator} from "../../../../contexts/onboarding/OnboardingContext"
-import {FormattedMessage} from "react-intl";
+import {FormattedMessage, useIntl} from "react-intl";
 import {screenHeight, screenWidth} from '../../../UI/screenSizes'
 import React from 'react'
 
@@ -59,6 +59,7 @@ const StyledPageTitle = styled.h1`
 const SelectLanguagePage = ({selectLocale, locale}: SelectLanguageProps) => {
 	
     const {state, dispatch} = useOnboardingPageNavigator()
+    const intl = useIntl()
     const languages: Array<Languages> = [
         {
             name: 'English',
@@ -87,12 +88,15 @@ const SelectLanguagePage = ({selectLocale, locale}: SelectLanguageProps) => {
             <StyledContainer>
                 <StyledPageHeader>
                     <StyledPageTitle>
-                        <FormattedMessage id='onboarding.selectLanguageTitle'/>
+                        {intl.formatMessage({id: 'onboarding.selectLanguageTitle'})}
+                        
                     </StyledPageTitle>
                 </StyledPageHeader>
                 <StyledPageContents>
                     <LanguageSelect languages={languages}
-                                    selectLocale={selectLocale}
+                                    selectLocale={
+                                        selectLocale
+                                    }
                                     selectedLocale={locale}/>
                 </StyledPageContents>
             </StyledContainer>

@@ -6,7 +6,7 @@ import Box from '@mui/material/Box'
 import Container from '@mui/material/Container'
 import Button from '@mui/material/Button'
 import Typography from '@mui/material/Typography'
-import {FormattedMessage} from "react-intl"
+import {FormattedMessage, useIntl} from "react-intl"
 
 const StyledContainer = styled.div`
 	height: 100%;
@@ -29,6 +29,7 @@ const getNewNumber = ( oldProgress: number ) => {
 	const diff = Math.random() * 10
 	return Math.min( oldProgress + diff, 100 )	
 }
+
 const LaunchScreen = ({reload}: CoNETSINodeProps) => {
 
 	const [progress, setProgress] = React.useState(0)
@@ -49,6 +50,7 @@ const LaunchScreen = ({reload}: CoNETSINodeProps) => {
 	}, [])
 
 	const buttom = () => {
+        const intl = useIntl()
 		return (
 			<Button
 				variant="contained"
@@ -60,7 +62,7 @@ const LaunchScreen = ({reload}: CoNETSINodeProps) => {
 				}}
 			>
 				<Typography variant="subtitle1" sx={{ color: 'error' }}>
-					<FormattedMessage id='LaunchScreen.loadFail'/>
+                        { intl.formatMessage({id: 'LaunchScreen.loadFail'})}
 				</Typography>
 			</Button>
 		)
@@ -83,7 +85,6 @@ const LaunchScreen = ({reload}: CoNETSINodeProps) => {
 						<LinearProgress color="inherit" variant="determinate" value={progress} sx={{ color: 'white'}}/>
 					</Container>
 			}
-			
 			
         </StyledContainer>
     )

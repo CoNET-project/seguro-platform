@@ -5,7 +5,7 @@ import useAppState from "../../../../../store/appState/useAppState"
 import AnonymousProfile from '../../../../../assets/Avatar-anonymous.png'
 import {toast} from "../../../Toaster/Toaster"
 import {Checkmark, Copy} from "../../../Icons/Icons"
-import {FormattedMessage} from "react-intl"
+import {useIntl} from "react-intl"
 import {CopyToClipboard} from "../../../../../utilities/utilities"
 
 import {VerticalOptions} from "../../../Icons/Icons"
@@ -15,7 +15,7 @@ import { blue } from "@mui/material/colors"
 import CircularProgress from '@mui/material/CircularProgress'
 
 type StyledProfileItemProps = {
-    isActive?: boolean
+    isactive?: boolean
 }
 
 type ProfileDropdownProps = {
@@ -49,7 +49,7 @@ const StyledProfileItem = styled.div<StyledProfileItemProps>`
 	display: flex;
 	align-items: center;
 	padding: 0px 24px 0 24px;
-	background-color: ${props => props.isActive && props.theme.ui.colors.border.light};
+	background-color: ${props => props.isactive && props.theme.ui.colors.border.light};
 	min-height: 70px;
 	
 `
@@ -83,18 +83,20 @@ const CurrentProfileItem = ({closeDropdown, syncAsset}: ProfileDropdownProps ) =
 	const {data} = getWorkerService()
 	const currentProfile = data.profiles.filter((n:any)=> n.isPrimary)[0]
 	const keyID = currentProfile.keyID
-
+	const intl = useIntl()
 	const shortID = keyID.substring(0,2) + keyID.substring(2,6).toUpperCase() + '....' + keyID.substring(keyID.length-4,keyID.length).toUpperCase()
 	const copyDeviceCode = (event: React.MouseEvent<HTMLButtonElement>, code: string) => {
         event.stopPropagation()
-
+		
         toast({
             toastIcon: <Checkmark size={18}/>,
-            event: <FormattedMessage id='toaster.action.copyDeviceCode'/>,
+				
+            event: intl.formatMessage({id: 'toaster.action.copyDeviceCode'}),
             duration: 'sm'
         })
         CopyToClipboard(code)
     }
+	
 	const [loading, setLoading] = useState(false)
 
 	const theme = useTheme()
@@ -110,7 +112,7 @@ const CurrentProfileItem = ({closeDropdown, syncAsset}: ProfileDropdownProps ) =
 				</Margin1rem>
 				
 				<StyledProfileDetails>
-					<StyledProfileName>{currentProfile.nickName || <FormattedMessage id='platform.ProfileDropdown.CurrentProfileItem.AnonymousUser'/>}</StyledProfileName>
+					<StyledProfileName>{ currentProfile.nickName || intl.formatMessage({id: 'platform.ProfileDropdown.CurrentProfileItem.AnonymousUser'}) }</StyledProfileName>
 					<RowWrapper>
 						<StyledProfileKeyId>{shortID}</StyledProfileKeyId>
 						<StyledProfileKeyIdCopy onClick={

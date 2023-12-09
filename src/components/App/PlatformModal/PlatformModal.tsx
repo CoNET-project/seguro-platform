@@ -5,7 +5,7 @@ import ManageProfiles from "./ManageProfiles/ManageProfiles"
 import AddProfile from "./AddProfile/AddProfile"
 import Profile from "./ManageProfiles/Profile/Profile"
 import React , {useState}from 'react'
-import {FormattedMessage} from "react-intl"
+import {FormattedMessage, useIntl} from "react-intl"
 import Dialog from '@mui/material/Dialog'
 import DialogTitle from '@mui/material/DialogTitle'
 import DialogContent from '@mui/material/DialogContent'
@@ -19,6 +19,7 @@ const PlatformModal = () => {
 	const onClose = () => {
 		setIsModalOpen (null)
 	}
+	const intl = useIntl()
 
 	let newProfile: any = null
 	
@@ -44,16 +45,26 @@ const PlatformModal = () => {
 	const getHeaderBarTitle = () => {
         switch (isModalOpen) {
             case 'profilesList': {
-				return (<FormattedMessage id='platform.manageProfiles'/>)
+				return (
+					intl.formatMessage({id: 'platform.manageProfiles'})
+				)
 			}
             case 'addProfile':
 			case 'manageProfile': {
-				return (<FormattedMessage id='platform.manageProfile'/>)
+				return (
+					intl.formatMessage({id: 'platform.manageProfile'})
+				)
+				
 			}
-            case 'settings':
-                return <FormattedMessage id='platform.settings.settings'/>
-            default:
-                break
+            case 'settings':{
+				return (
+					intl.formatMessage({id: 'platform.settings.settings'})
+				)
+			}
+                
+            default: {
+
+			}
         }
     }
 

@@ -7,13 +7,12 @@ import {screenWidth} from "../../UI/screenSizes"
 import SelectLanguagePage from "./SelectLanguagePage/SelectLanguagePage"
 import onboardingActions from '../../../contexts/onboarding/onboardingActions'
 import PasscodePage from './PasscodePage/PasscodePage'
-import {FormattedMessage} from 'react-intl'
+import {FormattedMessage, useIntl} from 'react-intl'
 import {ChevronLeft, ChevronRight} from "../../UI/Icons/Icons"
 import ProgressNumberSteps from "../../UI/Progress/ProgressNumberSteps/ProgressNumberSteps"
 import React, {ReactNode, useState} from "react"
 import VerificationPage from "./VerificationPage/VerificationPage"
 import SettingUpPage from "./SettingUpPage/SettingUpPage"
-
 
 const StyledOnboardingContainer = styled.div`
 	height: 100%;
@@ -98,7 +97,7 @@ const OnboardingScreen = () => {
 	
     const {locale, isTouchDevice, setLocale, setIsUnlocked, setHasContainer, hasContainer} = useAppState()
 
-    const pages = ['language', 'setPasscode', 'confirmPasscode', 'verification']
+    const pages = ['setPasscode', 'confirmPasscode', 'verification']
 
     const {state, dispatch} = useOnboardingPageNavigator()
 
@@ -106,7 +105,7 @@ const OnboardingScreen = () => {
     const currentStep = pages.indexOf(state.currentPage[0]) + 1
 
     const [error, setError] = useState<ReactNode | null>(null)
-
+    const intl = useIntl()
     const previousPageHandler = () => {
         switch (true) {
             case currentPage[0] === 'setPasscode':
@@ -121,35 +120,44 @@ const OnboardingScreen = () => {
 
     const nextPageHandler = () => {
         setError(null)
-        switch (true) {
-            case currentPage[0] === 'setPasscode':
+        switch (currentPage[0]) {
+            case 'setPasscode':{
+                const uuu = locale
                 if (state.onboardingPageData?.passcode.length < 6) {
-                    return setError(<FormattedMessage id='passcodeInput.invalidLength'/>)
+                    return setError(intl.formatMessage({id: 'passcodeInput.invalidLength'}))
                 }
                 break
-            case currentPage[0] === 'confirmPasscode':
+            }
+                
+            case 'confirmPasscode':{
                 if (state.onboardingPageData?.confirmPasscode.length < 6) {
-                    return setError(<FormattedMessage id='passcodeInput.invalidLength'/>)
+                    return setError(intl.formatMessage({id: 'passcodeInput.invalidLength'}))
                 }
                 if (!state.onboardingPageData?.passcode || !state.onboardingPageData?.confirmPasscode)
-                    return setError(<FormattedMessage id='passcodeInput.invalidLength'/>)
+                    return setError(intl.formatMessage({id: 'passcodeInput.invalidLength'}))
 
                 if (state.onboardingPageData?.passcode !== state.onboardingPageData?.confirmPasscode) {
-                    return setError(<FormattedMessage id='passcodeInput.confirm.error'/>)
+                    return setError(intl.formatMessage({id: 'passcodeInput.confirm.error'}))
                 }
                 break
-            case currentPage[0] === 'verification':
+            }
+                
+            case 'verification':{
                 if (
                     !state.onboardingPageData.verificationCode ||
                     state.onboardingPageData.verificationCode.length < 36 ||
                     state.onboardingPageData.verificationCode.length > 36
                 ) {
                     return dispatch(onboardingActions.setVerificationCodeError(true))
-                } else {
-                    break
                 }
-            case currentPage[0] === 'settingUp':
                 break
+                
+            }
+            default:
+            case 'settingUp':{
+                break
+            }
+                
         }
         return dispatch(onboardingActions.nextPage())
     }
@@ -167,7 +175,7 @@ const OnboardingScreen = () => {
                     <>
                         <StyledOnboardingContent>
                             <AnimatePresence custom={currentPage[1]}>
-                                {currentPage[0] === 'language' &&
+                                {/* {currentPage[0] === 'language' &&
 								(
 									<motion.div
 										initial={{ opacity: 0 }}
@@ -182,7 +190,7 @@ const OnboardingScreen = () => {
 									</motion.div>
 								)
                                     
-                                }
+                                } */}
 
                                 {currentPage[0] === 'setPasscode' &&
 									(
@@ -192,8 +200,9 @@ const OnboardingScreen = () => {
 											exit={{ opacity: 0 }}
 										>
 											 <PasscodePage
+                                                info=''
 												key={currentPage[0]}
-												title={<FormattedMessage id='onboarding.setPasscodeTitle'/>}
+												title={intl.formatMessage({id: 'onboarding.setPasscodeTitle'})}
 												passcode={onboardingPageData?.passcode || ''}
 												setPasscode={(passcode: string) => {
 													setError(null)
@@ -213,8 +222,9 @@ const OnboardingScreen = () => {
 										exit={{ opacity: 0 }}
 									>
 										<PasscodePage
+                                            info=''
 											key={currentPage[0]}
-											title={<FormattedMessage id='onboarding.confirmPasscodeTitle'/>}
+											title={intl.formatMessage({id: 'onboarding.confirmPasscodeTitle'})}
 											passcode={onboardingPageData?.confirmPasscode || ''}
 											setPasscode={(passcode: string) => {
 												setError(null)
@@ -226,7 +236,7 @@ const OnboardingScreen = () => {
 									</motion.div>
 								)}
 
-                                {currentPage[0] === 'verification' &&
+                                {/* {currentPage[0] === 'verification' &&
 									(
 										<motion.div
 											initial={{ opacity: 0 }}
@@ -238,7 +248,7 @@ const OnboardingScreen = () => {
 												key={currentPage[0]}
 											/>
 										</motion.div>
-									)}
+									)} */}
                             </AnimatePresence>
                         </StyledOnboardingContent>
                         <CustomProgressNumberSteps steps={pages.length} currentActiveStep={currentStep}/>
@@ -250,7 +260,8 @@ const OnboardingScreen = () => {
                                         <>
                                             <ChevronLeft/>
                                             <StyledNavigationButtonText>
-                                                <FormattedMessage id='button.back'/>
+                                                {intl.formatMessage({id: 'button.back'})}
+                                                
                                             </StyledNavigationButtonText>
                                         </>
                                     )
@@ -258,7 +269,8 @@ const OnboardingScreen = () => {
                             </StyledNavigationButton>
                             <StyledNavigationButton onClick={nextPageHandler}>
                                 <StyledNavigationButtonText>
-                                    <FormattedMessage id='button.next'/>
+                                    {intl.formatMessage({id: 'button.next'})}
+                                    
                                 </StyledNavigationButtonText>
                                 <ChevronRight/>
                             </StyledNavigationButton>

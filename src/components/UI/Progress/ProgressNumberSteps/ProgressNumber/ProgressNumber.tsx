@@ -2,11 +2,11 @@ import styled from 'styled-components'
 import React from 'react'
 
 type StyledProgressNumberProps = {
-    isActive: boolean
+    isactive: boolean
 }
 
 type ProgressNumberProps = {
-    isActive: boolean,
+    isactive: boolean,
     number: number
 }
 const StyledProgressNumber = styled.div<StyledProgressNumberProps>`
@@ -17,28 +17,28 @@ const StyledProgressNumber = styled.div<StyledProgressNumberProps>`
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	background-color: ${props => props.isActive ? props.theme.ui.colors.primary : props.theme.ui.colors.background.elevationOne};
+	background-color: ${props => props.isactive ? props.theme.ui.colors.primary : props.theme.ui.colors.background.elevationOne};
 	border: 1px solid ${props => props.theme.ui.colors.border.light};
 	transition: background-color 300ms ease-in-out;
 `
 
 const StyledNumberText = styled.p<StyledProgressNumberProps>`
-	color: ${props => props.isActive ? 'white' : props.theme.ui.colors.text.primary};
+	color: ${props => props.isactive ? 'white' : props.theme.ui.colors.text.primary};
 	font-size: ${props => props.theme.ui.fontSizes.narrow.xsm};
 	width: 100%;
 	height: 100%;
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	font-weight: ${props => props.isActive ? 700 : 400};
+	font-weight: ${props => props.isactive ? 700 : 400};
 `
 
 
-const ProgressNumber = ({number, isActive}: ProgressNumberProps) => {
+const ProgressNumber = ({number, isactive}: ProgressNumberProps) => {
 
     return (
-        <StyledProgressNumber isActive={isActive}>
-            <StyledNumberText isActive={isActive}>
+        <StyledProgressNumber isactive={isactive}>
+            <StyledNumberText isactive={isactive}>
                 {number}
             </StyledNumberText>
         </StyledProgressNumber>

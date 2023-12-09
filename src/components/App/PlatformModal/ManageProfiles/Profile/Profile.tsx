@@ -189,7 +189,6 @@ const Profile = ({profile, profileChanged }: ProfileProps) => {
 									_profile.nickName = e.target.value
 									profileChanged (_profile)
 								}
-								
 							}
 						}
 					/>

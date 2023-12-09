@@ -2,15 +2,14 @@ import styled from 'styled-components'
 import ProfileImage from "../../../Common/Profile/Image/Image"
 import {Checkmark, Copy} from "../../../Icons/Icons"
 import {toast} from "../../../Toaster/Toaster"
-import {FormattedMessage} from "react-intl"
+import {useIntl} from "react-intl"
 import {CopyToClipboard} from "../../../../../utilities/utilities"
-// @ts-ignore: Unreachable code error
 import AnonymousProfile from '../../../../../assets/Avatar-anonymous.png'
 import React from "react"
 import {ProfileData} from "../../../../../store/appState/appStateReducer"
 
 type StyledProfileItemProps = {
-    isActive?: boolean
+    isactive?: boolean
 }
 
 
@@ -24,7 +23,7 @@ const StyledProfileItem = styled.div<StyledProfileItemProps>`
 	align-items: center;
 	padding: 12.5px 24px;
 	cursor: pointer;
-	background-color: ${props => props.isActive && props.theme.ui.colors.border.light};
+	background-color: ${props => props.isactive && props.theme.ui.colors.border.light};
 	min-height: 70px;
 
 	&:hover {
@@ -70,10 +69,11 @@ const ListItem = ({profileImg, keyID, nickName, active, onSwitchProfile}: ListIt
 
 	
     const copyDeviceCode = (event: React.MouseEvent<HTMLButtonElement>, code: string) => {
+        const intl = useIntl()
         event.stopPropagation()
         toast({
             toastIcon: <Checkmark size={18}/>,
-            event: <FormattedMessage id='toaster.action.copyDeviceCode'/>,
+            event: intl.formatMessage({id:'toaster.action.copyDeviceCode'}),
             duration: 'sm'
         })
         CopyToClipboard(code)
@@ -84,7 +84,7 @@ const ListItem = ({profileImg, keyID, nickName, active, onSwitchProfile}: ListIt
 			() => {
 				onSwitchProfile(keyID)
 			}} 
-			isActive={ active }>
+			isactive={ active }>
             <ProfileImage src={profileImg || AnonymousProfile} size={45}/>
             <StyledProfileDetails>
                 <StyledProfileName>{nickName || 'Anonymous User'}</StyledProfileName>

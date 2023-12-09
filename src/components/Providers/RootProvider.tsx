@@ -17,12 +17,13 @@ const meta = {
 
     }
 }
+
 const RootProvider = ({
     children
 }: ProviderProps) => {
     return (
         <StoreProvider>
-			< DocumentMeta {...meta}/>
+			<DocumentMeta {...meta}/>
             <ThemeProvider>
                 <LocalizationProvider>
                     {children}

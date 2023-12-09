@@ -75,7 +75,7 @@ const headerArea = (setShowBlockScan: (showBlockScan: boolean) => void, setShowG
                             <Grid container spacing={0} >
                                 <Grid item xs={3} sx={{marginTop: '0.8rem'}}>
                                     <Breadcrumbs aria-label="breadcrumb">
-                                        <Link underline="hover" color="inherit" href="#" sx={{color: '#080213'}}
+                                        <Link underline="hover" color="inherit" sx={{color: '#080213', cursor: 'pointer'}}
                                             onClick={() => {
                                                 setShowBlockScan (false)
                                                 setShowGuide (true)

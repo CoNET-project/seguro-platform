@@ -7,6 +7,7 @@ import LargeInput from "../../../UI/Inputs/LargeInput/LargeInput"
 import PasscodeTouchInput from "../../../UI/Inputs/PasscodeInput/Touch/PasscodeInput"
 import {screenWidth} from '../../../UI/screenSizes'
 import useAppState from "../../../../store/appState/useAppState"
+import Box from '@mui/material/Box'
 
 type PasscodeProps = {
     title: string | ReactNode
@@ -15,6 +16,7 @@ type PasscodeProps = {
     confirmationAction?: () => boolean
 	nextPageHandler: ()=> void
     error: ReactNode | string
+    info: string
 }
 
 const StyledContainer = styled.div`
@@ -98,35 +100,38 @@ const PasscodePage =
             }}
         >
             <StyledContainer>
+                    
                 <StyledPageHeader>
                     <StyledPageTitle>
                         {title}
                     </StyledPageTitle>
                 </StyledPageHeader>
                 <StyledContents>
+                    
                     {
-                        useAppState().isTouchDevice ? (
-                            <>
-                                <PasscodeTouchInput value={passcode}/>
-                                <StyledPageError>
-                                    {error}
-                                </StyledPageError>
-                                <Keypad {...keypadClickHandlers}/>
-                            </>
-                        ) : (
-                            (
+                        // useAppState().isTouchDevice ? (
+                        //     <>
+                        //         <PasscodeTouchInput value={passcode}/>
+                        //         <StyledPageError>
+                        //             {error}
+                        //         </StyledPageError>
+                        //         <Keypad {...keypadClickHandlers}/>
+                        //     </>
+                        // ) : 
+                        
+                        
+                            
                                 <LargeInput value={passcode}
-                                            inputOptions={{
-                                                inputType: 'password'
-                                            }
-                                            }
-											nextStepHandler={nextPageHandler}
-                                            error={error}
-                                            setValue={(val) => {
-                                                setPasscode(val)
-                                            }}/>
-                            )
-                        )
+                                    inputOptions={{
+                                        inputType: 'password'
+                                    }}
+                                    nextStepHandler={nextPageHandler}
+                                    error={error}
+                                    setValue={(val) => {
+                                        setPasscode(val)
+                                }}/>
+                            
+                                
                     }
                 </StyledContents>
             </StyledContainer>

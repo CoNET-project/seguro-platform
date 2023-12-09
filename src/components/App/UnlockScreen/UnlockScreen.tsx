@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import Keypad from '../../UI/Keypad/Keypad'
 import PasscodeInput from "../../UI/Inputs/PasscodeInput/Touch/PasscodeInput"
 import {IoMdLock} from "react-icons/io"
-import {FormattedMessage} from "react-intl"
+import {FormattedMessage, useIntl} from "react-intl"
 import {deletePasscode, unlockPasscode} from "../../../services/workerService/workerService"
 import Button from "../../UI/Common/Button/Button"
 import useAppState from "../../../store/appState/useAppState"
@@ -64,6 +64,8 @@ const UnlockScreen = () => {
 		setError (null)
     }
 
+    const intl = useIntl()
+
     const keypadClickHandlers = {
         numberKeyOnClick: (num: number) => {
             clearError()
@@ -81,7 +83,7 @@ const UnlockScreen = () => {
 
     const unlockClickHandler = () => {
         if (passcode.length < 6) {
-            return setError(<FormattedMessage id='passcodeInput.invalidLength'/>)
+            return setError(intl.formatMessage({id: 'passcodeInput.invalidLength'}))
         }
 		// setError (null)
         unlockPasscode({
@@ -95,7 +97,7 @@ const UnlockScreen = () => {
                 
             } 
 			setPasscode('')
-			setError (<FormattedMessage id='platform.unlock.button.forgot'/>)
+			setError (intl.formatMessage({id: 'platform.unlock.button.forgot'}))
             
         })
     }
@@ -103,7 +105,7 @@ const UnlockScreen = () => {
     const deleteConfirmationActions: AlertDialogActions = {
         cancel: {
             action: () => setShowDeleteModal(false),
-            text: <FormattedMessage id='platform.dialog.delete.button.cancel'/>
+            text: intl.formatMessage({id: 'platform.dialog.delete.button.cancel'}) 
         },
         confirm: {
             action: () => {
@@ -113,7 +115,7 @@ const UnlockScreen = () => {
                     }
                 })
             },
-            text: <FormattedMessage id='platform.dialog.delete.button.confirm'/>,
+            text: intl.formatMessage({id: 'platform.dialog.delete.button.confirm'}),
             isDangerous: true
         }
     }
@@ -122,7 +124,7 @@ const UnlockScreen = () => {
         <StyledContainer>
             <StyledContent>
                 <StyledIcon><IoMdLock size={46}/></StyledIcon>
-                <StyledTitle><FormattedMessage id="unlock.title"/></StyledTitle>
+                <StyledTitle>{intl.formatMessage({id: 'unlock.title'})}</StyledTitle>
                 {
                     isTouchDevice ? (
                         <>
@@ -147,15 +149,15 @@ const UnlockScreen = () => {
                     )
                 }
                 <StyledUnlockButton onClick={unlockClickHandler}>
-                    <FormattedMessage id='button.unlock'/>
+                    {intl.formatMessage({id: 'button.unlock'})}
                 </StyledUnlockButton>
                 <StyledForgotText onClick={() => setShowDeleteModal(true)}>
-                    <FormattedMessage id='platform.unlock.button.forgot'/>
+                {intl.formatMessage({id: 'platform.unlock.button.forgot'})}
                 </StyledForgotText>
             </StyledContent>
             {
                 showDeleteModal && (
-                    <AlertDialog message={<FormattedMessage id='platform.dialog.delete.message'/>}
+                    <AlertDialog message={intl.formatMessage({id: 'platform.dialog.delete.message'})}
 						icon={<Warning color="black"/>}
 						dialogActions={deleteConfirmationActions}/>
 				)

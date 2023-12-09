@@ -25,7 +25,15 @@ import {
     updateClientProfile,
 	setShowGuide,
 	setShowAppStore,
-    setShowBlockScan
+    setShowJoinUS,
+    setShowBlockScan,
+    setLocalDaemon,
+    setShowMiner,
+    setShowDePINing,
+    setPendingRewards,
+    setIsProxyStart,
+    setProxyUploadSpeed
+
 } from './appStateActions'
 import {Theme} from '../../theme/types'
 import {Locale} from '../../localization/types'
@@ -53,6 +61,7 @@ type CryptoAssetHistory = {
 	maxFeePerGas: number
 	total: number
 }
+
 
 export type CryptoAsset = {
 	balance: number
@@ -152,15 +161,25 @@ type AppStateReducerState = {
 	showGuide: boolean
 	showAppStore: boolean
     showBlockScan: boolean
+    isProxyStart: boolean
+    showJoinUS: boolean
+    localDaemon: boolean
+    showMiner: boolean
+    showDePINing: boolean
+    pendingRewards: number
+    proxyUploadSpeed: number
 }
 
 const initialState: AppStateReducerState = {
+    showMiner: true,
+    isProxyStart: false,
     isTouchDevice: false,
     isUnlocked: false,
     isDrawerOpen: false,
     isModalOpen: null,
-	showGuide: true,
+	showGuide: false,
 	showAppStore: false,
+    showJoinUS: true,
     showBlockScan: false,
     isPlatformLoading: null,
     hasContainer: false,
@@ -175,12 +194,28 @@ const initialState: AppStateReducerState = {
     clientProfiles: {},
     activeProfile: null,
     clientDevices: {},
-    networkState: 'disconnected'
-	
+    networkState: 'disconnected',
+    localDaemon: false,
+	showDePINing: false,
+    pendingRewards: 0,
+    proxyUploadSpeed: 0
 }
 
 const appStateReducer = createReducer(initialState, builder => {
     return builder
+
+        .addCase(setShowDePINing, (state, action) => {
+            state.showDePINing = action.payload.showDePINing
+        })
+
+        .addCase(setProxyUploadSpeed, (state, action) => {
+            state.proxyUploadSpeed = action.payload.proxyUploadSpeed
+        })
+
+        .addCase(setLocalDaemon, (state, action) => {
+            state.localDaemon = action.payload.localDaemon
+        })
+
         .addCase(setWorkerServiceIsInitialized, (state, action) => {
             state.workerServiceIsInitialized = action.payload.workerServiceIsInitialized
         })
@@ -213,6 +248,10 @@ const appStateReducer = createReducer(initialState, builder => {
             state.locale = action.payload.locale
         })
 
+        .addCase(setIsProxyStart, (state, action) => {
+            state.isProxyStart = action.payload.isProxyStart
+        })
+
         .addCase(setIsTouchDevice, (state, action) => {
             state.isTouchDevice = action.payload.isTouchDevice
         })
@@ -241,8 +280,16 @@ const appStateReducer = createReducer(initialState, builder => {
             state.showBlockScan = action.payload.showBlockScan
         })
 
+        .addCase(setShowJoinUS, (state, action) => {
+            state.showJoinUS = action.payload.showJoinUS
+        })
+
         .addCase(setShowAppStore, (state, action) => {
             state.showAppStore = action.payload.showAppStore
+        })
+
+        .addCase(setShowMiner, (state, action) => {
+            state.showMiner = action.payload.showMiner
         })
 
         .addCase(setHasUpdateAvailable, (state, action) => {

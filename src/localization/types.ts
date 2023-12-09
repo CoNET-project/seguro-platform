@@ -247,8 +247,135 @@ export type Messages = {
 	'platform.ProfileDropdown.CurrentProfileItem.AnonymousUser': string
 
 	'tabnavigator.guide.title': string
+    'tabnavigator.guide.createWallet': string,
 
 	'tabnavigator.appStore.title': string
-}
 
+    'launchPage.HeaderArea.title1-1': string
+    'launchPage.HeaderArea.title1-2': string
+    'launchPage.HeaderArea.title2': string
+    'launchPage.HeaderArea.button': string
+    'launchPage.HeaderArea.secondPart.1': string
+    'launchPage.HeaderArea.secondPart.2': string
+    'launchPage.HeaderArea.secondPart.3': string
+    'launchPage.HeaderArea.secondPart.4': string
+
+    'launchPage.FeatureArea1.1': string
+    'launchPage.FeatureArea1.2': string
+    'launchPage.FeatureArea2.1': string
+    'launchPage.FeatureArea2.2': string
+    'launchPage.FeatureArea3.1': string
+    'launchPage.FeatureArea3.2': string
+    'launchPage.FeatureArea4.1': string
+    'launchPage.FeatureArea4.2': string
+    'launchPage.FeatureArea5.1': string
+    'launchPage.FeatureArea5.2': string
+    'launchPage.FeatureArea6.1': string
+    'launchPage.FeatureArea6.2': string
+    'launchPage.FeatureArea7.1': string
+    'launchPage.FeatureArea7.2': string
+    'launchPage.FeatureArea.1': string
+    'launchPage.FeatureArea.2': string
+    'launchPage.FeatureArea.3': string
+
+    'launchPage.FeatureArea9.title': string
+
+    'platform.home': string
+    'platform.proxy': string
+    'platform.proxy-1': string
+    'platform.proxy.title': string
+    'platform.proxy.FeatureArea.title.1': string
+    'platform.proxy.FeatureArea.title.2': string
+    'platform.proxy.FeatureArea5.1': string
+    'platform.proxy.FeatureArea5.2': string
+    'platform.proxy.FeatureArea5.moreDetail': string
+	'platform.proxy.issueReport': string
+
+    'platform.proxy.FeatureArea6.1': string
+    'platform.proxy.FeatureArea6.2': string
+    'platform.proxy.FeatureArea7.1': string
+    'platform.proxy.FeatureArea7.2': string
+
+    'platform.proxy.FeatureArea.start': string
+    'platform.proxy.step1.title': string
+    'platform.proxy.subscription.user': string
+
+    'platform.proxy.featureArea8Item.step1': string
+    'platform.proxy.featureArea8Item.step1.CONETbalance': string
+    'platform.proxy.featureArea8Item.step1.transferQuote': string
+    'platform.proxy.featureArea8Item.step2': string
+    'platform.proxy.featureArea8Item.step2.random': string
+    'platform.proxy.featureArea8Item.step2.cant': string
+    'platform.proxy.featureArea8Item.step3': string
+    'platform.proxy.featureArea8Item.chrome': string
+    'platform.proxy.featureArea8Item.chrome.extensions': string
+	'platform.proxy.chrome.detail': string
+	'platform.proxy.firefox.detail': string
+
+    'platform.proxy.featureArea8Item.minerSetup.title': string
+    'platform.proxy.featureArea8Item.minerSetup.saas': string
+    'platform.proxy.featureArea8Item.minerSetup.bandwidth': string
+	'platform.proxy.setup.allOther': string
+	'platform.proxy.setup.iOS': string
+	'platform.proxy.setup.iOSOther': string
+	'platform.proxy.setup.android': string
+	'platform.proxy.setup.andOther': string
+	'platform.proxy.setup.macos': string
+	'platform.proxy.setup.macosOther': string
+	'platform.proxy.setup.win': string
+	'platform.proxy.setup.winOther': string
+
+
+
+    'platform.joinUS.header.title.1': string
+    'platform.joinUS.header.title.2': string
+    'platform.joinUS.header.detail': string
+    'platform.joinUS.header.whatConet': string
+
+    'platform.joinUS.miner.title': string
+    'platform.joinUS.miner.detail': string
+    'platform.joinUS.miner.Bandwidth': string
+    'platform.joinUS.miner.BandwidthDetail': string
+    'platform.joinUS.miner.SaaS': string
+    'platform.joinUS.miner.SaaSDetail': string
+    'platform.joinUS.miner.storage': string
+    'platform.joinUS.miner.storageDetail': string
+
+    'platform.joinUS.joinMiner.button': string
+
+    'platform.joinUS.forUser.Title1': string
+    'platform.joinUS.forUser.Title2': string
+    'platform.joinUS.forUser.detail': string
+
+    'platform.joinUS.forDeveloper.Title1': string
+    'platform.joinUS.forDeveloper.Title2': string
+    'platform.joinUS.forDeveloper.detail': string
+
+    'platform.joinUS.forDeveloper.button': string
+
+    'platform.api.daemon.title': string
+    'platform.api.daemon.detail': string
+	'platform.api.daemon.verLow': string
+    'platform.api.daemon.mobileNotSupport': string
+    'platform.api.daemon.testButton': string
+    'platform.api.daemon.openSource': string
+
+    'platform.miner.header.title': string
+    'platform.miner.register.title': string
+    'platform.miner.register.button': string
+    'platform.miner.register.boost': string
+    'platform.miner.register.boost.detail': string
+
+    'platform.miner.register.MinerAni.reward': string
+    'platform.miner.register.MinerAni.pause': string
+    'platform.miner.register.MinerAni.resume': string
+    'platform.miner.register.MinerAni.claim': string
+    'platform.miner.register.totalRewards': string
+    'platform.miner.register.pendingRewards': string
+    'platform.miner.register.previouslyClaimed': string
+    'platform.miner.register.MinerAni.stop': string
+    'platform.miner.register.referrals': string
+
+    
+}
 export type MessagesByLocale = Record<Locale, Messages>
