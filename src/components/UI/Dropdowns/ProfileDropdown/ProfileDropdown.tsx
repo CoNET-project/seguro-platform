@@ -16,8 +16,6 @@ import Tab from '@mui/material/Tab'
 import Typography from '@mui/material/Typography'
 import {getWorkerService} from '../../../../services/workerService/workerService'
 import { LogoIcon, LogoText} from "../../Logo/Logo"
-import { CNTCashLogoIcon } from '../../Logo/CNTCash'
-import { USDCLogoIcon } from '../../Logo/usdc'
 import Opacity from '@mui/icons-material/Opacity'
 import Outbound from '@mui/icons-material/Outbound'
 import DownloadForOfflineIcon from '@mui/icons-material/DownloadForOffline'
@@ -40,10 +38,7 @@ import {CopyToClipboard} from "../../../../utilities/utilities"
 
 import CoNETSINodeSetup from './conet-si/CoNET_SI_SETUP'
 
-import ListItemIcon from '@mui/material/ListItemIcon'
-import VpnLockIcon from '@mui/icons-material/VpnLock'
 import ListItemText from '@mui/material/ListItemText'
-import Badge from '@mui/material/Badge'
 
 export type Profiles = Array<ProfileData>
 
@@ -140,9 +135,10 @@ const ProfileDropdown = ({closeDropdown}: ProfileDropdownProps) => {
 	const [receiveVal, setReceiveVal] = useState('')
 	const [showHistoryDetail, setShowHistoryDetail] = useState<CryptoAssetHistory|null>(null)
 	const [conet_si_open, setConet_si_open] = useState(false)
-	const [showAssetBalance_balance, setshowAssetBalance_balanc] = useState(0)
+	const [showAssetBalance_balance, setshowAssetBalance_balanc] = useState('')
 	const [showCoNET_SI_setup_Badge, setShowCoNET_SI_setup_Badge] = useState(0)
 	const [showPage, setShowPage] = useState(false)
+	
 	const init = () => {
 		const current = currentProfile()
 		if (!current) {
@@ -616,7 +612,7 @@ const ProfileDropdown = ({closeDropdown}: ProfileDropdownProps) => {
 		<List sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper', paddingBottom: '2rem'}}>
 
 			<ListItem>
-				<CurrentProfileItem closeDropdown={closeDropdown} syncAsset= {syncAsset}/>
+				<CurrentProfileItem closeDropdown={closeDropdown} syncAsset= {syncAsset} />
 			</ListItem>
 
 			<Divider/>
@@ -647,13 +643,16 @@ const ProfileDropdown = ({closeDropdown}: ProfileDropdownProps) => {
 				</ListItem> */}
 			
 			
+			{
+				
+
+			}
 			
-			<Divider/>
 			{
 				showAssetBalance && 		//		Asset balance
 
 					<ListItem>
-						<AssetView balance={showAssetBalance_balance.toFixed(4)} icon={reflashAssetList()[currectAsset].icon} labelText = {reflashAssetList()[currectAsset].primary} />
+						<AssetView balance={showAssetBalance_balance} icon={reflashAssetList()[currectAsset].icon} labelText = {reflashAssetList()[currectAsset].primary} />
 					</ListItem>
 
 			}

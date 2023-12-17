@@ -65,23 +65,23 @@ const App = () => {
 
 
     useEffect(() => {
-		
-        const testDeamon = async() => {
-            const _palette = await generateThemeScheme()
-            setPalette(_palette)
-            const test = await testLocalServer ()
+		const fetchData = async ()=> {
+			if (!active) {
+				return
+			}
+			const _palette = await generateThemeScheme()
+			setPalette(_palette)
+			const test = await testLocalServer ()
 
-            if (test === true) {
-                setlocalDaemon(true)
-            }
-            await dAPPInitialize()
-
-        }
-
-        testDeamon().catch((ex) => {
-            console.log(`APP useEffect testDeamon error`, ex)
-        })
-
+			if (test === true) {
+				setlocalDaemon(true)
+			}
+			await dAPPInitialize()
+		}
+        
+		let active = true
+        fetchData()
+        return () => { active = false }
     }, [])
 
 

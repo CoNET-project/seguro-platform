@@ -2,6 +2,7 @@
 import {v4} from 'uuid'
 import {logger} from '../components/App/logger'
 import useAppState from "../store/appState/useAppState"
+import store from '../store/store'
 
 type WorkerCommandErrorType = 'NOT_READY'|'INVALID_DATA'|
 'NO_UUID'|'INVALID_COMMAND'|'OPENPGP_RUNNING_ERROR'|
@@ -12,7 +13,8 @@ type WorkerCommandType = 'READY'|'encrypt_TestPasscode'|'getCONETBalance'|'getRe
 'newProfile'|'storeProfile'|'invitation'|'WORKER_MESSAGE'|'startProxy'|
 'isAddress'|'getFaucet'|'syncAsset'|'sendAsset'|'getUSDCPrice'|
 'buyUSDC'|'mintCoNETCash'|'getSINodes'|'getRecipientCoNETCashAddress'|
-'getUserProfile'|'sendMessage'|'setRegion'|'ipaddress'
+'getUserProfile'|'sendMessage'|'setRegion'|'ipaddress'|'startLiveness'|'stopLiveness'|
+'isLivenessRunning'
 
 export type WorkerCallStatus = 'SUCCESS' | 'NOT_READY' | 'UNKNOWN_COMMAND' |
 'TIME_OUT' | 'SYSTEM_ERROR'
@@ -29,7 +31,7 @@ export type SeguroNetworkStatus = WorkerCallStatus |
 
 
 
-const ver = '0.0.12'
+const ver = '0.0.13'
 
 
 
@@ -170,7 +172,6 @@ export const postPasscode: (passcode: string) => Promise<null|boolean|WorkerComm
 }
 
 export const testLocalServer = async () => {
-
     const result = await postUrl(`http://localhost:3001/ver`, '', false)
     if (result) {
         if (result.ver === ver) {
@@ -183,16 +184,16 @@ export const testLocalServer = async () => {
     return null
 }
 
-const postMessage = (cmd: WorkerCommand, resolve:  (value: StartWorkerResolveForAPI | PromiseLike<StartWorkerResolveForAPI>) => void) => {
+const postMessage = (cmd: WorkerCommand, close: boolean,  resolve: any, Callback?:(err: string, data: string[]) => void) => {
     
     const channel = new BroadcastChannel(channelWrokerListenName)
     const listenChannel = new BroadcastChannel(cmd.uuid)
 
     const kk = (e: any) => {
-        listeningChannel(e.data, cmd.uuid, resolve)
+        listeningChannel(e.data, cmd.uuid)
     }
 
-    const listeningChannel = (data: any, uuid: string, resolve:  (value: StartWorkerResolveForAPI | PromiseLike<StartWorkerResolveForAPI>) => void) => {
+    const listeningChannel = (data: any, uuid: string) => {
         let cmd: WorkerCommand
         
         try{
@@ -201,14 +202,28 @@ const postMessage = (cmd: WorkerCommand, resolve:  (value: StartWorkerResolveFor
             //  'searchPage.tsx', 'checkLinkedUrl ifram is NULL' 
             return logger ('class CONET_Platfrom_API', `listeningChannel JSON.parse(data) Error`)
         }
-
-        listenChannel.close()
+		if (close) {
+			listenChannel.close()
+		}
+        
 
         if (cmd.err) {
-            return resolve(['SYSTEM_ERROR', cmd.data])
+			if (resolve) {
+				return resolve(['SYSTEM_ERROR', cmd.data])
+			}
+			if (Callback) {
+				return Callback('SYSTEM_ERROR', [])
+			}
+            return console.log (`postMessage Callback && resolve all null`, cmd.err)
         }
+        if ( resolve ) {
+			return resolve(['SUCCESS', cmd.data])
+		}
+		if (Callback) {
+			return Callback('', cmd.data)
+		}
+		return console.log (`postMessage Callback && resolve all null`, cmd.data)
         
-        return resolve(['SUCCESS', cmd.data])
     }
     
     listenChannel.addEventListener('message', kk)
@@ -223,7 +238,7 @@ export const faucet: () => Promise < StartWorkerResolveForAPI > = () => {
             data: [],
             uuid: v4()
         }
-        return postMessage (cmd, resolve)
+        return postMessage (cmd, true, resolve)
     })
 }
 
@@ -233,7 +248,7 @@ export const getCONETBalance: () => Promise < StartWorkerResolveForAPI > = () =>
             cmd: 'getCONETBalance',
             uuid: v4()
         }
-        return postMessage (cmd, resolve)
+        return postMessage (cmd, true, resolve)
     })
 }
 
@@ -244,7 +259,7 @@ export const setRegion: (region: regionType) => Promise < StartWorkerResolveForA
             uuid: v4(),
             data: [region]
         }
-        return postMessage (cmd, resolve)
+        return postMessage (cmd, true, resolve)
     })
 }
 
@@ -255,7 +270,7 @@ export const startProxy: () => Promise < StartWorkerResolveForAPI > = () => {
             uuid: v4(),
             data: []
         }
-        return postMessage (cmd, resolve)
+        return postMessage (cmd, true, resolve)
     })
 }
 
@@ -266,7 +281,7 @@ export const getRegiestNodes : () => Promise < StartWorkerResolveForAPI > = () =
             uuid: v4(),
             data: []
         }
-        return postMessage (cmd, resolve)
+        return postMessage (cmd, true, resolve)
     })
 }
 
@@ -278,7 +293,7 @@ export const createPasscode : (passcord: string, local: string) => Promise < Sta
             uuid: v4(),
             data: [passcord, local]
         }
-        return postMessage (cmd, resolve)
+        return postMessage (cmd, true, resolve)
     })
 }
 
@@ -289,7 +304,7 @@ export const getIPaddress: () => Promise < StartWorkerResolveForAPI > = () => {
             uuid: v4(),
             data: []
         }
-        return postMessage (cmd, resolve)
+        return postMessage (cmd, true, resolve)
 	})
 }
 
@@ -301,16 +316,48 @@ export const encrypt_deletePasscode : () => Promise < StartWorkerResolveForAPI >
             uuid: v4(),
             data: []
         }
-        return postMessage (cmd, resolve)
+        return postMessage (cmd, true, resolve)
     })
 }
 
+export const startLiveness: (callback: (err: string, data: string[]) => void) => void = (callback) => {
 
-export const checkLocaldemond: () => Promise < StartWorkerResolveForAPI > = () => {
-    return new Promise(resolve => {
-
-    })
+		const cmd: WorkerCommand = {
+            cmd: 'startLiveness',
+            uuid: v4(),
+            data: []
+        }
+        return postMessage (cmd, false, null, (err, data) => {
+			if (err) {
+				return callback (err, [])
+			}
+			
+			return callback ('', data)
+		})
 }
 
+export const stopLiveness: () => Promise < StartWorkerResolveForAPI > = () => {
+
+	return new Promise(resolve => {
+		const cmd: WorkerCommand = {
+            cmd: 'stopLiveness',
+            uuid: v4(),
+            data: []
+        }
+        return postMessage (cmd, true, resolve)
+	})
+}
+
+export const isLivenessRunning: () => Promise < StartWorkerResolveForAPI > = () => {
+
+	return new Promise(resolve => {
+		const cmd: WorkerCommand = {
+            cmd: 'isLivenessRunning',
+            uuid: v4(),
+            data: []
+        }
+        return postMessage (cmd, true, resolve)
+	})
+}
 
 

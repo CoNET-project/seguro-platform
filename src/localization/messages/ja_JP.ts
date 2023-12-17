@@ -332,6 +332,7 @@ const ja_JP: Messages = {
     'launchPage.FeatureArea7.2': 'PWA技術で出来たCONETプラットフォームは、1つのコードで全デバイスに対応、dAPPの開発に低コストができ、分散型配布システムで、 ストアのレビューメカニズムを解決し、技術革新と投資を保証ができ',
 
     'platform.joinUS.miner.title': '安全第一のマイニング設計',
+	'platform.joinUS.miner.cloudTitle': 'クラウドノード',
     'platform.joinUS.miner.detail': '非信頼を前提に基づいて、ネットワークリソースプロバイダーのセキュリティを配慮した事がCONET設計の最優先事項です。セキュリティサンドボックス内の独立したスペースとIPアドレスのない独自のプライバシーマイナーは、CONETが他の製品の中でも際立っています。',
     'platform.joinUS.miner.Bandwidth': '帯域幅マイニング',
     'platform.joinUS.miner.BandwidthDetail': '余ったネットワーク IP アドレス、帯域幅を共有する事でRewordを獲得します。',
@@ -339,6 +340,17 @@ const ja_JP: Messages = {
     'platform.joinUS.miner.SaaSDetail': '未使用のCPUを共有する事でRewordを獲得します。',
     'platform.joinUS.miner.storage': 'ストレージマイニング',
     'platform.joinUS.miner.storageDetail': '未使用のハードドライブ領域を共有する事でRewordを獲得します。',
+	'platform.joinUS.miner.cloud.table.title1': 'シードノード',
+	'platform.joinUS.miner.cloud.table.title2': 'スーパーノード',
+	'platform.joinUS.miner.cloud.table.item2': '倍率',
+	'platform.joinUS.miner.cloud.table.item1': '前売り価格',
+	'platform.joinUS.miner.cloud.table.item2-seed': '6X',
+	'platform.joinUS.miner.cloud.table.item2-super': '12X',
+	'platform.joinUS.miner.cloud.table.item3': '限定数',
+	'platform.joinUS.miner.cloud.table.item4': '運用の継続性',
+	'platform.joinUS.miner.cloud.table.item5': '保守料金',
+	'platform.joinUS.miner.cloud.table.item5-1': '無料',
+	'platform.joinUS.miner.cloud.table.item6': 'エアドロップ',
 
     'platform.joinUS.joinMiner.button': 'CONETマイニングに参加',
     'platform.joinUS.forUser.Title1': 'Web3アプリケーション',//'分散型プライバシーを強化',
@@ -356,12 +368,18 @@ const ja_JP: Messages = {
     'platform.api.daemon.mobileNotSupport': '現時点ではデスクトップしか対応していません',
     'platform.api.daemon.testButton': 'テストデーモン',
     'platform.api.daemon.openSource': 'CONETはオープンソースコードです',
+	'platform.api.daemon.httpsiteError': 'このアプリは CONET Cross Web2 プロキシをサポートしていません。クリックしてアプリを切り替えてください',
+	'platform.api.daemon.switchAPP': '切り替えAPP',
 
     'platform.miner.header.title': 'ようこそCONET DePIN参加者の皆様',
-    'platform.miner.register.title': 'ノードの登録',
-    'platform.miner.register.button': '登録',
+	'platform.miner.header.title.detial': 'なぜあなたの参加がCONETにとても重要な理由',
+	'platform.miner.header.title.smartContract': 'CNTP ERC20スマートコントラクト',
+	'platform.miner.community.referral.detail': '参加者を紹介してスピードアップ',
+
+    'platform.miner.register.title': 'ノードプロバイダ',
+    'platform.miner.register.button': '始めましょう',
     'platform.miner.register.boost': 'ブースト',
-    'platform.miner.register.boost.detail': '1000 $COENT 180日間ロック',
+    'platform.miner.register.boost.detail': '180日 ? $COENTをロックします',
 
     'platform.miner.register.MinerAni.reward': '只今受け取っているReward',
     'platform.miner.register.MinerAni.pause': 'マイニングを暫停',
@@ -369,9 +387,17 @@ const ja_JP: Messages = {
     'platform.miner.register.MinerAni.claim': 'Rewardsを請求',
     'platform.miner.register.totalRewards': '獲得Rewards合計',
     'platform.miner.register.pendingRewards': '請求待ちRewards',
-    'platform.miner.register.previouslyClaimed': '今日のRewards',
+    'platform.miner.register.previouslyClaimed': 'カレントRewards',
     'platform.miner.register.MinerAni.stop': 'DePINを中止',
-    'platform.miner.register.referrals': 'リファラル'
+    'platform.miner.register.referrals': 'リファラル',
+	'platform.conet.cotp.Symbol': 'CNTP',
+	'platform.conet.cotp.name': 'CONETポイント',
+
+	'platform.miner.community.title': 'コミュニティへのインセンティブ',
+	'platform.miner.community.liveness.title': 'アクティブ',
+	'platform.miner.community.liveness.detail': 'いつでもどこでもオンラインでアクティブになり、Rewardsを獲得しましょう',
+	'platform.miner.community.liveness.sameIPError': 'エラー！IPアドレスが占有されています。後でもう一度お試しください',
+	'platform.miner.community.liveness.sameMinerError': 'エラー! 別のインスタンスを実行しています。後でもう一度試してください'
 }
 
 export default ja_JP
