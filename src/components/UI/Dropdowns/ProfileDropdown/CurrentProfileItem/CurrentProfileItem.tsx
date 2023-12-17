@@ -119,6 +119,7 @@ const CurrentProfileItem = ({closeDropdown, syncAsset}: ProfileDropdownProps ) =
         CopyToClipboard(code)
     }
 
+
 	const addMateMask = async () => {
 		
 		try {
@@ -145,6 +146,7 @@ const CurrentProfileItem = ({closeDropdown, syncAsset}: ProfileDropdownProps ) =
 		}
 		
 	}
+
 	
 	const [loading, setLoading] = useState(false)
 
@@ -160,6 +162,7 @@ const CurrentProfileItem = ({closeDropdown, syncAsset}: ProfileDropdownProps ) =
 						closeDropdown('')
 					}}>
 					<ProfileImage src={currentProfile.profileImg || AnonymousProfile} size={45}/>
+
 				</Margin1rem> */}
 				<Stack direction="row" alignItems="center"  sx={{padding: '0 0rem 0 1rem'}}>
 					<Stack direction="column" >

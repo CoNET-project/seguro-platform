@@ -97,7 +97,9 @@ const UnLockWallet = () => {
     }
 
     return (
+
         <Stack alignItems="center" justifyContent='center' sx={{width: '100%', height: '100%', marginTop:'-10rem'}}>
+
             <Stack direction="column" alignItems="center" justifyContent='center'>
                 <Slide direction="right" in={true} mountOnEnter >
                     <Typography variant="h5" sx={{paddingBottom: '2rem'}}>
@@ -105,6 +107,7 @@ const UnLockWallet = () => {
                     </Typography>
                 </Slide>
                 <Slide direction="left" in={true} mountOnEnter >
+
                     <Paper sx={{ p: '2px 4px', display: 'flex', alignItems: 'center', width: '80%', marginBottom: '2rem' , borderRadius: '2rem'}} elevation={1}>
                     <InputBase
                         sx={{width: '100%', ml: 1, flex: 1, fontSize: '1rem' , padding:'0.7rem 0.5rem 0.5rem 1rem'}}

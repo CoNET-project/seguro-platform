@@ -344,6 +344,7 @@ const zh_CN: Messages = {
     'platform.joinUS.miner.SaaS': '算力挖礦',
     'platform.joinUS.miner.SaaSDetail': '分享未使用CPU算力資源獲取獎勵',
     'platform.joinUS.miner.storage': '儲存空間挖礦',
+
 	'platform.joinUS.miner.cloudTitle': '雲節點',
     'platform.joinUS.miner.storageDetail': '分享未使用硬碟存儲空間獲取獎勵',
 	'platform.joinUS.miner.cloud.table.title1': '種子節點',
@@ -357,6 +358,7 @@ const zh_CN: Messages = {
 	'platform.joinUS.miner.cloud.table.item5': '維護費用',
 	'platform.joinUS.miner.cloud.table.item5-1': '專案組承擔',
 	'platform.joinUS.miner.cloud.table.item6': '空投',
+
 
     'platform.joinUS.joinMiner.button': '加入CONET挖礦',
 
@@ -375,6 +377,7 @@ const zh_CN: Messages = {
     'platform.api.daemon.mobileNotSupport': '目前只支持電腦',
     'platform.api.daemon.testButton': '測試守護程序',
     'platform.api.daemon.openSource': 'CONET是開源程式碼',
+
 	'platform.api.daemon.httpsiteError': '本APP不支持CONET跨Web2的代理，請點擊切換APP',
 	'platform.api.daemon.switchAPP': '切換 APP',
 
@@ -389,12 +392,14 @@ const zh_CN: Messages = {
     'platform.miner.register.boost': '加碼 ',
     'platform.miner.register.boost.detail': '鎖定 ? $COENT 90天',
 
+
     'platform.miner.register.MinerAni.reward': '當前獲得的獎勵',
     'platform.miner.register.MinerAni.pause': '暫停',
     'platform.miner.register.MinerAni.resume': '開始',
     'platform.miner.register.MinerAni.claim': '轉帳獎勵到錢包',
     'platform.miner.register.totalRewards': '獲得總獎勵',
     'platform.miner.register.pendingRewards': '等待轉帳獎勵',
+
     'platform.miner.register.previouslyClaimed': '當前獎勵',
     'platform.miner.register.MinerAni.stop': '停止DePIN',
     'platform.miner.register.referrals': '推薦',
@@ -406,6 +411,7 @@ const zh_CN: Messages = {
 	'platform.miner.community.liveness.detail': '隨時隨地在線关注活躍即可获得奖励',
 	'platform.miner.community.liveness.sameIPError': '错误！ 您的IP地址已被占用，请稍后重试',
 	'platform.miner.community.liveness.sameMinerError': '错误！您正在运行另一个实例，请稍后再试'
+
 }
 
 export default zh_CN

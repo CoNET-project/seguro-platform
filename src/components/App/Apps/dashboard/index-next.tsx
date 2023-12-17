@@ -27,6 +27,7 @@ import NoDaemon from '../../NoDaemon/index'
 import Proxy from '../CONET-Proxy/index'
 import Miner from '../miner/index'
 import ManageProfiles from '../../PlatformModal/ManageProfiles/ManageProfiles'    //"..//ManageProfiles/ManageProfiles"
+
 import ProfileDropdown from '../../../UI/Dropdowns/ProfileDropdown/ProfileDropdown'
 import Container from '@mui/material/Container'
 interface StyledTabsProps {
@@ -91,7 +92,9 @@ type action = {
 const actions: action[] = [
     { icon: <SvgIcon component={JP} inheritViewBox/>, name: 'ja-JP' },
     { icon: <SvgIcon component={CN} inheritViewBox/>, name: 'zh-CN' },
+
     // { icon: <SvgIcon component={TW} inheritViewBox/>, name: 'zh-TW' },
+
     { icon: <SvgIcon component={US} inheritViewBox/>, name: 'en-US' }
 ]
 
@@ -132,6 +135,7 @@ const DashBoard = () => {
         isInitializing,
         setShowAppStore,
         locale,
+
 		isModalOpen,
         setLocale,
 
@@ -180,6 +184,7 @@ const DashBoard = () => {
     }
 
     const MenuSideBar = () => {
+
     
         const animeCONET = () => {
             return (

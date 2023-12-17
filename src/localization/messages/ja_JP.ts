@@ -332,7 +332,9 @@ const ja_JP: Messages = {
     'launchPage.FeatureArea7.2': 'PWA技術で出来たCONETプラットフォームは、1つのコードで全デバイスに対応、dAPPの開発に低コストができ、分散型配布システムで、 ストアのレビューメカニズムを解決し、技術革新と投資を保証ができ',
 
     'platform.joinUS.miner.title': '安全第一のマイニング設計',
+
 	'platform.joinUS.miner.cloudTitle': 'クラウドノード',
+
     'platform.joinUS.miner.detail': '非信頼を前提に基づいて、ネットワークリソースプロバイダーのセキュリティを配慮した事がCONET設計の最優先事項です。セキュリティサンドボックス内の独立したスペースとIPアドレスのない独自のプライバシーマイナーは、CONETが他の製品の中でも際立っています。',
     'platform.joinUS.miner.Bandwidth': '帯域幅マイニング',
     'platform.joinUS.miner.BandwidthDetail': '余ったネットワーク IP アドレス、帯域幅を共有する事でRewordを獲得します。',
@@ -340,6 +342,7 @@ const ja_JP: Messages = {
     'platform.joinUS.miner.SaaSDetail': '未使用のCPUを共有する事でRewordを獲得します。',
     'platform.joinUS.miner.storage': 'ストレージマイニング',
     'platform.joinUS.miner.storageDetail': '未使用のハードドライブ領域を共有する事でRewordを獲得します。',
+
 	'platform.joinUS.miner.cloud.table.title1': 'シードノード',
 	'platform.joinUS.miner.cloud.table.title2': 'スーパーノード',
 	'platform.joinUS.miner.cloud.table.item2': '倍率',
@@ -351,6 +354,7 @@ const ja_JP: Messages = {
 	'platform.joinUS.miner.cloud.table.item5': '保守料金',
 	'platform.joinUS.miner.cloud.table.item5-1': '無料',
 	'platform.joinUS.miner.cloud.table.item6': 'エアドロップ',
+
 
     'platform.joinUS.joinMiner.button': 'CONETマイニングに参加',
     'platform.joinUS.forUser.Title1': 'Web3アプリケーション',//'分散型プライバシーを強化',
@@ -368,6 +372,7 @@ const ja_JP: Messages = {
     'platform.api.daemon.mobileNotSupport': '現時点ではデスクトップしか対応していません',
     'platform.api.daemon.testButton': 'テストデーモン',
     'platform.api.daemon.openSource': 'CONETはオープンソースコードです',
+
 	'platform.api.daemon.httpsiteError': 'このアプリは CONET Cross Web2 プロキシをサポートしていません。クリックしてアプリを切り替えてください',
 	'platform.api.daemon.switchAPP': '切り替えAPP',
 
@@ -381,12 +386,14 @@ const ja_JP: Messages = {
     'platform.miner.register.boost': 'ブースト',
     'platform.miner.register.boost.detail': '180日 ? $COENTをロックします',
 
+
     'platform.miner.register.MinerAni.reward': '只今受け取っているReward',
     'platform.miner.register.MinerAni.pause': 'マイニングを暫停',
     'platform.miner.register.MinerAni.resume': 'スタート',
     'platform.miner.register.MinerAni.claim': 'Rewardsを請求',
     'platform.miner.register.totalRewards': '獲得Rewards合計',
     'platform.miner.register.pendingRewards': '請求待ちRewards',
+
     'platform.miner.register.previouslyClaimed': 'カレントRewards',
     'platform.miner.register.MinerAni.stop': 'DePINを中止',
     'platform.miner.register.referrals': 'リファラル',
@@ -398,6 +405,7 @@ const ja_JP: Messages = {
 	'platform.miner.community.liveness.detail': 'いつでもどこでもオンラインでアクティブになり、Rewardsを獲得しましょう',
 	'platform.miner.community.liveness.sameIPError': 'エラー！IPアドレスが占有されています。後でもう一度お試しください',
 	'platform.miner.community.liveness.sameMinerError': 'エラー! 別のインスタンスを実行しています。後でもう一度試してください'
+
 }
 
 export default ja_JP

@@ -13,6 +13,7 @@ import {
     ProfileData
 } from "./appStateReducer"
 
+
 export const setCurrentProfileCNTP = createAction(
     'appState/currentProfileCNTP',
     (currentProfileCNTP: string) => {
@@ -23,7 +24,6 @@ export const setCurrentProfileCNTP = createAction(
         }
     }
 )
-
 
 export const setPendingRewards = createAction(
     'appState/pendingRewards',
@@ -57,6 +57,7 @@ export const setIsProxyStart = createAction(
         }
     }
 )
+
 
 export const setCurrentProfileCONET = createAction(
     'appState/currentProfileCONET',

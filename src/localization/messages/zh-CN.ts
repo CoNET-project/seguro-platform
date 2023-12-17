@@ -332,6 +332,7 @@ const zh_CN: Messages = {
     'platform.joinUS.miner.SaaSDetail': '分享未使用CPU算力资源获取奖励。',
     'platform.joinUS.miner.storage': '存储空间挖矿',
     'platform.joinUS.miner.storageDetail': '分享未使用硬盘空间获取奖励。',
+
 	'platform.joinUS.miner.cloudTitle': '云节点',
 	'platform.joinUS.miner.cloud.table.title1': '种子节点',
 	'platform.joinUS.miner.cloud.table.title2': '超级节点',
@@ -344,7 +345,7 @@ const zh_CN: Messages = {
 	'platform.joinUS.miner.cloud.table.item5': '维护费用',
 	'platform.joinUS.miner.cloud.table.item5-1': '项目组承担',
 	'platform.joinUS.miner.cloud.table.item6': '空投',
-	
+
 
     'platform.joinUS.joinMiner.button': '加入CONET挖矿',
     'platform.joinUS.forUser.Title1': 'Web3应用程序',//'去中心化隐私增强',
@@ -362,6 +363,7 @@ const zh_CN: Messages = {
     'platform.api.daemon.mobileNotSupport': '目前只支持电脑',
     'platform.api.daemon.testButton': '测试守护进程',
     'platform.api.daemon.openSource': 'CONET是开源代码',
+
 	'platform.api.daemon.httpsiteError': '本APP不支持CONET跨Web2代理，请点击切换APP',
 	'platform.api.daemon.switchAPP': '切换 APP',
 
@@ -374,12 +376,14 @@ const zh_CN: Messages = {
     'platform.miner.register.boost': '加码',
     'platform.miner.register.boost.detail': '锁定 ? $COENT 90天',
 
+
     'platform.miner.register.MinerAni.reward': '当前获得的奖励',
     'platform.miner.register.MinerAni.pause': '暂停',
     'platform.miner.register.MinerAni.resume': '开始',
     'platform.miner.register.MinerAni.claim': '转帐奖励到钱包',
     'platform.miner.register.totalRewards': '获得总奖励',
     'platform.miner.register.pendingRewards': '等待转帐的奖励',
+
     'platform.miner.register.previouslyClaimed': '当前奖励',
     'platform.miner.register.MinerAni.stop': '停止DePIN',
 

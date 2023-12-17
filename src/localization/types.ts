@@ -334,13 +334,16 @@ export type Messages = {
 
     'platform.joinUS.miner.title': string
     'platform.joinUS.miner.detail': string
+
 	'platform.joinUS.miner.cloudTitle': string
+
     'platform.joinUS.miner.Bandwidth': string
     'platform.joinUS.miner.BandwidthDetail': string
     'platform.joinUS.miner.SaaS': string
     'platform.joinUS.miner.SaaSDetail': string
     'platform.joinUS.miner.storage': string
     'platform.joinUS.miner.storageDetail': string
+
 
 	'platform.joinUS.miner.cloud.table.title1': string
 	'platform.joinUS.miner.cloud.table.title2': string
@@ -353,7 +356,6 @@ export type Messages = {
 	'platform.joinUS.miner.cloud.table.item5': string
 	'platform.joinUS.miner.cloud.table.item5-1': string
 	'platform.joinUS.miner.cloud.table.item6': string
-
 
     'platform.joinUS.joinMiner.button': string
 
@@ -386,8 +388,10 @@ export type Messages = {
     'platform.miner.register.boost': string
     'platform.miner.register.boost.detail': string
 
+
 	'platform.conet.cotp.Symbol': string
 	'platform.conet.cotp.name': string
+
     'platform.miner.register.MinerAni.reward': string
     'platform.miner.register.MinerAni.pause': string
     'platform.miner.register.MinerAni.resume': string
@@ -397,7 +401,6 @@ export type Messages = {
     'platform.miner.register.previouslyClaimed': string
     'platform.miner.register.MinerAni.stop': string
     'platform.miner.register.referrals': string
-
 	'platform.miner.community.title': string
 	'platform.miner.community.liveness.title': string
 	'platform.miner.community.liveness.detail': string
@@ -405,8 +408,6 @@ export type Messages = {
 	'platform.miner.community.liveness.sameMinerError': string
 
 	'platform.miner.community.referral.detail': string
-
-
     
 }
 export type MessagesByLocale = Record<Locale, Messages>

@@ -1,11 +1,14 @@
 
 import { styled } from '@mui/material/styles'
 import { useIntl } from "react-intl"
+
 import {Grid, CircularProgress, styled as materialStyled, TableContainer, Table, TableHead, TableRow, TableCell, TableBody} from '@mui/material'
+
 
 import styledCom from "styled-components"
 import Paper from '@mui/material/Paper'
 import Box from '@mui/material/Box'
+
 import CloudQueueIcon from '@mui/icons-material/CloudQueue'
 import Slide from '@mui/material/Slide'
 import Typography from '@mui/material/Typography'
@@ -13,10 +16,12 @@ import useAppState from "../../../../store/appState/useAppState"
 import miner2 from '../../../../assets/miner/FancyNyan.webp'
 import minerPause from '../../../../assets/miner/FancyNyanPause.png'
 import {Stack, Link, IconButton, SvgIcon} from '@mui/material'
+
 import Fab from '@mui/material/Fab'
 import CallMissedOutgoingIcon from '@mui/icons-material/CallMissedOutgoing'
 import DriveFolderUploadIcon from '@mui/icons-material/DriveFolderUpload'
 import DnsIcon from '@mui/icons-material/Dns'
+
 import React, {useState, useEffect} from "react"
 import {getCONETBalance, startLiveness, stopLiveness} from '../../../../API/index'
 import {logger} from '../../logger'
@@ -33,6 +38,7 @@ const StyleDiv = styledCom.div`
 `
 
 const cntp_address = '0x0f43685B2cB08b9FB8Ca1D981fF078C22Fec84c5'
+
 const BoostImg = styledCom.img`
     width: 7rem;
 `
@@ -40,6 +46,7 @@ const BoostImg = styledCom.img`
 const ItemStyle = styled(Paper)(() => ({
     textAlign: 'center',
     borderRadius: '1rem',
+
     padding: '0.5rem',
 	height: '4rem'
 }))
@@ -52,13 +59,13 @@ const ItemStyle3 = styled(Paper)(() => ({
 }))
 
 
-
 const ItemStyle2 = styled(Paper)(() => ({
     textAlign: 'center',
     borderRadius: '1rem',
     padding: '1rem',
     color: grey[500]
 }))
+
 
 const CloudNode = ( check: boolean, setcheck: React.Dispatch<React.SetStateAction<boolean>>) => {
     const intl = useIntl()
@@ -171,6 +178,7 @@ const CloudNode = ( check: boolean, setcheck: React.Dispatch<React.SetStateActio
 }
 
 const Bandwidth = ( check: boolean, setcheck: React.Dispatch<React.SetStateAction<boolean>>) => {
+
     const intl = useIntl()
     
     return (
@@ -199,6 +207,7 @@ const Bandwidth = ( check: boolean, setcheck: React.Dispatch<React.SetStateActio
                     variant="outlined" size="large"
                     disabled
                     sx={{fontFamily:'inherit'}}>
+
                         { intl.formatMessage({id: 'platform.joinUS.forDeveloper.button'})}
                 </Button>
             </ItemStyle2>
@@ -207,7 +216,9 @@ const Bandwidth = ( check: boolean, setcheck: React.Dispatch<React.SetStateActio
     )
 }
 
+
 const SaaS = (check: boolean,setcheck: React.Dispatch<React.SetStateAction<boolean>>) => {
+
     const intl = useIntl()
     return (
         <Grid item>
@@ -232,9 +243,11 @@ const SaaS = (check: boolean,setcheck: React.Dispatch<React.SetStateAction<boole
                     
                 </Typography>
                 <Button
+
                     variant="outlined" size="large"
                     disabled
                     sx={{fontFamily:'inherit' }}>
+
                         { intl.formatMessage({id: 'platform.joinUS.forDeveloper.button'})}
                 </Button>
             </ItemStyle2>
@@ -243,7 +256,9 @@ const SaaS = (check: boolean,setcheck: React.Dispatch<React.SetStateAction<boole
     )
 }
 
+
 const Storage = (check: boolean,setcheck: React.Dispatch<React.SetStateAction<boolean>>) => {
+
     const intl = useIntl()
 
     return (
@@ -265,6 +280,7 @@ const Storage = (check: boolean,setcheck: React.Dispatch<React.SetStateAction<bo
                 <Typography variant="h5" sx={{ fontWeight: '900', textAlign:'center', color: grey[500]  }}>
                     {intl.formatMessage({id:'platform.joinUS.miner.storage'})}
                 </Typography>
+
                 <Typography variant="body1" sx={{ textAlign:'center', color: grey[500]}}>
                     {intl.formatMessage({id:'platform.joinUS.miner.storageDetail'})}
                 </Typography>
@@ -272,6 +288,7 @@ const Storage = (check: boolean,setcheck: React.Dispatch<React.SetStateAction<bo
                     variant="outlined" 
                     disabled
                     sx={{ fontFamily:'inherit' }}>
+
                         { intl.formatMessage({id: 'platform.joinUS.forDeveloper.button'})}
                 </Button>
             </ItemStyle2>
@@ -283,8 +300,10 @@ const Storage = (check: boolean,setcheck: React.Dispatch<React.SetStateAction<bo
 const Boost = (CONET_balance: number, setBoost: React.Dispatch<React.SetStateAction<boolean>>) => {
     const intl = useIntl()
     return (
+
         <Grid item >
             <Box sx={{paddingTop: '4rem'}}>
+
                 
                 <Paper sx={{ borderRadius: '1rem'}}>
                     
@@ -300,6 +319,7 @@ const Boost = (CONET_balance: number, setBoost: React.Dispatch<React.SetStateAct
                                 {intl.formatMessage({id: 'platform.miner.register.boost.detail'})}
                             </Typography>
                             <Button
+
                                 variant="outlined"
                                 disabled
                                 sx={{fontFamily:'inherit', margin: '2rem' }}>
@@ -345,6 +365,7 @@ const CustomTabPanel = (props: TabPanelProps) => {
         </div>
     )
 }
+
 
 const currentProfile = () => {
 	const workerService = getWorkerService()
@@ -535,6 +556,7 @@ const Community = (CNTP: string, setCNTP:(v: string) => void, setTodayCNTP:(v: s
 const NodeProvider = () => {
     const [value, setValue] = React.useState(0)
     
+
     const [check1, setcheck1] = useState(false)
     const [check2, setcheck2] = useState(false)
     const [check3, setcheck3] = useState(false)
@@ -570,6 +592,7 @@ const NodeProvider = () => {
                         variant="scrollable"
                         scrollButtons
                         allowScrollButtonsMobile>
+
 						<Tab label={intl.formatMessage({id: 'platform.joinUS.miner.cloudTitle'})} {...a11yProps(0)} />
                         <Tab label={intl.formatMessage({id: 'platform.joinUS.miner.Bandwidth'})} {...a11yProps(1)} />
                         <Tab label={intl.formatMessage({id: 'platform.joinUS.miner.SaaS'})} {...a11yProps(2)} />
@@ -585,12 +608,15 @@ const NodeProvider = () => {
                 <CustomTabPanel value={value} index={1}>
                     <Slide direction={animei} in={value===1} mountOnEnter unmountOnExit>
                         {Bandwidth(check1,setcheck1)}
+
                     </Slide>
                     
                 </CustomTabPanel>
                 <CustomTabPanel value={value} index={2}>
                     <Slide direction={animei} in={value===2} mountOnEnter unmountOnExit>
+
                         {SaaS(check2, setcheck2)}
+
                     </Slide>
                     
                 </CustomTabPanel>
@@ -601,6 +627,7 @@ const NodeProvider = () => {
                     
                 </CustomTabPanel>
                 
+
             </Grid>
         </Grid>
     )
@@ -768,6 +795,7 @@ const DashBoardpanel = (cntp: string, todayCNTP: string) => {
 const Miner = () => {
     const {
         locale,
+
     } = useAppState()
 
     const [minerReward, setMinerReward] = useState(0)

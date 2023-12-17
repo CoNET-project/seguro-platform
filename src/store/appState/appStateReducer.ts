@@ -32,9 +32,11 @@ import {
     setShowDePINing,
     setPendingRewards,
     setIsProxyStart,
+
     setProxyUploadSpeed,
 	setCurrentProfileCONET,
 	setCurrentProfileCNTP
+
 
 } from './appStateActions'
 import {Theme} from '../../theme/types'
@@ -170,8 +172,10 @@ type AppStateReducerState = {
     showDePINing: boolean
     pendingRewards: number
     proxyUploadSpeed: number
+
 	currentProfileCONET: string
 	currentProfileCNTP: string
+
 }
 
 const initialState: AppStateReducerState = {
@@ -202,13 +206,16 @@ const initialState: AppStateReducerState = {
     localDaemon: false,
 	showDePINing: false,
     pendingRewards: 0,
+
     proxyUploadSpeed: 0,
 	currentProfileCONET: '0',
 	currentProfileCNTP: '0'
+
 }
 
 const appStateReducer = createReducer(initialState, builder => {
     return builder
+
 
 		.addCase(setCurrentProfileCNTP, (state, action) => {
 			state.currentProfileCNTP = action.payload.currentProfileCNTP
@@ -217,8 +224,6 @@ const appStateReducer = createReducer(initialState, builder => {
 		.addCase(setCurrentProfileCONET, (state, action) => {
 			state.currentProfileCONET = action.payload.currentProfileCONET
 		})
-
-
         .addCase(setShowDePINing, (state, action) => {
             state.showDePINing = action.payload.showDePINing
         })

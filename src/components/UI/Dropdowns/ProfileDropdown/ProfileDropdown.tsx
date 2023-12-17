@@ -135,6 +135,7 @@ const ProfileDropdown = ({closeDropdown}: ProfileDropdownProps) => {
 	const [receiveVal, setReceiveVal] = useState('')
 	const [showHistoryDetail, setShowHistoryDetail] = useState<CryptoAssetHistory|null>(null)
 	const [conet_si_open, setConet_si_open] = useState(false)
+
 	const [showAssetBalance_balance, setshowAssetBalance_balanc] = useState('')
 	const [showCoNET_SI_setup_Badge, setShowCoNET_SI_setup_Badge] = useState(0)
 	const [showPage, setShowPage] = useState(false)

@@ -133,10 +133,12 @@ export const unlockPasscode = ({passcode, progress}: PasscodeFunctionParams): Pr
                     resolve(status)
                     store.dispatch(setIsUnlocked(true))
                     store.dispatch(setHasContainer(true))
+
 					const profile = workerService.data.profiles[0]
 					store.dispatch(setActiveProfile(profile))
 					store.dispatch(setCurrentProfileCONET(profile.tokens.conet.balance))
 					store.dispatch(setCurrentProfileCNTP(profile.tokens.cntp.balance))
+
                     break
                 case 'FAILURE':
                     resolve(status)

@@ -2,6 +2,7 @@
 import {v4} from 'uuid'
 import {logger} from '../components/App/logger'
 import useAppState from "../store/appState/useAppState"
+
 import store from '../store/store'
 
 type WorkerCommandErrorType = 'NOT_READY'|'INVALID_DATA'|
@@ -184,6 +185,7 @@ export const testLocalServer = async () => {
     return null
 }
 
+
 const postMessage = (cmd: WorkerCommand, close: boolean,  resolve: any, Callback?:(err: string, data: string[]) => void) => {
     
     const channel = new BroadcastChannel(channelWrokerListenName)
@@ -202,6 +204,7 @@ const postMessage = (cmd: WorkerCommand, close: boolean,  resolve: any, Callback
             //  'searchPage.tsx', 'checkLinkedUrl ifram is NULL' 
             return logger ('class CONET_Platfrom_API', `listeningChannel JSON.parse(data) Error`)
         }
+
 		if (close) {
 			listenChannel.close()
 		}
@@ -223,7 +226,6 @@ const postMessage = (cmd: WorkerCommand, close: boolean,  resolve: any, Callback
 			return Callback('', cmd.data)
 		}
 		return console.log (`postMessage Callback && resolve all null`, cmd.data)
-        
     }
     
     listenChannel.addEventListener('message', kk)
@@ -249,6 +251,7 @@ export const getCONETBalance: () => Promise < StartWorkerResolveForAPI > = () =>
             uuid: v4()
         }
         return postMessage (cmd, true, resolve)
+
     })
 }
 
@@ -260,6 +263,7 @@ export const setRegion: (region: regionType) => Promise < StartWorkerResolveForA
             data: [region]
         }
         return postMessage (cmd, true, resolve)
+
     })
 }
 
@@ -281,6 +285,7 @@ export const getRegiestNodes : () => Promise < StartWorkerResolveForAPI > = () =
             uuid: v4(),
             data: []
         }
+
         return postMessage (cmd, true, resolve)
     })
 }
@@ -293,7 +298,9 @@ export const createPasscode : (passcord: string, local: string) => Promise < Sta
             uuid: v4(),
             data: [passcord, local]
         }
+
         return postMessage (cmd, true, resolve)
+
     })
 }
 
@@ -304,7 +311,9 @@ export const getIPaddress: () => Promise < StartWorkerResolveForAPI > = () => {
             uuid: v4(),
             data: []
         }
+
         return postMessage (cmd, true, resolve)
+
 	})
 }
 

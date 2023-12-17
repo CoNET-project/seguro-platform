@@ -35,6 +35,7 @@ const regions: regionType = {
     fr: false
 }
 
+
 const ChromeImg = styled.img`
 	width: 50%;
 `
@@ -42,7 +43,6 @@ const ChromeImg = styled.img`
 const IOSImg = styled.img`
 	width: 100%;
 `
-
 
 const OneLineText = styled.span`
 `
@@ -584,6 +584,8 @@ const LaunchPage = () => {
 
     const {
         locale,
+
+
 		setlocalDaemon
     } = useAppState()
 
@@ -591,6 +593,7 @@ const LaunchPage = () => {
 
     useEffect(() => {
 		
+
         const fetchData = async() => {
             
             const test = await testLocalServer ()
@@ -604,6 +607,7 @@ const LaunchPage = () => {
 		let active = true
         fetchData()
         return () => { active = false }
+
 
     }, [])
     // 
@@ -632,7 +636,9 @@ const LaunchPage = () => {
                         { intl.formatMessage({id:'platform.proxy.FeatureArea5.moreDetail'})}
                     </Typography>
                 </Link>
+
 				<Link target="_blank" href={'https://github.com/CoNET-project/seguro-platform/issues'}>
+
                     <Typography variant="subtitle1" sx={{ color: '#2e7d32'}}>
                         { intl.formatMessage({id:'platform.proxy.issueReport'})}
                     </Typography>
