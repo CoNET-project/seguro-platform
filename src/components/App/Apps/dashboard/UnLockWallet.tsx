@@ -97,7 +97,9 @@ const UnLockWallet = () => {
     }
 
     return (
-        <Stack alignItems="center" justifyContent='center' sx={{width: '100%', height: '100%'}}>
+
+        <Stack alignItems="center" justifyContent='center' sx={{width: '100%', height: '100%', marginTop:'-10rem'}}>
+
             <Stack direction="column" alignItems="center" justifyContent='center'>
                 <Slide direction="right" in={true} mountOnEnter >
                     <Typography variant="h5" sx={{paddingBottom: '2rem'}}>

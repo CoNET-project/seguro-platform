@@ -289,7 +289,9 @@ const en_US: Messages = {
     'launchPage.FeatureArea.3': 'CONET’s Unique Design',
 
     'platform.home': 'CONET Platform',
-    'platform.proxy': 'The data highway bridge spanning Web2 and Web3',
+
+    'platform.proxy': 'The Data Highway Bridge Spanning Web2 and Web3',
+
     'platform.proxy-1': 'Help user visit IP address server with wallet address',
     'platform.proxy.title': 'THE FAST & PRIVACY PROXY',
     'platform.proxy.FeatureArea.title.1': 'CONET is A Ground-Up Revamp of the',
@@ -330,6 +332,9 @@ const en_US: Messages = {
 
 
     'platform.joinUS.miner.title': 'Safety-first mining design',
+
+	'platform.joinUS.miner.cloudTitle': 'Cloud nodes',
+
     'platform.joinUS.miner.detail': `CONET is a trustless, permissionless, decentralized network. maximizing the security for resource providers is the top priority of CONET network design, an independent space in the security sandbox and the miner without IP address are CONETs technical advantages that stand out among the others.`,
     'launchPage.FeatureArea9.title': 'CONET testnet is live',
     'platform.joinUS.header.title.1': 'DePIN Idle Computer Resources',
@@ -342,6 +347,19 @@ const en_US: Messages = {
     'platform.joinUS.miner.SaaSDetail': 'Get rewards by sharing your computer CPU power resources.',
     'platform.joinUS.miner.storage': 'Storage',
     'platform.joinUS.miner.storageDetail': 'Get rewards by sharing your hard disk storage resources.',
+
+	'platform.joinUS.miner.cloud.table.title1': 'Seed Node',
+	'platform.joinUS.miner.cloud.table.title2': 'Super Node',
+	'platform.joinUS.miner.cloud.table.item2': 'Ratio',
+	'platform.joinUS.miner.cloud.table.item2-seed': '6X',
+	'platform.joinUS.miner.cloud.table.item2-super': '12X',
+	'platform.joinUS.miner.cloud.table.item1': 'Pre-sale Price',
+	'platform.joinUS.miner.cloud.table.item3': 'Limited Quantity',
+	'platform.joinUS.miner.cloud.table.item4': 'Operational Continuity',
+	'platform.joinUS.miner.cloud.table.item5': 'Maintenance Fee',
+	'platform.joinUS.miner.cloud.table.item5-1': 'Free',
+	'platform.joinUS.miner.cloud.table.item6': 'Airdrop',
+
 
     'platform.joinUS.joinMiner.button': 'Join Miner Now',
 
@@ -360,12 +378,18 @@ const en_US: Messages = {
     'platform.api.daemon.mobileNotSupport': 'Currently only support with desktop computers',
     'platform.api.daemon.testButton': 'test daemon',
     'platform.api.daemon.openSource': 'CONET is Open Source',
+	'platform.api.daemon.httpsiteError': 'This APP does not support CONET cross-Web2 proxy, please click to switch APP',
+	'platform.api.daemon.switchAPP': 'Switch APP',
 
     'platform.miner.header.title': 'Welcome to CONET DePIN',
-    'platform.miner.register.title': 'Node Register',
-    'platform.miner.register.button': 'Register',
+	'platform.miner.header.title.detial': 'Why CONET needs your participation',
+	'platform.miner.header.title.smartContract': 'CNTP ERC20 Smart Contract ',
+
+    'platform.miner.register.title': 'Node Provider',
+    'platform.miner.register.button': 'Start Earning',
     'platform.miner.register.boost': 'Boost',
-    'platform.miner.register.boost.detail': '1000 $CONET with 180 days locked',
+    'platform.miner.register.boost.detail': 'Staking ? $CONET with 90 days locked',
+
 
     'platform.miner.register.MinerAni.reward': 'Rewards currently received',
     'platform.miner.register.MinerAni.pause': 'Pause',
@@ -373,9 +397,21 @@ const en_US: Messages = {
     'platform.miner.register.MinerAni.claim': 'Claim reward',
     'platform.miner.register.totalRewards': 'Lifetime Rewards',
     'platform.miner.register.pendingRewards': 'Pending Rewards',
-    'platform.miner.register.previouslyClaimed': `Today's Claimed`,
+
+    'platform.miner.register.previouslyClaimed': `Current Rewards`,
     'platform.miner.register.MinerAni.stop': 'Stop DePIN',
-    'platform.miner.register.referrals': 'Referrals'
+	'platform.conet.cotp.Symbol': 'CNTP',
+	'platform.conet.cotp.name': 'CONET Reward Point',
+    'platform.miner.register.referrals': 'Referrals',
+	'platform.miner.community.referral.detail': 'Get accelerated by referring participants',
+
+	'platform.miner.community.title': 'Incentives for Community',
+	'platform.miner.community.liveness.title': 'Liveness',
+	'platform.miner.community.liveness.detail': 'Follow and be active online anytime, anywhere to get rewards',
+	'platform.miner.community.liveness.sameIPError': 'Error! Your IP address has been occupied, please try again later.',
+	'platform.miner.community.liveness.sameMinerError': 'Error! You are running another instance, please try again later.'
+
+
 
     
 }

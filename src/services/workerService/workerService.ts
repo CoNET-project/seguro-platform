@@ -7,7 +7,10 @@ import {
     setLocale,
     setShowOverlay,
     setTheme,
-    setWorkerServiceIsInitialized
+    setWorkerServiceIsInitialized,
+	setActiveProfile,
+	setCurrentProfileCONET,
+	setCurrentProfileCNTP
 } from '../../store/appState/appStateActions'
 import { ContainerData } from "@conet.project/seguro-worker-lib/build/workerBridge"
 import logger from "../../utilities/logger/logger"
@@ -63,11 +66,11 @@ export const initializeWorkerService = async () => {
 		case container.status === 'NOT_SET':
 			store.dispatch(setHasContainer(false))
 			store.dispatch(setIsUnlocked(false))
-			break;
+			break
 		case container.status === 'LOCKED':
 			store.dispatch(setHasContainer(true))
 			store.dispatch(setIsUnlocked(false))
-			break;
+			break
 		case container.status === 'UNLOCKED':
 			store.dispatch(setHasContainer(true))
 			store.dispatch(setIsUnlocked(true))
@@ -130,6 +133,12 @@ export const unlockPasscode = ({passcode, progress}: PasscodeFunctionParams): Pr
                     resolve(status)
                     store.dispatch(setIsUnlocked(true))
                     store.dispatch(setHasContainer(true))
+
+					const profile = workerService.data.profiles[0]
+					store.dispatch(setActiveProfile(profile))
+					store.dispatch(setCurrentProfileCONET(profile.tokens.conet.balance))
+					store.dispatch(setCurrentProfileCNTP(profile.tokens.cntp.balance))
+
                     break
                 case 'FAILURE':
                     resolve(status)

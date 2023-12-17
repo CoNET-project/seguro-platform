@@ -35,8 +35,9 @@ const regions: regionType = {
     fr: false
 }
 
+
 const ChromeImg = styled.img`
-	width: 80%;
+	width: 50%;
 `
 
 const IOSImg = styled.img`
@@ -583,7 +584,8 @@ const LaunchPage = () => {
 
     const {
         locale,
-        isProxyStart,
+
+
 		setlocalDaemon
     } = useAppState()
 
@@ -591,7 +593,8 @@ const LaunchPage = () => {
 
     useEffect(() => {
 		
-        const testDeamon = async() => {
+
+        const fetchData = async() => {
             
             const test = await testLocalServer ()
 
@@ -601,9 +604,10 @@ const LaunchPage = () => {
 
         }
 
-        testDeamon().catch((ex) => {
-            console.log(`APP useEffect testDeamon error`, ex)
-        })
+		let active = true
+        fetchData()
+        return () => { active = false }
+
 
     }, [])
     // 
@@ -632,7 +636,9 @@ const LaunchPage = () => {
                         { intl.formatMessage({id:'platform.proxy.FeatureArea5.moreDetail'})}
                     </Typography>
                 </Link>
-				<Link target="_blank" href={'https://github.com/CoNET-project/CONET-Proxy/issues'}>
+
+				<Link target="_blank" href={'https://github.com/CoNET-project/seguro-platform/issues'}>
+
                     <Typography variant="subtitle1" sx={{ color: '#2e7d32'}}>
                         { intl.formatMessage({id:'platform.proxy.issueReport'})}
                     </Typography>

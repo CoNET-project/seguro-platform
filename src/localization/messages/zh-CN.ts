@@ -333,6 +333,20 @@ const zh_CN: Messages = {
     'platform.joinUS.miner.storage': '存储空间挖矿',
     'platform.joinUS.miner.storageDetail': '分享未使用硬盘空间获取奖励。',
 
+	'platform.joinUS.miner.cloudTitle': '云节点',
+	'platform.joinUS.miner.cloud.table.title1': '种子节点',
+	'platform.joinUS.miner.cloud.table.title2': '超级节点',
+	'platform.joinUS.miner.cloud.table.item1': '预售价',
+	'platform.joinUS.miner.cloud.table.item2': '挖矿速率',
+	'platform.joinUS.miner.cloud.table.item2-seed': '6X',
+	'platform.joinUS.miner.cloud.table.item2-super': '12X',
+	'platform.joinUS.miner.cloud.table.item3': '限定数量',
+	'platform.joinUS.miner.cloud.table.item4': '运行持续性',
+	'platform.joinUS.miner.cloud.table.item5': '维护费用',
+	'platform.joinUS.miner.cloud.table.item5-1': '项目组承担',
+	'platform.joinUS.miner.cloud.table.item6': '空投',
+
+
     'platform.joinUS.joinMiner.button': '加入CONET挖矿',
     'platform.joinUS.forUser.Title1': 'Web3应用程序',//'去中心化隐私增强',
     'platform.joinUS.forUser.Title2': '无需信任Web3应用程序',
@@ -350,12 +364,18 @@ const zh_CN: Messages = {
     'platform.api.daemon.testButton': '测试守护进程',
     'platform.api.daemon.openSource': 'CONET是开源代码',
 
-    'platform.miner.header.title': '欢迎您CONET DePIN参与者',
+	'platform.api.daemon.httpsiteError': '本APP不支持CONET跨Web2代理，请点击切换APP',
+	'platform.api.daemon.switchAPP': '切换 APP',
 
-    'platform.miner.register.title': '注册节点',
-    'platform.miner.register.button': '注册',
+    'platform.miner.header.title': '欢迎您CONET DePIN参与者',
+	'platform.miner.header.title.detial': '为何CONET需要您的参与',
+	'platform.miner.header.title.smartContract': 'CNTP ERC20合约',
+
+    'platform.miner.register.title': '成为节点矿工',
+    'platform.miner.register.button': '开始挖矿',
     'platform.miner.register.boost': '加码',
-    'platform.miner.register.boost.detail': '1000 $COENT 锁定期180天',
+    'platform.miner.register.boost.detail': '锁定 ? $COENT 90天',
+
 
     'platform.miner.register.MinerAni.reward': '当前获得的奖励',
     'platform.miner.register.MinerAni.pause': '暂停',
@@ -363,9 +383,20 @@ const zh_CN: Messages = {
     'platform.miner.register.MinerAni.claim': '转帐奖励到钱包',
     'platform.miner.register.totalRewards': '获得总奖励',
     'platform.miner.register.pendingRewards': '等待转帐的奖励',
-    'platform.miner.register.previouslyClaimed': '今天获得的奖励',
+
+    'platform.miner.register.previouslyClaimed': '当前奖励',
     'platform.miner.register.MinerAni.stop': '停止DePIN',
-    'platform.miner.register.referrals': '推荐'
+
+    'platform.miner.register.referrals': '推荐',
+	'platform.miner.community.referral.detail': '通过推荐参与者获得加速',
+	'platform.conet.cotp.Symbol': 'CNTP',
+	'platform.conet.cotp.name': 'CONET积分',
+
+	'platform.miner.community.title': '社區建设激勵',
+	'platform.miner.community.liveness.title': '活力',
+	'platform.miner.community.liveness.detail': '随时随地在线关注活跃即可获得奖励',
+	'platform.miner.community.liveness.sameIPError': '错误！ 您的IP地址已被占用，请稍后重试',
+	'platform.miner.community.liveness.sameMinerError': '错误！您正在运行另一个实例，请稍后再试'
 }
 
 export default zh_CN

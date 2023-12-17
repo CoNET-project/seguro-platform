@@ -26,6 +26,7 @@ import {US, CN,JP, TW } from 'country-flag-icons/react/3x2'
 import NoDaemon from '../../NoDaemon/index'
 import Proxy from '../CONET-Proxy/index'
 import Miner from '../miner/index'
+import ManageProfiles from '../../PlatformModal/ManageProfiles/ManageProfiles'    //"..//ManageProfiles/ManageProfiles"
 
 import ProfileDropdown from '../../../UI/Dropdowns/ProfileDropdown/ProfileDropdown'
 import Container from '@mui/material/Container'
@@ -91,7 +92,9 @@ type action = {
 const actions: action[] = [
     { icon: <SvgIcon component={JP} inheritViewBox/>, name: 'ja-JP' },
     { icon: <SvgIcon component={CN} inheritViewBox/>, name: 'zh-CN' },
-    { icon: <SvgIcon component={TW} inheritViewBox/>, name: 'zh-TW' },
+
+    // { icon: <SvgIcon component={TW} inheritViewBox/>, name: 'zh-TW' },
+
     { icon: <SvgIcon component={US} inheritViewBox/>, name: 'en-US' }
 ]
 
@@ -113,11 +116,11 @@ const showLocationIcon = (locale: Locale) => {
                 <SvgIcon component={CN} inheritViewBox/>
             )
         }
-        case 'zh-TW': {
-            return (
-                <SvgIcon component={TW} inheritViewBox/>
-            )
-        }
+        // case 'zh-TW': {
+        //     return (
+        //         <SvgIcon component={TW} inheritViewBox/>
+        //     )
+        // }
     }
 }
 
@@ -132,7 +135,10 @@ const DashBoard = () => {
         isInitializing,
         setShowAppStore,
         locale,
-        setLocale
+
+		isModalOpen,
+        setLocale,
+
     } = useAppState()
 
     const [menuValue, setMenuValue] = useState(1)
@@ -178,7 +184,7 @@ const DashBoard = () => {
     }
 
     const MenuSideBar = () => {
-  
+
     
         const animeCONET = () => {
             return (

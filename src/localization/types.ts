@@ -334,12 +334,28 @@ export type Messages = {
 
     'platform.joinUS.miner.title': string
     'platform.joinUS.miner.detail': string
+
+	'platform.joinUS.miner.cloudTitle': string
+
     'platform.joinUS.miner.Bandwidth': string
     'platform.joinUS.miner.BandwidthDetail': string
     'platform.joinUS.miner.SaaS': string
     'platform.joinUS.miner.SaaSDetail': string
     'platform.joinUS.miner.storage': string
     'platform.joinUS.miner.storageDetail': string
+
+
+	'platform.joinUS.miner.cloud.table.title1': string
+	'platform.joinUS.miner.cloud.table.title2': string
+	'platform.joinUS.miner.cloud.table.item1': string
+	'platform.joinUS.miner.cloud.table.item2-seed': string
+	'platform.joinUS.miner.cloud.table.item2-super': string
+	'platform.joinUS.miner.cloud.table.item2': string
+	'platform.joinUS.miner.cloud.table.item3': string
+	'platform.joinUS.miner.cloud.table.item4': string
+	'platform.joinUS.miner.cloud.table.item5': string
+	'platform.joinUS.miner.cloud.table.item5-1': string
+	'platform.joinUS.miner.cloud.table.item6': string
 
     'platform.joinUS.joinMiner.button': string
 
@@ -358,13 +374,23 @@ export type Messages = {
 	'platform.api.daemon.verLow': string
     'platform.api.daemon.mobileNotSupport': string
     'platform.api.daemon.testButton': string
+	'platform.api.daemon.switchAPP': string
     'platform.api.daemon.openSource': string
+	'platform.api.daemon.httpsiteError': string
 
     'platform.miner.header.title': string
+	'platform.miner.header.title.detial': string
+	'platform.miner.header.title.smartContract': string
     'platform.miner.register.title': string
+
+
     'platform.miner.register.button': string
     'platform.miner.register.boost': string
     'platform.miner.register.boost.detail': string
+
+
+	'platform.conet.cotp.Symbol': string
+	'platform.conet.cotp.name': string
 
     'platform.miner.register.MinerAni.reward': string
     'platform.miner.register.MinerAni.pause': string
@@ -375,7 +401,13 @@ export type Messages = {
     'platform.miner.register.previouslyClaimed': string
     'platform.miner.register.MinerAni.stop': string
     'platform.miner.register.referrals': string
+	'platform.miner.community.title': string
+	'platform.miner.community.liveness.title': string
+	'platform.miner.community.liveness.detail': string
+	'platform.miner.community.liveness.sameIPError': string
+	'platform.miner.community.liveness.sameMinerError': string
 
+	'platform.miner.community.referral.detail': string
     
 }
 export type MessagesByLocale = Record<Locale, Messages>

@@ -31,8 +31,12 @@ import {
     setShowMiner as _setShowMiner,
     setShowDePINing as _setShowDePINing,
     setPendingRewards as _setPendingRewards,
+
+	setCurrentProfileCONET as _setCurrentProfileCONET,
     setIsProxyStart as _setIsProxyStart,
-    setProxyUploadSpeed as _setProxyUploadSpeed
+    setProxyUploadSpeed as _setProxyUploadSpeed,
+	setCurrentProfileCNTP as _setCurrentProfileCNTP
+
 
 } from './appStateActions'
 
@@ -64,6 +68,27 @@ export type WindowInnerSize = {
 
 const useAppState = () => {
     const dispatch = useDispatch()
+	const currentProfileCONET = useTypedSelector(state => state.appState.currentProfileCONET)
+
+	const setCurrentProfileCONET = (conet: string ) => {
+        dispatch (_setCurrentProfileCONET(conet))
+    }
+	const currentProfileCNTP =  useTypedSelector(state => state.appState.currentProfileCNTP)
+
+	const setCurrentProfileCNTP = (cntp: string ) => {
+        dispatch (_setCurrentProfileCNTP(cntp))
+    }
+    const showDePINing =  useTypedSelector(state => state.appState.showDePINing)
+
+    const pendingRewards = useTypedSelector(state => state.appState.pendingRewards)
+
+    const setPendingRewards = (pendingRewards: number ) => {
+        dispatch (_setPendingRewards(pendingRewards))
+    }
+
+    const setShowDePINing = (showDePINing: boolean ) => {
+        dispatch (_setShowDePINing(showDePINing))
+    }
 
     const showDePINing =  useTypedSelector(state => state.appState.showDePINing)
 
@@ -438,7 +463,13 @@ const useAppState = () => {
         setIsProxyStart,
         isProxyStart,
         proxyUploadSpeed,
-        setProxyUploadSpeed
+
+        setProxyUploadSpeed,
+		currentProfileCONET,
+		setCurrentProfileCONET,
+		currentProfileCNTP,
+		setCurrentProfileCNTP
+
     }
 }
 
