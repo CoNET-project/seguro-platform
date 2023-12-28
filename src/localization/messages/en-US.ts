@@ -184,6 +184,8 @@ const en_US: Messages = {
 	'platform.ProfileDropdown.history.sender': 'Sender Address',
 	'platform.ProfileDropdown.history.CoNETCash.mint': 'Mint',
 
+	'platform.ProfileDropdown.faucet.lowBalance': 'Your CONET balance is insufficient and the transfer cannot be performed, please faucet first.',
+
 	'platform.ProfileDropdown.send.total': 'Total',
 	'platform.ProfileDropdown.faucet.success': 'Request send success!',
 	'platform.ProfileDropdown.faucet.error': 'CONET did not accept your request. Every once in a day.',
@@ -359,6 +361,10 @@ const en_US: Messages = {
 	'platform.joinUS.miner.cloud.table.item5': 'Maintenance Fee',
 	'platform.joinUS.miner.cloud.table.item5-1': 'Free',
 	'platform.joinUS.miner.cloud.table.item6': 'Airdrop',
+	'platform.joinUS.miner.cloud.table.item7': 'Limited edition CONET Power Card WiFi',
+	'platform.joinUS.miner.cloud.table.item7-2': '1 set',
+	'platform.joinUS.miner.cloud.table.item8': 'Special Offers',
+	'platform.joinUS.miner.cloud.table.item8-2': 'Participate in Mining Machine Profit Sharing;Exclusive Airdrop Rewards from the Blast L2.',
 
 
     'platform.joinUS.joinMiner.button': 'Join Miner Now',
@@ -381,7 +387,7 @@ const en_US: Messages = {
 	'platform.api.daemon.httpsiteError': 'This APP does not support CONET cross-Web2 proxy, please click to switch APP',
 	'platform.api.daemon.switchAPP': 'Switch APP',
 
-    'platform.miner.header.title': 'Welcome to CONET DePIN',
+    'platform.miner.header.title': 'Welcome to CONET',
 	'platform.miner.header.title.detial': 'Why CONET needs your participation',
 	'platform.miner.header.title.smartContract': 'CNTP ERC20 Smart Contract ',
 
@@ -403,14 +409,33 @@ const en_US: Messages = {
 	'platform.conet.cotp.Symbol': 'CNTP',
 	'platform.conet.cotp.name': 'CONET Reward Point',
     'platform.miner.register.referrals': 'Referrals',
+	'platform.miner.register.referralsList': 'Referrals List',
+	'platform.miner.register.referralsEmpty': 'No Data',
 	'platform.miner.community.referral.detail': 'Get accelerated by referring participants',
+	'platform.miner.community.referral.detail1': `Direct Referrals`,
+	'platform.miner.community.referral.detail1-1': `Direct Referrals: If someone joins mining using your Referrals Link, You will gets a 20% bonus of the referred person's earnings continuously.`,
+	'platform.miner.community.referral.detail2': `Secondary Referrals`,
+	'platform.miner.community.referral.detail2-1': `When the referred person brings in others (secondary referrals), both the referred person and the secondary referrer receive a 20% bonus on the secondary referral's earnings. You also gets a 10% bonus on the secondary referrer's earnings. This continues indefinitely, benefiting you as long as the secondary referrer earns additional points.`,
+	'platform.miner.community.referral.link': 'Your Referral Link',
 
 	'platform.miner.community.title': 'Incentives for Community',
 	'platform.miner.community.liveness.title': 'Liveness',
 	'platform.miner.community.liveness.detail': 'Follow and be active online anytime, anywhere to get rewards',
 	'platform.miner.community.liveness.sameIPError': 'Error! Your IP address has been occupied, please try again later.',
-	'platform.miner.community.liveness.sameMinerError': 'Error! You are running another instance, please try again later.'
+	'platform.miner.community.liveness.sameMinerError': 'Error! You are running another instance, please try again later.',
+	'platform.miner.community.liveness.referrer': 'Please enter your referrer wallet address',
+	'platform.miner.community.liveness.yourReferrer': 'Your referrer',
+	'platform.miner.community.liveness.registerReferrer': 'Register Referrer',
 
+	'platform.miner.nwteork.Slashing': 'CONET Sebolia Network is Upgrading. Please waiting for finish.',
+
+	'platform.conet.explorer.title': 'CONET Explorer',
+	'platform.conet.explorer.lastBlock': 'Latest Block / Total Address',
+	'platform.conet.explorer.nodes': 'CONET Nodes / Running Nodes',
+	'platform.conet.explorer.CNTP': 'CNTP Total Supply',
+	'platform.conet.explorer.CNTP.mint': 'Mined CNTP',
+	'platform.conet.explorer.CNTP.balance': 'Remainder CNTP',
+	'platform.conet.explorer.CNTP.relayNodes': 'CONET Network Relay Nodes'
 
 
     

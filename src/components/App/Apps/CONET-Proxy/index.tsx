@@ -259,12 +259,6 @@ const IOS = () => {
 	)
 }
 
-const ItemStyle2 = styled(Paper)(() => ({
-    textAlign: 'center',
-    borderRadius: '1rem',
-    padding: '1rem',
-    color: colors.grey[500]
-}))
 
 const FeatureArea8ItemNew = () => {
     const {

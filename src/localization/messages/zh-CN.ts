@@ -180,6 +180,7 @@ const zh_CN: Messages = {
 	'platform.ProfileDropdown.send.estimatedGas': '预估转账Gas费',
 	'platform.ProfileDropdown.send.total': '合计',
 	'platform.ProfileDropdown.faucet.limited': '24小时内仅限1次请求。',
+	'platform.ProfileDropdown.faucet.lowBalance': 'CONET余额不足，无法支付转账GAS，请尝试水龙头获得CONET',
 	'platform.ProfileDropdown.faucet.success': '已成功发送请求！',
 	'platform.ProfileDropdown.faucet.error': '已拒绝您的请求，每天只能请求一次',
 	'platform.ProfileDropdown.send.error': '网络错误，请稍后重试',
@@ -345,7 +346,10 @@ const zh_CN: Messages = {
 	'platform.joinUS.miner.cloud.table.item5': '维护费用',
 	'platform.joinUS.miner.cloud.table.item5-1': '项目组承担',
 	'platform.joinUS.miner.cloud.table.item6': '空投',
-
+	'platform.joinUS.miner.cloud.table.item7': '限量版超炫迷你WiFi矿机',
+	'platform.joinUS.miner.cloud.table.item7-2': '1台',
+	'platform.joinUS.miner.cloud.table.item8': '独特福利',
+	'platform.joinUS.miner.cloud.table.item8-2': 'Blast空投，矿机利润红利',
 
     'platform.joinUS.joinMiner.button': '加入CONET挖矿',
     'platform.joinUS.forUser.Title1': 'Web3应用程序',//'去中心化隐私增强',
@@ -367,7 +371,7 @@ const zh_CN: Messages = {
 	'platform.api.daemon.httpsiteError': '本APP不支持CONET跨Web2代理，请点击切换APP',
 	'platform.api.daemon.switchAPP': '切换 APP',
 
-    'platform.miner.header.title': '欢迎您CONET DePIN参与者',
+    'platform.miner.header.title': '欢迎您CONET参与者',
 	'platform.miner.header.title.detial': '为何CONET需要您的参与',
 	'platform.miner.header.title.smartContract': 'CNTP ERC20合约',
 
@@ -388,15 +392,36 @@ const zh_CN: Messages = {
     'platform.miner.register.MinerAni.stop': '停止DePIN',
 
     'platform.miner.register.referrals': '推荐',
+	'platform.miner.register.referralsList': '推荐一览表',
+	'platform.miner.register.referralsEmpty': '您暂无推荐',
 	'platform.miner.community.referral.detail': '通过推荐参与者获得加速',
 	'platform.conet.cotp.Symbol': 'CNTP',
 	'platform.conet.cotp.name': 'CONET积分',
+	'platform.miner.community.referral.detail1': '直接推荐',
+	'platform.miner.community.referral.detail1-1': '如果有人使用您的连结参与挖矿，您将获得他赚取积分的20%额外奖励（这部分是额外奖励，不影响您的收入）这是持续进行的，意味着只要您推荐的用户，不断赚取积分，您的奖金就会持续成长。',
+	'platform.miner.community.referral.detail2': '间接推荐',
+	'platform.miner.community.referral.detail2-1': '当被推荐人推荐另外其他人（次要推荐人），您也会获得次要推荐人所获得奖励的10%。这种情况会无限期地持续下去，只要次要推荐人获得额外积分，同时也将让使您受益。',
+	'platform.miner.community.referral.link': '您的推荐专用链接',
 
 	'platform.miner.community.title': '社區建设激勵',
 	'platform.miner.community.liveness.title': '活力',
 	'platform.miner.community.liveness.detail': '随时随地在线关注活跃即可获得奖励',
 	'platform.miner.community.liveness.sameIPError': '错误！ 您的IP地址已被占用，请稍后重试',
-	'platform.miner.community.liveness.sameMinerError': '错误！您正在运行另一个实例，请稍后再试'
+	'platform.miner.community.liveness.sameMinerError': '错误！您正在运行另一个实例，请稍后再试',
+	'platform.miner.nwteork.Slashing': 'CONET主鏈正執行升級，請等待完成！',
+	'platform.miner.community.liveness.yourReferrer': '您的推荐人',
+	'platform.miner.community.liveness.referrer': '请输入您的推荐人钱包地址',
+	'platform.miner.community.liveness.registerReferrer': '注册推荐人',
+
+	'platform.conet.explorer.title': 'CONET 网络探索',
+	'platform.conet.explorer.lastBlock': '區塊高度 / 总账户数',
+	'platform.conet.explorer.nodes': 'CONET节点数 / 正在运行数',
+	'platform.conet.explorer.CNTP': 'CNTP发行总量',
+	'platform.conet.explorer.CNTP.mint': '已产矿CNTP',
+	'platform.conet.explorer.CNTP.balance': '剩余CNTP',
+	'platform.conet.explorer.CNTP.relayNodes': 'CONET网络中继节点'
+
+	
 }
 
 export default zh_CN

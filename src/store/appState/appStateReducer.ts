@@ -32,13 +32,15 @@ import {
     setShowDePINing,
     setPendingRewards,
     setIsProxyStart,
-
+	setIslivenessRunning,
     setProxyUploadSpeed,
 	setCurrentProfileCONET,
-	setCurrentProfileCNTP
-
-
+	setCurrentProfileCNTP,
+	setIsNodeExplorerOpen,
+	setDAPPOpen
 } from './appStateActions'
+
+import type {dAPPOpen} from './appStateActions'
 import {Theme} from '../../theme/types'
 import {Locale} from '../../localization/types'
 import {getPreferredLocale} from '../../localization/localization'
@@ -166,16 +168,17 @@ type AppStateReducerState = {
 	showAppStore: boolean
     showBlockScan: boolean
     isProxyStart: boolean
+	isNodeExplorerOpen: boolean
     showJoinUS: boolean
     localDaemon: boolean
     showMiner: boolean
     showDePINing: boolean
     pendingRewards: number
     proxyUploadSpeed: number
-
+	islivenessRunning: boolean
 	currentProfileCONET: string
 	currentProfileCNTP: string
-
+	dAPPOpen: dAPPOpen
 }
 
 const initialState: AppStateReducerState = {
@@ -206,16 +209,28 @@ const initialState: AppStateReducerState = {
     localDaemon: false,
 	showDePINing: false,
     pendingRewards: 0,
-
+	islivenessRunning: false,
     proxyUploadSpeed: 0,
 	currentProfileCONET: '0',
-	currentProfileCNTP: '0'
-
+	currentProfileCNTP: '0',
+	isNodeExplorerOpen: false,
+	dAPPOpen: 'miner'
 }
 
 const appStateReducer = createReducer(initialState, builder => {
     return builder
 
+		.addCase(setIsNodeExplorerOpen, (state, action) => {
+			state.isNodeExplorerOpen = action.payload.isNodeExplorerOpen
+		})
+
+		.addCase(setDAPPOpen, (state, action) => {
+			state.dAPPOpen = action.payload.dAPPOpen
+		})
+
+		.addCase(setIslivenessRunning, (state, action) => {
+			state.islivenessRunning = action.payload.islivenessRunning
+		})
 
 		.addCase(setCurrentProfileCNTP, (state, action) => {
 			state.currentProfileCNTP = action.payload.currentProfileCNTP
