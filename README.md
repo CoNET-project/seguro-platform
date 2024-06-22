@@ -1,3 +1,15 @@
+
+### This is the beginning of CoNET project
+### now migrate to
+## The new era of CoNET
+
+### New Link here:
+[https://bitbucket.org/matheus_moraes_pinheiro/conet](https://bitbucket.org/matheus_moraes_pinheiro/conet)
+
+## Homepage
+
+https://conet.network
+
 # `CONET-Proxy` README
 
 The CONET Platform Application.
