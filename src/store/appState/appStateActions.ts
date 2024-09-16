@@ -13,6 +13,53 @@ import {
     ProfileData
 } from "./appStateReducer"
 
+export type dAPPOpen = 'miner'|'proxy'|'nodes'
+
+export const setIsUnlocked = createAction(
+    'appState/isUnlocked',
+    (isUnlocked: boolean) => {
+        return {
+            payload: {
+                isUnlocked
+            }
+        }
+    }
+)
+
+export const setDAPPOpen = createAction(
+    'appState/dAPPOpen',
+    (dAPPOpen: dAPPOpen) => {
+        return {
+            payload: {
+                dAPPOpen
+            }
+        }
+    }
+)
+
+export const setIsNodeExplorerOpen = createAction(
+    'appState/isNodeExplorerOpen',
+    (isNodeExplorerOpen: boolean) => {
+        return {
+            payload: {
+                isNodeExplorerOpen
+            }
+        }
+    }
+)
+
+
+export const setIslivenessRunning = createAction(
+    'appState/islivenessRunning',
+    (islivenessRunning: boolean) => {
+        return {
+            payload: {
+                islivenessRunning
+            }
+        }
+    }
+)
+
 
 export const setCurrentProfileCNTP = createAction(
     'appState/currentProfileCNTP',
@@ -126,16 +173,6 @@ export const setIsPlatformLoading = createAction(
     }
 )
 
-export const setIsUnlocked = createAction(
-    'appState/isUnlocked',
-    (isUnlocked: boolean) => {
-        return {
-            payload: {
-                isUnlocked
-            }
-        }
-    }
-)
 
 export const setShowGuide = createAction(
     'appState/showGuide',

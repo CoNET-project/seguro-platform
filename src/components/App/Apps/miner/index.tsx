@@ -2,40 +2,82 @@
 import { styled } from '@mui/material/styles'
 import { useIntl } from "react-intl"
 
-import {Grid, CircularProgress, styled as materialStyled, TableContainer, Table, TableHead, TableRow, TableCell, TableBody} from '@mui/material'
-
-
+import {Grid, CircularProgress, TextField, styled as materialStyled, TableContainer, Table, TableHead, TableRow, TableCell, TableBody, IconButton} from '@mui/material'
 import styledCom from "styled-components"
 import Paper from '@mui/material/Paper'
 import Box from '@mui/material/Box'
 
 import CloudQueueIcon from '@mui/icons-material/CloudQueue'
+import KeyboardArrowDown from '@mui/icons-material/KeyboardArrowDown'
+import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight'
 import Slide from '@mui/material/Slide'
 import Typography from '@mui/material/Typography'
 import useAppState from "../../../../store/appState/useAppState"
 import miner2 from '../../../../assets/miner/FancyNyan.webp'
 import minerPause from '../../../../assets/miner/FancyNyanPause.png'
-import {Stack, Link, IconButton, SvgIcon} from '@mui/material'
+import {Stack, Link, SvgIcon} from '@mui/material'
 
 import Fab from '@mui/material/Fab'
 import CallMissedOutgoingIcon from '@mui/icons-material/CallMissedOutgoing'
 import DriveFolderUploadIcon from '@mui/icons-material/DriveFolderUpload'
 import DnsIcon from '@mui/icons-material/Dns'
-
+import {CopyToClipboard} from "../../../../utilities/utilities"
 import React, {useState, useEffect} from "react"
-import {getCONETBalance, startLiveness, stopLiveness} from '../../../../API/index'
+import {getCONETBalance, startLiveness, stopLiveness, isLivenessRunning, initOneTimeListenState, registerReferrer, referrerList} from '../../../../API/index'
 import {logger} from '../../logger'
 import {grey, lightGreen, blueGrey, green, red} from '@mui/material/colors'
 import boostImg from './assets/boost.gif'
 import { useTheme } from '@mui/material/styles'
 import {Tabs, Tab, Button, Divider} from '@mui/material-next'
 import {getWorkerService} from '../../../../services/workerService/workerService'
-
+import ContentCopyIcon from '@mui/icons-material/ContentCopy'
+import MuiAccordion, { AccordionProps } from '@mui/material/Accordion'
+import MuiAccordionDetails from '@mui/material/AccordionDetails'
+import MuiAccordionSummary, {
+	AccordionSummaryProps,
+} from '@mui/material/AccordionSummary'
+import ArrowForwardIosSharpIcon from '@mui/icons-material/ArrowForwardIosSharp'
 import AD from './AD-1'
 
 const StyleDiv = styledCom.div`
-
 `
+const Accordion = styled((props: AccordionProps) => (
+	<MuiAccordion disableGutters elevation={0} square {...props} />
+  ))(({ theme }) => ({
+	border: `0px solid ${theme.palette.divider}`,
+	'&:not(:last-child)': {
+	  	borderBottom: 0,
+	},
+	'&::before': {
+	  	display: 'none',
+	},
+}))
+
+const AccordionSummary = styled((props: AccordionSummaryProps) => (
+	<MuiAccordionSummary
+		
+	  	expandIcon={<ArrowForwardIosSharpIcon sx={{ fontSize: '0.9rem' }} />}
+	  	{...props}
+	/>
+  ))(({ theme }) => ({
+	backgroundColor:
+	  theme.palette.mode === 'dark'
+		? 'rgba(255, 255, 255, .05)'
+		: 'rgba(0, 0, 0, .03)',
+	flexDirection: 'row-reverse',
+	'& .MuiAccordionSummary-expandIconWrapper.Mui-expanded': {
+	  	transform: 'rotate(90deg)',
+	},
+	'& .MuiAccordionSummary-content': {
+		
+	  	marginLeft: theme.spacing(1),
+	},
+}))
+const AccordionDetails = styled(MuiAccordionDetails)(({ theme }) => ({
+	padding: theme.spacing(1),
+	borderTop: '1px solid rgba(0, 0, 0, .125)',
+}))
+
 
 const cntp_address = '0x0f43685B2cB08b9FB8Ca1D981fF078C22Fec84c5'
 
@@ -69,7 +111,11 @@ const ItemStyle2 = styled(Paper)(() => ({
 
 const CloudNode = ( check: boolean, setcheck: React.Dispatch<React.SetStateAction<boolean>>) => {
     const intl = useIntl()
-    
+	const {
+        locale
+    } = useAppState()
+
+
     return (
         
         <Grid item>
@@ -165,6 +211,34 @@ const CloudNode = ( check: boolean, setcheck: React.Dispatch<React.SetStateActio
 								</TableCell>
 								<TableCell align="center">
 									50,000 $CONET 
+								</TableCell>
+							</TableRow>
+							<TableRow>
+								<TableCell>
+									<Link target="_blank" sx={{color: green[700]}}
+										href={(locale==='zh-CN' || locale ==='zh-TW') ? 
+											'https://doc.conet.network/conet-power-card': 
+											'https://doceng.conet.network/conet-power-card'}>
+										{ intl.formatMessage({id: 'platform.joinUS.miner.cloud.table.item7'})}
+									</Link>
+									
+								</TableCell>
+								<TableCell align="center">
+									-
+								</TableCell>
+								<TableCell align="center">
+									{ intl.formatMessage({id: 'platform.joinUS.miner.cloud.table.item7-2'})}
+								</TableCell>
+							</TableRow>
+							<TableRow>
+								<TableCell>
+									{ intl.formatMessage({id: 'platform.joinUS.miner.cloud.table.item8'})}
+								</TableCell>
+								<TableCell align="center">
+									-
+								</TableCell>
+								<TableCell align="center">
+									{ intl.formatMessage({id: 'platform.joinUS.miner.cloud.table.item8-2'})}
 								</TableCell>
 							</TableRow>
 						</TableBody>
@@ -287,9 +361,10 @@ const Storage = (check: boolean,setcheck: React.Dispatch<React.SetStateAction<bo
                 <Button
                     variant="outlined" 
                     disabled
-                    sx={{ fontFamily:'inherit' }}>
+                    sx={{ fontFamily:'inherit' }}
+				>
 
-                        { intl.formatMessage({id: 'platform.joinUS.forDeveloper.button'})}
+                    { intl.formatMessage({id: 'platform.joinUS.forDeveloper.button'})}
                 </Button>
             </ItemStyle2>
 
@@ -366,7 +441,6 @@ const CustomTabPanel = (props: TabPanelProps) => {
     )
 }
 
-
 const currentProfile = () => {
 	const workerService = getWorkerService()
 	if (workerService.data.passcode.status === 'LOCKED') {
@@ -379,10 +453,10 @@ const currentProfile = () => {
 	return workerService.data.profiles[index]
 }
 
-
 const Community_liveness = (CNTP: string, setCNTP: (v:string) => void, setTodayCNTP: (v:string) => void) => {
 	const intl = useIntl()
 	const [showLoader, setShowLoader] = useState(false)
+	const [firstLoader, setFirstLoader] = useState(0)
 	const [showSameIPError, setShowSameIPError] = useState(false)
 	const [showInstanceError, setShowInstanceError] = useState(false)
 	const [minting, setMinting] = useState(false)
@@ -397,21 +471,26 @@ const Community_liveness = (CNTP: string, setCNTP: (v:string) => void, setTodayC
 				if (minting) {
 					await stopLiveness()
 					setShowLoader (false)
+					// setIslivenessRunning(false)
 					return setMinting(false)
 				}
 				startLiveness((err, data ) => {
-					setShowLoader (false)
-					if (err) {
-						clearError()
-						setMinting(false)
-						return setShowInstanceError(true)
+					if (showLoader) {
+						setShowLoader (false)
 					}
 					
-					setMinting(true)
+					if (data[0] === 'FAILURE'||err) {
+						clearError()
+						return setShowInstanceError(true)
+					}
+					if (!minting) {
+						setMinting(true)
+					}
+					
 					setCNTP(data[0])
 					setTodayCNTP(data[1])
-					console.log (data)
-
+					console.log ('showLoader0',data)
+					
 				})
 			}
 
@@ -421,6 +500,33 @@ const Community_liveness = (CNTP: string, setCNTP: (v:string) => void, setTodayC
         fetchData()
         return () => { active = false }
 	},[showLoader])
+
+	useEffect(() => {
+		const fetchData = async () => {
+			if (!active) {
+				return
+			}
+			if (minting) {
+				return logger(`minting is true return!`)
+			}
+			
+			isLivenessRunning ((err, data ) => {
+				if (!data.length||err) {
+					return
+				}
+				
+				if (!minting) {
+					setMinting(true)
+					setCNTP(data[0])
+					setTodayCNTP(data[1])
+				}
+			})
+		}
+		
+		let active = true
+        fetchData()
+        return () => { active = false }
+	},[minting])
 
 	const clearError = () => {
 		setTimeout(() => {
@@ -437,9 +543,14 @@ const Community_liveness = (CNTP: string, setCNTP: (v:string) => void, setTodayC
 			<Stack justifyContent="center" alignItems="center" spacing={2}>
 			{
 				!showInstanceError && !showSameIPError &&
-				<Typography variant="body1" sx={{textAlign:'center', color: grey[500], padding: '0 0 1rem 0'}}>
-					{intl.formatMessage({id: 'platform.miner.community.liveness.detail'})}
-				</Typography>
+				<Stack spacing={2}>
+					<Typography variant="body1" sx={{textAlign:'center', color: grey[500]}}>
+						{intl.formatMessage({id: 'platform.miner.community.liveness.detail'})}
+					</Typography>
+					
+					
+				</Stack>
+
 			}
 			
 			{
@@ -485,22 +596,247 @@ const Community_liveness = (CNTP: string, setCNTP: (v:string) => void, setTodayC
 
 const Referrals_Miner = () => {
 	const intl = useIntl()
+	const workservice = getWorkerService()
+	const currentProfile = () => {
+		if (workservice.data.passcode.status === 'LOCKED') {
+			return null
+		}
+		const index = workservice.data.profiles.findIndex((n:any) => {
+			return n.isPrimary
+		})
+		return workservice.data.profiles[index]
+	}
 	
+	const {
+		activeProfile
+    } = useAppState()
+
+	const [showReferrer, setShowReferrer] = useState(currentProfile().referrer)
+	const [input, setInput] = useState('')
+	const [inputShowError, setInputShowError] = useState(false)
+	const [loading, setLoading] = useState(false)
+	const referralsLink = activeProfile ? window.location.origin+'/?referral=' + activeProfile.keyID.toLowerCase(): ''
+	const keyUpHandler = (event: React.KeyboardEvent<HTMLInputElement>) => {
+        const key = event.key
+		setInputShowError(false)
+        if (key == 'Enter') {
+            return _registerReferrer()
+        }
+    }
+	const _registerReferrer = async () => {
+		setLoading(true)
+		const [success, kkkk ] =await registerReferrer(input)
+	
+		setLoading(false)
+		if (success!= 'SUCCESS') {
+			setTimeout(() => {
+				setInputShowError (false)
+			}, 3000)
+			return setInputShowError (true)
+		}
+
+
+	}
+	initOneTimeListenState('referrer', setShowReferrer)
 	return (
 		<ItemStyle3>
-			<Typography variant="body1" sx={{ textAlign:'center', color: grey[500], padding: '0 0 1rem 0'}}>
+			
+			<Typography variant="body2" sx={{ textAlign:'center', fontWeight: '900', color: grey[700], padding: '0 0 1rem 0'}}>
 				{intl.formatMessage({id: 'platform.miner.community.referral.detail'})}
 			</Typography>
-			<Button
-				variant="outlined" size="large"
-				disabled
-				sx={{fontFamily:'inherit' }}>
-					{ intl.formatMessage({id: 'platform.joinUS.forDeveloper.button'})}
-            </Button>
+			<Typography variant="body2" sx={{ textAlign:'left', fontWeight: '600', color: grey[700],padding: '0 0 0rem 0'}}>
+				{intl.formatMessage({id: 'platform.miner.community.referral.detail1'})}
+			</Typography>
+			<Typography variant="body2" sx={{ textAlign:'left', color: grey[700], padding: '0 0 1rem 0'}}>
+				{intl.formatMessage({id: 'platform.miner.community.referral.detail1-1'})}
+			</Typography>
+			<Typography variant="body2" sx={{ textAlign:'left', color: grey[700], fontWeight: '600',padding: '0 0 0rem 0'}}>
+				{intl.formatMessage({id: 'platform.miner.community.referral.detail2'})}
+			</Typography>
+			<Typography variant="body2" sx={{ textAlign:'left', color: grey[700], padding: '0 0 1rem 0'}}>
+				{intl.formatMessage({id: 'platform.miner.community.referral.detail2-1'})}
+			</Typography>
+			
+			{
+				(!showReferrer || !showReferrer?.length ) &&
+				<Stack spacing={1} direction="row"  justifyContent="center" alignItems="center" sx={{width: '100%', padding: '0rem 0 1rem 0'}}>
+					<TextField
+						fullWidth size="small"
+						label={intl.formatMessage({id: 'platform.miner.community.liveness.referrer'})} 
+						variant="standard"
+						sx={{ color: grey[700] }}
+						value={input}
+						disabled={loading}
+						onChange={e=> {
+							setInput(e.target.value)
+						}}
+						error ={inputShowError}
+						onKeyUp={keyUpHandler}
+					/>
+					{
+						!loading && !inputShowError &&
+						<Button
+							variant="outlined"
+							size="small"
+							sx={{ fontFamily: 'inherit'}}
+							onClick={_registerReferrer}
+						>
+							<Typography variant="body2" >
+								{intl.formatMessage({id: 'platform.miner.community.liveness.registerReferrer'})}
+							</Typography>
+						</Button>
+					}
+					{
+						loading &&
+						<Box sx={{ display: 'flex' }}>
+							<CircularProgress color="success" size='1rem' />
+						</Box>
+					}
+					
+				</Stack>
+				
+			}
+			{
+				showReferrer &&
+				<>
+					<Typography variant="body2" sx={{ textAlign:'left', color: grey[700], fontWeight: '600'}}>
+						{intl.formatMessage({id: 'platform.miner.community.liveness.yourReferrer'})}
+					</Typography>
+					<Typography variant="body2" sx={{ textAlign:'left',fontSize:'0.8rem',wordBreak: 'break-word', color: grey[700], padding: '0 0 1rem 0'}}>
+						{showReferrer}
+					</Typography>
+					
+				</>
+			}
+
+			
+			{
+				activeProfile &&
+				<Stack spacing={1} direction="row"  justifyContent="flex-start" alignItems="center">
+					<Typography variant="body2" sx={{ textAlign:'left', color: grey[700], fontWeight: '600'}}>
+						{intl.formatMessage({id: 'platform.miner.community.referral.link'})}
+					</Typography>
+					<Link>
+						<Typography variant="body2" sx={{ textAlign:'left',fontSize:'0.8rem',wordBreak: 'break-word'}}>
+							{referralsLink}
+						</Typography>
+					</Link>
+					<IconButton color="success" sx={{}}
+						onClick={
+							() => CopyToClipboard(referralsLink)
+						}
+					>
+						<ContentCopyIcon sx={{fontSize: '1rem'}}/>
+					</IconButton>
+				</Stack>
+
+			}
+			
 		</ItemStyle3>
 		
 	)
 		
+}
+
+
+const Referrals_Table = () => {
+	const [listValve, setListValve] = React.useState<string[]>([])
+	const [expanded, setExpanded] = React.useState<string | false>('')
+
+	const intl = useIntl()
+	useEffect(() => {
+        
+        const fetchData = async () => {
+			if (!active) {
+				return
+			}
+			const [success, data] = await referrerList()
+			if (success === 'SUCCESS') {
+				setListValve (data[0])
+			}
+        }
+		let active = true
+        fetchData()
+        return () => { active = false }
+    }, [])
+
+	const handleChange =
+    (panel: string) => (event: React.SyntheticEvent, newExpanded: boolean) => {
+      	setExpanded(newExpanded ? panel : false);
+    }
+
+	const Row = (props: { row: string}) => {
+		const { row } = props
+		const [open, setOpen] = React.useState(false)
+		return (
+
+			<TableRow sx={{ '& > *': { borderBottom: 'unset' } }}>
+				<TableCell component="th" scope="row" align="left">
+					<IconButton
+						size="small"
+						onClick={() => setOpen(n => !n)}
+					>
+						{open ? <KeyboardArrowDown /> :<KeyboardArrowRight /> }
+					</IconButton>
+				</TableCell>
+				<TableCell align="left">
+					<Typography variant="body2" sx={{ textAlign:'left', color: grey[500]}}>
+						{row}
+					</Typography>
+				</TableCell>
+			</TableRow>
+		)
+	}
+
+	return (
+		<Stack sx={{width: '100%'}}>
+			{
+				
+				listValve.length === 0  &&
+				<Box sx={{ width:'100%', height: '5rem' }}>
+					<Typography variant="h6" sx={{ textAlign:'center', color: grey[500]}}>
+						{intl.formatMessage({id: 'platform.miner.register.referralsEmpty'})}
+					</Typography>
+				</Box>
+				
+			}
+			{
+				// listValve.length >0 &&
+				// <TableContainer component={Paper}>
+				// 	<Table sx={{ width:'100%' }} size="small">
+				// 		<TableBody>
+				// 			{
+				// 				listValve.map(n => (
+				// 					<Row key={n} row={n} />
+				// 				))
+				// 			}
+				// 		</TableBody>
+				// 	</Table>
+				// </TableContainer>
+			}
+			{
+				listValve.length >0 &&
+				
+				listValve.map(n => (
+					<Accordion expanded={expanded === n} onChange={handleChange(n)} key={n}>
+						<AccordionSummary id={n} >
+							<Typography variant="body2" sx={{ textAlign:'left', color: grey[500]}}>
+								{n}
+							</Typography>
+						</AccordionSummary>
+						<AccordionDetails>
+
+						</AccordionDetails>
+					</Accordion>
+				))
+				
+				
+				
+			}
+			
+		</Stack>
+
+	)
 }
 
 const Community = (CNTP: string, setCNTP:(v: string) => void, setTodayCNTP:(v: string) => void) => {
@@ -518,6 +854,7 @@ const Community = (CNTP: string, setCNTP:(v: string) => void, setTodayCNTP:(v: s
 
 	return (
 		<Grid container alignItems="center" direction="column" sx={{ textAlign: 'center', width: '100%'}}>
+			
 			<Grid item xs={12} sx={{textAlign: 'center', width: '100%'}}>
 				<Typography variant="h6" sx={{ fontWeight: '700', textAlign:'center', color: lightGreen[400]}}>
 					{intl.formatMessage({id: 'platform.miner.community.title'})}
@@ -531,6 +868,7 @@ const Community = (CNTP: string, setCNTP:(v: string) => void, setTodayCNTP:(v: s
                         allowScrollButtonsMobile>
                         <Tab label={intl.formatMessage({id: 'platform.miner.community.liveness.title'})} {...a11yProps(0)} />
                         <Tab label={intl.formatMessage({id: 'platform.miner.register.referrals'})} {...a11yProps(1)} />
+						<Tab label={intl.formatMessage({id: 'platform.miner.register.referralsList'})} {...a11yProps(2)} />
                     </Tabs>
                 </Box>
                 <CustomTabPanel value={value} index={0}>
@@ -544,6 +882,13 @@ const Community = (CNTP: string, setCNTP:(v: string) => void, setTodayCNTP:(v: s
                     <Slide direction={animei} in={value===1} mountOnEnter unmountOnExit>
 						<Stack spacing={1} justifyContent="center" alignItems="center" sx={{width: '100%', padding:'1rem 0 0 0'}}>
 							<Referrals_Miner />
+						</Stack>
+                    </Slide>
+                </CustomTabPanel>
+				<CustomTabPanel value={value} index={2}>
+                    <Slide direction={animei} in={value===2} mountOnEnter unmountOnExit>
+						<Stack spacing={1} justifyContent="center" alignItems="center" sx={{width: '100%', padding:'1rem 0 0 0'}}>
+							<Referrals_Table />
 						</Stack>
                     </Slide>
                 </CustomTabPanel>
@@ -696,6 +1041,7 @@ const DashBoardpanel = (cntp: string, todayCNTP: string) => {
     }, [])
 
 
+
 	const intl = useIntl()
 	const addMateMask = async() => {
 		try {
@@ -704,8 +1050,8 @@ const DashBoardpanel = (cntp: string, todayCNTP: string) => {
 			.request({
 				method: "wallet_addEthereumChain",
 				params: [{
-					chainId: "0x36CA6",
-					rpcUrls: ["https://rpc1.conet.network/"],
+					chainId: "0x36CB1",
+					rpcUrls: ["https://holeskyrpc1.conet.network"],
 					chainName: "CONET Sebolia",
 					nativeCurrency: {
 						name: "CONET",
@@ -794,15 +1140,14 @@ const DashBoardpanel = (cntp: string, todayCNTP: string) => {
 
 const Miner = () => {
     const {
-        locale,
-
+        locale
     } = useAppState()
 
     const [minerReward, setMinerReward] = useState(0)
     const [minting, setMinting] = useState(false)
     const intl = useIntl()
     const [CONET_balance, setCONET_balance] = useState(0)
-	const [showNodeMiner, setShowNodeMiner] = useState(false)
+	const [showNodeMiner, setShowNodeMiner] = useState(true)
 	const [showBosste, setShowBosste] = useState(false)
     const [walletAddress, setWalletAddress] = useState('')
     const [totalRewards, setTotalRewards]= useState('0')
@@ -810,6 +1155,7 @@ const Miner = () => {
     const [referrals, setReferrals]= useState('0')
 	const [cntp, setCntp] = useState('0')
 	const [todayCntp, setTodayCntp] = useState('0')
+
 	useEffect(() => {
 		const fetchData = () => {
 			if (!active) {

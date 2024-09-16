@@ -1,9 +1,11 @@
-
+import  React, {SetStateAction, Dispatch} from "react"
 import {v4} from 'uuid'
 import {logger} from '../components/App/logger'
-import useAppState from "../store/appState/useAppState"
-
+import Async from 'async'
+import web3 from 'web3'
 import store from '../store/store'
+import { setIslivenessRunning } from '../store/appState/appStateActions'
+import {getWorkerService} from '../services/workerService/workerService'
 
 type WorkerCommandErrorType = 'NOT_READY'|'INVALID_DATA'|
 'NO_UUID'|'INVALID_COMMAND'|'OPENPGP_RUNNING_ERROR'|
@@ -12,10 +14,10 @@ type WorkerCommandErrorType = 'NOT_READY'|'INVALID_DATA'|
 type WorkerCommandType = 'READY'|'encrypt_TestPasscode'|'getCONETBalance'|'getRegiestNodes'|
 'encrypt_createPasscode'|'encrypt_lock'|'encrypt_deletePasscode'|'storePreferences'|
 'newProfile'|'storeProfile'|'invitation'|'WORKER_MESSAGE'|'startProxy'|
-'isAddress'|'getFaucet'|'syncAsset'|'sendAsset'|'getUSDCPrice'|
+'isAddress'|'getFaucet'|'syncAsset'|'sendAsset'|'getUSDCPrice'|'registerReferrer'|
 'buyUSDC'|'mintCoNETCash'|'getSINodes'|'getRecipientCoNETCashAddress'|
 'getUserProfile'|'sendMessage'|'setRegion'|'ipaddress'|'startLiveness'|'stopLiveness'|
-'isLivenessRunning'
+'isLivenessRunning'|'referrerList'|'getAllNodes'
 
 export type WorkerCallStatus = 'SUCCESS' | 'NOT_READY' | 'UNKNOWN_COMMAND' |
 'TIME_OUT' | 'SYSTEM_ERROR'
@@ -30,11 +32,7 @@ export type SeguroNetworkStatus = WorkerCallStatus |
 'LOCAL_SERVER_ERROR'|'INVITATION_CODE_ERROR'|
 'SEGURO_ERROR'|'UNKNOW_ERROR'|'SEGURO_DATA_FORMAT_ERROR'
 
-
-
 const ver = '0.0.13'
-
-
 
 
 /*eslint-disable */
@@ -57,7 +55,7 @@ export type SINodesSortby = 'CUSTOMER_REVIEW'|'TOTAL_ONLINE_TIME'|
 export type SINodesRegion = 'USA'|'UK'|'ES'|'DE'
 
 export interface ContainerData {
-    method: {
+    method?: {
         testPasscode?: (
             passcode: string,
             progressCallback: ( progressInteger: string, progressFractional: string ) => void
@@ -111,7 +109,7 @@ export type StartWorkerResolve = [WorkerCallStatus, ContainerData?]
 type StartWorkerResolveForAPI = [WorkerCallStatus, any []]
 
 const channelWrokerListenName = 'toMainWroker'
-
+let workerService: ContainerData
 
 export const postUrl: (url: string, data: string, post?: boolean) => Promise<any> = (url, data, post = true) => {
     return new Promise( async (resolve, reject )=> {
@@ -167,7 +165,6 @@ export const postUrl: (url: string, data: string, post?: boolean) => Promise<any
     })
 }
 
-
 export const postPasscode: (passcode: string) => Promise<null|boolean|WorkerCommand> = async (passcode) => {
     return await postUrl(`http://localhost:3001/loginRequest`, JSON.stringify({data:passcode}))
 }
@@ -185,15 +182,16 @@ export const testLocalServer = async () => {
     return null
 }
 
-
 const postMessage = (cmd: WorkerCommand, close: boolean,  resolve: any, Callback?:(err: string, data: string[]) => void) => {
     
     const channel = new BroadcastChannel(channelWrokerListenName)
-    const listenChannel = new BroadcastChannel(cmd.uuid)
+    
 
     const kk = (e: any) => {
         listeningChannel(e.data, cmd.uuid)
     }
+
+	const listenChannel = cmd.uuid ? new BroadcastChannel(cmd.uuid): null
 
     const listeningChannel = (data: any, uuid: string) => {
         let cmd: WorkerCommand
@@ -205,14 +203,14 @@ const postMessage = (cmd: WorkerCommand, close: boolean,  resolve: any, Callback
             return logger ('class CONET_Platfrom_API', `listeningChannel JSON.parse(data) Error`)
         }
 
-		if (close) {
+		if (close && listenChannel) {
 			listenChannel.close()
 		}
         
 
         if (cmd.err) {
 			if (resolve) {
-				return resolve(['SYSTEM_ERROR', cmd.data])
+				return resolve([cmd.err, cmd.data])
 			}
 			if (Callback) {
 				return Callback('SYSTEM_ERROR', [])
@@ -223,12 +221,22 @@ const postMessage = (cmd: WorkerCommand, close: boolean,  resolve: any, Callback
 			return resolve(['SUCCESS', cmd.data])
 		}
 		if (Callback) {
+			if (!cmd.data.length) {
+				if (listenChannel) {
+					listenChannel.close()
+				}
+				
+				return Callback('',[])
+			}
 			return Callback('', cmd.data)
 		}
 		return console.log (`postMessage Callback && resolve all null`, cmd.data)
     }
-    
-    listenChannel.addEventListener('message', kk)
+
+	if (listenChannel){
+		
+    	listenChannel.addEventListener('message', kk)
+	}
     channel.postMessage(JSON.stringify(cmd))
     channel.close()
 }
@@ -292,11 +300,12 @@ export const getRegiestNodes : () => Promise < StartWorkerResolveForAPI > = () =
 
 export const createPasscode : (passcord: string, local: string) => Promise < StartWorkerResolveForAPI > = (passcord: string, local: string) => {
     return new Promise( resolve => {
-        
+		const search = window.location.search
+		const referrals = search ? search.split('=')[1]: ''
         const cmd: WorkerCommand = {
             cmd: 'encrypt_createPasscode',
             uuid: v4(),
-            data: [passcord, local]
+            data: [passcord, local, referrals]
         }
 
         return postMessage (cmd, true, resolve)
@@ -330,7 +339,6 @@ export const encrypt_deletePasscode : () => Promise < StartWorkerResolveForAPI >
 }
 
 export const startLiveness: (callback: (err: string, data: string[]) => void) => void = (callback) => {
-
 		const cmd: WorkerCommand = {
             cmd: 'startLiveness',
             uuid: v4(),
@@ -340,7 +348,7 @@ export const startLiveness: (callback: (err: string, data: string[]) => void) =>
 			if (err) {
 				return callback (err, [])
 			}
-			
+		
 			return callback ('', data)
 		})
 }
@@ -357,16 +365,99 @@ export const stopLiveness: () => Promise < StartWorkerResolveForAPI > = () => {
 	})
 }
 
-export const isLivenessRunning: () => Promise < StartWorkerResolveForAPI > = () => {
+export const encrypt_TestPasscode:(passcode: string) => Promise < StartWorkerResolveForAPI > = (passcode) => new Promise(resolve=> {
+	const search = window.location.search
+	const referrals = search ? search.split('=')[1]: ''
+	const cmd: WorkerCommand = {
+		cmd: 'encrypt_TestPasscode',
+		uuid: v4(),
+		data: [passcode, referrals]
+	}
 
+	return postMessage (cmd, true, resolve)
+	
+})
+
+export const isLivenessRunning: (callback: (err: string, data: string[]) => void) => Promise < StartWorkerResolveForAPI > = (callback) => {
+	
 	return new Promise(resolve => {
 		const cmd: WorkerCommand = {
             cmd: 'isLivenessRunning',
             uuid: v4(),
             data: []
         }
-        return postMessage (cmd, true, resolve)
+        return postMessage (cmd, false, null,(err, data) => {
+			if (err) {
+				return callback (err, [])
+			}
+		
+			return callback ('', data)
+		})
 	})
 }
+
+type listenState = 'referrer'|'system'|'conet'|'cntp'|'cntp-balance'
+
+export const initOneTimeListenState = (listenState: listenState, dispatch: Dispatch<SetStateAction<any>>) => {
+	const channel = new BroadcastChannel(listenState)
+	channel.addEventListener('message', (e: any) => {
+		dispatch(JSON.parse(e.data))
+	})
+}
+
+export const initListenState = (listenState: listenState, dispatch: Dispatch<SetStateAction<any>>) => {
+	const channel = new BroadcastChannel(listenState)
+	const listen = (e: any) => {
+		dispatch(JSON.parse(e.data))
+	}
+	channel.addEventListener('message', listen)
+}
+
+export const registerReferrer:(referrerAddr: string) => Promise < StartWorkerResolveForAPI > = (referrerAddr) => new Promise(resolve=>{
+	const cmd: WorkerCommand = {
+		cmd: 'registerReferrer',
+		uuid: v4(),
+		data: [referrerAddr]
+	}
+	return postMessage (cmd, true, resolve)
+})
+
+export const scanAssets = () => {
+	const cmd: WorkerCommand = {
+		cmd: 'syncAsset',
+		uuid: '',
+		data: []
+	}
+	return postMessage (cmd, true, null)
+}
+
+export const referrerList : () => Promise < StartWorkerResolveForAPI > = () => {
+    return new Promise( resolve => {
+        const cmd: WorkerCommand = {
+            cmd: 'referrerList',
+            uuid: v4(),
+            data: []
+        }
+        return postMessage (cmd, true, resolve)
+    })
+}
+
+export interface nodeType {
+	ip_addr: string
+	minerAddr: string
+	running: boolean
+	wallet_addr: string
+	balance: string
+	country: string
+}
+
+export const getAllNodes:() => Promise < StartWorkerResolveForAPI > = () => new Promise(resolve => {
+	const cmd: WorkerCommand = {
+		cmd: 'getAllNodes',
+		uuid: v4(),
+		data: []
+	}
+	return postMessage (cmd, true, resolve)
+})
 
 

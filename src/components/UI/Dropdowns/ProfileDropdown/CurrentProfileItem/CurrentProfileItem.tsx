@@ -76,19 +76,6 @@ const StyledProfileKeyIdCopy = styled.button`
 	margin-left: 0.1rem;
 `
 
-
-const RightToolIcon = styled.div`
-	cursor: pointer;
-	margin-left: 1rem;
-`
-const Item = styled(Box)(({ theme }) => ({
-	backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
-	...theme.typography.body2,
-	padding: theme.spacing(1),
-	textAlign: 'center',
-	color: theme.palette.text.secondary,
-}))
-
 const CurrentProfileItem = ({closeDropdown, syncAsset}: ProfileDropdownProps ) => {
 	const [showMetaMask, setShowMetaMask] = useState(false)
 	const [showPrivateKey, setShowPrivateKey] = useState(false)
@@ -128,11 +115,11 @@ const CurrentProfileItem = ({closeDropdown, syncAsset}: ProfileDropdownProps ) =
 			.request({
 				method: "wallet_addEthereumChain",
 				params: [{
-					chainId: "0x36CA6",
-					rpcUrls: ["https://rpc1.conet.network/"],
-					chainName: "CONET Sebolia",
+					chainId: "0x36CB1",
+					rpcUrls: ["https://HoleskyRpc1.conet.network"],
+					chainName: "CONET Holesky",
 					nativeCurrency: {
-						name: "CONET",
+						name: "CONET Holesky",
 						symbol: "CONET",
 						decimals: 18
 					},
@@ -150,12 +137,10 @@ const CurrentProfileItem = ({closeDropdown, syncAsset}: ProfileDropdownProps ) =
 	
 	const [loading, setLoading] = useState(false)
 
-	const theme = useTheme()
 
-	const {setIsModalOpen, clientProfiles, setActiveProfile, activeProfile} = useAppState()
 	return (
-		<Stack direction="column">
-			<Stack direction="row" alignItems="center" justifyContent="space-evenly" spacing={0}>
+		<Stack direction="column" spacing={0} sx={{width: '100%'}}>
+			<Stack direction="row" alignItems="center" justifyContent="space-evenly" spacing={0} sx={{width:'100%'}}>
 				<Avatar src={currentProfile.profileImg || AnonymousProfile}/>
 				{/* <Margin1rem onClick={()=> {
 						setIsModalOpen('profilesList')
@@ -164,8 +149,8 @@ const CurrentProfileItem = ({closeDropdown, syncAsset}: ProfileDropdownProps ) =
 					<ProfileImage src={currentProfile.profileImg || AnonymousProfile} size={45}/>
 
 				</Margin1rem> */}
-				<Stack direction="row" alignItems="center"  sx={{padding: '0 0rem 0 1rem'}}>
-					<Stack direction="column" >
+				<Stack direction="row" alignItems="center" spacing={0} sx={{width:'100%'}}>
+					<Stack direction="column" spacing={0} sx={{width:'100%'}}>
 						<Typography variant="subtitle2" align='center' sx={{}}>
 							{ currentProfile.nickName || intl.formatMessage({id: 'platform.ProfileDropdown.CurrentProfileItem.AnonymousUser'})}
 						</Typography>
@@ -225,9 +210,6 @@ const CurrentProfileItem = ({closeDropdown, syncAsset}: ProfileDropdownProps ) =
 						<ContentCopyIcon sx={{fontSize: '1rem'}}/>
 					</IconButton>
 				</Stack>
-
-					
-				
 				
 			}
 		</Stack>

@@ -31,16 +31,17 @@ import {
     setShowMiner as _setShowMiner,
     setShowDePINing as _setShowDePINing,
     setPendingRewards as _setPendingRewards,
-
+	setIslivenessRunning as _setIslivenessRunning,
 	setCurrentProfileCONET as _setCurrentProfileCONET,
     setIsProxyStart as _setIsProxyStart,
     setProxyUploadSpeed as _setProxyUploadSpeed,
-	setCurrentProfileCNTP as _setCurrentProfileCNTP
-
+	setCurrentProfileCNTP as _setCurrentProfileCNTP,
+	setIsNodeExplorerOpen as _setIsNodeExplorerOpen,
+	setDAPPOpen as _setDAPPOpen
 
 } from './appStateActions'
 
-
+import type {dAPPOpen} from './appStateActions'
 import {
     createProfile,
     getWorkerService,
@@ -67,8 +68,27 @@ export type WindowInnerSize = {
 }
 
 const useAppState = () => {
+
+	const dAPPOpen = useTypedSelector(state => state.appState.dAPPOpen)
+
+	const setDAPPOpen = (dAppString: dAPPOpen ) => {
+        dispatch (_setDAPPOpen(dAppString))
+    }
+
+	const isNodeExplorerOpen = useTypedSelector(state => state.appState.isNodeExplorerOpen)
+
+	const setIsNodeExplorerOpen = (isNodeExplorerOpen: boolean ) => {
+        dispatch (_setIsNodeExplorerOpen(isNodeExplorerOpen))
+    }
+
     const dispatch = useDispatch()
 	const currentProfileCONET = useTypedSelector(state => state.appState.currentProfileCONET)
+
+	const islivenessRunning = useTypedSelector(state => state.appState.islivenessRunning)
+
+	const setIslivenessRunning = (islivenessRunning: boolean ) => {
+        dispatch (_setIslivenessRunning(islivenessRunning))
+    }
 
 	const setCurrentProfileCONET = (conet: string ) => {
         dispatch (_setCurrentProfileCONET(conet))
@@ -78,18 +98,6 @@ const useAppState = () => {
 	const setCurrentProfileCNTP = (cntp: string ) => {
         dispatch (_setCurrentProfileCNTP(cntp))
     }
-    const showDePINing =  useTypedSelector(state => state.appState.showDePINing)
-
-    const pendingRewards = useTypedSelector(state => state.appState.pendingRewards)
-
-    const setPendingRewards = (pendingRewards: number ) => {
-        dispatch (_setPendingRewards(pendingRewards))
-    }
-
-    const setShowDePINing = (showDePINing: boolean ) => {
-        dispatch (_setShowDePINing(showDePINing))
-    }
-
     const showDePINing =  useTypedSelector(state => state.appState.showDePINing)
 
     const pendingRewards = useTypedSelector(state => state.appState.pendingRewards)
@@ -463,13 +471,17 @@ const useAppState = () => {
         setIsProxyStart,
         isProxyStart,
         proxyUploadSpeed,
-
+		islivenessRunning,
+		setIslivenessRunning,
         setProxyUploadSpeed,
 		currentProfileCONET,
 		setCurrentProfileCONET,
 		currentProfileCNTP,
-		setCurrentProfileCNTP
-
+		setCurrentProfileCNTP,
+		isNodeExplorerOpen,
+		setIsNodeExplorerOpen,
+		dAPPOpen,
+		setDAPPOpen
     }
 }
 

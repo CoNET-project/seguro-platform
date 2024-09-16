@@ -35,10 +35,10 @@ import CloseIcon from '@mui/icons-material/Close'
 import CallReceivedIcon from '@mui/icons-material/CallReceived'
 import ContentCopyIcon from '@mui/icons-material/ContentCopy'
 import {CopyToClipboard} from "../../../../utilities/utilities"
-
 import CoNETSINodeSetup from './conet-si/CoNET_SI_SETUP'
-
 import ListItemText from '@mui/material/ListItemText'
+import {faucet, initOneTimeListenState, scanAssets} from '../../../../API/index'
+
 
 export type Profiles = Array<ProfileData>
 
@@ -100,7 +100,7 @@ const ProfileDropdown = ({closeDropdown}: ProfileDropdownProps) => {
 	const GasToEth = 0.00000001
 
 	const {setIsModalOpen, clientProfiles, setActiveProfile, activeProfile} = useAppState()
-	const workerService = getWorkerService()
+	let workerService = getWorkerService()
 
 	const currentProfile = () => {
 		if (workerService.data.passcode.status === 'LOCKED') {
@@ -139,18 +139,25 @@ const ProfileDropdown = ({closeDropdown}: ProfileDropdownProps) => {
 	const [showAssetBalance_balance, setshowAssetBalance_balanc] = useState('')
 	const [showCoNET_SI_setup_Badge, setShowCoNET_SI_setup_Badge] = useState(0)
 	const [showPage, setShowPage] = useState(false)
+	const [showLowCONETBalance, setShowLowCONETBalance] = useState(false)
+	const [oldBalance, setOldBalance] = useState(0)
+	const [getFaucetWaiting, setGetFaucetWaiting] = useState('')
 	
-	const init = () => {
+	const init = async () => {
 		const current = currentProfile()
 		if (!current) {
 			return
 		}
 		setShowPage(true)
+		await syncAsset()
 		if (!current?.network) {
 			setShowCoNET_SI_setup_Badge (1)
 		}
 		conetToken = current.tokens.conet
 		setshowAssetBalance_balanc(conetToken.balance)
+		if (conetToken.balance < 0.001) {
+			setShowLowCONETBalance(true)
+		}
 	}
 	const shortToAddr = (addr: string|undefined) => {
 		if (!addr) {
@@ -164,29 +171,28 @@ const ProfileDropdown = ({closeDropdown}: ProfileDropdownProps) => {
 		const currentProfile1 = currentProfile()
 		const currentAsset = reflashAssetList()[currectAsset]
 		switch (currentAsset.primary) {
-			case 'CoNET': {
+			case 'CONET': {
 				return setCurrentAssetHistorys (currentProfile1.tokens.conet.history)
 			}
-			case 'USDC': {
-				return setCurrentAssetHistorys (currentProfile1.tokens.usdc.history)
-			}
+			
 			default: {
-				const _history: any = []
-				workerService.data.CoNETCash.assets.forEach((n: any) => {
-					if ( n.history &&  n.history.length ) {
-						n.history.forEach ((nn:any) => {
-							_history.push (nn)
-						})
-					}
+				return setCurrentAssetHistorys (currentProfile1.tokens.cntp.history)
+				// const _history: any = []
+				// workerService.data.CoNETCash.assets.forEach((n: any) => {
+				// 	if ( n.history &&  n.history.length ) {
+				// 		n.history.forEach ((nn:any) => {
+				// 			_history.push (nn)
+				// 		})
+				// 	}
 					
-				})
-				_history.sort ((a: any, b: any) => {
-					const aa = new Date(a.time)
-					const bb = new Date(b.time)
-					return aa > bb
+				// })
+				// _history.sort ((a: any, b: any) => {
+				// 	const aa = new Date(a.time)
+				// 	const bb = new Date(b.time)
+				// 	return aa > bb
 
-				})
-				return setCurrentAssetHistorys (_history)
+				// })
+				// return setCurrentAssetHistorys (_history)
 			}
 		}
 
@@ -223,20 +229,15 @@ const ProfileDropdown = ({closeDropdown}: ProfileDropdownProps) => {
 		
 		const ret = [
 			{
-				primary: 'CoNET',
+				primary: 'CONET',
 				balance: currentProfile().tokens.conet.balance,
 				icon: <LogoIcon size={30} color='grey'/>
 			},
-			// {
-			// 	primary: 'CoNETCash',
-			// 	balance: workerService.data?.CoNETCash ? workerService.data.CoNETCash.Total : 0, 
-			// 	icon: <CNTCashLogoIcon size={30}/>,
-			// },
-			// {
-			// 	primary: 'USDC',
-			// 	balance: currentProfile().tokens.usdc.balance,
-			// 	icon: <USDCLogoIcon size={30} color='grey'/>,
-			// }
+			{
+				primary: 'CNPT',
+				balance: currentProfile().tokens.cntp.balance, 
+				icon: <LogoIcon size={30} color={green[200]}/>
+			}
 		]
 		return ret
 	}
@@ -246,32 +247,45 @@ const ProfileDropdown = ({closeDropdown}: ProfileDropdownProps) => {
 		return amountVal + fees
 	}
 
-	const getFaucet = () => {
-		if ( !workerService.method?.getFaucet) {
-			return 
-		}
+	const getFaucet = async () => {
 		setLoading (true)
-		return workerService.method.getFaucet (currentProfile().keyID)
-			.then (async n => {
-				const [status, check] = n
-				setLoading(false)
-
-				if (status === 'SUCCESS') {
-					await syncAsset ()
-					setResultSuccess (true)
-					return setSendStep (1)
-				}
-				return setResultError(true)
-			})
+		const profile = currentProfile()
+		const oldBalance = parseFloat(profile.tokens.conet.balance)
+		
+		initOneTimeListenState('conet', () => {
+			workerService = getWorkerService()
+			const profileNew = currentProfile()
+			const conetBalance = parseFloat(profileNew.tokens.conet.balance)
+			if (conetBalance - oldBalance > 0.001) {
+				setshowAssetBalance_balanc(profileNew.tokens.conet.balance)
+				setResultSuccess (true)
+				setSendStep (1)
+				return setLoading (false)
+			}
+			setTimeout (() => scanAssets(), 1000)
+			
+		})
+		
+		
+		const [success] = await faucet()
+		if (success !== 'SUCCESS') {
+			setLoading(false)
+			return setResultError(true)
+		}
+		scanAssets()
+		
 	}
 
 	const syncAsset = () => {
+		setLoading(true)
 		
 		return new Promise ( async (resolve)=> {
 			if ( !workerService.method?.syncAsset) {
+				setLoading(false)
 				return resolve (null)
 			}
-			const [ status, data ] = await workerService.method?.syncAsset ()
+			const [ status, data ] = await workerService.method.syncAsset ()
+			setLoading(false)
 			const assetList = reflashAssetList()
 			setshowAssetBalance_balanc(assetList[currectAsset].balance)
 			return resolve (null)
@@ -372,15 +386,11 @@ const ProfileDropdown = ({closeDropdown}: ProfileDropdownProps) => {
 		let asset = ''
 		switch (currectAsset) {
 			case 0: {
-				asset = 'CoNET'
-				break
-			}
-			case 1: {
-				asset = 'CoNETCash'
+				asset = 'CONET'
 				break
 			}
 			default : {
-				asset = 'USDC'
+				asset = 'COPT'
 			}
 		}
 		return workerService.method?.sendAsset(currentProfile().keyID, amountVal, toAddr, asset)
@@ -412,7 +422,7 @@ const ProfileDropdown = ({closeDropdown}: ProfileDropdownProps) => {
 						}} >
 							{icon}
 							<ListItemText primary={primary} sx={{ paddingLeft: '1rem', maxWidth: '5rem'}}/>
-							<ListItemText primary={balance.toFixed(4)} sx={{ textAlign: 'right'}}/>
+							<ListItemText primary={balance} sx={{ textAlign: 'right'}}/>
 						</ListItemButton>
 						
 					</ListItem>
@@ -486,6 +496,8 @@ const ProfileDropdown = ({closeDropdown}: ProfileDropdownProps) => {
 	const BottomNavigationChanged = (event: any, newValue: number) => {
 		setButtonNavigationCurrent(newValue)
 		const current = reflashAssetList()[currectAsset]
+		const conetBalance = parseFloat( reflashAssetList()[0].balance)
+
 		switch (current.primary) {
 			case 'USDC' : {
 				if ( newValue === 2) {					//			buy USDC
@@ -518,9 +530,13 @@ const ProfileDropdown = ({closeDropdown}: ProfileDropdownProps) => {
 				return setShowCoNETCashsendFrom (true)
 				
 			}
-
+			//		CNPT
 			default: {
-				break
+				if (conetBalance > 0.001) {
+					setShowLowCONETBalance(false)
+					break
+				}
+				setShowLowCONETBalance(true)
 			}
 		}
 	}
@@ -609,46 +625,16 @@ const ProfileDropdown = ({closeDropdown}: ProfileDropdownProps) => {
 	}
 
     return (
+		<Stack spacing={2} sx={{ width: '100%'}}>
+			<List sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper', paddingBottom: '1rem'}}>
 
-		<List sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper', paddingBottom: '2rem'}}>
-
-			<ListItem>
+			<ListItem sx={{width: '100%'}}> 
 				<CurrentProfileItem closeDropdown={closeDropdown} syncAsset= {syncAsset} />
 			</ListItem>
 
 			<Divider/>
-			
-				{/* <ListItem sx={{ width: '100%', padding: '0px'}} >
-																	
-						<ListItemButton sx={{ width: '100%', padding: '1rem'}}
-						onClick = {openConet_SI_Cliek}>
-							<ListItemIcon sx={{minWidth: '0'}}>
-								<VpnLockIcon color="primary"/>
-							</ListItemIcon>
-							
-								<ListItemText sx={{ paddingLeft: '1rem', color: blue[600]}}>
-									<Badge
-										color='warning'
-										badgeContent={ showCoNET_SI_setup_Badge }
-										anchorOrigin={{
-											vertical: 'top',
-											horizontal: 'left',
-										}}
-									>
-										{intl.formatMessage({id: 'platform.ProfileDropdown.SI.network.title'})}
-									</Badge>
-								</ListItemText>
-							
-						</ListItemButton>
-					
-				</ListItem> */}
-			
-			
-			{
-				
 
-			}
-			
+
 			{
 				showAssetBalance && 		//		Asset balance
 
@@ -660,8 +646,8 @@ const ProfileDropdown = ({closeDropdown}: ProfileDropdownProps) => {
 
 			{
 				buttonNavigationCurrent === 0 && sendStep < 1 && 						//			Faucet Information before send
-					<ListItem sx={{ textAlign: 'center', padding: '2rem'}}>
-						<Typography variant="body1" gutterBottom>
+					<ListItem sx={{ textAlign: 'center', width: '100%'}}>
+						<Typography variant="body2" gutterBottom sx={{wordBreak: 'break-word'}}>
 							{intl.formatMessage({id: 'platform.ProfileDropdown.faucet.limited'})}
 						</Typography>
 					</ListItem>
@@ -670,12 +656,12 @@ const ProfileDropdown = ({closeDropdown}: ProfileDropdownProps) => {
 			{
 				resultSuccess &&						//		 success
 				<>
-					<ListItem sx={{ textAlign: 'center', padding: '2rem'}}>
+					<ListItem sx={{ textAlign: 'center'}}>
 						<Typography variant="body1" gutterBottom>
 							{intl.formatMessage({id: 'platform.ProfileDropdown.faucet.success'})}
 						</Typography>
 					</ListItem>
-					<ListItem sx={{ textAlign: 'center', padding: '2rem'}}>
+					<ListItem sx={{ textAlign: 'center'}}>
 						<Button 
 							variant="contained"
 							onClick={()=>{
@@ -733,7 +719,7 @@ const ProfileDropdown = ({closeDropdown}: ProfileDropdownProps) => {
 					</ListItem>
 				</>
 			}
-			
+
 
 			{
 				buttonNavigationCurrent === 1 && sendStep < 2 && !resultError &&		//			Send Asset Form Fill send information
@@ -800,7 +786,7 @@ const ProfileDropdown = ({closeDropdown}: ProfileDropdownProps) => {
 
 			{
 				buttonNavigationCurrent === 1 && sendStep > 1 && !resultSuccess && !resultError &&	//			show send information
-				<>
+				
 					<ListItem id = "show send information" >
 						<Grid container spacing={2} sx={{ padding: '1.5rem'}} width='100%' justifyContent="center">
 							<Grid item xs={7}>
@@ -855,124 +841,13 @@ const ProfileDropdown = ({closeDropdown}: ProfileDropdownProps) => {
 						</Grid>
 					</ListItem>
 
-				</>
+				
 			}
 
-			{
-				showUSDCBuyFrom && !resultError &&																	//			showUSDCBuyFrom
-				<>
-					<ListItem sx={{ width: '100%', paddingLeft: '2rem', paddingRight: '2rem', paddingBottom: '0px'}} id="USDC_Price">
-						<Typography variant="body1" gutterBottom sx={{textAlign: 'center'}}>
-							{intl.formatMessage({id:'platform.ProfileDropdown.buy.usdcPrice'})}
-						</Typography>
-					</ListItem>
-					<ListItem sx={{ width: '100%', paddingLeft: '2rem', paddingRight: '2rem', paddingTop: '0px'}}>
-						<Typography variant="body1" gutterBottom sx={{textAlign: 'center', color: 'grey'}}>
-							1 CoNET ≈ {usdcPrice} USDC
-						</Typography>
-					</ListItem>
-					<ListItem >
-						<Stack direction="row" spacing={2} >	
-							<TextField id={amountTextFieldID}
-								size="small"
-								variant="standard"
-								color='secondary'
-								error={/error/.test(amountTextFieldID)? true: false}
-								label={
-									intl.formatMessage({id:'platform.ProfileDropdown.spend'})
-								}
-								type='number'
-								value={amountVal}
-								onChange={ e => {
-									let val = parseFloat(e.target.value)
-									setAmountTextFieldID('standard-basic')
-									if ( isNaN(val) || val < 0) {
-										return setAmountVal(0)
-									}
-									
-									setAmountVal(val)
-									if ( val + fees > reflashAssetList()[0].balance) {
-										return setAmountTextFieldID('standard-error')
-									}
-									
-									setReceiveVal((val *usdcPrice).toFixed(2))
-								}}
-								InputProps={{endAdornment: <InputAdornment position="end">CoNET</InputAdornment>}}
-							/>
-							<Button variant="text"
-								onClick={() => {
-									maxCoNETClick()
-								}}
-							>
-								{intl.formatMessage({id:'platform.ProfileDropdown.send.max'})}
-							</Button>
-						</Stack>
-					</ListItem>
-					<ListItem >
-						<TextField id='outlined-read-only-input'
-							label={intl.formatMessage({id:'platform.ProfileDropdown.Receive'})}
-							value={receiveVal}
-							InputProps={{endAdornment: <InputAdornment position="end">USDC</InputAdornment>}}
-							sx={{ width: '100%'}}
-						/>
-					</ListItem>
-				</>
-			}
-
-			{
-				showCoNETCashBuyFrom && !resultError && !resultSuccess && 
-				<>
-					{
-						/error/.test(amountTextFieldID) &&
-						<ListItem >
-							<Typography variant="body1" gutterBottom sx={{textAlign: 'center', color: '#d50000'}}>
-								{intl.formatMessage({id:'platform.ProfileDropdown.CoNETCash.amountError'})}
-							</Typography>
-						</ListItem>
-					}
-					
-					<ListItem id = "BuyCoNETCash" >
-						<Stack direction="row" spacing={2} >	
-							<TextField id={amountTextFieldID}
-								size="small"
-								variant="standard"
-								color='secondary'
-								error={/error/.test(amountTextFieldID)? true: false}
-								label={
-									intl.formatMessage({id:'platform.ProfileDropdown.send.amount'})
-								}
-								type='number'
-								value={amountVal}
-								onChange={e=> {
-									let val = parseFloat(e.target.value)
-									setAmountTextFieldID('standard-basic')
-									if ( isNaN(val) || val < 0 ) {
-										return setAmountVal(0)
-									}
-									
-									setAmountVal(val)
-									if ( val + fees > reflashAssetList()[2].balance|| val > 100|| val < 10) {
-										return setAmountTextFieldID('standard-error')
-									}
-									
-									
-								}}
-							/>
-							<Button variant="text"
-							onClick={() => {
-								maxBuyCoNETCashClick()
-							}}
-							>
-								{intl.formatMessage({id:'platform.ProfileDropdown.send.max'})}
-							</Button>
-						</Stack>
-					</ListItem>
-				</>
-			}
 
 			{
 
-				showHistoryDetail &&
+				showHistoryDetail &&																//		HistoryDetail
 				<ListItem id = "showHistoryDetail">
 					<Grid container spacing={1} alignItems="center" sx={{ width:'100%', padding: '1rem'}}>
 						
@@ -1072,7 +947,6 @@ const ProfileDropdown = ({closeDropdown}: ProfileDropdownProps) => {
 						</Grid>
 					</Grid>
 				</ListItem>
-
 				
 			}
 
@@ -1089,9 +963,9 @@ const ProfileDropdown = ({closeDropdown}: ProfileDropdownProps) => {
 			}
 
 			{
-				buttonNavigationCurrent > -1 &&	!loading &&	!resultError &&	!resultSuccess && 	//			Process button bar
+				buttonNavigationCurrent > -1 &&	!loading &&	!resultError &&	!resultSuccess && 							//			Process button bar
 					<ListItem sx={{ textAlign: 'center'}}>
-						<Stack direction="row" spacing={2} >
+						<Stack direction="row" spacing={4} sx={{width: '100%'}} justifyContent="center" alignItems="center">
 							<Button variant="outlined" onClick={() => {
 								resetWindow ()
 							}}>
@@ -1108,42 +982,61 @@ const ProfileDropdown = ({closeDropdown}: ProfileDropdownProps) => {
 			}
 
 			{
-				buttonNavigationCurrent < 0 && !showHistoryDetail &&			//			Tools bar
-				<ListItem id="Tools">
-					<BottomNavigation
-						showLabels={true}
-						value={buttonNavigationCurrent}
-						onChange={BottomNavigationChanged}
-						sx={{ width: '100%'}}>
-						{
-							currectAsset === 0 &&			//		Faucet		buttonNavigationCurrent = 0
-							<BottomNavigationAction
-								label={intl.formatMessage({id:'platform.ProfileDropdown.CurrentProfileItem.actionFondWallet'})}
-								
-								icon={<Opacity />}
-							/>
-						}
-						
-						<BottomNavigationAction				//		Send asset	buttonNavigationCurrent = 1
-							label={intl.formatMessage({id:'platform.ProfileDropdown.CurrentProfileItem.actionSend'})}
-							icon={<Outbound />}
-						/>
+				
+			}
 
+			{
+				buttonNavigationCurrent < 0 && !showHistoryDetail &&													//			Current Asset form include buy
+					
+
+					<> 
 						{
-							currectAsset !== 0 &&			//		buy assetbuttonNavigationCurrent = 2
-							<BottomNavigationAction
-								label={intl.formatMessage({id:'platform.ProfileDropdown.CurrentProfileItem.buy'})}
-								icon={<DownloadForOfflineIcon />}
-							/>
+							showLowCONETBalance &&
+							<ListItem id="Tools" sx={{padding: '0 2rem 0 2rem'}}>
+								<Typography variant="body2" gutterBottom sx={{ color: red[700]}}>
+									{intl.formatMessage({id: 'platform.ProfileDropdown.faucet.lowBalance'})}
+								</Typography>
+							</ListItem>
 						}
-					</BottomNavigation>
-				</ListItem>
+						<ListItem id="Tools">
+							<BottomNavigation
+								showLabels={true}
+								value={buttonNavigationCurrent}
+								onChange={BottomNavigationChanged}
+								sx={{ width: '100%'}}>
+								{																								//		Faucet		buttonNavigationCurrent = 0
+									currectAsset === 0 &&			
+									<BottomNavigationAction
+										label={intl.formatMessage({id:'platform.ProfileDropdown.CurrentProfileItem.actionFondWallet'})}
+										icon={<Opacity />}
+									/>
+								}
+								
+								<BottomNavigationAction																			//		Send asset	buttonNavigationCurrent = 1
+									disabled={true}
+									label={intl.formatMessage({id:'platform.ProfileDropdown.CurrentProfileItem.actionSend'})}
+									icon={<Outbound />}
+								/>
+
+								{
+									// currectAsset !== 0 &&			//		buy assetbuttonNavigationCurrent = 2
+									// <BottomNavigationAction
+									// 	label={intl.formatMessage({id:'platform.ProfileDropdown.CurrentProfileItem.buy'})}
+									// 	icon={<DownloadForOfflineIcon />}
+									// />
+								}
+							</BottomNavigation>
+						</ListItem>
+					</>
+				
+
+				
 
 			}
 
 			{
-				!showHistoryDetail && buttonNavigationCurrent < 0 &&			//			Asset select 
-				<ListItem sx={{ width: '100%', padding: '0px'}} id="Assets_list">
+				!showHistoryDetail && buttonNavigationCurrent < 0 &&			//			Asset List 
+				<ListItem sx={{ width: '100%', padding: '0 1rem 0 1rem'}} id="Assets_list">
 					<Box sx={{ width: '100%'}}>
 						<Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
 							<Tabs value={valueTab} onChange={handleTabChange}>
@@ -1179,8 +1072,10 @@ const ProfileDropdown = ({closeDropdown}: ProfileDropdownProps) => {
 					currentProfile = {currentProfile()}
 				/>
 			}
-			
-		</List>
+
+			</List>
+		</Stack>
+		
     )
 }
 

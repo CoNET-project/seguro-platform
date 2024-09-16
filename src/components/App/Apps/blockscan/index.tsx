@@ -103,7 +103,6 @@ const headerArea = (setShowBlockScan: (showBlockScan: boolean) => void, setShowG
     )
 }
 
-
 const ooo = {
     blockHash: "0xb570cdc8549c176bdc41a87499ac7dc02ef5536051b42ec007b08179b33f8153",
     blockNumber: "58",
@@ -261,7 +260,6 @@ export const BlockScanBody = (receipt: CryptoAssetHistory|undefined) => {
     )
 }
 
-
 const BlockScan = () => {
     const {
         setShowGuide,
@@ -277,7 +275,5 @@ const BlockScan = () => {
         </ThemeProvider>
     )
 }
-
-
 
 export default BlockScan

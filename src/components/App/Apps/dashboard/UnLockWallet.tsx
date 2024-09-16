@@ -98,9 +98,9 @@ const UnLockWallet = () => {
 
     return (
 
-        <Stack alignItems="center" justifyContent='center' sx={{width: '100%', height: '100%', marginTop:'-10rem'}}>
+        <Stack alignItems="center" justifyContent='center' sx={{width: '100%', height: '100%', marginTop:'-5rem'}}>
 
-            <Stack direction="column" alignItems="center" justifyContent='center'>
+            <Stack direction="column" alignItems="center" justifyContent='center' sx={{maxWidth: '25rem'}}>
                 <Slide direction="right" in={true} mountOnEnter >
                     <Typography variant="h5" sx={{paddingBottom: '2rem'}}>
                         { intl.formatMessage({id:'platform.overlay.unlocking'})}
@@ -108,7 +108,7 @@ const UnLockWallet = () => {
                 </Slide>
                 <Slide direction="left" in={true} mountOnEnter >
 
-                    <Paper sx={{ p: '2px 4px', display: 'flex', alignItems: 'center', width: '80%', marginBottom: '2rem' , borderRadius: '2rem'}} elevation={1}>
+                    <Paper sx={{ p: '2px 4px', display: 'flex', alignItems: 'center', width: '100%', marginBottom: '2rem' , borderRadius: '2rem'}} elevation={1}>
                     <InputBase
                         sx={{width: '100%', ml: 1, flex: 1, fontSize: '1rem' , padding:'0.7rem 0.5rem 0.5rem 1rem'}}
                         disabled={loading}
@@ -158,7 +158,7 @@ const UnLockWallet = () => {
                     </Paper>
                 </Slide>
 
-                <Box sx={{height: '5rem', }}>
+                <Box sx={{height: '5rem', width: '100%'}}>
                 {
 
                     (password.length === 0 || passwordError ) &&
@@ -168,7 +168,7 @@ const UnLockWallet = () => {
                             variant='elevated'
                             color='primary'
                             size="large"
-                            sx={{ fontSize: '1.2rem', borderRadius: '2rem', padding: '0.9rem 2rem 0.9rem 2rem', fontFamily: "inherit"}}
+                            sx={{ fontSize: '1.2rem', borderRadius: '2rem', width: '100%', padding: '0.9rem 2rem 0.9rem 2rem', fontFamily: "inherit"}}
                             onClick={handleAddFruit}
                         >
                             {intl.formatMessage({id:'platform.unlock.button.forgot'})}

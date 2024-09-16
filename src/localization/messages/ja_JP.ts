@@ -182,6 +182,7 @@ const ja_JP: Messages = {
 	'platform.ProfileDropdown.history.timestamp': 'Timestamp',
 	'platform.ProfileDropdown.history.sender': 'Sender Address',
 	'platform.ProfileDropdown.history.CoNETCash.mint': 'Mint',
+	'platform.ProfileDropdown.faucet.lowBalance': 'CONET残高が不足しています、送金ができません。まずFaucetしてください',
 
 	'platform.ProfileDropdown.send.total': 'Total',
 	'platform.ProfileDropdown.faucet.success': 'Request send success!',
@@ -354,7 +355,10 @@ const ja_JP: Messages = {
 	'platform.joinUS.miner.cloud.table.item5': '保守料金',
 	'platform.joinUS.miner.cloud.table.item5-1': '無料',
 	'platform.joinUS.miner.cloud.table.item6': 'エアドロップ',
-
+	'platform.joinUS.miner.cloud.table.item7': 'カードサイズWiFi',
+	'platform.joinUS.miner.cloud.table.item7-2': '1台',
+	'platform.joinUS.miner.cloud.table.item8': '特別な特典',
+	'platform.joinUS.miner.cloud.table.item8-2': 'マイニングマシンの利益分配に参加し、Blast L2からの独占的なエアドロップ',
 
     'platform.joinUS.joinMiner.button': 'CONETマイニングに参加',
     'platform.joinUS.forUser.Title1': 'Web3アプリケーション',//'分散型プライバシーを強化',
@@ -376,7 +380,7 @@ const ja_JP: Messages = {
 	'platform.api.daemon.httpsiteError': 'このアプリは CONET Cross Web2 プロキシをサポートしていません。クリックしてアプリを切り替えてください',
 	'platform.api.daemon.switchAPP': '切り替えAPP',
 
-    'platform.miner.header.title': 'ようこそCONET DePIN参加者の皆様',
+    'platform.miner.header.title': 'ようこそCONET参加者の皆様',
 	'platform.miner.header.title.detial': 'なぜあなたの参加がCONETにとても重要な理由',
 	'platform.miner.header.title.smartContract': 'CNTP ERC20スマートコントラクト',
 	'platform.miner.community.referral.detail': '参加者を紹介してスピードアップ',
@@ -397,14 +401,34 @@ const ja_JP: Messages = {
     'platform.miner.register.previouslyClaimed': 'カレントRewards',
     'platform.miner.register.MinerAni.stop': 'DePINを中止',
     'platform.miner.register.referrals': 'リファラル',
+	'platform.miner.register.referralsList': 'リファラル一覧表',
+	'platform.miner.register.referralsEmpty': '只今データがありません',
 	'platform.conet.cotp.Symbol': 'CNTP',
 	'platform.conet.cotp.name': 'CONETポイント',
+	'platform.miner.nwteork.Slashing': 'CONET メイン チェーンはアップグレード中です。完了するまでお待ちください。',
 
 	'platform.miner.community.title': 'コミュニティへのインセンティブ',
 	'platform.miner.community.liveness.title': 'アクティブ',
 	'platform.miner.community.liveness.detail': 'いつでもどこでもオンラインでアクティブになり、Rewardsを獲得しましょう',
 	'platform.miner.community.liveness.sameIPError': 'エラー！IPアドレスが占有されています。後でもう一度お試しください',
-	'platform.miner.community.liveness.sameMinerError': 'エラー! 別のインスタンスを実行しています。後でもう一度試してください'
+	'platform.miner.community.liveness.sameMinerError': 'エラー! 別のインスタンスを実行しています。後でもう一度試してください',
+	'platform.miner.community.referral.detail1': `直接推薦`,
+	'platform.miner.community.referral.detail1-1': `誰かがあなたの推薦リンクを使用してCONETに参加すると、あなたは紹介された人の収益の20%のボーナスを継続的に受け取ります。`,
+	'platform.miner.community.referral.detail2': `二次推薦`,
+	'platform.miner.community.referral.detail2-1': `紹介された人がさらに他の人を推薦する場合（二次推薦）、あなたも二次推薦された人の収益の10%のボーナスを継続的に受け取ります。`,
+	'platform.miner.community.referral.link': 'あなたの紹介リンク',
+	'platform.miner.community.liveness.yourReferrer': 'あなたの推薦者',
+	'platform.miner.community.liveness.referrer': '推薦者を入力してください',
+	'platform.miner.community.liveness.registerReferrer': 'リファラーを登録',
+
+	'platform.conet.explorer.title': 'CONET エクスプローラー',
+	'platform.conet.explorer.lastBlock': 'ラストブロック/アカウント',
+	'platform.conet.explorer.nodes': 'CONETノードズ / 現在運行中数',
+	'platform.conet.explorer.CNTP': 'CNTP総供給量',
+	'platform.conet.explorer.CNTP.mint': '採掘済みCNTP',
+	'platform.conet.explorer.CNTP.balance': '残りCNTP',
+	'platform.conet.explorer.CNTP.relayNodes': 'CONETネットワークリレーノード'
+
 
 }
 

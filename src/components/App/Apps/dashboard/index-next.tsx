@@ -13,6 +13,7 @@ import Box from '@mui/material/Box'
 import MenuItem from '@mui/material/MenuItem'
 import ListItemIcon from '@mui/material/ListItemIcon'
 import useAppState from "../../../../store/appState/useAppState"
+import {setDAPPOpen, setIsUnlocked} from "../../../../store/appState/appStateActions"
 import UnLockWallet from './UnLockWallet'
 import CreateWallet from './CreateWallet'
 import Dialog from '@mui/material/Dialog'
@@ -27,9 +28,11 @@ import NoDaemon from '../../NoDaemon/index'
 import Proxy from '../CONET-Proxy/index'
 import Miner from '../miner/index'
 import ManageProfiles from '../../PlatformModal/ManageProfiles/ManageProfiles'    //"..//ManageProfiles/ManageProfiles"
-
+import HubIcon from '@mui/icons-material/Hub'
+import NodeExplorer from '../nodeExplorer/nodeExplorer'
 import ProfileDropdown from '../../../UI/Dropdowns/ProfileDropdown/ProfileDropdown'
 import Container from '@mui/material/Container'
+import store from '../../../../store/store'
 interface StyledTabsProps {
     children?: React.ReactNode
     value?: number
@@ -135,48 +138,56 @@ const DashBoard = () => {
         isInitializing,
         setShowAppStore,
         locale,
-
+		isNodeExplorerOpen,
 		isModalOpen,
         setLocale,
-
+		setIsNodeExplorerOpen,
+		dAPPOpen
+		
     } = useAppState()
 
-    const [menuValue, setMenuValue] = useState(1)
+    const [menuValue, setMenuValue] = useState(0)
     const [anchorEl, setAnchorEl] = useState<null | HTMLElement|Element>()
     const openMenu = Boolean(anchorEl)
     const { mode, setMode } = useColorScheme()
     const [showProfileDropdown, setShowProfileDropdown] = useState(false)
 
     const ShowApp = () => {
-        
-        switch (true) {
-            case !hasContainer: {
-                return (
-                    <CreateWallet/>
-                )
-            }
-            case !isUnlocked : {
-                return (
-                    <UnLockWallet/>
-                )
-            }
+		if (!hasContainer) {
+			return (
+				<CreateWallet/>
+			)
+		}
+		if (!isUnlocked) {
+			return (
+				<UnLockWallet/>
+			)
+		}
+		
 
-            case !showAppStore: {
-                
+        switch (dAPPOpen) {
+
+            case 'miner': {
                 return (
                     <Miner />
                 )
             }
 
-            case !localDaemon: {
-                return (
-                    <NoDaemon/>
-                )
-            }
+            case 'proxy': {
+				if (!localDaemon) {
+					return (
+						<NoDaemon/>
+					)
+				}
+				return (
+					<Proxy />
+				)
+                
+			}
 
             default: {
-                return (
-                    <Proxy />
+				return (
+                    <NodeExplorer />
                 )
             }
         }
@@ -188,41 +199,40 @@ const DashBoard = () => {
     
         const animeCONET = () => {
             return (
-                <LogoImage color={mode === 'light' ? '#48473a': '#e5e2d9'}/>
+                <LogoImage size={40} color={mode === 'light' ? '#48473a': '#e5e2d9'}/>
             )
         }
-    
-        useEffect(() => {
-            if (isUnlocked) {
-                if (showAppStore) {
-                    setMenuValue(1)
-                } else {
-                    setMenuValue(0)
-                }
-            }
-            
-        },[])
-    
         const handleChange = (event: SyntheticEvent|null, newValue: number) => {
             
             if (event !== null ) {
-                if (newValue ===0 ) {
-                    if (showMiner) {
-                        return
-                    }
-                    setMenuValue(newValue)
-                    setShowAppStore(false)
-                    return setShowMiner (true)
-                }
-                if (newValue ===1) {
-                    if (showAppStore) {
-                        return
-                    }
-                    setMenuValue(newValue)
-                    setShowAppStore(true)
-                    return setShowMiner (false)
-                }
-    
+				switch (newValue) {
+					case 0: {
+						setMenuValue(newValue)
+						if (dAPPOpen==='miner') {
+							return
+						}
+						
+						return store.dispatch(setDAPPOpen('miner'))
+						
+					}
+					case 1: {
+						setMenuValue(newValue)
+						if (dAPPOpen==='proxy') {
+							return
+						}
+						
+						return store.dispatch(setDAPPOpen('proxy'))
+						
+					}
+					default: {
+						setMenuValue(newValue)
+						if (dAPPOpen==='nodes') {
+							return
+						}
+						return store.dispatch(setDAPPOpen('nodes'))
+					}
+				}
+                
             }
             
         }
@@ -248,17 +258,21 @@ const DashBoard = () => {
                                 isUnlocked && 
                                 <>
                                     <IconButton onClick={()=>{
-                                        setShowMiner(true)
-                                        setShowAppStore(false)
+                                        store.dispatch(setDAPPOpen('miner'))
                                     }} sx={{ opacity: showMiner ? '1': '0.5'}} >
                                         <SvgIcon component={LocalLaundryServiceIcon} inheritViewBox sx={{ fontSize: 40 }}/>
                                     </IconButton>
     
                                     <IconButton  onClick={()=>{
-                                        setShowAppStore(true)
-                                        setShowMiner(false)
+                                        store.dispatch(setDAPPOpen('proxy'))
                                     }} sx={{ opacity: showAppStore ? '1': '0.5'}}>
                                         <SvgIcon component={VpnLockIcon} inheritViewBox sx={{ fontSize: 40 }}/>
+                                    </IconButton>
+
+									<IconButton  onClick={()=>{
+                                        store.dispatch(setDAPPOpen('nodes'))
+                                    }} sx={{ opacity: showAppStore ? '1': '0.5'}}>
+                                        <SvgIcon component={HubIcon} inheritViewBox sx={{ fontSize: 40 }}/>
                                     </IconButton>
                                 </>
                             }
@@ -348,7 +362,7 @@ const DashBoard = () => {
                     onChange={handleChange}
                     sx={{
                         backgroundColor: mode === 'light' ? '#f0eddd': '#2d2d1e',
-                        minWidth: '5.5rem',
+                        width: '5.7rem',
                         display:{xs: 'none', sm: 'flex', md: 'flex', xm: 'flex', lg: 'flex', xl: 'flex'},
                         paddingTop: '2rem'
                     }}
@@ -357,9 +371,9 @@ const DashBoard = () => {
                     {
                         isUnlocked &&
                         <>
-                            <StyledTab {...a11yProps(0)} icon={<SvgIcon component={LocalLaundryServiceIcon} inheritViewBox sx={{ fontSize: 40 }}/>} sx={{paddingBottom: '2rem'}} />
-                            <StyledTab {...a11yProps(1)} icon={<SvgIcon component={VpnLockIcon} inheritViewBox sx={{ fontSize: 40 }}/>} sx={{paddingBottom: '2rem'}}/>
-    
+                            <StyledTab {...a11yProps(0)} icon={<SvgIcon component={LocalLaundryServiceIcon} inheritViewBox sx={{ fontSize: 30 }}/>} sx={{paddingBottom: '2rem'}} />
+                            <StyledTab {...a11yProps(1)} icon={<SvgIcon component={VpnLockIcon} inheritViewBox sx={{ fontSize: 30 }}/>} sx={{paddingBottom: '2rem'}}/>
+							<StyledTab {...a11yProps(2)} icon={<SvgIcon component={HubIcon} inheritViewBox sx={{ fontSize: 30 }}/>} sx={{paddingBottom: '2rem'}}/>
                         </>
                     }
     
@@ -369,6 +383,7 @@ const DashBoard = () => {
                         <Tab icon={showLocationIcon(locale)} sx={{ position: 'fixed', bottom: '10rem'}} />
                         <LanguageMenu />
                     </Box> */}
+
     
                     <Box {...a11yProps(3)} onClick={
                         e => {
@@ -389,16 +404,16 @@ const DashBoard = () => {
                             
                         }
                     }>
-                        <Tab icon={<SvgIcon component={animeCONET} inheritViewBox />} sx={{ position: 'fixed', bottom: '0px', width: '1rem', fontSize: '30px'}}/>
+                    
+					<Tab icon={<SvgIcon component={animeCONET} inheritViewBox />} sx={{ position: 'fixed', bottom: '0px'}}/>
     
                     </Box>
-                    
-                    
                 </StyledTabs>
                 <StyledTabsMobile />
                 <Dialog
                     open={showProfileDropdown}
                     onClose={() => setShowProfileDropdown(false)}
+					maxWidth='xs'
                 >
                     <ProfileDropdown 
                         closeDropdown={()=> {

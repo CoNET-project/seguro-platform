@@ -10,14 +10,15 @@ import {
     setWorkerServiceIsInitialized,
 	setActiveProfile,
 	setCurrentProfileCONET,
-	setCurrentProfileCNTP
+	setCurrentProfileCNTP,
+	setDAPPOpen
 } from '../../store/appState/appStateActions'
 import { ContainerData } from "@conet.project/seguro-worker-lib/build/workerBridge"
 import logger from "../../utilities/logger/logger"
 import {Theme} from "../../theme/types"
 import {Locale} from "../../localization/types"
 import {ClientProfiles, ProfileData} from "../../store/appState/appStateReducer"
-
+import {createPasscode as api_createPasscode, encrypt_TestPasscode, initListenState} from '../../API/index'
 let workerService: ContainerData
 
 type PasscodeFunctionParams = {
@@ -25,6 +26,16 @@ type PasscodeFunctionParams = {
 	locale: string,
     progress: (progress: any) => void
 }
+
+initListenState('system', data => {
+	workerService = {
+		method: {
+		},
+		data: data,
+		preferences: {},
+		status: 'UNLOCKED'
+	}
+})
 
 type WorkerServiceResolve = 'SUCCESS' | 'FAILURE'
 
@@ -98,36 +109,45 @@ export const checkIsVerified = true
 
 export const createPasscode = ({passcode, locale, progress}: PasscodeFunctionParams): Promise<PasscodeResolves> => (
     new Promise<PasscodeResolves>(async (resolve) => {
-        if (workerService.method.createPasscode) {
-            const [status, data] = await workerService.method.createPasscode(passcode, (progressInteger: any) => {
-                progress(progressInteger)
-            })
+		const [status, data] = await api_createPasscode(passcode, locale)
 
-            if (status === 'SUCCESS') {
-				if (!data) {
-					return resolve('FAILURE')
-				}
-				workerService = data
-                resolve( status )
-            }
+        // if (workerService.method.createPasscode) {
+        //     const [status, data] = await workerService.method.createPasscode(passcode, (progressInteger: any) => {
+        //         progress(progressInteger)
+        //     })
+
+        //     if (status === 'SUCCESS') {
+		// 		if (!data) {
+		// 			return resolve('FAILURE')
+		// 		}
+		// 		workerService = data
+        //         resolve( status )
+        //     }
             
-			resolve('FAILURE')
+		// 	resolve('FAILURE')
             
-            logger.log('workerService.ts', 'createPasscode', status, workerService)
-        }
+        //     logger.log('workerService.ts', 'createPasscode', status, workerService)
+        // }
     })
 )
 
 export const unlockPasscode = ({passcode, progress}: PasscodeFunctionParams): Promise<PasscodeResolves> => (
     new Promise<PasscodeResolves>(async (resolve) => {
+		const [status, data] = await encrypt_TestPasscode(passcode)
+		console.log(data)
+		
         //store.dispatch(setIsPlatformLoading('unlockPasscode'))
-        if (workerService.method.testPasscode) {
-            const [status, container] = await workerService.method.testPasscode(passcode, progress)
-
             switch (status) {
-                case 'SUCCESS':
-					if ( container ) {
-						workerService = container
+                case 'SUCCESS':{
+					if ( data[0] ) {
+						workerService = {
+							method: {
+								
+							},
+							data: data[0],
+							preferences: {},
+							status: 'UNLOCKED'
+						}
 					}
 					console.log (workerService)
                     resolve(status)
@@ -138,13 +158,31 @@ export const unlockPasscode = ({passcode, progress}: PasscodeFunctionParams): Pr
 					store.dispatch(setActiveProfile(profile))
 					store.dispatch(setCurrentProfileCONET(profile.tokens.conet.balance))
 					store.dispatch(setCurrentProfileCNTP(profile.tokens.cntp.balance))
-
+					
+					const channel = new BroadcastChannel('system')
+					channel.addEventListener('message', e => {
+						let data
+						try{
+							data = JSON.parse(e.data) 
+						} catch (ex) {
+							return console.log (`encrypt_TestPasscode BroadcastChannel('referrer') JSON.parse(e.data) error`, ex)
+						}
+						workerService = {
+							method: {
+								
+							},
+							data: data,
+							preferences: {},
+							status: 'UNLOCKED'
+						}
+					})
                     break
-                case 'FAILURE':
-                    resolve(status)
-                    break
+				}
+				default: {
+					resolve('FAILURE')
+				}
             }
-        }
+        
         store.dispatch(setIsPlatformLoading(null))
     })
 )

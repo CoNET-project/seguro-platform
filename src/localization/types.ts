@@ -179,6 +179,7 @@ export type Messages = {
 	'platform.ProfileDropdown.SI.network.loading': string
 	'platform.ProfileDropdown.faucet.success': string
 	'platform.ProfileDropdown.faucet.error': string
+	'platform.ProfileDropdown.faucet.lowBalance': string
 	'platform.ProfileDropdown.send.error': string
 	'platform.ProfileDropdown.send.amount': string
 	'platform.ProfileDropdown.CoNETCash.amountError': string
@@ -356,6 +357,10 @@ export type Messages = {
 	'platform.joinUS.miner.cloud.table.item5': string
 	'platform.joinUS.miner.cloud.table.item5-1': string
 	'platform.joinUS.miner.cloud.table.item6': string
+	'platform.joinUS.miner.cloud.table.item7': string
+	'platform.joinUS.miner.cloud.table.item7-2': string
+	'platform.joinUS.miner.cloud.table.item8': string
+	'platform.joinUS.miner.cloud.table.item8-2': string
 
     'platform.joinUS.joinMiner.button': string
 
@@ -401,13 +406,33 @@ export type Messages = {
     'platform.miner.register.previouslyClaimed': string
     'platform.miner.register.MinerAni.stop': string
     'platform.miner.register.referrals': string
+	'platform.miner.register.referralsList': string
+	'platform.miner.register.referralsEmpty': string,
 	'platform.miner.community.title': string
 	'platform.miner.community.liveness.title': string
 	'platform.miner.community.liveness.detail': string
 	'platform.miner.community.liveness.sameIPError': string
 	'platform.miner.community.liveness.sameMinerError': string
+	'platform.miner.community.liveness.referrer': string
 
 	'platform.miner.community.referral.detail': string
+	'platform.miner.community.referral.detail1': string
+	'platform.miner.community.referral.detail1-1': string
+	'platform.miner.community.referral.detail2': string
+	'platform.miner.community.referral.detail2-1': string
+	'platform.miner.community.referral.link': string
+	'platform.miner.community.liveness.yourReferrer': string
+	'platform.miner.community.liveness.registerReferrer': string
+
+	'platform.miner.nwteork.Slashing': string
+
+	'platform.conet.explorer.title': string
+	'platform.conet.explorer.lastBlock': string
+	'platform.conet.explorer.nodes': string
+	'platform.conet.explorer.CNTP': string
+	'platform.conet.explorer.CNTP.mint': string
+	'platform.conet.explorer.CNTP.balance': string
+	'platform.conet.explorer.CNTP.relayNodes': string
     
 }
 export type MessagesByLocale = Record<Locale, Messages>
